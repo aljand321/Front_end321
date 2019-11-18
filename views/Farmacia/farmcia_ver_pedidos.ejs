@@ -115,7 +115,7 @@
                                     <div class="col-md-11"> 
                                         <a class="btn btn-info" @click="ver(<%=resp[0].id%>)"><i class="fa fa-edit"></i> Ver Lista de Productos</a>
                                         <section class="panel default black_title h4">
-                                            <div class="panel-heading">Observaciones de la llegada del Pedido </div>
+                                            <div class="panel-heading">Observaciones de la llegada del Pedido</div>
                                             <div class="panel-body">
                                                 <table class="table table-hover">
                                                     <thead>
@@ -184,81 +184,84 @@
                                         </section>
                                     </div>
 
-                                    <div class="col-lg-12"> 
-                                        <section class="panel default black_title h4">
-                                            <div class="panel-heading">
-                                                <span class="semi-bold">Lista Pedidos</span> 
-                                            </div>
-                                            <div class="panel-body">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th style="color: crimson;">Cantidad del Producto</th>
-                                                            <th>Codigo</th>
-                                                            <th>Descripcion</th>
-                                                            
-                                                            <th>Precio</th>
-                                                            <th>Precio Toal</th>
-                                                           
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody v-for="(car, index) in list_almacen.lista_med">                                                    
-                                                        <tr>
-                                                          <td>{{index+1}}</td>
-                                                          <td style="color: crimson;">{{car.qty}}</td>
-                                                          <td>{{car.item.codificacion}}</td>
-                                                          <td>{{car.item.nombre}}</td>
-                                                         
-                                                          <td>{{car.item.price}}</td>
-                                                          <td>{{car.price}}</td>
-                                                                                                          
-                                                        </tr>                                                   
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </section>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="col-sm-9">
-                                                    <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
-                                                        <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalQty">
-                                                    </div>
+                                    <template v-if = "list_almacen != null">
+                                        <div class="col-lg-12" > 
+                                            <section class="panel default black_title h4">
+                                                <div class="panel-heading">
+                                                    <span class="semi-bold">Lista Pedidos</span> 
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="col-md-4">
+                                                <div class="panel-body">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th style="color: crimson;">Cantidad del Producto</th>
+                                                                <th>Codigo</th>
+                                                                <th>Descripcion</th>
+                                                                
+                                                                <th>Precio</th>
+                                                                <th>Precio Toal</th>
+                                                               
+                                                            </tr>
+                                                        </thead>
+                                                         <tbody v-for="(car, index) in list_almacen.lista_med">                                                    
+                                                            <tr>
+                                                              <td>{{index+1}}</td>
+                                                              <td style="color: crimson;">{{car.qty}}</td>
+                                                              <td>{{car.item.codificacion}}</td>
+                                                              <td>{{car.item.nombre}}</td>
+                                                             
+                                                              <td>{{car.item.price}}</td>
+                                                              <td>{{car.price}}</td>
+                                                                                                              
+                                                            </tr>                                                   
+                                                        </tbody> 
+                                                    </table>
+                                                </div>
+                                            </section>
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <div class="col-sm-9">
-                                                        <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                            <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalPrice">
+                                                        <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
+                                                            <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalQty">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                  <div class="col-sm-9">
-                                                      <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                        <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalPrice * 0.13">
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
+                                                                <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalPrice">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                      <div class="col-sm-9">
+                                                          <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                            <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalPrice * 0.13"> 
+                                                          </div>
                                                       </div>
-                                                  </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                            <input type="text" class="form-control" disabled="" v-model="list_almacen.totalPrice + list_almacen.totalPrice * 0.13">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon">Total:</span>
+                                                                <input type="text" class="form-control" disabled="" v-model="list_almacen.totalPrice + list_almacen.totalPrice * 0.13">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </template>
                                     
-                                    <div class="form-group"  >
+                                    
+                                    <div class="form-group"  v-if = "list_almacen != null">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
                                             <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>

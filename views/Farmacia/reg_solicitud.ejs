@@ -122,26 +122,26 @@
                       <table  class="display table table-bordered table-striped">
                         <thead>
                           <tr>
-                          <th>#</th>
-                          <th>Cantidad del Producto</th>
-                          <th>Codigo</th>
-                          <th>Nombre</th>
-                          <th>Precio</th>
-                          <th>Precio Total</th>
-                          <th>Eliminar</th>
-                          <th>Eliminar todo</th>
+                            <th>#</th>
+                            <th>Cantidad del Producto</th>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Precio Total</th>
+                            <th>Eliminar</th>
+                            <th>Eliminar todo</th>
                           </tr>
                         </thead>
                         <tbody v-for="(car, index) in listItems">                                                    
                           <tr>
-                          <td>{{index}}</td>
-                          <td>{{car.qty}}</td>
-                          <td>{{car.item.codificacion}}</td>
-                          <td>{{car.item.nombre}}</td>
-                          <td>{{car.item.price}}</td>
-                          <td>{{car.price}}</td>
-                          <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
-                          <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
+                            <td>{{index}}</td>
+                            <td>{{car.qty}}</td>
+                            <td>{{car.item.codificacion}}</td>
+                            <td>{{car.item.nombre}}</td>
+                            <td>{{car.item.price}}</td>
+                            <td>{{car.price}}</td>
+                            <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
+                            <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
                           </tr>                                                   
                         </tbody>
                       </table>

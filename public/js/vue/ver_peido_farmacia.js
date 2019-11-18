@@ -11,17 +11,21 @@ const ver_pedido_farmacia =  new Vue({
         totalPrice:'',
         total_cantidad:'',
 
-        list_almacen:'',
+        list_almacen:[],
 
-        list_acep_farmacia:''
+        list_acep_farmacia:[],
+
+        numero_solisitid:''
     }),
     mounted() {
         fetch(this.url+'/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
         .then(resp => resp.json())
         .catch(error => console.error('Error',error))
         .then(resp => {
+            this.numero_solisitid = resp[0].num_solicitud
             this.list_acep_farmacia = resp[0].medicamento_aceptado_farmacia
             this.list_almacen = resp[0].medicamento_mandado_almacen
+            console.log(this.list_almacen, " esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<<<<<<<<«")
             this.data_pedido = resp
             this.totalPrice = resp[0].medicamentos.totalPrice
             this.total_cantidad = resp[0].medicamentos.total_cantidad
@@ -40,7 +44,16 @@ const ver_pedido_farmacia =  new Vue({
                 })
             }
             this.list = arr
+            console.log( this.list , " esto es lo que quiero ver")
         })  
+        .catch(error => {
+            console.log("No hay conexion con el servidor 3200");
+            swal.fire(
+                'Error!',
+                '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
+                'error'
+            );
+        })
     },
     methods:{
 
@@ -51,6 +64,14 @@ const ver_pedido_farmacia =  new Vue({
             .then(resp => {
                 this.list_acep_farmacia = resp[0].medicamento_aceptado_farmacia
             })
+            .catch(error => {
+                console.log("no hay coneccion con el servidor 3200");
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
+                    'error'
+                );
+            })
         },
         add_medicamento(id_medicamento, index){
            
@@ -58,7 +79,6 @@ const ver_pedido_farmacia =  new Vue({
             .then(resp => resp.json())
             .catch(error => console.error('Error',error))
             .then(response => {
-                console.log(index)
                 var car = {
                     id: response[0].id,
                     codificacion: response[0].codificacion,
@@ -68,6 +88,14 @@ const ver_pedido_farmacia =  new Vue({
                 } 
                 this.add(car, index)
                 
+            })
+            .catch(error => {
+                console.log("no hay coneccion con el servidor 3200");
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
+                    'error'
+                );
             })
         },
         add: function(item, id)  {
@@ -107,40 +135,75 @@ const ver_pedido_farmacia =  new Vue({
 
         update_pedido(e){
             e.preventDefault();
-            var data  = {
-                medicamento_aceptado_farmacia:{
-                
-                    lista_med:this.list,
-                    totalQty : this.total_cantidad,
-                    totalPrice : this.totalPrice,
-                
-              }
-            };
-            var esto = {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers:{
-                  'Content-type' : "application/json"
+            var pass
+            for (var i = 0; i < this.list.length; i++){
+                if(this.list[i].fehca_vencimineto == ""){
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Inserte la fecha de vencimiento de '+this.list[i].item.nombre +'</label>',
+                        'error'
+                    )
+                    pass = "no"
                 }
-            };
-            fetch(this.url+'/farmacia/update_pedido/'+this.id_pedido,esto)
-            .then(res => res.json())
-            .catch(error => console.error('Error:', error))
-            .then(data => {
-                if (data.success == true){
-                    console.log(data, "   <<<<<<<<<<<<<<<<<<<")
-                    this.insertar()
-                    this.update_cantidad()                    
-                    this.list_acep()
-                }else{
-                    console.log(data, "no esta dando")
-                }
-            })
+            }
+
+            if(pass != "no"){
+                var data  = {
+                    medicamento_aceptado_farmacia:{
+                    
+                        lista_med:this.list,
+                        totalQty : this.total_cantidad,
+                        totalPrice : this.totalPrice,
+                    
+                  }
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch(this.url+'/farmacia/update_pedido/'+this.id_pedido,esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => {
+                    if (data.success == true){
+                        console.log(data.msg, "   <<<<<<<<<<<<<<<<<<<")
+                        this.insertar()
+                        this.update_cantidad()                    
+                        this.list_acep()
+                        swal.fire(
+                            'Success!',
+                            '<label style="color:green;">'+data.msg+'</label>',
+                            'success'
+                        )
+                    }else{
+                        swal.fire(
+                            'Error!',
+                            '<label style="color:red;">'+data.msg+'</label>',
+                            'error'
+                        )
+                    }
+                })
+                .catch(error => {
+                    console.log("no hay coneccion con el servidor 3200");
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
+                        'error'
+                    );
+                })
+            }else{
+                pass = "";
+            }
+            
         },
         insertar(){
 
             for(var i = 0; i < this.list.length; i++){
                  data = {
+                    codigo_compra: this.numero_solisitid,
                     fehca_vencimineto: this.list[i].fehca_vencimineto,
                     cantidad_unidad : this.list[i].qty,
                     precio :  this.list[i].price
@@ -158,6 +221,14 @@ const ver_pedido_farmacia =  new Vue({
                 .then(resp => {  
                     console.log(resp);
                 }) 
+                .catch(error => {
+                    console.log("no hay coneccion con el servidor 3200");
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
+                        'error'
+                    );
+                })
             }
         },
         update_cantidad(){
@@ -179,6 +250,14 @@ const ver_pedido_farmacia =  new Vue({
                 .catch(error => console.error('Error:', error))
                 .then(resp => {  
                     console.log(resp);
+                })
+                .catch(error => {
+                    console.log("no hay coneccion con el servidor 3200");
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
+                        'error'
+                    );
                 })
             }
 

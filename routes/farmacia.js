@@ -666,7 +666,19 @@ router.get('/reg_solicitud/:token_id/:token_partial',(req, res) => {
 //ruta para poder mostrar la lista de medicamentos
 router.get('/Vue_medicamentos_farmacia', (req,res) => {
 
-  fetch('http://localhost:3200/api/mostrar_medicamentos')
+  fetch('http://localhost:3200/api/fecha_list_cantidad')
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    res.status(200).json(resp)
+  })
+
+})
+
+//ruta para pode ve un solo fecha cantidad
+router.get('/vue_One_fecha_cantidad/:id_fecha', (req,res) => {
+  const  { id_fecha } = req.params;
+  fetch('http://localhost:3200/api/one_fecha/'+id_fecha)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
@@ -858,7 +870,17 @@ router.get('/vue_one_receta/:id_receta', (req,res) => {
     .catch(error => console.error('Error',error))
     .then(data => {
       res.status(200).json(data)
-    })
+  })
+})
+
+router.get('/Vue_one_medicamento_fecha/:id_medicamento',  (req,res) => {
+  const { id_medicamento } = req.params;
+  fetch('http://localhost:3200/api/one_medicamento_fecha/'+id_medicamento)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(data => {
+      res.status(200).json(data)
+  })
 })
 
 router.post('/vue_reg_receta_paciente', (req,res) => {
