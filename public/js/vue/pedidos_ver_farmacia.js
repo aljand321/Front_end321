@@ -389,12 +389,23 @@ const ver_pedido_farmacia =  new Vue({
         if(data.success == true){
           this.msg = data.msg;
           this.msg_false = "";
+          swal.fire(
+            'Success!',
+            '<label style="color:green;">'+data.msg+'</label>',
+            'success'
+          )
+        
           this.reduce();
           this.get_pedido();
           this.reduce_fechas_cantidad();
         }else{
           this.msg_false = data.msg
           this.msg = ""
+          swal.fire(
+            'Error!',
+            '<label style="color:red;">'+data.msg+'</label>',
+            'error'
+          )
         }
       })
     },

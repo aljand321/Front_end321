@@ -43,7 +43,7 @@ const pedido_medicametos = new Vue({
       },
     }),
     created:function() {
-        fetch(this.url+'/farmacia/Vue_medicamentos_farmacia')
+        fetch(this.url+'/farmacia/Vue_medicamentos_farmacia1')
         .then(res => res.json())
         .then(res => {
             for(var i = 0; i < res.length; i++){

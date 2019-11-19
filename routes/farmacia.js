@@ -675,6 +675,18 @@ router.get('/Vue_medicamentos_farmacia', (req,res) => {
 
 })
 
+// esto es la lista de medicamentos para pedidos
+router.get('/Vue_medicamentos_farmacia1', (req,res) => {
+
+  fetch('http://localhost:3200/api/mostrar_medicamentos')
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    res.status(200).json(resp)
+  })
+
+})
+
 //ruta para pode ve un solo fecha cantidad
 router.get('/vue_One_fecha_cantidad/:id_fecha', (req,res) => {
   const  { id_fecha } = req.params;

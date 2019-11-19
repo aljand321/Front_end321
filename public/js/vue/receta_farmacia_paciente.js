@@ -7,7 +7,7 @@ const receta_paciente = new Vue({
     url:data_url.url_front_end,
     msg: 'aljand',
 
-    list2 : '',
+    list2 : [],
    
 
     listFechas_distribucion:{},
@@ -64,14 +64,13 @@ const receta_paciente = new Vue({
     .then(resp => resp.json())
     .then(data_receta_paciente => { 
       
-      var arr = []
       for(var i = 0; i < data_receta_paciente[0].medicamentos.length; i++){
         if (data_receta_paciente[0].medicamentos[i].id != 0){
           fetch(this.url+'/farmacia/Vue_one_medicamento_fecha/'+data_receta_paciente[0].medicamentos[i].id)
           .then(resp => resp.json())
           .then(resp => {
             for (var j = 0; j < resp[0].cantidad_fechas.length; j++){
-              arr.push({
+              this.list2.push({
                 id:resp[0].cantidad_fechas[j].id,
                 fehca_vencimineto: resp[0].cantidad_fechas[j].fehca_vencimineto,
                 cantidad_unidad: resp[0].cantidad_fechas[j].cantidad_unidad,
@@ -86,8 +85,6 @@ const receta_paciente = new Vue({
         }
         this.insert_men_receta(data_receta_paciente[0].medicamentos[i].id,data_receta_paciente[0].medicamentos[i].cantidad,data_receta_paciente[0].medicamentos[i].medicamento)
       } 
-      console.log(arr.length, " esto es el array ")
-      this.list2 = arr
     })
   },
   created:function() {
