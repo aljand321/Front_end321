@@ -2,12 +2,23 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Cuadernos</title>
+<title>Administrador</title>
 <%- include("../partials/head") -%>	
 <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+  .vertical-alignment-helper {
+      display:table;
+      height: 100%;
+      margin-left: 41%;
+    }
+    .vertical-align-center {
+      /* To center vertically */
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
 </style>
 <script type="text/javascript">
 	// este scrip es para verificar si esta el token en local starge
@@ -37,7 +48,7 @@
           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
-              <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i>Salir</a> </li>
+              <li> <a data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i>Salir</a> </li>
             </ul>
           </div>
         </div>
@@ -98,8 +109,8 @@
                       <div class="block-web">
                         <div class="header">
                           <div class="actions"> 
-                            <a class="minimize" data-toggle="collapse" data-target="#demo" ><i class="fa fa-chevron-down"></i></a> 
-                            <a class="refresh" href=""><i class="fa fa-repeat"></i></a>
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" ><i class="fa fa-chevron-down" style="color: blue;"></i></a> 
+                            <a class="refresh" href=""><i class="fa fa-repeat" style="color: blue;"></i></a>
                           </div>
                         </div>
                         <br>
@@ -141,10 +152,10 @@
                                   <div class="btn-group">
                                       <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver<span class="caret"></span></button>
                                     <ul role="menu" class="dropdown-menu">
-                                      <li><a href="/cuaderno/cuadernos1/<%=data_doc.data.token_id%>">Cuadernos </a></li>
-                                      <li><a href="/cuaderno/volver_docCuaderno/<%=id_anterior%>/<%=data_doc.data.token_id%> ">Asignación Medico</a></li>
+                                      <li><a href="/cuaderno/cuadernos1/<%=data_doc.data.token_id%>"><i class="fa fa-folder-open "></i><span>&nbsp;</span>Cuadernos </a></li>
+                                      <!--<li><a href="/cuaderno/volver_docCuaderno/<%=id_anterior%>/<%=data_doc.data.token_id%> ">Asignación Medico</a></li>
                                       <li><a href="/cuaderno/volverFechas/<%=id_volver_fechas%>/<%=data_doc.data.token_id%>/<%=id_anterior%>">Fechas</a></li>
-                                      <li><a href="/home/<%=data_doc.data.token_id%>">Home</a></li>
+                                      <li><a href="/home/<%=data_doc.data.token_id%>">Home</a></li>-->
                                     </ul>
                                   </div>               
                                 </div>
@@ -286,31 +297,51 @@
     </div>
     <!-------MODALLLLL-------->
     <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div class="center">
-              <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+      <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center modal-sm ">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="center">
+                <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+              </div>
+              <div class="center">
+                <h5><b>¿Estás seguro ?</b></h5>
+                <p>Eliminar el turno....</p>
+              </div>
             </div>
-            <div class="center">
-              <h5><b>¿Estás seguro?</b></h5>
-              <p>Una vez eliminado no se podra volver atras....</p>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="center">
-              <a v-bind:href="'/cuaderno/delturno/'+idT+'/<%=id_fechas%>/<%=data_doc.data.token_id%>/<%=id_anterior%>/<%=id_volver_fechas%>'"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            <div class="modal-footer">
+              <div class="center">
+                <a v-bind:href="'/cuaderno/delturno/'+idT+'/<%=id_fechas%>/<%=data_doc.data.token_id%>/<%=id_anterior%>/<%=id_volver_fechas%>'"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   </div>
-
+  <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center modal-sm ">
+          <div class="modal-content">
+            <br>
+              <div class="center">
+                <i><img src="/images/salir.gif" width="100" height="100" /></i>
+              </div>
+              <div class="center">
+                <h5><b>¿Cerrar Sesión?</b></h5>
+              </div>
+            <div class="modal-footer">
+              <div class="center">
+                <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div> 
+  </div>
 
 
  

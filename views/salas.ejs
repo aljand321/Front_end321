@@ -2,13 +2,24 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Salas</title>
+<title>Administrador</title>
 <%- include("partials/head") -%>	
 <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 <style>
-      .info2{ border-radius:100%; float: left; height:80px; width:80px; }
-      .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 20px 10px 18px;}
-      </style>
+  .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+  .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 20px 10px 18px;}
+  .vertical-alignment-helper {
+      display:table;
+      height: 100%;
+      margin-left: 41%;
+  }
+  .vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+</style>
 
 </head>
 <script type="text/javascript">
@@ -37,10 +48,11 @@
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+            <img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
-              <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i>Salir</a> </li>
+              <li> <a data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i>Salir</a> </li>
             </ul>
           </div>
          
@@ -104,8 +116,8 @@
                       
                         <div class="header">
                           <div class="actions"> 
-                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
-                            <a class="refresh" href=""><i class="fa fa-repeat"></i></a>
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down" style="color: blue;"></i></a> 
+                            <a class="refresh" href=""><i class="fa fa-repeat" style="color: blue;"></i></a>
                           </div>
                         </div>
                         <br>
@@ -285,6 +297,27 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+      <div class="modal-dialog vertical-align-center modal-sm ">
+        <div class="modal-content">
+          <br>
+            <div class="center">
+              <i><img src="/images/salir.gif" width="100" height="100" /></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Cerrar Sesión?</b></h5>
+            </div>
+          <div class="modal-footer">
+            <div class="center">
+              <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
   </div>
 <%- include("partials/scripts") -%>
 <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
