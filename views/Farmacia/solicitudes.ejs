@@ -32,10 +32,10 @@
       		<div class="left_nav">
         		<div class="left_nav_slidebar">
 					<ul>
-			  			<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+			  			<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul><li> <a  href="/farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li></ul>
 			  			</li>
-			  			<li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
+			  			<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 				  				<li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
 				  				<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Movimientos</b> </a> </li>
@@ -104,7 +104,8 @@
 														<% } %>
 													<% } %>
 													<td><%=resp[i].destino%></td>
-													<td> <a href="/Farmacia/peido/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> ver</a> </td>
+													<td>
+														<a href="/Farmacia/peido/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Solicitud"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
 												</tr>
 											<% } %>
 											

@@ -87,30 +87,27 @@
         </div>
         <div class="contentpanel" id="ver_pedido_farmacia"><br>
             <div class="container clear_both padding_fix">
-                <div id="main-content">
-                    <div class="page-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                              <div class="block-web">
-                                <div class="header">
-                                    <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar"><i class="fa fa-chevron-down"></i></a> </div>
-                                    <h3 class="content-header"> <i class="fa fa-shopping-cart icon"></i> Pedido</h3>   
-                                    
-                                </div>
-                                <div class="porlets-content">
-                                       <!--  <span style="color: red;">{{error}}</span>
-                                        <span style="color: blue;">{{msg}}</span><br><br> -->
-                                    <!-- 
-                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                                                                para actualizar le pedido de farmacia
-                                                                                y mandar a farmacia los productos que hay
-                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                     -->
-                                    <template v-if="aceptados_list == '' || aceptados_list == null">
-
-                                    
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block-web">
+                            <div class="header">
+                                <div class="actions"></div>
+                                <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-clipboard icon"></i></div> Distribucion /<span class="semi-bold"> Registro de solicitud</span></h2>  
+                            </div>
+                            <div class="porlets-content">
+                                <!--  <span style="color: red;">{{error}}</span>
+                                <span style="color: blue;">{{msg}}</span><br><br> -->
+                                <!-- 
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                                    para actualizar le pedido de farmacia
+                                                                    y mandar a farmacia los productos que hay
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                 -->
+                                <br>
+                                <br>
+                                <template v-if="aceptados_list == '' || aceptados_list == null">
                                     <form  @submit="update_pedido_almacen" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                                         <input type="hidden" :value="id_pedido = '<%=resp[0].id%>'">
                                         <div class="form-group">
@@ -137,13 +134,8 @@
                                                 <input type="text" class="form-control" readonly="" value="<%=resp[0].responsable%>">
                                             </div>
                                         </div><!--/form-group--> 
-                                       <!--/form-group--> 
-
-
-                                       <textarea name="" id="" cols="60" rows="15">{{$data}}</textarea>
-                                       
                                         <div class="col-md-12"> 
-                                            <p class="text-center"> <button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success">Lista Productos</button></p>
+                                            <p class="text-center"> <button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-info">Lista Productos</button></p>
                                             <section class="panel default black_title h4">
                                                 <div class="panel-heading">Observaciones de la llegada del Pedido </div>
                                                 <div class="panel-body">
@@ -155,292 +147,264 @@
                                                             <th>Codigo</th>
                                                             <th>Nombre</th>
                                                             <th>Precio</th>
-                                                            
                                                             <th>Precio Total</th>
-                                                            
-                                                            
                                                             </tr>
                                                         </thead>
                                                         <tbody v-for="(item, index) in  list">  
                                                             <tr>
-                                                                <td>{{index+1}}</td>
-                                                                <td style="color: crimson;">{{item.qty}}</td>
-                                                                <td>{{item.item.codificacion}}</td>
-                                                                <td>{{item.item.nombre}}</td>
-                                                                <td>{{item.item.price}}</td>                                                                   
-                                                                <td>{{item.price}}</td>
-                                                                
-                                                                
+                                                            <td>{{index+1}}</td>
+                                                            <td style="color: crimson;">{{item.qty}}</td>
+                                                            <td>{{item.item.codificacion}}</td>
+                                                            <td>{{item.item.nombre}}</td>
+                                                            <td>{{item.item.price}}</td>                                                                   
+                                                            <td>{{item.price}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    
                                                 </div>
                                             </section>
                                         </div>
-
-                                            <!--Modal-->
-                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                  <div class="modal-content">
+                                        <!--Modal-->
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
                                                     <div class="modal-header">
-                                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                      <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit"> Lista de Productos </i></h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit"> Lista de Productos </i></h4>
                                                     </div>
                                                     <div class="row">
                                                         <span style="color: red;">{{alert}}</span>
                                                         <span style="color: blue;">{{pass}}</span>
-                                                      <!--/////////////table-->
-                                                      
-                                                      <div class="col-xs-10 col-md-offset-1">
+                                                        <!--/////////////table-->
+                                                        <div class="col-xs-10 col-md-offset-1">
                                                         <br>
-                                                        <label><i class="fa fa-search"> buscar </i></label>
-                                                        <div class="control is-grouped">
-                                                          <p class="control is-expanded">
-                                                            <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el Nombre y la Presentacion">
-                                                            <a class="button is-primary" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">Limpiar</a><br>
-                                                            <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
-                                                          </p>
+                                                            <label><i class="fa fa-search"> buscar </i></label>
+                                                            <div class="control is-grouped">
+                                                                <p class="control is-expanded">
+                                                                    <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el Nombre y la Presentacion">
+                                                                    <a class="button is-primary" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">Limpiar</a><br>
+                                                                    <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
+                                                                </p>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-xs-10 col-md-offset-1">
+                                                            <nav class="pagination m-pagination">
+                                                                <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Anterior</a>
+                                                                <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Siguiente</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}"><<</a>
+                                                                    </li>
+                                                                    <li class="is-space"></li>
+                                                                    <li v-for="item in paginationMeds.filteredMeds">
+                                                                        <a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
+                                                                    </li>
+                                                                    <li class="is-space"></li>
+                                                                    <li>
+                                                                        <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">>></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </nav>
                                                         </div>
-                                                      </div> 
-                                                      <div class="col-xs-10 col-md-offset-1">
-                                                        <nav class="pagination m-pagination">
-                                                          <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Anterior</a>
-                                                          <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Siguiente</a>
-                                                          <ul>
-                                                            <li>
-                                                              <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}"><<</a>
-                                                            </li>
-                                                            <li class="is-space"></li>
-                                                            <li v-for="item in paginationMeds.filteredMeds">
-                                                              <a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
-                                                            </li>
-                                                            <li class="is-space"></li>
-                                                            <li>
-                                                              <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">>></a>
-                                                            </li>
-                                                          </ul>
-                                                        </nav>
-                                                      </div>
-                                                      <div class="col-xs-10 col-md-offset-1">
-                                                        <table class="table is-bordered is-striped is-narrow">
-                                                          <thead>
-                                                            <tr>
-                                                            <th>Option</th>
-                                                            <th>Cantidad</th>												
-                                                            <th>Nombre</th>
-                                                            <th>Vence en</th>
-                                                            <th>Cantidad</th>   
-                                                            </tr>
-                                                          </thead>
-                                                          <tbody v-for="(med, index) in paginatedMeds">
-                                                            <tr>
-                                                            <td><a @click="insertar1(med.id,med.id_fecha, med.cant, index)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
-                                                            <td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
-                                                            <td>{{med.nombre}}</td>
-                                                            <td>{{med.fecha_v}}</td>
-                                                            <td>{{med.unidades}}</td>
-                                                            </tr>
-                                                          </tbody>
-                                                        </table>   
-                                                      </div>
-                                                      <!-- ////////-->
+                                                        <div class="col-xs-10 col-md-offset-1">
+                                                            <table class="table is-bordered is-striped is-narrow">
+                                                                <thead>
+                                                                    <tr>
+                                                                    <th>Option</th>
+                                                                    <th>Cantidad</th>												
+                                                                    <th>Nombre</th>
+                                                                    <th>Vence en</th>
+                                                                    <th>Cantidad</th>   
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody v-for="(med, index) in paginatedMeds">
+                                                                    <tr>
+                                                                    <td><a @click="insertar1(med.id,med.id_fecha, med.cant, index)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+                                                                    <td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
+                                                                    <td>{{med.nombre}}</td>
+                                                                    <td>{{med.fecha_v}}</td>
+                                                                    <td>{{med.unidades}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>   
+                                                        </div>
+                                                        <!-- ////////-->
                                                     </div>
                                                     <div class="modal-footer">
-                                                      <button type="" class="btn btn-info" data-dismiss="modal">OK</button>
+                                                        <button type="" class="btn btn-info" data-dismiss="modal">OK</button>
                                                     </div>
-                                                  </div>
                                                 </div>
                                             </div>
-
-                                            <div class="col-lg-12"> 
-                                                <section class="panel default black_title h4">
-                                                    <div class="panel-heading">
-                                                        <span class="semi-bold">Lista Pedidos</span> 
+                                        </div>
+                                        <div class="col-lg-12"> 
+                                            <section class="panel default black_title h4">
+                                                <div class="panel-heading">
+                                                    <span class="semi-bold">Lista Pedidos</span> 
+                                                </div>
+                                                <div class="panel-body">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                            <th>#</th>
+                                                            <th style="color: crimson;">Cantidad del Producto</th>
+                                                            <th>Codigo</th>
+                                                            <th>Descripcion</th>
+                                                            <th>Precio</th>
+                                                            <th>Precio Toal</th>
+                                                            <th>Eliminar</th>
+                                                            <th>Eliminar todo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody v-for="(car, index) in listItems">                                                    
+                                                            <tr>
+                                                            <td>{{index}}</td>
+                                                            <td style="color: crimson;">{{car.qty}}</td>
+                                                            <td>{{car.item.codificacion}}</td>
+                                                            <td>{{car.item.nombre}}</td>
+                                                            <td>{{car.item.price}}</td>
+                                                            <td>{{car.price}}</td>
+                                                            <td> <a @click="reducir_cantidad(car.item.id)">Reducir</a></td>
+                                                            <td><a @click="eliminar_item(car.item.id)">Eliminar</a></td>                                                        
+                                                            </tr>                                                   
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </section>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-sm-9">
+                                                        <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
+                                                            <input type="text" class="form-control"  disabled="" v-model="totalQty">
+                                                        </div>
                                                     </div>
-                                                    <div class="panel-body">
-                                                        <table class="table table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>#</th>
-                                                                    <th style="color: crimson;">Cantidad del Producto</th>
-                                                                    <th>Codigo</th>
-                                                                    <th>Descripcion</th>
-                                                                    
-                                                                    <th>Precio</th>
-                                                                    <th>Precio Toal</th>
-                                                                    <th>Eliminar</th>
-                                                                    <th>Eliminar todo</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody v-for="(car, index) in listItems">                                                    
-                                                                <tr>
-                                                                  <td>{{index}}</td>
-                                                                  <td style="color: crimson;">{{car.qty}}</td>
-                                                                  <td>{{car.item.codificacion}}</td>
-                                                                  <td>{{car.item.nombre}}</td>
-                                                                 
-                                                                  <td>{{car.item.price}}</td>
-                                                                  <td>{{car.price}}</td>
-                                                                  <td> <a @click="reducir_cantidad(car.item.id)">Reducir</a></td>
-                                                                  <td><a @click="eliminar_item(car.item.id)">Eliminar</a></td>                                                        
-                                                                </tr>                                                   
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </section>
-                                                <div class="col-md-12">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <div class="col-sm-9">
-                                                            <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
-                                                                <input type="text" class="form-control"  disabled="" v-model="totalQty">
+                                                            <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
+                                                                <input type="text" class="form-control"  disabled="" v-model="totalPrice">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-9">
-                                                                <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                                    <input type="text" class="form-control"  disabled="" v-model="totalPrice">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                          <div class="col-sm-9">
-                                                              <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
                                                                 <input type="text" class="form-control"  disabled="" v-model="totalPrice * 0.13">
-                                                              </div>
-                                                          </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-9">
-                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                    <input type="text" class="form-control" disabled="" v-model="totalPrice + totalPrice * 0.13">
-                                                                </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon">Total:</span>
+                                                                <input type="text" class="form-control" disabled="" v-model="totalPrice + totalPrice * 0.13">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </section>
-                                    </div>
-                                    
-                                    <div class="form-group"  >
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-                                            <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
                                         </div>
-                                    </div><!--/form-group--> 
+                                        <div class="form-group"  >
+                                            <div class="col-sm-offset-0 col-sm-10">
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
+                                                <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
+                                            </div>
+                                        </div><!--/form-group--> 
                                     </form>
-
-                                    </template>
-
-                                    <template v-else>
-                                        
-                                        <form class="form-horizontal group-border-dashed"  parsley-validate novalidate>
-                                            <input type="hidden" :value="id_pedido = '<%=resp[0].id%>'">
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">Numero solicitud:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control" readonly="" value="<%=resp[0].num_solicitud%>">
-                                                </div>
-                                            </div><!--/form-group--> 
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">Trimestre:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control" readonly="" value="<%=resp[0].trimestre%>">
-                                                </div>
-                                            </div><!--/form-group-->
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">Fecha de Pedido:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control" readonly="" value="<%=resp[0].createdAt.split("T")[0]%>">
-                                                </div>
-                                            </div><!--/form-group--> 
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">Responsable:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control" readonly="" value="<%=resp[0].responsable%>">
-                                                </div>
+                                </template>
+                                <template v-else>
+                                    <form class="form-horizontal group-border-dashed"  parsley-validate novalidate>
+                                        <input type="hidden" :value="id_pedido = '<%=resp[0].id%>'">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Numero solicitud:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].num_solicitud%>">
                                             </div>
-                                            
-                                            <div class="col-md-12">                                                
-                                                <section class="panel default black_title h4">
-                                                    <div class="panel-heading">Observaciones de la llegada del Pedido </div>
-                                                    <div class="panel-body">
-                                                        <table class="table table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                <th>#</th>
-                                                                <th style="color: crimson;">Cantidad</th>
-                                                                <th>Codigo</th>
-                                                                <th>Nombre</th>
-                                                                <th>Precio</th>
-                                                               
-                                                                <th>Precio Total</th>
-                                                                
-                                                                
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody v-for="(item, index) in  list">  
-                                                                <tr>
-                                                                    <td>{{index+1}}</td>
-                                                                    <td style="color: crimson;">{{item.qty}}</td>
-                                                                    <td>{{item.item.codificacion}}</td>
-                                                                    <td>{{item.item.nombre}}</td>
-                                                                    <td>{{item.item.price}}</td>                                                                    
-                                                                    <td>{{item.price}}</td>                                                      
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                       
-                                                    </div>
-                                                </section>
+                                        </div><!--/form-group--> 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Trimestre:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].trimestre%>">
                                             </div>
-    
-                                             
-    
-                                            <div class="col-lg-12"> 
-                                                <section class="panel default black_title h4">
-                                                    <div class="panel-heading">
-                                                        <span class="semi-bold">Lista Pedidos</span> 
-                                                    </div>
-                                                    <div class="panel-body">
-                                                        <table class="table table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>#</th>
-                                                                    <th style="color: crimson;">Cantidad del Producto</th>
-                                                                    <th>Codigo</th>
-                                                                    <th>Descripcion</th>
-                                                                    
-                                                                    <th>Precio</th>
-                                                                    <th>Precio Toal</th>
-                                                                   
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody v-for="(car, index) in lista_med_aceptados">                                                    
-                                                                <tr>
-                                                                  <td>{{index}}</td>
-                                                                  <td style="color: crimson;">{{car.qty}}</td>
-                                                                  <td>{{car.item.codificacion}}</td>
-                                                                  <td>{{car.item.nombre}}</td>
-                                                                 
-                                                                  <td>{{car.item.price}}</td>
-                                                                  <td>{{car.price}}</td>
-                                                                                                                  
-                                                                </tr>                                                   
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </section>
-                                                <div class="col-md-12">
+                                        </div><!--/form-group-->
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Fecha de Pedido:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].createdAt.split("T")[0]%>">
+                                            </div>
+                                        </div><!--/form-group--> 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Responsable:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].responsable%>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">                                                
+                                            <section class="panel default black_title h4">
+                                                <div class="panel-heading">Observaciones de la llegada del Pedido </div>
+                                                <div class="panel-body">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                            <th>#</th>
+                                                            <th>Codigo</th>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            <th>Precio Total</th>
+                                                            <th style="color: crimson;">Cantidad</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody v-for="(item, index) in  list">  
+                                                            <tr>
+                                                            <td>{{index+1}}</td>
+                                                            <td>{{item.item.codificacion}}</td>
+                                                            <td>{{item.item.nombre}}</td>
+                                                            <td>{{item.item.price}}</td>                                                                    
+                                                            <td>{{item.price}}</td>
+                                                            <td style="color: crimson;">{{item.qty}}</td>                                                      
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="col-lg-12"> 
+                                            <section class="panel default black_title h4">
+                                                <div class="panel-heading">
+                                                    <span class="semi-bold">Lista Pedidos</span> 
+                                                </div>
+                                                <div class="panel-body">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                            <th>#</th>
+                                                            <th>Codigo</th>
+                                                            <th>Descripcion</th>
+                                                            <th>Precio</th>
+                                                            <th>Precio Total</th>
+                                                            <th style="color: crimson;">Cantidad </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody v-for="(car, index) in lista_med_aceptados">                                                    
+                                                            <tr>
+                                                            <td>{{index}}</td>
+                                                            <td>{{car.item.codificacion}}</td>
+                                                            <td>{{car.item.nombre}}</td>
+                                                            <td>{{car.item.price}}</td>
+                                                            <td>{{car.price}}</td>
+                                                            <td style="color: crimson;">{{car.qty}}</td>
+                                                            </tr>                                                   
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </section>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <div class="col-sm-9">
                                                             <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
@@ -449,36 +413,35 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-9">
-                                                                <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                                    <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalPrice">
-                                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon"> Sub Total:</span>
+                                                                <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalPrice">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                          <div class="col-sm-9">
-                                                              <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon"> IVA:</span>
                                                                 <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalPrice * 0.13">
-                                                              </div>
-                                                          </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-9">
-                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                    <input type="text" class="form-control" disabled="" v-model="aceptados_list.totalPrice + aceptados_list.totalPrice * 0.13">
-                                                                </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon">Total:</span>
+                                                                <input type="text" class="form-control" disabled="" v-model="aceptados_list.totalPrice + aceptados_list.totalPrice * 0.13">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                           
                                             <div class="form-group"  >
                                                 

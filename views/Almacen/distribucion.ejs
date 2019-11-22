@@ -50,12 +50,12 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
                 <li> <a href="/almacen/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"  > <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
               </ul>
             </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block">
                 <li> <a href="/almacen/grupoAsig/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Grupos de Asignacion</b> </a> </li>
                 <li> <a href="/medicamento/medicamentos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
@@ -124,8 +124,8 @@
                                 <td><span style="color: rgb(220, 173, 20);">Mandado a almacen</span></td>
                               <% } %>
                               <td><%=lis_farmacia_pedidos[i].destino%></td>
-                              
-                              <td><a href="/almacen/farmacia_ver_pedidos/<%=lis_farmacia_pedidos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>">ver</a></td>
+                              <td>
+                                  <a href="/almacen/farmacia_ver_pedidos/<%=lis_farmacia_pedidos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Solicitud"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
                             </tr>
                           <% } %>
                         <tbody>

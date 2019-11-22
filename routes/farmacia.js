@@ -1090,10 +1090,30 @@ router.get('/Stock_far/:token_id/:token_partial', (req,res) => {
     oneGrupoAsig = null
     res.redirect('/farmacia/ventas'); 
 })
+
+
+
+router.get('/reportes_solicitudes/:token_id/:token_partial', (req,res) => {
+  const {token_id, token_partial} = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3200/api/list_pedidos')   
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp =>{        
+        res.render('Farmacia/reportes_solicitudes',{
+            resp,
+            data_doc: data_user[token_id]
+        });
+    })
+  }else{
+    res.redirect('/')
+  }
+});
   
-  router.get('/reportes_facturacion',(req, res) => {
-    res.render('Farmacia/reportes_facturacion')
-  });
+router.get('/reportes_facturacion',(req, res) => {
+  res.render('Farmacia/reportes_facturacion')
+  
+});
 router.get('/kardexValorizado', (req,res) => {
     res.render('Farmacia/kardexValorizado');
 });
@@ -1107,9 +1127,7 @@ router.get('/reportes_recetas', (req,res) => {
 router.get('/med_ven', (req,res) => {
     res.render('Farmacia/med_ven');
 });
-router.get('/reportes_solicitudes', (req,res) => {
-    res.render('Farmacia/reportes_solicitudes');
-});
+
 router.get('/reportes_ventas', (req,res) => {
     res.render('Farmacia/reportes_ventas');
 });

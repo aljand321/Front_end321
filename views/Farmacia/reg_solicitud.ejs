@@ -34,12 +34,12 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
 			    <ul>
-    			  <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    			  <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 		  		    <ul>
 				        <li> <a href="/farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
 				      </ul>
 			      </li>
-			      <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
+			      <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
 				      <ul class="opened" style="display:block">
 				        <li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
   				      <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Movimientos</b> </a> </li>
@@ -122,26 +122,26 @@
                       <table  class="display table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th>#</th>
-                            <th>Cantidad del Producto</th>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Precio Total</th>
-                            <th>Eliminar</th>
-                            <th>Eliminar todo</th>
+                          <th>#</th>
+                          <th>Cantidad del Producto</th>
+                          <th>Codigo</th>
+                          <th>Nombre</th>
+                          <th>Precio</th>
+                          <th>Precio Total</th>
+                          <th>Eliminar</th>
+                          <th>Eliminar todo</th>
                           </tr>
                         </thead>
                         <tbody v-for="(car, index) in listItems">                                                    
                           <tr>
-                            <td>{{index}}</td>
-                            <td>{{car.qty}}</td>
-                            <td>{{car.item.codificacion}}</td>
-                            <td>{{car.item.nombre}}</td>
-                            <td>{{car.item.price}}</td>
-                            <td>{{car.price}}</td>
-                            <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
-                            <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
+                          <td>{{index}}</td>
+                          <td>{{car.qty}}</td>
+                          <td>{{car.item.codificacion}}</td>
+                          <td>{{car.item.nombre}}</td>
+                          <td>{{car.item.price}}</td>
+                          <td>{{car.price}}</td>
+                          <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
+                          <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
                           </tr>                                                   
                         </tbody>
                       </table>
