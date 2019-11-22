@@ -5,7 +5,7 @@
 
 <title>Historial Medico</title>
 <%- include("./partials/head") -%>
-
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 
 </head>
 
@@ -57,7 +57,7 @@
       <div class="" id="">
         <div class="header">
           <div class="actions">
-            <a href="/emergencia/volver3" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+            <a href="/emergencia2.0/registrar_emergencia/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
           </div>
           <div class="info blue_symbols"><i class="fa fa-male icon"></i></div>
           <h3 class="content-header ">Historial Médico<span class="semi-bold">/Responsables</span></h3>
@@ -68,9 +68,9 @@
           <div class="btn-group ">
             <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <i class="fa fa-clipboard"></i><span class="caret"></span></button>
             <ul role="menu" class="dropdown-menu">
-                <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Datos de Interes</a></li>
-              <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li>
-              <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Examen Físico General</a></li>		  
+              <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Datos de Interes</a></li>
+              <!-- <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li> -->
+              <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Examen Físico General</a></li>		  
             </ul>
             </div>    
         </div>
@@ -90,19 +90,13 @@
 								<div id="Tab1" class="tab-pane fade in active">
 									<div class="row" >
 										<div class="block-web ">
-                        <%if(msg) { %>
-                            <%if(msg.data.success == false) { %>
-                                <h3 style="color: red"><%=msg.data.data_responsable%></h3>
-                            <% } else {%>
-                                <h3 style="color: blue"><%=msg.data.data_responsable%></h3>
-                            <% } %>
-                        <% } %>
+                        
 											<div class="porlets-content">
                         <% if(update_responsable == null) { %>
                             <%if(!data) { %>
                                
                             
-                    <form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+                    <form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" method="POST" parsley-validate novalidate>
                        <input type="hidden" name="id_register" value="<%=data_doc.data.medico.id%>">
                        <h3 class="text-center">Datos del Responsable</h3>
                        <div class="form-group">
@@ -184,7 +178,7 @@
                     </form>
                     <% } %>
                      <% } else { %>
-                     <form class="form-horizontal group-border-dashed" action="/emergencia2.0/update_responsable/<%=update_responsable.data[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+                     <form class="form-horizontal group-border-dashed" action="/emergencia2.0/update_responsable/<%=update_responsable.data[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" method="POST" parsley-validate novalidate>
                        <h3 class="text-center">Datos del Responsable</h3>
                          <div class="form-group">
                            <div class="col-sm-4">
@@ -216,7 +210,7 @@
                          </div>
                          <div class="form-group">
                            <div class="col-sm-offset-4 col-sm-10">
-                             <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/emergencia2.0/remove_data_update/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                             <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/emergencia2.0/remove_data_update/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
                              <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
                              <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
                            </div>
@@ -256,7 +250,7 @@
                                         <td><%=list_responsables[i].telefono%></td>
                                         <td>
                                           
-                                          <a href="/emergencia2.0/one_responsable/<%=dataPaciente[0].id%>/<%=list_responsables[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="btn  tooltips"  data-original-title="Ver Consulta"><i class="fa fa-eye" style="color:black"></i></a>
+                                          <a href="/emergencia2.0/one_responsable/<%=dataPaciente[0].id%>/<%=list_responsables[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"  class="btn  tooltips"  data-original-title="Ver Consulta"><i class="fa fa-eye" style="color:black"></i></a>
                                         </td>
                                       </tr>
                                     <% } %>
@@ -284,6 +278,30 @@
   function mayus(e) {
   e.value = e.value.toUpperCase();
   }
+</script>
+
+<script>
+	/*  <%if(msg) { %> */
+	  /*  <%if(msg.data.success == false) { %> */
+		   msg_false()
+		   function msg_false(){
+			 swal.fire(
+			   'Error!',
+			   '<label style="color:red;">'+`<%=msg.data.data_responsable%>`+'</label>',
+			   'error'
+			 )
+		   }
+	   /* <% } else {%> */
+		   msg_true()
+		   function msg_true(){
+			 swal.fire(
+			   'Success!',
+			   '<label style="color:green;">'+ `<%=msg.data.data_responsable%>` +'</label>',
+			   'success'
+			 )
+		   }
+	  /*  <% } %> */
+	/*  <% } %> */
 </script>
 
 </body>

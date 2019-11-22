@@ -95,7 +95,7 @@
 																		<td><%=resp[i].Paciente.nombre %></td>
 																		<td><%=resp[i].Paciente.apellidop %></td>
 																		<td><%=resp[i].Paciente.apellidom %></td>
-																		<td><%=resp[i].hora %></td>
+																		<td><%=resp[i].hora.split("/")[0] %></td>
 																		<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=resp[i].id%>/<%=resp[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
 																	</tr>
 																	<% } %>
@@ -136,7 +136,7 @@
 																		<td><%=list_false[i].Paciente.nombre %></td>
 																		<td><%=list_false[i].Paciente.apellidop %></td>
 																		<td><%=list_false[i].Paciente.apellidom %></td>
-																		<td><%=list_false[i].hora %></td>
+																		<td><%=list_false[i].hora.split("/")[0] %></td>
 																		<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
 																	</tr>
 																	<% } %>

@@ -4,7 +4,7 @@
 <head>
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Registros</title>
+	<title>Administrador</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
@@ -44,6 +44,17 @@
 			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
 
 		}
+    .vertical-alignment-helper {
+      display:table;
+      height: 100%;
+      margin-left: 41%;
+    }
+    .vertical-align-center {
+      /* To center vertically */
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
 	</style>
 
 </head>
@@ -82,7 +93,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b
+								src="/images/admin.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -150,8 +161,8 @@
 											<div class="block-web">
 												<div class="header">
 													<div class="actions"> 
-                            <a class="minimize" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"style="color: blue;"></i></a> 
-                            <a class="refresh" href="/usuarios/quitar4/<%=id%>/<%=data_doc.data.token_id%>"><i class="fa fa-repeat"style="color: blue;"></i></a>
+                            <a class="minimize" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down" style="color: blue;"></i></a> 
+                            <a class="refresh" href="/usuarios/quitar4/<%=id%>/<%=data_doc.data.token_id%>"><i class="fa fa-repeat" style="color: blue;"></i></a>
 													</div>
 												</div>
 												<div class="porlets-contents">
@@ -268,10 +279,10 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Asignación de Roles</h4>
-            <div class="center">
+            <!--<div class="center">
               <span style="color: blue">{{msg}}</span>
               <span style="color: red">{{msg_false}}</span>
-            </div>
+            </div>-->
           </div>
           <div class="modal-body"> 
             <form @submit="crear_rol" class="form-horizontal" parsley-validate novalidate>
@@ -295,7 +306,7 @@
               </div>
               <div class="form-group">
                 <div class="col-md-5">
-                  <button type="submit" class="btn btn-success " ><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar </button>
+                  <button type="submit" class="btn btn-success "  ><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar </button>
                   <button type="reset"class="btn btn-danger " data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
                 </div>
               </div>
@@ -306,51 +317,48 @@
       </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div class="center">
-              <i  class="fa fa-exclamation-triangle red fa-6x"></i>
-            </div>
-            <div class="center">
-              <h5><b>¿Estás seguro?</b></h5>
-              <p>No podra entar el <b> Usuario</b>.... una vez dado de baja</p>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="center">
-              <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+      <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center modal-sm ">
+          <div class="modal-content">
+            <br>
+              <div class="center">
+                <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+              </div>
+              <div class="center">
+                <h5><b>¿Estás seguro?</b></h5>
+                <p>De dar baja al Cuenta...</p>
+              </div>
+            <div class="modal-footer">
+              <div class="center">
+                <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
     <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div class="center">
-              <i  class="fa fa-sign-out blue fa-6x"></i>
-            </div>
-            <div class="center">
-              <h5><b>¿Cerrar Seccion?</b></h5>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="center">
-              <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-            </div>
+      
+      <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center modal-sm ">
+          <div class="modal-content">
+            <br>
+              <div class="center">
+                <i><img src="/images/salir.gif" width="100" height="100" /></i>
+              </div>
+              <div class="center">
+                <h5><b>¿Cerrar Sesión?</b></h5>
+              </div>
+              <div class="modal-footer">
+                <div class="center">
+                  <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+                </div>
+              </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   
   </div>

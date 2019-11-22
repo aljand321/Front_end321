@@ -163,7 +163,7 @@
 														<th>Apellido paterno</th>
 														<th>Apellido materno</th>
 														<th>Hora de Atencion</th>
-														<th class="text-center">Modificar</th>
+														<th class="text-center">Opciones</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -176,7 +176,7 @@
 														<td><%=list_false[i].Paciente.apellidom %></td>
 														<td><%=list_false[i].hora.split("/")[0] %></td>
 														<td class="text-center">
-															<a href="/consulta_externa/reg_consulta/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-stethoscope"></i></a>
+															<a href="/consulta_externa/reg_consulta/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver"><i class="fa fa-stethoscope"></i></a>
 														</td>																		
 													</tr>
 													<% } %>
@@ -184,9 +184,7 @@
 											</table>
 										</div>
 									</div>
-									<div class="entrada">
-										<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-									</div>
+									
 										<!--/porlets-content-->
 
 

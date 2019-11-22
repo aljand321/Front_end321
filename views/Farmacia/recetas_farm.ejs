@@ -86,13 +86,17 @@
                       </thead>
                       <tbody>
                         <% for(var i = 0; i < resp.length; i++ ) { %>
-                        <tr>
-                        <td><%=i+1%></td>
-                        <td><%=resp[i].historiaClinica%></td>
-                        <td><%=resp[i].Consulta.Citas_Medica.Paciente.nombre%> <%=resp[i].Consulta.Citas_Medica.Paciente.apellidop%> <%=resp[i].Consulta.Citas_Medica.Paciente.apellidom%></td>
-                        <td><%=resp[i].tipoConsulta%></td>
-                        <td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/Farmacia/reg_receta/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> Nuevo Recibo</a></td>
-                        </tr>
+                          <tr>
+                            <td><%=i+1%></td>
+                            <td><%=resp[i].historiaClinica%></td>
+                            <% for(var j = 0; j < paciente.length; j++) { %>
+                              <%if (paciente[j].numeroHistorial == resp[i].historiaClinica) { %>
+                                <td><%=paciente[j].nombre%> <%=paciente[j].apellidop%> <%=paciente[j].apellidom%> </td>
+                              <% } %>
+                            <% } %>
+                            <td><%=resp[i].tipoConsulta%></td>
+                            <td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/Farmacia/reg_receta/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> Nuevo Recibo</a></td>
+                          </tr>
                         <% } %>
                       <tbody>
                     <table>

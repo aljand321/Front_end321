@@ -4,7 +4,7 @@
 <head>
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Reporte de consultorio</title>
+	<title>Reporte de citas</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
@@ -62,7 +62,8 @@
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
+                <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -101,10 +102,9 @@
                         <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
                             class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block" >
-                                    <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes de consultorio </b> </a></li>
-                                    <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
-                                    <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
-                               
+                                <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+                                <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
+                                <li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Citas </b> </a></li>                
                             </ul>
                         </li>
                         
@@ -132,54 +132,16 @@
                                     <div class="col-md-12 ">
                                         <div class="block-web">
                                             <div class="porlets-content">
-                                               
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <h3 class="text-center"> </h3>
-                                                        <br>
-                                                        <div class="col-md-12">
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">Turno:
-                                                                    <select class="form-control" name="turno" v-model="turno" @click="especilida">
-                                                                        <option>Mañanas</option>
-                                                                        <option>Tardes</option>
-                                                                        <option>Noches</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">Fecha:<br>
-                                                                    <input type='date' name='' class="form-control"><br>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">Consultorio De:<br>
-                                                                    <select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
-                                                                        <option disabled="disabled" value>Seleccione</option>
-                                                                        <template v-for="(especialidad, index) in especialidades">
-                                                                            <option>{{especialidad.nombre}}
-                                                                            </option>
-                                                                        </template>
-                                                                    </select>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group"> Doctor:<br>
-                                                                    <select class="form-control" name="medico" v-model="selectDoctor" @click="saca_horas(),saca_horas_reservadas(),saca_horas_atendidas()">
-                                                                        <option disabled="disabled" value> Seleccione </option>
-                                                                        <option v-for="(doctor, index) of doctores" :value="doctor.nombre">
-                                                                            {{doctor.nombre.split("/")[0]}}
-                                                                            
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                               
-                                                            </div>
+                                                <div class="col-md-12">
+                                                            
+                                                    <div class="col-md-3 ">
+                                                        <div class="form-group">paciente:<br>
+                                                            <input type='' name='' class="form-control"><br>
                                                         </div>
-                                                        <br>
                                                     </div>
+                                                  
                                                 </div>
+                                             
                                             </div>
                                         </div>
                                         <!--/col-md-12-->
@@ -208,10 +170,11 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Historial Clinico</th>
+                                                    
                                                     <th>Doctor</th>
                                                     <th>Especialidad</th>
-                                                    <th>Saldo</th>
-                                                    <th>Opciones</th>
+                                                    <th>Cantidad de visitas</th>
+                                                   
                                                 </tr>
                                             </thead>
                                             <tbody>														
@@ -222,21 +185,12 @@
                                                     <td>a</td>
                                                     <td>a</td>
                                                     <td>a</td>
-                                                    <td>a</td>
+                                                  
                                                     
                                                 </tr>													
 
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Historial Clinico</th>
-                                                    <th>Doctor</th>
-                                                    <th>Especialidad</th>
-                                                    <th>Saldo</th>
-                                                    <th>Opciones</th>
-                                                </tr>
-                                            </tfoot>
+                                           
                                         </table>
                                         
                                     </div>

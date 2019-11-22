@@ -3,7 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 const datas = require('./url/export');
-import { user_data1 } from './url/export';
+import { user_data1, remove_user12 } from './url/export';
 
 var cie10 = require('cie10');
 var fileAsArray = cie10('array');
@@ -109,8 +109,13 @@ router.get('/home/:id/:token_part', (req,res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
-      console.log(resp, "   esto es user <<<<<<<<<<<<<<<<<<<     >>>>>>>>>>>>>>>>>>>>>>>>>>>< api/user")
-      data_token.token_id = resp.id     // esto manda el el id para el token
+
+      fetch('http://localhost:3000/api/lista_pacaiente/'+id)  // esto es para sacar el token del usuario
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(lista_pacientes => {
+        
+        data_token.token_id = resp.id     // esto manda el el id para el token
       
         if(datas.name.token[resp.id] && datas.name.token[resp.id].data.token.split(" ")[1].split(".")[2] == token_part ){
             var status
@@ -131,15 +136,18 @@ router.get('/home/:id/:token_part', (req,res) => {
                     user(data_token, data_token.token_id)
                     user_data1(data_token, data_token.token_id)
                     res.render('consulta_externa/home_consulta',{
-                        data_token
+                        data_token,
+                        lista_pacientes: lista_pacientes.length
                     })
                   status = null
                   }else{
                     remove_user( data_token.token_id)
+                    remove_user12(data_token.token_id)
                     user(data_token, data_token.token_id)
                     user_data1(data_token, data_token.token_id)
                     res.render('consulta_externa/home_consulta',{
-                        data_token
+                        data_token,
+                        lista_pacientes: lista_pacientes.length
                     })
                   status = null
                   }
@@ -151,6 +159,9 @@ router.get('/home/:id/:token_part', (req,res) => {
         }else{
           res.redirect('/')
         }
+      })
+      //console.log(resp, "   esto es user <<<<<<<<<<<<<<<<<<<     >>>>>>>>>>>>>>>>>>>>>>>>>>>< api/user")
+      
         
     })
 })

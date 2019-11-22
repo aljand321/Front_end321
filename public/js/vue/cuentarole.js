@@ -1,4 +1,5 @@
 
+
 var reg_roles = new Vue({
     el: "#cuentarole",
     data: () =>({
@@ -38,10 +39,21 @@ var reg_roles = new Vue({
                     this.msg_false=""
                     this.idUser = "",
                     this.nomrol = ""
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+  data.msg +'</label>',
+                        'success',
+                        
+                    )
                 }else{
                     console.log(data,"aqueiiiiiiiiiiiiiiiiiiiiiiii")
                     this.msg_false = data.msg
                     this.msg=""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">' + data.msg +'</label>',
+                        'error'
+                    )
                 }
              console.log(data)
             })

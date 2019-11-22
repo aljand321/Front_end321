@@ -16,7 +16,11 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-
+	<link href="/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+	<link href="/plugins/kalendar/kalendar.css" rel="stylesheet">
+	<link rel="stylesheet" href="/plugins/scroll/nanoscroller.css">
+	<link href="/plugins/calendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/calendar/fullcalendar.print.css" rel="stylesheet" type="text/css" />
 	<style>
 		div.a {
 			text-align: center;
@@ -27,12 +31,97 @@
 
 		}
 	</style>
+	  <style>
+			.info2{ border-radius:100%; float: left; height:80px; width:80px; }
+			.info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+		  </style>
+		  <style>
+			* {
+			margin:0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		  }
+		  
+		  
+		  .widget {
+			width: 80%;
+			margin: 2em;
+			/*margin:32px; */
+		  }
+		  
+		  .widget p {
+			display: inline-block;
+			line-height: 1em;
+		  }
+		  
+		  .fecha {
+			font-family: Oswald, Arial;
+			text-align: center;
+			font-size:1.5em;
+			margin-bottom: 0.3125rem;
+			/*margin-bottom: 5px;*/
+			background: rgba(0,0,0,.5);
+			padding: 20px;
+			width: 100%;
+		  }
+		  
+		  .reloj {
+			font-family: Oswald, Arial;
+			width: 100%;
+			padding: 20px;
+			font-size: 4em;
+			text-align: center;
+			background: rgba(0,0,0,.5);
+		  }
+		  
+		  .reloj .caja-segundos {
+			display: inline-block;
+		  }
+		  
+		  .reloj .segundos,
+		  .reloj .ampm {
+			font-size: 2rem;
+			display: block;
+		  }
+		  td.uppercase
+		  {
+			text-transform: uppercase;
+		  }
+		  .vertical-alignment-helper {
+			display:table;
+			height: 100%;
+			margin-left: 41%;
+		  }
+		  .vertical-align-center {
+			/* To center vertically */
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		  }
+		  </style>
+	   <script>
+		  
+		  
+			
+			function delete_local_storage(){
+			  console.log ("ssss")
+			  localStorage.removeItem('data');
+			  localStorage.removeItem('url');
+			}
+			setTimeout(()=>{
+			  delete_local_storage()
+			  //window.location.replace('/')
+			},500000);
+		  
+		  </script>
 	<%- include("../partials/head") -%>
 </head>
 
 <body class="light_theme  fixed_header left_nav_fixed">
 	<!-- Content page-->
-	<div class="wrapper">
+<div class="wrapper">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
@@ -85,87 +174,237 @@
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
-			<div class="contentpanel">
+			<div class="contentpanel"><br>
 				<!--\\\\\\\ contentpanel start\\\\\\-->
-				<div class="container clear_both padding_fix col-lg-8">
-					<br>
-					<br>
-					<br>
-					<div class="col-md-14 row center">
+				<!-----    
+				<div class="col-md-3 ">
+						<img class="centrado"src="/images/VIII.gif" width="80" height="50"  />
+					</div>
+-->
+					<div class="container clear_both padding_fix ">
+							<div class="row">
+									<div class="col-sm-12">
+									  <div class="user-profile-sidebar profile_widget">
+										<div class="row"> <img src="/images/pro.png">
+										
+										  <div class="user-identity">
+											  
+											<h4>Bienvenido <strong><%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></strong></h4>
+											<p><i class=""></i> </p>
+										  </div>
+										</div>
+									  </div>
+									  <div class="widget-status-data">
+										<div class="row">
+										  <div class="col-md-4">
+											<h5><strong></strong><br>
+												Tiene</h5>
+										  </div>
+										  <% if(lista_pacientes != 0) { %>
+											
+										  <div class="col-md-4">
+												<a href="/consulta_externa/lista_pacientes/<%=data_token.token_id%>/<%=data_token.token_p%>">ver</a>
+											<h5><strong><%=lista_pacientes%></strong><br>
+												paciente</h5>
+										  </div>
+										  <% } else { %>
+											<div class="col-md-4">
+												
+												<h5><strong>No hay</strong><br>
+														paciente por atender</h5>
+												  </div>
+											<% } %>
+										  <div class="col-md-4">
+											<h5><strong></strong><br>
+												para atender</h5>
+										  </div>
+										</div>
+									  </div>
+									</div>
+								<!--	<div class="col-sm-5">
+									  <div id="ex-slider" data-ride="carousel" class="carousel slide pbl">
+										<ol class="carousel-indicators">
+										  <li data-target="#ex-slider" data-slide-to="0" class="active"></li>
+										  <li data-target="#ex-slider" data-slide-to="1"></li>
+										  <li data-target="#ex-slider" data-slide-to="2"></li>
+										  <li data-target="#ex-slider" data-slide-to="3"></li>
+										  <li data-target="#ex-slider" data-slide-to="4"></li>
+										</ol>
+										<div class="carousel-inner">
+										  <div class="item active"><img src="/images/superbox/hosCambia1.jpg" /></div>
+										  <div class="item"><img src="/images/superbox/hosCambia2.jpg" /></div>
+										  <div class="item"><img src="/images/superbox/hosCambia3.jpg" /></div>
+										  <div class="item"><img src="/images/superbox/hosCambia4.jpg" /></div>
+										  <div class="item"><img src="/images/superbox/hosCambia5.jpg" /></div>
+										</div>
+										<a href="#ex-slider" data-slide="prev" class="left carousel-control"> <span class="glyphicon glyphicon-chevron-left"></span></a> <a href="#ex-slider" data-slide="prev" class="right carousel-control"> <span class="glyphicon glyphicon-chevron-right"></span></a> </div>
+									</div>
+									-->
+								  </div>
+					  <br>
+					
+					  <div class="row">
 						<div class="col-md-12">
-					<div class="col-md-12 ">
-						<div class="col-md-8 ">
-							<div class="header center">
-								<div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div>
-								<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Bienvenido a Consulta Externa</h3>
-							</div>	
-						</div>
-						<div class="col-md-3 ">
-							<img class="centrado"src="/images/VIII.gif" width="80" height="50"  />
-						</div>
-						<br>
-						<br>
-					</div>
-					<div class="">
-					<div class="">
-					
-					<div class="col-sm-3">
-						<div class="ticket_open">
-							<a href="/emergencia/pacientes_emer" class="open_ticket_comment text-center ">
-								<h4>Paciente</h4>
-								<div class="btn-group">
-									<i class="fa fa-wheelchair"></i>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						  <div class="ticket_open">
-							  
-							  <a href="#" class="open_ticket_comment text-center ">
-								  <h4>Recetas</h4>
-								  
-								  <div class="btn-group">
-								  <i class="fa fa-pencil-square-o"></i>
-								  </div>
-								  
-								  
 								
-								  </a>
-								  
-						  </div>
-						</div>
-					  <div class="col-sm-3">
-						  <div class="ticket_open">
-							  
-							  <a href="#" class="open_ticket_comment text-center ">
-								  <h4>Reportes</h4>
-								  
-								  <div class="btn-group">
-								  <i class="fa fa-hospital-o"></i>
-								  </div>
+						  <div class="col-md-6">
+							  <di class="">
+									<div class="col-sm-6 row">
+											<div class="">
+												<a href="/emergencia/pacientes_emer" class="open_ticket_comment text-center ">
+													<h4>Paciente</h4>
+													<div class="btn-group">
+														<i class="fa fa-wheelchair"></i>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="">	  
+												<a href="#" class="open_ticket_comment text-center ">
+													<h4>Reportes</h4>
+													<div class="btn-group">
+													  <i class="fa fa-pencil-square-o"></i>
+													</div>
+												</a>
+													  
+											</div>
+										</div>
+							  </di>
+							<div class="col-md-12 ">
+									<div class="widget">
+											<div class="fecha">
+											  <p id="diaSemana" class="diaSemana">Martes</p>
+											  <p id="dia" class="dia">27</p>
+											  <p>de </p>
+											  <p id="mes" class="mes">Octubre</p>
+											  <p>del </p>
+											  <p id="year" class="year">2015</p>
+											</div>
+										  
+											<div class="reloj">
+											  <p id="horas" class="horas">11</p>
+											  <p>:</p>
+											  <p id="minutos" class="minutos">48</p>
+											  <p>:</p>
+											  <div class="caja-segundos">
+												<p id="ampm" class="ampm">AM</p>
+												<p id="segundos" class="segundos">12</p>
+											  </div>
+											</div>
+										  </div>
+							</div>	
 							
-								  </a>
-								  
+						  </div>
+						  <div class="col-md-6 ">
+							<div id='calendar'></div>
+							<!--/calendar end-->
 						  </div>
 						</div>
-					
+					  </div>
 					</div>
-				  	</div>
-						</div>
-
-					</div>
-
-					<!--\\\\\\\ container  end \\\\\\-->
-				</div>
-				<!--\\\\\\\ content panel end \\\\\\-->
-			</div>
+				  </div>
 			<!--\\\\\\\ inner end\\\\\\-->
-		</div>
 	</div>
+</div>
 		<!--\\\\\\\ wrapper end\\\\\\-->
 
 		<!--====== Scripts -->
+		<script>
+				(function(){
+				var actualizarHora = function(){
+				  // Obtenemos la fecha actual, incluyendo las horas, minutos, segundos, dia de la semana, dia del mes, mes y año;
+				  var fecha = new Date(),
+					horas = fecha.getHours(),
+					ampm,
+					minutos = fecha.getMinutes(),
+					segundos = fecha.getSeconds(),
+					diaSemana = fecha.getDay(),
+					dia = fecha.getDate(),
+					mes = fecha.getMonth(),
+					year = fecha.getFullYear();
+			  
+				  // Accedemos a los elementos del DOM para agregar mas adelante sus correspondientes valores
+				  var pHoras = document.getElementById('horas'),
+					pAMPM = document.getElementById('ampm'),
+					pMinutos = document.getElementById('minutos'),
+					pSegundos = document.getElementById('segundos'),
+					pDiaSemana = document.getElementById('diaSemana'),
+					pDia = document.getElementById('dia'),
+					pMes = document.getElementById('mes'),
+					pYear = document.getElementById('year');
+			  
+				  
+				  // Obtenemos el dia se la semana y lo mostramos
+				  var semana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+				  pDiaSemana.textContent = semana[diaSemana];
+			  
+				  // Obtenemos el dia del mes
+				  pDia.textContent = dia;
+			  
+				  // Obtenemos el Mes y año y lo mostramos
+				  var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+				  pMes.textContent = meses[mes];
+				  pYear.textContent = year;
+			  
+				  // Cambiamos las hora de 24 a 12 horas y establecemos si es AM o PM
+			  
+				  if (horas >= 12) {
+					horas = horas - 12;
+					ampm = 'PM';
+				  } else {
+					ampm = 'AM';
+				  }
+			  
+				  // Detectamos cuando sean las 0 AM y transformamos a 12 AM
+				  if (horas == 0 ){
+					horas = 12;
+				  }
+			  
+				  // Si queremos mostrar un cero antes de las horas ejecutamos este condicional
+				  // if (horas < 10){horas = '0' + horas;}
+				  pHoras.textContent = horas;
+				  pAMPM.textContent = ampm;
+			  
+				  // Minutos y Segundos
+				  if (minutos < 10){ minutos = "0" + minutos; }
+				  if (segundos < 10){ segundos = "0" + segundos; }
+			  
+				  pMinutos.textContent = minutos;
+				  pSegundos.textContent = segundos;
+				};
+			  
+				actualizarHora();
+				var intervalo = setInterval(actualizarHora, 1000);
+			  }())
+			</script>
+			<script>
+				var yy;
+				var calendarArray =[];
+				var monthOffset = [6,7,8,9,10,11,0,1,2,3,4,5];
+				var monthArray = [["ENE","enero"],["FEB","Febrero"],["MAR","Marzo"],["ABR","Abril"],["MAY","Mayo"],["JUN","Junio"],["JUL","Julio"],["AGO","Agosto"],["SEP","Septiembre"],["OCT","Octubre"],["NOV","Noviembre"],["DIC","Diciembre"]];
+				var letrasArray = ["L","M","X","J","V","S","D"];
+				var dayArray = ["7","1","2","3","4","5","6"];
+				$(document).ready(function() {
+				  $(document).on('click','.specific-day',activatecalendar);
+				  $(document).on('click','.calendar-month-view-arrow',offsetcalendar);
+				  $(window).resize(calendarScale);
+				  $(".calendar").calendar({
+					"2013910": {
+					  "Mulberry Festival": {
+						start: "9.00",
+						end: "9.30",
+						location: "London"
+					  }
+					}
+				  });
+				  calendarSet();
+				  calendarScale();
+				  });
+			  
+			</script>
+			
+			
+			
 		
 		<script src="/js/jquery-2.1.0.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
@@ -183,6 +422,20 @@
 
 		<script src="/js/jPushMenu.js"></script>
 		<script src="/js/side-chats.js"></script>
+
+<script src="/js/jquery-ui.custom.min.js"></script>
+<script src="/plugins/calendar/fullcalendar.min.js"></script>
+<script src="/plugins/calendar/external-draging-calendar.js"></script>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

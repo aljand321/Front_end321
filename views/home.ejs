@@ -77,7 +77,17 @@ td.uppercase
 {
 	text-transform: uppercase;
 }
-
+.vertical-alignment-helper {
+  display:table;
+  height: 100%;
+  margin-left: 41%;
+}
+.vertical-align-center {
+  /* To center vertically */
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
 </style>
 <script>
   /* <%if(login != null){%> */
@@ -123,13 +133,13 @@ td.uppercase
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>   <%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+            <img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>   <%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
-              <li> <a href="/delete_token/<%=data_token.token_id%>" onclick="delete_local_storage()"><i class="fa fa-power-off"></i>Salir</a> </li>
+              <li> <a data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
             </ul>
           </div>
-         
         </div>
       </div>
     </div>
@@ -590,6 +600,28 @@ td.uppercase
         </div>
       </div>
     </div>
+  </div>
+  <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+    <div class="vertical-alignment-helper">
+      <div class="modal-dialog vertical-align-center modal-sm ">
+        <div class="modal-content">
+          <br>
+            <div class="center">
+              <i><img src="/images/salir.gif" width="100" height="100" /></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Cerrar Sesión?</b></h5>
+            </div>
+          <div class="modal-footer">
+            <div class="center">
+              <a href="/delete_token/<%=data_token.token_id%>" onclick="delete_local_storage()"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
   </div>
 <script>
   (function(){
