@@ -825,14 +825,21 @@ router.get('/volver3', (req,res) => {
 router.get('/recetas_farm/:token_id/:token_partial',(req, res) => {
   const { token_id, token_partial } = req.params;
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
-
+    
     fetch('http://localhost:3000/api/reg_Receta')
     .then(resp => resp.json())
     .then(resp => {
-      res.render('Farmacia/recetas_farm',{
-        resp,
-        data_doc : data_user[token_id]
+
+      fetch('http://localhost:3000/api/list_pacientes')
+      .then(resp => resp.json())
+      .then(paciente => {
+        res.render('Farmacia/recetas_farm',{
+          resp,
+          data_doc : data_user[token_id],
+          paciente
+        })
       })
+     
     })
     .catch(error => {
       res.render('Farmacia/404error',{

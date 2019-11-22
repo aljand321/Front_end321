@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Historial</title>
+    <meta charset="UTF-8">
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+
+
+    <style>
+        div.a {
+            text-align: center;
+        }
+
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+        }
+    </style>
+  
+</head>
+<body class=" light_theme  fixed_header left_nav_fixed" >
+	<!-- SideBar -->
+
+    <!-- Content page-->
+    <div class="wrapper">
+        <!--\\\\\\\ wrapper Start \\\\\\-->
+        <div class="header_bar">
+            <!--\\\\\\\ header Start \\\\\\-->
+            <div class="brand">
+                <!--\\\\\\\ brand Start \\\\\\-->
+                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+            </div>
+            <!--\\\\\\\ brand end \\\\\\-->
+            <div class="header_top_bar">
+                <!--\\\\\\\ header top bar start \\\\\\-->
+                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+                <li href="/medico/volver" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </li>
+				
+
+                <div class="top_right_bar">
+
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+                                src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+                                class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <div class="top_pointer"></div>
+                           
+                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--\\\\\\\ header top bar end \\\\\\-->
+        </div>
+        <div class="inner">
+            <!--\\\\\\\ inner start \\\\\\-->
+            <div class="left_nav">
+
+                <!--\\\\\\\left_nav start \\\\\\-->
+
+                <div class="left_nav_slidebar">
+                    <ul>
+                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                            <ul>
+                                <li> 
+                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
+                                </li>
+                            </ul>
+                        </li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul >
+                                <li> <a href="/paciente/citas/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
+                            </ul>
+                        </li>
+                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
+                            class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block" >
+                                    <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+                                    <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Pacientes </b> </a></li>
+                                    <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--\\\\\\\left_nav end \\\\\\-->
+            <div class="contentpanel">
+                <!--\\\\\\\ contentpanel start\\\\\\-->
+                <div class="container clear_both padding_fix col-lg-8">
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12 ">
+
+
+	                    <!-- Content page-->
+                            <div class="col-lg-12 block-web"> 
+                                <div class="actions">
+                                        <span id="weekDay" class="weekDay"></span>, 
+										<span id="day" class="day"></span> de
+										<span id="month" class="month"></span> del
+										<span id="year" class="year"></span>/
+												
+										<span id="hours" class="hours"></span> :
+										<span id="minutes" class="minutes"></span> :
+										<span id="seconds" class="seconds"></span>
+
+                                </div>
+                                <div class="header ">
+                                    
+                                    <div class="info blue_symbols "> <i class="fa fa-archive icon "></i></div>
+                                        <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Historia Clínico</h2>
+                                </div>
+                               
+                                <br><br><br>
+
+                                <div class="">
+                                    <div class="">
+                                        <div class="actions"> </div>
+                                        <h3 class="center">Detalles del Paciente</h3> <br>
+                                    </div>
+                                    <div class="col-md-12  header">
+                                        <div class="col-md-6">
+                                            <label><b>N° de Historia:</b></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Fecha de consulta:</b></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12  header"><br>
+                                        <div class="col-md-6">
+                                            <label><b>Titular:</b></label> <br>
+                                            <label><b>Paciente:</b></label> <br>
+                                            <label><b>Médico:</b></label> <br>
+                                            <label><b>Consultorio:</b></label> <br>
+                                            <label><b>Ocupacón:</b></label> <br>
+                                            <label><b>Teléfono:</b></label> <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Institución</b></label><br>
+                                            <label><b>Especialidad</b></label><br>
+                                            <label><b>Sexo:</b></label><br>
+                                            <label><b>Fecha de Nacimiento</b></label><br>
+                                            <label><b>Estado Civil:</b></label> <br>
+                                            <label><b>Zona Donde Vive:</b></label> <br>
+                                        </div>
+                                    </div>
+                                   
+                                    
+                                </div>
+                                <div class="col-md-12"><br>
+                                    <div class="header"></div>
+                                    <p class="col-md-8">
+                                        
+                                        <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Descargar</button>
+                                    </p>
+                                </div>
+    
+                                    
+                            </div> 
+
+            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--====== Scripts -->
+    <script src="/js/reloj.js"></script>
+  <script src="/js/get/consultaget.js"></script>
+
+
+  <script src="/js/jquery-2.1.0.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/common-script.js"></script>
+  <script src="/js/jquery.slimscroll.min.js"></script>
+
+  <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+  <script src="/plugins/data-tables/jquery.dataTables.js"></script>
+  <script src="/plugins/data-tables/DT_bootstrap.js"></script>
+  <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+  <script src="/plugins/edit-table/edit-table.js"></script>
+  <script>
+      jQuery(document).ready(function () {
+          EditableTable.init();
+      });
+  </script>
+
+  <script src="/js/jPushMenu.js"></script>
+  <script src="/js/side-chats.js"></script>
+
+</body>
+</html>

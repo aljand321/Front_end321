@@ -38,10 +38,8 @@
         div.a {
             text-align: center;
         }
-
         h1.letras {
             font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-
         }
     </style>
 
@@ -150,7 +148,6 @@
                                                 <div class="container-fluid">
                                                     <div class="row">
                                                         <% if(resp == "") { %>
-
                                                         <form action="/consulta_externa/Pinternacion/<%=one_consulta[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
                                                             <input type="hidden" name="id_medico" value="<%=data_doc.data.medico.id%>">
                                                             
@@ -250,7 +247,6 @@
                                                                     </div>
                                                                     <h3 class="content-header">Estado del Paciente</h3>
                                                                 </div>
-
                                                                 <div class="form-group">
                                                                     <div class="row">
                                                                         <div class="col-md-12">
@@ -271,31 +267,24 @@
                                                                                     <div class="entrada">Fecha de Orden
                                                                                                                                     
                                                                                         <input class="form-control" type="text"  name="fechaIngreso" readonly :value="fecha" ><br>
-
                                                                                         
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
                                                                         </div>
                                                                         <div class="col-md-12">
                                                                             <h5>Estado del paciente</h5>
                                                                             <div class="col-sm-4 col-sm-4">
-
                                                                                 <div class="entrada"> Diagnostico<br>
                                                                                     <textarea name="diagnostico" cols="100" rows="10"></textarea><br>
                                                                                 </div>
                                                                             </div>
-
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                         </div>
                                                         
                                                             <!--   lado derecho-->
-
-
                                                             <p class="modal-footer">
                                                                 <button type="reset" class="btn btn-info"  style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                                                 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
@@ -420,32 +409,26 @@
                                                                                         </option>
                                                                                         <% } %>
                                                                                     </select>
-
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6 col-sm-6">
                                                                                 <div class="entrada ">
                                                                                     <div class="entrada">Fecha de Ingreso
                                                                                         <input class="form-control" type="text" readonly name="fechaIngreso" require value="<%=resp[0].fechaIngreso%>" ><br>
-
                                                                                                 
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
                                                                         </div>
                                                                         <div class="col-md-12">
                                                                             <h5>Estado del paciente</h5>
                                                                             <div class="col-sm-4 col-sm-4">
-
                                                                                 <div class="entrada"> Diagnóstico<br>
                                                                                     <textarea name="diagnostico"
                                                                                         cols="100"
                                                                                         rows="10"><%=resp[0].diagnostico%></textarea><br>
                                                                                 </div>
                                                                             </div>
-
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -607,7 +590,6 @@
             },
             methods:{
                 one_papeleta(id_p){
-
                     fetch(this.url+'/consulta_externa/VUE_One_p/'+id_p)
                     .then(res => res.json())
                     .catch(error => console.error('Error:', error))

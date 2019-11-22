@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Reporte de citas</title>
+	<meta charset="UTF-8">
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<!--validaciones-->
+
+	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+	<style>
+		div.a {
+			text-align: center;
+		}
+
+		h1.letras {
+			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+		}
+	</style>
+
+</head>
+
+<body class="light_theme  fixed_header left_nav_fixed">
+	<!-- SideBar -->
+
+	<!-- Content page-->
+	<div class="wrapper">
+		<!--\\\\\\\ wrapper Start \\\\\\-->
+		<div class="header_bar">
+			<!--\\\\\\\ header Start \\\\\\-->
+			<div class="brand">
+				<!--\\\\\\\ brand Start \\\\\\-->
+				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+			</div>
+			<!--\\\\\\\ brand end \\\\\\-->
+			<div class="header_top_bar">
+				<!--\\\\\\\ header top bar start \\\\\\-->
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+                <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													
+				<div class="top_right_bar">
+
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+							<li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+							<li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+							<li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--\\\\\\\ header top bar end \\\\\\-->
+		</div>
+		<div class="inner">
+			<!--\\\\\\\ inner start \\\\\\-->
+			<div class="left_nav">
+
+				<!--\\\\\\\left_nav start \\\\\\-->
+
+				<div class="left_nav_slidebar">
+					<ul>
+						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> 
+                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
+                                </li>
+							</ul>
+						</li>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/paciente/citas/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
+                        	</ul>
+                        </li>
+                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
+                            class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block" >
+                                <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+                                <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
+                                <li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Citas </b> </a></li>                
+                            </ul>
+                        </li>
+                        
+            
+					</ul>
+				</div>
+			</div>
+			<!--\\\\\\\left_nav end \\\\\\-->
+			<div class="contentpanel">
+				<!--\\\\\\\ contentpanel start\\\\\\-->
+				<div class="container clear_both padding_fix col-lg-8">
+					<br>
+
+					<div class="row">
+
+						<div class="col-lg-12  ">
+							<!-- Content page -->
+							<div id="main-content" class=" block-web">
+							<div class="header">
+								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
+								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reporte por Citas </h3>
+							</div>
+							<div class="porlets-content">
+                                <div class="row">
+                                    <div class="col-md-12 ">
+                                        <div class="block-web">
+                                            <div class="porlets-content">
+                                                <div class="col-md-12">
+                                                            
+                                                    <div class="col-md-3 ">
+                                                        <div class="form-group">paciente:<br>
+                                                            <input type='' name='' class="form-control"><br>
+                                                        </div>
+                                                    </div>
+                                                  
+                                                </div>
+                                             
+                                            </div>
+                                        </div>
+                                        <!--/col-md-12-->
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                               
+                                <p class="text-center">
+                                    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+                                    <button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
+                
+                                </p>
+							</div>
+                        </div>
+                        <div id="main-content">
+                            <section class="panel default blue_title h2">
+                        <div class="page-content">			
+                                <ul class="nav nav-tabs" id="myTab">
+                                    <li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab">Citas</a></li>
+                                    
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane fade active in " id="neww">
+                                        <table class="display table table-bordered table-striped" id="dynamic-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Historial Clinico</th>
+                                                    
+                                                    <th>Doctor</th>
+                                                    <th>Especialidad</th>
+                                                    <th>Cantidad de visitas</th>
+                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>														
+                                                
+                                                <tr class="gradeX">
+                                                    <td>a</td>
+                                                    <td>a</td>
+                                                    <td>a</td>
+                                                    <td>a</td>
+                                                    <td>a</td>
+                                                  
+                                                    
+                                                </tr>													
+
+                                            </tbody>
+                                           
+                                        </table>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <!--/porlets-content-->
+                        </div>
+                    </section>
+                    </div>
+						</div>
+						<!--/block-web-->
+					</div>
+				</div>
+
+			</div>
+
+			<!--\\\\\\\ container  end \\\\\\-->
+		</div>
+		<!--\\\\\\\ content panel end \\\\\\-->
+	</div>
+	<!--\\\\\\\ inner end\\\\\\-->
+	</div>
+	<!--\\\\\\\ wrapper end\\\\\\-->
+
+
+
+
+
+
+
+
+
+
+	<!--====== Scripts -->
+	<script src="/js/jquery-2.1.0.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/common-script.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
+	<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+
+	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+
+	<script src="/plugins/edit-table/edit-table.js"></script>
+	<script>
+		jQuery(document).ready(function () {
+			EditableTable.init();
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- etiqueta sin internet-->
+	<script src="/axios/dist/axios.min.js"></script>
+
+	<script src="/js/jPushMenu.js"></script>
+	<script src="/js/side-chats.js"></script>
+
+
+
+
+
+	<script src="/js/vue/citasMedicas.js"></script>
+
+
+<!--validaciones-->
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
+
+</body>
+
+</html>
