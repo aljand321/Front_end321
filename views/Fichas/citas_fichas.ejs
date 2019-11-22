@@ -74,8 +74,8 @@
 
 				<div class="top_right_bar">
 
-					<div class=" dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/cajera.png" /><span class="user_adminname">John Doe</span> <b
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+								src="/images/cajera.png" /><span class="user_adminname"> John Doe</span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -101,26 +101,21 @@
 								</li>
 							</ul>
 						</li>
-
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 								<li> 
-									<a href="/paciente/citas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i
-											class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Médicas</b>
+									<a href="/paciente/citas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Médicas</b>
 									</a> 
 								</li>
-
 							</ul>
 						</li>
-						<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
-							class="plus"><i class="fa fa-plus"></i></span></a>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
 								<li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
 								<li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
 								<li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
 							</ul>
 						</li>
-			
 					</ul>
 				</div>
 			</div>
@@ -129,19 +124,17 @@
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
-
 					<div class="row">
-
 						<div class="col-lg-12  ">
 							<!-- Content page -->
-
 							<div id="main-content" class=" block-web">
-							<div class="header">
-									<div class="actions"> 
+								<div class="header">
+									<div class="actions">
+										<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
 									</div>
-								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
-								<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h2>
-							</div>
+									<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
+									<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h2>
+								</div>
 							<div class="porlets-content">
 								<div id="citas">
 									<%if(citaUpdate == null) { %>
@@ -150,7 +143,6 @@
 										<div class="row">
 											<div class="col-md-12 ">
 												<div class="block-web">
-													
 													<% if(msg_false != null) { %>
 													<div class="bs-example">
 														<div class="alert alert-danger fade in">
@@ -171,14 +163,7 @@
 															</select><br>
 														</div>
 														<div class="form-group">
-															<div class="row">
-																<div class="header">
-																	<div class="actions"> 
-																		<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
-																	</div>
-																	<h3 class="text-center"> Nueva Cita</h3>
-																</div>
-																
+															<div class="row"> 
 																<br>
 																<div class="col-md-12">
 																	<div class="col-md-4">
@@ -214,11 +199,9 @@
 																				<option disabled="disabled" value> Seleccione </option>
 																				<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
 																					{{doctor.nombre.split("/")[0]}}
-																					
 																				</option>
 																			</select>
 																		</div>
-																		
 																		<div class="form-group">Tipo de Paciente:<br>
 																			<select class="form-control" name="tipoPaciente">
 																				<option>Institucional</option>
@@ -234,10 +217,8 @@
 																				<option>SEGUROS SOCIALES UNIVERSITARIOS</option>
 																				<option>CORPORACIÓN DEL SEGURO SOCIAL MILITAR</option>
 																				<option>SEGUROS REGIONALES</option>
-																			
 																			</select>
 																		</div>
-																		
 																	</div>
 																</div>
 																<br>
@@ -277,17 +258,13 @@
 														<h3 class="content-header ">Horas Reservadas</h3>
 														<div class="porlets-content">
 															<ul class="list-group task-list no-margin collapse in">
-
 																<template
 																	v-for="(horas, index, key) in horas_Turno_reservado">
 																	<li class="list-group-item blue-light-bg-color">
 																		<label for="">{{index+1}}</label>
 																		<label for="">{{horas.h}}</label><br>
 																	</li>
-
 																</template>
-
-
 															</ul>
 															<!-- /list-group -->
 														</div>
@@ -329,24 +306,13 @@
 								
 
 									</form>
-							</div>
-
+								</div>
 								<% } else { %>
-
-
 								<form action="/paciente/updateCita/<%=citaUpdate[0].id%>" method="POST">
 									<div class="row">
 										<div class="col-md-12 ">
-
 											<div class="block-web">
-
 												<div class="header">
-													<div class="actions">
-														
-														<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
-														
-													</div>
-													
 													<h3 class="content-header">  <a  href="/paciente/clean" class="btn btn-primary" >
 														<i class="fa fa-arrow-left"></i> <span> Volver a Fichas</span> </a> Nueva Cita<span class="semi-bold">/Actualizar</span>
 													</h3>
@@ -354,17 +320,13 @@
 												<div class="row">
 													<div class="grupo" id="cabeza">
 														<h3 class="text-center"> Datos Personales</h3>
-
 														<div class="col-md-12">
 															<div class="col-md-4">
 																<div class="entrada">Historial Clinico:
-																	<input type="text" value="<%=historial	%>"
-																	name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
+																	<input type="text" value="<%=historial	%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
 																</div>
-
 																<div class="entrada">Costo de Ficha:
-																	<input type="text" name="saldo_total"
-																	class="form-control" value="<%=citaUpdate[0].saldo_total%>"><br>
+																	<input type="text" name="saldo_total" class="form-control" value="<%=citaUpdate[0].saldo_total%>"><br>
 																</div>
 															</div>
 															<div class="col-md-4">
@@ -375,7 +337,6 @@
 																		<option
 																			v-for="(especialidad, index) of especialidades">
 																			{{especialidad.nombre}}</option>
-
 																	</select>
 																</div>
 																<div class="entrada">Turno: <%=citaUpdate[0].turno%><br>
@@ -396,12 +357,9 @@
 																		</option>
 																		<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
 																			{{doctor.nombre.split("/")[0]}}
-																			
 																		</option>
 																	</select>
 																</div>
-																
-																
 																<div class="form-group">Tipo de Paciente:<br>
 																	<select class="form-control" name="tipoPaciente">
 																		<option>Institucional</option>
@@ -417,7 +375,6 @@
 																		<option>SEGUROS SOCIALES UNIVERSITARIOS</option>
 																		<option>CORPORACIÓN DEL SEGURO SOCIAL MILITAR</option>
 																		<option>SEGUROS REGIONALES</option>
-																	
 																	</select>
 																</div>
 															</div>
@@ -433,9 +390,7 @@
 													<div class="col-md-4 ">
 														<div class="block-web green-bg-color">
 															<h3 class="content-header ">Hora de Reserva</h3>
-															<input type="radio" name="hora"
-																value="<%= citaUpdate[0].hora%>"
-																checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
+															<input type="radio" name="hora" value="<%= citaUpdate[0].hora%>" checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
 														</div>
 														<!--/block-web-->
 													</div>
@@ -448,8 +403,7 @@
 															<input type="radio" name="hora" value="<%= citaUpdate[0].hora%>" checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
 															<template v-for="(horas, index, key) in horas_Turno">
 																<label for="">{{index+1}}</label>
-																<input type="radio" name="hora"
-																	:value="horas.h +'/'+horas.id">{{horas.h}}<br>
+																<input type="radio" name="hora" :value="horas.h +'/'+horas.id">{{horas.h}}<br>
 															</template>
 														</div>
 														<!--/block-web-->
@@ -460,22 +414,16 @@
 										<div class="">
 											<p class="col-md-6">
 												<a href="/paciente/imprimirNuevaConsulta" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i> &nbsp;&nbsp;Imprimir</a> 
-							
 												<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar/Imprimir</button>
 												<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-mail-reply'></i>&nbsp;&nbsp; Cancelar</button>
 											</p>
-										</div>
-										
+										</div>		
 									</div>
 								</form>
 								<% } %>
-
-								
 							</div>
 							</div>
-
 							<div id="main-content">
-								
 									<section class="panel default blue_title h2">
 								<div class="page-content">			
 										<ul class="nav nav-tabs" id="myTab">
