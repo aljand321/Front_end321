@@ -42,7 +42,7 @@
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
-            >
+            
             <li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
           </ul>
         </div>
@@ -65,12 +65,7 @@
                   <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b></a> </li>
                 </ul>
               </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-archive"></i> Historial<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul >
-                  <li> <a href="/paciente/ultimaCOnsultaH"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Última Consulta</b> </a></li>
-                </ul>
-              </li>
-               
+             
               <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
                 <ul class="opened" style="display:block">
                   <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color" >Historial Clinico </b>  </a> </li>
@@ -90,48 +85,33 @@
             <div class="block-web">
               <div class="header">
                     <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                    <h3 class="content-header ">Reportes de Emergencia</h3>
+                    <h3 class="content-header ">Reportes Emengincia</h3>
               </div>
               <br>
               <br>
               <div class="porlets-content">
-                <form class="form-horizontal"  >
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label">Desde:</label>
-                    <div class="col-sm-4">
-                      <input type="date" class="form-control" >
-                    </div>
-                  </div><!--/form-group--> 
-                  <div class="form-group">
-                    <label  class="col-sm-4 control-label">Hasta:</label>
-                    <div class="col-sm-4">
-                      <input type="date" class="form-control" >
-                    </div>
-                  </div><!--/form-group-->  
-                  
-                </form>
+              
               </div>
               <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
                     <tr>
-                          <th class="text-center">Nombre</th>
-                          <th class="text-center">Sigla</th>	
-                          <th class="text-center">Fecha Creación</th>	
+                          <th class="text-center">N° Historial</th>
+                          <th class="text-center">Nombre Completo</th>	
+                          <th class="text-center">Fecha de Atención</th>	
                           <th class="text-center">Optiones</th>
                     </tr>
                   </thead>
                   <tbody>
-                   
+                    
                       <tr>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td>
-                          <a href="">ver</a></td>
+                          <a href="/paciente/ultimaCOnsultaH">ver</a></td>
                         </td>
-                      </tr>
-                 
+           
                   </tbody>
                 </table>
               </div>

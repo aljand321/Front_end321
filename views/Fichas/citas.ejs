@@ -46,8 +46,6 @@
 </head>
 
 <body class="light_theme  fixed_header left_nav_fixed">
-	<!-- SideBar -->
-
 	<!-- Content page-->
 	<div class="wrapper">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
@@ -56,17 +54,14 @@
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
 			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
 				<div class="top_right_bar">
-
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								src="/images/user.png" /><span class="user_adminname"><%=resp.nombre%> <%=resp.apellidop%> John Doe</span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -89,14 +84,9 @@
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
 					<br>
-					
 					<div class="row">
-
 						<div class="col-lg-12 ">
-
-
 							<!-- Content page -->
-						
 							<div id="main-content" class=" block-web">
 								<div class="header">
 									<div class="actions"> </div>
@@ -112,12 +102,10 @@
 														<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
 														<a class="refresh" href="#"><i class="fa fa-repeat"></i></a> 
 														<a class="close-down" href="#"><i class="fa fa-times"></i></a>
-													</div>
-													
+													</div>	
 													<a href="javascript:void(0);" class="btn btn-primary btn-raised btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i> <span> Nuevo Paciente</span> </a>
 												</div>
 												<div class="porlets-content">
-
 													<div class="table-responsive">
 														<table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-infoo">
 															<thead>
@@ -128,7 +116,6 @@
 																	<th>Apellido</th>
 																	<th>CI.</th>
 																	<th >Opciones</th>
-															
 																</tr>
 															</thead>
 															<tbody>
@@ -142,24 +129,14 @@
 																	<td class="text-center">
 																		<a href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial%>/<%=data_token.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ficha nueva" ><i
 																			class="fa fa-list-ol"></i></a>
-																		<a href="/paciente/citas_reconsulta" data-toggle="tooltip" class="btn  tooltips" data-original-title="Reconsulta" ><i
-																			class="fa fa-dedent"style="color:rgb(80, 145, 80)"></i></a>
-
 																		
-																		<a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_Ficha_Médica"
-																			><i class="fa fa-eye red"></i></a>
 																	</td>
-																	
-																	
 																</tr>
 																<% } %>
-
-
 															</tbody>
 														</table>
 													</div>
 													<!--/table-responsive-->
-
 												</div>
 												<!--/porlets-content-->
 											</div>
@@ -168,109 +145,90 @@
 										<!--/col-md-12-->
 									</div>
 									<!--/row-->
-
 								</div>
 								<!--/page-content end-->
 							</div>
-							<!--/main-content end-->
-
-
-
-							<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-								<div class="modal-dialog ">
-									<div class="modal-content  ">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
-											<h4 >Datos del Paciente</h4>
-										</div>
-										
-										<form class=" " action='/paciente/postPaciente' method='post'>
-										<div class="container-fluid row ">
-											<div class="col-md-14 ">
-										
-													<div class="col-md-4 " >
-														<div class="entrada ">
-															<label>Nombre(s):</label>
-															<input  class="form-control"type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change"onkeyup="mayus(this);" >
-														</div>
-														
-													</div>
-													<div class="col-md-4  ">
-														<div class="entrada">
-															<label>Primer Apellido:</label>
-															<input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change"onkeyup="mayus(this);">
-								
-														</div>
-													</div>
-													<div class="col-md-4 ">
-														<div class="entrada">
-															<label>Segundo Apellido:</label>
-															<input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change" onkeyup="mayus(this);">
-														</div>
-													</div>
-												
-												</div>
-
-												<div class="col-md-13">
-													<div class="col-md-3">
-														<br><p>C.I.:</p>
-														<input type='text' name='ci'placeholder="N° de Carnet" required placeholder="" parsley-trigger="change" maxlength="10"  class="form-control"/><br>
-													</div>	
-													<div class="col-md-4"><br><p>Dirección:</p>
-														<input type='text' name='direccion'placeholder="Dirección" required  parsley-trigger="change" onkeyup="mayus(this);"><br>
-													</div>
-													<div class="col-md-5 " ><br><p>Sexo:</p>
-														<select class="form-control " name='sexo'>
-															<option>HOMBRE</option>
-															<option>MUJER</option>
-														</select><br>
-													</div>
-												</div>
-
-												<div class="col-md-13">
-														
-													
-													<div class="col-md-6">Fecha de Nacimiento:<br>
-														<input type='date' name='fechanacimiento' class="form-control"><br>
-													</div>
-
-												</div>
-												
-												
-												<div class="col-md-12 page-content ">
-													<div class="">
-															
-													</div>
-													<div class="col-md-8 ">
-														<button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-														<button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
-														<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-															
-													</div>
-												</div>	
-										</div>
-										
-											
-										</form>
-										
-									</div>
-								</div>
-							</div>
-
-
-
+							<!--/main-content end-->							
 						</div>
-
 					</div>
-
 					<!--\\\\\\\ container  end \\\\\\-->
 				</div>
 				<!--\\\\\\\ content panel end \\\\\\-->
 			</div>
 			<!--\\\\\\\ inner end\\\\\\-->
 		</div>
+	</div>
 		<!--\\\\\\\ wrapper end\\\\\\-->
+		<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+														Modal registrar paciente 
+			>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>><<<<<<  -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog ">
+				<div class="modal-content  ">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Datos del Paciente</h4>
+						<% if(msg != null) { %>
+							<%if (msg.data.success == false ) {%>
+								<span style="color: rgb(182, 0, 0);"><%=msg.data.msg%></span>
+							<% } %>
+						<% } %>
+
+					</div>
+					<form class=" " action='/paciente/postPaciente/<%=data_token.token_id%>' method='post'>
+						<div class="container-fluid  ">
+							<div class="col-md-14 "> <br>
+								<div class="col-md-4 " >
+									<label>Nombre(s):</label>
+									<input  class="form-control"type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change"onkeyup="mayus(this);" >
+								</div>
+								<div class="col-md-4  ">
+									<label>Primer Apellido:</label>
+									<input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change"onkeyup="mayus(this);">
+								</div>
+								<div class="col-md-4 ">
+									<label>Segundo Apellido:</label>
+									<input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change" onkeyup="mayus(this);">
+								</div>
+							</div>
+							<div class="col-md-13">
+								<div class="col-md-4">
+									<br><label>C.I.:</label>
+									<input type='text' name='ci'placeholder="N° de Carnet" required placeholder="" parsley-trigger="change" maxlength="10"  class="form-control"/><br>
+								</div>	
+								<div class="col-md-4">
+									<br><label>Dirección:</label>
+									<input class="form-control" type='text' name='direccion'placeholder="Dirección" required  parsley-trigger="change" onkeyup="mayus(this);"><br>
+								</div>
+								<div class="col-md-4 " >
+									<br><label>Sexo:</label>
+									<select class="form-control " name='sexo'>
+										<option>HOMBRE</option>
+										<option>MUJER</option>
+									</select><br>
+								</div>
+							</div>
+							<div class="col-md-13">
+								<div class="col-md-6">
+									<label>Fecha de Nacimiento:</label><br>
+									<input type='date' name='fechanacimiento' class="form-control"><br>
+								</div>
+							</div>
+						
+							<div class="col-md-12 modal-footer ">
+								
+								<div class="col-md-8 row">
+									<button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+									<button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
+									<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+								</div>
+							</div>	
+						</div>
+					</form>	
+				</div>
+			</div>
+		</div>
 		
 		<!--====== Scripts -->
 		<script>
@@ -298,6 +256,9 @@
 
 		<script src="/js/jPushMenu.js"></script>
 		<script src="/js/side-chats.js"></script>
+
+
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
 <!--validaciones-->
@@ -360,6 +321,23 @@
       e.preventDefault();
     });
 
+</script>
+
+<script>
+	/* <% if(msg != null) { %> */
+		/* <%if (msg.data.success == false ) {%> */
+	modal()
+	function modal(){
+		Swal.fire({
+			type: 'error',
+			title: 'Oops...',
+			text: `<%=msg.data.msg%>` ,
+			//footer: '<a href>Why do I have this issue?</a>'
+		})
+	}
+		/* <% } %> */
+	/* <% } %> */
+			
 </script>
 
 </body>

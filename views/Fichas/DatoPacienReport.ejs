@@ -89,22 +89,24 @@
 
                 <div class="left_nav_slidebar">
                     <ul>
-                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span  class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul>
-                                <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+                                <li> 
+                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
+                                </li>
                             </ul>
                         </li>
-                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul >
-                                <li> <a href=""> <span>&nbsp;</span> <i  class="fa fa-circle"></i> <b >Listas de Citas</b>
-                                    </a> </li>
+                                <li> <a href="/paciente/citas/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
                             </ul>
                         </li>
-                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
-                            <ul class="opened" style="display:block">
-                                <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Historial Clinico </b>  </a> </li>
-                                <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-                                <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
+                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
+                            class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block" >
+                                    <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+                                    <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Pacientes </b> </a></li>
+                                    <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
                             </ul>
                         </li>
                     </ul>
@@ -143,7 +145,7 @@
                                 <div class="">
                                     <div class="">
                                         <div class="actions"> </div>
-                                        <h3 class="center">HISTORIA CLINICA </h3> <br>
+                                        <h3 class="center">Detalles del Paciente</h3> <br>
                                     </div>
                                     <div class="col-md-12  header">
                                         <div class="col-md-6">
@@ -172,116 +174,7 @@
                                             <label><b>Zona Donde Vive:</b></label> <br>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-12  row"><br>
-                                        <div class="col-md-3">
-                                            <label><b>Motivo de Consulta:</b></label> <br>
-                                            <label><b>Examen Físico:</b></label> <br>
-                                            <label><b>Diagnostico:</b></label> <br>
-                                            <label><b>Tratamiento :</b></label> <br>
-                                            <label><b>Observaciones u otra conducta:</b></label> <br>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <label>Motivo de Consulta:</label> <br>
-                                            <label>Examen Físico:</label> <br>
-                                            <label>Diagnostico:</label> <br>
-                                            <label>Tratamiento :</label> <br>
-                                            <label>Observaciones u otra conducta:</label> <br>
-
-                                        </div>
-                                    </div>
-                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<PARA LA RECETA>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
-                                    <div class="col-md-12  header"><br><br>
-                                        <div class="col-md-3">
-                                            <label><b>Receta:</b></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label><b>Descripción:</b></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label><b>Prescripción:</b></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12  row">
-                                        <div class="col-md-3">
-                                            <label><b></b></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>1 AMOXILINA</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>CADA 8 HORAS</label>
-                                        </div>
-                                    </div>
-                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<ORDENES DE HOSPITALIZACION>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
-                                   <div class="col-md-12  header"><br><br>
-                                        <div class="col-md-3">
-                                            <label><b>Orden de Internación:</b></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label><b></b></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label><b></b></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12  row">
-                                        <div class="col-md-3">
-                                            <label><b></b></label>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <label>detalles</label>
-                                        </div>
-                                        
-                                    </div> <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<examenes complementarios>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
-                                   <div class="col-md-12  header"><br><br>
-                                        <div class="col-md-3">
-                                            <label><b>examenes Complementarios</b></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label><b>Area de Internación:</b></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label><b>Diagnostico:</b></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12  row">
-                                        <div class="col-md-3">
-                                            <label><b></b></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Neurplogia</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Vesicula</label>
-                                        </div>
-                                    </div>
-                                     <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<transferencia>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
-                                   <div class="col-md-12  header"><br><br>
-                                        <div class="col-md-3">
-                                            <label><b>Transferencia a:</b></label>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <label><b></b></label>
-                                        </div>
-                                    
-                                    </div>
-                                    <div class="col-md-12  row">
-                                        <div class="col-md-3">
-                                            <label><b></b></label>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <label>Nombre del Médico</label><br>
-                                            <label>Especialidas</label><br>
-                                            <label>Observaciones</label><br>
-                                        </div>
-                                    
-                                    </div>
-                                  
+                                   
                                     
                                 </div>
                                 <div class="col-md-12"><br>

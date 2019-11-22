@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Reportes</title>
+<title>Reportes Pacientes</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -53,28 +53,30 @@
   <div class="inner">
     <div class="left_nav">
       <div class="left_nav">
-          <div class="left_nav_slidebar">
-            <ul>
-              <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul >
-                  <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
-                </ul>
-              </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul >
-                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b></a> </li>
-                </ul>
-              </li>
-             
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul class="opened" style="display:block">
-                  <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color" >Historial Clinico </b>  </a> </li>
-                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
-                </ul>
-              </li>						
+        <div class="left_nav_slidebar">
+			<ul>
+				<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+					<ul>
+						<li> 
+                            <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
+                        </li>
+					</ul>
+				</li>
+				<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+					<ul >
+						<li> <a href="/paciente/citas/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
+                	</ul>
+                </li>
+                <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
+                    class="plus"><i class="fa fa-plus"></i></span></a>
+                    <ul class="opened" style="display:block" >
+                            <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+                            <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Pacientes </b> </a></li>
+                            <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
+                    </ul>
+                </li>
             </ul>
-          </div>
+		</div>
       </div>
     </div>
     <div class="contentpanel">
@@ -85,20 +87,33 @@
             <div class="block-web">
               <div class="header">
                     <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                    <h3 class="content-header ">Reportes Hospitalización</h3>
+                    <h3 class="content-header ">Reportes Pacientes</h3>
               </div>
               <br>
               <br>
               <div class="porlets-content">
+                <form class="form-horizontal"  >
+                  
+                  <div class="form-group">
+                    <label  class="col-sm-4 control-label">Pacientes:</label>
+                    <select name="">
+                        <option>Todos los Pacientes</option>
+                        <option>Vivos</option>
+                        <option>Dados de Baja</option>
+                        
+                    </select>
+                  </div> 
               
+                  
+                </form>
               </div>
               <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
                     <tr>
                           <th class="text-center">N° Historial</th>
+                          <th class="text-center">C.I.</th>	
                           <th class="text-center">Nombre Completo</th>	
-                          <th class="text-center">Fecha de Atención</th>	
                           <th class="text-center">Optiones</th>
                     </tr>
                   </thead>
@@ -109,7 +124,7 @@
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td>
-                          <a href="/paciente/ultimaCOnsultaH">ver</a></td>
+                          <a href="/paciente/DatoPacienReport">ver</a></td>
                         </td>
            
                   </tbody>

@@ -1,0 +1,54 @@
+.oculVistaReal{
+    display: none;
+}
+#ocultoVreal{
+    display: none;   
+}
+.hisV{
+    padding: 0% 0;
+    left: 0px;
+    height: auto;
+	width: 100%;
+    margin:0px;
+    float:left;
+   border: 1px;
+
+    position: relative;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid; 
+
+}
+.oculi{
+    visibility: hidden;
+}
+.clear
+{
+clear:both;
+}
+.dim{
+	left: 0;
+	z-index: 2;
+	background: url('../images/hospital3.png');
+	border-right: 1px solid rgba(255, 255, 255, .4);
+	overflow: hidden;
+}
+#celda_imagen {
+    left: 0;
+	z-index: 2;
+	background: url('../images/hospital3.png');
+	border-right: 1px solid rgba(255, 255, 255, .4);
+	overflow: hidden;
+    }
+.tami{
+    width: 50px; height: 50px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+.t{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

@@ -83,7 +83,8 @@ router.get('/citas/:id/:token_part',(req, res) => {
       .then(resp =>{
         res.render('Fichas/citas',{         //aqui esta la ruta
           resp,
-          data_token
+          data_token,
+          msg:msg_Consulta_Externa[id],
         });    
       })
       .catch(error => {
@@ -105,6 +106,28 @@ router.get('/citas/:id/:token_part',(req, res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
+var msg_Consulta_Externa = {}
+function msg_data(data,id){
+  let msg_data = msg_Consulta_Externa[id];
+    if (!msg_data) {
+        msg_data = msg_Consulta_Externa[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    msg_data.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in msg_Consulta_Externa) {
+      arr.push(msg_Consulta_Externa[id]);
+  }
+  return arr;
+}
+function remove(id) {
+    delete msg_Consulta_Externa[id];
+}
 
 var url = require('./url/export');
 
@@ -113,7 +136,9 @@ router.get('/reg_paciente',(req, res) => {
   });
  
   
-router.post('/postPaciente', (req,res) => {
+router.post('/postPaciente/:token_id', (req,res) => {
+  const { token_id } = req.params
+  var msg_p
   var aleatorio = Math.floor(Math.random()*(9000-1000))+1000
   var paciente = {
     numeroHistorial : aleatorio,
@@ -122,17 +147,8 @@ router.post('/postPaciente', (req,res) => {
     apellidom: req.body.apellidom,
     ci: req.body.ci,
     fechanacimiento: req.body.fechanacimiento,
+    direccion : req.body.direccion,
     sexo: req.body.sexo,
-    estadocivil: req.body.estadocivil,
-    direccion: req.body.direccion,
-    zona: req.body.zona,
-    telef: req.body.telef,
-    ocupacion: req.body.ocupacion,
-    idiomas: req.body.idiomas,
-    lugranacimiento: req.body.lugranacimiento,
-    departameto: req.body.departameto,
-    provincia: req.body.provincia,
-    municipio: req.body.municipio,
     id_user:data_token.token_id
   };
   //console.log(paciente);
@@ -147,7 +163,40 @@ fetch('http://localhost:3000/api/pacientes',esto)
 .then(res => res.json())
 .catch(error => console.error('Error:', error))
 .then(data => {
-  res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial + '/' + data_token.token_p);
+  if (data.success == true){
+
+    if(msg_Consulta_Externa[token_id] == null){
+      msg_p = {
+        success:true,
+        msg:data.msg
+      }
+      msg_data(msg_p,token_id)
+    }else{
+      msg_p = {
+        success:true,
+        msg:data.msg
+      }
+      remove(token_id)
+      msg_data(msg_p,token_id)
+    }
+    res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial + '/' + data_token.token_p);
+  }else{
+    if(msg_Consulta_Externa[token_id] == null){
+      msg_p = {
+        success:false,
+        msg:data.msg
+      }
+      msg_data(msg_p,token_id)
+    }else{
+      msg_p = {
+        success:false,
+        msg:data.msg
+      }
+      remove(token_id)
+      msg_data(msg_p,token_id)
+    }
+    res.redirect('/paciente/citas/'+token_id+'/'+data_token.token_p);
+  } 
 })
 });
 
@@ -455,11 +504,29 @@ router.get('/O_Laboratorio', (req,res) => {
 });
 
  
-//para fichaje citas
+//reporte fichas
 
 
-router.get('/listasdeCitas', (req,res) => {
-  res.render('Fichas/listasdeCitas')
+router.get('/ReporConsultorio', (req,res) => {
+  res.render('Fichas/ReporConsultorio')
+});
+router.get('/ReporCita', (req,res) =>{
+  res.render('Fichas/ReporCita')
+});
+router.get('/ReporPaciente',(req,res)=>{
+  res.render('Fichas/ReporPaciente')
+});
+
+router.get('/DatoPacienReport',(req,res)=>{
+  res.render('Fichas/DatoPacienReport')
+});
+//reporte de citas
+
+router.get('/ReporPacenA', (req,res) =>{
+  res.render('consulta_externa/ReporPacenA')
+});
+router.get('/ReporEnfermedades',(req,res)=>{
+  res.render('consulta_externa/ReporEnfermedades')
 });
 //IMPRIMIR CITAS
 router.get('/imprimirNuevaConsulta', (req,res) => {

@@ -49,7 +49,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname"><%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b
+								src="/images/user.png" /><span class="user_adminname"> <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -69,20 +69,16 @@
 
 				<div class="left_nav_slidebar">
 					<ul>
-						<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i
-									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
-									class="plus"><i class="fa fa-plus"></i></span> </a>
+						<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul class="opened" style="display:block">
-								<li> <a href="#"> <span>&nbsp;</span> <i
-											class="fa fa-circle "></i> <b class="theme_color">Inicio</b> </a> </li>
+								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b class="theme_color">Inicio</b> </a> </li>
 							</ul>
 						</li>
-						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span
-									class="plus"><i class="fa fa-plus"></i></span></a>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
 								<li> <a href="/consulta_externa/lista_pacientes/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i
-											class="fa fa-circle"></i> <b>Listas de Citas</b>
-									</a> </li>
+									class="fa fa-circle"></i> <b>Listas de Citas</b>
+								</a> </li>
 							</ul>
 						</li>						
 					</ul>
@@ -95,36 +91,35 @@
 					<br>
 					<br>
 					<br>
-					<div class="row">
+					<div class="col-md-14 row center">
 						<div class="col-md-12">
 					<div class="col-md-12 ">
 						<div class="col-md-8 ">
 							<div class="header center">
 								<div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div>
 								<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Bienvenido a Consulta Externa</h3>
-						</div>	
+							</div>	
+						</div>
+						<div class="col-md-3 ">
+							<img class="centrado"src="/images/VIII.gif" width="80" height="50"  />
+						</div>
+						<br>
+						<br>
 					</div>
-					<div class="col-md-3 ">
-						  <img class="centrado"src="/images/VIII.gif" width="80" height="50"  />
-					</div>
-					<br>
-					<br>
-					</div>
-					<div class="col-md-12">
-					<div class="row">
+					<div class="">
+					<div class="">
 					
 					<div class="col-sm-3">
 						<div class="ticket_open">
 							<a href="/emergencia/pacientes_emer" class="open_ticket_comment text-center ">
 								<h4>Paciente</h4>
-								
 								<div class="btn-group">
-								<i class="fa fa-wheelchair"></i>
+									<i class="fa fa-wheelchair"></i>
 								</div>
-								</a>
+							</a>
 						</div>
-					  </div>
-					  <div class="col-sm-3">
+					</div>
+					<div class="col-sm-3">
 						  <div class="ticket_open">
 							  
 							  <a href="#" class="open_ticket_comment text-center ">

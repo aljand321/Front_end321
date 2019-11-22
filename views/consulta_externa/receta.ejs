@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
+<head >
+		
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Recetas</title>
+	<title >RECETA MEDICA</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 	<meta name="viewport"
 		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+		
+		<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+		<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -53,13 +56,13 @@
 	<%- include("../partials/head") -%>
 </head>
 
-<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
+<body class=" light_theme  fixed_header left_nav_fixed " onload="actualizaReloj()">
 	<!-- SideBar -->
 
 	<!-- Content page-->
-	<div class="wrapper">
+	<div class="wrapper ">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
-		<div class="header_bar">
+		<div id="ocultoI" class="header_bar" >
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
@@ -69,12 +72,14 @@
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
+				<li href="/medico/volver" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </li>
+													
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
-								class="caret"></b> </a>
+						src="/images/user.png" /> <span class="user_adminname">
+								<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%>
+						</span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							
@@ -85,9 +90,9 @@
 			</div>
 			<!--\\\\\\\ header top bar end \\\\\\-->
 		</div>
-		<div class="inner">
+		<div class="inner "id="" >
 			<!--\\\\\\\ inner start \\\\\\-->
-			<div class="left_nav">
+			<div id="ocultoI" class="left_nav">
 				<!--\\\\\\\left_nav start \\\\\\-->
 				<div class="left_nav_slidebar">
 					<ul>
@@ -101,58 +106,82 @@
 								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b> </a> </li>
 							</ul>
 						</li>
-						<%- include("../partials/footerDocotr") -%>
+
 					</ul>
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
-			<div class="contentpanel">
+			<div id="sinMargen" class="contentpanel ">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
-				<div class="container clear_both padding_fix col-lg-8">
+				<div id="" class="container clear_both padding_fix col-lg-8 centerTodo">
 					<br>
-					<div class="main-content">
-						<div class="  col-xs-12 ">
-					
-							<div class="col-lg-12 block-web"> 
-							<!-- Content page -->
-							<div class="head ">
-								<div class="header">
-									<div class="actions">
-										<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-reply"></i> ATRAS</a>	
+					<div id="" class="main-content his2">
+						<div  id="margendiv" class="  col-xs-12 " >
+							<div  class="col-lg-12 block-web"> 
+								
+								<!-- Content page -->
+								<div id="" class="head his2 ">
+									<div id="" class="actions ">
+										
+										<span id="weekDay" class="weekDay"></span>, 
+										<span id="day" class="day"></span> de
+										<span id="month" class="month"></span> del
+										<span id="year" class="year"></span>/
+												
+										<span id="hours" class="hours"></span> :
+										<span id="minutes" class="minutes"></span> :
+										<span id="seconds" class="seconds"></span>
+												
+										<div class="oculVistaReal" id="tab1default"><p  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></p></div>   
 									</div>
-									<div class="info blue_symbols "> <i class="fa fa-file-text icon"></i></div>
-										<h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Recetas</h2>
+									
+									<div class="dim2 posiondeImagen">
+										<img class="oculVistaReal "  src="/images/hospital1.png" />
+									</div>
+													
+									<div id="ocultoI" class="header">
+										
+										<div id="ocultoI"class="info blue_symbols "> <i class="fa fa-file-text icon  "></i></div>
+										<h2  id="ocultoI"class="content-header"><span>&nbsp;&nbsp;&nbsp;</span> Recetas</h2>
+							
+										
+									</div>
+									<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+						
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 								</div>
+	
 							</div>
-							</div>
-							<div class="main-content" id="recetas"> 
-								<section class="panel default  h2">
-									<div class="page-content">
-										<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+									<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									<h5 class="texTitulo1 text-center"></h5>
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+							<div class="main-content his2" id="recetas">
+								
+								<section class="panel default  h2 nom"id="">
+									
+									<div class=" ">
+										<ul id="ocultoI" class="nav nav-tabs" style="margin-bottom: 15px;">
 											<li class=" col-lg-6 active active  text-center"><a href="#new" data-toggle="tab"><i class="fa fa-medkit"></i> Receta</a></li>
 											<li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt "></i> Lita de Recetas del Paciente</a></li>
 										</ul>
 										<div id="myTabContent" class="tab-content">
-											<div class="tab-pane fade active in" id="new">
-												
+											<div class="tab-pane fade active in clear" id="new">
 												<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
 												<input type="hidden" :value="data_receta.id_medico = '<%=data_doc.data.medico.id%>'">	
 												<!-- 
 												 -->
-												<div class="block-web">
-													<div class="header">
-														<div class="actions"> 
-															<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
-														</div>
-														<h3 class="content-header">Estado General</h3>
+											
+												<div id=""class="">
+													<div id="ocultoI" class="">
+														<h3 class="content-header"></h3>
 														<span style="color: red;">{{data_msg.msg_false}}</span>
 														<span style="color: blue;">{{data_msg.msg_true}}</span>
 																   
 													</div>
-													<div class="row">
-														<div class="col-md-12">
-															<section class="panel default blue_title h2">
-																<div class="col-md-6 panel panel-default">
+													<div id="" class="row nom1">
+														<div id=""class="col-md-12 nom1">
+															<section id="" class="panel default blue_title h2 nom1">
+																<div class="col-md-6 panel panel-defaulth his">
 																	<!-- 
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -160,39 +189,38 @@
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																	 -->
-																	<div class=" panel panel-default">
+																	<div id="ocultoI" class=" panel panel-default">
 																		<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Personales</li>            
-																	 </div>
-																	 <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse in">
-																		<div class="">
-																			<div class="col-md-5">
-																				<div class="entrada ">
+																	</div>
+																	<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse in">
+																		<div id=""class="col-md-12 row">
+																			<div id=""class="col-md-5 his">
+																				<div class="">
 																					<label class=" ">N° de Historia:</label><p><b><%=paciente_Data[0].numeroHistorial%></b></p>
-																					<input type="hidden" name="numeroHistorial"  v-model="data_receta.historiaClinica = '<%=paciente_Data[0].numeroHistorial%>'" class="form-control" readonly=""  value="Read only text goes here">
+																					<input class="form-control" type="hidden" name="numeroHistorial"  v-model="data_receta.historiaClinica = '<%=paciente_Data[0].numeroHistorial%>'"  readonly=""  value="Read only text goes here">
 																				</div>
-																			</div>
-																			   <div class="col-sm-6 col-sm-12">
-																				<div class="entrada">
-																					<label class=" ">Nombre Completo:</label><p><b><%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%></b></p>
-																					<input type="hidden" name="nombre apellidop apellidom" 
-																						value="<%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%>"
-																						class="form-control" readonly=""
-																						value="Read only text goes here">
-																				</div> 
-																			</div>
-																			<div class="col-sm-4 col-sm-4">
-																				<div class="entrada">
+																					 
+																				<div class=" ">
 																					<label class=" "> Sexo: </label><p><b><%=paciente_Data[0].sexo%></b></p>
 																					<input type="hidden" name="sexo" value="<%=paciente_Data[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
-																				</div>
+																				</div>	
 																			</div>
-																			<div class="col-sm-8 col-sm-9">
-																				<div class="entrada">
+																			<div id="" class="col-md-6 his">
+																				
+																				<label class=" ">Nombre Completo:</label><p><b><%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%></b></p>
+																				<input type="hidden" name="nombre apellidop apellidom" 
+																					value="<%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%>"
+																					class="form-control " readonly="">
+																				<div class=" ">
 																					<label class="">Fecha de Nacimiento:</label><p><b><%=paciente_Data[0].fechanacimiento%></b></p>
-																					<input  type="hidden" name="fechanacimiento"  value="<%=paciente_Data[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+																					<input  type="hidden" name="fechanacimiento"  value="<%=paciente_Data[0].fechanacimiento%>" class="form-control clear" readonly="" value="Read only text goes here">
 																				</div>
+																				
 																			</div>
 																		</div>
+				
+
+																		
 																	</div>																				
 																</div>
 																<!-- 
@@ -202,31 +230,33 @@
 																	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<																				
 																 -->
-																 <div class="col-md-6 panel panel-default">
-																	<div class=" panel panel-default">
+																 <div class="col-md-6 panel panel-default his">
+																	<div id="ocultoI"class=" panel panel-default">
 																		<li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Cita</li>            
 																	</div>
-																	<div style="height: 0px;" id="ac3-2" class="panel-collapse collapse in">
-																		<div class="">
-																			<div class="col-sm-6 ">
-																				<div class="entrada">
-																					<label class=" ">Fecha Prescripción:</label>
-																					<input class="form-control" type="text" readonly required v-model="data_receta.fecha" require >
+																	<div style="height: 0px;" id="ac3-2" class="panel-collapse collapse in ">
+																		<div class="col-md-12 row his">
+																			<div class="col-md-6 ">
+																				<div class="">
+																					<label class="">Profecional Médico:</label><p><b><%=ConsultaOnly[0].Citas_Medica.medico%></b></p>
+																					<input type="hidden" :value="data_receta.doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
 																				</div>
+																				
 																			</div>
-																			<div class="col-sm-6 col-sm-6">
-																				<div class="entrada">
+																			<div class="col-md-6">
+																				<div class="">
 																					<label class="">Especialidad:</label><p><b><%=ConsultaOnly[0].tipoConsulta%></b></p>
 																					<input type="hidden" name="tipoConsulta" :value="data_receta.tipoConsulta = '<%=ConsultaOnly[0].tipoConsulta%>'">                                                                
 																				</div>
 																			</div> 
-																			<div class="col-sm-12 col-sm-12">
-																				<div class="entrada">
-																					<label class="">Profecional Médico:</label><p><b><%=ConsultaOnly[0].Citas_Medica.medico%></b></p>
-																					<input type="hidden" :value="data_receta.doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
+																		</div>
+																			<div class="col-md-6 fech ">
+																				<div class="">
+																					<label class=" ">Fecha Prescripción:</label>
+																					<input class="form-control" type="text" readonly required v-model="data_receta.fecha" require >
 																				</div>
 																			</div>
-																		</div>
+																		
 																	</div>
 																 </div>
 															</section>
@@ -253,12 +283,12 @@
 																   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 
 																   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 																   
 																-->
-																<div class="form-group">
+																<div class="form-group">	
 																	<div class="row" >
 																	   <div class="col-md-12">
 																		   <div class="block-web">
-																			   <div class="header">
-																				   <div class="actions"> 
+																			   <div id="ocultoI"class="header">
+																				   <div  class="actions"> 
 																					   <a @click="insertar()" class="list-group-item  blue_bg text-center "><i class="fa fa-folder-open"></i> Insertar</a>
 																				   </div><br>                                                          
 																				   <h3 class="content-header">Lista de Medicamentos  </h3>
@@ -274,7 +304,7 @@
 																						   </select>
 																					   </div>
 																				   </div> -->
-																				   <div class="col-sm-3 col-sm-6">
+																				   <div id="ocultoI" class="col-sm-3 col-sm-6">
 																					   <ul class="list-group">
 																						   	<div class="entrada">
 																								<h6 class="">Medicamento:</h6>
@@ -289,26 +319,26 @@
 																					   </ul>
 																				   </div>
 																				   
-																				   <div class="col-sm-2 col-sm-6">
+																				   <div id="ocultoI" class="col-sm-2 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">Dosis:</h6>
 																						   <input type="text"  class="form-control" v-model="lista.dosis">                                           
 																					   </div>
 																				   </div>
-																					   <div class="col-sm-3 col-sm-6">
+																					<div id="ocultoI" class="col-sm-3 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">Via de Administración: </h6>
 																							  <input class="form-control"  v-model="lista.frecuencia">                                                  
 																					   </div>
 																				   </div>
-																				   <div class="col-sm-2 col-sm-6">
+																				   <div id="ocultoI" class="col-sm-2 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">Duracion: </h6>
 																						   <input class="form-control" v-model="lista.duracion">                                                           
 																					   </div>
 																				   </div>
 																				   
-																				   <div class="col-sm-2 col-sm-6">
+																				   <div id="ocultoI" class="col-sm-2 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">  Cantidad: </h6>
 																						   <input type="number" class="form-control" v-model="lista.cantidad">                                                           
@@ -331,7 +361,7 @@
 																										   <th>Frecuencia</th>
 																										   <th>Duracion</th>
 																										   <th>Cantidad</th>
-																										   <th>Quitar</th>
+																										   <th class="ocultartabla">Quitar</th>
 																									   </tr>
 																								   </thead>
 																								   <tbody v-for="(list, index) in medicamentos">
@@ -342,15 +372,13 @@
 																										   <td>{{list.frecuencia}}</td>
 																										   <td>{{list.duracion}}</td>
 																										   <td>{{list.cantidad}}</td>
-																											   <td><a @click="eliminar(index)">eliminar</a></td>
+																											   <td class="ocultartabla"><a @click="eliminar(index)">eliminar</a></td>
 																										  </tr>                                                                                 
 																								   </tbody>
 																							   </table>
-																			  
 																						   </div>
 																					   </section>
 																					  </div>
-			
 																			   </div>
 																		   </div>
 																	   </div>
@@ -360,9 +388,9 @@
 															</div>
 
 														</div>
+														
 														<div class="col-md-12 page-content ">
 															<div class="col-md-8 ">
-															 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class=" fa fa-bars"></i> &nbsp;&nbsp; Limpiar</button>
 															 <button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
 															</div>
 													 	</div>
@@ -377,21 +405,22 @@
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 														 -->
 														<div class="block-web">
-															<div class="header">
+															<div id="ocultoI" class="header">
 																<div class="actions"> 
 																	<a @click="insertar_update" class="list-group-item  blue_bg text-center "><i class="fa fa-folder-open"></i> Insertar</a>
 																</div><br>
-																<h3 class="content-header">Receta</h3>
+																<h3 class="content-header">Lista de Medicamentos </h3>
 															</div>										
 														</div>
 
 														<!-- 
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 														 -->
-														 <div class="col-md-12">
-															<div class="">
-
-																<div class="col-sm-2 col-sm-6">
+														 <div class="col-md-12 row tablaI">
+															<div class="" alt="">
+																
+				
+																<div id="ocultoI" class="col-sm-3 col-sm-6">
 																	<ul class="list-group">
 																		<div class="entrada">
 																			<h6 class="">Medicamento:</h6>
@@ -399,7 +428,6 @@
 																		</div>
 																		<div id="scroll"  v-if="ocultar" @mouseleave="ocultar = false">
 																			<li  class="list-group-item" v-for="(list, index) in buscar_medicamentos">
-																			
 																				<a @click="name_insert(list.nombre)" >{{list.nombre}}</a>
 																			</li>			
 																		</div>
@@ -407,27 +435,27 @@
 																	</ul>
 																</div>
 
-																<div class="col-sm-2 col-sm-6">
+																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" blue_info">Dosis:</h6>
+																		<h6 class=" ">Dosis:</h6>
 																		<input type="text"  class="form-control" v-model="lista.dosis">                                           
 																	</div>
 																</div>
-																<div class="col-sm-3 col-sm-6">
+																<div id="ocultoI" class="col-sm-3 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" blue_info">Via de Administración:</h6>
+																		<h6 class="">Via de Administración:</h6>
 																		<input class="form-control"  v-model="lista.frecuencia">                                                  
 																	</div>
 																</div>
-																<div class="col-sm-3 col-sm-6">
+																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" blue_info">Duracion: </h6>
+																		<h6 class=" ">Duracion: </h6>
 																		<input class="form-control" v-model="lista.duracion">                                                           
 																	</div>
 																</div>
-																<div class="col-sm-2 col-sm-6">
+																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" blue_info">Cantidad: </h6>
+																		<h6 class="">Cantidad: </h6>
 																		<input type="number" class="form-control" v-model="lista.cantidad">   																					                                                    
 																	</div>
 																</div>
@@ -435,7 +463,7 @@
 																					lista de medicamentos
 																>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
-																<div class="col-lg-12"> 
+																<div class="tablaI"> 
 																	<section class="panel default blue_title h2">																			
 																		<div class="panel-body">
 																		
@@ -448,7 +476,7 @@
 																						<th>Frecuencia</th>
 																						<th>Duracion</th>
 																						<th>Cantidad</th>
-																						<th>Quitar</th>
+																						<th id="ocultoI">Quitar</th>
 																					</tr>
 																				</thead>
 																				<tbody v-for="(list, index) in One_receta.medicamentos">
@@ -459,25 +487,36 @@
 																						<td>{{list.frecuencia}}</td>
 																						<td>{{list.duracion}}</td>
 																						<td>{{list.cantidad}}</td>
-																						<td><a @click="eliminar_update(index)">eliminar</a></td>
+																						<td id="ocultoI">
+																							<a @click="eliminar_update(index)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-trash-o "></i></a>
+																		
+																						</td>
 																					</tr> 
 
 																				</tbody>
 																			  </table>
-																		  
+																			
 																		</div>
 																	</section>
 																</div>
-
+																
+																
+																
 															</div>
+															
+																
 														</div>
-														<div class="col-md-12"><br>
-															<template v-if="One_receta.estado == false">														
-																<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-																<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;  Actualizar</button>
-															</template>
-																<a href="/paciente/imprimirRecetas" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-														</div>
+														<div id="ocultoI" class="col-md-12"><br>
+															<template v-if="One_receta.estado == false">
+																<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> &nbsp;&nbsp;  Actualizar</button>&nbsp;&nbsp;
+															</template>&nbsp;&nbsp;
+															<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													</div>
+													<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+													<p class="firmaPa center cafirmaP"></p>
+													<p class="firmaDoc center cafirmaDoc"></p></p>
+													<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+													
 													</form>
 												</template>
 	
@@ -493,7 +532,7 @@
 																
 																<th>Fecha</th>
 																<th>Doctor</th>
-																<th class="text-center" WIDTH="20%">Modificar</th>
+																<th class="text-center" WIDTH="20%">Opciones </th>
 															</tr>
 														</thead>
 														<tbody>															
@@ -505,20 +544,13 @@
 																	<td  @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=List_recetas[i].fecha%></td>
 																	<td  @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=List_recetas[i].doctor%></td>
 																	
-																	<td @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><a >ver</a></td>
+																	<td @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias">
+																		<a data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a>
+																	</td>
 																</tr> 
 															<% } %>															
 														</tbody>
 													</table>
-													<ul class="pagination pagination-sm">
-														<li class="disabled"><a href="#!">«</a></li>
-														<li class="active"><a href="#!">1</a></li>
-														<li><a href="#!">2</a></li>
-														<li><a href="#!">3</a></li>
-														<li><a href="#!">4</a></li>
-														<li><a href="#!">5</a></li>
-														<li><a href="#!">»</a></li>
-													</ul>
 												</div>
 											</div>
 										</div><br>
@@ -601,7 +633,6 @@
 																					</div>
 																				</section>
 																			</div>
-																			
 																		</div>
 																	</div>
 																	
@@ -640,6 +671,8 @@
 		e.value = e.value.toUpperCase();
 		}
 	</script>
+	
+	<script src="/js/reloj.js"></script>
 	<script src="/js/fecha.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   <!-- vue cdn -->
 	<script src="/js/jquery-2.1.0.js"></script>
