@@ -133,11 +133,12 @@ td.uppercase
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-            <img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>   <%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b class="caret"></b> </a>
+          <div class=" dropdown" > <a href="javascript:void(0);" data-toggle="dropdown">
+              <img src="/images/admin.png" /><%=data_token.personal.nombre%> <%=data_token.personal.apellidop%><span class="user_adminname">
+                <FONT SIZE=1></FONT></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
-              <li> <a data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
+              <li> <a href="javascript:void(0);"data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
             </ul>
           </div>
         </div>
