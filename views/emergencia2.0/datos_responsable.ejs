@@ -68,9 +68,9 @@
           <div class="btn-group ">
             <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <i class="fa fa-clipboard"></i><span class="caret"></span></button>
             <ul role="menu" class="dropdown-menu">
-                <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Datos de Interes</a></li>
-              <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li>
-              <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Examen Físico General</a></li>		  
+              <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Datos de Interes</a></li>
+              <!-- <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li> -->
+              <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Examen Físico General</a></li>		  
             </ul>
             </div>    
         </div>

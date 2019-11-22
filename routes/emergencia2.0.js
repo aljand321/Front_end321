@@ -926,18 +926,18 @@ router.get('/mostrar', (req,res) => {
 })
 
 //esto manda un responsable de manera dinamica para cada usuario
-router.get('/remove_update_alergia/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params
+router.get('/remove_update_alergia/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, token_id, token_partial, id_cita } = req.params
   remove_alergia(token_id)
   remove(token_id)
-  res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial);  
+  res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial +'/'+id_cita);  
 })
 
 
 
 //esta ruta es para poder renderizar la vis ta de alergias
-router.get('/alergias/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params
+router.get('/alergias/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, token_id, token_partial, id_cita } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
     fetch('http://localhost:3000/api/alergias_list/'+id_paciente)
     .then(resp => resp.json())
@@ -946,12 +946,14 @@ router.get('/alergias/:id_paciente/:token_id/:token_partial', (req,res) => {
       fetch('http://localhost:3000/api/paciente_id/'+id_paciente)
         .then(resp => resp.json())
         .then(dataPaciente =>{
+          console.log(msg_Consulta_emergencia[token_id], " esto es el mesaje de alergias <<<<<<<<<<<<<<")
          res.render('emergencia2.0/alergias',{
           dataPaciente,
           alergias_list,
           update_Alergia:updateAlergia[token_id],
           data_doc : data_user[token_id],
-          msg:msg_Consulta_emergencia[token_id]
+          msg:msg_Consulta_emergencia[token_id],
+          id_cita
          })
         })
       
@@ -988,19 +990,19 @@ function remove_alergia(id) {
 }
 
 //ruta para sacar los datos de una alergia para que pueda ser actualizado
-router.get('/one_alergia/:id_alergia/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_alergia, id_paciente, token_id, token_partial } = req.params
+router.get('/one_alergia/:id_alergia/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_alergia, id_paciente, token_id, token_partial, id_cita } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
     fetch('http://localhost:3000/api/One_alergias/'+id_alergia)
     .then(resp => resp.json())
     .then(resp =>{
       if(updateAlergia[token_id] == null){
         receta(resp, token_id)
-        res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial);  
+        res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);  
       }else{
         remove_alergia(token_id)
         receta(resp, token_id)
-        res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial);             
+        res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);             
       }
     })
   }else{
@@ -1009,8 +1011,8 @@ router.get('/one_alergia/:id_alergia/:id_paciente/:token_id/:token_partial', (re
 })
 
 //ruta para poder registrar las alergias del paciente
-router.post('/reg_alergias/:id_paciente/:token_id/:token_partial',(req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params
+router.post('/reg_alergias/:id_paciente/:token_id/:token_partial/:id_cita',(req,res) => {
+  const { id_paciente, token_id, token_partial, id_cita } = req.params
   var data = req.body;
   var msg_p;
   var esto = {
@@ -1039,7 +1041,7 @@ router.post('/reg_alergias/:id_paciente/:token_id/:token_partial',(req,res) => {
         remove(token_id)
         msg_data(msg_p,token_id)
       } 
-      res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial);     
+      res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);     
     }else{
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {
@@ -1055,15 +1057,18 @@ router.post('/reg_alergias/:id_paciente/:token_id/:token_partial',(req,res) => {
         remove(token_id)
         msg_data(msg_p,token_id)
       } 
+      res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita); 
     }
-    res.redirect('/emergencia2.0/alergias/'+id_paciente+'/'+token_id+'/'+token_partial); 
-           
+    
+    setTimeout(()=>{
+      remove(token_id)
+    },1000);        
   })
 })
 
 //ruta para poder actualziar alergia
-router.post('/updateAlergia/:id_alergia/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_alergia, id_paciente, token_id, token_partial } = req.params;
+router.post('/updateAlergia/:id_alergia/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_alergia, id_paciente, token_id, token_partial,id_cita } = req.params;
   var msg_p;
   var data = req.body;
   var esto = {
@@ -1092,7 +1097,7 @@ router.post('/updateAlergia/:id_alergia/:id_paciente/:token_id/:token_partial', 
         remove(token_id)
         msg_data(msg_p,token_id)
       }
-      res.redirect('/emergencia2.0/one_alergia/'+id_alergia+'/'+id_paciente+'/'+token_id+'/'+token_partial); 
+      res.redirect('/emergencia2.0/one_alergia/'+id_alergia+'/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita); 
     }else{
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {
@@ -1108,9 +1113,11 @@ router.post('/updateAlergia/:id_alergia/:id_paciente/:token_id/:token_partial', 
         remove(token_id)
         msg_data(msg_p,token_id)
       }
-      res.redirect('/emergencia2.0/one_alergia/'+id_alergia+'/'+id_paciente+'/'+token_id+'/'+token_partial); 
+      res.redirect('/emergencia2.0/one_alergia/'+id_alergia+'/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita); 
     }
-    
+    setTimeout(()=>{
+      remove(token_id)
+    },1000);
   })
 })
 
@@ -1123,15 +1130,15 @@ router.post('/updateAlergia/:id_alergia/:id_paciente/:token_id/:token_partial', 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  */
 
-router.get('/volver/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params
+router.get('/volver/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, token_id, token_partial, id_cita } = req.params
   remove_examen_fisico(token_id)
   remove(token_id)
-  res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial);  
+  res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);  
 })
 
-router.get('/examen_fisico/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params
+router.get('/examen_fisico/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, token_id, token_partial, id_cita } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
     fetch('http://localhost:3000/api/exFisico_list/'+id_paciente)
     .then(resp => resp.json())
@@ -1140,13 +1147,14 @@ router.get('/examen_fisico/:id_paciente/:token_id/:token_partial', (req,res) => 
       fetch('http://localhost:3000/api/paciente_id/'+id_paciente)
       .then(resp => resp.json())
       .then(dataPaciente =>{
-
+        console.log(msg_Consulta_emergencia[token_id], "   asdasdasdasdasd")
         res.render('emergencia2.0/examen_fisico',{
           lis_exFisico,
           dataPaciente,
           update_exFisico:examen_fisico[token_id],
           data_doc : data_user[token_id],
-          msg:msg_Consulta_emergencia[token_id]
+          msg:msg_Consulta_emergencia[token_id],
+          id_cita
         })
       })
 
@@ -1181,26 +1189,26 @@ function remove_examen_fisico(id) {
 }
 
 // ruta para sacar un examen fisico para poder ser actualizado
-router.get('/one_examen_fisico/:id_examen_fisico/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_examen_fisico, id_paciente, token_id, token_partial } = req.params
+router.get('/one_examen_fisico/:id_examen_fisico/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_examen_fisico, id_paciente, token_id, token_partial,id_cita } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
     fetch('http://localhost:3000/api/one_exFisico/'+id_examen_fisico)
     .then(resp => resp.json())
     .then(resp =>{
       if(examen_fisico[token_id] == null){
         examenFisico(resp, token_id)
-        res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial);  
+        res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);  
       }else{
         remove_examen_fisico(token_id)
         examenFisico(resp, token_id)
-        res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial);             
+        res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);             
       }
     })
   }  
 })
 
-router.post('/reg_exFisico/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params;
+router.post('/reg_exFisico/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, token_id, token_partial, id_cita } = req.params;
   var data = req.body;
   var msg_p;
   var esto = {
@@ -1229,7 +1237,7 @@ router.post('/reg_exFisico/:id_paciente/:token_id/:token_partial', (req,res) => 
         remove(token_id)
         msg_data(msg_p,token_id)
       }
-      res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial);
+      res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);
     }else{
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {
@@ -1245,14 +1253,16 @@ router.post('/reg_exFisico/:id_paciente/:token_id/:token_partial', (req,res) => 
         remove(token_id)
         msg_data(msg_p,token_id)
       }
-      res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial);
+      res.redirect('/emergencia2.0/examen_fisico/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);
     }
-    
+    setTimeout(()=>{
+      remove(token_id)
+    },1000);
   })
 })
 
-router.post('/update_exFisico/:id_examen/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_examen, id_paciente, token_id, token_partial } = req.params;
+router.post('/update_exFisico/:id_examen/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_examen, id_paciente, token_id, token_partial, id_cita } = req.params;
   var data = req.body;
   var msg_p
   var esto = {
@@ -1281,7 +1291,7 @@ router.post('/update_exFisico/:id_examen/:id_paciente/:token_id/:token_partial',
         remove(token_id)
         msg_data(msg_p,token_id)
       }
-      res.redirect('/emergencia2.0/one_examen_fisico/'+id_examen+'/'+id_paciente+'/'+token_id+'/'+token_partial);
+      res.redirect('/emergencia2.0/one_examen_fisico/'+id_examen+'/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);
     }else{
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {
@@ -1297,9 +1307,11 @@ router.post('/update_exFisico/:id_examen/:id_paciente/:token_id/:token_partial',
         remove(token_id)
         msg_data(msg_p,token_id)
       }
-      res.redirect('/emergencia2.0/one_examen_fisico/'+id_examen+'/'+id_paciente+'/'+token_id+'/'+token_partial);
+      res.redirect('/emergencia2.0/one_examen_fisico/'+id_examen+'/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita);
     }
-   
+    setTimeout(()=>{
+      remove(token_id)
+    },1000);
   })
 })
 

@@ -5,7 +5,7 @@
 
 <title>Historial Medico</title>
 <%- include("./partials/head") -%>
-
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 
 </head>
 
@@ -35,6 +35,7 @@
         
 <div class="inner">
    <!--Menu-->
+   
    <div class="left_nav">
 	<div class="left_nav_slidebar">
 		<ul>
@@ -55,6 +56,7 @@
       <div class="container clear_both padding_fix">
 		<br>
 		<div class="header">
+				<a href="/emergencia2.0/registrar_emergencia/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" >volver</a>
 			
         <div class="info blue_symbols"><i class="fa fa-heart icon"></i></div>
         <h3 class="content-header ">Historial Medico<span class="semi-bold">/Examen Físico</span></h3>
@@ -63,9 +65,9 @@
     <div class="btn-group ">
 		<button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente<i class="fa fa-clipboard"></i><span class="caret"></span></button>
 		<ul role="menu" class="dropdown-menu">
-            <li><a href="/emergencia2.0/datos_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Datos de responsable</a></li>			
-		  	<li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li>
-            <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Datos de Interes</a></li>
+            <li><a href="/emergencia2.0/datos_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Datos de responsable</a></li>			
+		  	<!-- <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li> -->
+            <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Datos de Interes</a></li>
 		  	
 		</ul>
 	  </div>
@@ -82,17 +84,11 @@
 							<div class="tab-content" id="myTabContent">
 								<div id="Tab1" class="tab-pane fade in active">
 									<div class="row" >
-                                            <% if(msg != null) { %>
-                                                <% if(msg.data.success == true) { %>
-                                                  <span style="color: blue"> <%=msg.data.data_examen%></span>
-                                                <% } else { %>
-                                                  <span style="color: red"> <%=msg.data.data_examen%></span>
-                                                <% } %>  
-                                              <% } %>
+                                
 										<div class="block-web">
 												<div class="porlets-content">
 												<%if(update_exFisico == null) { %>
-												<form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_exFisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+												<form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_exFisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" method="POST" parsley-validate novalidate>
                                                     <input type="hidden" name="id_user" value="<%=data_doc.data.medico.id%>">
                                                     
 												<h3 class="text-center">Examen Físico General</h3>
@@ -147,7 +143,7 @@
 										</div>
 									  </form>
 									  <% } else { %>
-									  <form class="form-horizontal group-border-dashed" action="/emergencia2.0/update_exFisico/<%=update_exFisico.data[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+									  <form class="form-horizontal group-border-dashed" action="/emergencia2.0/update_exFisico/<%=update_exFisico.data[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" method="POST" parsley-validate novalidate>
 														
 										  <h3 class="text-center">Examen Físico General</h3>
 											  <div class="form-group lable-padd">
@@ -195,7 +191,7 @@
 											  </div>     
 											<div class="form-group">
 												<div class="modal-footer">
-                                                    <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/emergencia2.0/volver/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                                                    <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/emergencia2.0/volver/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
 												    <button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
 												    <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar<span>&nbsp;</span><i class="fa fa-times"></i></button>
 												</div>
@@ -237,7 +233,7 @@
 											    <td><%=lis_exFisico[i].frecuencia_cardiaca%></td>
 											    <td><%=lis_exFisico[i].saturacion_oxigeno%></td>
                                                 <td><%=lis_exFisico[i].presion%></td>
-                                                <td class="text-center" ><a href="/emergencia2.0/one_examen_fisico/<%=lis_exFisico[i].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+                                                <td class="text-center" ><a href="/emergencia2.0/one_examen_fisico/<%=lis_exFisico[i].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
                                                 </td>
 											  </tr>
 										  <% } %>                                       
@@ -261,6 +257,30 @@
 
 <!--====== Scripts -->
 <%- include("../partials/scripts") -%>
+
+<script>
+	/*  <%if(msg) { %> */
+	  /*  <%if(msg.data.success == false) { %> */
+		   msg_false()
+		   function msg_false(){
+			 swal.fire(
+			   'Error!',
+			   '<label style="color:red;">'+`<%=msg.data.data_examen%>`+'</label>',
+			   'error'
+			 )
+		   }
+	   /* <% } else {%> */
+		   msg_true()
+		   function msg_true(){
+			 swal.fire(
+			   'Success!',
+			   '<label style="color:green;">'+ `<%=msg.data.data_examen%>` +'</label>',
+			   'success'
+			 )
+		   }
+	  /*  <% } %> */
+	/*  <% } %> */
+</script>
 
 </body>
 
