@@ -4,6 +4,8 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+import { user_data1, remove_user12 } from './url/export';
+
 router.get('/data_user', (req,res) => {
     res.send({data_user,msg_Consulta_emergencia})
 })
@@ -63,13 +65,16 @@ router.get('/home/:id/:token_part', (req,res) => {
                   data_token.medico = resp 
                   if(data_user[data_token.token_id] == null){
                     user(data_token, data_token.token_id)
+                    user_data1(data_token, data_token.token_id)
                     res.render('emergencia2.0/home',{
                         data_token
                     })
                   status = null
                   }else{
                     remove_user( data_token.token_id)
+                    remove_user12(data_token.token_id)
                     user(data_token, data_token.token_id)
+                    user_data1(data_token, data_token.token_id)
                     res.render('emergencia2.0/home',{
                         data_token
                     })
@@ -115,6 +120,17 @@ router.get('/lista_pacientes/:token_id/:token_partial', (req,res) => {
         res.redirect('/')
     }
 })
+
+// ruta vue para ver si ya se registro la cita de emergencia
+router.get('/Vue_one_emergencia/:id_cita', (req,res) => {
+  const { id_cita } = req.params;
+  fetch('http://localhost:3000/api/citaEmergencia/' + id_cita)
+  .then(resp => resp.json())
+  .then(resp =>{
+    console.log(resp, "  esto es one cita")
+    res.status(200).json(resp)
+  })
+});
 
 router.get('/registrar_emergencia/:id_cita/:historial/:token_id/:token_partial',(req,res) => {
     const { id_cita, historial, token_id, token_partial} = req.params
@@ -174,6 +190,18 @@ router.get('/estado/:id_cita/:historial/:token_id/:token_partial', (req,res) => 
     })
 });
 
+// esta ruta es para cambiar ele estado  de citas medicas
+router.get('/Vue_estado/:id_cita', (req,res) => {
+  const { id_cita } = req.params;
+  fetch('http://localhost:3000/api/estado/'+id_cita)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+    //res.status(200).send(data)
+  })
+});
+
 var msg_Consulta_emergencia = {}
 function msg_data(data,id){
   let msg_data = msg_Consulta_emergencia[id];
@@ -196,6 +224,73 @@ function array () {
 function remove(id) {
     delete msg_Consulta_emergencia[id];
 }
+
+//ruta vue para pder registrar en cita emergencia
+router.post('/Vue_register_cita_emergencia/:id_cita', (req,res) => {
+  const { id_cita } = req.params;
+  var datos = req.body;
+  var esto = {
+    method: 'POST',
+    body: JSON.stringify(datos),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:3000/api/emeregencia/'+id_cita,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+    /* if (data.success == true){
+      atendido(datos.hora.split("/")[1])
+      res.status(200).json(data)
+    }else{
+      res.status(200).json(data)
+    } */
+    
+  })
+})
+
+/* function atendido(id){
+  var estado = {
+      estado: "atendido"
+  }
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(estado),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp => {
+    console.log(resp, "esto es la respuesta de la hora actualizada")
+     
+  })
+} */
+
+router.post('/Vue_upadte_hora/:id_hora', (req,res) => {
+  const {id_hora } = req.params;
+  var d = req.body
+  var estado = {
+    estado: "atendido"
+  }
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(estado),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:4600/api/Update_Hora/'+id_hora,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp => {
+    res.status(200).json(resp)
+  })
+})
 
 //este serv es para insrtar datos a la tabla emergencia segun la cita que le coresponda
 router.post('/consultaEmergencia/:id_cita/:historial/:token_id/:token_partial', (req,res) => {
@@ -273,6 +368,26 @@ router.post('/consultaEmergencia/:id_cita/:historial/:token_id/:token_partial', 
     })
 });
 
+// esta ruta es para actualizar el estado de la cita
+router.post('/vue_estado_cita/:id', (req,res) => {
+  const { id } = req.params
+  var data = req.body  
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/updateEmergencia/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
+
 
 //ruta para poder actualizar consulta emergencia
 router.post('/update_consulta/:id/:id_cita/:historial/:token_id/:token_partial', (req,res) => {
@@ -323,7 +438,9 @@ router.post('/update_consulta/:id/:id_cita/:historial/:token_id/:token_partial',
       }
       res.redirect('/emergencia2.0/registrar_emergencia/'+id_cita+'/'+historial+'/'+token_id+'/'+token_partial) 
     }
-    
+    setTimeout(()=>{
+      remove(token_id)
+    },1000);  
   })  
 })
 
@@ -335,8 +452,8 @@ router.post('/update_consulta/:id/:id_cita/:historial/:token_id/:token_partial',
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  */
 
- router.get('/receta/:id_cita/:historial/:token_id/:token_partial', (req,res) => {
-  const { id_cita, historial, token_id, token_partial } = req.params
+ router.get('/receta/:id_cita/:historial/:token_id/:token_partial/:cita_id', (req,res) => {
+  const { id_cita, historial, token_id, token_partial, cita_id } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
       
       fetch('http://localhost:3000/api/recitasOfEMG/'+historial) // esto es la lista de recetas del paciente
@@ -350,7 +467,8 @@ router.post('/update_consulta/:id/:id_cita/:historial/:token_id/:token_partial',
             dataPaciente,
             receta,
             data_doc : data_user[token_id],
-            id_cita
+            id_cita,
+            cita_id // ESTO ES EL ID QUE ME SIRVE PARA VOLVER UNA VISTA ANTERIOR
           })
         })
 
@@ -400,8 +518,8 @@ router.get('/vue_receta_emergencia/:id_consulta',(req,res) =>{
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  */
 
- router.get('/papeleta_internacion/:id_consulta/:historial/:token_id/:token_partial', (req,res) => {
-  const { id_consulta, historial, token_id, token_partial } = req.params
+ router.get('/papeleta_internacion/:id_consulta/:historial/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_consulta, historial, token_id, token_partial, id_cita } = req.params
 
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
 
@@ -427,7 +545,8 @@ router.get('/vue_receta_emergencia/:id_consulta',(req,res) =>{
               updateInternacion,
               listPinter,
               data_doc : data_user[token_id],
-              msg:msg_Consulta_emergencia[token_id]
+              msg:msg_Consulta_emergencia[token_id],
+              id_cita // esto sirve para volver atras es el id de la pagina anterior
             })
            })
         })
@@ -489,7 +608,9 @@ router.post('/Pinternacion/:id_consulta/:historial/:token_id/:token_partial', (r
       }
       res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial); 
     }      
-                    
+    setTimeout(()=>{
+      remove(token_id)
+    },1000);              
   }) 
 })
 
@@ -542,7 +663,9 @@ router.post('/updatePinter/:id/:id_consulta/:historial/:token_id/:token_partial'
       }
       res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial); 
     }  
-                
+    setTimeout(()=>{
+      remove(token_id)
+    },1000);         
   })  
 
 });
@@ -555,16 +678,16 @@ router.post('/updatePinter/:id/:id_consulta/:historial/:token_id/:token_partial'
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  */
-router.get('/remove_data_update/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params;
+router.get('/remove_data_update/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, token_id, token_partial, id_cita } = req.params;
   remove_responsable_data(token_id)
   remove(token_id)
   remove_post(token_id)
-  res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial) 
+  res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita) 
 })
 
-router.get('/datos_responsable/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params;
+router.get('/datos_responsable/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, token_id, token_partial, id_cita } = req.params;
   
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
     fetch('http://localhost:3000/api/paciente_id/'+id_paciente)
@@ -575,14 +698,15 @@ router.get('/datos_responsable/:id_paciente/:token_id/:token_partial', (req,res)
       fetch('http://localhost:3000/api/responsable_list/'+id_paciente)
       .then(resp => resp.json())
       .then(list_responsables =>{
-  
+        //console.log(msg_Consulta_emergencia[token_id], "  <<<<<<<<<<<<< esto es el mensaje que quiero ver")
         res.render('emergencia2.0/datos_responsable',{
           list_responsables,
           dataPaciente,
           data_doc : data_user[token_id],
           update_responsable:update_responsable[token_id],
           msg:msg_Consulta_emergencia[token_id],
-          data: data_post[token_id]
+          data: data_post[token_id],
+          id_cita // este id es para poder volver una vista atras
         })
        
       })
@@ -620,8 +744,8 @@ function remove_responsable_data(id) {
 
 
 
-router.get('/one_responsable/:id_paciente/:id_responsable/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, id_responsable, token_id, token_partial } = req.params;
+router.get('/one_responsable/:id_paciente/:id_responsable/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, id_responsable, token_id, token_partial, id_cita } = req.params;
   
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
     fetch('http://localhost:3000/api/update_responsable/'+id_responsable)
@@ -629,11 +753,11 @@ router.get('/one_responsable/:id_paciente/:id_responsable/:token_id/:token_parti
     .then(resp =>{
       if(update_responsable[token_id] == null){
         responsable(resp, token_id)
-        res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial)      
+        res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita)      
       }else{
         remove_responsable_data(token_id)
         responsable(resp, token_id)
-        res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial) 
+        res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita) 
       }
     })
   }else{
@@ -667,11 +791,11 @@ function remove_post(id) {
 }
 
 //ruta para insertar en responsable
-router.post('/reg_responsable/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_paciente, token_id, token_partial } = req.params;
+router.post('/reg_responsable/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_paciente, token_id, token_partial,id_cita } = req.params;
   var msg_p
   var datos = req.body;
- 
+  console.log(id_cita , "   esto es el id de la cita <<<<<<<<<<<<<<<")
   var esto = {
       method: 'POST',
       body: JSON.stringify(datos),
@@ -699,7 +823,7 @@ router.post('/reg_responsable/:id_paciente/:token_id/:token_partial', (req,res) 
         msg_data(msg_p,token_id)
       } 
       remove_post(token_id)
-      res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial) 
+      res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita) 
     }else{
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {
@@ -722,15 +846,19 @@ router.post('/reg_responsable/:id_paciente/:token_id/:token_partial', (req,res) 
         data_p(datos,token_id)
       }
      
-      res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial) 
-    }    
+      res.redirect('/emergencia2.0/datos_responsable/'+id_paciente+'/'+token_id+'/'+token_partial+'/'+id_cita) 
+    }  
+    setTimeout(()=>{
+      remove(token_id)
+      remove_post(token_id)
+    },1000);    
   })
 })
 
 
 //ruta para actualizar responsable
-router.post('/update_responsable/:id_responsable/:id_paciente/:token_id/:token_partial', (req,res) => {
-  const { id_responsable, id_paciente, token_id, token_partial } = req.params
+router.post('/update_responsable/:id_responsable/:id_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_responsable, id_paciente, token_id, token_partial, id_cita } = req.params
   var data = req.body;
   var msg_p;
   var esto = {
@@ -760,7 +888,7 @@ router.post('/update_responsable/:id_responsable/:id_paciente/:token_id/:token_p
         msg_data(msg_p,token_id)
          
       } 
-      res.redirect('/emergencia2.0/one_responsable/'+id_paciente+'/'+id_responsable+'/'+token_id+'/'+token_partial)
+      res.redirect('/emergencia2.0/one_responsable/'+id_paciente+'/'+id_responsable+'/'+token_id+'/'+token_partial+'/'+id_cita)
     }else{
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {
@@ -777,9 +905,11 @@ router.post('/update_responsable/:id_responsable/:id_paciente/:token_id/:token_p
         msg_data(msg_p,token_id)
         
       } 
-      res.redirect('/emergencia2.0/one_responsable/'+id_paciente+'/'+id_responsable+'/'+token_id+'/'+token_partial) 
+      res.redirect('/emergencia2.0/one_responsable/'+id_paciente+'/'+id_responsable+'/'+token_id+'/'+token_partial+'/'+id_cita) 
     }
-   
+    setTimeout(()=>{
+      remove(token_id)
+    },1000);  
   })
 })
 

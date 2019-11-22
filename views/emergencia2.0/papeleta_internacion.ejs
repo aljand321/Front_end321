@@ -25,6 +25,7 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 
 
 </head>
@@ -73,13 +74,13 @@
      <!--\\\\\\\ container  start \\\\\\-->
 	<div class="container clear_both padding_fix">
     <br>
-    <a href="/emergencia/RenderConsultaEmergencia" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a>
+    <a href="/emergencia2.0/registrar_emergencia/<%=id_cita%>/<%=resp[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a>
     <br>
     <br>
 	<br>
 	<div class="header">
 		<div class="info blue_symbols "> <i class="fa fa-edit icon "></i></div>
-			<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias {{msg}}</h3>
+			<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
 	</div>
 		<br>
         <br>
@@ -98,13 +99,7 @@
 										<div class="row" >
 											<div class="col-md-12">
 												<div class="block-web">
-                                                    <%if(msg) { %>
-                                                        <%if(msg.data.success == false) { %>
-                                                            <h3 style="color: red"><%=msg.data.data_p%></h3>
-                                                        <% } else {%>
-                                                            <h3 style="color: blue"><%=msg.data.data_p%></h3>
-                                                        <% } %>
-                                                    <% } %>
+                                                    
 													<div class="porlets-content">
                                                         <%if(updateInternacion == "") { %>
 														<form class="form-horizontal group-border-dashed" action="/emergencia2.0/Pinternacion/<%=resp[0].id%>/<%=resp[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
@@ -453,6 +448,8 @@
     });
 
 </script>
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="/axios/dist/axios.min.js"></script>
 <script src="/js/jPushMenu.js"></script> 
@@ -461,6 +458,30 @@
 <script src="/moment/moment.js"></script>
 <script src="/moment/locale/af.js"></script>
 <script src="/url/export.js"></script>
+<script>
+/*  <%if(msg) { %> */
+	  /*  <%if(msg.data.success == false) { %> */
+        msg_false()
+		   function msg_false(){
+			 swal.fire(
+			   'Error!',
+			   '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+			   'error'
+			 )
+		   }
+	   /* <% } else {%> */
+		   msg_true()
+		   function msg_true(){
+			 swal.fire(
+			   'Success!',
+			   '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+			   'success'
+			 )
+		   }
+	  /*  <% } %> */
+	/*  <% } %> */
+</script>
+
 <script>
     const papeleta = new Vue({
         el: '#papeleta', 

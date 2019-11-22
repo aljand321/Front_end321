@@ -388,5 +388,72 @@ router.get('/vue_one_lab/:id_lab', (req,res) => {
         res.status(200).json(data)
     })
  })
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        esta ruta es para poder renderizar laboratorios desde emergencia
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ */
+
+router.get('/datas_token', (req,res) => {   
+    res.send(datas)
+})
+
+
+router.get('/lab_emergencia/:id_consulta/:token_id/:token_p/:id_cita', (req,res) => {
+    const { id_consulta, token_id, token_p, id_cita} = req.params
+    console.log(id_consulta, "   <zzzzz esto es el id de la consulta")
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
+        fetch('http://localhost:3000/api/one_consulta_emg/'+id_consulta)        
+        .then(resp => resp.json())
+        .then(ConsultaOnly =>{
+            console.log(ConsultaOnly, " <<<<<<<<<<<< esto es lo que quiero ver")
+            fetch('http://localhost:3000/api/onlyPaciente/'+ConsultaOnly[0].Nhistorial)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data_paciente => {           
+                res.render('emergencia2.0/Laboratorio_emg',{
+                    ConsultaOnly,
+                    data_doc:datas.name.data_user[token_id],
+                    data_paciente,
+                    id_cita // esto id es para poder volver una vista atras
+                })
+             })
+            
+        })
+        .catch(error => {
+            res.status(500).json({
+                success:false,
+                msg:"No hay coneccion que el servidor 3000",
+                error
+            })
+        })
+    }else{
+        res.redirect('/')
+    }
+})
+
+// ruta para poder insertar en consulta de emergencia
+router.post('/vue_insert_lab_consulta_emg/:id_consulta', (req,res) => {
+    const { id_consulta } = req.params
+    var data = req.body
+    console.log(data, " z<<<")
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3050/api/create_lab_consulta_emg/'+id_consulta,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then( data => {
+        res.status(200).json(data)
+    })
+})
+ 
 module.exports = router;
 
