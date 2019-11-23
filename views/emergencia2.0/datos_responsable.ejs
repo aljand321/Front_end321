@@ -19,6 +19,8 @@
     </div>
     <div class="header_top_bar">
     <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+    <li href="/emergencia2.0/registrar_emergencia/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </li>
+    
       <div class="top_right_bar">
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
@@ -54,26 +56,23 @@
       <div class="container clear_both padding_fix">
     <br>
     <div class="col-lg-12 block-web">
-      <div class="" id="">
+      <div class="head" id="">
+        <div class="actions">
+            <div class="btn-group ">
+              <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <i class="fa fa-clipboard"></i><span class="caret"></span></button>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Datos de Interes</a></li>
+                <!-- <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li> -->
+                <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Examen Físico General</a></li>		  
+              </ul>
+            </div> 
+       </div>
         <div class="header">
-          <div class="actions">
-            <a href="/emergencia2.0/registrar_emergencia/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-          </div>
+          
           <div class="info blue_symbols"><i class="fa fa-male icon"></i></div>
-          <h3 class="content-header ">Historial Médico<span class="semi-bold">/Responsables</span></h3>
+          <h2 class="content-header ">Historial Médico<span class="semi-bold">/Responsables</span></h2>
         </div>
-        <div id="" class="col-md-2">	
-          <div class="">
-          </div>
-          <div class="btn-group ">
-            <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <i class="fa fa-clipboard"></i><span class="caret"></span></button>
-            <ul role="menu" class="dropdown-menu">
-              <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Datos de Interes</a></li>
-              <!-- <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li> -->
-              <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Examen Físico General</a></li>		  
-            </ul>
-            </div>    
-        </div>
+      
       </div>
     </div>
 	
@@ -118,24 +117,24 @@
                            <label class="control-label">Dirección:</label>
                            <input type="text" class="form-control" parsley-trigger="change" name="direccion" value=""size="10" onkeyup="mayus(this);"/>
                          </div>	
-                         <div class="col-sm-3">
+                         <div class="col-sm-4">
                                <label class="control-label">C.I.:</label>
                              <input type="text"  class="form-control" parsley-trigger="change" name="ci" value="" size="20" maxlength="10" />
                            </div>
-                         <div class="col-sm-3">
+                         <div class="col-sm-4">
                            <label class="control-label">Telefono:</label>
                            <input  parsley-type="number" type="text" class="form-control" name="telefono" required placeholder="XX-XXXXXX" maxlength="8" />
                                   
                          </div>
-                      </div>
-                      <div class="col-md-12 page-content ">
-                                           
-                        <div class="col-md-8 ">
-                          <button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-                          <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                      </div><br><br>
+                      <div class="header">
+                        <div class="col-md-12 page-content ">                 
+                          <div class="col-md-8 ">
+                            <button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                            <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                          </div>
                         </div>
-                      </div>
-                      
+                      </div>    
                     </form>
                     <%} else {%>
                     <form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
@@ -160,11 +159,11 @@
                             <label class="control-label">Dirección:</label>
                             <input type="text" class="form-control" parsley-trigger="change" name="direccion" value="<%=data.data.direccion%>"size="10"/>
                           </div>	
-                          <div class="col-sm-3">
+                          <div class="col-sm-4">
                                 <label class="control-label">C.I.:</label>
                               <input type="text"  class="form-control" parsley-trigger="change" name="ci" value="<%=data.data.ci%>" size="20" />
                             </div>
-                          <div class="col-sm-3">
+                          <div class="col-sm-4">
                             <label class="control-label">Telefono:</label>
                             <input  type="text" class="form-control"  name="telefono" value="<%=data.data.telefono%>"size="10" />
                           </div>
@@ -207,13 +206,15 @@
                              <label class="control-label">Telefono:</label>
                              <input  type="text" class="form-control"  name="telefono" value="<%=update_responsable.data[0].telefono%>"size="10" />
                            </div>
-                         </div>
-                         <div class="form-group">
-                           <div class="col-sm-offset-4 col-sm-10">
-                             <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/emergencia2.0/remove_data_update/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-                             <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                             <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                           </div>
+                         </div><br>
+                         <div class="header"></div>
+                         <div class="col-md-12 page-content ">
+                                              
+                           <div class="col-md-8 ">
+                              <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/emergencia2.0/remove_data_update/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                              <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                              <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                            </div>
                          </div>
                      </form>
                      <% } %>
