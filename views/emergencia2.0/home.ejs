@@ -37,7 +37,7 @@
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
            
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+            <li> <a href="/delete_token/<%=data_token.token_id%>" ><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
           </ul>
         </div> 
       </div>
@@ -61,6 +61,13 @@
           <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul>
               <li> <a href="/emergencia2.0/lista_pacientes/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Cita</b> </a> </li>
+              
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Reportes <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="/emergencia2.0/lista_consultas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Historial Clinica</b> </a> </li>
               
             </ul>
           </li>
@@ -143,34 +150,6 @@
 </div>
 <!--\\\\\\\ wrapper end\\\\\\-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>
@@ -191,14 +170,8 @@
 <script src="/plugins/morris/morris-script.js"></script> 
 
 
-
-
-
 <script src="/plugins/demo-slider/demo-slider.js"></script>
 <script src="/plugins/knob/jquery.knob.min.js"></script> 
-
-
-
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
