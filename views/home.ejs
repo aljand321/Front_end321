@@ -134,7 +134,7 @@ td.uppercase
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         <div class="top_right_bar">
           <div class="user_admin dropdown" > <a href="javascript:void(0);" data-toggle="dropdown">
-              <img src="/images/admin.png" /><span class="user_adminname"> <%=data_token.personal.nombre%> <%=data_token.personal.apellidop%>
+              <img src="/images/admin.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span><%=data_token.personal.nombre%> <%=data_token.personal.apellidop%>
                 </span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
@@ -191,6 +191,14 @@ td.uppercase
           <br>
           <div class="row">
             <div class="col-md-12 ">
+              <div class="user-profile-sidebar profile_widget">
+                <div class="row"> <!--<img src="/images/admin.png"> -->
+                  <div class="user-identity"> 
+                    <h3>Bienvenido <strong><%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></strong></h3>
+                    <p><i class=""></i> </p>
+                  </div>
+                </div>
+              </div>
               <div class="col-sm-3 col-sm-6" data-target="#myModal" data-toggle="modal">
                 <div class="information green_info">   
                   <div class="information_inner">
