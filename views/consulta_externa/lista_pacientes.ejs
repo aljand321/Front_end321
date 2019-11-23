@@ -59,8 +59,8 @@
 
 				<div class="top_right_bar">
 
-					<div class=" dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/medico.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+								src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -75,9 +75,7 @@
 		<div class="inner">
 			<!--\\\\\\\ inner start \\\\\\-->
 			<div class="left_nav">
-
 				<!--\\\\\\\left_nav start \\\\\\-->
-
 				<div class="left_nav_slidebar">
 					<ul>
 						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -87,22 +85,16 @@
 						</li>
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href="#"> <span>&nbsp;</span> <i
-											class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>
-									</a> </li>
-							</ul>
-							
+								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b> </a> </li>
+							</ul> 
 						</li>
-						<li class=""> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
-						<ul >
-							<li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte Enferm.</b> </a> </li>
-							<li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de consulta</b> </a> </li>
-						</ul>
-						
-				</li>
-						
+						<li class=""> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte Enferm.</b> </a> </li>
+								<li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de consulta</b> </a> </li>
+							</ul>
+						</li>
 					</ul>
-					
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
