@@ -3,7 +3,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Home Hospitalización</title>
+	<title>Hospitalización</title>
 
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -32,16 +32,25 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
-	<style>
-		div.a {
-			text-align: center;
-		}
-
-		h1.letras {
-			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-
-		}
-	</style>
+<style>
+	div.a {
+		text-align: center;
+	}
+	h1.letras {
+		font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+	}
+	.vertical-alignment-helper {
+		display:table;
+		height: 100%;
+		margin-left: 41%;
+	}
+	.vertical-align-center {
+		/* To center vertically */
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+	}
+</style>
 
 </head>
 
@@ -89,14 +98,11 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">   <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%> </span> <b
+								src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span>   <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%> </span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
-							<li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-							<li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-							<li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-							<li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+							<li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
 						</ul>
 					</div>
 				</div>
@@ -153,101 +159,87 @@
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
 					<br>
-					
 					<div class="row">
-
 						<div class="col-lg-12 ">
-					
-				
-
-
-								<div class="col-md-12">
-										<div class="header">
-										  <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
-										  <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Hospitalización</h3>
-										</div>
-										<br>
-										<br>
-										
-										<div class="col-sm-3">
-											<div class="ticket_open">
-												
-												<a href="/internaciones/list_internadios " class="open_ticket_comment text-center ">
-													<h4>Pacientes a Internar</h4>
-													
-													<div class="btn-group">
-													<i class="fa fa-hospital-o"></i>
-													</div>
-													
-													
-												  
-													</a>
-													
+							<div class="col-md-12">
+								<div class="header">
+								  <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
+								  <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Hospitalización</h3>
+								</div>
+								<br>
+								<br>
+								
+								<div class="col-sm-3">
+									<div class="ticket_open">
+										<a href="/internaciones/list_internadios " class="open_ticket_comment text-center ">
+											<h4>Pacientes a Internar</h4>
+											<div class="btn-group">
+												<i class="fa fa-hospital-o"></i>
 											</div>
-										  </div>
-										  <div class="col-sm-3">
-											  <div class="ticket_open">
-												  
-												  <a href="/internaciones/list_internadios/<%=especialidad.id%>/<%=data_token.token_id%>" class="open_ticket_comment text-center ">
-													  <h4>Pacientes Internados</h4>
-													  
-													  <div class="btn-group">
-													  <i class="fa fa-medkit"></i>
-													  </div>
-													  
-													  
-													
-													  </a>
-													  
-											  </div>
-											</div>
-										  <div class="col-sm-3">
-											  <div class="ticket_open">
-												  
-												  <a href="#" class="open_ticket_comment text-center ">
-													  <h4>Pacientes de Alta</h4><br>
-													  
-													  <div class="btn-group">
-													  <i class="fa fa-wheelchair"></i><i class="fa fa-bed"></i>
-													  </div>
-													  
-													  
-													
-													  </a>
-													  
-											  </div>
+										</a>
+											
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="ticket_open">
+										<a href="/internaciones/list_internadios/<%=especialidad.id%>/<%=data_token.token_id%>" class="open_ticket_comment text-center ">
+											<h4>Pacientes Internados</h4>
+											<div class="btn-group">
+											  	<i class="fa fa-medkit"></i>
 											</div>
 										
-										</div>
+										</a>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="ticket_open">
+										  
+										<a href="#" class="open_ticket_comment text-center ">
+											<h4>Pacientes de Alta</h4><br>
+											  
+											<div class="btn-group">
+											  	<i class="fa fa-wheelchair"></i><i class="fa fa-bed"></i>
+											</div>
+										</a>
+											  
+									</div>
+								</div>
+									
+							</div>
+						</div>
 
-
-
-
-
-</div>
-
-</div>
+					</div>
 
 <!--\\\\\\\ container  end \\\\\\-->
-</div>
+				</div>
 <!--\\\\\\\ content panel end \\\\\\-->
-</div>
+			</div>
 <!--\\\\\\\ inner end\\\\\\-->
-</div>
+		</div>
 <!--\\\\\\\ wrapper end\\\\\\-->
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
+	</div>
+	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+		<div class="vertical-alignment-helper">
+		  <div class="modal-dialog vertical-align-center modal-sm ">
+		  	<div class="modal-content">
+				<br>
+				<div class="center">
+				  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+				</div>
+				<div class="center">
+				  <h5><b>¿Cerrar Sesión?</b></h5>
+				</div>
+				<div class="modal-footer">
+					<div class="center">
+					  <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+					  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+					</div>
+				</div>
+		  	</div>
+		  </div>
+		</div> 
+	</div>
 
 
 
