@@ -4,8 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Farmacia</title>
   <%- include("../partials/head") -%>	
+  <style>
+      .vertical-alignment-helper {
+        display:table;
+        height: 100%;
+        margin-left: 41%;
+      }
+      .vertical-align-center {
+        /* To center vertically */
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+      }
+    </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -16,13 +29,11 @@
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+            <img src="/images/farmacia.png" /><span class="user_adminname">  <span>&nbsp;&nbsp;</span>  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
-              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+              <li> <a data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
             </ul>
           </div> 
         </div>
@@ -32,12 +43,12 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
 			    <ul>
-			      <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+			      <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 				      <ul>
 				        <li> <a href="/farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
       				</ul>
     			  </li>
-		    	  <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
+		    	  <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
 				      <ul class="opened" style="display:block">
       				  <li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
 		      		  <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
@@ -62,31 +73,39 @@
       </div>
       <!--Contenido-->
       <div class="contentpanel"><br>
-		    <!--Formulario-->
-		    <div class="container clear_both padding_fix">
-          <!--\\\\\\\ table \\\\\\-->
-          <div class="row">
-            <div class="col-md-12">
-              <div class="block-web">
+        <!--Formulario-->
+        <div class="container clear_both padding_fix col-lg-8">
+          <div class="main-content">
+            <div class="col-lg-12 block-web">
+              <div class="container-fluid">
                 <div class="header">
                   <div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href="/distribucion/volver2"><i class="fa fa-repeat"></i></a></div>
-									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-user-md icon"></i></div> Recetas</h2>  
-							  </div>
-                <div class="porlets-content">
-                  <div class="table-responsive">
-                    <table  class="display table table-bordered table-striped " id="dynamic-table">
-                      <thead>
-                        <tr>
-                        <th>#</th>
-                        <th>Historial</th>
-                        <th>Paciente</th>
-                        <th>Proviene de:</th>
-                        <th>Generar Receta/Recibo</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% for(var i = 0; i < resp.length; i++ ) { %>
+									<h2 class="content-header"><div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div> Recetas</h2>  
+                </div>
+              </div>
+            </div>
+            <div class="main-content">
+              <section class="panel default blue_title h2">
+                <div class="page-content">
+                  <ul class="nav nav-tabs" id="myTab">
+                    <li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab"><i class="fa fa-user-md icon"></i><span>&nbsp;&nbsp;&nbsp;</span>Recetas Recibidas</a></li>
+                    <li class="col-lg-6 text-center"><a href="#listt" data-toggle="tab"><i class="fa fa-stethoscope "></i><span>&nbsp;&nbsp;&nbsp;</span>Recetas Registrar</a></li>
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in " id="neww">
+                      <table  class="display table table-bordered table-striped " id="dynamic-table">
+                        <thead>
                           <tr>
+                          <th>#</th>
+                          <th>Historial</th>
+                          <th>Paciente</th>
+                          <th>Proviene de:</th>
+                          <th>Generar Receta/Recibo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(var i = 0; i < resp.length; i++ ) { %>
+                            <tr>
                             <td><%=i+1%></td>
                             <td><%=resp[i].historiaClinica%></td>
                             <% for(var j = 0; j < paciente.length; j++) { %>
@@ -96,19 +115,73 @@
                             <% } %>
                             <td><%=resp[i].tipoConsulta%></td>
                             <td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/Farmacia/reg_receta/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> Nuevo Recibo</a></td>
-                          </tr>
-                        <% } %>
-                      <tbody>
-                    <table>
-                  </div><!--/table-responsive-->
-                </div><!--/porlets-content-->
-              </div><!--/block-web--> 
-            </div><!--/col-md-12--> 
-          </div><!--/row-->
+                            </tr>
+                          <% } %>
+                        <tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade " id="listt">
+                      <div class="porlets-content">
+                        <div class="table-responsive">
+                          <table  class="display table table-bordered table-striped" id="dynamic-tablee">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Historial</th>
+                                <th>Paciente</th>
+                                <th>Proviene de:</th>
+                                <th>Generar Receta/Recibo</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% for(var i = 0; i < atendidos.length; i++ ) { %>
+                                <tr>
+                                <td><%=i+1%></td>
+                                <td><%=atendidos[i].historiaClinica%></td>
+                                <% for(var j = 0; j < paciente.length; j++) { %>
+                                  <%if (paciente[j].numeroHistorial == atendidos[i].historiaClinica) { %>
+                                    <td><%=paciente[j].nombre%> <%=paciente[j].apellidop%> <%=paciente[j].apellidom%> </td>
+                                  <% } %>
+                                <% } %>
+                                <td><%=atendidos[i].tipoConsulta%></td>
+                                <td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/Farmacia/reg_receta/<%=atendidos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> Nuevo Recibo</a></td>
+                                </tr>
+                              <% } %>
+                            </tbody>
+                          </table>
+                        </div><!--/table-responsive-->
+                      </div><!--/porlets-content-->    
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
 	    </div>
     </div>
   </div>
+  <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center modal-sm ">
+          <div class="modal-content">
+            <br>
+              <div class="center">
+                <i><img src="/images/salir.gif" width="100" height="100" /></i>
+              </div>
+              <div class="center">
+                <h5><b>¿Cerrar Sesión?</b></h5>
+              </div>
+            <div class="modal-footer">
+              <div class="center">
+                <a href="/delete_token/<%=data_doc.data.token_id%>"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
 <%- include("../partials/scripts") -%>
 </body>
 </html>

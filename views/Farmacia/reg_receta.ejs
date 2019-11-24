@@ -4,7 +4,7 @@
   	<meta charset="UTF-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-  	<title>Document</title>
+  	<title>Farmacia</title>
   	<%- include("../partials/head") -%>
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">	
@@ -59,16 +59,16 @@
 										<th>Option</th>
 										<th>Cantidad</th>												
 										<th>Nombre</th>
-										<th>Vence en</th>
+										<th>Precentacion</th>
 										<th>Cantidad</th>
 										</tr>
 					  				</thead>
 					  				<tbody v-for="(med, index) in paginatedMeds">
 										<tr>
-										<td><a @click="insertar1(med.id,med.id_fecha, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+										<td><a @click="insert(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
 										<td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
 										<td>{{med.nombre}}</td>
-										<td>{{med.fecha_v}}</td>
+										<td>{{med.presentacion}}</td>
 										<td>{{med.cantidad}}</td>
 										</tr>
 					  				</tbody>
@@ -89,15 +89,12 @@
     		<div class="header_top_bar">
     	    	<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
     	    	<div class="top_right_bar">
-    	      		<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
-    	        		<ul class="dropdown-menu">
-		    	          	<div class="top_pointer"></div>
-    			          	<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-    	          			<li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-    	          			<li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-    	          			<li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-    	        		</ul>
-    	      		</div> 
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar Sesión</a> </li>
+						</ul>
+					</div>
     	    	</div>
     	  	</div>
     	</div>
@@ -146,7 +143,8 @@
 								</div>
 								<span style="color: red">{{msg_false_post}}</span>
 								<span style="color: blue">{{msg_true_post}}</span>
-								<!-- <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea> -->
+								<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+								<a @click = "update_estad_atendido()">update estado</a>
 								<div class="porlets-content">
 									<input type="hidden" :value="id_receta = '<%=data_receta[0].id%>'">
 									<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
@@ -253,31 +251,30 @@
 										<template v-for="msg in product_false">
 											<p style="color: red" class="h5"> {{msg.product}} </p>
 										</template>
-										<textarea name="" id="" cols="70" rows="10">{{$data}}</textarea>
 										<div class="table-responsive">
 											<table  class="display table table-bordered table-striped " >
 												<thead>
 													<tr>
-														<th>#</th>
-														<th>Cantidad del Producto</th>
-														<th>Codigo</th>
-														<th>Descripcion</th>
-														<th>Precio</th>
-														<th>Precio Toal</th>
-														<th>Eliminar</th>
-														<th>Eliminar todo</th>
+													<th>#</th>
+													<th>Cantidad del Producto</th>
+													<th>Codigo</th>
+													<th>Descripcion</th>
+													<th>Precio</th>
+													<th>Precio Toal</th>
+													<th>Eliminar</th>
+													<th>Eliminar todo</th>
 													</tr>
 												</thead>
 												<tbody v-for="(car, index) in listItems">                                                    
 													<tr>
-														<td>{{index}}</td>
-														<td>{{car.qty}}</td>
-														<td>{{car.item.codificacion}}</td>
-														<td>{{car.item.nombre}}</td>
-														<td>{{car.item.price}}</td>
-														<td>{{car.price}}</td>
-														<td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
-														<td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
+													<td>{{index}}</td>
+													<td>{{car.qty}}</td>
+													<td>{{car.item.codificacion}}</td>
+													<td>{{car.item.nombre}}</td>
+													<td>{{car.item.price}}</td>
+													<td>{{car.price}}</td>
+													<td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
+													<td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
 													</tr>                                                   
 												</tbody>
 											</table>
@@ -321,7 +318,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 <%- include("../partials/scripts") -%>
 <script src="/url/export.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   

@@ -830,15 +830,24 @@ router.get('/recetas_farm/:token_id/:token_partial',(req, res) => {
     .then(resp => resp.json())
     .then(resp => {
 
-      fetch('http://localhost:3000/api/list_pacientes')
+      fetch('http://localhost:3000/api/list_paciente_atendido')
       .then(resp => resp.json())
-      .then(paciente => {
-        res.render('Farmacia/recetas_farm',{
-          resp,
-          data_doc : data_user[token_id],
-          paciente
+      .then(atendidos => {
+
+        fetch('http://localhost:3000/api/list_pacientes')
+        .then(resp => resp.json())
+        .then(paciente => {
+          res.render('Farmacia/recetas_farm',{
+            resp,
+            data_doc : data_user[token_id],
+            paciente,
+            atendidos
+          })
         })
+
       })
+
+     
      
     })
     .catch(error => {
@@ -919,6 +928,28 @@ router.post('/vue_reg_receta_paciente', (req,res) => {
   })
 })
 
+
+//ruta para actualizar 
+router.post('/Vue_update_est_atendido/:id', (req,res) => {
+  const { id } = req.params;
+  var datos = {
+    estado_atendido : 'true'
+  }
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/update_estado_atendido/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
 //ruta para actualizar cantidad de producto
 router.post('/vue_update_cantidad/:id_medicamento', (req,res) => {
   const { id_medicamento } = req.params
@@ -931,6 +962,26 @@ router.post('/vue_update_cantidad/:id_medicamento', (req,res) => {
       }
   };
   fetch('http://localhost:3200/api/update_cantidad/'+id_medicamento,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
+// esta ruta reduce la cantidad de fecha cantidad de farmacia
+router.post('/vue_reduce_catidad_fecha/:id', (req,res) => {
+  const { id } = req.params
+  console.log("  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  este es el id ", id)
+  var datos = req.body
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/reduce_cantidad/'+id,esto)
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => {
@@ -1097,10 +1148,30 @@ router.get('/Stock_far/:token_id/:token_partial', (req,res) => {
     oneGrupoAsig = null
     res.redirect('/farmacia/ventas'); 
 })
+
+
+
+router.get('/reportes_solicitudes/:token_id/:token_partial', (req,res) => {
+  const {token_id, token_partial} = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3200/api/list_pedidos')   
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp =>{        
+        res.render('Farmacia/reportes_solicitudes',{
+            resp,
+            data_doc: data_user[token_id]
+        });
+    })
+  }else{
+    res.redirect('/')
+  }
+});
   
-  router.get('/reportes_facturacion',(req, res) => {
-    res.render('Farmacia/reportes_facturacion')
-  });
+router.get('/reportes_facturacion',(req, res) => {
+  res.render('Farmacia/reportes_facturacion')
+  
+});
 router.get('/kardexValorizado', (req,res) => {
     res.render('Farmacia/kardexValorizado');
 });
@@ -1114,17 +1185,22 @@ router.get('/reportes_recetas', (req,res) => {
 router.get('/med_ven', (req,res) => {
     res.render('Farmacia/med_ven');
 });
-router.get('/reportes_solicitudes', (req,res) => {
-    res.render('Farmacia/reportes_solicitudes');
-});
+
 router.get('/reportes_ventas', (req,res) => {
     res.render('Farmacia/reportes_ventas');
 });
 
-
-
-
-
+router.get('/ventas_cli/:id/:token_id/:token_partial', (req,res) => {
+  const { id, token_id, token_partial }  = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+  
+    res.render('Farmacia/ventas_cli',{
+      data_doc : data_user[token_id]
+    });
+  }else{
+    res.redirect('/')
+  }
+});
 
 
 module.exports = router;

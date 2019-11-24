@@ -86,7 +86,7 @@ const consulta_emergencia = new Vue({
             this.diagnostico.splice(index,1)
         },
         One_consulta(id){
-            fetch('http://localhost:3000/api/EmergenciaP/'+id)
+            fetch(this.url+'/emergencia2.0/Vue_emergenciaP/'+id)
             .then(resp => resp.json())
             .then(resp =>{
                 console.log(resp)

@@ -4,10 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Farmacia</title>
+  <link rel="stylesheet" href="/css/cosasOcultar.css">
+  <link rel="stylesheet" href="/css/tamM.css">
+	
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   <%- include("../partials/head") -%>	
+  <style>
+      .vertical-alignment-helper {
+        display:table;
+        height: 100%;
+        margin-left: 31%;
+      }
+      .vertical-align-center {
+        /* To center vertically */
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+      }
+      #mdtama{
+        width: 80% !important;
+      }
+    </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -18,15 +37,14 @@
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+            <img src="/images/farmacia.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span>    <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
-              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+              
+              <li> <a data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
             </ul>
-          </div> 
+          </div>
         </div>
       </div>
     </div>
@@ -34,12 +52,12 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
 			    <ul>
-    			  <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    			  <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 		  		    <ul>
 				        <li> <a href="/farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
 				      </ul>
 			      </li>
-			      <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
+			      <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
 				      <ul class="opened" style="display:block">
 				        <li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
   				      <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Movimientos</b> </a> </li>
@@ -122,26 +140,26 @@
                       <table  class="display table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th>#</th>
-                            <th>Cantidad del Producto</th>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Precio Total</th>
-                            <th>Eliminar</th>
-                            <th>Eliminar todo</th>
+                          <th>#</th>
+                          <th>Cantidad del Producto</th>
+                          <th>Codigo</th>
+                          <th>Nombre</th>
+                          <th>Precio</th>
+                          <th>Precio Total</th>
+                          <th>Eliminar</th>
+                          <th>Eliminar todo</th>
                           </tr>
                         </thead>
                         <tbody v-for="(car, index) in listItems">                                                    
                           <tr>
-                            <td>{{index}}</td>
-                            <td>{{car.qty}}</td>
-                            <td>{{car.item.codificacion}}</td>
-                            <td>{{car.item.nombre}}</td>
-                            <td>{{car.item.price}}</td>
-                            <td>{{car.price}}</td>
-                            <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
-                            <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
+                          <td>{{index}}</td>
+                          <td>{{car.qty}}</td>
+                          <td>{{car.item.codificacion}}</td>
+                          <td>{{car.item.nombre}}</td>
+                          <td>{{car.item.price}}</td>
+                          <td>{{car.price}}</td>
+                          <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
+                          <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
                           </tr>                                                   
                         </tbody>
                       </table>
@@ -228,7 +246,34 @@
 	    </div>
     </div>
   </div>
+<div id="padre">
+  <div id="hijo">
+  <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      
+    <div class="modal-dialog " id="prueba">
+        <div class="modal-content">
+          <br>
+            <div class="center">
+                <i><img src="/images/salir.gif" width="100" height="100" /></i>
+              </div>
+              <div class="center">
+                <h5><b>¿Cerrar Sesión?</b></h5>
+              </div>
+              <div class="modal-footer">
+              <div class="center">
+                <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+ 
 <%- include("../partials/scripts") -%>
+
 <script src="/url/export.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>

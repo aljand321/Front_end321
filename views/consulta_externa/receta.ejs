@@ -271,6 +271,7 @@
 													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 												 -->
+												 <textarea name="" id="" cols="70" rows="10">{{$data}}</textarea>
 												<template v-if="One_receta == ''">
 													<form @submit="post_recetas" method="POST">
 														<div class="col-md-12 ">
@@ -309,11 +310,11 @@
 																					   <ul class="list-group">
 																						   	<div class="entrada">
 																								<h6 class="">Medicamento:</h6>
-																								<input type="text" placeholder="Buscar"  class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true"> <!-- @mouseleave="ocultar = false" -->                                          
+																								<input type="text" placeholder="Buscar" v-on:keyup="teclado" class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true"> <!-- @mouseleave="ocultar = false" -->                                          
 																						   	</div>
 																						   	<div id="scroll"  v-if="ocultar" @mouseleave="ocultar = false">
 																								<li  class="list-group-item" v-for="(list, index) in buscar_medicamentos">	
-																									<a @click="name_insert(list.nombre)" >{{list.nombre}}</a>
+																									<a @click="name_insert(list.nombre,list.id)" >{{list.nombre}}</a>
 																								</li>			
 																						   	</div>
 		
@@ -422,11 +423,11 @@
 																	<ul class="list-group">
 																		<div class="entrada">
 																			<h6 class="">Medicamento:</h6>
-																			<input type="text" placeholder="Buscar"  class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true">                                          
+																			<input type="text" placeholder="Buscar" v-on:keyup="teclado"  class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true">                                          
 																		</div>
 																		<div id="scroll"  v-if="ocultar" @mouseleave="ocultar = false">
 																			<li  class="list-group-item" v-for="(list, index) in buscar_medicamentos">
-																				<a @click="name_insert(list.nombre)" >{{list.nombre}}</a>
+																				<a @click="name_insert(list.nombre,list.id)" >{{list.nombre}}</a>
 																			</li>			
 																		</div>
 																	

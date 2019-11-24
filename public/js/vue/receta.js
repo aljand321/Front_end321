@@ -13,6 +13,7 @@ const recetas = new Vue({
             msg_false:''
         },
         lista:{
+            id_medicamento:0,
             medicamento:'',
             dosis:'',
             frecuencia:'',
@@ -73,9 +74,14 @@ const recetas = new Vue({
         })
     },
     methods:{
-        name_insert(name){
+        teclado(){
+            console.log("teclado")
+            this.lista.id_medicamento = 0
+        },
+        name_insert(name, id){
             console.log(name)
             this.lista.medicamento = name
+            this.lista.id_medicamento = id
         },
         get_receta(){
             fetch(this.url+'/consulta_externa/vueReceta/'+this.id_consulta)        
@@ -111,22 +117,23 @@ const recetas = new Vue({
                     this.data_msg.msg_false = "Inserte cantidad"
                 }                
             }else{
-                console.log(" entro ", this.lista.medicamento)
-                fetch(this.url+'/consulta_externa/vue_one_medicamentos/'+this.lista.medicamento)        
-                .then(resp => resp.json())
-                .then(data =>{  
+                if(this.lista.id_medicamento == 0){
+                    this.medicamentos.push({
+                        id:0,
+                        medicamento:this.lista.medicamento,
+                        dosis:this.lista.dosis,
+                        frecuencia:this.lista.frecuencia,
+                        duracion:this.lista.duracion,
+                        cantidad:this.lista.cantidad
+                    });
+                    this.data_msg.msg_false = ""
+                    this.lista = {};
+                }else{
+                    console.log(" entro ", this.lista.medicamento)
+                    fetch(this.url+'/consulta_externa/vue_one_medicamentos/'+this.lista.id_medicamento)        
+                    .then(resp => resp.json())
+                    .then(data =>{                       
                     
-                    if(data.success == false ){
-                        this.medicamentos.push({
-                            id:0,
-                            medicamento:this.lista.medicamento,
-                            dosis:this.lista.dosis,
-                            frecuencia:this.lista.frecuencia,
-                            duracion:this.lista.duracion,
-                            cantidad:this.lista.cantidad
-                        });
-                        this.lista.medicamento = ""
-                    }else{
                         this.medicamentos.push({
                             id:data[0].id,
                             medicamento:data[0].nombre,
@@ -135,12 +142,13 @@ const recetas = new Vue({
                             duracion:this.lista.duracion,
                             cantidad:this.lista.cantidad
                         });
-                        this.lista.medicamento = ""
-                    }         
-                    console.log(this.medicamentos, " esto es <<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-                    this.data_msg.msg_false = ""
-                    this.lista = {};
-                })
+                        this.lista.medicamento = ""                           
+                       
+                        this.data_msg.msg_false = ""
+                        this.lista = {};
+                    })
+                }
+                
             }         
         },
         eliminar(index){
@@ -208,20 +216,23 @@ const recetas = new Vue({
                     this.data_msg.msg_false = "Inserte cantidad"
                 }
             }else{
-                console.log(" entro ", this.lista.medicamento)
-                fetch(this.url+'/consulta_externa/vue_one_medicamentos/'+this.lista.medicamento)        
-                .then(resp => resp.json())
-                .then(data =>{  
-                    if(data.success == false ){
-                        this.One_receta.medicamentos.push({
-                            id:0,
-                            medicamento:this.lista.medicamento,
-                            dosis:this.lista.dosis,
-                            frecuencia:this.lista.frecuencia,
-                            duracion:this.lista.duracion,
-                            cantidad:this.lista.cantidad
-                        });
-                    }else{
+                if(this.lista.id_medicamento == 0){
+                    this.One_receta.medicamentos.push({
+                        id:0,
+                        medicamento:this.lista.medicamento,
+                        dosis:this.lista.dosis,
+                        frecuencia:this.lista.frecuencia,
+                        duracion:this.lista.duracion,
+                        cantidad:this.lista.cantidad
+                    });
+                    this.data_msg.msg_false = ""
+                    this.lista = {};
+                }else{
+                    console.log(" entro ", this.lista.medicamento)
+                    fetch(this.url+'/consulta_externa/vue_one_medicamentos/'+this.lista.id_medicamento)        
+                    .then(resp => resp.json())
+                    .then(data =>{  
+                        
                         this.One_receta.medicamentos.push({
                             id:data[0].id,
                             medicamento:data[0].nombre,
@@ -230,11 +241,13 @@ const recetas = new Vue({
                             duracion:this.lista.duracion,
                             cantidad:this.lista.cantidad
                         });
-                    }                    
-                    console.log(this.medicamentos, " esto es <<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-                    this.data_msg.msg_false = ""
-                    this.lista = {};
-                })
+                                       
+                        console.log(this.medicamentos, " esto es <<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                        this.data_msg.msg_false = ""
+                        this.lista = {};
+                    })
+                }
+                
             }   
             /* this.One_receta.medicamentos.push({
                 medicamento:this.lista.medicamento,

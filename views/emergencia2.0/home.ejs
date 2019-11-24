@@ -112,6 +112,19 @@
 		},500000);
 		  
 	</script>
+<style>
+	.vertical-alignment-helper {
+  	display:table;
+  	height: 100%;
+  	margin-left: 41%;
+  }
+  .vertical-align-center {
+  	/* To center vertically */
+  	display: table-cell;
+  	vertical-align: middle;
+  	text-align: center;
+  }
+</style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -130,11 +143,12 @@
     
       <div class="top_right_bar">
         
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname">  <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b class="caret"></b> </a>
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+          <img src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
            
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+            <li> <a href="/delete_token/<%=data_token.token_id%>" ><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
           </ul>
         </div> 
       </div>
@@ -165,7 +179,10 @@
 						<ul >
 							<li> <a href="/emergencia2.0/ReporMotivoVisita"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte Enferm.</b> </a> </li>
 							<li> <a href="/emergencia2.0/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de consulta</b> </a> </li>
-						</ul> 
+							<li> <a href="/emergencia2.0/lista_consultas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Historial Clinica</b> </a> </li>
+              
+						</ul>
+
 					</li> 
           
         </ul>
@@ -418,14 +435,8 @@
 <script src="/plugins/morris/morris-script.js"></script> 
 
 
-
-
-
 <script src="/plugins/demo-slider/demo-slider.js"></script>
 <script src="/plugins/knob/jquery.knob.min.js"></script> 
-
-
-
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>

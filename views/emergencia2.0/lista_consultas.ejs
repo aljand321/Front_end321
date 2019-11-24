@@ -1,0 +1,317 @@
+<!DOCTYPE >
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>Emergencia</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="/plugins/kalendar/kalendar.css" rel="stylesheet">
+<link rel="stylesheet" href="/plugins/scroll/nanoscroller.css">
+<link href="/plugins/morris/morris.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <!--\\\\\\\ wrapper Start \\\\\\-->
+  <div class="header_bar">
+    <!--\\\\\\\ header Start \\\\\\-->
+    <div class="brand">
+      <!--\\\\\\\ brand Start \\\\\\-->
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      
+    </div>
+    <!--\\\\\\\ brand end \\\\\\-->
+    <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+    
+      <div class="top_right_bar">
+        
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+           
+            <li> <a href="/delete_token/<%=data_doc.data.token_id%>" ><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+          </ul>
+        </div> 
+      </div>
+    </div>
+    <!--\\\\\\\ header top bar end \\\\\\-->
+  </div>
+  <!--\\\\\\\ header end \\\\\\-->
+  <div class="inner">
+    <!--\\\\\\\ inner start \\\\\\-->
+    <div class="left_nav">
+
+      <!--\\\\\\\left_nav start \\\\\\-->
+    
+      <div class="left_nav_slidebar">
+        <ul>
+          <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul >
+              <li> <a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Cita</b> </a> </li>
+              
+            </ul>
+          </li>
+
+          <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Reportes <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul class="opened" style="display:block">
+              <li> <a href="/emergencia2.0/lista_consultas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Historial Clinica</b> </a> </li>
+              
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel">
+        <!--\\\\\\\ contentpanel start\\\\\\-->
+        <div class="container clear_both padding_fix col-lg-8">     
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-lg-12 block-web"> 
+	            		<div class="header">
+	            			<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
+	            			<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
+                        </div>              
+                    </div>
+                    <!-- 
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                        aswelkdsdfsdkmldaskjñl
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                     -->
+                    <div class="col-lg-12">
+                            <section class="panel default blue_title h2">
+                                <div class="panel-heading">portlet<span class="semi-bold"> Tabs</span> </div>
+                                <div class="panel-body">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active"><a data-toggle="tab" href="#Tab1">Tab1</a></li>
+                                        <li><a data-toggle="tab" href="#Tab2">Tab2</a></li>
+                                        
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div id="Tab1" class="tab-pane fade in active">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="block-web">
+                                                        <div class="header">
+                                                            <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+                                                            <h3 class="content-header">Basic Form</h3>
+                                                        </div>
+                                                        <div class="porlets-content">
+                                                            <form action="/emergencia2.0/buscar_fechas/<%=data_doc.data.medico.id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+                    
+                                                                <div data-date-format="mm/dd/yyyy" data-date="13/07/2013" class="input-group input-large">
+                                                                    <input type="date" name="fecha_inicio" class="form-control dpd1">
+                                                                    <span class="input-group-addon">To</span>
+                                                                    <input type="date" name="fecha_final" class="form-control dpd2">
+                                                                </div>
+                                                                <button class="btn btn-primary" type="submit">Buscar</button>
+                                                               
+                                                            </form>
+                                                        </div><!--/porlets-content-->
+                                                    </div><!--/block-web--> 
+                                                </div><!--/col-md-6-->
+                                            </div>
+                                            <!-- 
+                                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                                    LISTA DE CONSULTAS
+                                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                       
+                                            -->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="block-web">
+                                                        <div class="header">
+                                                            <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+                                                            <h3 class="content-header">Data Table</h3>
+                                                        </div>
+                                                        <div class="porlets-content">
+                                                            <div class="table-responsive">
+                                                                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                           <th>#</th>
+                                                                           <th>N° Historial</th>
+                                                                           <th>Nombre Paciente</th>
+                                                                           <th>Apellido Paterno</th>
+                                                                           <th>Apellido Materno</th>
+                                                                           <th>Hora Atencion</th>
+                                                                           <th>Ver Historial Clinico</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <%if(data_fecha != null) { %>
+                                                                        <% for (var i = 0; i < data_fecha.data.length; i++) { %>
+                                                                            <tr class="gradeX">
+                                                                                <td><%=i+1%></td>
+                                                                                <td><%=data_fecha.data[i].codigo_p%></td>
+                                                                                <td><%=data_fecha.data[i].Paciente.nombre %></td>
+                                                                                <td><%=data_fecha.data[i].Paciente.apellidop %></td>
+                                                                                <td><%=data_fecha.data[i].Paciente.apellidom %></td>
+                                                                                <td><%=data_fecha.data[i].createdAt.split('T')[0] %></td>
+                                                                                <td>ver</td>
+                                                                            </tr> 
+                                                                        <% } %>  
+                                                                      <% } %>                                       
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th>N° Historial</th>
+                                                                            <th>Nombre Paciente</th>
+                                                                            <th>Apellido Paterno</th>
+                                                                            <th>Apellido Materno</th>
+                                                                            <th>Hora Atencion</th>
+                                                                            <th>Ver Historial Clinico</th>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div><!--/table-responsive-->
+                                                        </div><!--/porlets-content-->                               
+                                                    
+                                                    </div><!--/block-web--> 
+                                                </div><!--/col-md-12--> 
+                                            </div><!--/row-->
+                                            <!-- 
+                                                                             END TABLE DATA
+                                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                             -->
+                                        </div>
+                                        
+                                        <div id="Tab2" class="tab-pane fade">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="block-web">
+                                                    <div class="header">
+                                                        <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+                                                        <h3 class="content-header">Data Table</h3>
+                                                    </div>
+                                                    <div class="porlets-content">
+                                                        <div class="table-responsive">
+                                                            <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                                                <thead>
+                                                                    <tr>
+                                                                       <th>#</th>
+                                                                       <th>N° Historial</th>
+                                                                       <th>Nombre Paciente</th>
+                                                                       <th>Apellido Paterno</th>
+                                                                       <th>Apellido Materno</th>
+                                                                       <th>Fecha de Atencion</th>
+                                                                       <th>Ver Historial Clinico</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% for (var i = 0; i < list.length; i++) { %>
+                                                                        <tr class="gradeX">
+                                                                            <td><%=i+1%></td>
+                                                                            <td><%=list[i].codigo_p%></td>
+                                                                            <td><%=list[i].Paciente.nombre %></td>
+                                                                            <td><%=list[i].Paciente.apellidop %></td>
+                                                                            <td><%=list[i].Paciente.apellidom %></td>
+                                                                            <td><%=list[i].createdAt.split('T')[0] %></td>
+                                                                            <td><a href="/emergencia2.0/ultimaConsulta/<%=list[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">ver</a></td>
+                                                                        </tr> 
+                                                                    <% } %>                                         
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>N° Historial</th>
+                                                                        <th>Nombre Paciente</th>
+                                                                        <th>Apellido Paterno</th>
+                                                                        <th>Apellido Materno</th>
+                                                                        <th>Fecha de Atencion</th>
+                                                                        <th>Ver Historial Clinico</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div><!--/table-responsive-->
+                                                    </div><!--/porlets-content-->                               
+                                                
+                                                </div><!--/block-web--> 
+                                            </div><!--/col-md-12--> 
+                                        </div><!--/row-->
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                                       
+                </div>
+            </div>
+            <!--\\\\\\\ container  end \\\\\\-->
+        </div>
+        <!--\\\\\\\ content panel end \\\\\\-->
+    </div>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+ 
+ <script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
+
+<script>
+    /*  <%if(msg) { %> */
+      /*  <%if(msg.data.success == false) { %> */
+           msg_false()
+           function msg_false(){
+             swal.fire(
+               'Error!',
+               '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+               'error'
+             )
+           }
+       /* <% } else {%> */
+           msg_true()
+           function msg_true(){
+             swal.fire(
+               'Success!',
+               '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+               'success'
+             )
+           }
+      /*  <% } %> */
+    /*  <% } %> */
+  </script>
+
+
+
+</body>
+</html>
