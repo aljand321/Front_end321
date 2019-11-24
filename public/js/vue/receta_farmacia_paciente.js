@@ -87,6 +87,8 @@ const receta_paciente = new Vue({
       } 
     })
   },
+
+
   created:function() {
     fetch(this.url+'/farmacia/Vue_medicamentos_farmacia')
     .then(res => res.json())
@@ -115,8 +117,6 @@ const receta_paciente = new Vue({
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   },
   methods:{ 
-    
-
     clearSearchItemMed(){
       this.searchMed = undefined
       this.searchInTheListMed('')
@@ -411,6 +411,8 @@ const receta_paciente = new Vue({
           }
           return arr;
         },
+
+
         insert: function (id, cantidad){
           if(cantidad == 0 || cantidad <= 0 || cantidad == ""){
             //this.msg = "Inserte una cantidad del producto"
@@ -484,6 +486,7 @@ const receta_paciente = new Vue({
             this.totalQty -= this.listItems[id].qty;
             this.totalPrice -= this.listItems[id].price;
             delete this.listItems[id];
+            this.eliminar_item1(id) 
         },
   
         generateArray: function () {
@@ -539,6 +542,26 @@ const receta_paciente = new Vue({
             })
           }
         },
+      
+        
+      update_estad_atendido(){
+        var datos = {
+          estado:"true"          
+        }
+        var esto = {
+          method: 'POST',
+          body: JSON.stringify(datos),
+          headers:{
+            'Content-type' : "application/json"
+          }
+        };
+        fetch(this.url+'/farmacia/Vue_update_est_atendido/'+this.id_receta,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {
+          console.log(data, "   <<<< asdasd")
+        })
+      },
 
       update_cantidad(){
         var lista  = this.generateArray()

@@ -147,25 +147,26 @@
                                     </div>
                                     <div class="col-md-12  header">
                                         <div class="col-md-6">
-                                            <label><b>N° de Historia:</b></label>
+                                            <label><b>N° de Historia:</b> <%=data.Nhistorial%></label>
                                         </div>
                                         <div class="col-md-6">
-                                            <label><b>Fecha de consulta:</b></label>
+                                            <label><b>Fecha de consulta:</b> <%=data.fechaAtencion%></label>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12  header"><br>
                                         <div class="col-md-6">
                                             <label><b>Titular:</b></label> <br>
-                                            <label><b>Paciente:</b></label> <br>
-                                            <label><b>Médico:</b></label> <br>
-                                            <label><b>Consultorio:</b></label> <br>
+                                            <label><b>Paciente:</b></label> <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%><br>
+                                            <label><b>Médico:</b></label> <%=data.nombreDoctor%><br>
+                                            
+                                            <label><b>Consultorio:</b></label> <%=data_cita[0].especialidad%><br>
                                         </div>
                                         <div class="col-md-6">
-                                            <label><b>Institución</b></label><br>
+                                            <label><b>Institución</b> Hospital</label><br>
                                             <label><b>Especialidad</b></label><br>
-                                            <label><b>Sexo:</b></label><br>
-                                            <label><b>Fecha de Nacimiento</b></label><br>
+                                            <label><b>Sexo:</b></label> <%=dataPaciente[0].sexo%><br>
+                                            <label><b>Fecha de Nacimiento</b></label> <%=dataPaciente[0].fechanacimiento%><br>
                                         </div>
                                     </div>
 
@@ -178,10 +179,14 @@
                                             <label><b>Observaciones u otra conducta:</b></label> <br>
                                         </div>
                                         <div class="col-md-9">
-                                            <label>Motivo de Consulta:</label> <br>
+                                            <label><%=data.motivoConsulta%></label> <br>
                                             <label>Examen Físico:</label> <br>
-                                            <label>Diagnostico:</label> <br>
-                                            <label>Tratamiento :</label> <br>
+                                            <label>
+                                                <%for (var i = 0; i < data.diagnostico.length; i++ ) { %>
+                                                    <%=data.diagnostico[i].descripcion%>
+                                                <% } %>
+                                            </label> <br>
+                                            <label><%=data.tratamiento%></label> <br>
                                             <label>Observaciones u otra conducta:</label> <br>
 
                                         </div>

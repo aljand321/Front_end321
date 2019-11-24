@@ -91,16 +91,16 @@
 											<th>Option</th>
 											<th>Cantidad</th>												
 											<th>Nombre</th>
-											<th>Precentacion</th>
+											<th>Vence en</th>
 											<th>Cantidad</th>
 						  					</tr>
 					  					</thead>
 					  					<tbody v-for="(med, index) in paginatedMeds">
 											<tr>
-											<td><a @click="insert(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+											<td><a @click="insertar1(med.id,med.id_fecha, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
 											<td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
 											<td>{{med.nombre}}</td>
-											<td>{{med.presentacion}}</td>
+											<td>{{med.fecha_v}}</td>
 											<td>{{med.cantidad}}</td>
 											</tr>
 					  					</tbody>
@@ -211,6 +211,8 @@
 										<p class="text-center">
 											<button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-info">Lista de Productos</button>
 										</p>
+										<textarea name="" id="" cols="80" rows="10">{{$data}}</textarea>
+										<a @click="reduce_cantidad()">reduce cantidad</a>
 										<div class="table-responsive">
 											<table  class="display table table-bordered table-striped " >
 												<thead>

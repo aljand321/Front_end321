@@ -43,7 +43,7 @@
       		<div class="left_nav">
 		        <div class="left_nav_slidebar">
 					<ul>
-			  			<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+			  			<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
 							 	<li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
 							</ul>
@@ -57,13 +57,12 @@
 				  				<li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
 							</ul>
 			  			</li>
-			  			<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
+			  			<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul class="opened" style="display:block">
 				  				<li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
 				  				<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
      			  				<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
 				  				<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-				  				<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
 				  				<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i><b class="theme_color">Kardex Valorizado</b> </a> </li>
 				  				<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 							</ul>
@@ -75,68 +74,64 @@
     		<div class="contentpanel"><br>
 				<!--Formulario-->
 				<div class="container clear_both padding_fix">
-					<div id="main-content">
-						<div class="page-content">
-			  				<div class="row">
-								<div class="col-md-12">
-				 					<div class="block-web">
-										<div class="header">
-								  			<div class="actions"> </div>
-								  			<h4 class="content-header"><div class="info gray_symbols"><i class="fa fa-folder-open icon"></i></div>   Kardex Valorizado</h4> 
-										</div>
-										<div class="porlets-content">
-						  					<div class="panel-body">
-							  					<!-- Button trigger modal -->
-												<div class="form-group">
-													<label for="inputPassword3" class="col-sm-3 control-label">GRUPO DE ASIGNACION  <i class="fa fa-archive"></i>:</label>
-													<div class="col-sm-7">
-										  				<select class="selectpicker" data-show-subtext="true" data-live-search="true">
-															<option>Paco</option>
-															<option>Luis</option>
-															<option>Luna</option>
-															<option>Daniela</option>
-										  				</select>
-													</div>
-									  			</div><!--/form-group-->
-						  					</div>  
-						  					<div class="table-responsive">
-												<table  class="display table table-bordered table-striped" id="dynamic-table">
-									  				<thead>
-														<tr>
-														<th>Grupo de Asignacion</th>
-														<th>Articulo</th>
-														<th>Unidad de Medida</th>
-														<th>Total de Ingresos</th>
-														<th>Valor de Ingresos</th>
-														<th>Totalo de Stock</th>
-														<th>Valor de Stock</th>
-														<th>Total de Salidas</th>
-														<th>Valor de Salidas</th>
-														<th>Utilidad Valorizada</th>
-														</tr>
-									  				</thead>
-									  				<tbody>
-														<tr>
-														<td>1</td>
-														<td>123</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														</tr>
-									 				<tbody>
-												</table>
-								  			</div><!--/table-responsive-->
-										</div><!--/porlets-content-->
-							   		</div><!--/block-web--> 
-								</div><!--/col-md-12--> 
-						  	</div><!--/row-->
-						</div><!--/page-content end--> 
-					</div><!--/main-content end--> 
+					<div class="row">
+						<div class="col-md-12">
+		 					<div class="block-web">
+								<div class="header">
+						  			<div class="actions"> </div>
+						  			<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-folder-open icon"></i></div>   Kardex Valorizado</h2> 
+								</div>
+								<div class="porlets-content">
+									<div class="panel-body">
+					  					<!-- Button trigger modal -->
+										<div class="form-group">
+											<label for="inputPassword3" class="col-sm-3 control-label">GRUPO DE ASIGNACION  <i class="fa fa-archive"></i>:</label>
+											<div class="col-sm-7">
+								  				<select class="selectpicker" data-show-subtext="true" data-live-search="true">
+													<option>Paco</option>
+													<option>Luis</option>
+													<option>Luna</option>
+													<option>Daniela</option>
+										  		</select>
+											</div>
+							  			</div><!--/form-group-->
+									</div>  
+				  					<div class="table-responsive">
+										<table  class="display table table-bordered table-striped" id="dynamic-table">
+											<thead>
+												<tr>
+												<th>Grupo de Asignacion</th>
+												<th>Articulo</th>
+												<th>Unidad de Medida</th>
+												<th>Total de Ingresos</th>
+												<th>Valor de Ingresos</th>
+												<th>Totalo de Stock</th>
+												<th>Valor de Stock</th>
+												<th>Total de Salidas</th>
+												<th>Valor de Salidas</th>
+												<th>Utilidad Valorizada</th>
+												</tr>
+							  				</thead>
+							  				<tbody>
+												<tr>
+												<td>1</td>
+												<td>123</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												</tr>
+							 				<tbody>
+										</table>
+									</div><!--/table-responsive-->
+								</div><!--/porlets-content-->
+					   		</div><!--/block-web--> 
+						</div><!--/col-md-12--> 
+				  	</div><!--/row-->
 				</div>
     		</div>
 		</div>

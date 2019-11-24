@@ -60,7 +60,7 @@
       		<div class="left_nav">
 		        <div class="left_nav_slidebar">
           			<ul>
-            			<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            			<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
             	  			<ul>
                 				<li> <a href="/almacen/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" > <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
               				</ul>
@@ -75,7 +75,7 @@
                 				<li> <a href="/medicamento/stock/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>  
 							</ul>
             			</li>
-            			<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+            			<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
               				<ul class="opened" style="display:block">
 				                <li> <a href="/almacen/reportes_pedidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Pedidos </b></a></li>
             				    <li> <a href="/almacen/reportes_salidas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
@@ -124,7 +124,7 @@
 												<td><%=i+1%></td>
 												<td><%=resp[i].fechaIngreso%></td>
 												<td><%=resp[i].codigoCompra%></td>
-												<td>falta</td>
+												<td><%=resp[i].responsable%></td>
 												<td><%=resp[i].proveedor%></td>
 												<td><%=resp[i].boletaPago%></td>
 												<td>Falta</td>
