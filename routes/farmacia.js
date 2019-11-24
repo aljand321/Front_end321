@@ -969,6 +969,26 @@ router.post('/vue_update_cantidad/:id_medicamento', (req,res) => {
   })
 })
 
+// esta ruta reduce la cantidad de fecha cantidad de farmacia
+router.post('/vue_reduce_catidad_fecha/:id', (req,res) => {
+  const { id } = req.params
+  console.log("  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  este es el id ", id)
+  var datos = req.body
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/reduce_cantidad/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
 
 
 

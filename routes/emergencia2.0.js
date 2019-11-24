@@ -1431,8 +1431,49 @@ router.post('/buscar_fechas/:id_medico/:token_id/:token_partial', (req,res) => {
   }
 })
 
-router.get('/ultimaConsulta',(req,res) =>{
-  res.render('emergencia2.0/ultimaConsulta')
+router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial',(req,res) =>{
+  const { id_cita, token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3000/api/historial/'+id_cita) // esta ruta contienen dos tablas la consulta de emergencia y  la receta
+    .then(resp => resp.json())
+    .then( data => {
+      
+      fetch('http://localhost:3000/api/onlyPaciente/'+data.Nhistorial)
+      .then(resp => resp.json())
+      .then(dataPaciente =>{ 
+
+        fetch('http://localhost:3000/api/InternacionEMG/'+data.id)
+        .then(resp => resp.json())
+        .then(Pinternacion =>{
+
+          fetch('http://localhost:3050/api/list_lab_emg/'+data.id)
+          .then(resp => resp.json())
+          .then(lab_emg =>{
+
+            fetch('http://localhost:3000/api/OneCita/'+id_cita)
+            .then(resp => resp.json())
+            .then(data_cita => {
+              
+              res.render('emergencia2.0/ultimaConsulta',{
+                data,
+                dataPaciente,
+                Pinternacion,
+                lab_emg,
+                data_cita,
+                data_doc : data_user[token_id],
+              })
+            })
+            
+          })
+          
+        })       
+      })
+     
+    })
+    
+  }else {
+    res.redirect('/');
+  }
 });
 
 //laboratorio
