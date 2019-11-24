@@ -34,7 +34,8 @@
 			<img src="/images/medico.png" /><span class="user_adminname">  <span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
-            <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
+            
+            <li> <a href="/delete_token/<%=data_doc.data.token_id%>"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
           </ul>
         </div>
        
@@ -63,11 +64,11 @@
         <div class="container clear_both padding_fix">
 			<br>
 			<div class="col-lg-12 block-web"> 
-			<div class="header">
-				<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
-				<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
+				<div class="header">
+					<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
+					<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
+				</div>
 			</div>
-		</div>
 			<br><br>
 			<div class="main-content">
 				<div class="row">
