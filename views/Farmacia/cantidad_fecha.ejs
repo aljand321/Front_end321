@@ -31,12 +31,22 @@
       		<div class="header_top_bar">
         		<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         		<div class="top_right_bar">
+<<<<<<< HEAD
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar Sesión</a> </li>
 						</ul>
 					</div>
+=======
+          			<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+						  <img src="/images/farmacia.png" /><span class="user_adminname">  <span>&nbsp;&nbsp;</span>   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+            			<ul class="dropdown-menu">
+							  <div class="top_pointer"></div>
+							  <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
+            			</ul>
+          			</div> 
+>>>>>>> 34ce305f11a786686873f68169ebf91f2bb9e6ef
         		</div>
       		</div>
     	</div>
@@ -118,6 +128,28 @@
 				</div><!--/page-content end--> 
       		</div><!--/main-content end--> 
     	</div>
+	</div>
+	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+		<div class="vertical-alignment-helper">
+		  <div class="modal-dialog vertical-align-center modal-sm ">
+		  <div class="modal-content">
+			<br>
+			<div class="center">
+			  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+			</div>
+			<div class="center">
+			  <h5><b>¿Cerrar Sesión?</b></h5>
+			</div>
+			<div class="modal-footer">
+			<div class="center">
+			  <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+			  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+			</div>
+			</div>
+		  </div>
+		  </div>
+		</div> 
 	</div>
 <%- include("../partials/scripts") -%>
 </body>

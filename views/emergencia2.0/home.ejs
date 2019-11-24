@@ -14,7 +14,19 @@
 <link href="/plugins/kalendar/kalendar.css" rel="stylesheet">
 <link rel="stylesheet" href="/plugins/scroll/nanoscroller.css">
 <link href="/plugins/morris/morris.css" rel="stylesheet" />
-
+<style>
+	.vertical-alignment-helper {
+  	display:table;
+  	height: 100%;
+  	margin-left: 41%;
+  }
+  .vertical-align-center {
+  	/* To center vertically */
+  	display: table-cell;
+  	vertical-align: middle;
+  	text-align: center;
+  }
+</style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -33,11 +45,16 @@
     
       <div class="top_right_bar">
         
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">  <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b class="caret"></b> </a>
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+          <img src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
+<<<<<<< HEAD
+            <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
+=======
            
             <li> <a href="/delete_token/<%=data_token.token_id%>" ><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+>>>>>>> ea9463499c4ea6b08a4eeb8b84d44c1be4b6ae1a
           </ul>
         </div> 
       </div>
