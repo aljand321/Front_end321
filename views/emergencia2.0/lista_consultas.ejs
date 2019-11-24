@@ -228,7 +228,7 @@
                                                                             <td><%=list[i].Paciente.apellidop %></td>
                                                                             <td><%=list[i].Paciente.apellidom %></td>
                                                                             <td><%=list[i].createdAt.split('T')[0] %></td>
-                                                                            <td>ver</td>
+                                                                            <td><a href="/emergencia2.0/ultimaConsulta/<%=list[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">ver</a></td>
                                                                         </tr> 
                                                                     <% } %>                                         
                                                                 </tbody>
