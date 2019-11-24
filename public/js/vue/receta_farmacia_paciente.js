@@ -539,6 +539,26 @@ const receta_paciente = new Vue({
             })
           }
         },
+      
+        
+      update_estad_atendido(){
+        var datos = {
+          estado:"true"          
+        }
+        var esto = {
+          method: 'POST',
+          body: JSON.stringify(datos),
+          headers:{
+            'Content-type' : "application/json"
+          }
+        };
+        fetch(this.url+'/farmacia/Vue_update_est_atendido/'+this.id_receta,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {
+          console.log(data, "   <<<< asdasd")
+        })
+      },
 
       update_cantidad(){
         var lista  = this.generateArray()

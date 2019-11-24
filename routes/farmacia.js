@@ -830,15 +830,24 @@ router.get('/recetas_farm/:token_id/:token_partial',(req, res) => {
     .then(resp => resp.json())
     .then(resp => {
 
-      fetch('http://localhost:3000/api/list_pacientes')
+      fetch('http://localhost:3000/api/list_paciente_atendido')
       .then(resp => resp.json())
-      .then(paciente => {
-        res.render('Farmacia/recetas_farm',{
-          resp,
-          data_doc : data_user[token_id],
-          paciente
+      .then(atendidos => {
+
+        fetch('http://localhost:3000/api/list_pacientes')
+        .then(resp => resp.json())
+        .then(paciente => {
+          res.render('Farmacia/recetas_farm',{
+            resp,
+            data_doc : data_user[token_id],
+            paciente,
+            atendidos
+          })
         })
+
       })
+
+     
      
     })
     .catch(error => {
@@ -912,6 +921,28 @@ router.post('/vue_reg_receta_paciente', (req,res) => {
       }
   };
   fetch('http://localhost:3200/api/reg_receta_paciente',esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
+
+//ruta para actualizar 
+router.post('/Vue_update_est_atendido/:id', (req,res) => {
+  const { id } = req.params;
+  var datos = {
+    estado_atendido : 'true'
+  }
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/update_estado_atendido/'+id,esto)
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => {
@@ -1139,10 +1170,17 @@ router.get('/reportes_ventas', (req,res) => {
     res.render('Farmacia/reportes_ventas');
 });
 
-
-
-
-
+router.get('/ventas_cli/:id/:token_id/:token_partial', (req,res) => {
+  const { id, token_id, token_partial }  = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+  
+    res.render('Farmacia/ventas_cli',{
+      data_doc : data_user[token_id]
+    });
+  }else{
+    res.redirect('/')
+  }
+});
 
 
 module.exports = router;

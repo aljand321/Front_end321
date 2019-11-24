@@ -15,11 +15,13 @@
       		</div>
       		<div class="header_top_bar">
         		<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
-        		<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
-					<ul class="dropdown-menu">
-						<div class="top_pointer"></div>
-						<li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar Sesión</a> </li>
-					</ul>
+        		<div class="top_right_bar">
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar Sesión</a> </li>
+						</ul>
+					</div>
 				</div>
       		</div>
     	</div>
@@ -120,7 +122,7 @@
 											</div>
 										</div><!--/form-group--> 
 										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10">
+											<div class="col-sm-offset-0 col-sm-10">
 												<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
 												<a class="btn btn-danger" href="/farmacia/volver/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i>Cancelar</a>
 												<a class="btn btn-info" href="/farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-reply"></i> Volver a Medicamentos</a>

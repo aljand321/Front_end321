@@ -143,7 +143,8 @@
 								</div>
 								<span style="color: red">{{msg_false_post}}</span>
 								<span style="color: blue">{{msg_true_post}}</span>
-								<!-- <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea> -->
+								<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+								<a @click = "update_estad_atendido()">update estado</a>
 								<div class="porlets-content">
 									<input type="hidden" :value="id_receta = '<%=data_receta[0].id%>'">
 									<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">

@@ -50,7 +50,7 @@
 			      <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
       				<ul>
 			      	  <li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-								<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+							<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
 				        <li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
@@ -68,17 +68,10 @@
           <!--\\\\\\\ table \\\\\\-->
           <div class="row">
             <div class="col-md-12">
-              <%if(msg) { %>
-              <%if(msg.data.success == false) { %>
-              <h3 style="color: red"><%=msg.data.data_cliente%></h3>
-              <% } else {%>
-              <h3 style="color: blue"><%=msg.data.data_cliente%></h3>
-              <% } %>
-              <% } %>
               <div class="block-web">
                 <div class="header">
-                  <div class="actions"><a class="minimize" href="#">Refresh</a> <a class="refresh" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a> </div>
-                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div>   Ventas</h2>
+                    <div class="actions"><a class="minimize" href="#">Refresh</a> <a class="refresh" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a> </div>
+                    <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div>   Ventas</h2>
                 </div>
                 <div class="porlets-content">
                   <div class="table-responsive">
@@ -88,22 +81,21 @@
                         <th>#</th>
                         <th>C.I.</th>
                         <th>Cliente</th>
-                        <th>Opciones</th>
+                        <th>Codigo Venta</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <%for(var i = 0; i < clientes.length; i++) { %>
                         <tr>
-                        <td><%=i+1%></td>
-                        <td><%=clientes[i].ci%></td>
-                        <td><%=clientes[i].nombre%> <%=clientes[i].apellidop%> <%=clientes[i].apellidom%></td>
-                        <td class="center hidden-phone">
-                          <a href="/Farmacia/reg_venta/<%=clientes[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Nueva Venta"><i class="fa fa-shopping-cart" style="color:rgb(118, 1, 173)"></i></a><span>&nbsp;</span>
-                          <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Actualizar"><i class="fa fa-refresh "></i></a><span>&nbsp;</span>
-                          <a href="/Farmacia/ventas_cli/<%=clientes[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver ventas"><i class="fa fa-eye" style="color:rgb(1, 90, 173)"></i></a><span>&nbsp;</span>
-                        </td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
                         </tr>
-                        <% } %>
+                     
                       <tbody>
                     </table>
                   </div><!--/table-responsive-->
@@ -114,60 +106,6 @@
         </div>
   	  </div>  
     </div>
-  </div>
-  <!-- Modal -->
-  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users icon"></i> Nuevo Cliente</h4>
-          <%if(msg) { %>
-            <%if(msg.data.success == false) { %>
-            <h3 style="color: red"><%=msg.data.data_cliente%></h3>
-            <% } else {%>
-            <h3 style="color: blue"><%=msg.data.data_cliente%></h3>
-            <% } %>
-          <% } %>
-        </div>
-        <div class="modal-body"> 
-          <form action="/farmacia/reg_cliente/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" class="form-horizontal" role="form"  parsley-validate novalidate>
-            <input type="hidden" name="id_user" value="<%=data_doc.data.medico.id %>">
-            <div class="form-group">
-              <label for="inputEmail3" required parsley-type="desde" class="col-sm-3 control-label" >C.I.:</label>
-              <div class="col-sm-7">
-                <input type="text" name="ci" class="form-control" onkeyup="mayus(this);" >
-              </div>
-            </div><!--/form-group--> 
-            <div class="form-group">
-              <label for="inputPassword3" required parsley-type="hasta" class="col-sm-3 control-label">Nombre(s):</label>
-              <div class="col-sm-7">
-                <input type="text" name="nombre" class="form-control" onkeyup="mayus(this);">
-              </div>
-            </div><!--/form-group-->  
-            <div class="form-group">
-              <label for="inputPassword3" required parsley-type="hasta" class="col-sm-3 control-label">Apellido Paterno:</label>
-              <div class="col-sm-7">
-                <input type="text" name="apellidop" class="form-control" onkeyup="mayus(this);">
-              </div>
-            </div><!--/form-group-->
-            <div class="form-group">
-              <label for="inputPassword3" required parsley-type="hasta" class="col-sm-3 control-label">Apellido Materno:</label>
-              <div class="col-sm-7">
-                <input type="text" name="apellidom" class="form-control" onkeyup="mayus(this);">
-              </div>
-            </div><!--/form-group-->
-            <div class="form-group">
-              <div class="col-sm-offset-0 col-sm-10">
-                <!--  <a type="button" class="btn btn-info" href="/Farmacia/reg_venta"> Aceptar</a> -->
-                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
-                <button type="reset" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-              </div>
-            </div><!--/form-group--> 
-          </form>
-        </div>
-      </div>
-    </div> 
   </div>
 <%- include("../partials/scripts") -%>
 </body>
