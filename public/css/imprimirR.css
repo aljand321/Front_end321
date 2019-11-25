@@ -1,16 +1,24 @@
 @page {
-    top: 0px;
-    margin: 1cm;
+    top: 1cm;
+    margin: 1cm; 
+    border: 0px;
+    size: A4;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+  
+  
     margin-top: 0px;
     border: 1px;
     padding: 0px;
-    left: 0px;
-    right: 0px;
+    
     width: 0px;
     bottom: 0px;
-    size:auto;
-    page-break-before: always;
+  
+    page-break-before: always
 }  
+
 /*----------------------logo------------------------------*/
 .dim2:before{
     content: url('../images/hospital1.png');    
@@ -24,13 +32,16 @@
 .verOculto{
     visibility: collapse;
 }
+.ocultarIm{
+    display: none;
+}
 .ocultartabla{
     display: none;
 }
 #ocultoI{
     display: none;   
 }
-/* es para la papaeleta de internacion*/
+/* es para la papaeleta de internacion EMERGENCA*/
 .sinmagen{
     border: 0%;
     margin-bottom: 0px;
@@ -41,33 +52,110 @@
     padding: 0px;
    
 }
-/* es para receta*/
-#sinMargen{
+.his1I{
+    padding: 0% 0;
+    left: 0px;
+    height: auto;
+	width: 20%;
+    margin:0px;
+    float:left;
+   border: 0px;
 
-    border: 0%;
-    margin-bottom: 0px;
-    contain: 0px;
-    height: 100%;
+    position: relative;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+
+}
+.nomI{
+    padding: 0% 0;
+    left: 0px;
+    height: auto;
+	width: auto;
+    margin-left:2%;
+    float:left;
+   border: 0px;
+
+    position: relative;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+
+}
+.medI{
+    padding: 0% 0;
+    left: 0px;
+    height: auto;
+	width: 100%;
+    margin-right:2%;
+    float:left;
+   border: 0px;
+
+    position: relative;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+
+}
+.sexI{
+    position:absolute;
+    top:3%;
+    left: 125%;
+    margin-top: 0%;
     width: auto;
-    margin: 0cm;
+
+    
+
+    border: 0;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+
+}
+/* es para receta*/
+
+#cleari1
+{
+clear:both;
+}
+#sinMargen{
+    top: 9%;
+    border: 0px;
+   padding-left: 0% ;
+ padding-top: 5%;
+   margin-left: 0%;
+    margin-right: 0%;
+  
     padding: 0px;
+    
+    position: relative;
+
+    border-top-style: dashed;
+    border-right-style: double;
+  
+    border-left-style: solid; 
+
 }
 
 #margendiv{
 
-    top: 0px;
+    top: 5px;
     margin: 0%;
     margin-top: 0px;
-    border: 1px;
+    border: 0px;
     padding: 0px;
     left: 0px;
     right: 0px;
     height: 100%;
     
 
-    border-top-style: dashed;
-    border-right-style: double;
-    border-bottom-style: dotted;
+    border-top-style:solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
     border-left-style: solid;
    
 }
@@ -122,7 +210,7 @@
     padding: 0% 0;
     left: 0px;
     height: auto;
-	width: auto;;
+	width: auto;
     margin:0px;
     float:left;
    border: 0px;
@@ -157,24 +245,128 @@
     margin-left: 0%;
     border: 0px;
     margin-bottom: 0%;
-    
-
-    
+     
     border-top-style: dashed;
     border-right-style: double;
     border-bottom-style: dotted;
     border-left-style: solid;
 }
 .centerTodo{
-    widows: 900px;
+    padding-top: 5%;
+    widows: auto;
     display: flex;
    justify-content: center;
    align-items: center;
+   border: 0px;
+   border-top-style: dashed;
+   border-right-style: double;
+   border-bottom-style: dotted;
+   border-left-style: solid; 
 }
+/* para recetas emergencia*/
+#sinMargenE{
+    top: 1%;
+    border: 0px;
+   padding-left: 0% impo;
+   padding-top: 0%;
+   margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 0%;
+    padding: 0px;
+    
+    position: relative;
+
+    border-top-style: dashed;
+    border-right-style: double;
+  
+    border-left-style: solid; 
+
+}
+#segundoMargen{
+    border-top: 0cm;
+    left: 0;
+    top: 0px;
+    margin: 0%;
+    margin-top: 0px;
+    border: 0px;
+    padding: 0px;
+    widows: auto;
+
+    position:absolute;
+    border-top-style:solid;
+    border-right-style: solid;
+  
+    border-left-style: solid;
+    page-break-inside: avoid;
+   
+}
+.centerTodoEmer{
+    width: 10000% !important;
+    display: flex;
+    
+   justify-content: center;
+   align-items: center;
+}
+.ensanchar{
+    widows: 1000px;;
+    display: flex;
+    top:10%;
+
+}
+.englobacaja{
+    
+    position:absolute;
+    top:60%;
+  width: auto;
+    display: flex;
+    
+
+    border: 0;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+      
+}
+ .cajagrande{
+    padding: 0% 0;
+    left: 0px;
+    height: auto;
+	width: auto;;
+    margin:0px;
+    float:left;
+   border: 0px;
+
+    position: relative;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+
+}
+.aliniar{
+   
+    height: auto;
+	width: auto;
+
+    float:left;
+   border: 0px;
+   padding: 0%;
+   margin: 1%;
+
+    position: relative;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+}
+/* borra todo*/
 .cleari
 {
 clear:both;
 }
+
+
 .flotados
 {
 border:2px solid #FF0100;
@@ -292,7 +484,8 @@ float:left;
     font: Arial;
     border: 0px;
     padding-top: 1%;
-
+    top: 5%;
+    
     margin-top: auto;
     border-top-style: dashed;
     border-right-style: double;
@@ -316,3 +509,108 @@ float:left;
     border-bottom-style: dotted;
     border-left-style: solid;
 }
+
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+Twitter: @rich_clark
+*/
+/*
+html, body, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+
+body {
+  line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+  display:block;
+}
+
+nav ul {
+  list-style:none;
+}
+
+blockquote, q {
+  quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content:'';
+  content:none;
+}
+
+a {
+  margin:0;
+  padding:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+
+/* change colours to suit your needs */
+
+ins {
+  background-color:#ff9;
+  color:#000;
+  text-decoration:none;
+}
+
+/* change colours to suit your needs */
+
+mark {
+  background-color:#ff9;
+  color:#000; 
+  font-style:italic;
+  font-weight:bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+  border-bottom:1px dotted;
+  cursor:help;
+}
+
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+  display:block;
+  height:1px;
+  border:0;   
+  border-top:1px solid #cccccc;
+  margin:1em 0;
+  padding:0;
+}
+
+input, select {
+  vertical-align:middle;
+}
+/* 

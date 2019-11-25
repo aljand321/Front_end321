@@ -70,6 +70,8 @@
             <div class="header_top_bar">
                 <!--\\\\\\\ header top bar start \\\\\\-->
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+				<div class="btn-group">	<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> Atras</a>
+				</div>
 
                 <div class="top_right_bar">
 
@@ -121,7 +123,7 @@
                 <div class="container clear_both padding_fix col-lg-8">
                     <br>
                     <div class="row">
-                        <div class="col-lg-12 ">
+                        <div class="col-lg-12 block-web">
 
 							<!-- Content page -->
 							<div class="container-fluid col-md-12" id="">
@@ -144,15 +146,7 @@
 										<template v-if="one_examen == ''">
 										
 											<form @submit="reg_examen_fisico" method="POST">
-												<div class="block-web">
-													<div class="header">
-														<div class="actions">
-															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> Atras</a>
-														</div>
-															<h3 class=""> Registrar Examen General	
-															</h3>&nbsp;&nbsp;
-													</div>
-												</div>
+												
 												<div class="col-md-12">
 													<div class="col-md-9">
 														<div class="col-sm-4 col-sm-4">

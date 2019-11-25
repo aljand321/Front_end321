@@ -43,16 +43,23 @@
             font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
 
         }
+        .vertical-alignment-helper {
+        	display:table;
+        	height: 100%;
+        	margin-left: 41%;
+        }
+        .vertical-align-center {
+        	/* To center vertically */
+        	display: table-cell;
+        	vertical-align: middle;
+        	text-align: center;
+        }
     </style>
     <%- include("partials/head") -%>
 </head>
 <body class=" light_theme  fixed_header left_nav_fixed" >
 	<!-- SideBar -->
-	
-
-
-	 <!-- Content page-->
-	 <div class="wrapper">
+	<div class="wrapper">
         <!--\\\\\\\ wrapper Start \\\\\\-->
         <div class="header_bar">
             <!--\\\\\\\ header Start \\\\\\-->
@@ -69,14 +76,11 @@
                 <div class="top_right_bar">
 
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                                src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+                                src="/images/medico.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span> John Doe</span> <b
                                 class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
-                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                            <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -119,235 +123,235 @@
                 <div class="container clear_both padding_fix col-lg-8">
                     <br>
                     <div class="row">
-
-
-	<!-- Content page-->
-
-	<!-- NavBar -->
-	
-		<!-- Content page -->
-	
-		<div class="container-fluid col-md-12" id="">
-			<div class="page-header  col-md-6">	
-					<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Alergias<small></small></h1>  
-			</div><br><br>
-			<div class="btn-group  col-md-3">
-				<button type="button" class="btn btn-info btn-raised"
-					data-toggle="dropdown">
-				  Detalles del Paciente <span class="caret"></span>
-				</button>
-				
-				<ul class="dropdown-menu" role="menu">
-					<li class="menu__item">
-						<a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>" class="menu__link">Datos de responsable </a>
-					</li>
-					<li class="menu__item">
-						<a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" class="menu__link">Antecedentes</a>
-					</li>
-					<li class="menu__item">
-						<a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>" class="menu__link">Alergia</a>
-					</li>
-					<li class="menu__item">
-						<a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>" class="menu__link">Examen General</a>
-					</li>
-					<li class="menu__item">
-						<a href="/VerHistorial" class="menu__link">Ver Historial </a>
-					</li>
-					<li class="menu__item">
-							<a href="/ordenLaboratorio" class="menu__link">Orden </a>
-						</li>
-					<li class="divider"></li>
-						  
-				</ul>
-			  </div> 
-		   
-			<div id="" class="col-md-2">
-		
-			  <div class="">
-				<a href="/medico/volver" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
-			  </div>
+                        <div class="container-fluid col-md-12" id="">
+			                <div class="page-header  col-md-6">	
+			                		<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Alergias<small></small></h1>  
+			                </div><br><br>
+			                <div class="btn-group  col-md-3">
+			                	<button type="button" class="btn btn-info btn-raised"
+			                		data-toggle="dropdown">
+			                	  Detalles del Paciente <span class="caret"></span>
+			                	</button>
+                            
+			                	<ul class="dropdown-menu" role="menu">
+			                		<li class="menu__item">
+			                			<a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>" class="menu__link">Datos de responsable </a>
+			                		</li>
+			                		<li class="menu__item">
+			                			<a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" class="menu__link">Antecedentes</a>
+			                		</li>
+			                		<li class="menu__item">
+			                			<a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>" class="menu__link">Alergia</a>
+			                		</li>
+			                		<li class="menu__item">
+			                			<a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>" class="menu__link">Examen General</a>
+			                		</li>
+			                		<li class="menu__item">
+			                			<a href="/VerHistorial" class="menu__link">Ver Historial </a>
+			                		</li>
+			                		<li class="menu__item">
+			                				<a href="/ordenLaboratorio" class="menu__link">Orden </a>
+			                			</li>
+			                		<li class="divider"></li>
+                                    
+			                	</ul>
+			                  </div> 
+                          
+			                <div id="" class="col-md-2">
+                            
+			                  <div class="">
+			                	<a href="/medico/volver" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
+			                  </div>
 			
-			</div>
-		</div>
-<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-			<ul class="full-box list-unstyled text-right">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-			
-			</ul>
-		</nav>
-		<!-- Content page -->
-		<% if (idCIta == null) {%>
-			<h1>Algo sucedio con el servidor porfavor intente entrar denuevo a esta pagian desde una pagina anterior</h1>
-		<% } else {%>	
-		<div class="container-fluid">
-			<div class="page-header">
-			
-					<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Hospitalización<small></small></h1>
-				
-			  
-			</div>
-		</div>
-		<div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                           
-                                <li class="active"><a href="#new" data-toggle="tab">Registro de Emergencia</a></li>
-                                <li><a href="#list" data-toggle="tab">Lista de Emergencias del Paciente</a></li>
-                           
-                        </ul>
-                        <!-- Registro de nuevos proveedores-->
-                        <div id="myTabContent" class="tab-content">
-                            <div class="tab-pane fade active in" id="new">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            
-                                            <form action="/medico/regConsulta/<%=idCIta%>" method="POST">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">De</label>
-                                                    <select class="form-control" name="tipoConsulta">
-                                                        <option><%=cita[0].especialidad%></option>
-                                                        
-                                                    </select>
+			                </div>
+		                </div>
+                        <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+                        	<!-- NavBar -->
+                        	<nav class="full-box dashboard-Navbar">
+                        		<ul class="full-box list-unstyled text-right">
+                        			<li class="pull-left">
+                        				<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+                        			</li>
+                                
+                        		</ul>
+                        	</nav>
+                        		<!-- Content page -->
+                        	<% if (idCIta == null) {%>
+                        		<h1>Algo sucedio con el servidor porfavor intente entrar denuevo a esta pagian desde una pagina anterior</h1>
+                        	<% } else {%>	
+                        	<div class="container-fluid">
+                        		<div class="page-header">
+                                
+                        			<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Hospitalización<small></small></h1>
+                                
+                                
+                        		</div>
+                        	</div>
+                        	<div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                        
+                                                <li class="active"><a href="#new" data-toggle="tab">Registro de Emergencia</a></li>
+                                                <li><a href="#list" data-toggle="tab">Lista de Emergencias del Paciente</a></li>
+                                        
+                                        </ul>
+                                        <!-- Registro de nuevos proveedores-->
+                                        <div id="myTabContent" class="tab-content">
+                                            <div class="tab-pane fade active in" id="new">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                                            <form action="/medico/regConsulta/<%=idCIta%>" method="POST">
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">De</label>
+                                                                    <select class="form-control" name="tipoConsulta">
+                                                                        <option><%=cita[0].especialidad%></option>
+                                                                    </select>
+                                                                    </div>
+                                                                <h1>Datos Personales</h1>                                                
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Fecha de Consulta</label>
+                                                                    <input class="form-control" type="date" name="fechaConsulta" require>
+                                                                </div>                                                                              
+                                                                <div class="form-group label-floating">
+                                                                  <label class="control-label">N° de Historia</label>
+                                                                  <input class="form-control" type="text" name="numeroHistorial" value="<%=dataPaciente[0].numeroHistorial%>">
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label"> Apellido Paterno </label>
+                                                                    <input class="form-control" type="text" name="apellidop" value="<%=dataPaciente[0].apellidop%>">
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Apellido Materno</label>
+                                                                    <input class="form-control" type="text"  name="apellidom" value="<%=dataPaciente[0].apellidom%>">
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Nombre</label>
+                                                                    <input class="form-control" type="text" name="nombre" value="<%=dataPaciente[0].nombre%>">
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">CI</label>
+                                                                    <input class="form-control" type="text" name="ci" value="<%=dataPaciente[0].ci%>">
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Sexo</label>
+                                                                    <select class="form-control" name="sexo">
+                                                                        <option><%=dataPaciente[0].sexo%></option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                  <label class="control-label">Fecha de Nacimiento</label>
+                                                                  <input class="form-control" type="text" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>">
+                                                                </div>
+                                                                <h3>Estodo del paciente</h3>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Anamnesis</label>
+                                                                    <textarea class="form-control" name="anamnesis"></textarea>
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Diagnostico</label>
+                                                                    <textarea class="form-control" name="diagnostico"></textarea>
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Tratamiento</label>
+                                                                    <textarea class="form-control" name="tratamiento"></textarea>
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Observaciones</label>
+                                                                    <textarea class="form-control" name="observaciones"></textarea>
+                                                                </div>
+                                                                <p class="text-center">
+                                                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                                                </p>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                <h1>Datos Personales</h1>                                                
-                                                <div class="form-group">
-                                                    <label class="control-label">Fecha de Consulta</label>
-                                                    <input class="form-control" type="date" name="fechaConsulta" require>
-                                                </div>                                                                              
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">N° de Historia</label>
-                                                  <input class="form-control" type="text" name="numeroHistorial" value="<%=dataPaciente[0].numeroHistorial%>">
                                                 </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label"> Apellido Paterno </label>
-                                                    <input class="form-control" type="text" name="apellidop" value="<%=dataPaciente[0].apellidop%>">
+                                            </div>
+                                            <!-- Listas de Proveedores-->
+                                            <div class="tab-pane fade" id="list">
+                                                <div class="table-responsive">
+                                                    <p class="text-center">
+                                                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
+                                                    </p>
+                                                    <div class="table-responsive">
+                                                        <div class="table-wrapper">
+                                                            <table class="fl-table">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Numero Historial</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Apellido Paterno</th>
+                                                                    <th>Apellido Materno</th>
+                                                                    <th>Diagnostico</th>
+                                                                    <th>Tipo de Consulta</th>
+                                                                    <th>Dar Receta</th>
+                                                                    <th>Papeleta Internacion</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <% for ( var i=0; i < resp.length; i++) {%>
+                                                                <tr>
+                                                                    <td><%= i+1%></td>
+                                                                    <td><%=resp[i].numeroHistorial%></td>
+                                                                    <td><%=resp[i].nombre%></td>
+                                                                    <td><%=resp[i].apellidop%></td>
+                                                                    <td><%=resp[i].apellidom%></td>
+                                                                    <td><%=resp[i].diagnostico%></td> 
+                                                                    <td><%=resp[i].tipoConsulta%></td>                                                    
+                        										    <td><a href="/medico/TraerConsulta/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                        										    <td><a href="/medico/PapeletaINT/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>/<%=resp[i].tipoConsulta%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                                </tr>
+                                                                <% } %>
+                                                                </tbody>                                                                       
+                                                            </table>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Apellido Materno</label>
-                                                    <input class="form-control" type="text"  name="apellidom" value="<%=dataPaciente[0].apellidom%>">
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Nombre</label>
-                                                    <input class="form-control" type="text" name="nombre" value="<%=dataPaciente[0].nombre%>">
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">CI</label>
-                                                    <input class="form-control" type="text" name="ci" value="<%=dataPaciente[0].ci%>">
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Sexo</label>
-                                                    <select class="form-control" name="sexo">
-                                                        <option><%=dataPaciente[0].sexo%></option>
-                                                        
-                                                    </select>
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Fecha de Nacimiento</label>
-                                                  <input class="form-control" type="text" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>">
-                                                </div>
-                                                <h3>Estodo del paciente</h3>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Anamnesis</label>
-                                                    <textarea class="form-control" name="anamnesis"></textarea>
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Diagnostico</label>
-                                                    <textarea class="form-control" name="diagnostico"></textarea>
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Tratamiento</label>
-                                                    <textarea class="form-control" name="tratamiento"></textarea>
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Observaciones</label>
-                                                    <textarea class="form-control" name="observaciones"></textarea>
-                                                </div>
-                                                <p class="text-center">
-                                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                </p>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Listas de Proveedores-->
-                            <div class="tab-pane fade" id="list">
-                                <div class="table-responsive">
-                                    <p class="text-center">
-                                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
-                                    </p>
-                                    <div class="table-responsive">
-                                        <div class="table-wrapper">
-                                            <table class="fl-table">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Numero Historial</th>
-                                                    <th>Nombre</th>
-                                                    <th>Apellido Paterno</th>
-                                                    <th>Apellido Materno</th>
-                                                    <th>Diagnostico</th>
-                                                    <th>Tipo de Consulta</th>
-                                                    <th>Dar Receta</th>
-                                                    <th>Papeleta Internacion</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <% for ( var i=0; i < resp.length; i++) {%>
-                                                <tr>
-                                                    <td><%= i+1%></td>
-                                                    <td><%=resp[i].numeroHistorial%></td>
-                                                    <td><%=resp[i].nombre%></td>
-                                                    <td><%=resp[i].apellidop%></td>
-                                                    <td><%=resp[i].apellidom%></td>
-                                                    <td><%=resp[i].diagnostico%></td> 
-                                                    <td><%=resp[i].tipoConsulta%></td>                                                    
-												    <td><a href="/medico/TraerConsulta/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-												    <td><a href="/medico/PapeletaINT/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>/<%=resp[i].tipoConsulta%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                                                </tr>
-                                                <% } %>
-                                                </tbody>                                                                       
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <% } %>
+                        </section>
                     </div>
+
+                        <!--\\\\\\\ container  end \\\\\\-->
                 </div>
+                        <!--\\\\\\\ content panel end \\\\\\-->
             </div>
-        <% } %>
-</section>
-</div>
+                        <!--\\\\\\\ inner end\\\\\\-->
+        </div>
+                        <!--\\\\\\\ wrapper end\\\\\\-->
 
-<!--\\\\\\\ container  end \\\\\\-->
-</div>
-<!--\\\\\\\ content panel end \\\\\\-->
-</div>
-<!--\\\\\\\ inner end\\\\\\-->
-</div>
-<!--\\\\\\\ wrapper end\\\\\\-->
+	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+		<div class="vertical-alignment-helper">
+		  <div class="modal-dialog vertical-align-center modal-sm ">
+			  <div class="modal-content">
+				<br>
+				<div class="center">
+				  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+				</div>
+				<div class="center">
+				  <h5><b>¿Cerrar Sesión?</b></h5>
+				</div>
+				<div class="modal-footer">
+					<div class="center">
+					  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+					  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+					</div>
+				</div>
+			  </div>
+		  </div>
+		</div> 
+	</div>
 
 <!--====== Scripts -->
 
