@@ -83,7 +83,7 @@
         <div class="container clear_both padding_fix col-lg-8">     
             <br>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-14">
                     <div class="col-lg-12 block-web"> 
 	            		<div class="header">
 	            			<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
@@ -99,11 +99,11 @@
                      -->
                     <div class="col-lg-12">
                             <section class="panel default blue_title h2">
-                                <div class="panel-heading">portlet<span class="semi-bold"> Tabs</span> </div>
+                                <div class="panel-heading">Lista<span class="semi-bold"> Consulta de pacientes</span> </div>
                                 <div class="panel-body">
                                     <ul class="nav nav-tabs" id="myTab">
-                                        <li class="active"><a data-toggle="tab" href="#Tab1">Tab1</a></li>
-                                        <li><a data-toggle="tab" href="#Tab2">Tab2</a></li>
+                                        <li class="active"><a data-toggle="tab" href="#Tab1">Ver busqueda</a></li>
+                                        <li><a data-toggle="tab" href="#Tab2">Lista de pacientes antendidos</a></li>
                                         
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
@@ -113,14 +113,14 @@
                                                     <div class="block-web">
                                                         <div class="header">
                                                             <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                                                            <h3 class="content-header">Basic Form</h3>
+                                                            <h3 class="content-header">Buscar por fechas</h3>
                                                         </div>
                                                         <div class="porlets-content">
                                                             <form action="/emergencia2.0/buscar_fechas/<%=data_doc.data.medico.id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
                     
                                                                 <div data-date-format="mm/dd/yyyy" data-date="13/07/2013" class="input-group input-large">
                                                                     <input type="date" name="fecha_inicio" class="form-control dpd1">
-                                                                    <span class="input-group-addon">To</span>
+                                                                    <span class="input-group-addon">A</span>
                                                                     <input type="date" name="fecha_final" class="form-control dpd2">
                                                                 </div>
                                                                 <button class="btn btn-primary" type="submit">Buscar</button>
@@ -142,7 +142,7 @@
                                                     <div class="block-web">
                                                         <div class="header">
                                                             <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                                                            <h3 class="content-header">Data Table</h3>
+                                                           
                                                         </div>
                                                         <div class="porlets-content">
                                                             <div class="table-responsive">
@@ -168,7 +168,7 @@
                                                                                 <td><%=data_fecha.data[i].Paciente.apellidop %></td>
                                                                                 <td><%=data_fecha.data[i].Paciente.apellidom %></td>
                                                                                 <td><%=data_fecha.data[i].createdAt.split('T')[0] %></td>
-                                                                                <td>ver</td>
+                                                                                <td><a href="/emergencia2.0/ultimaConsulta/<%=data_fecha.data[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">ver</a></td>
                                                                             </tr> 
                                                                         <% } %>  
                                                                       <% } %>                                       
