@@ -184,11 +184,12 @@
                                                         <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit"> Lista de Productos </i></h4>
                                                     </div>
                                                     <div class="row">
-                                                        <span style="color: red;">{{alert}}</span>
-                                                        <span style="color: blue;">{{pass}}</span>
                                                         <!--/////////////table-->
-                                                        <div class="col-xs-10 col-md-offset-1">
-                                                        <br>
+                                                        <div class="col-xs-10 col-md-offset-1"><br>
+                                                            <p class="text-center">
+                                                                <span style="color: red;">{{alert}}</span>
+                                                                <span style="color: blue;">{{pass}}</span>
+                                                            </p>
                                                             <label><i class="fa fa-search"> buscar </i></label>
                                                             <div class="control is-grouped">
                                                                 <p class="control is-expanded">
@@ -282,34 +283,34 @@
                                                 </div>
                                             </section>
                                             <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
-                                                            <input type="text" class="form-control"  disabled="" v-model="totalQty">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
+                                                                <input type="text" class="form-control"  disabled="" v-model="totalQty">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <div class="col-sm-9">
-                                                            <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
+                                                            <div class="input-group"> <span class="input-group-addon"> Sub Total:</span>
                                                                 <input type="text" class="form-control"  disabled="" v-model="totalPrice">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <div class="col-sm-9">
-                                                            <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                            <div class="input-group"> <span class="input-group-addon"> IVA:</span>
                                                                 <input type="text" class="form-control"  disabled="" v-model="totalPrice * 0.13">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <div class="col-sm-9">
                                                             <div class="input-group"> <span class="input-group-addon">Total:</span>
@@ -357,7 +358,7 @@
                                         </div>
                                         <div class="col-md-12">                                                
                                             <section class="panel default black_title h4">
-                                                <div class="panel-heading">Observaciones de la llegada del Pedido </div>
+                                                <div class="panel-heading">Solicitud Enviada de Farmacia </div>
                                                 <div class="panel-body">
                                                     <table class="table table-hover">
                                                         <thead>
@@ -386,9 +387,7 @@
                                         </div>
                                         <div class="col-lg-12"> 
                                             <section class="panel default black_title h4">
-                                                <div class="panel-heading">
-                                                    <span class="semi-bold">Lista Pedidos</span> 
-                                                </div>
+                                                <div class="panel-heading">Solicitud entregada a Farmacia</div>
                                                 <div class="panel-body">
                                                     <table class="table table-hover">
                                                         <thead>

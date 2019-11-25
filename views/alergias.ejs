@@ -77,7 +77,8 @@
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
+				<div class="btn-group">	<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
+				</div>
 				<div class="top_right_bar">
 
 					<div class=" user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
@@ -130,13 +131,7 @@
 					<br>
 					<div class="row">
 						<!-- Content page -->
-						<div class="container-fluid col-md-12" id="">
-							<div class="header">
-								<div class="info blue_symbols"><i class="fa fa-group icon"></i></div><br>
-									<h3 class="content-header "> Alergias {{msg}}</h3>
-								</div>	
-							<br><br>	
-						</div>
+					
 						<!-- Alergias de consultas-->
 						<div class="container-fluid">
 							<div class="">
@@ -155,13 +150,16 @@
 													
 														<form @submit="reg_alergias" method="POST">
 															<div class="col-md-12">
-																<div class="col-md-12">
-																	<div class="header">
+																<div class="col-md-12">		
+																	<div class="head">
 																		<div class="actions"> 
-																			<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
-																		</div><br>
-																			<h3 class="">Registro de Alergias</h3>
-																	</div>
+
+																		</div>
+																		<div class="header">
+																			<div class="info blue_symbols"><i class="fa fa-group icon"></i></div>
+																				<h3 class="content-header "> Alergias {{msg}}</h3>
+																		</div>	
+																	</div><br><br>
 																</div>
 																<div class="col-md-9">
 

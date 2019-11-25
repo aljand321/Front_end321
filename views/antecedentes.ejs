@@ -69,7 +69,7 @@
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
+				<div class="btn-group"><a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a></div>
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
@@ -148,14 +148,7 @@
 
 											<div class="col-md-12">
 											<div class="">
-												<div class="col-md-12 block-web">
-												<div class="header ">
-													<div class="actions"> 
-														<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
-													</div>
-													<h3 class="content-header">Antecedentes</h3>&nbsp;&nbsp;
-												</div>
-											</div>
+												
 											<div class=" ">
 												<div class=" row col-md-9 ">
 												<div class=" ">
@@ -219,7 +212,7 @@
 												</div>
 												<div class=" col-md-9">
 													<div class="entrada">Descripción:<br>
-														<textarea class="large-compact" name="descripcion" cols="115" rows="10" v-model="descripcion"></textarea>
+														<textarea class="large-compact" name="descripcion" cols="115" rows="7" v-model="descripcion"></textarea>
 													 </div>
 												</div><br>
 												</div>

@@ -43,6 +43,17 @@
             font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
 
         }
+		.vertical-alignment-helper {
+			display:table;
+			height: 100%;
+			margin-left: 41%;
+		}
+		.vertical-align-center {
+			/* To center vertically */
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
     </style>
     <%- include("partials/head") -%>
 </head>
@@ -69,15 +80,11 @@
                 <div class="top_right_bar">
 
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                                src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+                                src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> John Doe</span> <b
                                 class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
-                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-                        </ul>
+                            <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
                     </div>
                 </div>
             </div>

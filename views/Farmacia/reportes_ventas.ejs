@@ -93,8 +93,42 @@
 						</div>
 						<div class="porlets-content">
 							<div class="panel-body">
-								<!-- Button trigger modal -->
-								<button data-target="#myModal2" data-toggle="modal" class="btn btn-success btn-lg mb10"> Seleccione Aqui </button>
+								<form  action="#" method="POST" parsley-validate novalidate>
+									<div class="col-md-12">
+									  	<div class="col-md-6">
+											<div class="form-group">
+											  	<label class="col-sm-3 control-label">DESDE:</label>
+												<input type="date" class="form-control" >
+											</div><!--/form-group--> 
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="col-sm-3 control-label">HASTA:</label>
+												<input type="date" class="form-control" >
+											</div><!--/form-group-->
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="col-md-6">
+											<div class="form-group">
+											  	<label class="col-sm-4 control-label">CLIENTE <i class="fa fa-users"></i> :</label>
+											  	<select class="selectpicker" data-show-subtext="true" data-live-search="true">
+													<option>Paco</option>
+													<option>Luis</option>
+													<option>Luna</option>
+													<option>Daniela</option>
+												</select>
+											</div><!--/form-group-->
+										</div>
+									  	<div class="col-md-6">
+											<div class="form-group">
+											  	<div class="col-sm-offset-2 col-sm-10">
+													<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
+											  	</div>
+											</div><!--/form-group--> 
+										</div>
+									</div>
+							  	</form>
 							</div>  
 							<div class="table-responsive">
 								<table  class="display table table-bordered table-striped " id="dynamic-table">
@@ -128,49 +162,6 @@
 	</div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	  	<div class="modal-content">
-			<div class="modal-header">
-		  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		  		<h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Reportes de Pedidos</h4>
-			</div>
-			<div class="modal-body"> 
-		  		<form class="form-horizontal" role="form"  parsley-validate novalidate>
-					<div class="form-group">
-			  			<label for="inputEmail3" required parsley-type="desde" class="col-sm-2 control-label">DESDE:</label>
-			  			<div class="col-sm-4">
-							<input type="date" class="form-control" >
-			  			</div>
-					</div><!--/form-group--> 
-					<div class="form-group">
-			  			<label for="inputPassword3" required parsley-type="hasta" class="col-sm-2 control-label">HASTA:</label>
-			  			<div class="col-sm-4">
-							<input type="date" class="form-control" >
-			  			</div>
-					</div><!--/form-group-->  
-					<div class="form-group">
-			  			<label for="inputPassword3" class="col-sm-2 control-label">Pacientes  <i class="fa fa-users"> :</i></label>
-			  			<div class="col-sm-4">
-							<select class="selectpicker" data-show-subtext="true" data-live-search="true">
-				  				<option>Paco</option>
-				  				<option>Luis</option>
-				  				<option>Luna</option>
-				  				<option>Daniela</option>
-							</select>
-			  			</div>
-					</div><!--/form-group-->
-					<div class="form-group">
-			  			<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-primary">Aceptar</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-			  			</div>
-					</div><!--/form-group--> 
-		  		</form>
-			</div>
-	  	</div>
-	</div>
-</div>
 <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
 	<div class="vertical-alignment-helper">

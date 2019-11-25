@@ -29,7 +29,7 @@
         		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       		</div>
       		<div class="header_top_bar">
-        		<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         		<div class="top_right_bar">
          			<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
 						 <img src="/images/farmacia.png" /><span class="user_adminname">   <span>&nbsp;&nbsp;</span>   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
@@ -52,8 +52,10 @@
 						<!--lista de medicamentos-->
 		   				<div class="modal-body"> 
 							<div class="row">
-								<span style="color: red;">{{alert}}</span>
-								<span style="color: blue;">{{pass}}</span>
+								<p class="text-center">
+									<span style="color: red;">{{alert}}</span>
+									<span style="color: blue;">{{pass}}</span>
+								</p>
 								<div class="col-xs-12 ">
 									<br>
 									<label><i class="fa fa-search"> buscar </i></label>
@@ -138,7 +140,6 @@
 					  			<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-				  				<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
 				  				<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
 				  				<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 							</ul>
@@ -211,8 +212,6 @@
 										<p class="text-center">
 											<button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-info">Lista de Productos</button>
 										</p>
-										<textarea name="" id="" cols="80" rows="10">{{$data}}</textarea>
-										<a @click="reduce_cantidad()">reduce cantidad</a>
 										<div class="table-responsive">
 											<table  class="display table table-bordered table-striped " >
 												<thead>

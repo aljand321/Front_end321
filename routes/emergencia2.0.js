@@ -47,7 +47,13 @@ router.get('/home/:id/:token_part', (req,res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
-      data_token.token_id = resp.id     // esto manda el el id para el token
+
+      fetch('http://localhost:3000/api/lista_emergencia/'+resp.perso_id)
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(lista_paciente => {
+       
+        data_token.token_id = resp.id     // esto manda el el id para el token
       
         if(datas.name.token[resp.id] && datas.name.token[resp.id].data.token.split(" ")[1].split(".")[2] == token_part ){
             var status
@@ -62,12 +68,14 @@ router.get('/home/:id/:token_part', (req,res) => {
                 .then(resp => resp.json())
                 .catch(error => console.error('Error',error))
                 .then(resp => {
+                  
                   data_token.medico = resp 
                   if(data_user[data_token.token_id] == null){
                     user(data_token, data_token.token_id)
                     user_data1(data_token, data_token.token_id)
                     res.render('emergencia2.0/home',{
-                        data_token
+                        data_token,
+                        lista_paciente: lista_paciente.length
                     })
                   status = null
                   }else{
@@ -76,7 +84,8 @@ router.get('/home/:id/:token_part', (req,res) => {
                     user(data_token, data_token.token_id)
                     user_data1(data_token, data_token.token_id)
                     res.render('emergencia2.0/home',{
-                        data_token
+                        data_token,
+                        lista_paciente: lista_paciente.length
                     })
                   status = null
                   }
@@ -88,6 +97,8 @@ router.get('/home/:id/:token_part', (req,res) => {
         }else{
           res.redirect('/')
         }
+      })
+ 
         
     })
 })
@@ -1324,6 +1335,15 @@ router.post('/update_exFisico/:id_examen/:id_paciente/:token_id/:token_partial/:
   })
 })
 
+
+//report
+router.get('/ReporMotivoVisita',(req,res) =>{
+  res.render('emergencia2.0/ReporMotivoVisita')
+});
+router.get('/ReporPaciente',(req,res) =>{
+  res.render('emergencia2.0/ReporPaciente')
+});
+
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -1338,7 +1358,7 @@ router.get('/lista_consultas/:token_id/:token_partial', (req,res) => {
     fetch('http://localhost:3000/api/lista_emergencia_false/'+data_user[token_id].data.medico.id)
     .then(resp => resp.json())
     .then(list => {
-      console.log(msg_Consulta_emergencia[token_id], "este es el mensaje <<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+     
       res.render('emergencia2.0/lista_consultas',{
         list,
         data_doc : data_user[token_id],
@@ -1458,7 +1478,7 @@ router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial',(req,res) =>{
               fetch('http://localhost:3050/api/lista_Ecografia_emg/'+data.id+'/'+data.Nhistorial)
               .then(resp => resp.json())
               .then(ecografias => {
-                console.log (ecografias, "        <<<<<<<<<<<<<<<<<<<<< esto es ecografia")
+               
                 fetch('http://localhost:3050/api/lista_rayosX_emg/'+data.id+'/'+data.Nhistorial)
                 .then(resp => resp.json())
                 .then(rayosX => {
