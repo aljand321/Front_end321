@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Reportes</title>
+<title>Reportes Pacientes</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -55,29 +55,23 @@
       <div class="left_nav">
           <div class="left_nav_slidebar">
             <ul>
-              <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                 <ul >
-                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio </b> </a> </li>
+                  <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
                 </ul>
               </li>
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                <ul >
+                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b></a> </li>
+                </ul>
+              </li>
+             
+              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
                 <ul class="opened" style="display:block">
-                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+                    <li> <a href="/emergencia2.0/ReporMotivoVisita"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte Enferm.</b> </a> </li>
+                    <li> <a href="/emergencia2.0/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de consulta</b> </a> </li>
                 </ul>
-              </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-archive icon"></i>Historia de Emerg.<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul >
-                  <li> <a href="/emergencia2.0/ultimaConsulta"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Última Cosulta </b> </a> </li>
-                </ul>
-              </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul >
-                  <li> <a href="/emergencia2.0/historialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clínico </b>  </a> </li>
-                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
-                </ul>
-              </li>
-            
+              </li>						
             </ul>
           </div>
       </div>
@@ -90,24 +84,21 @@
             <div class="block-web">
               <div class="header">
                     <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                    <h3 class="content-header ">Reportes Consulta</h3>
+                    <h3 class="content-header ">Reportes Pacientes</h3>
               </div>
               <br>
               <br>
               <div class="porlets-content">
                 <form class="form-horizontal"  >
+                  
                   <div class="form-group">
-                    <label class="col-sm-4 control-label">Desde:</label>
-                    <div class="col-sm-4">
-                      <input type="date" class="form-control" >
-                    </div>
-                  </div><!--/form-group--> 
-                  <div class="form-group">
-                    <label  class="col-sm-4 control-label">Hasta:</label>
-                    <div class="col-sm-4">
-                      <input type="date" class="form-control" >
-                    </div>
-                  </div><!--/form-group-->  
+                    <label  class="col-sm-4 control-label">Pacientes:</label>
+                    <select name="">
+                        <option>Todos los Pacientes atendidos</option>
+                       
+                    </select>
+                  </div> 
+              
                   
                 </form>
               </div>
@@ -115,22 +106,22 @@
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
                     <tr>
-                          <th class="text-center">Nombre</th>
-                          <th class="text-center">Sigla</th>	
-                          <th class="text-center">Fecha Creación</th>	
+                          <th class="text-center">N° Historial</th>
+                          <th class="text-center">C.I.</th>	
+                          <th class="text-center">Nombre Completo</th>	
                           <th class="text-center">Optiones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    
+                      <tr>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
-                        <td>
-                          <a href="/emergencia2.0/ultimaConsulta">ver</a></td>
-                        </td>
-                      </tr>
-                  
+                        <td class="text-center">
+                            <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="descargar"><i class="fa fa-floppy-o"></i></a>
+                          </td>
+           
                   </tbody>
                 </table>
               </div>
