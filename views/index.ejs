@@ -9,57 +9,77 @@
   <link href="/css/animate.css" rel="stylesheet" type="text/css" />
   <link href="/css/admin.css" rel="stylesheet" type="text/css" />
   
+  
 </head>
-<script>
-    /*  locartion() */
-     ver()
-      function ver (){
-       var data =localStorage.getItem('data') 
-       var url = localStorage.getItem('url')
-       if(data != null){
-         var data_token =JSON.parse( localStorage.getItem('data') )
-         var data  = {
-           data_token: data_token,
-           url:url
-         }
-           var enviar = {
-           method: 'POST',
-           body: JSON.stringify(data),
-           headers: {
-             'Content-type' : "application/json"
-           }
-         }
-         if (!data_token.token_part){
-          fetch('/enviar',enviar)
-          .then(res => res.json())
-          .then(data => {
-           if(data.success == true){
-              window.location.replace(url+data_token.user.id)
-             //console.log(url+data_token.user.id)
-            }else{
-              console.log("false")
-            }
-            console.log(data.success)
-          })
-         }else{
-          fetch('/enviar',enviar)
-          .then(res => res.json())
-          .then(data => {
-           if(data.success == true){
-              window.location.replace(url+data_token.user.id+'/'+data_token.token_part)
-             //console.log(url+data_token.user.id)
-            }else{
-              console.log("false")
-            }
-            console.log(data.success)
-          })
-         }
-         
 
-       }
-     } 
-</script>
+
 <body class="light_theme  fixed_header left_nav_fixed">
+    <script>
+        /*  locartion() */
+        
+        
+         ver()
+          function ver (){
+           var data =localStorage.getItem('data') 
+           var url = localStorage.getItem('url')
+           if(data != null){
+            localStorage.setItem('cont', 0 ) 
+             console.log("asd21")
+             var data_token =JSON.parse( localStorage.getItem('data') )
+             var data  = {
+               data_token: data_token,
+               url:url
+             }
+               var enviar = {
+               method: 'POST',
+               body: JSON.stringify(data),
+               headers: {
+                 'Content-type' : "application/json"
+               }
+             }
+             if (!data_token.token_part){
+              fetch('/enviar',enviar)
+              .then(res => res.json())
+              .then(data => {
+               if(data.success == true){
+                  window.location.replace(url+data_token.user.id)
+                 //console.log(url+data_token.user.id)
+                }else{
+                  console.log("false")
+                }
+                console.log(data.success)
+              })
+             }else{
+              fetch('/enviar',enviar)
+              .then(res => res.json())
+              .then(data => {
+               if(data.success == true){
+                  window.location.replace(url+data_token.user.id+'/'+data_token.token_part)
+                 //console.log(url+data_token.user.id)
+                }else{
+                  console.log("false")
+                }
+                console.log(data.success)
+              })
+             }
+           }else{                    
+            var data_storage = localStorage.getItem('cont')              
+              if(data_storage == 0){
+                setTimeout(()=>{
+                  reload() 
+                },1000);
+              }          
+           }        
+          function reload(){            
+            console.log("sadasd")
+            
+            localStorage.setItem('cont', 1 )
+            window.location.replace('/')
+           
+          }
+          
+         }       
+    </script>
    
   <%if (msg1 != null) {%>
     <div class="bs-example mover">
