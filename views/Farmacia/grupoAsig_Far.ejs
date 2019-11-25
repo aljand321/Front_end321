@@ -63,7 +63,6 @@
 				  				<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
 				  				<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
 				  				<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-				  				<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
 				  				<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
 				  				<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 							</ul>
@@ -81,23 +80,7 @@
 									<div class="actions"><a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="/farmacia/volver/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a> </div>
 									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-list icon"></i></div>   Registrar Grupo de Asignación</h2>
 								</div>
-								<%if(msg) { %>
-								<%if(msg.data.success == false) { %>
-								<div class="bs-example mover">
-									<div class="alert alert-danger fade in">
-									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-									  	<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(95, 4, 4);"><%=msg.data.data%></h6></strong>
-									</div>
-								</div>
-								<% } else {%>
-								<div class="bs-example mover">
-									<div class="alert alert-info fade in">
-									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-									  	<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg.data.data%></h6></strong>
-									</div>
-								</div>
-								<% } %>
-								<% } %>
+								
 								<div class="porlets-content"><br><br>
 									<%if (one_grupo == null) { %>
 									<form  class="form-horizontal group-border-dashed" action="/farmacia/registrar_grupo/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
@@ -214,6 +197,30 @@
 		</div> 
 	</div>
 <%- include("../partials/scripts") -%>
+
+<script>
+	/*  <%if(msg) { %> */
+	  /*  <%if(msg.data.success == false) { %> */
+		   msg_false()
+		   function msg_false(){
+			 swal.fire(
+			   'Error!',
+			   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+			   'error'
+			 )
+		   }
+	   /* <% } else {%> */
+		   msg_true()
+		   function msg_true(){
+			 swal.fire(
+			   'Success!',
+			   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+			   'success'
+			 )
+		   }
+	  /*  <% } %> */
+	/*  <% } %> */
+  </script>
 </body>
 </html>
 

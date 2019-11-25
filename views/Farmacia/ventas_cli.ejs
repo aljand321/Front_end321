@@ -15,7 +15,6 @@
       </div>
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
-        <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal2"> <i class="fa fa-users icon"></i> <span> Nuevo Cliente</span> </a>
         <div class="top_right_bar">
           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">    <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
@@ -43,7 +42,7 @@
       				  <li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
 			      	  <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
       				  <li> <a href="/Farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-      				  <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Ventas</b> </a> </li>
+      				  <li> <a href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Ventas</b> </a> </li>
 			      	  <li> <a href="/Farmacia/Stock_far/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
       				</ul>
 	    		  </li>
@@ -53,8 +52,7 @@
 							<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-				        <li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
-      				  <li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+				        <li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
 			      	  <li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 			      	</ul>
 			      </li>
@@ -71,7 +69,7 @@
               <div class="block-web">
                 <div class="header">
                     <div class="actions"><a class="minimize" href="#">Refresh</a> <a class="refresh" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a> </div>
-                    <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div>   Ventas</h2>
+                    <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div>   Ventas/<span class="semi-bold"> Lista de Ventas</span></h2>
                 </div>
                 <div class="porlets-content">
                   <div class="table-responsive">
@@ -84,18 +82,25 @@
                         <th>Codigo Venta</th>
                         <th>Fecha</th>
                         <th>Total</th>
+                        <th>Opciones</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        </tr>
-                     
+                        <%for (var i = 0; i < resp.length; i++) { %>
+                          <tr>
+                            <td><%=i+1%></td>
+                            <td><%=resp[i].ci%></td>
+                            <% for (var j = 0; j < cliente.length; j++) {%>
+                              <%if (cliente[j].ci == resp[i].ci) { %>
+                                <td><%=cliente[j].nombre%>  <%=cliente[j].apellidop%> <%=cliente[j].apellidom%></td>
+                              <% } %>
+                            <% } %>
+                            <td><%=resp[i].codigo_venta%></td>
+                            <td><%=resp[i].createdAt.split("T")[0]%></td>
+                            <td><%=resp[i].medicamentos.total%></td>
+                            <td><a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver venta"><i class="fa fa-eye" style="color:rgb(1, 90, 173)"></i></a><span>&nbsp;</span></td>
+                          </tr>
+                        <% } %>
                       <tbody>
                     </table>
                   </div><!--/table-responsive-->

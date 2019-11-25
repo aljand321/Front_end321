@@ -52,7 +52,7 @@ router.get('/home/:id/:token_part', (req,res) => {
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(lista_paciente => {
-        console.log( resp.length,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hola emergencia")
+       
         data_token.token_id = resp.id     // esto manda el el id para el token
       
         if(datas.name.token[resp.id] && datas.name.token[resp.id].data.token.split(" ")[1].split(".")[2] == token_part ){
@@ -1358,7 +1358,7 @@ router.get('/lista_consultas/:token_id/:token_partial', (req,res) => {
     fetch('http://localhost:3000/api/lista_emergencia_false/'+data_user[token_id].data.medico.id)
     .then(resp => resp.json())
     .then(list => {
-      console.log(msg_Consulta_emergencia[token_id], "este es el mensaje <<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+     
       res.render('emergencia2.0/lista_consultas',{
         list,
         data_doc : data_user[token_id],
@@ -1473,15 +1473,38 @@ router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial',(req,res) =>{
             fetch('http://localhost:3000/api/OneCita/'+id_cita)
             .then(resp => resp.json())
             .then(data_cita => {
-              
-              res.render('emergencia2.0/ultimaConsulta',{
-                data,
-                dataPaciente,
-                Pinternacion,
-                lab_emg,
-                data_cita,
-                data_doc : data_user[token_id],
+
+
+              fetch('http://localhost:3050/api/lista_Ecografia_emg/'+data.id+'/'+data.Nhistorial)
+              .then(resp => resp.json())
+              .then(ecografias => {
+               
+                fetch('http://localhost:3050/api/lista_rayosX_emg/'+data.id+'/'+data.Nhistorial)
+                .then(resp => resp.json())
+                .then(rayosX => {
+
+                  fetch('http://localhost:3050/api/lista_lab_emg/'+data.id+'/'+data.Nhistorial)
+                  .then(resp => resp.json())
+                  .then(lab => {
+
+                    res.render('emergencia2.0/ultimaConsulta',{
+                      data,
+                      dataPaciente,
+                      Pinternacion,
+                      lab_emg,
+                      data_cita,
+                      data_doc : data_user[token_id],
+                      lab,
+                      rayosX,
+                      ecografias
+                    })
+
+                  })
+
+                })
+
               })
+              
             })
             
           })

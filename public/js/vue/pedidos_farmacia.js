@@ -212,7 +212,11 @@ const pedido_medicametos = new Vue({
     reg_pedido(e){
       e.preventDefault();
       if( this.generateArray() == ""){
-        this.respuestaPost_false = "No se seleciono un producto"
+        swal.fire(
+          'Error!',
+          '<label style="color:red;">No se seleciono un producto</label>',
+          'error'
+        )
       }else{
         var data  = {
           trimestre : this.trimestre,
@@ -237,7 +241,6 @@ const pedido_medicametos = new Vue({
         .catch(error => console.error('Error:', error))
         .then(data => { 
           if(data.success  == true){
-            this.respuestaPost_true = data.msg;
             this.trimestre = ""
             this.responsable = ""
             this.destino = ""
@@ -245,9 +248,19 @@ const pedido_medicametos = new Vue({
             this.totalQty = 0;
             this.listItems = {}; 
             this.respuestaPost_false = ""
+            swal.fire(
+              'Success!',
+              '<label style="color:green;">'+ data.msg +'</label>',
+              'success'
+            )
+           
           }else{
-            this.respuestaPost_false = data.msg;
             this.respuestaPost_true = ""
+            swal.fire(
+              'Error!',
+              '<label style="color:red;">'+ data.msg +'</label>',
+              'error'
+            )
           }
         })             
       } 
