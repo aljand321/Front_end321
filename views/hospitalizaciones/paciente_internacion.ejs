@@ -46,6 +46,17 @@
         }
 
         #line h3, h4 {display: inline;}
+        .vertical-alignment-helper {
+			display:table;
+			height: 100%;
+			margin-left: 41%;
+		}
+		.vertical-align-center {
+			/* To center vertically */
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
     </style>
     <%- include("../partials/head") -%>
     <script language="JavaScript">
@@ -87,14 +98,11 @@
 
                 <div class="top_right_bar">
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                                src="/images/user.png" /><span class="user_adminname">     <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
+                                src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span>  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
                                 class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
-                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                            <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -1007,6 +1015,28 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+        <div class="vertical-alignment-helper">
+          <div class="modal-dialog vertical-align-center modal-sm ">
+              <div class="modal-content">
+                <br>
+                <div class="center">
+                  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+                </div>
+                <div class="center">
+                  <h5><b>¿Cerrar Sesión?</b></h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="center">
+                      <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div> 
     </div>
    <%- include("../partials/scripts") -%>
    <script src="/moment/moment.js"></script>
