@@ -1453,15 +1453,38 @@ router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial',(req,res) =>{
             fetch('http://localhost:3000/api/OneCita/'+id_cita)
             .then(resp => resp.json())
             .then(data_cita => {
-              
-              res.render('emergencia2.0/ultimaConsulta',{
-                data,
-                dataPaciente,
-                Pinternacion,
-                lab_emg,
-                data_cita,
-                data_doc : data_user[token_id],
+
+
+              fetch('http://localhost:3050/api/lista_Ecografia_emg/'+data.id+'/'+data.Nhistorial)
+              .then(resp => resp.json())
+              .then(ecografias => {
+                console.log (ecografias, "        <<<<<<<<<<<<<<<<<<<<< esto es ecografia")
+                fetch('http://localhost:3050/api/lista_rayosX_emg/'+data.id+'/'+data.Nhistorial)
+                .then(resp => resp.json())
+                .then(rayosX => {
+
+                  fetch('http://localhost:3050/api/lista_lab_emg/'+data.id+'/'+data.Nhistorial)
+                  .then(resp => resp.json())
+                  .then(lab => {
+
+                    res.render('emergencia2.0/ultimaConsulta',{
+                      data,
+                      dataPaciente,
+                      Pinternacion,
+                      lab_emg,
+                      data_cita,
+                      data_doc : data_user[token_id],
+                      lab,
+                      rayosX,
+                      ecografias
+                    })
+
+                  })
+
+                })
+
               })
+              
             })
             
           })
