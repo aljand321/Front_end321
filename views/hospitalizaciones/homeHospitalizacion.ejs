@@ -32,6 +32,9 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
+<link href="/plugins/calendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/calendar/fullcalendar.print.css" rel="stylesheet" type="text/css" />
+	
 <style>
 	div.a {
 		text-align: center;
@@ -51,6 +54,72 @@
 		text-align: center;
 	}
 </style>
+ <style>
+		* {
+		margin:0;
+		padding: 0;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	  }
+	  
+	  
+	  .widget {
+		width: 80%;
+		margin: 2em;
+		/*margin:32px; */
+	  }
+	  
+	  .widget p {
+		display: inline-block;
+		line-height: 1em;
+	  }
+	  
+	  .fecha {
+		font-family: Oswald, Arial;
+		text-align: center;
+		font-size:1.5em;
+		margin-bottom: 0.3125rem;
+		/*margin-bottom: 5px;*/
+		background: rgba(0,0,0,.5);
+		padding: 20px;
+		width: 100%;
+	  }
+	  
+	  .reloj {
+		font-family: Oswald, Arial;
+		width: 100%;
+		padding: 20px;
+		font-size: 4em;
+		text-align: center;
+		background: rgba(0,0,0,.5);
+	  }
+	  
+	  .reloj .caja-segundos {
+		display: inline-block;
+	  }
+	  
+	  .reloj .segundos,
+	  .reloj .ampm {
+		font-size: 2rem;
+		display: block;
+	  }
+	  td.uppercase
+	  {
+		text-transform: uppercase;
+	  }
+	  .vertical-alignment-helper {
+		display:table;
+		height: 100%;
+		margin-left: 41%;
+	  }
+	  .vertical-align-center {
+		/* To center vertically */
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+	  }
+	  </style>
 
 </head>
 
@@ -158,58 +227,100 @@
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
-					<br>
+					
 					<div class="row">
 						<div class="col-lg-12 ">
-							<div class="col-md-12">
-								<div class="header">
-								  <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
-								  <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Hospitalización</h3>
-								</div>
-								<br>
-								<br>
-								
-								<div class="col-sm-3">
-									<div class="ticket_open">
-										<a href="/internaciones/list_internadios " class="open_ticket_comment text-center ">
-											<h4>Pacientes a Internar</h4>
-											<div class="btn-group">
-												<i class="fa fa-hospital-o"></i>
-											</div>
-										</a>
-											
+							<div class="user-profile-sidebar profile_widget">
+								<div class="row"> <img src="/images/medico.png"> 
+									<div class="user-identity"> 
+										<h4>Bienvenido <strong><%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></strong></h4>
+										<p><i class=""></i> </p>
 									</div>
 								</div>
-								<div class="col-sm-3">
-									<div class="ticket_open">
-										<a href="/internaciones/list_internadios/<%=especialidad.id%>/<%=data_token.token_id%>" class="open_ticket_comment text-center ">
-											<h4>Pacientes Internados</h4>
-											<div class="btn-group">
-											  	<i class="fa fa-medkit"></i>
-											</div>
-										
-										</a>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="ticket_open">
-										  
-										<a href="#" class="open_ticket_comment text-center ">
-											<h4>Pacientes de Alta</h4><br>
-											  
-											<div class="btn-group">
-											  	<i class="fa fa-wheelchair"></i><i class="fa fa-bed"></i>
-											</div>
-										</a>
-											  
-									</div>
-								</div>
+							</div>
+							<div class="widget-status-data" onclick="location.href='/internaciones/ListaInternacionF/<%=especialidad.id%>/<%=data_token.token_id%>';"style="cursor: pointer;" >
+								<div class="row">
 									
+									<% if(lista_paciente != 0 ) {%>			
+									<div class="col-md-4">
+										<h5><strong></strong><br> Tiene</h5>
+									</div>	
+									<div class="col-md-4">
+										<h5><strong><%=lista_paciente%></strong><br>
+											Pacientes</h5>
+									</div>
+									<% } else {%>
+									<div class="col-md-4">
+										<h5><strong></strong><br>No tiene</h5>
+									</div>
+									<div class="col-md-4">
+										<h5><strong>Ni un</strong><br>
+											Paciente </h5>
+									</div>
+									<% }%>
+									<div class="col-md-4">
+										<h5><strong></strong><br>
+											Para atender</h5>
+									</div>
+								</div>
 							</div>
 						</div>
-
-					</div>
-
+					</div><br><br>
+					<div class="row">
+							<div class="col-md-12">	
+								<div class="col-md-6">
+									<div class="">
+										<div class="col-sm-5 row">
+											<div class="">
+												<a href="/internaciones/ListaInternacionF/<%=especialidad.id%>/<%=data_token.token_id%>" class="open_ticket_comment text-center ">
+													<h4>Pacientes a Internar</h4>
+													<div class="btn-group">
+														<i class="fa fa-wheelchair"></i>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="col-sm-5">
+											<div class="">	  
+												<a href="/internaciones/list_internadios/<%=especialidad.id%>/<%=data_token.token_id%>" class="open_ticket_comment text-center ">
+													<h4>Pacientes Internados</h4>
+													<div class="btn-group">
+														  <i class="fa fa-pencil-square-o"></i>
+													</div>
+												</a>
+														  
+											</div>
+										</div>
+									  </div>
+									<div class="col-md-12 ">
+										<div class="widget">
+											<div class="fecha">
+											  <p id="diaSemana" class="diaSemana">Martes</p>
+											  <p id="dia" class="dia">27</p>
+											  <p>de </p>
+											  <p id="mes" class="mes">Octubre</p>
+											  <p>del </p>
+											  <p id="year" class="year">2015</p>
+											</div>
+											<div class="reloj">
+											  <p id="horas" class="horas">11</p>
+											  <p>:</p>
+											  <p id="minutos" class="minutos">48</p>
+											  <p>:</p>
+											  <div class="caja-segundos">
+												<p id="ampm" class="ampm">AM</p>
+												<p id="segundos" class="segundos">12</p>
+											  </div>
+											</div>
+										</div>
+									</div>	
+							  </div>
+							  <div class="col-md-6 ">
+								<div id='calendar'></div>
+								<!--/calendar end-->
+							  </div>
+							</div>
+						</div>
 <!--\\\\\\\ container  end \\\\\\-->
 				</div>
 <!--\\\\\\\ content panel end \\\\\\-->
@@ -244,6 +355,102 @@
 
 
 <!--====== Scripts -->
+<!--====== Scripts -->
+<script>
+		(function(){
+		var actualizarHora = function(){
+		  // Obtenemos la fecha actual, incluyendo las horas, minutos, segundos, dia de la semana, dia del mes, mes y año;
+		  var fecha = new Date(),
+			horas = fecha.getHours(),
+			ampm,
+			minutos = fecha.getMinutes(),
+			segundos = fecha.getSeconds(),
+			diaSemana = fecha.getDay(),
+			dia = fecha.getDate(),
+			mes = fecha.getMonth(),
+			year = fecha.getFullYear();
+	  
+		  // Accedemos a los elementos del DOM para agregar mas adelante sus correspondientes valores
+		  var pHoras = document.getElementById('horas'),
+			pAMPM = document.getElementById('ampm'),
+			pMinutos = document.getElementById('minutos'),
+			pSegundos = document.getElementById('segundos'),
+			pDiaSemana = document.getElementById('diaSemana'),
+			pDia = document.getElementById('dia'),
+			pMes = document.getElementById('mes'),
+			pYear = document.getElementById('year');
+	  
+		  
+		  // Obtenemos el dia se la semana y lo mostramos
+		  var semana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+		  pDiaSemana.textContent = semana[diaSemana];
+	  
+		  // Obtenemos el dia del mes
+		  pDia.textContent = dia;
+	  
+		  // Obtenemos el Mes y año y lo mostramos
+		  var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+		  pMes.textContent = meses[mes];
+		  pYear.textContent = year;
+	  
+		  // Cambiamos las hora de 24 a 12 horas y establecemos si es AM o PM
+	  
+		  if (horas >= 12) {
+			horas = horas - 12;
+			ampm = 'PM';
+		  } else {
+			ampm = 'AM';
+		  }
+	  
+		  // Detectamos cuando sean las 0 AM y transformamos a 12 AM
+		  if (horas == 0 ){
+			horas = 12;
+		  }
+	  
+		  // Si queremos mostrar un cero antes de las horas ejecutamos este condicional
+		  // if (horas < 10){horas = '0' + horas;}
+		  pHoras.textContent = horas;
+		  pAMPM.textContent = ampm;
+	  
+		  // Minutos y Segundos
+		  if (minutos < 10){ minutos = "0" + minutos; }
+		  if (segundos < 10){ segundos = "0" + segundos; }
+	  
+		  pMinutos.textContent = minutos;
+		  pSegundos.textContent = segundos;
+		};
+	  
+		actualizarHora();
+		var intervalo = setInterval(actualizarHora, 1000);
+	  }())
+	</script>
+	<script>
+		var yy;
+		var calendarArray =[];
+		var monthOffset = [6,7,8,9,10,11,0,1,2,3,4,5];
+		var monthArray = [["ENE","enero"],["FEB","Febrero"],["MAR","Marzo"],["ABR","Abril"],["MAY","Mayo"],["JUN","Junio"],["JUL","Julio"],["AGO","Agosto"],["SEP","Septiembre"],["OCT","Octubre"],["NOV","Noviembre"],["DIC","Diciembre"]];
+		var letrasArray = ["L","M","X","J","V","S","D"];
+		var dayArray = ["7","1","2","3","4","5","6"];
+		$(document).ready(function() {
+		  $(document).on('click','.specific-day',activatecalendar);
+		  $(document).on('click','.calendar-month-view-arrow',offsetcalendar);
+		  $(window).resize(calendarScale);
+		  $(".calendar").calendar({
+			"2013910": {
+			  "Mulberry Festival": {
+				start: "9.00",
+				end: "9.30",
+				location: "London"
+			  }
+			}
+		  });
+		  calendarSet();
+		  calendarScale();
+		  });
+		 
+	</script>
+	
+
 
 
 <script src="/js/jquery-2.1.0.js"></script>
@@ -330,7 +537,9 @@ e.preventDefault();
  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
  <script src="/axios/dist/axios.min.js"></script>
 
- 
+ <script src="/plugins/calendar/fullcalendar.min.js"></script>
+<script src="/plugins/calendar/external-draging-calendar.js"></script>
+
 
 
 </body>

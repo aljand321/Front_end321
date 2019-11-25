@@ -132,8 +132,13 @@ router.get('/home/:id_user',(req, res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
-        
-        if(datas.name.token[resp.id]){
+        fetch('http://localhost:3000/api/PinterFalse/'+id_user)  // 
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))  
+        .then(lista_paciente => {
+
+            console.log( resp.length,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hola hospitalizacion")
+               if(datas.name.token[resp.id]){
             data_token.token_id = resp.id 
             var status
             for(var i = 0; i < resp.role.length; i++ ){
@@ -161,6 +166,7 @@ router.get('/home/:id_user',(req, res) => {
                                 user(data_token, data_token.token_id)
                                 res.render('hospitalizaciones/homeHospitalizacion',{
                                     data_token,
+                                    lista_paciente:lista_paciente.length,
                                     token:{
                                         success: datas.name.token[resp.id].data.success,
                                         token:datas.name.token[resp.id].data.token,
@@ -181,6 +187,7 @@ router.get('/home/:id_user',(req, res) => {
                                 user(data_token, data_token.token_id)
                                 res.render('hospitalizaciones/homeHospitalizacion',{
                                     data_token,
+                                    lista_paciente:lista_paciente.length,
                                     token:{
                                         success: datas.name.token[resp.id].data.success,
                                         token:datas.name.token[resp.id].data.token,
@@ -210,6 +217,9 @@ router.get('/home/:id_user',(req, res) => {
         }else{
             res.redirect('/')
         }
+        })
+        
+
     })
    /*  res.render('hospitalizaciones/homeHospitalizacion',{
         especialidad //esto manda la especialdad

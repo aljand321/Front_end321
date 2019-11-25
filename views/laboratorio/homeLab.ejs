@@ -16,7 +16,9 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-
+	<link href="/plugins/calendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/calendar/fullcalendar.print.css" rel="stylesheet" type="text/css" />
+	
 	<style>
 		div.a {
 			text-align: center;
@@ -27,6 +29,72 @@
 
 		}
 	</style>
+			  <style>
+			* {
+			margin:0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		  }
+		  
+		  
+		  .widget {
+			width: 80%;
+			margin: 2em;
+			/*margin:32px; */
+		  }
+		  
+		  .widget p {
+			display: inline-block;
+			line-height: 1em;
+		  }
+		  
+		  .fecha {
+			font-family: Oswald, Arial;
+			text-align: center;
+			font-size:1.5em;
+			margin-bottom: 0.3125rem;
+			/*margin-bottom: 5px;*/
+			background: rgba(0,0,0,.5);
+			padding: 20px;
+			width: 100%;
+		  }
+		  
+		  .reloj {
+			font-family: Oswald, Arial;
+			width: 100%;
+			padding: 20px;
+			font-size: 4em;
+			text-align: center;
+			background: rgba(0,0,0,.5);
+		  }
+		  
+		  .reloj .caja-segundos {
+			display: inline-block;
+		  }
+		  
+		  .reloj .segundos,
+		  .reloj .ampm {
+			font-size: 2rem;
+			display: block;
+		  }
+		  td.uppercase
+		  {
+			text-transform: uppercase;
+		  }
+		  .vertical-alignment-helper {
+			display:table;
+			height: 100%;
+			margin-left: 41%;
+		  }
+		  .vertical-align-center {
+			/* To center vertically */
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		  }
+		  </style>
 	
 </head>
 <script>
@@ -72,7 +140,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname"><%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b
+								src="/images/user.png" /><span class="user_adminname"> <%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -113,81 +181,82 @@
 			<div class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
-					<br>
-					<br>
-					<br>
-					<div class="row">
-
-						<div class="col-lg-12 ">
-								<div class="container-fluid">
-										<div class="row">
-											<div class="col-xs-12">
-								
-												<div class="header">
-													<div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i></div>
-													<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Laboratorio </h3>
-												</div>
-												
-
+						<div class="row">
+								<div class="col-sm-12">
+									<div class="user-profile-sidebar profile_widget">
+										<div class="row"> <img src="/images/medico.png"> 
+											<div class="user-identity"> 
+												<h4>Bienvenido <strong><%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></strong></h4>
+												<p><i class=""></i> </p>
 											</div>
 										</div>
 									</div>
-
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-      <div class="container clear_both padding_fix col-lg-8">
-			<br>
-			<br>
-			<br>
-			<div class="row">
-	  
-				<div class="col-lg-12 ">
-					<div class="a" style="display:block ">
-						<h1 class="letras">GOBIERNO AUTONOMO DE POTOSI</h1>
-						</div>
-						<br>
-						<br>
-					<div >
-						  <img class="centrado"src="/images/VIII.gif" width="300" height="200"  />
-					</div>
-					<br>
-					<br>
-					
-				</div>
-			   
-			  </div>
-			
-			<!--\\\\\\\ container  end \\\\\\-->
-		  </div>
-
-							<!-- Content page-->
-							<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-								<!-- NavBar -->
-								<nav class="full-box dashboard-Navbar dashboard-sideBar-imaggg cover ">
-									<ul class="full-box list-unstyled text-right dashboard-sideBar-ctttt">
-										<li class="pull-left">
-											<a href="#!" class="btn-menu-dashboard"><i
-													class="zmdi zmdi-more-vert"></i></a>
-										</li>
-										<li>
-											<a href="#!" class="btn-Notifications-area">
-												<i class="zmdi zmdi-notifications-none"></i>
-											</a>
-										</li>
-									</ul>
-								</nav>
-								<!-- Content page -->
-								<div class=" full-box ">
-									<div class="container-fluid">
-
+									
+									<div class="widget-status-data" onclick="location.href='/laboratorios/view_list_lab/<%=data_token.personal.cargo%>/<%=data_token.token_id%>';"style="cursor: pointer;" >
+										<div class="row">
+											<% if(lista_pacientes != 0) { %>	
+											<div class="col-md-4">
+												<h5><strong></strong><br> Tiene</h5>
+											</div>	
+											<div class="col-md-4">
+												<h5><strong><%=lista_pacientes%></strong><br>
+													Examen</h5>
+											</div>
+											<% } else { %>
+											<div class="col-md-4">
+												<h5><strong></strong><br>No tiene</h5>
+											</div>
+											<div class="col-md-4">
+												<h5><strong>Ni un</strong><br>
+													Paciente </h5>
+											</div>
+											<% } %>
+											<div class="col-md-4">
+												<h5><strong></strong><br>
+													Para examinar</h5>
+											</div>
+										</div>
 									</div>
-
-
+							
 								</div>
-							</section>
-
-						</div>
-
-					</div>
+							</div><br>
+							<br>				
+							<div class="row">
+								<div class="col-md-12">	
+									  <div class="col-md-6">
+										<div class="">
+											
+										  </div>
+										<div class="col-md-12 ">
+											<div class="widget">
+												<div class="fecha">
+												  <p id="diaSemana" class="diaSemana">Martes</p>
+												  <p id="dia" class="dia">27</p>
+												  <p>de </p>
+												  <p id="mes" class="mes">Octubre</p>
+												  <p>del </p>
+												  <p id="year" class="year">2015</p>
+												</div>
+												<div class="reloj">
+												  <p id="horas" class="horas">11</p>
+												  <p>:</p>
+												  <p id="minutos" class="minutos">48</p>
+												  <p>:</p>
+												  <div class="caja-segundos">
+													<p id="ampm" class="ampm">AM</p>
+													<p id="segundos" class="segundos">12</p>
+												  </div>
+												</div>
+											</div>
+										</div>	
+								  </div>
+								  <div class="col-md-6 ">
+									<div id='calendar'></div>
+									<!--/calendar end-->
+								  </div>
+								</div>
+							</div>
+					<br>
 
 					<!--\\\\\\\ container  end \\\\\\-->
 				</div>
@@ -221,6 +290,9 @@
 
 		<script src="/js/jPushMenu.js"></script>
 		<script src="/js/side-chats.js"></script>
+		<script src="/plugins/calendar/fullcalendar.min.js"></script>
+<script src="/plugins/calendar/external-draging-calendar.js"></script>
+
 
 </body>
 
