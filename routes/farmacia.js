@@ -1193,10 +1193,26 @@ router.get('/reportes_ventas', (req,res) => {
 router.get('/ventas_cli/:id/:token_id/:token_partial', (req,res) => {
   const { id, token_id, token_partial }  = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
-  
-    res.render('Farmacia/ventas_cli',{
-      data_doc : data_user[token_id]
-    });
+    
+    fetch('http://localhost:3200/api/list_ventas_clientes/'+id)   
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp =>{
+
+      fetch('http://localhost:3200/api/list_clients')   
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(cliente =>{
+        
+        res.render('Farmacia/ventas_cli',{
+          resp,
+          cliente,
+          data_doc : data_user[token_id],
+          cliente
+        });
+      })
+    })
+    
   }else{
     res.redirect('/')
   }
