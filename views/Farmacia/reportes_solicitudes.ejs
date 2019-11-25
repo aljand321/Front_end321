@@ -45,7 +45,7 @@
     			<ul>
 		    	  <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 			       	<ul>
-      				  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+      				  <li> <a href="/Farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
 			      	</ul>
 			      </li>
     			  <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -83,8 +83,42 @@
             </div>
             <div class="porlets-content">
               <div class="panel-body">
-                <!-- Button trigger modal -->
-                <button data-target="#myModal2" data-toggle="modal" class="btn btn-success btn-lg mb10"> Seleccione Aqui </button>
+                <form  action="/Farmacia/filter_fechas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label">DESDE:</label>
+                        <input type="date" name="fecha_inicio" class="form-control" >
+                      </div><!--/form-group--> 
+                    </div>
+                    <div class="col-md-6">
+										  <div class="form-group">
+                        <label class="col-sm-3 control-label">HASTA:</label>
+                        <input type="date" name="fecha_final" class="form-control" >
+                      </div><!--/form-group-->
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">RESPONSABLE <i class="fa fa-users"></i> :</label>
+                        <select name="id_persoanl" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                          <option value="">--------</option>
+                          <% for (var i = 0; i < list_farmaceutico.length; i++) { %>
+                            <option value="<%=list_farmaceutico[i].id%>"><%=list_farmaceutico[i].nombre%> <%=list_farmaceutico[i].apellidop%> <%=list_farmaceutico[i].apellidom%></option>
+                          <% } %>
+                        </select>
+                      </div><!--/form-group-->
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
+                            </div>
+                          </div><!--/form-group--> 
+                    </div>
+                  </div>
+								</form>
               </div>  
               <div class="table-responsive">
                 <table  class="display table table-bordered table-striped " id="dynamic-table">
@@ -101,16 +135,28 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <%if (filter != null) { %>
+                    <% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
                     <tr>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
+                      <td><%=i+1%></td>
+                      <td><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+                      <td><%=filter.data.data_cliente[i].num_solicitud%></td>
+                      <td><%=filter.data.data_cliente[i].trimestre%></td>
+                      <td><%=filter.data.data_cliente[i].responsable%></td>
+                      <td><%=filter.data.data_cliente[i].destino%></td>
+                      <td><%=filter.data.data_cliente[i].createdAt%></td>
+                      <% if (filter.data.data_cliente[i].medicamento_mandado_almacen == null ) { %>											
+                        <td style="color: crimson;">Pedido realizado</td>
+                      <% } else { %>
+                        <% if(filter.data.data_cliente[i].medicamento_aceptado_farmacia == null) {%>
+                          <td style="color: rgb(217, 220, 20);">Pedido en espera</td>
+                        <% } else { %>
+                          <td style="color: rgb(2, 170, 44);">Aceptado</td>
+                        <% } %>
+                      <% } %>
                     </tr>
+                    <% } %>
+                    <% } %>
                   <tbody>
                 </table>
               </div><!--/table-responsive-->
@@ -121,49 +167,7 @@
     </div>
   </div>
 <!--Modal-->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Reportes de Solicitudes</h4>
-      </div>
-      <div class="modal-body"> 
-        <form class="form-horizontal" role="form"  parsley-validate novalidate>
-          <div class="form-group">
-            <label for="inputEmail3" required parsley-type="desde" class="col-sm-2 control-label">DESDE:</label>
-            <div class="col-sm-4">
-              <input type="date" class="form-control" >
-            </div>
-          </div><!--/form-group--> 
-          <div class="form-group">
-            <label for="inputPassword3" required parsley-type="hasta" class="col-sm-2 control-label">HASTA:</label>
-            <div class="col-sm-4">
-              <input type="date" class="form-control" >
-            </div>
-          </div><!--/form-group-->  
-          <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Responsable <i class="fa fa-users"></i> :</label>
-            <div class="col-sm-4">
-              <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                <option>Paco</option>
-                <option>Luis</option>
-                <option>Luna</option>
-                <option>Daniela</option>
-              </select>
-            </div>
-          </div><!--/form-group-->
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary">Aceptar</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            </div>
-          </div><!--/form-group--> 
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
 	<div class="vertical-alignment-helper">

@@ -301,8 +301,11 @@ router.post('/registrar_medicamento/:token_id/:token_partial', (req,res) => {
             body_post(datos, token_id);
           }
           res.redirect('/farmacia/almacenamiento/' + token_id + '/' + token_partial) 
-      }   
-  })
+      }  
+      setTimeout(()=>{
+        remove(token_id)
+    },1000); 
+  })  
 })
 
 // ruta para poder actulizar medicamentos
@@ -357,6 +360,9 @@ router.post('/update_medicamento/:id_medicamento/:token_id/:token_partial', (req
       } 
       res.redirect('/farmacia/one_medicamento/'+id_medicamento+'/'+token_id+'/'+token_partial) 
     }
+    setTimeout(()=>{
+      remove(token_id)
+  },1000); 
    
   })
 })
@@ -524,7 +530,10 @@ router.post('/registrar_grupo/:token_id/:token_partial', (req,res) => {
                 msg_data(msg_p,token_id)
             }
             res.redirect('/farmacia/grupoAsig_Far/'+token_id+'/'+token_partial) 
-        }   
+        }  
+        setTimeout(()=>{
+          remove(token_id)
+      },1000); 
     })
 })
 
@@ -577,7 +586,10 @@ router.post('/update_grupo/:id_grupo/:token_id/:token_partial', (req,res) => {
                 msg_data(msg_p,token_id)
             }
             res.redirect('/farmacia/one_grupo/'+id_grupo+'/'+token_id+'/'+token_partial) 
-        }   
+        } 
+        setTimeout(()=>{
+          remove(token_id)
+      },1000);   
     })
 })
 
@@ -1151,22 +1163,86 @@ router.get('/Stock_far/:token_id/:token_partial', (req,res) => {
 
 
 
-router.get('/reportes_solicitudes/:token_id/:token_partial', (req,res) => {
-  const {token_id, token_partial} = req.params
+router.get('/reportes_solicitudes/:token_id/:token_partial', (req,res) => {   
+  const { token_id, token_partial }  = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
-    fetch('http://localhost:3200/api/list_pedidos')   
+
+    fetch('http://localhost:3600/api/listar_farmaceutico')
     .then(resp => resp.json())
-    .catch(error => console.error('Error',error))
-    .then(resp =>{        
-        res.render('Farmacia/reportes_solicitudes',{
-            resp,
-            data_doc: data_user[token_id]
-        });
+    .then(list_farmaceutico => {   
+      //res.send(filter_data[token_id])
+      console.log ( data_user[token_id], "  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<sadasd23")    
+      res.render('Farmacia/reportes_solicitudes',{
+        list_farmaceutico,
+        data_doc : data_user[token_id],
+        filter: filter_data[token_id]
+      })
     })
+   
+
   }else{
     res.redirect('/')
   }
 });
+
+var filter_data = {}
+function filter_data1(data,id){
+  let storedItem = filter_data[id];
+    if (!storedItem) {
+      storedItem = filter_data[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_data () {
+  let arr = [];
+  for (const id in filter_data) {
+      arr.push(filter_data[id]);
+  }
+  return arr;
+}
+
+function remove_filter_data(id) {
+  delete data_user[id];
+}
+
+
+router.post('/filter_fechas/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial} = req.params
+  var datos = req.body
+  console.log(datos, "  esto es lo que quiero ver ")
+  var msg_p;
+   var esto = {
+    method: 'post',
+    body: JSON.stringify(datos),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:3200/api/list_pedidos_filter',esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    if(filter_data[token_id] == null){
+      msg_p = {
+        success:false,
+        data_cliente:data
+      }
+      filter_data1(msg_p,token_id)
+    }else{
+      msg_p = {
+        success:false,
+        data_cliente:data
+      }
+      remove_filter_data(token_id)
+      filter_data1(msg_p,token_id)
+    }
+    res.redirect('/Farmacia/reportes_solicitudes/'+token_id+'/'+token_partial)
+  })
+})
   
 router.get('/reportes_facturacion',(req, res) => {
   res.render('Farmacia/reportes_facturacion')

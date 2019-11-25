@@ -87,52 +87,156 @@
         		</div>
       		</div>
      		<!--Contenido-->
-     		<div class="contentpanel"><br>
-      			<!--Formulario-->
-      			<div class="container clear_both padding_fix">
-					<div class="row">
-						<div class="col-md-12">
-				 			<div class="block-web">
+			 <div class="contentpanel"><br>
+				<div class="container clear_both padding_fix col-lg-8">
+					<div class="main-content">
+					  	<div class="col-lg-12 block-web">
+							<div class="container-fluid">
 								<div class="header">
-					  				<div class="actions"></div>
-					  				<h4 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>   Reporte de Salidas</h4>
-								</div>
-								<div class="porlets-content">
-					  				<div class="panel-body">
-										<!-- Button trigger modal -->
-										<button data-target="#myModal2" data-toggle="modal" class="btn btn-success btn-lg mb10"> Seleccione Aqui </button>
-									</div>  
-				  					<div class="table-responsive" id="imprimible">
-										<table  class="display table table-bordered table-striped" id="dynamic-table" >
-											<thead>
-							  					<tr>
-												<th>#</th>
-							  					<th>Fecha</th>
-												<th>Codigo de Distribucion</th>
-						  						<th>Responsable</th>
-						  						<th>Distribuido</th>
-						  						<th>Cantidad Total</th>
-						  						</tr>
-											</thead>
-											<tbody>
-												<% for(var i = 0; i < data.length; i++) { %>
-							  					<tr>
-												<td><%=i+1%></td>
-												<td><%=data[i].fechaLlegada%></td>
-												<td><%=data[i].codigo%></td>
-												<td><%=data[i].responsable%></td>
-												<td><%=data[i].recibe%></td>
-												<td>falta</td>
-	  											</tr>
-												<% } %>
-											<tbody>
-										</table>
-					  				</div><!--/table-responsive-->
-								</div><!--/porlets-content-->
-				  			</div><!--/block-web--> 
-						</div><!--/col-md-12--> 
-			  		</div><!--/row-->
-				</div><!--/page-content end--> 
+									<div class="actions"></div>
+									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>   Reporte de Salidas</h2>
+							  	</div>
+							</div>
+						</div>
+						<div class="main-content">
+							<section class="panel default blue_title h2">
+							  	<div class="page-content">
+									<ul class="nav nav-tabs" id="myTab">
+									  	<li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab"><i class="fa fa-edit icon"></i><span>&nbsp;&nbsp;&nbsp;</span>Solicitudes de Farmacia </a></li>
+								  		<li class="col-lg-6 text-center"><a href="#listt" data-toggle="tab"><i class="fa fa-clipboard "></i><span>&nbsp;&nbsp;&nbsp;</span>Distribuciones Realizadas</a></li>
+									</ul>
+									<div id="myTabContent" class="tab-content">
+								  		<div class="tab-pane fade active in " id="neww">
+											<div class="panel-body">
+												<form  action="#" method="POST" parsley-validate novalidate>
+													<div class="col-md-12">
+														<div class="col-md-6">
+															<div class="form-group">
+																<label class="col-sm-3 control-label">DESDE:</label>
+																<input type="date" class="form-control" >
+															</div><!--/form-group--> 
+														</div>
+														<div class="col-md-6">
+															<div class="form-group">
+																<label class="col-sm-3 control-label">HASTA:</label>
+																<input type="date" class="form-control" >
+															</div><!--/form-group-->
+														</div>
+													</div>
+													<div class="col-md-12">
+														<div class="col-md-6">
+															<div class="form-group">
+															  	<label class="col-sm-4 control-label">DISTRIBUIDO <i class="fa fa-users"></i> :</label>
+																<select class="selectpicker" data-show-subtext="true" data-live-search="true">
+																	<option>Paco</option>
+																	<option>Luis</option>
+																	<option>Luna</option>
+																	<option>Daniela</option>
+																</select>
+															</div><!--/form-group-->
+														</div>
+														<div class="col-md-6">
+															<div class="form-group">
+																<div class="col-sm-offset-2 col-sm-10">
+																	<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
+																</div>
+															</div><!--/form-group--> 
+														</div>
+													</div>
+												</form>
+											</div>
+											<table  class="display table table-bordered table-striped " id="dynamic-table">
+									  			<thead>
+													<tr>
+													<th>#</th>
+													<th>Nro. de Solicitud</th>
+													<th>Responsable</th>
+													<th>Fecha</th>
+													<th>Trimestre</th>
+													<th>Estado</th>
+													<th>Destino</th>
+													<th>Opciones</th>
+													</tr>
+											  	</thead>
+									  			<tbody>
+										
+									  			<tbody>
+											</table>
+								 	 	</div>
+								  		<div class="tab-pane fade " id="listt">
+											<div class="porlets-content">
+									  			<div class="panel-body">
+													<form  action="#" method="POST" parsley-validate novalidate>
+														<div class="col-md-12">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label class="col-sm-3 control-label">DESDE:</label>
+																	<input type="date" class="form-control" >
+																</div><!--/form-group--> 
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label class="col-sm-3 control-label">HASTA:</label>
+																	<input type="date" class="form-control" >
+																</div><!--/form-group-->
+															</div>
+														</div>
+														<div class="col-md-12">
+															<div class="col-md-6">
+																<div class="form-group">
+																  	<label class="col-sm-4 control-label">DISTRIBUIDO <i class="fa fa-users"></i> :</label>
+																	<select class="selectpicker" data-show-subtext="true" data-live-search="true">
+																		<option>Paco</option>
+																		<option>Luis</option>
+																		<option>Luna</option>
+																		<option>Daniela</option>
+																	</select>
+																</div><!--/form-group-->
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<div class="col-sm-offset-2 col-sm-10">
+																		<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
+																	</div>
+																</div><!--/form-group--> 
+															</div>
+														</div>
+													</form>
+												</div>
+									  			<div class="table-responsive">
+													<table  class="display table table-bordered table-striped" id="dynamic-tablee">
+														<thead>
+															<tr>
+															<th>#</th>
+															<th>Fecha</th>
+														  	<th>Codigo de Distribucion</th>
+															<th>Responsable</th>
+															<th>Distribuido</th>
+															<th>Cantidad Total</th>
+															</tr>
+														</thead>
+														<tbody>
+														  	<% for(var i = 0; i < data.length; i++) { %>
+															<tr>
+														  	<td><%=i+1%></td>
+															<td><%=data[i].fechaLlegada%></td>
+															<td><%=data[i].codigo%></td>
+														  	<td><%=data[i].responsable%></td>
+															<td><%=data[i].recibe%></td>
+															<td>falta</td>
+															</tr>
+														 	<% } %>
+														</tbody>
+													</table>
+									  			</div><!--/table-responsive-->
+											</div><!--/porlets-content-->    
+										</div>
+									</div>
+							  	</div>
+							</section>
+						</div>
+					</div>
+				</div> 
 		 	</div><!--/main-content end--> 
 		</div>
 	</div>
