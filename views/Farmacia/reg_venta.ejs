@@ -163,54 +163,46 @@
 									<form  @submit="register" method="POST" >
 										<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
 										<input type="hidden" :value="id_cliente = '<%=one_cliente[0].id%>'">
-										<div class="col-md-12">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label>Codigo de Venta</label>
-													<input type="text" class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>  
-											<div class="col-md-4">
-												<div class="form-group">
-													<label>Fecha:</label>
-													<input type="date" name="fechaLLEgada"class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
+										<div class="col-md-12">									
 											<div class="col-md-4">
 												<div class="form-group">
 													<label>Empleado</label>
-													<input type="text" :value=" empleado = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'" class="form-control" onkeyup="mayus(this);">
+													<input type="text" readonly v-model="empleado" class="form-control" onkeyup="mayus(this);">
+													<input type="hidden" :value=" empleado = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
 												</div>
 											</div>
 										</div><br>
+										
 										<div class="col-md-12">
+											<label for="" class="col-md-12">Cliente:</label>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>C.I.:</label>
-													<input type="text"  :value=" ci = '<%=one_cliente[0].ci%>'" class="form-control" onkeyup="mayus(this);">
+													<input type="text" readonly :value=" ci = '<%=one_cliente[0].ci%>'" class="form-control" onkeyup="mayus(this);">
+													
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>Apellido Paterno:</label>
-													<input type="text" value="<%=one_cliente[0].apellidop%>" class="form-control" onkeyup="mayus(this);">
+													<input type="text" readonly value="<%=one_cliente[0].apellidop%>" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>Apellido Materno:</label>
-													<input type="text" value="<%=one_cliente[0].apellidom%>" class="form-control" onkeyup="mayus(this);">
+													<input type="text"readonly value="<%=one_cliente[0].apellidom%>" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>Nombre(s):</label>
-													<input type="text" value="<%=one_cliente[0].nombre%>" class="form-control" onkeyup="mayus(this);">
+													<input type="text" readonly value="<%=one_cliente[0].nombre%>" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 										</div>
 										<p class="text-center">
-											<button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-info">Lista de Productos</button>
+											<button type="button" data-target="#myModal2" @click="searchInTheListMed(searchMed)" data-toggle="modal" class="btn btn-info">Lista de Productos</button>
 										</p>
 										<div class="table-responsive">
 											<table  class="display table table-bordered table-striped " >

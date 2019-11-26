@@ -1,4 +1,3 @@
-
 const ver_pedido_farmacia =  new Vue({
     el:'#ver_pedido_farmacia',
     data: () => ({
@@ -39,6 +38,7 @@ const ver_pedido_farmacia =  new Vue({
                         price : resp[0].medicamentos.list_meds[i].item.price
                     },
                     fehca_vencimineto: '',
+                    reduce:'',
                     qty : resp[0].medicamentos.list_meds[i].qty,
                     price : resp[0].medicamentos.list_meds[i].price
                 })
@@ -73,30 +73,41 @@ const ver_pedido_farmacia =  new Vue({
                 );
             })
         },
-        add_medicamento(id_medicamento, index){
-           
-            fetch(this.url+'/farmacia/vue_medicamento/'+id_medicamento)
-            .then(resp => resp.json())
-            .catch(error => console.error('Error',error))
-            .then(response => {
-                var car = {
-                    id: response[0].id,
-                    codificacion: response[0].codificacion,
-                    nombre: response[0].nombre,
-                    //cantidad: response[0].cantidad_unidad,
-                    price: response[0].precio_compra
-                } 
-                this.add(car, index)
-                
-            })
-            .catch(error => {
-                console.log("no hay coneccion con el servidor 3200");
+        add_medicamento(id_medicamento, index,cantidad){
+
+            if (cantidad == '' || cantidad == 0 || cantidad < 0){
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
+                    '<label style="color:red;">Inserte cantidad, no puede ser cantidades negativas</label>',
                     'error'
-                );
-            })
+                )
+            }else{
+                fetch(this.url+'/farmacia/vue_medicamento/'+id_medicamento)
+                .then(resp => resp.json())
+                .catch(error => console.error('Error',error))
+                .then(response => {
+                    var car = {
+                        id: response[0].id,
+                        codificacion: response[0].codificacion,
+                        nombre: response[0].nombre,
+                        //cantidad: response[0].cantidad_unidad,
+                        price: response[0].precio_compra
+                    }
+                    for (var i = 0; i < cantidad; i++){
+                        this.add(car, index)
+                    }                    
+                })
+                .catch(error => {
+                    console.log(error);
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
+                        'error'
+                    );
+                })
+            }
+           
+            
         },
         add: function(item, id)  {
             let storedItem = this.list[id];
@@ -114,16 +125,37 @@ const ver_pedido_farmacia =  new Vue({
     
           },
 
-        reduceByOne (id) {
-           
-            this.list[id].qty--;
-            this.list[id].price -= this.list[id].item.price;
-            this.total_cantidad--;
-            this.totalPrice -= this.list[id].item.price;
-        
-            if (this.list[id].qty <= 0) {
-                this.list.splice(id, 1)
-            }
+        reduceByOne (id, cantidad, qty) {
+            var qty1 = qty - cantidad
+            if (qty1 > 0){
+                if (cantidad == '' || cantidad == 0 || cantidad < 0){
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Inserte cantidad, no puede ser cantidades negativas</label>',
+                        'error'
+                    )
+                }else{
+                    for (var i = 0; i < cantidad; i++){
+                        this.list[id].qty--;
+                        this.list[id].price -= this.list[id].item.price;
+                        this.total_cantidad--;
+                        this.totalPrice -= this.list[id].item.price;
+                        
+                        if (this.list[id].qty <= 0) {
+                            this.list.splice(id, 1)
+                        }
+                    }
+                    
+                } 
+            }else{
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">No existe esa cantidad para poder reducir</label>',
+                    'error'
+                )
+            } 
+            
+            
         },
         generateArray: function () {
             let arr = [];
