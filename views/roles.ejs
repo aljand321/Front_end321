@@ -23,6 +23,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -207,7 +211,7 @@ table td:last-child {display:none}
                 <br>
                 <br>
                 <div class="porlets-content">
-                    <a type="button" class="btn btn-primary btn-lg btn-block bs" href="/usuarios/onlymedico/<%=data_doc.data.token_id%>">Medicos</a>
+                    <!--<a type="button" class="btn btn-primary btn-lg btn-block bs" href="/usuarios/onlymedico/<%=data_doc.data.token_id%>">Medicos</a>
                   <form class="form-horizontal"  >
                     <div class="form-group">
                       <div class="col-md-4">
@@ -237,21 +241,22 @@ table td:last-child {display:none}
                       </div>
                     </div>
                     </div>
-                  </form>
-                  <form class="form-horizontal" name="formulario1"  >
+                  </form>-->
+                  <form action="/usuarios/filter_datas/<%=data_doc.data.token_id%>" method="POST" class="form-horizontal" name="formulario1"  >
                     <div class="form-group">
                       <label class="col-sm-4 control-label">Desde:</label>
                       <div class="col-sm-4">
-                        <input type="date" class="form-control" >
+                        <input name="fecha_inicio" type="text"  class="form-control" >
                       </div>
                     </div><!--/form-group--> 
                     <div class="form-group">
                       <label  class="col-sm-4 control-label">Hasta:</label>
                       <div class="col-sm-4">
-                        <input type="date" class="form-control" >
+                        <input name="fecha_final" type="text"  class="form-control" >
                       </div>
-                    </div><!--/form-group-->  
-                    <div class="form-group">
+                    </div><!--/form-group--> 
+                    <!--<input type="text" name="cargo" value="medico"> -->
+                    <!-- <div class="form-group">
                         <label  class="col-sm-4 control-label">Especifica:</label>
                         <div class="col-sm-4">
                             <select class="seleccion" name="cosa" onchange="cambia()">
@@ -260,17 +265,26 @@ table td:last-child {display:none}
                                 <option value="2">Tecnico
                               </select>
                         </div>
-                      </div><!--/form-group--> 
+                      </div> --><!--/form-group-->
+
                       <div class="form-group">
                           <label  class="col-sm-4 control-label">tipo:</label>
                           <div class="col-sm-4">
-                              <select class="seleccion" name="opt">
-                                  <option value="-">---Seleccione---
-                                </select>
+                              <select  class="seleccion" name="cargo">
+                                <option value="-">---Seleccione---
+                                <option value="medico">MÉDICO</option>
+                                <option class="uppercase"value="enfermera">ENFERMERA</option>
+                                <option class="uppercase" value="personal">PERSONAL</option>
+                                <option class="uppercase" value="farmaseutico">FARMACEUTICO</option>
+                                <option value="ECOGRAFIA">LABORATORISTA DE ECOGRAFIA</option>
+                                <option value="Rayos_x">LABORATORISTA DE RAYOS X</option>
+                                <option value="LABORATORIO">LABORATORISTA</option>
+                              </select>
                           </div>
-                        </div><!--/form-group--> 
-                  
+                        </div> <!--/form-group--> 
+                        <button type="submit" class="btn btn-info">Insertar</button>
                   </form>
+                  
                   <a class="btn btn-warning center" href="/usuarios/onlymedico/<%=data_doc.data.token_id%>" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
                   <br>
                   <div class="table-responsive">
@@ -290,19 +304,20 @@ table td:last-child {display:none}
                         </tr>
                       </thead>
                       <tbody>
-                        <%for (var i = 0; i< data.length; i++) { %>
-                          <tr >
-
-                            <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                            <td class="text-center "><%=data[i].nombre%></td>
-                            <td class="text-center"><%=data[i].apellidop%></td>
-                            <td class="text-center"><%=data[i].apellidom%></td>
-                            <td class="text-center"><%=data[i].ci%></td>
-                            <td class="text-center"><%=data[i].telefono%></td>
-                            <td class="text-center"><%=data[i].cargo%></td>
-                            <td id="ocultoI"><a href="/usuarios/cuentas/<%=data[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
-                            </td>
-                          </tr>
+                        <%if (filter != null) { %>
+                          <% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
+                            <tr>
+                              <td class="text-center"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+                              <td class="text-center "><%=filter.data.data_cliente[i].nombre%></td>
+                              <td class="text-center"><%=filter.data.data_cliente[i].apellidop%></td>
+                              <td class="text-center"><%=filter.data.data_cliente[i].apellidom%></td>
+                              <td class="text-center"><%=filter.data.data_cliente[i].ci%></td>
+                              <td class="text-center"><%=filter.data.data_cliente[i].telefono%></td>
+                              <td class="text-center"><%=filter.data.data_cliente[i].cargo%></td>
+                              <td id="ocultoI"><a href="/usuarios/cuentas/<%=filter.data.data_cliente[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                              </td>
+                            </tr>
+                          <% } %>
                         <% } %>
                       </tbody>
                     </table>
@@ -402,7 +417,8 @@ table td:last-child {display:none}
 <script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
 <script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
 
-
+<script src="/js/toastr.js"></script>
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 
 <script src="/plugins/validation/parsley.min.js"></script>
 <script src="/plugins/data-tables/jquery.dataTables.js"></script>
@@ -448,6 +464,30 @@ table td:last-child {display:none}
       });
       e.preventDefault();
     });
+</script>
+
+<script>
+		/*  <%if(msg) { %> */
+		  /*  <%if(msg.data.success == false) { %> */
+			 msg_false()
+			 function msg_false(){
+			 swal.fire(
+			   'Error!',
+			   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+			   'error'
+			 )
+			 }
+		   /* <% } else {%> */
+			 msg_true()
+			 function msg_true(){
+			 swal.fire(
+			   'Success!',
+			   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+			   'success'
+			 )
+			 }
+		  /*  <% } %> */
+		/*  <% } %> */
 </script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>

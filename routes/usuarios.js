@@ -489,7 +489,8 @@ router.get('/roles1/:token_id',(req, res) => {
           data,
           data_doc:datas.name.data_user[token_id],
           allusers,
-          filters: filter_ventas[token_id]
+          filter: filter_ventas[token_id],
+          msg:msg_Consulta_emergencia[token_id],
         })
       })
     
@@ -533,7 +534,7 @@ function remove_filter_data2(id) {
 router.post('/filter_datas/:token_id', (req,res) => {
   const { token_id } = req.params;
   var datos = req.body;  
-  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+  if(datas.name.token[token_id]){
     var msg_p;
      var esto = {
       method: 'post',
@@ -542,7 +543,7 @@ router.post('/filter_datas/:token_id', (req,res) => {
         'Content-type' : "application/json"
       }
     };
-    fetch('http://localhost:3600/api/',esto)
+    fetch('http://localhost:3600/api/filter_list',esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
