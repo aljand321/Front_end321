@@ -95,12 +95,46 @@
               <div class="block-web">
                 <div class="header">
                   <div class="actions">  </div>
-                  <h4 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>   Medicamentos Vencidos</h4>
+                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>   Medicamentos Vencidos</h2>
                 </div>
                 <div class="porlets-content">
                   <div class="panel-body">
-                    <!-- Button trigger modal -->
-                    <button data-target="#myModal2" data-toggle="modal" class="btn btn-success btn-lg mb10"> Seleccione Aqui </button>
+                    <form  action="#" method="POST" parsley-validate novalidate>
+                      <div class="col-md-12">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label">DESDE:</label>
+                            <input type="date" class="form-control" >
+                          </div><!--/form-group--> 
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label">HASTA:</label>
+                            <input type="date" class="form-control" >
+                          </div><!--/form-group-->
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="col-sm-6 control-label">GRUPO ASIGNACION <i class="fa fa-users"></i> :</label>
+                            <select class="selectpicker" data-show-subtext="true" data-live-search="true">
+                              <option>Paco</option>
+                              <option>Luis</option>
+                              <option>Luna</option>
+                              <option>Daniela</option>
+                            </select>
+                          </div><!--/form-group-->
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
+                            </div>
+                          </div><!--/form-group--> 
+                        </div>
+                      </div>
+                    </form>
                   </div>  
                   <div class="table-responsive">
                     <table  class="display table table-bordered table-striped" id="dynamic-table">
@@ -185,28 +219,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-    <div class="vertical-alignment-helper">
-      <div class="modal-dialog vertical-align-center modal-sm ">
-        <div class="modal-content">
-          <br>
-          <div class="center">
-            <i><img src="/images/salir.gif" width="100" height="100" /></i>
-          </div>
-          <div class="center">
-            <h5><b>¿Cerrar Sesión?</b></h5>
-          </div>
-          <div class="modal-footer">
-            <div class="center">
-              <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> 
   </div>
 <%- include("../partials/scripts") -%>
 </body>

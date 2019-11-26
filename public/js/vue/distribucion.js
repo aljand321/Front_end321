@@ -422,7 +422,6 @@ const pedidos =  new Vue({
                 this.codigo = '';
                 this.responsable= '';
                 this.recibe = '';
-                this. fechaLlegada = '';
                 this.distribucionList = {};
                 this.totalQty = 0;
                 this.totalPrice = 0;

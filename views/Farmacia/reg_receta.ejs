@@ -4,8 +4,24 @@
   	<meta charset="UTF-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-  	<title>Farmacia</title>
-  	<%- include("../partials/head") -%>
+	  <title>Farmacia</title>
+	  <style>
+			.info2{ border-radius:100%; float: left; height:80px; width:80px; }
+			.info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+			.vertical-alignment-helper {
+				display:table;
+				height: 100%;
+				margin-left: 41%;
+			  }
+			  .vertical-align-center {
+				/* To center vertically */
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			  }
+		  </style>
+	  <%- include("../partials/head") -%>
+	  
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">	
 </head>
@@ -122,7 +138,6 @@
 								<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-							  	<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
 							  	<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
 					  			<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 							</ul>
@@ -138,13 +153,11 @@
 						<div class="col-md-12">
 						  	<div class="block-web">
 								<div class="header">
-								  	<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-									<h3 class="content-header"><i class="fa fa-user-md icon"></i>Registrar Receta   esot es el id {{id_receta}}</h3>
+									<div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href=""><i class="fa fa-repeat"></i></a></div>
+									<h2 class="content-header"><div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div> Recetas/<span class="semi-bold"> Registrar Receta</span></h2>  
 								</div>
 								<span style="color: red">{{msg_false_post}}</span>
 								<span style="color: blue">{{msg_true_post}}</span>
-								<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
-								<a @click = "update_estad_atendido()">update estado</a>
 								<div class="porlets-content">
 									<input type="hidden" :value="id_receta = '<%=data_receta[0].id%>'">
 									<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
@@ -158,7 +171,7 @@
 											</div>  
 											<div class="col-md-4">
 												<div class="form-group">
-													<label>Fecha:  esto se inserta automaticamento cuando se registra</label>
+													<label>Fecha:  </label>
 													<input type="date" readonly class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
@@ -197,6 +210,12 @@
 										</div>
 										<div class="col-md-12">
 											<div class="col-md-4">
+												<div class="form-group">
+													<label>Procedencia:</label>
+													<input type="text" readonly :value="tipo_consulta = '<%=data_receta[0].tipoConsulta%>'" class="form-control" onkeyup="mayus(this);">
+												</div>
+											</div>
+											<div class="col-md-4">
 												<div class="form-group" >
 													<label>Tipo de Paciente:</label>
 													<select onkeyup="mayus(this);">
@@ -204,12 +223,6 @@
 														<option>INSTITUCIONAL</option>
 														<option>CONVENIO</option>
 													</select>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>Procedencia:</label>
-													<input type="text" readonly :value="tipo_consulta = '<%=data_receta[0].tipoConsulta%>'" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -222,20 +235,15 @@
 												</div>
 											</div>
 										</div>
+								
 										<div class="col-md-12">
-											<div class="col-md-2">
-												<div class="form-group">
-													<label>N° Diagnostico:</label>
-													<input type="text"  class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
-											<div class="col-md-5">
+											<div class="col-md-6">
 												<div class="form-group">
 													<label>Especialidad:</label>
 													<input type="text" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
-											<div class="col-md-5">
+											<div class="col-md-6">
 												<div class="form-group">
 													<label>Nombre del Doctor:</label>
 													<input type="text" name="nombre_doctor" readonly :value=" nombre_doctor = '<%=data_receta[0].doctor%>'"class="form-control" onkeyup="mayus(this);">
@@ -243,7 +251,7 @@
 											</div>
 										</div>
 										<p class="text-center">
-											<button type="button" data-target="#myModal2" @click="searchInTheListMed('')" data-toggle="modal" class="btn btn-success"><i class="fa fa-user-md"></i>  Receta</button>
+											<button type="button" data-target="#myModal2" @click="searchInTheListMed('')" data-toggle="modal" class="btn btn-info"><i class="fa fa-user-md"></i>  Receta</button>
 										</p>
 										<template v-for="msg in false_msg_product">
 											<p style="color: red"> No se pudo insertar el. Producto: {{msg.nombre}}, cantidad requerida: {{msg.cantidad_requerida}}, en stock: {{msg.cantidad_actual}}   </p>
@@ -308,8 +316,9 @@
 												</div>
 											</div>
 										</div><br><br><br>
-										<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Registrar receta</button>
+										<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Registrar receta</button>
 										<a class="btn btn-danger" href="/farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i> Cancelar</a>
+										<button type="button" class="btn btn-warning"><i class="fa fa-print"></i> Imprimir</button>
 									</form>
 								</div><!--/porlets-content--> 
 							</div><!--/block-web--> 

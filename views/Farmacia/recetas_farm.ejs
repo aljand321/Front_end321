@@ -7,18 +7,20 @@
   <title>Farmacia</title>
   <%- include("../partials/head") -%>	
   <style>
-      .vertical-alignment-helper {
-        display:table;
-        height: 100%;
-        margin-left: 41%;
-      }
-      .vertical-align-center {
-        /* To center vertically */
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-      }
-    </style>
+			.info2{ border-radius:100%; float: left; height:80px; width:80px; }
+			.info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+			.vertical-alignment-helper {
+				display:table;
+				height: 100%;
+				margin-left: 41%;
+			  }
+			  .vertical-align-center {
+				/* To center vertically */
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			  }
+		  </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -29,14 +31,14 @@
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-            <img src="/images/farmacia.png" /><span class="user_adminname">  <span>&nbsp;&nbsp;</span>  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
-            <ul class="dropdown-menu">
-              <div class="top_pointer"></div>
-              <li> <a data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
-            </ul>
-          </div> 
-        </div>
+            <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+          <img src="/images/farmacia.png" /><span class="user_adminname">   <span>&nbsp;&nbsp;</span>   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+               <ul class="dropdown-menu">
+                   <div class="top_pointer"></div>
+                 <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
+               </ul>
+             </div> 
+         </div>
       </div>
     </div>
     <div class="inner">
@@ -59,13 +61,12 @@
 			      </li>
 			      <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 				      <ul>
-	      			  <li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-	      				<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
-				      	<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
-      					<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-			      	  <li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
-	      			  <li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-				        <li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+	      			  <li> <a href="/Farmacia/reportes_solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
+	      				<li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+				      	<li> <a href="/Farmacia/reportes_ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
+      					<li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+			      	  <li> <a href="/Farmacia/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+				        <li> <a href="/Farmacia/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
       				</ul>
 			      </li>
 			    </ul>
@@ -79,8 +80,8 @@
             <div class="col-lg-12 block-web">
               <div class="container-fluid">
                 <div class="header">
-                  <div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href="/distribucion/volver2"><i class="fa fa-repeat"></i></a></div>
-									<h2 class="content-header"><div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div> Recetas</h2>  
+                  <div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href="/Farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a></div>
+                  <h2 class="content-header"><div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div> Recetas</h2>  
                 </div>
               </div>
             </div>
@@ -114,7 +115,8 @@
                               <% } %>
                             <% } %>
                             <td><%=resp[i].tipoConsulta%></td>
-                            <td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/Farmacia/reg_receta/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> Nuevo Recibo</a></td>
+                            <td class="center hidden-phone">
+                              <a href="/Farmacia/reg_receta/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar Receta"><i class="fa fa-user-md" style="color:rgb(118, 1, 173)"></i></a><span>&nbsp;</span>
                             </tr>
                           <% } %>
                         <tbody>
@@ -144,7 +146,8 @@
                                   <% } %>
                                 <% } %>
                                 <td><%=atendidos[i].tipoConsulta%></td>
-                                <td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/Farmacia/reg_receta/<%=atendidos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> Nuevo Recibo</a></td>
+                                <td class="center hidden-phone">
+                                  <a href="/Farmacia/reg_receta/<%=atendidos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Receta"><i class="fa fa-eye" style="color:rgb(22, 70, 202)"></i></a><span>&nbsp;</span>
                                 </tr>
                               <% } %>
                             </tbody>

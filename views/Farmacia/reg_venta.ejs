@@ -29,7 +29,7 @@
         		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       		</div>
       		<div class="header_top_bar">
-        		<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         		<div class="top_right_bar">
          			<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
 						 <img src="/images/farmacia.png" /><span class="user_adminname">   <span>&nbsp;&nbsp;</span>   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
@@ -52,8 +52,10 @@
 						<!--lista de medicamentos-->
 		   				<div class="modal-body"> 
 							<div class="row">
-								<span style="color: red;">{{alert}}</span>
-								<span style="color: blue;">{{pass}}</span>
+								<p class="text-center">
+									<span style="color: red;">{{alert}}</span>
+									<span style="color: blue;">{{pass}}</span>
+								</p>
 								<div class="col-xs-12 ">
 									<br>
 									<label><i class="fa fa-search"> buscar </i></label>
@@ -134,13 +136,12 @@
 			  			</li>
 			  			<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
-				  				<li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-					  			<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
-								<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
-								<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-				  				<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
-				  				<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-				  				<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+									<li> <a href="/Farmacia/reportes_solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Sol.</b> </a> </li>
+									<li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+									<li> <a href="/Farmacia/reportes_ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
+									<li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+									<li> <a href="/Farmacia/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+									<li> <a href="/Farmacia/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 							</ul>
 			  			</li>
 					</ul>
@@ -162,57 +163,47 @@
 									<form  @submit="register" method="POST" >
 										<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
 										<input type="hidden" :value="id_cliente = '<%=one_cliente[0].id%>'">
-										<div class="col-md-12">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label>Codigo de Venta</label>
-													<input type="text" class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>  
-											<div class="col-md-4">
-												<div class="form-group">
-													<label>Fecha:</label>
-													<input type="date" name="fechaLLEgada"class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
+										<div class="col-md-12">									
 											<div class="col-md-4">
 												<div class="form-group">
 													<label>Empleado</label>
-													<input type="text" :value=" empleado = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'" class="form-control" onkeyup="mayus(this);">
+													<input type="text" readonly v-model="empleado" class="form-control" onkeyup="mayus(this);">
+													<input type="hidden" :value=" empleado = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
 												</div>
 											</div>
 										</div><br>
+										
 										<div class="col-md-12">
+											<label for="" class="col-md-12">Cliente:</label>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>C.I.:</label>
-													<input type="text"  :value=" ci = '<%=one_cliente[0].ci%>'" class="form-control" onkeyup="mayus(this);">
+													<input type="text" readonly :value=" ci = '<%=one_cliente[0].ci%>'" class="form-control" onkeyup="mayus(this);">
+													
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>Apellido Paterno:</label>
-													<input type="text" value="<%=one_cliente[0].apellidop%>" class="form-control" onkeyup="mayus(this);">
+													<input type="text" readonly value="<%=one_cliente[0].apellidop%>" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>Apellido Materno:</label>
-													<input type="text" value="<%=one_cliente[0].apellidom%>" class="form-control" onkeyup="mayus(this);">
+													<input type="text"readonly value="<%=one_cliente[0].apellidom%>" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>Nombre(s):</label>
-													<input type="text" value="<%=one_cliente[0].nombre%>" class="form-control" onkeyup="mayus(this);">
+													<input type="text" readonly value="<%=one_cliente[0].nombre%>" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 										</div>
 										<p class="text-center">
-											<button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-info">Lista de Productos</button>
+											<button type="button" data-target="#myModal2" @click="searchInTheListMed(searchMed)" data-toggle="modal" class="btn btn-info">Lista de Productos</button>
 										</p>
-										<textarea name="" id="" cols="80" rows="10">{{$data}}</textarea>
-										<a @click="reduce_cantidad()">reduce cantidad</a>
 										<div class="table-responsive">
 											<table  class="display table table-bordered table-striped " >
 												<thead>

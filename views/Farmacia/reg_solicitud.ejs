@@ -7,10 +7,11 @@
   <title>Farmacia</title>
   <link rel="stylesheet" href="/css/cosasOcultar.css">
   <link rel="stylesheet" href="/css/tamM.css">
-	
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   <%- include("../partials/head") -%>	
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
   <style>
       .vertical-alignment-helper {
         display:table;
@@ -26,7 +27,7 @@
       #mdtama{
         width: 80% !important;
       }
-    </style>
+  </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -41,7 +42,6 @@
             <img src="/images/farmacia.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span>    <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
-              
               <li> <a data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
             </ul>
           </div>
@@ -68,13 +68,12 @@
 			      </li>
 			      <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 	    			  <ul>
-			    	    <li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Sol.</b> </a> </li>
-		  		      <li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
-			  	      <li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
-    				    <li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-		    		    <li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
-  			    	  <li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-	      			  <li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+			    	    <li> <a href="/Farmacia/reportes_solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Sol.</b> </a> </li>
+		  		      <li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+			  	      <li> <a href="/Farmacia/reportes_ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
+    				    <li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+		    		    <li> <a href="/Farmacia/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+	      			  <li> <a href="/Farmacia/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 		    	  	</ul>
 			      </li>
 			    </ul>
@@ -97,12 +96,6 @@
                   <!--Formulario-->
                   <form  @submit="reg_pedido" method="POST" parsley-validate novalidate>
                     <div class="col-md-12">
-                      <div class="col-md-6">
-                      <!-- <div class="form-group">
-                        <label>N° de Solicitud:  esto se introduce automaticamente</label>
-                        <input type="text" required class="form-control" onkeyup="mayus(this);">
-                      </div> -->
-                      </div>  
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Trimestre a Reportar:</label>
@@ -178,14 +171,15 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit icon"></i> Lista de Productos</h4>
+                  <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit "></i> Lista de Productos</h4>
                 </div>
                 <!-- lista de medicamentos-->
                 <div class="row">
-                  <span style="color: red;">{{alert}}</span>
-                  <span style="color: blue;">{{pass}}</span>
-                  <div class="col-xs-10 col-md-offset-1">
-                    <br>
+                  <div class="col-xs-10 col-md-offset-1"><br>
+                    <p class="text-center">
+                      <span style="color: red;">{{alert}}</span>
+                      <span style="color: blue;">{{pass}}</span>
+                    </p>
                     <label><i class="fa fa-search"> buscar </i></label>
                     <div class="control is-grouped">
                       <p class="control is-expanded">
@@ -245,34 +239,35 @@
           </div>
 	    </div>
     </div>
-  </div>
-<div id="padre">
-  <div id="hijo">
-  <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      
-    <div class="modal-dialog " id="prueba">
-        <div class="modal-content">
-          <br>
-            <div class="center">
-                <i><img src="/images/salir.gif" width="100" height="100" /></i>
-              </div>
-              <div class="center">
-                <h5><b>¿Cerrar Sesión?</b></h5>
-              </div>
-              <div class="modal-footer">
-              <div class="center">
-                <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-              </div>
+    <div id="padre">
+      <div id="hijo">
+      <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          
+        <div class="modal-dialog " id="prueba">
+            <div class="modal-content">
+              <br>
+                <div class="center">
+                    <i><img src="/images/salir.gif" width="100" height="100" /></i>
+                  </div>
+                  <div class="center">
+                    <h5><b>¿Cerrar Sesión?</b></h5>
+                  </div>
+                  <div class="modal-footer">
+                  <div class="center">
+                    <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+                  </div>
+            </div>
+          </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
-  </div>
-</div>
-
- 
 <%- include("../partials/scripts") -%>
+
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
 
 <script src="/url/export.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
