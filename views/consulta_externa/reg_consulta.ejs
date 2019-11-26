@@ -36,19 +36,14 @@
         <div class="brand">
            <!--\\\\\\\ brand Start \\\\\\-->
            <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
         </div>
             <!--\\\\\\\ brand end \\\\\\-->
         <div class="header_top_bar">
             <!--\\\\\\\ header top bar start \\\\\\-->
             
             <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
-            
             <li href="javascript:void(0);" class="btn btn-info " data-toggle="modal" data-target="#diagnostico"><i class="fa fa-plus-square"></i> <span> Diagnostico</span> </li>
-            
-           
-               
+             
             <div class="top_right_bar">
                 <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
                     src="/images/medico.png" /> <span class="user_adminname">
@@ -79,8 +74,6 @@
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>  </a> </li>
                         </ul>
                     </li>
-                   
-                   
                     <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
                         <ul >
                            <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
@@ -88,7 +81,6 @@
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
                         </ul>
                     </li>
-          
                 </ul>
             </div>
         </div>
@@ -99,11 +91,8 @@
                 <br>
                 <div class="col-lg-12 block-web"> 
                 <!-- Content page -->
-                   
                     <div class="header ">
-                        
                         <div class="">
-                           
                             <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa {{msg}}</h2>
                         </div>       
                     </div>
@@ -132,8 +121,7 @@
                                         <li  href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Personales</li>            
                                     </div>
                                     <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
-                                        <div class=""> 
-                                                               
+                                        <div class="">             
                                             <div class="col-md-5">
                                                 <div class="entrada ">
                                                     <label class=" ">N° de Historial:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
@@ -141,7 +129,6 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                
                                                 <div class="entrada">
                                                     <label class=" ">CI.:</label><p><b><%=dataPaciente[0].ci%></b></p>
                                                     <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
@@ -174,29 +161,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 panel panel-default">
-                                       
+                                <div class="col-md-6 panel panel-default">    
                                     <div class=" panel panel-default">
                                         <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Cita</li>            
-                                    
                                     </div>
                                     <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
-                                        <div class="col-sm-12 row"> 
-                                                                       
+                                        <div class="col-sm-12 row">                              
                                             <div class=" col-sm-14 row">
                                                 <div class="col-sm-2 ">
                                                     <div class="entrada">
                                                         <label class="">Hora:</label>
                                                             <p><%=cita[0].hora.split("/")[0]%></p>
                                                             <input type="hidden" name="hora" value="<%=cita[0].hora%>">        
-                                                    </div>
-                                                                                   
+                                                    </div>                               
                                                 </div>
                                                 <div class="col-sm-9 text-center">
-                                                        <div class="entrada ">
-                                                            <label class="">Especialidad:</label><p><b><%=cita[0].especialidad%></b></p>
-                                                                                                                           
-                                                        </div>
+                                                    <div class="entrada ">
+                                                        <label class="">Especialidad:</label><p><b><%=cita[0].especialidad%></b></p>                                                                     
+                                                    </div>
                                                 </div> 
                                             </div> 
                                             <div class=" col-sm-12 ">
@@ -208,8 +190,7 @@
                                                 </div>
                                             </div>               
                                         </div>
-                                    </div>
-                                        
+                                    </div>    
                                 </div> 
                             </section>          
                         </div>  
@@ -223,7 +204,6 @@
                                         <!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
                                         <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=cita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
                                         <li href="javascript:void(0);"  data-toggle="modal" data-target="#ExamenFisico"><a  ><i class="fa fa-users"></i>Examen General</a></li>
-                                      
                                     </ul>
                                 </div>
                             </div>
@@ -236,60 +216,42 @@
                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     -->
-                    
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="block-web">
+                            <div class="block-web">  
                                     
-                                <div class="modal fade" id="Alerta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        </div>
-                                        <div class="modal-body"> 
-                                            <span style="color: blue">{{msg}}</span>
-                                            <span style="color: red">{{msg_false}}</span>    
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>   
-                                      
-                                    
+                                   
                                 <div class="porlets-content">
-                                    
                                     <template v-if="consulta_update == '' || consulta_update == null">
-                                    
                                         <form @submit="reg_consulta" parsley-validate novalidate>
+                                                <% if(msg != null) { %>
+                                                    <%if (msg.data.success == false ) {%>
+                                                        <span style="color: red">{{msg_false}}</span> 
+                                                        <span style="color: blue">{{msg}}</span>
+                                                    <% } %>
+                                                <% } %>
+                                                
+                                                <span style="color: red">{{msg_false}}</span> 
                                             <div class="col-md-12">
-
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Motivo de consulta</label>
-                                                    
                                                         <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca motivo de consulta" class="form-control" v-model = "anamnesis"onkeyup="mayus(this);" ></textarea>
                                                     </div><!--/form-group-->
                                                 </div> 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Tratamiento</label>
-
                                                         <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca el tratamiento" class="form-control" v-model = "tratamiento" onkeyup="mayus(this);"></textarea>
                                                     </div><!--/form-group-->
                                                 </div>    
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Observaciones</label>
-
                                                         <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca las Observaciones" class="form-control" v-model = "observaciones" onkeyup="mayus(this);"></textarea>
                                                     </div><!--/form-group-->
                                                 </div> 
-
                                                 <template v-for="(list,index) of diagnostico">
-
                                                     <div class="col-md-4">
                                                         <section class="panel default orange_border vertical_border h1">
                                                             <div class="task-header orange_task">{{list.codigo}}<span><i></i><font size="2">{{list.descripcion}}</font></span> </div>
@@ -310,35 +272,25 @@
                                                             </div>
                                                         </section>
                                                     </div> 
-
                                                 </template> 
-
                                             </div>
-                                            
-                                           
-											<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
+											<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
 											<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
-
                                         </form>
-
                                     </template>
                                     <template v-else>
                                         <form @submit="update_consulta" parsley-validate novalidate>
-
                                             <div class="col-md-12">
-
                                                 <div class="col-md-9">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Motivo de consulta</label>
-                                                        
                                                             <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.anamnesis"onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div> 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Tratamiento</label>
-    
                                                             <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.tratamiento" onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div>    
@@ -349,28 +301,22 @@
                                                             <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.observaciones" onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div> 
-
                                                 </div>
                                                 <div class="col-md-3">    
                                                     <div class="file_sidebar">  
                                                         <li href="#collapse4" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Herramientas</li>
-                                                           
                                                         <div class="file_sidebar_list panel-collapse collapse in"   id="collapse4" style="height: auto;">
                                                             <ul>
                                                                 <%if(updateCita != "") { %>
                                                                     <li><a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <i class="fa fa-building-o"></i>Receta</a></li>  
                                                                     <li><a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
                                                                     <li><a href="/laboratorios/lab_consulta_externa/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li>
-                                                                <% }  %>
-                                                                                                                                         
+                                                                <% }  %>                                                                        
                                                             </ul>  
                                                         </div>
                                                     </div>                                                 
                                                 </div>
-                                               
-
                                                 <template v-for="(list,index) of consulta_update.diagnostico">
-
                                                     <div class="col-md-4">
                                                         <section class="panel default orange_border vertical_border h1">
                                                             <div class="task-header orange_task">{{list.codigo}}<span ><i></i><font size="2">{{list.descripcion}}</font></span> </div>
@@ -389,26 +335,18 @@
                                                                     <a @click="eliminarDiag_update(index)" class="btn btn-success " style='width:83px; height:30px'><i class="fa fa-times-circle"></i><font size="1"> Quitar</font></a>	
                                                                 </div>
                                                             </div>
-
                                                         </section>
                                                     </div> 
-
                                                 </template> 
-
                                             </div>
-
-                                            <button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" class="btn btn-success btn-raised" type="submit"> <i class='fa fa-save'></i>&nbsp;&nbsp;Actualizar</button>
-                                            
+                                            <button class="btn btn-success btn-raised" type="submit"> <i class='fa fa-save'></i>&nbsp;&nbsp;Actualizar</button>
                                         </form>
                                     </template>
-
                                 </div><!--/porlets-content-->
-
                             </div><!--/block-web--> 
                         </div><!--/col-md-6-->
                     </div><!-- row -->
                 </div>     
-                
             </div>
              <!-- 
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -481,9 +419,10 @@
                             <span style="color: red">{{msg_false_paciente}}</span>
                             <span style="color: blue">{{msg_paciente}}</span>
                         </div>
+                        
                         <template v-if="paciente_data == '' || paciente_data == null || paciente_data.length == 0">
                         
-                            <form  method='post'>
+                            <form class="" method='post'>
                                 <div class="container-fluid  "><br>
                                     <div class="col-md-14 ">
                                         <div class="col-md-6 ">
@@ -495,23 +434,23 @@
 
                                             <div class="">
                                                 <label>Zona donde vive:</label>
-                                                <input readonly class="form-control" type='text' name='Zona' placeholder="Segundo Apellido" required  parsley-trigger="change" value="<%=dataPaciente[0].zona%>">
+                                                <input readonly class="form-control" type='text' name='Zona' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].zona%>">
                                             </div>
 
                                         </div>
                                         <div class="col-md-6  ">
                                             <div class="">
                                                 <label>Ocupación:</label>
-                                                <input readonly class="form-control" type='text' name='ocupacion' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change" value="<%=dataPaciente[0].ocupacion%>">
+                                                <input readonly class="form-control" type='text' name='ocupacion' class='upper' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].ocupacion%>">
                                             </div>
                                             <div class="">
                                                 <label>Telefono:</label>
-                                                <input readonly class="form-control" type='text' name='Telefono' placeholder="Segundo Apellido" required  parsley-trigger="change" value="<%=dataPaciente[0].telef%>">
+                                                <input readonly class="form-control" type='text' name='Telefono' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].telef%>">
                                             </div>
                                         </div>
                                        
                                     </div>
-                                </div>
+                                
                                
                                 <div class="col-md-12 modal-footer ">
 								
@@ -521,6 +460,7 @@
                                         <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
                                     </div>
                                 </div>
+                            </div>
                             </form>
 
                         </template>
@@ -532,23 +472,23 @@
                                         
                                             <div class=" " >
                                                 <label>Estado Civil:</label>
-                                                <input  class="form-control"type='text' placeholder="Nombre" required  parsley-trigger="change" v-model="paciente_data.estadocivil">
+                                                <input  class="form-control"type='text' placeholder=" " required  parsley-trigger="change"  v-model="paciente_data.estadocivil" onkeyup="mayus(this);">
                                             </div>
 
                                             <div class="">
                                                 <label>Zona:</label>
-                                                <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change" v-model="paciente_data.zona">
+                                                <input class="form-control" type='text' name='apellidom'placeholder=" " required  parsley-trigger="change" v-model="paciente_data.zona" onkeyup="mayus(this);">
                                             </div>
 
                                         </div>
                                         <div class="col-md-6  ">
                                             <div class="">
                                                 <label>Ocupación:</label>
-                                                <input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change" v-model="paciente_data.ocupacion">
+                                                <input class="form-control" type='text' name='apellidop' class='upper' placeholder=" " required  parsley-trigger="change" v-model="paciente_data.ocupacion" onkeyup="mayus(this);">
                                             </div>
                                             <div class="">
                                                 <label>Telefono:</label>
-                                                <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change" v-model="paciente_data.telef">
+                                                <input class="form-control" type='text' name='apellidom' placeholder=" " required  parsley-trigger="change" v-model="paciente_data.telef" >
                                             </div>
                                         </div>
                                         

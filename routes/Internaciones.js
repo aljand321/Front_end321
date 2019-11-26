@@ -132,12 +132,13 @@ router.get('/home/:id_user',(req, res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
-        fetch('http://localhost:3000/api/PinterFalse/'+id_user)  // 
+
+        fetch('http://localhost:3000/api/ListaInternacionF/'+id_user)  // 
         .then(resp => resp.json())
         .catch(error => console.error('Error',error))  
         .then(lista_paciente => {
 
-            console.log( resp.length,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hola hospitalizacion")
+          //  console.log( resp.length,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hola hospitalizacion")
                if(datas.name.token[resp.id]){
             data_token.token_id = resp.id 
             var status

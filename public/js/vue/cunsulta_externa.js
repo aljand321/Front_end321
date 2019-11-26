@@ -104,11 +104,22 @@ const consulta = new Vue({
             .then(res => res.json())
             .then(data => {
                 if(data.success == true){
+                    swal.fire(                  //esto
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                      )
+
                     this.msg_paciente = data.msg
                     this.msg_false_paciente = ""
                 }else{
                     this.msg_false_paciente = data.msg
                     this.msg_paciente = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                      )
                 }
             })
             
@@ -237,6 +248,11 @@ const consulta = new Vue({
             .then(data => {
                 if(data.success == true){
                     this.msg = data.msg
+                    swal.fire(                  //esto
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                      )
                     this.anamnesis = "" 
                     this.diagnostico = ""      
                     this.tratamiento = ""
@@ -246,8 +262,11 @@ const consulta = new Vue({
                     this.update_estado_cita()
                     this.data_update_consulta()
                 }else{
-                    this.msg_false = data.msg
-                    this.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                      )
                 }
             })
         },
@@ -305,10 +324,18 @@ const consulta = new Vue({
                     this.msg = resp.msg,
                     this.data_update_consulta()
                     this.msg_false = ""
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+ resp.msg +'</label>',
+                        'success'
+                      )
 
                 }else{
-                    this.msg_false = resp.msg
-                    this.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+resp.msg+'</label>',
+                        'error'
+                      )
                 }
             })
         }
