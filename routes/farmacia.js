@@ -589,7 +589,7 @@ router.post('/update_grupo/:id_grupo/:token_id/:token_partial', (req,res) => {
         } 
         setTimeout(()=>{
           remove(token_id)
-      },1000);   
+        },1000);   
     })
 })
 
@@ -1167,15 +1167,16 @@ router.get('/reportes_solicitudes/:token_id/:token_partial', (req,res) => {
   const { token_id, token_partial }  = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
 
-    fetch('http://localhost:3600/api/listar_farmaceutico')
+    fetch('http://localhost:3600/api/role_farmacia')
     .then(resp => resp.json())
-    .then(list_farmaceutico => {   
+    .then(personal_farmacia => {   
       //res.send(filter_data[token_id])
       console.log ( data_user[token_id], "  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<sadasd23")    
       res.render('Farmacia/reportes_solicitudes',{
-        list_farmaceutico,
+        personal_farmacia,
         data_doc : data_user[token_id],
-        filter: filter_data[token_id]
+        filter: filter_data[token_id],
+        msg:msg_Consulta_emergencia[token_id]
       })
     })
    
@@ -1206,7 +1207,7 @@ function array_filter_data () {
 }
 
 function remove_filter_data(id) {
-  delete data_user[id];
+  delete filter_data[id];
 }
 
 
@@ -1226,21 +1227,43 @@ router.post('/filter_fechas/:token_id/:token_partial', (req,res) => {
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => {
-    if(filter_data[token_id] == null){
-      msg_p = {
-        success:false,
-        data_cliente:data
+    if(data.success == false){
+      if(msg_Consulta_emergencia[token_id] == null){
+        msg_p = {
+          success:false,
+          data:data.msg
+        }
+        msg_data(msg_p,token_id)
+      }else{
+        msg_p = {
+          success:false,
+          data:data.msg
+        }
+        remove(token_id)
+        msg_data(msg_p,token_id)
       }
-      filter_data1(msg_p,token_id)
+      setTimeout(()=>{
+        remove(token_id)
+      },1000);   
+      res.redirect('/Farmacia/reportes_solicitudes/'+token_id+'/'+token_partial)
     }else{
-      msg_p = {
-        success:false,
-        data_cliente:data
+      if(filter_data[token_id] == null){
+        msg_p = {
+          success:false,
+          data_cliente:data
+        }
+        filter_data1(msg_p,token_id)
+      }else{
+        msg_p = {
+          success:false,
+          data_cliente:data
+        }
+        remove_filter_data(token_id)
+        filter_data1(msg_p,token_id)
       }
-      remove_filter_data(token_id)
-      filter_data1(msg_p,token_id)
+      res.redirect('/Farmacia/reportes_solicitudes/'+token_id+'/'+token_partial)
     }
-    res.redirect('/Farmacia/reportes_solicitudes/'+token_id+'/'+token_partial)
+    
   })
 })
   
@@ -1248,23 +1271,12 @@ router.get('/reportes_facturacion',(req, res) => {
   res.render('Farmacia/reportes_facturacion')
   
 });
-router.get('/kardexValorizado', (req,res) => {
-    res.render('Farmacia/kardexValorizado');
-});
-router.get('/reportes_cajas', (req,res) => {
-    res.render('Farmacia/reportes_cajas');
-});
 
-router.get('/reportes_recetas', (req,res) => {
-    res.render('Farmacia/reportes_recetas');
-});
-router.get('/med_ven', (req,res) => {
-    res.render('Farmacia/med_ven');
-});
 
-router.get('/reportes_ventas', (req,res) => {
-    res.render('Farmacia/reportes_ventas');
-});
+
+
+
+
 
 router.get('/ventas_cli/:id/:token_id/:token_partial', (req,res) => {
   const { id, token_id, token_partial }  = req.params
@@ -1289,6 +1301,389 @@ router.get('/ventas_cli/:id/:token_id/:token_partial', (req,res) => {
       })
     })
     
+  }else{
+    res.redirect('/')
+  }
+});
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                              reportes de recetas
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+router.get('/reportes_recetas/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3600/api/role_farmacia')     
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(personal_farmacia =>{
+      fetch('http://localhost:3000/api/list_pacientes')     
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(data_paciente =>{
+
+        res.render('Farmacia/reportes_recetas',{
+          personal_farmacia,
+          data_doc : data_user[token_id],
+          filter: filter_receta_data[token_id],
+          msg:msg_Consulta_emergencia[token_id],
+          data_paciente
+        });
+
+      })
+      
+    })
+    
+  }else{
+    res.redirect('/')
+  }
+
+});
+
+var filter_receta_data = {}
+function filter_data2(data,id){
+  let storedItem = filter_receta_data[id];
+    if (!storedItem) {
+      storedItem = filter_receta_data[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_data1 () {
+  let arr = [];
+  for (const id in filter_receta_data) {
+      arr.push(filter_receta_data[id]);
+  }
+  return arr;
+}
+
+function remove_filter_data1(id) {
+  delete filter_receta_data[id];
+}
+
+router.post('/filter_fecha_receta/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    var datos = req.body;  
+    var msg_p;
+     var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+    fetch('http://localhost:3200/api/filter_fechas_recetas',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      if(data.success == false){
+        if(msg_Consulta_emergencia[token_id] == null){
+          msg_p = {
+            success:false,
+            data:data.msg
+          }
+          msg_data(msg_p,token_id)
+        }else{
+          msg_p = {
+            success:false,
+            data:data.msg
+          }
+          remove(token_id)
+          msg_data(msg_p,token_id)
+        }
+        remove_filter_data1(token_id)
+        setTimeout(()=>{
+          remove(token_id)
+        },1000);   
+        res.redirect('/Farmacia/reportes_recetas/'+token_id+'/'+token_partial)
+      }else{
+        if(filter_receta_data[token_id] == null){
+          msg_p = {
+            success:false,
+            data_cliente:data
+          }
+          filter_data2(msg_p,token_id)
+        }else{
+          msg_p = {
+            success:false,
+            data_cliente:data
+          }
+          remove_filter_data1(token_id)
+          filter_data2(msg_p,token_id)
+        }
+        res.redirect('/Farmacia/reportes_recetas/'+token_id+'/'+token_partial)
+      }
+     
+    })
+  }else{
+    res.redirect('/');
+  }
+})
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                Reportes de ventas
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+router.get('/reportes_ventas/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3200/api/list_clients')     
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(list_clientes =>{
+      
+      res.render('Farmacia/reportes_ventas',{
+        data_doc : data_user[token_id],
+        list_clientes,
+        filter: filter_ventas[token_id],
+        msg:msg_Consulta_emergencia[token_id],
+        
+      });    
+      
+    })
+    
+  }else{
+    res.redirect('/')
+  }
+});
+
+var filter_ventas = {}
+function filter_cliente_ventas(data,id){
+  let storedItem = filter_ventas[id];
+    if (!storedItem) {
+      storedItem = filter_ventas[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_data2 () {
+  let arr = [];
+  for (const id in filter_ventas) {
+      arr.push(filter_ventas[id]);
+  }
+  return arr;
+}
+
+function remove_filter_data2(id) {
+  delete filter_ventas[id];
+}
+
+
+router.post('/filter_fecha_ventas/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params;
+  var datos = req.body;  
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    var msg_p;
+     var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+    fetch('http://localhost:3200/api/filter_fechas_ventas',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      if(data.success == false){
+        if(msg_Consulta_emergencia[token_id] == null){
+          msg_p = {
+            success:false,
+            data:data.msg
+          }
+          msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          remove_filter_data2(token_id)
+          setTimeout(()=>{
+            remove(token_id)
+          },1000);   
+          res.redirect('/Farmacia/reportes_ventas/'+token_id+'/'+token_partial)
+        }else{
+          if(filter_ventas[token_id] == null){
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            filter_cliente_ventas(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            remove_filter_data2(token_id)
+            filter_cliente_ventas(msg_p,token_id)
+          }
+          res.redirect('/Farmacia/reportes_ventas/'+token_id+'/'+token_partial)
+      }
+    })
+  }else{
+    res.redirect('/');
+  }
+     
+})
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                          reporte de ventas que se le hiso al cliente
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/reportes_cajas/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3000/api/list_pacientes')     
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(data_paciente =>{
+        res.render('Farmacia/reportes_cajas',{
+          data_doc : data_user[token_id],
+          data_paciente,
+          filter: filter_receta_p[token_id],
+          msg:msg_Consulta_emergencia[token_id],
+        });
+      })
+    
+  }else{
+    res.redirect('/')
+  }
+});
+
+var filter_receta_p = {}
+function filter_receta_paciente(data,id){
+  let storedItem = filter_receta_p[id];
+    if (!storedItem) {
+      storedItem = filter_receta_p[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_data3 () {
+  let arr = [];
+  for (const id in filter_receta_p) {
+      arr.push(filter_receta_p[id]);
+  }
+  return arr;
+}
+
+function remove_filter_data3(id) {
+  delete filter_receta_p[id];
+}
+
+
+router.post('/filter_receta_paciente/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params;
+  
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    var datos = req.body;  
+    var msg_p;
+     var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+    fetch('http://localhost:3200/api/filter_receta_paciente',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      if(data.success == false){
+        if(msg_Consulta_emergencia[token_id] == null){
+          msg_p = {
+            success:false,
+            data:data.msg
+          }
+          msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          remove_filter_data3(token_id)
+          setTimeout(()=>{
+            remove(token_id)
+          },1000);   
+          res.redirect('/Farmacia/reportes_cajas/'+token_id+'/'+token_partial)
+        }else{
+          if(filter_receta_p[token_id] == null){
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            filter_receta_paciente(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            remove_filter_data3(token_id)
+            filter_receta_paciente(msg_p,token_id)
+          }
+          res.redirect('/Farmacia/reportes_cajas/'+token_id+'/'+token_partial)
+      }
+    })
+  }else{
+    res.redirect('/');
+  }
+     
+})
+
+// reporte de kardex valorizado
+router.get('/kardexValorizado/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params;
+  
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    res.render('Farmacia/kardexValorizado',{
+      data_doc : data_user[token_id],
+    });
+
+  }else{
+
+    res.redirect('/');
+
+  }
+});
+
+//reporte medicamentos vencidos
+router.get('/med_ven/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params;
+  
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    res.render('Farmacia/med_ven',{
+      data_doc : data_user[token_id],
+    });
   }else{
     res.redirect('/')
   }
