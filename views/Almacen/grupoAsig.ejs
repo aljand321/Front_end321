@@ -132,8 +132,7 @@
                   <div class="form-group">
                     <div class="col-sm-offset-1 col-sm-10">
                       <button  type="submit" class="btn btn-success" ><i class="fa fa-floppy-o"></i>  Guardar</button>
-                      <a href="/almacen/quitar/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>">Cancelar</a>
-                      
+                      <a type="reset" class="btn btn-danger" href="/almacen/quitar/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"><i class="fa fa-times"></i> Cancelar</a>
                     </div>
                   </div><!--/form-group--> 
                 <% } else { %>
@@ -152,7 +151,7 @@
                   <div class="form-group">
                     <div class="col-sm-offset-1 col-sm-10">
                       <button  type="submit" class="btn btn-success" ><i class="fa fa-floppy-o"></i>  Guardar</button>
-                      <button type="reset" value="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+                      <a type="reset" class="btn btn-danger" href="/almacen/quitar/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"><i class="fa fa-times"></i> Cancelar</a>
                     </div>
                   </div><!--/form-group--> 
                 <% } %>
@@ -173,7 +172,7 @@
                     </div>
                   </div><!--/form-group--> 
                   <div class="form-group">
-                    <div class="col-sm-offset-0 col-sm-10">
+                    <div class="col-sm-offset-1 col-sm-10">
                       <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
                       <a type="reset" class="btn btn-danger" href="/almacen/volver1/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"><i class="fa fa-times"></i> Cancelar</a>
                     </div>

@@ -43,7 +43,7 @@ const receta_cliente = new Vue({
         paginationMeds: {
             range: 5,
             currentPage: 1,
-            itemPerPage: 2,
+            itemPerPage: 5,
             ListMedicamentos: [],
             filteredMeds: [],
         },
@@ -75,7 +75,9 @@ const receta_cliente = new Vue({
         this.selectPageMed(1)  
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     },
+    
     methods:{ 
+      
         clearSearchItemMed(){
             this.searchMed = undefined
             this.searchInTheListMed('')
@@ -367,7 +369,11 @@ const receta_cliente = new Vue({
           e.preventDefault();
           if( this.generateArray() == "" || this.generateArray1() == "" ){
             this.msg_false_post = "No se seleciono un producto"
-            console.log("No se seleciono un producto")
+            swal.fire(
+              'Error!',
+              '<label style="color:red;">No se seleciono un producto</label>',
+              'error'
+            )
           }else{
             var datos = {
               
@@ -396,14 +402,22 @@ const receta_cliente = new Vue({
             .then(data => {
               console.log(data, "esto es lo que quiero ver")
               if(data.success == true){
-                this.msg_true_post = data.msg
+               
+                swal.fire(
+                  'Success!',
+                  '<label style="color:green;">'+data.msg+'</label>',
+                  'success'
+                )
                 this.update_cantidad();
                 this.reduce_cantidad();
                 this.msg_false_post = ""
                 this.listItems = {}
               }else{
-                this.msg_false_post = data.msg
-                this.msg_true_post = ""
+                swal.fire(
+                  'Error!',
+                  '<label style="color:red;">'+data.msg+'</label>',
+                  'error'
+                )
               }
               
             })

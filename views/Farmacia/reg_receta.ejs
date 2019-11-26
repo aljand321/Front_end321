@@ -21,7 +21,7 @@
 			  }
 		  </style>
 	  <%- include("../partials/head") -%>
-	  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+	  
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">	
 </head>
@@ -32,14 +32,16 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Lista de Productos</h4>
+						<h1 class="modal-title" id="myModalLabel"><i class="fa fa-medkit  icon"></i> Lista de Productos</h1>
 					</div>
 					<!--lista de medicamentos-->
 		   			<div class="modal-body"> 
 						<div class="row">
-							<span style="color: red;">{{alert}}</span>
-							<span style="color: blue;">{{pass}}</span>
-				 			<div class="col-xs-12 "><br>
+							 <div class="col-xs-12 ">
+								<p class="text-center">
+										<span style="color: red;">{{alert}}</span>
+										<span style="color: blue;">{{pass}}</span>
+									</p>
 								<label><i class="fa fa-search"> buscar </i></label>
 								<div class="control is-grouped">
 								  	<p class="control is-expanded">
@@ -91,8 +93,6 @@
 								</table>   
 				  			</div>
 						</div>
-			  			<button type="submit" class="btn btn-primary">Aceptar</button>
-			  			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 					</div>
 					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 				</div>
@@ -183,39 +183,19 @@
 											</div>
 										</div><br>
 										<div class="col-md-12">
-											<div class="col-md-3">
+											<div class="col-md-2">
 												<div class="form-group">
 													<label>Historial:</label>
 													<input type="text" readonly :value="historial = '<%=one_paciente[0].numeroHistorial%>'" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>Apellido Paterno:</label>
-													<input type="text" readonly class="form-control" value="<%=one_paciente[0].apellidop%>" onkeyup="mayus(this);">
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>Apellido Materno:</label>
-													<input type="text" name="precio" readonly value="<%=one_paciente[0].apellidom%>" class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>Nombre(s):</label>
-													<input type="text" readonly value="<%=one_paciente[0].nombre%>" class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
-										</div>
-										<div class="col-md-12">
 											<div class="col-md-4">
 												<div class="form-group">
-													<label>Procedencia:</label>
-													<input type="text" readonly :value="tipo_consulta = '<%=data_receta[0].tipoConsulta%>'" class="form-control" onkeyup="mayus(this);">
+													<label>Paciente:</label>
+													<input type="text" readonly class="form-control" value="<%=one_paciente[0].nombre%> <%=one_paciente[0].apellidop%> <%=one_paciente[0].apellidom%>" onkeyup="mayus(this);">
 												</div>
 											</div>
-											<div class="col-md-4">
+											<div class="col-md-3">
 												<div class="form-group" >
 													<label>Tipo de Paciente:</label>
 													<select onkeyup="mayus(this);">
@@ -225,7 +205,7 @@
 													</select>
 												</div>
 											</div>
-											<div class="col-md-4">
+											<div class="col-md-3">
 												<div class="form-group">
 													<label>Tipo de Pago:</label>
 													<select onkeyup="mayus(this);">
@@ -235,11 +215,12 @@
 												</div>
 											</div>
 										</div>
+										<a @click="update_estad_atendido" > upadte cantidad</a>
 										<div class="col-md-12">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Especialidad:</label>
-													<input type="text" class="form-control" onkeyup="mayus(this);">
+													<label>Procedencia:</label>
+													<input type="text" readonly :value="tipo_consulta = '<%=data_receta[0].tipoConsulta%>'" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -332,7 +313,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/receta_farmacia_paciente.js"></script>
-<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 </body>
 </html>
-
