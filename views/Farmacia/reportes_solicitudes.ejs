@@ -135,7 +135,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <%if (filter != null) { %>
+                    <%if (!filter ) { %>
                     <% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
                     <tr>
                       <td><%=i+1%></td>
