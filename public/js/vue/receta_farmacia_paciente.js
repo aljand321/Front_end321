@@ -531,13 +531,20 @@ const receta_paciente = new Vue({
             .then(data => {
               console.log(data, "esto es lo que quiero ver")
               if(data.success == true){
-                this.msg_true_post = data.msg
-                this.update_cantidad();
-                this.update_estad_atendido();
+                this.update_cantidad()
                 this.msg_false_post = ""
+                swal.fire(
+                  'Success!',
+                  '<label style="color:green;">'+ data.msg +'</label>',
+                  'success'
+                )
               }else{
-                this.msg_false_post = data.msg
                 this.msg_true_post = ""
+                swal.fire(
+                  'Error!',
+                  '<label style="color:red;">'+ data.msg +'</label>',
+                  'error'
+                )
               }
               
             })

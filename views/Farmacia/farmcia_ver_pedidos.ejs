@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pedido</title>
+    <title>Farmacia</title>
     <%- include("../partials/head") -%>	
+    <style>
+        .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+        .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+        .vertical-alignment-helper {
+            display:table;
+            height: 100%;
+            margin-left: 41%;
+          }
+          .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+          }
+      </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
     <div class="wrapper">
@@ -74,16 +89,14 @@
                     <div class="col-md-12">
                         <div class="block-web">
                             <div class="header">
-                                <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar"><i class="fa fa-chevron-down"></i></a> </div>
-                                <h3 class="content-header"> <i class="fa fa-shopping-cart icon"></i> Pedido</h3>   
+                                <div class="actions"> <a class="minimize" href="#">Volver</a><a class="refresh" href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-reply"></i></a></div>
+                                <h2 class="content-header"><div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div> Movimientos/<span class="semi-bold"> Ver Movimiento</span></h2>  
                             </div>
                             <div class="porlets-content">
                                 <!--  <span style="color: red;">{{error}}</span>
                                 <span style="color: blue;">{{msg}}</span><br><br> -->
                                <!--  <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea> -->
-                                <template v-if="list_acep_farmacia == null || list_acep_farmacia == ''">
-
-                               
+                                <template v-if="list_acep_farmacia == null || list_acep_farmacia == ''"> <br><br>
                                 <form @submit="update_pedido" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                                     <input type="hidden" :value="id_pedido = '<%=resp[0].id%>'">
                                     <div class="form-group">
@@ -263,15 +276,15 @@
                                     
                                     
                                     <div class="form-group"  v-if = "list_almacen != null">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+                                        <div class="col-sm-offset-1 col-sm-10">
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
                                             <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
                                         </div>
                                     </div><!--/form-group--> 
                                 </form>
 
                                 </template>
-                                <template v-else>
+                                <template v-else><br><br>
 
                                 <form  class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                                     <input type="hidden" :value="id_pedido = '<%=resp[0].id%>'">
@@ -304,7 +317,7 @@
                                     <div class="col-md-11"> 
                                        
                                         <section class="panel default black_title h4">
-                                            <div class="panel-heading">Pedido Realizado</div>
+                                            <div class="panel-heading">Solicitud Realizada</div>
                                             <div class="panel-body">
                                                 <table class="table table-hover">
                                                     <thead>
@@ -372,9 +385,7 @@
 
                                     <div class="col-lg-12"> 
                                         <section class="panel default black_title h4">
-                                            <div class="panel-heading">
-                                                <span class="semi-bold">Pedido mandado</span> 
-                                            </div>
+                                            <div class="panel-heading">Solicitud Entregada</div>
                                             <div class="panel-body">
                                                 <table class="table table-hover">
                                                     <thead>
@@ -446,7 +457,7 @@
 
                                     <div class="col-md-11"> 
                                             <section class="panel default black_title h4">
-                                                <div class="panel-heading">Pedido aceptado</div>
+                                                <div class="panel-heading">Solicitud Regristrada</div>
                                                 <div class="panel-body">
                                                     <table class="table table-hover">
                                                         <thead>
@@ -520,12 +531,13 @@
                                 </form>
                                 </template>
                             </div><!--/porlets-content--> 
-                        </div><!--/block-web--> 
-                    </div><!--/col-md-12--> 
-                </div><!--/row-->    
-            </div>
+                        </div>
+                    </div><!--/block-web--> 
+                </div><!--/col-md-12--> 
+            </div><!--/row-->    
         </div>
     </div>
+
 <%- include("../partials/scripts") -%>
 <script src="/js/vue/ver_peido_farmacia.js"></script>
 </body>

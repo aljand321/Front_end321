@@ -155,11 +155,24 @@
 													<th>Trimestre</th>
 													<th>Estado</th>
 													<th>Destino</th>
-													<th>Opciones</th>
 													</tr>
 											  	</thead>
 									  			<tbody>
-										
+													<% for(var i = 0; i < dat.length; i++) { %>
+													<tr>
+													<td><%=i+1%></td>
+													<td><%=dat[i].num_solicitud%></td>
+													<td><%=dat[i].responsable%></td>
+													<td><%=dat[i].createdAt%></td>
+													<td><%=dat[i].trimestre%></td>		
+													<% if (dat[i].medicamento_mandado_almacen == null) { %>											
+													  <td><span style="color: crimson;">Nueva Solicitud</span></td>
+													<% } else { %>
+													  <td><span style="color: rgb(220, 173, 20);">Enviado a Farmacia</span></td>
+													<% } %>
+													<td><%=dat[i].destino%></td>
+													</tr>
+													<% } %>
 									  			<tbody>
 											</table>
 								 	 	</div>

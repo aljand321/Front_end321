@@ -137,7 +137,7 @@
 												</div>
 												<div class="form-group">
 													<label>Cantidad por Unidades:</label>
-													<input type="text" name="cantidad_unidad" required class="form-control" onkeyup="mayus(this);">
+													<input type="text" value="0"  readonly  name="cantidad_unidad" required class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 										</div>
@@ -232,7 +232,7 @@
 											</div>
 											<div class="form-group">
 												<label>Cantidad por Unidades:</label>
-												<input type="text" name="cantidad_unidad" value="<%=data_body_post.data.cantidad_unidad%>" required class="form-control" onkeyup="mayus(this);">
+												<input type="text"   readonly name="cantidad_unidad" value="<%=data_body_post.data.cantidad_unidad%>" required class="form-control" onkeyup="mayus(this);">
 											</div>
 										</div>
 										<div class="col-md-12">
@@ -304,7 +304,7 @@
 												</div>
 												<div class="form-group">
 													<label>Cantidad por Unidades:</label>
-													<input type="text" name="cantidad_unidad" value="<%=one_medicamento.data[0].cantidad_unidad%>" required class="form-control" onkeyup="mayus(this);">
+													<input type="text" name="cantidad_unidad"  readonly value="<%=one_medicamento.data[0].cantidad_unidad%>" required class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 										</div>
