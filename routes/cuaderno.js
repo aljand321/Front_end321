@@ -99,6 +99,7 @@ router.get('/limpiar/:token_id', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
  */
+
 router.get('/especialidad/:token_id', (req,res) => {
     const { token_id } = req.params
     if( datas.name.token[token_id] ){

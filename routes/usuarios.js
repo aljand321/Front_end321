@@ -488,7 +488,8 @@ router.get('/roles1/:token_id',(req, res) => {
         res.render('roles', {
           data,
           data_doc:datas.name.data_user[token_id],
-          allusers
+          allusers,
+          filters: filter_ventas[token_id]
         })
       })
     
@@ -503,6 +504,93 @@ router.get('/roles1/:token_id',(req, res) => {
     res.redirect('/')
   }
 });
+
+var filter_ventas = {}
+function filter_cliente_ventas(data,id){
+  let storedItem = filter_ventas[id];
+    if (!storedItem) {
+      storedItem = filter_ventas[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_data2 () {
+  let arr = [];
+  for (const id in filter_ventas) {
+      arr.push(filter_ventas[id]);
+  }
+  return arr;
+}
+
+function remove_filter_data2(id) {
+  delete filter_ventas[id];
+}
+
+///filter datas
+router.post('/filter_datas/:token_id', (req,res) => {
+  const { token_id } = req.params;
+  var datos = req.body;  
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    var msg_p;
+     var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+    fetch('http://localhost:3600/api/',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      if(data.success == false){
+        if(msg_Consulta_emergencia[token_id] == null){
+          msg_p = {
+            success:false,
+            data:data.msg
+          }
+          msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          remove_filter_data2(token_id)
+          setTimeout(()=>{
+            remove(token_id)
+          },1000);   
+          res.redirect('/usuarios/roles1/'+token_id)
+        }else{
+          if(filter_ventas[token_id] == null){
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            filter_cliente_ventas(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            remove_filter_data2(token_id)
+            filter_cliente_ventas(msg_p,token_id)
+          }
+          res.redirect('/usuarios/roles1/'+token_id)
+      }
+    })
+  }else{
+    res.redirect('/');
+  }
+     
+})
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<
 router.get('/cuentas/:id/:token_id', (req,res) => {
   const { id,token_id } = req.params
   if( datas.name.token[token_id] ){ 

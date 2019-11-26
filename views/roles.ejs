@@ -4,18 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+  <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/css/animate.css" rel="stylesheet" type="text/css" />
 <link href="/css/admin.css" rel="stylesheet" type="text/css" />
 <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
 <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/css/select2.css" rel="stylesheet">
 <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
 <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
 <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
@@ -42,6 +38,81 @@
     text-align: center;
   }
 </style>
+  <style>
+      @media print{
+        @page {
+      top: 1cm;
+      margin: 1cm; 
+      border: 0px;
+      size: auto;
+      border-top-style: dashed;
+      border-right-style: double;
+      border-bottom-style: dotted;
+      border-left-style: solid; 
+    
+    
+      margin-top: 0px;
+      border: 1px;
+      padding: 0px;
+      
+      width: 0px;
+      bottom: 0px;
+    
+      page-break-before: always
+    }
+    /*----------------------logo------------------------------*/
+.dim2:before{
+    content: url('../images/hospital1.png');    
+}
+.posiondeImagen{
+    position:absolute;
+    top:0;
+    width:200px;
+} 
+.oculta1{
+    display: none;
+}
+#ocultoI{
+    display: none;   
+}
+#sinMargen{
+  top: 9%;
+    border: 0px;
+   padding-left: 0% ;
+  padding-top: 5%;
+   margin-left: 0%;
+    margin-right: 0%;
+  
+    padding: 0px;
+    
+    position: relative;
+
+    border-top-style: dashed;
+    border-right-style: double;
+  
+    border-left-style: solid; 
+
+} 
+.cleari12
+{
+clear:both !important;
+} 
+#cleari1
+{
+clear:both;
+} 
+
+
+.oculto-impresion, .oculto-impresion *{
+    display: none !important;
+  }
+
+table {border-collapse:collapse; border: none;}
+
+table td:last-child {display:none}
+       table th:last-child {display:none}
+}
+</style>
 <script type="text/javascript">
 	// este scrip es para verificar si esta el token en local starge
 	var data = localStorage.getItem('data')
@@ -63,7 +134,7 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
@@ -81,7 +152,7 @@
       </div>
     </div>
     <div class="inner">
-      <div class="left_nav">
+      <div id="ocultoI" class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -119,7 +190,7 @@
           </ul>
         </div>
       </div>
-      <div class="contentpanel">
+      <div  id= "sinMargen" class="contentpanel">
         <br>
         <div class="container clear_both padding_fix">
           <div class="row">
@@ -129,6 +200,10 @@
                   <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
                   <h3 class="content-header ">Reportes Personal</h3>
                 </div>
+                <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									<div class="dim2 posiondeImagen">
+                      <img class="oculVistaReal "  src="/images/hospital1.png" />
+                    </div>
                 <br>
                 <br>
                 <div class="porlets-content">
@@ -148,6 +223,8 @@
                         </div>  
                       </div>
                     </div>
+                    <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													
                     <div class="form-group">
                     <div class="col-md-4">
                       <div class="btn-group">
@@ -161,18 +238,55 @@
                     </div>
                     </div>
                   </form>
+                  <form class="form-horizontal" name="formulario1"  >
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Desde:</label>
+                      <div class="col-sm-4">
+                        <input type="date" class="form-control" >
+                      </div>
+                    </div><!--/form-group--> 
+                    <div class="form-group">
+                      <label  class="col-sm-4 control-label">Hasta:</label>
+                      <div class="col-sm-4">
+                        <input type="date" class="form-control" >
+                      </div>
+                    </div><!--/form-group-->  
+                    <div class="form-group">
+                        <label  class="col-sm-4 control-label">Especifica:</label>
+                        <div class="col-sm-4">
+                            <select class="seleccion" name="cosa" onchange="cambia()">
+                                <option value="0">---Seleccione---
+                                <option value="1">Personal
+                                <option value="2">Tecnico
+                              </select>
+                        </div>
+                      </div><!--/form-group--> 
+                      <div class="form-group">
+                          <label  class="col-sm-4 control-label">tipo:</label>
+                          <div class="col-sm-4">
+                              <select class="seleccion" name="opt">
+                                  <option value="-">---Seleccione---
+                                </select>
+                          </div>
+                        </div><!--/form-group--> 
+                  
+                  </form>
+                  <a class="btn btn-warning center" href="/usuarios/onlymedico/<%=data_doc.data.token_id%>" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
                   <br>
                   <div class="table-responsive">
-                    <table  class="display table table-bordered table-striped" id="dynamic-table01">
+                    <table  class="display table table-bordered table-striped cleari12" id="dynamic-table01">
+                      
                       <thead>
                         <tr>
                           <th class="text-center">Fecha Creación</th>
                           <th class="text-center">Nombre</th>
                           <th class="text-center">Apellido Paterno</th>
                           <th class="text-center">Apellido Materno</th>	
+                          <th class="text-center">N° C.I.</th>	
+                          <th class="text-center">Telf.-Cel</th>	
                           <th class="text-center">Cargo</th>	
                           
-                          <th class="text-center">Optiones</th>
+                          <th id="ocultoI" class="text-center">Optiones</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -183,8 +297,10 @@
                             <td class="text-center "><%=data[i].nombre%></td>
                             <td class="text-center"><%=data[i].apellidop%></td>
                             <td class="text-center"><%=data[i].apellidom%></td>
+                            <td class="text-center"><%=data[i].ci%></td>
+                            <td class="text-center"><%=data[i].telefono%></td>
                             <td class="text-center"><%=data[i].cargo%></td>
-                            <td><a href="/usuarios/cuentas/<%=data[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                            <td id="ocultoI"><a href="/usuarios/cuentas/<%=data[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
                             </td>
                           </tr>
                         <% } %>
@@ -219,11 +335,59 @@
       </div>
     </div> 
   </div>
+  <script type="text/javascript">
+    //1) Definir Las Variables Correspondintes
+    var opt_1 = new Array ("-", "MÉDICO", "ENFERMERA", "PERSONAL", "FARMACEUTICO","LABORATORISTA DE ECOGRAFIA","LABORATORISTA DE RAYOS X","LABORATORISTA", "...");
+    var opt_2 = new Array ("-", "CENTAS", "ROLES", "...");
+    // 2) crear una funcion que permita ejecutar el cambio dinamico
+    
+    function cambia(){
+      var cosa;
+      //Se toma el vamor de la "cosa seleccionada"
+      cosa = document.formulario1.cosa[document.formulario1.cosa.selectedIndex].value;
+      //se chequea si la "cosa" esta definida
+      if(cosa!=0){
+        //selecionamos las cosas Correctas
+        mis_opts=eval("opt_" + cosa);
+        //se calcula el numero de cosas
+        num_opts=mis_opts.length;
+        //marco el numero de opt en el select
+        document.formulario1.opt.length = num_opts;
+        //para cada opt del array, la pongo en el select
+        for(i=0; i<num_opts; i++){
+          document.formulario1.opt.options[i].value=mis_opts[i];
+          document.formulario1.opt.options[i].text=mis_opts[i];
+        }
+        }else{
+          //si no habia ninguna opt seleccionada, elimino las cosas del select
+          document.formulario1.opt.length = 1;
+          //ponemos un guion en la unica opt que he dejado
+          document.formulario1.opt.options[0].value="-";
+          document.formulario1.opt.options[0].text="-";
+        }
+        //hacer un reset de las opts
+        document.formulario1.opt.options[0].selected = true;
+        
+      }
+    
+    
+  
+  </script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>
 <script src="/js/jquery.slimscroll.min.js"></script>
-<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/js/jquery-ui.min.js"></script> 
+<script src="/plugins/bootstrap-editable/bootstrap-editable.min.js"></script>
+<script src="/plugins/x-editable/form-x-editable.js"></script> 
+<script src="/plugins/x-editable/form-x-editable-demo.js"></script>
+<script src="/plugins/mockjax/jquery.mockjax.min.js"></script> 
+<script src="/js/moment.min.js"></script>
+<script src="/js/select2.min.js"></script> 
+<script src="/js/address.min.js"></script> 
+<script src="/plugins/typeahead/typeahead.min.js"></script> 
+<script src="/plugins/typeahead/typeaheadjs.min.js"></script> 
+<script type="/text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
 <script src="/plugins/checkbox/zepto.js"></script>
 <script src="/plugins/checkbox/icheck.js"></script>
 <script src="/js/icheck-init.js"></script>
@@ -245,6 +409,7 @@
 <script src="/plugins/data-tables/DT_bootstrap.js"></script>
 <script src="/plugins/data-tables/dynamic_table_init.js"></script>
 <script src="/plugins/edit-table/edit-table.js"></script>
+
 
 <script>
 /*==Porlets Actions==*/
@@ -284,7 +449,6 @@
       e.preventDefault();
     });
 </script>
-
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
