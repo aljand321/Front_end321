@@ -532,7 +532,8 @@ const receta_paciente = new Vue({
               console.log(data, "esto es lo que quiero ver")
               if(data.success == true){
                 this.msg_true_post = data.msg
-                this.update_cantidad()
+                this.update_cantidad();
+                this.update_estad_atendido();
                 this.msg_false_post = ""
               }else{
                 this.msg_false_post = data.msg

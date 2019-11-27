@@ -35,7 +35,7 @@
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-			  <img src="/images/farmacia.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>John Doe</span> <b class="caret"></b> </a>
+			  <img src="/images/farmacia.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
               <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
@@ -54,26 +54,26 @@
 			<ul>
 			  <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 				<ul>
-				  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+				  <li> <a href="/Farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
 				</ul>
 			  </li>
 			  <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
 				<ul>
-				  <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
-				  <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
-				  <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-				  <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
-				  <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+				  <li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
+				  <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
+				  <li> <a href="/Farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+				  <li> <a href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
+				  <li> <a href="/Farmacia/Stock_far/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
 				</ul>
 			  </li>
 			  <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 				<ul class="opened" style="display:block">
-				  	<li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-					<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
-					<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Ven.</b> </a> </li>
-					<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-				  	<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-				  	<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+				  	<li> <a href="/Farmacia/reportes_solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
+					<li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+					<li> <a href="/Farmacia/reportes_ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Ven.</b> </a> </li>
+					<li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+				  	<li> <a href="/Farmacia/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+				  	<li> <a href="/Farmacia/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 				</ul>
 			  </li>
 			</ul>
@@ -93,18 +93,18 @@
 						</div>
 						<div class="porlets-content">
 							<div class="panel-body">
-								<form  action="#" method="POST" parsley-validate novalidate>
+								<form  action="/Farmacia/filter_fecha_ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
 									<div class="col-md-12">
 									  	<div class="col-md-6">
 											<div class="form-group">
 											  	<label class="col-sm-3 control-label">DESDE:</label>
-												<input type="date" class="form-control" >
+												<input name="fecha_inicio" type="date" class="form-control" >
 											</div><!--/form-group--> 
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="col-sm-3 control-label">HASTA:</label>
-												<input type="date" class="form-control" >
+												<input name="fecha_final" type="date" class="form-control" >
 											</div><!--/form-group-->
 										</div>
 									</div>
@@ -112,11 +112,11 @@
 										<div class="col-md-6">
 											<div class="form-group">
 											  	<label class="col-sm-4 control-label">CLIENTE <i class="fa fa-users"></i> :</label>
-											  	<select class="selectpicker" data-show-subtext="true" data-live-search="true">
-													<option>Paco</option>
-													<option>Luis</option>
-													<option>Luna</option>
-													<option>Daniela</option>
+											  	<select name="id_cliente" class="selectpicker" data-show-subtext="true" data-live-search="true">
+													<option value="" selected disabled hidden>Selecione</option>
+													<% for (var i = 0; i < list_clientes.length; i++) { %>
+														<option value="<%=list_clientes[i].id%>"><%=list_clientes[i].nombre%> <%=list_clientes[i].apellidop%> <%=list_clientes[i].apellidom%></option>
+													<% } %>												
 												</select>
 											</div><!--/form-group-->
 										</div>
@@ -134,23 +134,33 @@
 								<table  class="display table table-bordered table-striped " id="dynamic-table">
 					  				<thead>
 					  					<tr>
-										<th>Codigo Venta</th>
-			  							<th>Fecha</th>
-			  							<th>C.I.</th>
-				  						<th>Cliente</th>
-					  					<th>Cantidad</th>
-					  					<th>Total Pago</th>
+											<th>#</th>
+											<th>Codigo Venta</th>
+			  								<th>Fecha</th>
+			  								<th>C.I.</th>
+				  							<th>Cliente</th>
+					  						<th>Cantidad</th>
+					  						<th>Total Pago</th>
 										</tr>
 			 	 					</thead>
 			  						<tbody>
-					  					<tr>
-					  					<td>1</td>
-					  					<td>123</td>
-										<td>a</td>
-			  							<td>a</td>
-					  					<td>a</td>
-					  					<td>a</td>
-					  					</tr>
+										<%if (filter != null) { %>
+											<% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
+					  							<tr>
+					  								<td><%=i+1%></td>
+					  								<td><%=filter.data.data_cliente[i].codigo_venta%></td>
+													<td><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+													<td><%=filter.data.data_cliente[i].ci%></td>
+													<% for (var j = 0; j < list_clientes.length; j++) { %>
+														<%if (list_clientes[j].ci == filter.data.data_cliente[i].ci) { %>
+															<td><%=list_clientes[j].nombre%> <%=list_clientes[j].apellidop%> <%=list_clientes[j].apellidom%></td>
+														<% } %>
+													<% } %>
+													  <td><%=filter.data.data_cliente[i].medicamentos.totalQty%></td>
+													  <td><%=filter.data.data_cliente[i].medicamentos.total%> Bs.</td>
+												</tr>
+											<% } %>
+										<% } %>
 									<tbody>
 								</table>
 							</div><!--/table-responsive-->
@@ -185,6 +195,29 @@
 	</div> 
 </div>
 <%- include("../partials/scripts") -%>
+<script>
+	/*  <%if(msg) { %> */
+	  /*  <%if(msg.data.success == false) { %> */
+		 msg_false()
+		 function msg_false(){
+		 swal.fire(
+		   'Error!',
+		   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+		   'error'
+		 )
+		 }
+	   /* <% } else {%> */
+		 msg_true()
+		 function msg_true(){
+		 swal.fire(
+		   'Success!',
+		   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+		   'success'
+		 )
+		 }
+	  /*  <% } %> */
+	/*  <% } %> */
+</script>
 </body>
 </html>
 
