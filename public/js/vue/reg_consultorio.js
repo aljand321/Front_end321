@@ -13,10 +13,12 @@ var reg_sala = new Vue({
       nombre:"",
       id_especialidad: '',
       list_consulta_especialidad:'',
-      data_medicos:'',
+      data_medicos:[],
       ci_medico:'',
       nombre_medico: '',
       especilidad_lista_medicas:'',
+
+      list_ci_med:[],
       /*list_consultorios:[
         {
           id:1,
@@ -120,11 +122,20 @@ var reg_sala = new Vue({
       }
     },
     mounted(){
+      console.log(this.options)
       fetch(this.url.url_front_end+'/cuaderno/VUe_lista_medicos')
       .then(res => res.json())
       .then(data => {
+       
         this.data_medicos = data
+
+        for ( var i = 0; i < data.length;  i++){
+          this.list_ci_med.push({ci : data[i].ci})
+          console.log(data[i].ci)
+        }
+        
       })
+      
     },
     methods:{
       selected(name){
@@ -161,9 +172,20 @@ var reg_sala = new Vue({
                 this.nombre = ""
                 this.lista_consulta()
                 this.msg_false=""
+                swal.fire(
+                  'Success!',
+                  '<label style="color:green;">'+  data.msg +'</label>',
+                  'success',
+                  
+                )
               }else{
                 this.msg_false = data.msg
                 this.msg =""
+                swal.fire(
+                  'Error!',
+                  '<label style="color:red;">' + data.msg +'</label>',
+                  'error'
+                )
               }
             })
         },

@@ -453,14 +453,22 @@ router.get('/reportes_salidas/:token_id/:token_part', (req,res) => {
             }  
             if(status == "tiene permiso"){
                 fetch('http://localhost:3500/api/distribucion')   
-                .then(data => data.json())
+                .then(resp => resp.json())
+                .catch(error => console.error('Error',error))
                 .then(data =>{ 
-                    console.log(data)       
-                    res.render('Almacen/reportes_salidas',{
-                        data,
-                        data_doc: data_user[token_id]
-                    });
+                    fetch('http://localhost:3200/api/list_pedidos')   
+                    .then(resp => resp.json())
+                    .catch(error => console.error('Error',error))
+                    .then(dat =>{        
+                        res.render('Almacen/reportes_salidas',{
+                            data,
+                            dat,
+                            data_doc: data_user[token_id]
+                        });
+                    })
                 })
+                
+                
                 status = null;
             }else{
                 res.redirect('/');

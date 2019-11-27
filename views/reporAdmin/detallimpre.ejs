@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Administrador</title>
   <%- include("../partials/head") -%>
   <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
   <style type="text/css">
@@ -60,17 +60,7 @@
         <!--Boton i,prir-->
         <div class="btn-group"> <a class="btn btn-warning" href="" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
         <div class="btn-group"> <a class="btn btn-success" href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
-        <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
-            <ul class="dropdown-menu">
-              <div class="top_pointer"></div>
-              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i> Logout</a> </li>
-            </ul>
-          </div> 
-        </div>
+        
       </div>
       <!--\\\\\\\ header top bar end \\\\\\-->
     </div>

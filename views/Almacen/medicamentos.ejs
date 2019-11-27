@@ -99,7 +99,6 @@
 							  		<h2 class="content-header"><div class="info gray_symbols"><i class="fa  fa-medkit icon"></i></div>  Registrar Medicamento</h2>  
 								</div>
 								<div class="porlets-content">
-								
 								<%if(OnlyMedicamento == null) { %>
 									<br>
 									  <form  action="/medicamento/medicamentos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" method="POST" parsley-validate novalidate>
@@ -134,7 +133,7 @@
 										  	</div>
 											<div class="form-group">
 												<label>Cantidad inicial:</label>
-												<input type="text" name="unidades" required class="form-control" onkeyup="mayus(this);">
+												<input type="text" name="unidades" readonly value="0" required class="form-control" >
 											</div>
 										</div>
 									 	<div class="col-md-4">
