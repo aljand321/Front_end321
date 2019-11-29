@@ -51,10 +51,7 @@ router.get('/home/:id_user',(req, res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
-        fetch('http://localhost:3050/api/list_dianmic_lab/'+id_user)  // 
-        .then(resp => resp.json())
-        .catch(error => console.error('Error',error))
-        .then(lista_pacientes => {
+        
            // console.log( resp1.length,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hola laboratorio")
             if(datas.name.token[resp.id]){
                 data_token.token_id = resp.id 
@@ -70,50 +67,57 @@ router.get('/home/:id_user',(req, res) => {
                     .then(resp => resp.json())
                     .catch(error => console.error('Error',error))
                     .then(personal => {
+                        
                         data_token.personal = personal 
-                        if(data_user[data_token.token_id] == null){
-                            user(data_token, data_token.token_id)
-                            res.render('laboratorio/homeLab',{
-                                data_token,
-                                lista_pacientes: lista_pacientes.length,
-                                token:{
-                                    success: datas.name.token[resp.id].data.success,
-                                    token:datas.name.token[resp.id].data.token,
-                                    user:{
-                                        id: datas.name.token[resp.id].data.user.id,
-                                        perso_id: datas.name.token[resp.id].data.user.perso_id,
-                                        username: datas.name.token[resp.id].data.user.username,
-                                        email:  datas.name.token[resp.id].data.user.email,
-                                    } 
-                                },
-                                login:datas.name.session[resp.id]
-                            })
-                            status = null
-                        }else{
-                            remove_user( data_token.token_id)
-                            user(data_token, data_token.token_id)
-                            res.render('laboratorio/homeLab',{
-                                data_token,
-                                lista_pacientes: lista_pacientes.length,
-                               
-                                token:{
-                                    success: datas.name.token[resp.id].data.success,
-                                    token:datas.name.token[resp.id].data.token,
-                                    user:{
-                                        id: datas.name.token[resp.id].data.user.id,
-                                        perso_id: datas.name.token[resp.id].data.user.perso_id,
-                                        username: datas.name.token[resp.id].data.user.username,
-                                        email:  datas.name.token[resp.id].data.user.email,
-                                    } 
-                                },
-                                login:datas.name.session[resp.id]
-                            })
-                            status = null
-                        }
-                        remove_session(resp.id),{expiresIn: 10* 30}
-                            function remove_session(id) {
-                            delete datas.name.session[id]
-                        }
+                        fetch('http://localhost:3050/api/list_dianmic_lab/'+id_user)  // 
+                        .then(resp => resp.json())
+                        .catch(error => console.error('Error',error))
+                        .then(lista_pacientes => {
+                            if(data_user[data_token.token_id] == null){
+                                user(data_token, data_token.token_id)
+                                res.render('laboratorio/homeLab',{
+                                    data_token,
+                                    lista_pacientes: lista_pacientes.length,
+                                    token:{
+                                        success: datas.name.token[resp.id].data.success,
+                                        token:datas.name.token[resp.id].data.token,
+                                        user:{
+                                            id: datas.name.token[resp.id].data.user.id,
+                                            perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                            username: datas.name.token[resp.id].data.user.username,
+                                            email:  datas.name.token[resp.id].data.user.email,
+                                        } 
+                                    },
+                                    login:datas.name.session[resp.id]
+                                })
+                                status = null
+                            }else{
+                                remove_user( data_token.token_id)
+                                user(data_token, data_token.token_id)
+                                res.render('laboratorio/homeLab',{
+                                    data_token,
+                                    lista_pacientes: lista_pacientes.length,
+                                   
+                                    token:{
+                                        success: datas.name.token[resp.id].data.success,
+                                        token:datas.name.token[resp.id].data.token,
+                                        user:{
+                                            id: datas.name.token[resp.id].data.user.id,
+                                            perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                            username: datas.name.token[resp.id].data.user.username,
+                                            email:  datas.name.token[resp.id].data.user.email,
+                                        } 
+                                    },
+                                    login:datas.name.session[resp.id]
+                                })
+                                status = null
+                            }
+                            remove_session(resp.id),{expiresIn: 10* 30}
+                                function remove_session(id) {
+                                delete datas.name.session[id]
+                            }
+                        })
+                        
                        
                     })
                 }else{
@@ -123,7 +127,7 @@ router.get('/home/:id_user',(req, res) => {
                 res.redirect('/')
             }
 
-        })
+        
         
     })
    /*  res.render('hospitalizaciones/homeHospitalizacion',{

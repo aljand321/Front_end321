@@ -33,6 +33,23 @@
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
     <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 
+    <style >
+    /*   <%if (resp[0] != null) { %> */
+			@media print{
+				/* para orden de internacion*/
+			.oreden1:before {
+				content: " <%=resp[0].diagnostico%>";
+				font-weight: negrita;
+				color:black;
+				text-align: center;
+				padding: 0%;
+				margin: 0%;
+				font: Arial
+			}
+				
+            }
+    /*   <% } %>     */
+    </style>
 
 
 
@@ -154,13 +171,14 @@
                                                     <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt  "></i><span>&nbsp;&nbsp;&nbsp;</span> Lista de Internación del Paciente</a>
                                                     </li>
                                                 </ul>
-                                        <% if(msg != null) { %>
+                                   <!--     <% if(msg != null) { %>
                                             <% if(msg.data.success == true) { %>
                                               <span style="color: blue"> <%=msg.data.msg%></span>
                                             <% } else { %>
                                               <span style="color: red"> <%=msg.data.msg%></span>
                                             <% } %>  
                                           <% } %>
+                                          -->
                                         <div id="myTabContent" class="tab-content">
                                             <div class="tab-pane fade active in" id="PapeletaInternacion">
                                                 <div class="">
@@ -169,8 +187,6 @@
 
                                                         <form action="/consulta_externa/Pinternacion/<%=one_consulta[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
                                                             <input type="hidden" name="id_medico" value="<%=data_doc.data.medico.id%>">
-                                                            
-                                                                 
                                                         <div class="row "> 
                                                             <div class="block-web"> 
                                                                
@@ -184,12 +200,8 @@
                                                                             <div class="his"> 
                                                                                 <div class="col-md-4 his">
                                                                                     
-                                                                                        <label class=" ">N° de Historia:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
-                                                                                            <input type="hidden" name="Historial" 
-                                                                                                value="<%=dataPaciente[0].numeroHistorial%>"
-                                                                                                    class="form-control" readonly=""
-                                                                                                    value="Read only text goes here">
-                                                                                 
+                                                                                    <label class=" ">N° de Historia:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
+                                                                                        <input type="hidden" name="Historial" value="<%=dataPaciente[0].numeroHistorial%>" class="form-control" readonly="" value="Read only text goes here">
                                                                                 </div>
                                                                                 <div class="col-sm-3 his">
                                                                                    
@@ -212,8 +224,9 @@
                                                                                     <label class=" ">Nombre Completo:</label><p><b><%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%></b></p>    
                                                                                    
                                                                                 </div>
-                                                                            </div>
+                                                                            
                                                                         </div>
+                                                                    </div>
                                                                     </div>
                                                                     <div class="col-md-6 panel panel-default">
                                                                            
@@ -280,7 +293,7 @@
                                                                             <div class="col-sm-4 col-sm-4">
 
                                                                                 <div class="entrada"> Diagnóstico<br>
-                                                                                    <textarea name="diagnostico" cols="100" rows="10"></textarea><br>
+                                                                                    <textarea name="diagnostico" cols="100" rows="10" onkeyup="mayus(this);"></textarea><br>
                                                                                 </div>
                                                                             </div>
 
@@ -318,7 +331,7 @@
                                                                                 <section class="panel default blue_title h2">  
                                                                                     <div class="col-md-12 panel panel-default">
                                                                                         <div id="ocultoI" class=" panel panel-default">
-                                                                                            <li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Personales</li>            
+                                                                                            <li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Importantes</li>            
                                                                                         </div>
                                                                                         <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse in">
                                                                                             <div class="col-md-3  ">                         
@@ -406,23 +419,23 @@
                                                                             <div class="entrada his ">
 
                                                                                 <label class=""> Diagnóstico</label><br>
-                                                                                    <textarea name="diagnostico"
-                                                                                        cols="100%"
-                                                                                        rows="10"><%=resp[0].diagnostico%></textarea>
-                                                                                
+                                                                                    <textarea name="diagnostico" cols="100%" rows="10" onkeyup="mayus(this);"><%=resp[0].diagnostico%></textarea>
+                                                                                    <p class="oreden1"></p>
                                                                             </div>
 
 
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
                                                                 <p class="firmaPa center cafirmaP"></p>
-																<p class="firmaDoc center cafirmaDoc"></p></p>
+                                                                <p class="firmaDoc center cafirmaDoc"></p></p>
+                                                                
                                                             </div>
                                                             <div id="ocultoI" class="col-md-12 page-content ">
                                                                     <div class="col-md-8 ">
                                                             <%if(resp[0].estado_update == true) { %>    
-                                                                <button type="submit" class="btn btn-info"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;  Actualizar</button>                                                                   
+                                                                <button type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> &nbsp;&nbsp;  Actualizar</button>                                                                   
                                                             <% } %>
                                                             <a id="ocultoI"onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
                                                         </div>

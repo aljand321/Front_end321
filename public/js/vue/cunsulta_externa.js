@@ -68,12 +68,13 @@ const consulta = new Vue({
             .then(resp => resp.json())
             .then(dataPaciente =>{
                 this.id_paciente = dataPaciente[0].id
-                if(dataPaciente[0].estadocivil == null || dataPaciente[0].ocupacion == null || dataPaciente[0].zona == null || dataPaciente[0].telef == null){
+                if(dataPaciente[0].estadocivil == null || dataPaciente[0].ocupacion == null || dataPaciente[0].zona == null || dataPaciente[0].telef == null || dataPaciente[0].tipoSangre == null){
                     this.paciente_data = {
                         estadocivil:dataPaciente[0].estadocivil,
                         ocupacion:dataPaciente[0].ocupacion,
                         zona:dataPaciente[0].zona,
-                        telef:dataPaciente[0].telef
+                        telef:dataPaciente[0].telef,
+                        tipoSangre:dataPaciente[0].tipoSangre,
                     }
                     console.log( this.paciente_data, "    <<<<<<<<<<<<< esto es lo que quiero ver")
                 }else{
@@ -91,7 +92,8 @@ const consulta = new Vue({
                 estadocivil:this.paciente_data.estadocivil,
                 ocupacion:this.paciente_data.ocupacion,
                 zona:this.paciente_data.zona,
-                telef:this.paciente_data.telef
+                telef:this.paciente_data.telef,
+                tipoSangre:this.paciente_data.tipoSangre
             };
             var esto = {
                 method: 'POST',

@@ -436,7 +436,10 @@
                                                 <label>Zona donde vive:</label>
                                                 <input readonly class="form-control" type='text' name='Zona' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].zona%>">
                                             </div>
-
+                                            <div class="">
+                                                <label>Tipo de Sangre:</label>
+                                                <input readonly class="form-control" type='text' name='ocupacion' class='' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].tipoSangre%>">
+                                            </div>
                                         </div>
                                         <div class="col-md-6  ">
                                             <div class="">
@@ -445,8 +448,9 @@
                                             </div>
                                             <div class="">
                                                 <label>Telefono:</label>
-                                                <input readonly class="form-control" type='text' name='Telefono' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].telef%>">
+                                                <input parsley-type="number" readonly class="form-control" type='text' name='Telefono'required placeholder="XX-XXXXXX" maxlength="8" placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].telef%>">
                                             </div>
+                                            
                                         </div>
                                        
                                     </div>
@@ -479,7 +483,10 @@
                                                 <label>Zona:</label>
                                                 <input class="form-control" type='text' name='apellidom'placeholder=" " required  parsley-trigger="change" v-model="paciente_data.zona" onkeyup="mayus(this);">
                                             </div>
-
+                                            <div class="">
+                                                <label>Tipo de sangre:</label>
+                                                <input class="form-control" type='text' name='apellidop' class='upper' placeholder=" " required  parsley-trigger="change" v-model="paciente_data.tipoSangre" onkeyup="mayus(this);">
+                                            </div>
                                         </div>
                                         <div class="col-md-6  ">
                                             <div class="">
@@ -488,8 +495,9 @@
                                             </div>
                                             <div class="">
                                                 <label>Telefono:</label>
-                                                <input class="form-control" type='text' name='apellidom' placeholder=" " required  parsley-trigger="change" v-model="paciente_data.telef" >
+                                                <input parsley-type="number" class="form-control" type='text' name='apellidom'  required placeholder="XX-XXXXXX" maxlength="8"   parsley-trigger="change" v-model="paciente_data.telef" >
                                             </div>
+                                            
                                         </div>
                                         
                                     </div>
@@ -546,6 +554,7 @@
                             </div>
                             <div class="">
                                     <label>Telefono:</label>
+                                   
                                     <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
                                 </div>
                         </div>

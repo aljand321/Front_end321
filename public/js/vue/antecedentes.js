@@ -52,6 +52,11 @@ const antecedentes = new Vue({
             .catch(error => console.error('Error:', error))
             .then(data => {
                 if(data.success == true){
+                    swal.fire(                  //esto
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                      )
                     this.familiares = ''
                     this.personales_patologicos = ''
                     this.personales_no_patologicos = ''
@@ -61,6 +66,11 @@ const antecedentes = new Vue({
                     this.msg_false = ""   
                     this.list()                 
                 }else{
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                      )
                     this.msg_false = data.msg
                     this.msg = ""
                 }
@@ -107,6 +117,11 @@ const antecedentes = new Vue({
             .catch(error => console.error('Error:', error))
             .then(data => {
                 if(data.success == true){
+                    swal.fire(                  //esto
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                      )
                     this.msg = data.msg
                     this.msg_false = ""
                     this.one_antecedente(this.id_ant)
@@ -114,6 +129,11 @@ const antecedentes = new Vue({
                 }else{
                     this.msg_false = data.msg
                     this.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                      )
                 }
             })
         }

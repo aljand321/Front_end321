@@ -1,0 +1,51 @@
+/*----------------------logo------------------------------*/
+.dim2:before{
+    content: url('../images/hospital1.png');    
+}
+.posiondeImagen{
+    position:absolute;
+    top:0;
+    width:200px;
+}
+
+.verOculto{
+    visibility: collapse;
+}
+#ocultoI{
+    display: none;   
+}
+.sinmagen{
+    border: 0%;
+    margin-bottom: 0px;
+    contain: 0px;
+    height: 100%;
+    width: auto;
+    margin: 0cm;
+    padding: 0px;
+   
+}
+/* vista de impresion segun el documento */
+.header_bar, .left_nav{
+    display: none;  
+}
+
+.contentpanel{
+    
+    top: 9%;
+    border: 0px;
+   padding-left: 0% ;
+ padding-top: 5%;
+   margin-left: 0%;
+    margin-right: 0%;
+  
+    padding: 0px;
+    
+    position: relative;
+
+    border-top-style: dashed;
+    border-right-style: double;
+  
+    border-left-style: solid; 
+
+
+}

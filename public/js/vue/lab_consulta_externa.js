@@ -8,6 +8,7 @@ const lab_consulta_externa = new Vue({
         view_list:true,   
         
         // datas
+        consultorio:'',
         id_consulta:'',
         id_medico:'',
         historial:'',
@@ -307,6 +308,7 @@ const lab_consulta_externa = new Vue({
             e.preventDefault();
             
             var data = {
+                consultorio: this.consultorio,
                 tipo_laboratorio : this.tipo_laboratorio_eco,
                 fecha : this.fecha,
                 hora : this.hora,
@@ -536,6 +538,7 @@ const lab_consulta_externa = new Vue({
                 } )
             }else{
                 var data = {
+                    consultorio: this.consultorio,
                     tipo_laboratorio : this.tipo_laboratorio_rayosX,
                     fecha : this.fecha,
                     hora : this.hora,
@@ -888,6 +891,7 @@ const lab_consulta_externa = new Vue({
                 } )
             }else{
                 var data = {
+                    consultorio: this.consultorio,
                     tipo_laboratorio : this.tipo_laboratorio_lab,
                     fecha : this.fecha,
                     hora : this.hora,
