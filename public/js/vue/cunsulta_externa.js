@@ -101,12 +101,13 @@ const consulta = new Vue({
             .then(resp => resp.json())
             .then(dataPaciente =>{
                 this.id_paciente = dataPaciente[0].id
-                if(dataPaciente[0].estadocivil == null || dataPaciente[0].ocupacion == null || dataPaciente[0].zona == null || dataPaciente[0].telef == null){
+                if(dataPaciente[0].estadocivil == null || dataPaciente[0].ocupacion == null || dataPaciente[0].zona == null || dataPaciente[0].telef == null || dataPaciente[0].tipoSangre == null){
                     this.paciente_data = {
                         estadocivil:dataPaciente[0].estadocivil,
                         ocupacion:dataPaciente[0].ocupacion,
                         zona:dataPaciente[0].zona,
-                        telef:dataPaciente[0].telef
+                        telef:dataPaciente[0].telef,
+                        tipoSangre:dataPaciente[0].tipoSangre,
                     }
                     console.log( this.paciente_data, "    <<<<<<<<<<<<< esto es lo que quiero ver")
                 }else{
@@ -124,7 +125,8 @@ const consulta = new Vue({
                 estadocivil:this.paciente_data.estadocivil,
                 ocupacion:this.paciente_data.ocupacion,
                 zona:this.paciente_data.zona,
-                telef:this.paciente_data.telef
+                telef:this.paciente_data.telef,
+                tipoSangre:this.paciente_data.tipoSangre
             };
             var esto = {
                 method: 'POST',
@@ -137,11 +139,22 @@ const consulta = new Vue({
             .then(res => res.json())
             .then(data => {
                 if(data.success == true){
+                    swal.fire(                  //esto
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                      )
+
                     this.msg_paciente = data.msg
                     this.msg_false_paciente = ""
                 }else{
                     this.msg_false_paciente = data.msg
                     this.msg_paciente = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                      )
                 }
             })
             
@@ -270,6 +283,11 @@ const consulta = new Vue({
             .then(data => {
                 if(data.success == true){
                     this.msg = data.msg
+                    swal.fire(                  //esto
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                      )
                     this.anamnesis = "" 
                     this.diagnostico = ""      
                     this.tratamiento = ""
@@ -279,8 +297,11 @@ const consulta = new Vue({
                     this.update_estado_cita()
                     this.data_update_consulta()
                 }else{
-                    this.msg_false = data.msg
-                    this.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                      )
                 }
             })
         },
@@ -338,10 +359,18 @@ const consulta = new Vue({
                     this.msg = resp.msg,
                     this.data_update_consulta()
                     this.msg_false = ""
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+ resp.msg +'</label>',
+                        'success'
+                      )
 
                 }else{
-                    this.msg_false = resp.msg
-                    this.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+resp.msg+'</label>',
+                        'error'
+                      )
                 }
             })
         },

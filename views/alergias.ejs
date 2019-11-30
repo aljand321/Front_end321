@@ -142,10 +142,10 @@
 												<div class="row">
 													<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
 													<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
-													
+													<!--
 													<span style="color: red">{{msg_false}}</span>
 													<span style="color: blue">{{msg}}</span>
-													
+													-->
 													<template v-if="oneAlergia == ''">
 													
 														<form @submit="reg_alergias" method="POST">
@@ -153,11 +153,10 @@
 																<div class="col-md-12">		
 																	<div class="head">
 																		<div class="actions"> 
-
 																		</div>
 																		<div class="header">
 																			<div class="info blue_symbols"><i class="fa fa-group icon"></i></div>
-																				<h3 class="content-header "> Alergias {{msg}}</h3>
+																				<h2 class="content-header "> Alergias {{msg}}</h2>
 																		</div>	
 																	</div><br><br>
 																</div>
@@ -165,7 +164,7 @@
 
 																	<div class="col-sm-4 col-sm-4">
 																		<div class="entrada ">
-																			<h6 class=" blue_info">N° de Historia:</h6>
+																			<label class="">N° de Historia:</label>
 																			<input type="text" name="numeroHistorial"
 																					value="<%=dataPaciente[0].numeroHistorial%>"
 																						class="form-control" readonly=""
@@ -175,8 +174,7 @@
 																	<div class="col-sm-8 col-sm-9">
 																		<div class="form-group">
 																			<div class="entrada">
-																				<h6 class=" blue_info">Nombre Completo:
-																				</h6>
+																				<label class=" ">Nombre Completo: </label>
 																				<input type="text" name="numeroHistorial"
 																					value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
 																					class="form-control" readonly=""
@@ -186,24 +184,23 @@
 																	</div>
 																	<div class="">
 																		<div class="col-sm-4 col-sm-4">
-																			<div class="entrada">Fecha:<br>
-
+																			<div class="entrada">
+																				<label>Fecha:</label> 
 																				<input class="form-control" type="text" readonly name="fecha"require v-model="fecha_registro"><br>
 																			</div>
 																		</div>
 																		<div class="col-sm-8 col-sm-9">
-																			<div class="entrada">Tipo de Alergia<br>
-																				<input type="text" name="tipoAlergia" value=""
-																					size="20" class="form-control" v-model="tipoAlergia"><br>
+																			<div class="entrada">
+																				<label>Tipo de Alergia</label> <br>
+																				<input type="text" name="tipoAlergia" value="" size="20" class="form-control" v-model="tipoAlergia"><br>
 																			</div>
 																		</div>
 																	</div>
 																	<div class="col-md-9">
-																		<div class="entrada">Descripción:<br>
-																		
+																		<div class="entrada">
+																			<label>Descripción:</label> 
 																		</div>
-																		<textarea class="large-compact" name="descripcion"
-																				cols="80" rows="5" v-model="descripcion"></textarea>
+																		<textarea class="large-compact" name="descripcion" cols="80" rows="5" v-model="descripcion"></textarea>
 																	</div>
 																</div>
 
@@ -229,13 +226,12 @@
 																	 </div>
 																</div>
 															</div>
-
-															<p class="text-center">
-																<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-																	Limpiar</button>
-																<button type="submit" class="btn btn-danger btn-raised"><i
-																		class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-																	Guardar</button>
+															<br><br>
+															<p class=""><br>
+																
+																<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="fa fa-refresh"></i> &nbsp;&nbsp; Limpiar</button>
+																<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+															
 															</p>
 														</form>
 
@@ -320,18 +316,11 @@
 																</div>
 															</div>
 
-															<p class="text-center">
-																<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-																	Limpiar</button>
+															<p class="">
 																<template v-if="oneAlergia.estado_update == true">
-																	<button type="submit" class="btn btn-danger btn-raised"><i
-																		class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-																	Guardar</button>
-																</template>
-																
-																<button @click="oneAlergia = ''" class="btn btn-warning btn-raised"><i
-																	class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-																Volver</button>
+																	<button type="submit" class="btn btn-success"><i class="fa fa-undo"></i> &nbsp;&nbsp; Actualizar</button>
+																</template>&nbsp;&nbsp;
+																<button  @click="oneAlergia = ''" class="btn btn-info btn-raised"><i class="fa fa-reply"></i> &nbsp;&nbsp;Volver</button>
 															</p>
 														</form>
 													</template>
@@ -372,7 +361,7 @@
 																			<th>Fecha</th>
 																			<th>Tipo de Alergia</th>
 																			<th>Descripción</th>
-																			<th>Ver</th>
+																			<th>Opciones</th>
 																		</tr>
 																	</tfoot>
 													  			</table>
@@ -427,7 +416,7 @@
 
 
 	<!--====== Scripts -->
-
+	<%- include("partials/scripts") -%>
 	<script src="/js/get/consultaget.js"></script>
 
 

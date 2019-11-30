@@ -123,7 +123,7 @@
 						<div  >				
 							<div class="header">
 								<div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
-									<h3 class="content-header "> Registro de Antecedentes</h3>
+									<h2 class="content-header "> Registro de Antecedentes</h2>
 							</div>
 								<h1 class="text-titles"><i class="fa fa-hospital "></i> </h1>  			
 						</div>
@@ -138,9 +138,9 @@
 									
 									<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
 									<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
-									<span style="color: red">{{msg_false}}</span>
+								<!--	<span style="color: red">{{msg_false}}</span>
 									<span style="color: blue">{{msg}}</span>
-
+								-->
 									<template v-if="antecedente_one == ''">
 
 									
@@ -154,7 +154,7 @@
 												<div class=" ">
 													<div class="col-sm-4 col-sm-4">
 														<div class="entrada ">
-															<h6 class=" blue_info">N° de Historia:</h6>
+															<label class=" ">N° de Historia:</label>
 															<input
 																value="<%=dataPaciente[0].numeroHistorial%>"
 																class="form-control" readonly=""
@@ -164,7 +164,7 @@
 													<div class="col-sm-8 col-sm-9">
 														<div class="form-group">
 															<div class="entrada">
-																<h6 class=" blue_info">Nombre Completo:</h6>
+																<label class=" ">Nombre Completo:</label>
 																	<input
 																		value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
 																		class="form-control" readonly=""
@@ -177,20 +177,24 @@
 											
 												<div class="">
 													<div class="col-sm-4 col-sm-4">
-														<div class="entrada">Fecha:<br>
+														<div class="entrada">
+															<label>Fecha:</label>
+															<br>
 															<input type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
 														</div>
 													</div>
 													<div class="col-sm-4 col-sm-4">
 														<div class="form-group">
-															<div class="entrada">Antecedes de Familiares:<br>
+															<div class="entrada">
+																<label>Antecedes de Familiares:</label> 
 																<input type="text" size="20" class="form-control" v-model="familiares"><br>
 															</div>
 														</div>
 													</div>
 													<div class="col-sm-4 col-sm-4">
 														<div class="form-group">
-															<div class="entrada">Antecedes Patologicos:<br>
+															<div class="entrada">
+																<label>Antecedes Patologicos:</label> 
 																<input type="text"  size="20" class="form-control" v-model="personales_patologicos"><br>
 															</div>
 														</div>
@@ -199,13 +203,15 @@
 												<div class="">
 													<div class="col-sm-4 col-sm-4">
 														<div class="form-group">
-															<div class="entrada">Antecedes no Patologicos:<br>
+															<div class="entrada">
+																<label>Antecedes no Patologicos:</label> <br>
 																<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="personales_no_patologicos"><br>
 															</div>
 														</div>
 													</div>
 													<div class="col-sm-4 col-sm-4">
-														<div class="entrada">Gineco Obstetrico:<br>
+														<div class="entrada">
+															<label>Gineco Obstetrico:</label> <br>
 															<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="gineco_obstetrico"><br>
 														</div>
 													</div>
@@ -241,12 +247,12 @@
 												</div>
 												<br>
 												<br>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-																Limpiar</button>
-													<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-																Guardar</button>
+												
+												<p class="">
+													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="fa fa-refresh"></i> &nbsp;&nbsp; Limpiar</button>
+													<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
 												</p>
+												
 										</form>
 											
 									</template>
@@ -257,20 +263,13 @@
 
 											<div class="col-md-12">
 											<div class="">
-												<div class="col-md-12 block-web">
-												<div class="header ">
-													<div class="actions"> 
-														<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
-													</div>
-													<h3 class="content-header">Antecedentes</h3>&nbsp;&nbsp;
-												</div>
-											</div>
+												
 											<div class=" ">
 												<div class=" row col-md-9 ">
 												<div class=" ">
 													<div class="col-sm-4 col-sm-4">
 														<div class="entrada ">
-															<h6 class=" blue_info">N° de Historia:</h6>
+															<h6 class=" ">N° de Historia:</h6>
 															<input
 																value="<%=dataPaciente[0].numeroHistorial%>"
 																class="form-control" readonly=""
@@ -280,7 +279,7 @@
 													<div class="col-sm-8 col-sm-9">
 														<div class="form-group">
 															<div class="entrada">
-																<h6 class=" blue_info">Nombre Completo:</h6>
+																<h6 class=" ">Nombre Completo:</h6>
 																	<input
 																		value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
 																		class="form-control" readonly=""
@@ -357,13 +356,12 @@
 												</div>
 												<br>
 												<br>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp;Limpiar</button>
+												<p class="">
 													<template v-if="antecedente_one.estado_update == true">
-														<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;Actualizar</button>
+														<button type="submit" class="btn btn-success btn-raised"><i class="fa fa-refresh"></i> &nbsp;&nbsp;Actualizar</button>
 
 													</template>
-													<button  @click="antecedente_one = ''" type="button" class="btn btn-warning btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;Volver</button>
+													<button  @click="antecedente_one = ''" type="button" class="btn btn-info btn-raised"><i class="fa fa-reply"></i> &nbsp;&nbsp;Volver</button>
 												</p>
 										</form>
 									</template>
@@ -372,22 +370,23 @@
 										<div class="container" > 
 										
 										
-											<br><br>
+											<br>
 											<div class="table-responsive">
 												<div class="block-web">
 													<div class="header">
 														<div class="actions"> 
 
 														</div>
-														<h3 class="text-center all-tittles">Lista de  Antecedentes</h3>&nbsp;&nbsp;
+														<div class="head">
+															<h3 class="text-center ">Lista de  Antecedentes</h3>
+														</div>
 													</div>
 												
 												</div>
 
 												<div class="table-wrapper">
 
-													<table class="display table table-bordered table-striped"
-														id="dynamic-tablee">
+													<table class=" table table-hover" id="">
 														<thead>
 															<tr>
 																<th>#</th>
@@ -400,11 +399,13 @@
 														</thead>
 														<tbody v-for="(list,index) in antc_list">
 															<tr>
-																<td>{{index}}</td>
+																<td>{{index+1}}</td>
 																<td>{{list.familiares}}</td>
 																<td>{{list.personales_patologicos}}</td>
 																<td>{{list.personales_no_patologicos}}</td>
-																<td><a @click="one_antecedente(list.id)">ver</a></td>
+																<td class="center">
+																	<a @click="one_antecedente(list.id)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-eye "></i></a>
+																</td>
 															</tr>
 
 														<tbody>
@@ -449,11 +450,15 @@
     </div> 
 </div>
 	<!--====== Scripts -->
+	<%- include("partials/scripts") -%>
+    <script>
+
+    </script>
+	
 	<script src="/js/jquery-2.1.0.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/common-script.js"></script>
 	<script src="/js/jquery.slimscroll.min.js"></script>
-	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
 	<script src="/plugins/data-tables/jquery.dataTables.js"></script>
 	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
 	<script src="/plugins/data-tables/dynamic_table_init.js"></script>

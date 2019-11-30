@@ -575,7 +575,7 @@
                                                         <div class="form-group">
                                                             <div class="col-sm-12"><br>
                                                                 <label class="control-label">EVOLUCION:</label>  
-                                                                <textarea class="form-control" name="" cols="50" rows="5" v-model="daigTratameinto.evolucion" ></textarea>
+                                                                <textarea class="form-control" name="" cols="50" rows="5" v-model="daigTratameinto.evolucion" onkeyup="mayus(this);" ></textarea>
                                                             </div>
                                                         
                                                         </div>
@@ -590,15 +590,15 @@
                                                                 <div class="col-sm-3"><br>
 
                                                                     <label class="form-label">Medicamento:</label> 
-                                                                    <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.medic">
+                                                                    <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.medic" onkeyup="mayus(this);" >
                                                                 </div>
                                                                 <div class="col-sm-3"> <br>
                                                                     <label class="form-label">Dosis:</label>
-                                                                    <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.dosis">
+                                                                    <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.dosis" onkeyup="mayus(this);" >
                                                                 </div>
                                                                 <div class="col-sm-3    "><br>
                                                                     <label class="form-label">Frecuencia: </label>
-                                                                    <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.frecuencia">
+                                                                    <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.frecuencia" onkeyup="mayus(this);" >
                                                                 </div>
                                                                 <div class="col-sm-3"><br>
                                                                     <div class="actions"> <br>

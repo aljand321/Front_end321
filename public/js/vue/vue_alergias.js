@@ -48,6 +48,11 @@ const alergias = new Vue({
             .catch(error => console.error('Error:', error))
             .then(data => {
                 if(data.success == true){
+                    swal.fire(                  //esto
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                      )
                     this.tipoAlergia = ""
                     this.descripcion = ""
                     this.msg = data.msg
@@ -56,6 +61,11 @@ const alergias = new Vue({
                 }else{
                     this.msg_false = data.msg
                     this.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                    )
                 }
             })
         },
@@ -98,6 +108,11 @@ const alergias = new Vue({
             .catch(error => console.error('Error:', error))
             .then(data => {
                 if(data.success == true){
+                    swal.fire(                  //esto
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                      )
                     this.msg = data.msg
                     this.msg_false = ""
                     this.one_alergia(this.idAlergia)
@@ -105,6 +120,11 @@ const alergias = new Vue({
                 }else{
                     this.msg_false = data.msg
                     this.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                      )
                 }
             })
         }
