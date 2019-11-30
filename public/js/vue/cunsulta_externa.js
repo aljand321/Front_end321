@@ -8,6 +8,31 @@ const consulta = new Vue({
         url:data_url.url_front_end,
         id_hora:'',
 
+        //para examen general
+        peso :'50.08',
+        talla: '',
+        temperatura:'50.08',
+        frecuencia_cardiaca:'1.08',
+        respiracion:'1.08',
+        presion:'',
+        saturacion_oxigeno:'',
+        fecha_revision:'',
+        otros:'',
+        pulso:'',
+
+        estado_nutricional :'',
+        presion_brazo_isquierdo :'', /// esta la precion aarteria en el brazo izquierdo
+        presion_brazo_derecho :'', /// esta la precion aarteria en el brazo derecho 
+        imc :'',
+
+        id_paciente:'',
+        id_user :'',
+
+        examen_list:'',
+        one_examen:'',
+        idExamen:'',
+        //z<<<<<<<<<<<<<<<<«
+
 
         msg:"",
         msg_false:"",
@@ -52,11 +77,19 @@ const consulta = new Vue({
         var anios=hoy.diff(edad,"years")
         this.edad = anios
         this.fechaConsulta = moment().format('l'); 
-
+        this.fecha_revision =  moment().format('l'); 
         fetch(this.url+'/consulta_externa/VUE_data_update_consulta/'+this.id_cita)
         .then(resp => resp.json())
         .then(resp =>{
             this.consulta_update =  resp[0];
+        })
+
+        fetch(this.url+'/datos_generales_paciente/vue_list_examenFisico/'+this.id_paciente)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {
+            this.examen_list = data;
+            console.log(this.examen_list, " esto es lo quiero ver");
         })
     },
    
@@ -311,14 +344,183 @@ const consulta = new Vue({
                     this.msg = ""
                 }
             })
+        },
+
+        //funcion para insertar datos en examen_general
+        insertar_examen_general(e){
+            e.preventDefault();            
+            var data = {
+                peso :this.peso,
+                talla: this.talla,
+                temperatura:this.temperatura,
+                frecuencia_cardiaca:this.frecuencia_cardiaca,
+                respiracion:this.respiracion,
+                presion:this.presion,
+                saturacion_oxigeno:this.saturacion_oxigeno,
+                fecha_revision:this.fecha_revision,
+                otros:this.otros,
+                pulso:this.pulso,
+        
+                estado_nutricional :this.estado_nutricional,
+                presion_brazo_isquierdo :this.presion_brazo_isquierdo, /// esta la precion aarteria en el brazo izquierdo
+                presion_brazo_derecho :this.presion_brazo_derecho, /// esta la precion aarteria en el brazo derecho 
+                imc :this.imc,               
+                id_user :this.id_user,
+            };
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch(this.url+'/datos_generales_paciente/vue_reg_exFisico/'+this.id_paciente,esto)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                if(data.success == true){
+                    this.list_examenes();
+                    this.peso='50.08'
+                    this.talla = ''
+                    this.temperatura = '50.08'
+                    this.frecuencia_cardiaca='1.08'
+                    this.respiracion='1.08'
+                    this.presion=''
+                    this.saturacion_oxigeno=''
+                    this.fecha_revision=''
+                    this.otros=''
+                    this.pulso=''
+          
+                    this.estado_nutricional =''
+                    this.presion_brazo_isquierdo ='' /// esta la precion aarteria en el brazo izquierdo
+                    this.presion_brazo_derecho ='' /// esta la precion aarteria en el brazo derecho 
+                    this.imc=''
+            
+                
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+data.msg+'</label>',
+                        'success'
+                    )
+                }else{
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                    )
+                }
+                console.log(data, " esto es el mensaje")
+            })
+        },
+        list_examenes(){
+            fetch(this.url+'/datos_generales_paciente/vue_list_examenFisico/'+this.id_paciente)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                this.examen_list = data;
+                
+            })
+        },
+        oneExamen(id_examen){
+            console.log(id_examen, "  estased")
+            this.idExamen = id_examen;
+            fetch(this.url+'/datos_generales_paciente/Vue_one_ExFisico/'+id_examen)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                this.one_examen = data[0]     
+              
+
+                this.peso = data[0].peso
+                this.talla = data[0].talla
+                this.temperatura = data[0].temperatura
+                this.frecuencia_cardiaca = data[0].frecuencia_cardiaca
+                this.respiracion= data[0].respiracion
+                this.presion = data[0].presion
+                this.saturacion_oxigeno = data[0].saturacion_oxigeno
+                this.fecha_revision = data[0].fecha_revision 
+                this.otros = data[0].otros
+                this.pulso = data[0].pulso
+
+                this.estado_nutricional = data[0].estado_nutricional
+                this.presion_brazo_isquierdo = data[0].presion_brazo_isquierdo /// esta la precion aarteria en el brazo izquierdo
+                this.presion_brazo_derecho = data[0].presion_brazo_derecho /// esta la precion aarteria en el brazo derecho 
+                this.imc = data[0].imc
+                        
+            })
+        },
+        elminar_datas_examen(){
+            this.one_examen = ""
+            this.peso='50.08'
+            this.talla = ''
+            this.temperatura = '50.08'
+            this.frecuencia_cardiaca='1.08'
+            this.respiracion='1.08'
+            this.presion=''
+            this.saturacion_oxigeno=''
+            
+            this.otros=''
+            this.pulso=''
+    
+            this.estado_nutricional =''
+            this.presion_brazo_isquierdo ='' /// esta la precion aarteria en el brazo izquierdo
+            this.presion_brazo_derecho ='' /// esta la precion aarteria en el brazo derecho 
+            this.imc=''
+        },
+        update_examen(){
+           
+            var data = {     
+                peso :this.peso,
+                talla: this.talla,
+                temperatura:this.temperatura,
+                frecuencia_cardiaca:this.frecuencia_cardiaca,
+                respiracion:this.respiracion,
+                presion:this.presion,
+                saturacion_oxigeno:this.saturacion_oxigeno,
+                fecha_revision:this.fecha_revision,
+                otros:this.otros,
+                pulso:this.pulso,
+        
+                estado_nutricional :this.estado_nutricional,
+                presion_brazo_isquierdo :this.presion_brazo_isquierdo, /// esta la precion aarteria en el brazo izquierdo
+                presion_brazo_derecho :this.presion_brazo_derecho, /// esta la precion aarteria en el brazo derecho 
+                imc :this.imc,
+            };
+            console.log(data)
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch(this.url+'/datos_generales_paciente/vue_update_exFisico/'+this.idExamen,esto)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                if(data.success == true){
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+data.msg+'</label>',
+                        'success'
+                    )
+                    this.list_examenes()
+                    this.oneExamen(this.idExamen)
+                                    
+                }else{
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                    )
+                }
+            })
         }
         
     },
     computed:{
-        buscar(){
-           
-            return this.lista.filter((item) => item.codigo.includes(this.data) || item.descripcion.includes(this.data))
-           
+        buscar(){           
+            return this.lista.filter((item) => item.codigo.includes(this.data) || item.descripcion.includes(this.data))           
         }
     },
 
