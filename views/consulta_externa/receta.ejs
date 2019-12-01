@@ -35,27 +35,25 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
 	<style scoped>
-			@media print{
-				/* para orden de internacion*/
-			.oreden1:before {
-				content: " <%=paciente_Data[0].nombre%>";
-				font-weight: negrita;
-				color:black;
-				text-align: center;
-				padding: 0%;
-				margin: 0%;
-				font: Arial
-			}
-			.tprueba{
-				content: var(--medicamento);
-			}
-			.itabla:before{
-				content: "v-model=list.medicamento";
-	
-			}
-			td:hover { background-color: var(--bg-hover-color); }  
-			}
-			</style>
+		@media print{
+			/* para orden de internacion*/
+		.oreden1:before {
+			content: " v-model:"'data_receta.fecha' "
+			v-model="'data_receta.fecha'"
+
+		
+		}
+
+		.tprueba{
+			content: var(--medicamento);
+		}
+		.itabla:before{
+			content: "data_receta.fecha";
+
+		}
+		td:hover { background-color: var(--bg-hover-color); }  
+		}
+	</style>
 
 
 	<style>
@@ -159,6 +157,7 @@
 									</div>
 									<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
 									<div class="dim2 posiondeImagen">
+										.
 										<img class="oculVistaReal "  src="/images/hospital1.png" />
 									</div>
 									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
@@ -200,6 +199,8 @@
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																	 -->
+																	 <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+																	 <p class="oreden1"></p>
 																	<div id="ocultoI" class=" panel panel-default">
 																		<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de Interes</li>            
 																	</div>
@@ -456,11 +457,11 @@
 																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																					lista de medicamentos
 																>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-
+																
+																
 																<div class="tablaI"> 
 																	<section class="panel default blue_title h2">																			
 																		<div class="panel-body">
-																		
 																			  <table class="table table-hover">
 																				<thead>
 																					<tr>
@@ -474,31 +475,24 @@
 																					</tr>
 																				</thead>
 																				<tbody v-for="(list, index) in One_receta.medicamentos">
+																						<p class="pru"></p>
 																					<tr>
-																						<td class="">{{index + 1 }}</td>
-																						<td class="">{{list.medicamento}}</td>
+																						<td v-vind:class={pru}>{{index + 1 }}</td>
+																						<td >{{list.medicamento}}</td>
 																						<td>{{list.dosis}}</td>
 																						<td>{{list.frecuencia}}</td>
 																						<td>{{list.duracion}}</td>
 																						<td>{{list.cantidad}}</td>
 																						<td id="ocultoI">
 																							<a @click="eliminar_update(index)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-trash-o "></i></a>
-																		
 																						</td>
 																					</tr> 
-
 																				</tbody>
 																			  </table>
-																			
 																		</div>
 																	</section>
-																</div>
-																
-																
-																
-															</div>
-															
-																
+																</div>	
+															</div>	
 														</div>
 														<div id="ocultoI" class="col-md-12"><br>
 															<template v-if="One_receta.estado == false">
@@ -510,7 +504,7 @@
 													<p class="firmaPa center cafirmaP"></p>
 													
 													<p class="firmaDoc center cafirmaDoc"></p></p>
-													<p class="oreden1"></p>
+													
 													<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 													
 													</form>

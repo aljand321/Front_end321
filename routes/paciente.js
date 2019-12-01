@@ -489,8 +489,8 @@ router.get('/vueDoctores/:esp/:dia/:turno', (req,res) => {
 
 
 //imprimir receta
-router.get('/imprimirRecetas', (req,res) => {
-  res.render('consulta_externa/imprimirRecetas')
+router.get('/imprimirLaboratorio', (req,res) => {
+  res.render('consulta_externa/imprimirLaboratorio')
 });
 
 //rutas de vacunas
