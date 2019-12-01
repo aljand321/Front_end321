@@ -20,8 +20,36 @@
 				text-align: center;
 			  }
 		  </style>
+		  <style>
+			div.a {
+				text-align: center;
+			}
+			h1.letras {
+				font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+			}
+			#scroll{
+				position:absolute;
+				  border:1px solid;
+				  height:150px;
+				  width:315px;
+				  overflow-y:scroll;
+				  overflow-x:hidden;
+		  }
+		  .vertical-alignment-helper {
+			  display:table;
+			  height: 100%;
+			  margin-left: 41%;
+			}
+			.vertical-align-center {
+			  /* To center vertically */
+			  display: table-cell;
+			  vertical-align: middle;
+			  text-align: center;
+			}
+		</style>
 	  <%- include("../partials/head") -%>
-	  
+	<link rel="stylesheet" type="text/css" href="/css/imp_rec_farm.css" media="print" /> 
+	<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">	
 </head>
@@ -98,7 +126,7 @@
 				</div>
 			</div>
 		</div> 
-    	<div class="header_bar">
+    	<div id="ocultoI" class="header_bar">
     	  	<div class="brand">
     	    	<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
     	  	</div>
@@ -114,7 +142,7 @@
     	    	</div>
     	  	</div>
     	</div>
-    	<div class="inner">
+    	<div id="ocultoI" class="inner">
       		<div class="left_nav">
         		<div class="left_nav_slidebar">
 					<ul>
@@ -146,13 +174,13 @@
 				</div>
     		</div>
      		<!--Contenido-->
-     		<div class="contentpanel"><br>
+     		<div id="sinMargenE" class="contentpanel"><br>
 				<!--Formulario-->
-				<div class="container clear_both padding_fix">
+				<div id="segundoMargen" class="container clear_both padding_fix">
 					<div class="row">
 						<div class="col-md-12">
 						  	<div class="block-web">
-								<div class="header">
+								<div class="header" id="ocultoI" >
 									<div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href=""><i class="fa fa-repeat"></i></a></div>
 									<h2 class="content-header"><div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div> Recetas/<span class="semi-bold"> Registrar Receta</span></h2>  
 								</div>
@@ -161,145 +189,239 @@
 								<div class="porlets-content">
 									<input type="hidden" :value="id_receta = '<%=data_receta[0].id%>'">
 									<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
-									<form  @submit="reg_receta_paciente" method="POST" >
-										<div class="col-md-12">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label>Codigo de Venta:</label>
-													<input type="text" v-model="codigo_venta" class="form-control" onkeyup="mayus(this);">
+									<template v-if="one_Receta_paciente == null">
+										<form  @submit="reg_receta_paciente" method="POST" >
+											<div class="col-md-12">
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Codigo de Venta:</label>
+														<input type="text" v-model="codigo_venta" class="form-control" onkeyup="mayus(this);">
+													</div>
+												</div>  
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Fecha:  </label>
+														<input v-model="data_fecha" type="text" readonly class="form-control" onkeyup="mayus(this);">
+													</div>
 												</div>
-											</div>  
-											<div class="col-md-4">
-												<div class="form-group">
-													<label>Fecha:  </label>
-													<input type="date" readonly class="form-control" onkeyup="mayus(this);">
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Empleado:</label>
+														<input type="text" readonly  class="form-control" :value=" empleado = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>' " onkeyup="mayus(this);">
+													</div>
+												</div>
+											</div><br>
+											<div class="col-md-12">
+												<div class="col-md-2">
+													<div class="form-group">
+														<label>Historial:</label>
+														<input type="text" readonly :value="historial = '<%=one_paciente[0].numeroHistorial%>'" class="form-control" onkeyup="mayus(this);">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Paciente:</label>
+														<input type="text" readonly class="form-control" value="<%=one_paciente[0].nombre%> <%=one_paciente[0].apellidop%> <%=one_paciente[0].apellidom%>" onkeyup="mayus(this);">
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="form-group">
+														<label>CI:</label>
+														<input type="text" readonly class="form-control" value="<%=one_paciente[0].ci%>" onkeyup="mayus(this);">
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="form-group">
+														<label>Sexo:</label>
+														<input type="text" readonly class="form-control" value="<%=one_paciente[0].sexo%>" onkeyup="mayus(this);">
+													</div>
 												</div>
 											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<label>Empleado:</label>
-													<input type="text" readonly  class="form-control" :value=" empleado = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>' " onkeyup="mayus(this);">
+									
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label>Procedencia:</label>
+														<input type="text" readonly :value="tipo_consulta = '<%=data_receta[0].tipoConsulta%>'" class="form-control" onkeyup="mayus(this);">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label>Nombre del Doctor:</label>
+														<input type="text" name="nombre_doctor" readonly :value=" nombre_doctor = '<%=data_receta[0].doctor%>'"class="form-control" onkeyup="mayus(this);">
+													</div>
 												</div>
 											</div>
-										</div><br>
-										<div class="col-md-12">
-											<div class="col-md-2">
-												<div class="form-group">
-													<label>Historial:</label>
-													<input type="text" readonly :value="historial = '<%=one_paciente[0].numeroHistorial%>'" class="form-control" onkeyup="mayus(this);">
+											<p class="text-center">
+												<button type="button" data-target="#myModal2" @click="searchInTheListMed('')" data-toggle="modal" class="btn btn-info"><i class="fa fa-user-md"></i>  Receta</button>
+											</p>
+											<template v-for="msg in false_msg_product">
+												<p style="color: red"> No se pudo insertar el. Producto: {{msg.nombre}}, cantidad requerida: {{msg.cantidad_requerida}}, en stock: {{msg.cantidad_actual}}   </p>
+											</template>
+											<template v-for="msg in product_false">
+												<p style="color: red" class="h5"> {{msg.product}} </p>
+											</template>
+											<div class="table-responsive">
+												<table  class="display table table-bordered table-striped " >
+													<thead>
+														<tr>
+														<th>#</th>
+														<th>Cantidad del Producto</th>
+														<th>Codigo</th>
+														<th>Descripcion</th>
+														<th>Precio</th>
+														<th>Precio Total</th>
+														<th>Eliminar</th>
+														<th>Eliminar todo</th>
+														</tr>
+													</thead>
+													<tbody v-for="(car, index) in listItems">                                                    
+														<tr>
+														<td>{{index}}</td>
+														<td>{{car.qty}}</td>
+														<td>{{car.item.codificacion}}</td>
+														<td>{{car.item.nombre}}</td>
+														<td>{{car.item.price}}</td>
+														<td>{{car.price}}</td>
+														<td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
+														<td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
+														</tr>                                                   
+													</tbody>
+												</table>
+											</div><!--/table-responsive-->
+											<div class="col-md-12">
+												<div class="col-md-4">
+													<div class="form-group">
+														<div class="col-sm-9">
+															<div class="input-group"> <span class="input-group-addon">S/ Sub Total</span>
+																<input type="text" class="form-control" readonly :value="totalPrice">
+															</div>
+														</div>
+													</div>
 												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<label>Paciente:</label>
-													<input type="text" readonly class="form-control" value="<%=one_paciente[0].nombre%> <%=one_paciente[0].apellidop%> <%=one_paciente[0].apellidom%>" onkeyup="mayus(this);">
+												<div class="col-md-4">
+													<div class="form-group">
+														<div class="col-sm-9">
+															<div class="input-group"> <span class="input-group-addon">S/ IGV 18.00%:</span>
+																<input type="text" class="form-control"  readonly :value="totalPrice * 0.18">
+															</div>
+														</div>
+													</div>
 												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group" >
-													<label>Tipo de Paciente:</label>
-													<select onkeyup="mayus(this);">
-														<option>NINGUNO</option>
-														<option>INSTITUCIONAL</option>
-														<option>CONVENIO</option>
-													</select>
+												<div class="col-md-4">
+													<div class="form-group">
+														<div class="col-sm-9">
+															<div class="input-group"> <span class="input-group-addon">Total:</span>
+																<input type="text" class="form-control"  readonly :value="totalPrice + totalPrice * 0.18">
+															</div>
+														</div>
+													</div>
 												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>Tipo de Pago:</label>
-													<select onkeyup="mayus(this);">
-														<option>CONTADO</option>
-														<option>PENDIENTE</option>
-													</select>
+											</div><br><br><br>
+											<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Registrar receta</button>
+											<a class="btn btn-danger" href="/farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i> Cancelar</a>
+											<button type="button" class="btn btn-warning"><i class="fa fa-print"></i> Imprimir</button>
+										</form>
+									</template>
+
+									<template v-else><br><br>
+										<div class="invoice " id="table">
+											<div class="invoice_body" >
+											  	<div  class="pull-left">
+													<address>
+												  		<strong>HOPITAL DANIEL BRACAMONTE</strong><br>
+												  		Av. Italia Final S/N<br>
+												  		Telfs. 26246064-26244960<br>
+												  		POTOSI-BOLIVIA
+													</address>
+											  	</div>
+											  	<div class="pull-right">
+													<div class="invoice_logo dim2 posiondeImagen"><img src="/images/hospital2.png" /></div>
+											 	</div>
+											  	<div class="clearfix"></div><br/>
+											  	<h2 class="text-center">RECIBO DE RECETA</h2>
+											  	<div class="row">
+													<div class="col-sm-9">
+												  		<div> <strong>CODIGO DE RECETA:</strong> {{one_Receta_paciente.codigo_venta}}   </div>
+												  		<div> <strong>FECHA :</strong>{{one_Receta_paciente.createdAt.split('T')[0]}}     </div>
+												  		<div> <strong>EMPLEADO :</strong> {{one_Receta_paciente.empleado}}  </div>
+												  		<div> <strong>HISTORIAL :</strong>  {{one_Receta_paciente.historial}} </div>
+												  		<div> <strong>PACIENTE :</strong> <%=one_paciente[0].nombre%> <%=one_paciente[0].apellidop%> <%=one_paciente[0].apellidom%><br/></div><br/>
+													</div>
+											  	</div>
+											  	<div class="table-responsive">
+													<table  class="table table-bordered" >
+														<thead>
+															<tr>
+															<th>#</th>
+															<th>Cantidad del Producto</th>
+															<th>Codigo</th>
+															<th>Descripcion</th>
+															<th>Precio</th>
+															<th>Precio Total</th>
+															</tr>
+														</thead>
+														<tbody v-for="(car, index) in list_medicamentos_one.medicamentos">                                                    
+															<tr>
+															<td>{{index}}</td>
+															<td>{{car.qty}}</td>
+															<td>{{car.item.codificacion}}</td>
+															<td>{{car.item.nombre}}</td>
+															<td>{{car.item.price}}</td>
+															<td>{{car.price}}</td>                                                     
+															</tr>                                                   
+														</tbody>
+													</table>
+												</div><!--/table-responsive-->
+											  	<div class="invoice_footer">
+													<div class="row">
+												  		<div class="col-sm-7">
+															<div class="payment-methods"></div>
+														</div>
+														<div class="invoice_total pull-right">
+															<div class="col-md-12">
+																<div class="col-md-4">
+																	<div class="form-group">
+																		<div class="col-sm-9">
+																			<div class="input-group"> <span class="input-group-addon">S/ Sub Total</span>
+																				<input type="text" class="form-control" readonly :value="list_medicamentos_one.totalPrice">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-md-4">
+																	<div class="form-group">
+																		<div class="col-sm-9">
+																			<div class="input-group"> <span class="input-group-addon">S/ IGV 18.00%:</span>
+																				<input type="text" class="form-control"  readonly :value="list_medicamentos_one.totalPrice * 0.18">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-md-4">
+																	<div class="form-group">
+																		<div class="col-sm-9">
+																			<div class="input-group"> <span class="input-group-addon">Total:</span>
+																				<input type="text" class="form-control"  readonly :value="list_medicamentos_one.totalPrice + totalPrice * 0.18">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div><br>
 												</div>
 											</div>
 										</div>
-								
-										<div class="col-md-12">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Procedencia:</label>
-													<input type="text" readonly :value="tipo_consulta = '<%=data_receta[0].tipoConsulta%>'" class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Nombre del Doctor:</label>
-													<input type="text" name="nombre_doctor" readonly :value=" nombre_doctor = '<%=data_receta[0].doctor%>'"class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
+									</div>
+									<br>
+									<div class="form-group">
+										<div class="col-sm-offset-0 col-sm-10">
+											<div class="btn-group">  <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 										</div>
-										<p class="text-center">
-											<button type="button" data-target="#myModal2" @click="searchInTheListMed('')" data-toggle="modal" class="btn btn-info"><i class="fa fa-user-md"></i>  Receta</button>
-										</p>
-										<template v-for="msg in false_msg_product">
-											<p style="color: red"> No se pudo insertar el. Producto: {{msg.nombre}}, cantidad requerida: {{msg.cantidad_requerida}}, en stock: {{msg.cantidad_actual}}   </p>
-										</template>
-										<template v-for="msg in product_false">
-											<p style="color: red" class="h5"> {{msg.product}} </p>
-										</template>
-										<div class="table-responsive">
-											<table  class="display table table-bordered table-striped " >
-												<thead>
-													<tr>
-													<th>#</th>
-													<th>Cantidad del Producto</th>
-													<th>Codigo</th>
-													<th>Descripcion</th>
-													<th>Precio</th>
-													<th>Precio Toal</th>
-													<th>Eliminar</th>
-													<th>Eliminar todo</th>
-													</tr>
-												</thead>
-												<tbody v-for="(car, index) in listItems">                                                    
-													<tr>
-													<td>{{index}}</td>
-													<td>{{car.qty}}</td>
-													<td>{{car.item.codificacion}}</td>
-													<td>{{car.item.nombre}}</td>
-													<td>{{car.item.price}}</td>
-													<td>{{car.price}}</td>
-													<td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
-													<td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
-													</tr>                                                   
-												</tbody>
-											</table>
-										</div><!--/table-responsive-->
-										<div class="col-md-12">
-											<div class="col-md-4">
-												<div class="form-group">
-													<div class="col-sm-9">
-														<div class="input-group"> <span class="input-group-addon">S/ Sub Total</span>
-															<input type="text" class="form-control" readonly :value="totalPrice">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<div class="col-sm-9">
-														<div class="input-group"> <span class="input-group-addon">S/ IGV 18.00%:</span>
-															<input type="text" class="form-control"  readonly :value="totalPrice * 0.18">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<div class="col-sm-9">
-														<div class="input-group"> <span class="input-group-addon">Total:</span>
-															<input type="text" class="form-control"  readonly :value="totalPrice + totalPrice * 0.18">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div><br><br><br>
-										<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Registrar receta</button>
-										<a class="btn btn-danger" href="/farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i> Cancelar</a>
-										<button type="button" class="btn btn-warning"><i class="fa fa-print"></i> Imprimir</button>
-									</form>
+									  </div><!--/form-group-->
+									</template>
+									<br><br>
 								</div><!--/porlets-content--> 
 							</div><!--/block-web--> 
 						</div><!--/col-md-12--> 
@@ -313,5 +435,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/receta_farmacia_paciente.js"></script>
+<script src="/js/pdf.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.106/jspdf.debug.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.34/jspdf.plugin.autotable.js"></script> 
 </body>
 </html>

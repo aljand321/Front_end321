@@ -7,20 +7,20 @@
   <title>Farmacia</title>
   <%- include("../partials/head") -%>	
   <style>
-			.info2{ border-radius:100%; float: left; height:80px; width:80px; }
-			.info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
-			.vertical-alignment-helper {
-				display:table;
-				height: 100%;
-				margin-left: 41%;
-			  }
-			  .vertical-align-center {
-				/* To center vertically */
-				display: table-cell;
-				vertical-align: middle;
-				text-align: center;
-			  }
-		  </style>
+		.info2{ border-radius:100%; float: left; height:80px; width:80px; }
+		.info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+		.vertical-alignment-helper {
+			display:table;
+			height: 100%;
+			margin-left: 41%;
+		}
+		.vertical-align-center {
+			/* To center vertically */
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+	  }
+	</style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -147,8 +147,9 @@
                                 <% } %>
                                 <td><%=atendidos[i].tipoConsulta%></td>
                                 <td class="center hidden-phone">
-                                  <a href="/Farmacia/reg_receta/<%=atendidos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Receta"><i class="fa fa-eye" style="color:rgb(22, 70, 202)"></i></a><span>&nbsp;</span>
-                                </tr>
+                                    <a href="/Farmacia/reg_receta/<%=atendidos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Receta"><i class="fa fa-eye" style="color:rgb(1, 67, 173)"></i></a><span>&nbsp;</span>
+                                  </td>
+                                  </tr>
                               <% } %>
                             </tbody>
                           </table>
@@ -164,6 +165,104 @@
 	    </div>
     </div>
   </div>
+  <!--Modal-->
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users icon"></i>Receta</h4>
+        </div>
+        <div class="modal-body"> 
+          <form action="" method="POST" class="form-horizontal" role="form"  parsley-validate novalidate>
+              <div class="col-md-3">
+                <div class="entrada ">
+                  <label class=" ">Codigo:</label><p><b>5156151</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="5156151"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="entrada ">
+                  <label class=" ">Fecha:</label><p><b>01/20/2019</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="01/20/2019"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="entrada ">
+                  <label class=" ">Encargada:</label><p><b>MARCO COLQUE VILLA</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="MARCO COLQUE VILLA"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="entrada ">
+                  <label class=" ">Historial:</label><p><b>5156151</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="5156151"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="entrada ">
+                  <label class=" ">Paciente:</label><p><b>LAURA ZAPATA LIMA</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="01/20/2019"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="entrada ">
+                  <label class=" ">Tipo de Paciente::</label><p><b>intitucional</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="MARCO COLQUE VILLA"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="entrada ">
+                  <label class=" ">Tipo de Pago:</label><p><b>contado</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="MARCO COLQUE VILLA"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="entrada ">
+                  <label class=" ">Procedencia:</label><p><b>EMERGENCIA</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="5156151"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="entrada ">
+                  <label class=" ">Doctor:</label><p><b>DANIEL VILLA CALLAPA</b></p>
+                  <input type="hidden" name="numeroHistorial"  value="DANIEL VILLA CALLAPA"  class="form-control" readonly="" value="Read only text goes here">
+                </div>
+              </div>
+            <div class="table-responsive">
+                <table  class="display table table-bordered table-striped " >
+                  <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>Cantidad del Producto</th>
+                    <th>Codigo</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Precio Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>                                                    
+                                                                    
+                  </tbody>
+                </table>
+              </div><!--/table-responsive-->
+            <div class="form-group">
+                <div class="col-sm-offset-0 col-sm-10">
+                  <!--  <a type="button" class="btn btn-info" href="/Farmacia/reg_venta"> Aceptar</a> -->
+                  <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
+                  <button type="reset" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                </div>
+              </div><!--/form-group--> 
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!--cerrar cesion-->
   <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center modal-sm ">
