@@ -475,7 +475,8 @@ float:left;
 }
 /* para orden de internacion*/
 .oreden:before {
-    content: " ORDEN DE INTERNACIÓN";
+    
+    content: " ORDEN DE INTERNACIÓN dd" /* <%=resp[0].nombreDoctor%> */;
     font-weight: negrita;
     color:black;
     text-align: center;

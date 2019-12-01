@@ -34,7 +34,28 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
-
+	<style scoped>
+			@media print{
+				/* para orden de internacion*/
+			.oreden1:before {
+				content: " <%=paciente_Data[0].nombre%>";
+				font-weight: negrita;
+				color:black;
+				text-align: center;
+				padding: 0%;
+				margin: 0%;
+				font: Arial
+			}
+			.tprueba{
+				content: var(--medicamento);
+			}
+			.itabla:before{
+				content: "v-model=list.medicamento";
+	
+			}
+			td:hover { background-color: var(--bg-hover-color); }  
+			}
+			</style>
 
 
 	<style>
@@ -131,11 +152,9 @@
 					<div id="" class="main-content">
 						<div  id="margendiv" class="  col-xs-12 " >
 							<div  class="col-lg-12 block-web"> 
-								
 								<!-- Content page -->
 								<div id="" class="head  ">
 									<div id="" class="actions ">
-										
 										<p  name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
 									</div>
 									<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
@@ -147,19 +166,14 @@
 										
 										<div id="ocultoI"class="info2 blue_symbols "> <i class="fa fa-file-text icon  "></i></div>
 										<h2  id="ocultoI"class="content-header"><span>&nbsp;&nbsp;&nbsp;</span> Recetas</h2>
-							
-										
 									</div>
 								</div>
-	
 							</div>
-									<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-									<h5 class="texTitulo1 text-center"></h5>
-									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+							<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							<h5 class="texTitulo1 text-center"></h5>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 							<div class="main-content" id="recetas">
-								
 								<section class="panel default  "id="">
-									
 									<div class=" panel-body">
 										<ul id="ocultoI" class="nav nav-tabs" style="margin-bottom: 15px;">
 											<li class=" col-lg-6 active active  text-center"><a href="#new" data-toggle="tab"><i class="fa fa-medkit"></i> Receta</a></li>
@@ -171,18 +185,14 @@
 												<input type="hidden" :value="data_receta.id_medico = '<%=data_doc.data.medico.id%>'">	
 												<!-- 
 												 -->
-											
 												<div id=""class="">
 													<div id="ocultoI" class="">
-														<h3 class="content-header"></h3>
-														<span style="color: red;">{{data_msg.msg_false}}</span>
-														<span style="color: blue;">{{data_msg.msg_true}}</span>
-																   
+														<h3 class="content-header"></h3>	   
 													</div>
 													<div id="" class="row nom1">
 														<div id=""class="col-md-12 nom1">
 															<section id="" class="panel default blue_title h2 nom1">
-																<div class="col-md-6 panel panel-defaulth his">
+																<div class="col-md-12 panel panel-defaulth his">
 																	<!-- 
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -191,23 +201,21 @@
 																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																	 -->
 																	<div id="ocultoI" class=" panel panel-default">
-																		<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Personales</li>            
+																		<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de Interes</li>            
 																	</div>
 																	<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse in">
 																		<div id=""class="col-md-12 row">
-																			<div id=""class="col-md-5 his">
+																			<div id=""class="col-md-4 his">
 																				<div class="">
 																					<label class=" ">N° de Historia:</label><p><b><%=paciente_Data[0].numeroHistorial%></b></p>
 																					<input class="form-control" type="hidden" name="numeroHistorial"  v-model="data_receta.historiaClinica = '<%=paciente_Data[0].numeroHistorial%>'"  readonly=""  value="Read only text goes here">
-																				</div>
-																					 
+																				</div>	 
 																				<div class=" ">
 																					<label class=" "> Sexo: </label><p><b><%=paciente_Data[0].sexo%></b></p>
 																					<input type="hidden" name="sexo" value="<%=paciente_Data[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
 																				</div>	
 																			</div>
-																			<div id="" class="col-md-6 his">
-																				
+																			<div id="" class="col-md-4 his">
 																				<label class=" ">Nombre Completo:</label><p><b><%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%></b></p>
 																				<input type="hidden" name="nombre apellidop apellidom" 
 																					value="<%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%>"
@@ -216,50 +224,30 @@
 																					<label class="">Fecha de Nacimiento:</label><p><b><%=paciente_Data[0].fechanacimiento%></b></p>
 																					<input  type="hidden" name="fechanacimiento"  value="<%=paciente_Data[0].fechanacimiento%>" class="form-control clear" readonly="" value="Read only text goes here">
 																				</div>
-																				
 																			</div>
-																		</div>
-				
-
-																		
-																	</div>																				
-																</div>
-																<!-- 
-																	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																										Datos de la cita
-																	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<																				
-																 -->
-																 <div class="col-md-6 panel panel-default his">
-																	<div id="ocultoI"class=" panel panel-default">
-																		<li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Cita</li>            
-																	</div>
-																	<div style="height: 0px;" id="ac3-2" class="panel-collapse collapse in ">
-																		<div class="col-md-12 row his">
-																			<div class="col-md-6 ">
-																				<div class="">
-																					<label class="">Profecional Médico:</label><p><b><%=ConsultaOnly[0].Citas_Medica.medico%></b></p>
-																					<input type="hidden" :value="data_receta.doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
+																			<div class="col-md-4 row his">
+																				<div class=" ">
+																					<div class="">
+																						<label class="">Profecional Médico:</label><p><b><%=ConsultaOnly[0].Citas_Medica.medico%></b></p>
+																						<input type="hidden" :value="data_receta.doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
+																					</div>
 																				</div>
-																				
+																				<div class="">
+																					<div class="">
+																						<label class="">Especialidad:</label><p><b><%=ConsultaOnly[0].tipoConsulta%></b></p>
+																						<input type="hidden" name="tipoConsulta" :value="data_receta.tipoConsulta = '<%=ConsultaOnly[0].tipoConsulta%>'">                                                                
+																					</div>
+																				</div> 
 																			</div>
-																			<div class="col-md-6">
-																				<div class="">
-																					<label class="">Especialidad:</label><p><b><%=ConsultaOnly[0].tipoConsulta%></b></p>
-																					<input type="hidden" name="tipoConsulta" :value="data_receta.tipoConsulta = '<%=ConsultaOnly[0].tipoConsulta%>'">                                                                
-																				</div>
-																			</div> 
-																		</div>
-																			<div class="col-md-6 fech ">
+																			<div class="col-md-6 his ">
 																				<div class="">
 																					<label class=" ">Fecha Prescripción:</label>
 																					<input class="form-control" type="text" readonly required v-model="data_receta.fecha" require >
 																				</div>
-																			</div>
-																		
-																	</div>
-																 </div>
+																			</div>															
+																		</div>
+																	</div>																				
+																</div>
 															</section>
 														</div>
 													</div>
@@ -271,21 +259,18 @@
 													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 												 -->
-												 
+												<!--- <textarea name="" id="" cols="70" rows="10">{{$data}}</textarea>  --> 
 												<template v-if="One_receta == ''">
 													<form @submit="post_recetas" method="POST">
 														<div class="col-md-12 ">
-															
-
-															<div class="">
-																<!--  
-																   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>»
-																   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 
-																			   lista de medicamentos para el paciente 
-																   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 
-																   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 																   
-																-->
-																<div class="form-group">	
+															<!--  
+															   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>»
+															   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 
+																		   lista de medicamentos para el paciente 
+															   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 
+															   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 																   
+															-->
+															<div class="form-group">	
 																	<div class="row" >
 																	   <div class="col-md-12">
 																		   <div class="block-web">
@@ -295,6 +280,11 @@
 																				   </div><br>                                                          
 																				   <h3 class="content-header">Lista de Medicamentos  </h3>
 																			   </div>
+																			<!--  
+																				<span style="color: red;">{{data_msg.msg_false}}</span>
+																				<span style="color: blue;">{{data_msg.msg_true}}</span>
+																			-->
+																			   
 																			   <div class="col-md-12 row"><br>  
 																				   <!-- <div class="col-sm-3 col-sm-6">
 																					   <div class="entrada">
@@ -324,26 +314,26 @@
 																				   <div id="ocultoI" class="col-sm-2 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">Dosis:</h6>
-																						   <input type="text"  class="form-control" v-model="lista.dosis">                                           
+																						   <input type="text"  class="form-control" v-model="lista.dosis" onkeyup="mayus(this);">                                           
 																					   </div>
 																				   </div>
 																					<div id="ocultoI" class="col-sm-3 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">Via de Administración: </h6>
-																							  <input class="form-control"  v-model="lista.frecuencia">                                                  
+																							  <input class="form-control"  v-model="lista.frecuencia" onkeyup="mayus(this);">                                                  
 																					   </div>
 																				   </div>
 																				   <div id="ocultoI" class="col-sm-2 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">Duracion: </h6>
-																						   <input class="form-control" v-model="lista.duracion">                                                           
+																						   <input class="form-control" v-model="lista.duracion" onkeyup="mayus(this);">                                                           
 																					   </div>
 																				   </div>
 																				   
 																				   <div id="ocultoI" class="col-sm-2 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">  Cantidad: </h6>
-																						   <input type="number" class="form-control" v-model="lista.cantidad">                                                           
+																						   <input type="number" class="form-control" v-model="lista.cantidad" onkeyup="mayus(this);">                                                           
 																					   </div>
 																				   </div>
 																				   <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -374,8 +364,10 @@
 																										   <td>{{list.frecuencia}}</td>
 																										   <td>{{list.duracion}}</td>
 																										   <td>{{list.cantidad}}</td>
-																											   <td class="ocultartabla"><a @click="eliminar(index)">eliminar</a></td>
-																										  </tr>                                                                                 
+																											<td>
+																												<a @click="eliminar(index)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-trash-o "></i></a>
+																											</td>
+																										</tr>                                                                                
 																								   </tbody>
 																							   </table>
 																						   </div>
@@ -385,20 +377,21 @@
 																		   </div>
 																	   </div>
 																	</div>
-																</div>
 															</div>
 														</div>
 														<div class="col-md-12 page-content ">
 															<div class="col-md-8 ">
-															 <button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+															 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
 															</div>
 													 	</div>
 													</form>
 												</template>
-
 												<template v-else>
-													<span style="color: red;">{{data_msg.msg_false}}</span>
+													<!--	
+																<span style="color: red;">{{data_msg.msg_false}}</span>
 													<span style="color: blue;">{{data_msg.msg_true}}</span>
+-->
+													
 													<form @submit="update_recedta" method="POST">
 														<!-- 
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -406,7 +399,9 @@
 														<div class="block-web">
 															<div id="ocultoI" class="header">
 																<div class="actions"> 
+																		<template v-if="One_receta.estado == false">
 																	<a @click="insertar_update" class="list-group-item  blue_bg text-center "><i class="fa fa-folder-open"></i> Insertar</a>
+																</template>
 																</div><br>
 																<h3 class="content-header">Lista de Medicamentos </h3>
 															</div>										
@@ -437,25 +432,25 @@
 																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
 																		<h6 class=" ">Dosis:</h6>
-																		<input type="text"  class="form-control" v-model="lista.dosis">                                           
+																		<input type="text"  class="form-control" v-model="lista.dosis" onkeyup="mayus(this);">                                           
 																	</div>
 																</div>
 																<div id="ocultoI" class="col-sm-3 col-sm-6">
 																	<div class="entrada">
 																		<h6 class="">Via de Administración:</h6>
-																		<input class="form-control"  v-model="lista.frecuencia">                                                  
+																		<input class="form-control"  v-model="lista.frecuencia"onkeyup="mayus(this);">                                                  
 																	</div>
 																</div>
 																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
 																		<h6 class=" ">Duracion: </h6>
-																		<input class="form-control" v-model="lista.duracion">                                                           
+																		<input class="form-control" v-model="lista.duracion" onkeyup="mayus(this);">                                                           
 																	</div>
 																</div>
 																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
 																		<h6 class="">Cantidad: </h6>
-																		<input type="number" class="form-control" v-model="lista.cantidad">   																					                                                    
+																		<input type="number" class="form-control" v-model="lista.cantidad" onkeyup="mayus(this);">   																					                                                    
 																	</div>
 																</div>
 																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -480,8 +475,8 @@
 																				</thead>
 																				<tbody v-for="(list, index) in One_receta.medicamentos">
 																					<tr>
-																						<td>{{index + 1 }}</td>
-																						<td>{{list.medicamento}}</td>
+																						<td class="">{{index + 1 }}</td>
+																						<td class="">{{list.medicamento}}</td>
 																						<td>{{list.dosis}}</td>
 																						<td>{{list.frecuencia}}</td>
 																						<td>{{list.duracion}}</td>
@@ -513,7 +508,9 @@
 													</div>
 													<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 													<p class="firmaPa center cafirmaP"></p>
+													
 													<p class="firmaDoc center cafirmaDoc"></p></p>
+													<p class="oreden1"></p>
 													<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 													
 													</form>
@@ -557,22 +554,7 @@
 								</section>
 								<!--<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 								>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><-->
-								<div class="modal fade" id="Alerta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-									  <div class="modal-content">
-										<div class="modal-header">
-										  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										</div>
-										<div class="modal-body"> 
-												<span style="color: red;">{{data_msg.msg_false}}</span>
-												<span style="color: blue;">{{data_msg.msg_true}}</span> 
-										</div>
-										<div class="modal-footer">
-										  <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-										</div>
-									  </div>
-									</div>
-							</div> 
+								
 
 
 								<!-- Modal alergias -->
@@ -685,6 +667,7 @@
 		</div> 
 	</div>
 	<!--====== Scripts -->
+
 	
 	<script>
 		function mayus(e) {
@@ -709,6 +692,8 @@
 			EditableTable.init();
 		});
 	</script>
+	 <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
 	<script src="/moment/moment.js"></script>
 	<script src="/moment/locale/af.js"></script>
 	<script src="/url/export.js"></script>

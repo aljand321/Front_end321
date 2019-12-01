@@ -132,8 +132,11 @@ router.get('/home/:id_user',(req, res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
+
         
-        if(datas.name.token[resp.id]){
+
+          //  console.log( resp.length,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>hola hospitalizacion")
+            if(datas.name.token[resp.id]){
             data_token.token_id = resp.id 
             var status
             for(var i = 0; i < resp.role.length; i++ ){
@@ -151,56 +154,65 @@ router.get('/home/:id_user',(req, res) => {
                     fetch('http://localhost:4600/api/doctor_area/'+resp.perso_id)
                     .then(resp => resp.json())
                     .catch(error => console.error('Error',error))
-                    .then(doctor_area => {
+                    .then(doctor_area => {                        
                         if (doctor_area == ""){
                             res.send("El doctor no esta registrado en una especialidad")
                         }else{
-                            data_token.area_esp = doctor_area[0].Especialidade;
+                            fetch(url.name.url+'/api/PinterTrue/'+doctor_area[0].Especialidade.id)  // 
+                            .then(resp => resp.json())
+                            .catch(error => console.error('Error',error))  
+                            .then(lista_paciente => {
+                                data_token.area_esp = doctor_area[0].Especialidade;
                         
-                            if(data_user[data_token.token_id] == null){
-                                user(data_token, data_token.token_id)
-                                res.render('hospitalizaciones/homeHospitalizacion',{
-                                    data_token,
-                                    token:{
-                                        success: datas.name.token[resp.id].data.success,
-                                        token:datas.name.token[resp.id].data.token,
-                                        user:{
-                                            id: datas.name.token[resp.id].data.user.id,
-                                            perso_id: datas.name.token[resp.id].data.user.perso_id,
-                                            username: datas.name.token[resp.id].data.user.username,
-                                            email:  datas.name.token[resp.id].data.user.email,
-                                        } 
-                                    },
-                                    especialidad:doctor_area[0].Especialidade,
-                                    login:datas.name.session[resp.id]
-    
-                                })
-                                status = null
-                            }else{
-                                remove_user( data_token.token_id)
-                                user(data_token, data_token.token_id)
-                                res.render('hospitalizaciones/homeHospitalizacion',{
-                                    data_token,
-                                    token:{
-                                        success: datas.name.token[resp.id].data.success,
-                                        token:datas.name.token[resp.id].data.token,
-                                        user:{
-                                            id: datas.name.token[resp.id].data.user.id,
-                                            perso_id: datas.name.token[resp.id].data.user.perso_id,
-                                            username: datas.name.token[resp.id].data.user.username,
-                                            email:  datas.name.token[resp.id].data.user.email,
-                                        } 
-                                    },
-                                    especialidad:doctor_area[0].Especialidade,
-                                    login:datas.name.session[resp.id]  
-                                })
-                                status = null
-                            }
-                            remove_session(resp.id),{expiresIn: 10* 30}
-                            function remove_session(id) {
-                                delete datas.name.session[id]
-                            }
+                                if(data_user[data_token.token_id] == null){
+                                    user(data_token, data_token.token_id)
+                                    res.render('hospitalizaciones/homeHospitalizacion',{
+                                        data_token,
+                                        lista_paciente:lista_paciente.length,
+                                        token:{
+                                            success: datas.name.token[resp.id].data.success,
+                                            token:datas.name.token[resp.id].data.token,
+                                            user:{
+                                                id: datas.name.token[resp.id].data.user.id,
+                                                perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                                username: datas.name.token[resp.id].data.user.username,
+                                                email:  datas.name.token[resp.id].data.user.email,
+                                            } 
+                                        },
+                                        especialidad:doctor_area[0].Especialidade,
+                                        login:datas.name.session[resp.id]
+        
+                                    })
+                                    status = null
+                                }else{
+                                    remove_user( data_token.token_id)
+                                    user(data_token, data_token.token_id)
+                                    res.render('hospitalizaciones/homeHospitalizacion',{
+                                        data_token,
+                                        lista_paciente:lista_paciente.length,
+                                        token:{
+                                            success: datas.name.token[resp.id].data.success,
+                                            token:datas.name.token[resp.id].data.token,
+                                            user:{
+                                                id: datas.name.token[resp.id].data.user.id,
+                                                perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                                username: datas.name.token[resp.id].data.user.username,
+                                                email:  datas.name.token[resp.id].data.user.email,
+                                            } 
+                                        },
+                                        especialidad:doctor_area[0].Especialidade,
+                                        login:datas.name.session[resp.id]  
+                                    })
+                                    status = null
+                                }
+                                remove_session(resp.id),{expiresIn: 10* 30}
+                                function remove_session(id) {
+                                    delete datas.name.session[id]
+                                }
+                            })
+                            
                         }
+                                           
                         
                     })
                 })
@@ -210,6 +222,9 @@ router.get('/home/:id_user',(req, res) => {
         }else{
             res.redirect('/')
         }
+       
+        
+
     })
    /*  res.render('hospitalizaciones/homeHospitalizacion',{
         especialidad //esto manda la especialdad

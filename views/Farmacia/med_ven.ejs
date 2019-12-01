@@ -21,7 +21,7 @@
   </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-  	<div class="wrapper">
+  	<div class="wrapper" id="medicamentos">
     	<div class="header_bar">
       		<div class="brand">
         		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -39,7 +39,7 @@
         		</div>
       		</div>
     	</div>
-    	<div class="inner">
+    	<div class="inner" >
       		<div class="left_nav">
 		        <div class="left_nav_slidebar">
 					<ul>
@@ -83,18 +83,18 @@
 								</div>
 								<div class="porlets-content">
 							  		<div class="panel-body">
-										<form  action="#" method="POST" parsley-validate novalidate>
+										<form  @submit="list_fecha" method="POST" parsley-validate novalidate>
 											<div class="col-md-12">
 											  	<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-sm-3 control-label">DESDE:</label>
-														<input type="date" class="form-control" >
+														<input v-model="fecha_inicio" type="date" class="form-control" >
 													</div><!--/form-group--> 
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-sm-3 control-label">HASTA:</label>
-														<input type="date" class="form-control" >
+														<input v-model = 'fecha_final' type="date" class="form-control" >
 													</div><!--/form-group-->
 												</div>
 											</div>
@@ -102,11 +102,10 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-sm-5 control-label">MEDICAMENTO <i class="fa fa-users"></i> :</label>
-													  	<select class="selectpicker" data-show-subtext="true" data-live-search="true">
-															<option>Paco</option>
-															<option>Luis</option>
-															<option>Luna</option>
-															<option>Daniela</option>
+													  	<select v-model="medicamento">
+															<%for (var i = 0; i < list_med_farmacia.length; i++) { %>
+																<option><%=list_med_farmacia[i].nombre%></option>
+															<% } %>
 														</select>
 													</div><!--/form-group-->
 												</div>
@@ -124,29 +123,36 @@
 										<table  class="display table table-bordered table-striped " id="dynamic-table">
 									  		<thead>
 												<tr>
-												<th>Codigo</th>
-												<th>Descripcion</th>
-												<th>Concentracion</th>
-												<th>Forma Farmaceutica</th>
-												<th>Cantidad</th>
-												<th>Fecha Vencimiento</th>
-												<th>Grupo Asig.</th>
-												<th>Precio de Compra</th>
-												<th>Precio de Venta</th>
+													<th>#</th>
+													<th>Codigo</th>
+													<th>Descripcion</th>
+													
+													<th>Forma Farmaceutica</th>
+													<th>Cantidad</th>
+													<th>Fecha Vencimiento</th>
+													<th>Vencio hace</th>
+													<th>Precio de Compra</th>
+													<th>Precio de Venta</th>
 												</tr>
 											</thead>
 									  		<tbody>
-												<tr>
-												<td>1</td>
-												<td>123</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												</tr>
+												<template v-for="(list, index) in list_fechas_medicamentos">
+													<tr>
+														<td>{{index+1}}</td>
+														<td>{{list_fechas.codificacion}}</td>
+														<td>{{list_fechas.nombre}}</td>
+														<td>{{list_fechas.forma_f}}</td>
+														
+														
+														<td>{{list.cantidad_unidad}}</td>
+														<td>{{list.fehca_vencimineto}}</td>
+														<td>{{list.fehca_v}}</td>
+														<td>{{list_fechas.precio_compra}}</td>
+														<td>{{list_fechas.precio}}</td>
+													</tr>
+												</template>
+
+												
 											<tbody>
 										</table>
 								  	</div><!--/table-responsive-->
@@ -157,6 +163,7 @@
 				</div><!--/page-content end--> 
 			</div><!--/main-content end--> 
 		</div>
+  	</div>
 		<!-- Modal -->
 	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
@@ -181,6 +188,74 @@
 		</div> 
 	</div>
 <%- include("../partials/scripts") -%>
+
+<script>
+	const medicamentos = new Vue({
+  		el: '#medicamentos', 
+  		data : () => ({
+			url:data_url.url_front_end,
+
+			fecha_inicio:'',
+			fecha_final:'',
+			medicamento:'',
+
+			list_fechas:'',
+			list_fechas_medicamentos:''
+		}),
+		methods:{ 
+			list_fecha(e){
+				e.preventDefault();
+				var datos = {
+					fecha_inicio: this.fecha_inicio,
+					fecha_final: this.fecha_final, 
+					medicamento: this.medicamento
+				};  
+    
+  				var esto = {
+  				  method: 'POST',
+  				  body: JSON.stringify(datos),
+  				  headers:{
+  				    'Content-type' : "application/json"
+  				  }
+  				};
+  				fetch(this.url+'/Farmacia/vue_filter_med',esto)
+  				.then(res => res.json())
+  				.catch(error => console.error('Error:', error))
+  				.then(data => {					
+					if (data.success != false){
+						this.list_fechas = data[0]
+						var arr = []
+						for (var i = 0; i < data[0].cantidad_fechas.length; i++){					
+							if(-(moment().diff(data[0].cantidad_fechas[i].fehca_vencimineto, 'days')) < 0){ 
+								
+								arr.push({
+									id: data[0].cantidad_fechas[i].id,
+									cantidad_unidad:data[0].cantidad_fechas[i].cantidad_unidad,
+									codigo_compra:data[0].cantidad_fechas[i].codigo_compra,
+									createdAt:data[0].cantidad_fechas[i].createdAt,
+									fehca_vencimineto:data[0].cantidad_fechas[i].fehca_vencimineto,
+									fehca_v: moment().diff(data[0].cantidad_fechas[i].fehca_vencimineto, 'days'),
+									precio:data[0].cantidad_fechas[i].precio								
+								})
+								
+							}				
+						}
+						
+						
+						this.list_fechas_medicamentos = arr
+					}else{
+						this.list_fechas_medicamentos = ''
+						swal.fire(
+                		  'Error!',
+                		  '<label style="color:red;">'+ data.msg +'</label>',
+                		  'error'
+                		)
+					}					
+				})
+			}
+		}
+	})
+</script>
 </body>
 </html>
 

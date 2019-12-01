@@ -38,7 +38,7 @@
   },500000);
 </script>
 <body class="light_theme  fixed_header left_nav_fixed">
-  <div class="wrapper">
+  <div class="wrapper" id="medicamentos">
     <div class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -95,22 +95,22 @@
               <div class="block-web">
                 <div class="header">
                   <div class="actions">  </div>
-                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>   Medicamentos Vencidos</h2>
+                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>Medicamentos Vencidos</h2>
                 </div>
                 <div class="porlets-content">
                   <div class="panel-body">
-                    <form  action="#" method="POST" parsley-validate novalidate>
+                    <form  @submit="traer_data" method="POST" parsley-validate novalidate>
                       <div class="col-md-12">
                         <div class="col-md-6">
                           <div class="form-group">
                             <label class="col-sm-3 control-label">DESDE:</label>
-                            <input type="date" class="form-control" >
+                            <input v-model = "fecha_inicio" type="date" class="form-control" >
                           </div><!--/form-group--> 
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label class="col-sm-3 control-label">HASTA:</label>
-                            <input type="date" class="form-control" >
+                            <input v-model = "fecha_final" type="date" class="form-control" >
                           </div><!--/form-group-->
                         </div>
                       </div>
@@ -118,11 +118,10 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label class="col-sm-6 control-label">GRUPO ASIGNACION <i class="fa fa-users"></i> :</label>
-                            <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                              <option>Paco</option>
-                              <option>Luis</option>
-                              <option>Luna</option>
-                              <option>Daniela</option>
+                            <select v-model="id_medicamento">
+                              <%for (var i = 0; i < grupo.length; i++) { %>
+                                <option value="<%=grupo[i].id%>"><%=grupo[i].nombre%></option>
+                              <% } %>
                             </select>
                           </div><!--/form-group-->
                         </div>
@@ -136,38 +135,68 @@
                       </div>
                     </form>
                   </div>  
-                  <div class="table-responsive">
-                    <table  class="display table table-bordered table-striped" id="dynamic-table">
-                      <thead>
-                        <tr>
-                        <th>#</th>
-                        <th>Codigo</th>
-                        <th>Grupo Asignacion</th>
-                        <th>Nombre</th>
-                        <th>Concentracion</th>
-                        <th>Cantidad</th>
-                        <th>Precio de Venta</th>
-                        <th>Fecha Vencimiento</th>
-                        <th>estado Vencido</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% for(var i = 0; i < resp.length; i++) { %>
-                        <tr>
-                        <td><%= i+1%></td>
-                        <td><%=resp[i].codificacion%></td>
-												<td><%=resp[i].GrupoDesignado.descripcion%></td>
-                        <td><%=resp[i].nombre%></td>
-                        <td><%=resp[i].concentracion%></td>		 
-												<td><%=resp[i].precio%></td>	
-                        <td><%=resp[i].unidades%></td>
-                        <td><%=resp[i].createdAt.split("T")[0]%></td>	
-                        <td>Falta</td>
-                        </tr>
-                        <% } %>
-                      <tbody>
-                    </table>
-                  </div><!--/table-responsive-->
+
+                  <template v-if="list == ''">
+                    <div class="table-responsive">
+                        <table  class="display table table-bordered table-striped" id="dynamic-table">
+                          <thead>
+                            <tr>
+                            <th>#</th>
+                            <th>Codigo</th>
+                            <th>Grupo Asignacion</th>
+                            <th>Nombre</th>
+                            <th>Concentracion</th>
+                            <th>Cantidad</th>
+                            <th>Precio de Venta</th>
+                            <th>Fecha registro</th>
+                            
+                            </tr>
+                          </thead>
+                          <tbody>                       
+                            <% for(var i = 0; i < resp.length; i++) { %>
+                              <tr>
+                                <td><%= i+1%></td>
+                                <td><%=resp[i].codificacion%></td>
+                                <td><%=resp[i].GrupoDesignado.descripcion%></td>
+                                <td><%=resp[i].nombre%></td>
+                                <td><%=resp[i].concentracion%></td>		 
+                                <td><%=resp[i].precio%></td>	
+                                <td><%=resp[i].unidades%></td>
+                                <td><%=resp[i].createdAt.split("T")[0]%></td>	
+                              
+                              </tr>
+                            <% } %>
+                          <tbody>
+                        </table>
+                    </div><!--/table-responsive-->          
+                  </template>
+                  <template v-else>
+                      <div class="table-responsive">
+                          <table  class="display table table-bordered table-striped" id="dynamic-table">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Codigo compra</th>
+                                <th>fehca_vencimineto</th>
+                                <th>precio</th>
+                                <th>nombre</th>    
+                                <th>Cantidad</th>                
+                              </tr>
+                            </thead>
+                            <tbody>                       
+                              <tr v-for="(data, index) in list">
+                                <td>{{index + 1}}</td>
+                                <td>{{data.codigo_compra}}</td>
+                                <td>{{data.fehca_vencimineto}}</td>
+                                <td>{{data.precio}}</td>
+                                <td>{{data.RegMedicamento.nombre}}</td>
+                                <td>{{data.cantidad_unidad}}</td>
+                              </tr>
+                            <tbody>
+                          </table>
+                      </div><!--/table-responsive-->     
+                  </template>
+                 
                 </div><!--/porlets-content-->
               </div><!--/block-web--> 
             </div><!--/col-md-12--> 
@@ -221,6 +250,51 @@
     </div>
   </div>
 <%- include("../partials/scripts") -%>
+<script>
+  const medicamentos = new Vue({
+  	el: '#medicamentos', 
+  	data : () => ({
+      url:data_url.url_front_end,
+      fecha_inicio:'',
+		  fecha_final:'',
+      id_medicamento:'',
+      
+      list:''
+    }),
+    methods:{ 
+      traer_data(e){
+        e.preventDefault();
+        var datos = {
+          fecha_inicio: this.fecha_inicio,
+		      fecha_final: this.fecha_final,
+		      id_medicamento: this.id_medicamento,
+        };   
+      
+        var esto = {
+          method: 'post',
+          body: JSON.stringify(datos),
+          headers:{
+            'Content-type' : "application/json"
+          }
+        };
+        fetch(this.url+'/almacen/vue_filter_med_g',esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {
+          if(data.success == false){
+            swal.fire(
+              'Error!',
+              '<label style="color:red;">'+data.msg+'</label>',
+              'error'
+            )
+          }else{
+            this.list = data;            
+          }
+        })
+      }
+    }
+  })
+</script>
 </body>
 </html>
 

@@ -1695,13 +1695,39 @@ router.get('/med_ven/:token_id/:token_partial', (req,res) => {
   const { token_id, token_partial } = req.params;
   
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
-    res.render('Farmacia/med_ven',{
-      data_doc : data_user[token_id],
-    });
+
+    fetch('http://localhost:3200/api/mostrar_medicamentos')     
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(list_med_farmacia =>{
+      res.render('Farmacia/med_ven',{
+        data_doc : data_user[token_id],
+        list_med_farmacia
+      });
+    })
+    
   }else{
     res.redirect('/')
   }
 });
+
+//ruta para poder mostrar los medicamentos
+router.post('/vue_filter_med', (req,res) => {
+  var datos = req.body;  
+  var esto = {
+    method: 'post',
+    body: JSON.stringify(datos),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:3200/api/filter_fechas_med',esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
 
 
 module.exports = router;

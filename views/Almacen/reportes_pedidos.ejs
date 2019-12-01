@@ -99,18 +99,18 @@
 								</div>
 								<div class="porlets-content">
 					  				<div class="panel-body">
-										<form  action="#" method="POST" parsley-validate novalidate>
+										<form  action="/almacen/filter_pedios_datas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" method="POST" parsley-validate novalidate>
 											<div class="col-md-12">
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-sm-3 control-label">DESDE:</label>
-														<input type="date" class="form-control" >
+														<input name="fecha_inicio" type="date" class="form-control" >
 													</div><!--/form-group--> 
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-sm-3 control-label">HASTA:</label>
-														<input type="date" class="form-control" >
+														<input name="fecha_final" type="date" class="form-control" >
 													</div><!--/form-group-->
 												</div>
 											</div>
@@ -118,11 +118,10 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-sm-4 control-label">PROVEEDOR <i class="fa fa-users"></i> :</label>
-														<select class="selectpicker" data-show-subtext="true" data-live-search="true">
-															<option>Paco</option>
-															<option>Luis</option>
-															<option>Luna</option>
-															<option>Daniela</option>
+														<select name="id_proveedor" class="selectpicker" data-show-subtext="true" data-live-search="true">
+															<%for (var i = 0; i < proveedores.length; i++) { %>
+																<option value="<%=proveedores[i].id%>"><%=proveedores[i].nombre%></option>
+															<% } %>					
 														</select>
 													</div><!--/form-group-->
 												</div>
@@ -135,7 +134,8 @@
 												</div>
 											</div>
 										</form>
-					  				</div>  
+									  </div>  
+									  <a href="/almacen/volver321/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>">voler</a>
 					  				<div class="table-responsive">
 										<table  class="display table table-bordered table-striped " id="dynamic-table">
 						  					<thead>
@@ -153,19 +153,38 @@
 												</tr>
 										  	</thead>
 										  	<tbody>
-												<% for(var i = 0; i < resp.length; i++) { %>
-												<tr>
-												<td><%=i+1%></td>
-												<td><%=resp[i].fechaIngreso%></td>
-												<td><%=resp[i].codigoCompra%></td>
-												<td><%=resp[i].responsable%></td>
-												<td><%=resp[i].proveedor%></td>
-												<td><%=resp[i].boletaPago%></td>
-												<td>Falta</td>
-												<td><%=resp[i].subTotal%></td> 
-					                            <td><%=resp[i].iva%></td>
-                    					        <td><%=resp[i].total%></td>
-												</tr>
+												<%if (filter != null) { %>
+													<% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
+														<tr>
+															<td><%=i+1%></td>
+															<td><%=filter.data.data_cliente[i].fechaIngreso%></td>
+															<td><%=filter.data.data_cliente[i].codigoCompra%></td>
+															<td><%=filter.data.data_cliente[i].responsable%></td>
+															
+															<td><%=filter.data.data_cliente[i].proveedor%></td>
+															<td><%=filter.data.data_cliente[i].boletaPago%></td>
+															<td>falta</td>
+															<td><%=filter.data.data_cliente[i].subTotal%></td>
+															<td><%=filter.data.data_cliente[i].iva%></td>
+															<td><%=filter.data.data_cliente[i].total%></td>
+															
+														</tr>
+													<% } %>
+												<% } else { %>
+													<% for(var i = 0; i < resp.length; i++) { %>
+														<tr>
+															<td><%=i+1%></td>
+															<td><%=resp[i].fechaIngreso%></td>
+															<td><%=resp[i].codigoCompra%></td>
+															<td><%=resp[i].responsable%></td>
+															<td><%=resp[i].proveedor%></td>
+															<td><%=resp[i].boletaPago%></td>
+															<td>Falta</td>
+															<td><%=resp[i].subTotal%></td> 
+					                            			<td><%=resp[i].iva%></td>
+                    					        			<td><%=resp[i].total%></td>
+														</tr>
+													<% } %>
 												<% } %>
 											<tbody>
 										</table>
@@ -202,6 +221,30 @@
 		</div> 
 	</div>
 <%- include("../partials/scripts") -%>
+
+<script>
+		/*  <%if(msg) { %> */
+		  /*  <%if(msg.data.success == false) { %> */
+			 msg_false()
+			 function msg_false(){
+			 swal.fire(
+			   'Error!',
+			   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+			   'error'
+			 )
+			 }
+		   /* <% } else {%> */
+			 msg_true()
+			 function msg_true(){
+			 swal.fire(
+			   'Success!',
+			   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+			   'success'
+			 )
+			 }
+		  /*  <% } %> */
+		/*  <% } %> */
+</script>
 </body>
 </html>
 

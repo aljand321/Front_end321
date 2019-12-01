@@ -137,12 +137,12 @@
 												<tbody>
 													<% for(var i=0; i< data.length; i++) { %>
 													<tr class="gradeX">
-														<td><%= i + 1 %></td>
-														<td><%=data[i].codigo_p %></td>
-														<td><%=data[i].Paciente.nombre %></td>
-														<td><%=data[i].Paciente.apellidop %></td>
-														<td><%=data[i].Paciente.apellidom %></td>
-														<td><%=data[i].hora.split("/")[0] %></td>
+														<td ><%= i + 1 %></td>
+														<td ><%=data[i].codigo_p %></td>
+														<td ><%=data[i].Paciente.nombre %></td>
+														<td ><%=data[i].Paciente.apellidop %></td>
+														<td ><%=data[i].Paciente.apellidom %></td>
+														<td > <%=data[i].hora.split("/")[0] %></td>
 														<td class="text-center">
 															<a href="/consulta_externa/reg_consulta/<%=data[i].id%>/<%=data[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"
 																data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-stethoscope"></i>

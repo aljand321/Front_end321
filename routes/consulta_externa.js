@@ -715,11 +715,10 @@ router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) =>
                 fetch('http://localhost:4600/api/especialidad')
                 .then(resp => resp.json())
                 .then(especialidad =>{
-                  console.log(especialidad, "  <<<<<<<<<<<<<<<< esto es la especialidad xzxzx<<<<<<<<<<<")
                   fetch('http://localhost:3000/api/ListPinternacion_hist/'+one_consulta[0].numeroHistorial)        
                   .then(resp => resp.json())
                   .then(list_p =>{
-                    console.log(list_p, " list_p pppp ppppppppppppp   lis_p")
+                    console.log(msg_Consulta_Externa[token_id], " list_p pppp ppppppppppppp   lis_p")
                     res.render('consulta_externa/papeleta_internacion',{          
                       dataPaciente,
                       one_consulta,
@@ -731,15 +730,6 @@ router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) =>
                     })
                   })
                   
-                  remove_msg()
-                  function remove_msg(){
-                    if(msg_Consulta_Externa[token_id] != null){
-                      if(msg_Consulta_Externa[token_id].data.success == true){
-                        remove(token_id),{expiresIn: 10* 30}
-                       }
-                    }
-                  
-                  }
                 })
               }
               
@@ -785,6 +775,7 @@ router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(data => {  
+        console.log(data, "   <<<<<<<<<<<<<<<<<<< < < < < < < < < < < < < << < <")
         if (data.success == true){
        
           if(msg_Consulta_Externa[token_id] == null){
@@ -819,7 +810,9 @@ router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
             }
             res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
           }          
-        
+          setTimeout(() => { 
+            remove(token_id);
+          },1000); 
       })
 });
 
@@ -873,7 +866,9 @@ router.post('/updateInternacion/:id/:id_consulta/:token_id/:token_p', (req,res) 
             }
             res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
           }          
-        
+          setTimeout(() => { 
+            remove(token_id);
+          },1000);
       })
 })
 
