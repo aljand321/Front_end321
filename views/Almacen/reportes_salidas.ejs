@@ -38,7 +38,7 @@
   },500000);
 </script>
 <body class="light_theme  fixed_header left_nav_fixed">
-  	<div class="wrapper">
+  	<div class="wrapper" id="vue_reportes">
     	<div class="header_bar">
       		<div class="brand">
         		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -94,7 +94,7 @@
 							<div class="container-fluid">
 								<div class="header">
 									<div class="actions"></div>
-									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>   Reporte de Salidas</h2>
+									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>Reporte de Salidas</h2>
 							  	</div>
 							</div>
 						</div>
@@ -108,18 +108,18 @@
 									<div id="myTabContent" class="tab-content">
 								  		<div class="tab-pane fade active in " id="neww">
 											<div class="panel-body">
-												<form  action="#" method="POST" parsley-validate novalidate>
+												<form  @submit="traer_list" method="POST" parsley-validate novalidate>
 													<div class="col-md-12">
 														<div class="col-md-6">
 															<div class="form-group">
 																<label class="col-sm-3 control-label">DESDE:</label>
-																<input type="date" class="form-control" >
+																<input v-model="fecha_inicio" type="date" class="form-control" >
 															</div><!--/form-group--> 
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
 																<label class="col-sm-3 control-label">HASTA:</label>
-																<input type="date" class="form-control" >
+																<input v-model="fecha_final" type="date" class="form-control" >
 															</div><!--/form-group-->
 														</div>
 													</div>
@@ -127,11 +127,11 @@
 														<div class="col-md-6">
 															<div class="form-group">
 															  	<label class="col-sm-4 control-label">DISTRIBUIDO <i class="fa fa-users"></i> :</label>
-																<select class="selectpicker" data-show-subtext="true" data-live-search="true">
-																	<option>Paco</option>
-																	<option>Luis</option>
-																	<option>Luna</option>
-																	<option>Daniela</option>
+																<select v-model="id_personal" >
+																	<%for( var i = 0; i < personal_farmacia[0].user.length; i++ ) { %>
+																		<option value="<%=personal_farmacia[0].user[i].Registro_personal.id%>"><%=personal_farmacia[0].user[i].Registro_personal.nombre%></option>
+																	<% } %>
+																
 																</select>
 															</div><!--/form-group-->
 														</div>
@@ -141,10 +141,18 @@
 																	<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
 																</div>
 															</div><!--/form-group--> 
+														</div> <br> <br>
+														<div class="col-md-6" v-if="list != ''">
+															<div class="form-group">
+																<div class="col-sm-offset-2 col-sm-10">
+																	<button @click = "list = ''" type="submit" class="btn btn-warning"><i class="fa fa-print"></i>Volver </button>
+																</div>
+															</div><!--/form-group-->															
 														</div>
 													</div>
 												</form>
 											</div>
+											
 											<table  class="display table table-bordered table-striped " id="dynamic-table">
 									  			<thead>
 													<tr>
@@ -158,39 +166,60 @@
 													</tr>
 											  	</thead>
 									  			<tbody>
-													<% for(var i = 0; i < dat.length; i++) { %>
-													<tr>
-													<td><%=i+1%></td>
-													<td><%=dat[i].num_solicitud%></td>
-													<td><%=dat[i].responsable%></td>
-													<td><%=dat[i].createdAt%></td>
-													<td><%=dat[i].trimestre%></td>		
-													<% if (dat[i].medicamento_mandado_almacen == null) { %>											
-													  <td><span style="color: crimson;">Nueva Solicitud</span></td>
-													<% } else { %>
-													  <td><span style="color: rgb(220, 173, 20);">Enviado a Farmacia</span></td>
-													<% } %>
-													<td><%=dat[i].destino%></td>
-													</tr>
-													<% } %>
+													<template v-if="list != ''">
+														<tr v-for="(data, index) in list">
+															<td>{{index}}</td>
+															<td>{{data.num_solicitud}} </td>
+															<td>{{data.responsable}}</td>
+															<td>{{data.createdAt}}</td>
+															<td>{{data.trimestre}}</td>	
+															
+															<template v-if="data.medicamento_mandado_almacen == null">
+																<td><span style="color: crimson;">Nueva Solicitud</span></td>
+															</template>
+															<template v-else>
+																<td><span style="color: rgb(220, 173, 20);">Enviado a Farmacia</span></td>
+															</template>
+															
+															<td>{{data.destino}}</td>
+														</tr>
+													</template>
+													<template v-else>
+														<% for(var i = 0; i < dat.length; i++) { %>
+															<tr>
+																<td><%=i+1%></td>
+																<td><%=dat[i].num_solicitud%></td>
+																<td><%=dat[i].responsable%></td>
+																<td><%=dat[i].createdAt%></td>
+																<td><%=dat[i].trimestre%></td>		
+																<% if (dat[i].medicamento_mandado_almacen == null) { %>											
+																	<td><span style="color: crimson;">Nueva Solicitud</span></td>
+																<% } else { %>
+																	  <td><span style="color: rgb(220, 173, 20);">Enviado a Farmacia</span></td>
+																<% } %>
+																<td><%=dat[i].destino%></td>
+															</tr>
+														<% } %>
+													</template>
+													
 									  			<tbody>
 											</table>
 								 	 	</div>
 								  		<div class="tab-pane fade " id="listt">
 											<div class="porlets-content">
 									  			<div class="panel-body">
-													<form  action="#" method="POST" parsley-validate novalidate>
+													<form @submit="list_distribucion_filter" method="POST" parsley-validate novalidate>
 														<div class="col-md-12">
 															<div class="col-md-6">
 																<div class="form-group">
 																	<label class="col-sm-3 control-label">DESDE:</label>
-																	<input type="date" class="form-control" >
+																	<input v-model="fecha_inicio1" type="date" class="form-control" >
 																</div><!--/form-group--> 
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	<label class="col-sm-3 control-label">HASTA:</label>
-																	<input type="date" class="form-control" >
+																	<input v-model="fecha_final1" type="date" class="form-control" >
 																</div><!--/form-group-->
 															</div>
 														</div>
@@ -198,21 +227,28 @@
 															<div class="col-md-6">
 																<div class="form-group">
 																  	<label class="col-sm-4 control-label">DISTRIBUIDO <i class="fa fa-users"></i> :</label>
-																	<select class="selectpicker" data-show-subtext="true" data-live-search="true">
-																		<option>Paco</option>
-																		<option>Luis</option>
-																		<option>Luna</option>
-																		<option>Daniela</option>
+																	<select v-model="id_personal1">
+																		<%for( var i = 0; i < personal_farmacia[0].user.length; i++ ) { %>
+																			<option value="<%=personal_farmacia[0].user[i].Registro_personal.id%>"><%=personal_farmacia[0].user[i].Registro_personal.nombre%></option>
+																		<% } %>
 																	</select>
 																</div><!--/form-group-->
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	<div class="col-sm-offset-2 col-sm-10">
-																		<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
+																		<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>Imprimir Reporte</button>
 																	</div>
-																</div><!--/form-group--> 
+																</div><!--/form-group-->															
 															</div>
+															<div class="col-md-6" v-if="list_pedidos != ''">
+																<div class="form-group">
+																	<div class="col-sm-offset-2 col-sm-10">
+																		<button @click = "list_pedidos = ''" type="submit" class="btn btn-warning"><i class="fa fa-print"></i>Volver </button>
+																	</div>
+																</div><!--/form-group-->															
+															</div>
+														
 														</div>
 													</form>
 												</div>
@@ -229,16 +265,31 @@
 															</tr>
 														</thead>
 														<tbody>
-														  	<% for(var i = 0; i < data.length; i++) { %>
-															<tr>
-														  	<td><%=i+1%></td>
-															<td><%=data[i].fechaLlegada%></td>
-															<td><%=data[i].codigo%></td>
-														  	<td><%=data[i].responsable%></td>
-															<td><%=data[i].recibe%></td>
-															<td>falta</td>
-															</tr>
-														 	<% } %>
+															<template v-if="list_pedidos != ''">
+																
+																<tr v-for="(list, index) in list_pedidos ">
+																	<td>{{index + 1}}</td>
+																	<td>{{list.fechaLlegada}}</td>
+																	<td>{{list.codigo}}</td>
+																	<td>{{list.responsable}}</td>
+																	<td>{{list.recibe}}</td>
+																	<td>falta</td>
+																</tr>
+																
+															</template>
+															<template v-else>
+																<% for(var i = 0; i < data.length; i++) { %>
+																	<tr>
+																		<td><%=i+1%></td>
+																		<td><%=data[i].fechaLlegada%></td>
+																		<td><%=data[i].codigo%></td>
+																		<td><%=data[i].responsable%></td>
+																		<td><%=data[i].recibe%></td>
+																		<td>falta</td>
+																	</tr>
+																<% } %>
+															</template>
+														  
 														</tbody>
 													</table>
 									  			</div><!--/table-responsive-->
@@ -321,6 +372,93 @@
 	 </div>
 <%- include("../partials/scripts") -%>
 <script src="/js/pdf.js"></script>
+<script>
+	const vue_reportes = new Vue({
+  		el: '#vue_reportes', 
+  		data : () => ({
+			url:data_url.url_front_end,
+			data:"aljand321",
+
+			fecha_inicio: '',
+			fecha_final:'', 
+			id_personal:'',
+
+			fecha_inicio1: '',
+			fecha_final1:'', 
+			id_personal1:'',
+
+			list: '',
+			list_pedidos:''
+		}),
+		methods:{ 
+			traer_list(e){
+				e.preventDefault();
+				var datos = {
+					fecha_inicio: this.fecha_inicio,
+					fecha_final:this.fecha_final, 
+					id_personal:this.id_personal,
+            	}
+            	var esto = {
+            	  method: 'POST',
+            	  body: JSON.stringify(datos),
+            	  headers:{
+            	    'Content-type' : "application/json"
+            	  }
+            	};
+            	fetch(this.url+'/almacen/filter_data_pedidos',esto)
+            	.then(res => res.json())
+            	.catch(error => console.error('Error:', error))
+            	.then(data => {
+					console.log(data)
+					if(data.success == false){
+						swal.fire(
+                        	'Error!',
+                        	'<label style="color:red;">'+data.msg+'</label>',
+                        	'error'
+                    	)
+						
+					}else{
+						this.list = data	
+					}				
+				})
+			},
+
+			list_distribucion_filter(e){
+				e.preventDefault();
+				var datos = {
+					fecha_inicio: this.fecha_inicio1,
+					fecha_final:this.fecha_final1, 
+					id_personal:this.id_personal1,
+            	}
+            	var esto = {
+            	  method: 'POST',
+            	  body: JSON.stringify(datos),
+            	  headers:{
+            	    'Content-type' : "application/json"
+            	  }
+            	};
+            	fetch(this.url+'/almacen/Vue_filter_data_pedidos',esto)
+            	.then(res => res.json())
+            	.catch(error => console.error('Error:', error))
+            	.then(data => {
+					if(data.success == false){
+						swal.fire(
+                        	'Error!',
+                        	'<label style="color:red;">'+data.msg+'</label>',
+                        	'error'
+                    	)
+						
+					}else{
+						this.list_pedidos = data	
+					}
+					
+									
+				})
+			}
+			
+		}
+	})
+</script>
 </body>
 </html>
 

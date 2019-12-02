@@ -29,6 +29,32 @@ function array () {
   return arr;
 }
 
+var data_user = {}
+function user(data,id){
+    console.log(data, id , "  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+  let storedItem = data_user[id];
+    if (!storedItem) {
+      storedItem = data_user[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in data_user) {
+      arr.push(data_user[id]);
+  }
+  return arr;
+}
+
+function remove_user(id) {
+  delete data_user[id];
+}
+
+
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -39,12 +65,17 @@ function array () {
 var msg_false;
 router.get('/home/:id/:token_part', (req,res) => {
   const { id,token_part } = req.params
+  var data_token1 = {
+    token_id: {},
+    token_p:{},
+    personal:{},        
+  }
     fetch('http://localhost:3600/api/user/'+id)
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
       data_token.token_id = resp.id     // esto manda el el id para el token
-      
+      data_token1.token_id = resp.id
         if(datas.name.token[resp.id] && datas.name.token[resp.id].data.token.split(" ")[1].split(".")[2] == token_part ){
             var status
             for(var i = 0; i < resp.role.length; i++ ){
@@ -54,16 +85,30 @@ router.get('/home/:id/:token_part', (req,res) => {
             }  
             if(status == "tiene permiso"){
               data_token.token_p = token_part
+              data_token1.token_p = token_part
                 fetch('http://localhost:3600/api/personal/'+resp.perso_id)
                 .then(resp => resp.json())
                 .catch(error => console.error('Error',error))
-                .then(resp => {
+                .then(personal => {
                     //res.send(resp)
-                    res.render('Fichas/homec',{
-                        resp,
+                    data_token1.personal = personal
+                    if(data_user[data_token.token_id] == null){
+                      user(data_token1, data_token.token_id)
+                      res.render('Fichas/homec',{
+                        resp:personal,
                         data_token
-                    })
-                    status = null
+                      })
+                      status = null
+                    }else{
+                      remove_user( data_token1.token_id)                        
+                      user(data_token1, data_token1.token_id)
+                      res.render('Fichas/homec',{
+                        resp:personal,
+                        data_token
+                      })
+                      status = null
+                    }
+                   
                 })
             }else{
               res.redirect('/')
@@ -85,6 +130,7 @@ router.get('/citas/:id/:token_part',(req, res) => {
           resp,
           data_token,
           msg:msg_Consulta_Externa[id],
+          data_doc: data_user[data_token.token_id],
         });    
       })
       .catch(error => {
@@ -213,7 +259,7 @@ function sacar(id){
   });
 }
 
-var datos;
+var datos , data_imprecion;
 router.post('/cita_medica/:id', (req,res) => {
   var id = req.params;
   datos = {
@@ -238,7 +284,10 @@ router.post('/cita_medica/:id', (req,res) => {
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(resp => {
-    if(resp.success == true){
+    
+    if(resp.success == true){ 
+
+      data_imprecion = resp.cita_pData
 
       sacar(resp.cita_pData.id) //esto saca el id para poder mandar a la funcion id
 
@@ -260,7 +309,8 @@ router.post('/cita_medica/:id', (req,res) => {
         .catch(error => console.error('Error:', error))
         .then(resp => {
           console.log(resp, "  <<<<")
-          res.redirect('/paciente/citas/'+data_token.token_id + '/' + data_token.token_p);
+          res.redirect('/paciente/imprimirNuevaConsulta')
+          //res.redirect('/paciente/citas/'+data_token.token_id + '/' + data_token.token_p);
           msg_false = null
         })
       }
@@ -270,6 +320,53 @@ router.post('/cita_medica/:id', (req,res) => {
     }    
   }) 
 });
+
+// esta funcion es para poder mandar un usrio para que sea actualizado mediante usario
+var data_imprimir = {}   // esto falta usar
+function one_impimir(data,id){
+  let storedItem = data_imprimir[id];
+    if (!storedItem) {r
+      storedItem = data_imprimir[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in data_imprimir) {
+      arr.push(data_imprimir[id]);
+  }
+  return arr;
+}
+
+function remove_imprimir(id) {
+  delete data_imprimir[id];
+}
+
+//IMPRIMIR CITAS
+router.get('/imprimirNuevaConsulta', (req,res) => {
+
+  fetch('http://localhost:3000/api/onlyPaciente/'+data_imprecion.codigo_p)
+  .then(resp => resp.json())
+  .then(paciente =>{
+
+    console.log(data_imprecion, "    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzssssssssssssssss")
+    res.render('Fichas/imprimirNuevaConsulta',{   
+      data_imprecion,
+      paciente,
+      data_doc: data_user[data_token.token_id]
+    })
+
+  })
+});
+
+router.get('/voler', (req,res) => {
+  res.redirect('/paciente/citas/'+data_token.token_id + '/' + data_token.token_p);
+})
+
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -297,7 +394,8 @@ router.get('/EnviarCita/:id/:historial/:token_part', (req,res) => {
         citaUpdate,
         data_token,
         msg_false,
-        citas_dia
+        citas_dia,
+        data_doc: data_user[data_token.token_id]
       });
     });
   }else{
@@ -528,13 +626,7 @@ router.get('/ReporPacenA', (req,res) =>{
 router.get('/ReporEnfermedades',(req,res)=>{
   res.render('consulta_externa/ReporEnfermedades')
 });
-//IMPRIMIR CITAS
-router.get('/imprimirNuevaConsulta', (req,res) => {
-  res.render('Fichas/imprimirNuevaConsulta')
-});
-router.get('/imprimirNuevaConsulta', (req,res) => {
-  res.render('Fichas/imprimirNuevaConsulta')
-});
+
 
 
 //RECONSULTA

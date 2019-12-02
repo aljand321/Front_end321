@@ -214,7 +214,7 @@ router.get('/home/:id/:token_part', (req,res) => {
         token_id: {},
         token_part:{},
         personal:{},        
-      }
+    }
     
     fetch('http://localhost:3600/api/user/'+id)
     .then(resp => resp.json())
@@ -389,11 +389,18 @@ router.get('/med_ven/:token_id/:token_part', (req,res) => {
                 fetch('http://localhost:3500/api/medicamento')   
                 .then(resp => resp.json())
                 .then(resp =>{ 
-                    console.log(resp)       
-                    res.render('Almacen/med_ven',{
-                        resp,
-                        data_doc: data_user[token_id]
-                    });
+
+                    fetch('http://localhost:3500/api/medicamento')   
+                    .then(resp => resp.json())
+                    .then(grupo =>{ 
+                        console.log(resp)       
+                        res.render('Almacen/med_ven',{
+                            resp,
+                            data_doc: data_user[token_id],
+                            grupo
+                        });
+                    })
+                    
                 })
                 status = null
             }else{
@@ -405,6 +412,38 @@ router.get('/med_ven/:token_id/:token_part', (req,res) => {
         res.redirect('/')
     }
 });
+
+router.post('/vue_filter_med_g', (req,res) => {
+    var datos = req.body;   
+      
+    var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3500/api/filter_data_med_grupo',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z 
+                                  /// reportes  de  pedidos filter fechas
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z 
+ */
+router.get('/volver321/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    remove_filter_pedidos(token_id);
+    res.redirect('/almacen/reportes_pedidos/'+token_id+'/'+token_part);
+})
+
 router.get('/reportes_pedidos/:token_id/:token_part', (req,res) => {
     const { token_id, token_part } = req.params
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
@@ -422,11 +461,19 @@ router.get('/reportes_pedidos/:token_id/:token_part', (req,res) => {
                 fetch('http://localhost:3500/api/pedido')   
                 .then(resp => resp.json())
                 .then(resp =>{ 
-                    console.log(resp)       
-                    res.render('Almacen/reportes_pedidos',{
-                        resp,
-                        data_doc: data_user[token_id]
-                    });
+                    
+                    fetch('http://localhost:3500/api/proveedor')   
+                    .then(resp => resp.json())
+                    .then( proveedores =>{
+                        res.render('Almacen/reportes_pedidos',{
+                            resp,
+                            data_doc: data_user[token_id],
+                            filter: filter_pedidos[token_id],
+                            msg:msg_Consulta_emergencia[token_id],
+                            proveedores
+                        });
+                    })
+                    
                 })
                 status = null;
             }else{
@@ -438,6 +485,92 @@ router.get('/reportes_pedidos/:token_id/:token_part', (req,res) => {
         res.redirect('/')
     }
 });
+
+var filter_pedidos = {}
+function filter_pedidos_data(data,id){
+  let storedItem = filter_pedidos[id];
+    if (!storedItem) {
+      storedItem = filter_pedidos[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_pedios () {
+  let arr = [];
+  for (const id in filter_pedidos) {
+      arr.push(filter_pedidos[id]);
+  }
+  return arr;
+}
+
+function remove_filter_pedidos(id) {
+  delete filter_pedidos[id];
+}
+
+router.post('/filter_pedios_datas/:token_id/:token_partial', (req,res) => {
+    const { token_id, token_partial } = req.params;
+    var datos = req.body;  
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+      var msg_p;
+       var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch('http://localhost:3500/api/filter_pedidos_fecha',esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+        if(data.success == false){
+          if(msg_Consulta_emergencia[token_id] == null){
+            msg_p = {
+              success:false,
+              data:data.msg
+            }
+            msg_data(msg_p,token_id)
+            }else{
+              msg_p = {
+                success:false,
+                data:data.msg
+              }
+              remove(token_id)
+              msg_data(msg_p,token_id)
+            }
+            remove_filter_pedidos(token_id)
+            setTimeout(()=>{
+              remove(token_id)
+            },1000);   
+            res.redirect('/almacen/reportes_pedidos/'+token_id+'/'+token_partial)
+          }else{
+            if(filter_pedidos[token_id] == null){
+              msg_p = {
+                success:false,
+                data_cliente:data
+              }
+              filter_pedidos_data(msg_p,token_id)
+            }else{
+              msg_p = {
+                success:false,
+                data_cliente:data
+              }
+              remove_filter_pedidos(token_id)
+              filter_pedidos_data(msg_p,token_id)
+            }
+            res.redirect('/almacen/reportes_pedidos/'+token_id+'/'+token_partial)
+        }
+      })
+    }else{
+      res.redirect('/');
+    }
+       
+  })
+
+/// reportes de salidas
 router.get('/reportes_salidas/:token_id/:token_part', (req,res) => {
     const { token_id, token_part } = req.params
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
@@ -459,16 +592,22 @@ router.get('/reportes_salidas/:token_id/:token_part', (req,res) => {
                     fetch('http://localhost:3200/api/list_pedidos')   
                     .then(resp => resp.json())
                     .catch(error => console.error('Error',error))
-                    .then(dat =>{        
-                        res.render('Almacen/reportes_salidas',{
-                            data,
-                            dat,
-                            data_doc: data_user[token_id]
-                        });
+                    .then(dat =>{   
+                        
+                        fetch('http://localhost:3600/api/role_farmacia')     
+                        .then(resp => resp.json())
+                        .catch(error => console.error('Error',error))
+                        .then(personal_farmacia =>{
+                            res.render('Almacen/reportes_salidas',{
+                                data,
+                                dat,
+                                data_doc: data_user[token_id],
+                                personal_farmacia
+                            });
+                        })
+                       
                     })
-                })
-                
-                
+                })               
                 status = null;
             }else{
                 res.redirect('/');
@@ -479,6 +618,42 @@ router.get('/reportes_salidas/:token_id/:token_part', (req,res) => {
         res.redirect('/');
     }
 });
+
+// ruta para poder filtrar los datos de distribucion
+router.post('/Vue_filter_data_pedidos', (req,res) => {
+    var datos = req.body;
+    var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3500/api/filter_data_list',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
+///ruta para poder filtrar los datos pedidos 
+router.post ('/filter_data_pedidos', (req,res) => {
+    var datos = req.body;
+    var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3200/api/list_pedidos_filter',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
 
 
 router.get('/volver1/:token_id/:token_part', (req,res) => {

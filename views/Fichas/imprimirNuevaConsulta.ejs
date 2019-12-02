@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>mm</title>
+    <title>Imprimir Receta</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="viewport"
@@ -35,17 +35,7 @@
     <style type="text/css">
       @media print{
         @page {
-          top: 0px;
-          margin: 190cm;
-          margin-top: 0px;
-          border: 1px;
-          padding: 0px;
-          left: 0px;
-          right: 0px;
-          width: 0px;
-          bottom: 0px;
-          size:auto;
-          page-break-before: always;
+          seze: A4 landscape;
       }
       .margeni{
   
@@ -100,9 +90,9 @@
                           <h6 >HOSPITAL DANIEL BRACAMONTE - AV. ITALIA FINAL S/N</h6>
                           <h6 >Telfs. 26246064-26244960</h6>
                           <h6 >POTOSI-BOLIVIA</h6>
-                          <h6 >NOMBRE:</h6>
-                          <h6 >NIT/CI:</h6>
-                          <h6 >Lugar y Fecha:</h6>
+                          <h6 >NOMBRE: <%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%> </h6>
+                          <h6 >NIT/CI: <%=data_doc.data.personal.ci%>  </h6>
+                          <h6 >Lugar y Fecha: <%=data_imprecion.createdAt%></h6>
                         </div>
                       </div>
                                      
@@ -113,9 +103,9 @@
                             <h6 >N° Factura:</h6>
                             <h6 >N° Autorización:</h6>
                             <h6 >Servicios y/o actividades al IVA</h6>
-                            <h6 >Paciente:</h6>
-                            <h6 >NUM.H.C:</h6>
-                            <h6 >MEDICO:</h6>
+                            <h6 >Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h6>
+                            <h6 >NUM.H.C:  <%=paciente[0].ci%></h6>
+                            <h6 >MEDICO: <%=data_imprecion.medico%>   </h6>
                                             
                           </div>
                         </div>
@@ -126,8 +116,8 @@
                         <thead>
                           <tr>
                             <th>Descripción</th>
-                            <th>Cantidad</th>
-                            <th>Precio Unit</th>
+                            
+                           
                             <th>Especialidad</th>
                             <th>Total</th>
                             
@@ -137,10 +127,10 @@
                                                 
                           <tr class="gradeX">
                             <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
+                            
+                            
+                            <td><%=data_imprecion.especialidad%></td>
+                            <td><%=data_imprecion.saldo_total%></td>
                                                  
                           </tr>													
 
@@ -175,7 +165,7 @@
                     <div class="col-md-12">
                       <h6>ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS EL SO ILICITO DE ESTA SERA SANCIONADO DE ACUEREO A LEY</h6>
                       <p id="ocultoI" class="text-center">
-                        <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Cancelar</button>
+                        <a href="/paciente/voler" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Cancelar</a>
                         <button type="button" value="Imprimir" onclick="window.print()"	class="btn btn-success btn-raised"><i class="fa fa-print"></i> &nbsp;&nbsp;	Imprimir</button>
                       </p> 
                     </div>

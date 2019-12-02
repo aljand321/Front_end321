@@ -114,6 +114,14 @@
                         <input type="hidden"  :value=" tipoConsulta = '<%=cita[0].especialidad%>'" > 
                         <input type="hidden"  :value="numeroHistorial = '<%=dataPaciente[0].numeroHistorial%>'" >
                         <input type="hidden"  :value="id_hora = '<%=cita[0].hora.split("/")[1]%>'">   
+                        <!-- 
+                            para examen general
+                         -->
+                        <input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
+                        <input type="hidden" :value=" id_paciente ='<%=dataPaciente[0].id%>'">
+                        <!-- 
+                            <<<<<<<<<<<<<<<
+                         -->
                         <div class="col-md-9">
                             <section class="panel default blue_title h2">  
                                 <div class="col-md-6 panel panel-default">
@@ -216,6 +224,8 @@
                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     -->
+                    
+                   
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-web">  
@@ -508,6 +518,139 @@
                    </div>
                 </div>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="ExamenFisico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog " id="mdialTamanio">
+                    <div class="modal-content  ">
+                        <div class="modal-header ">
+                            <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
+                            <h3 class="modal-title" id="myModalLabel">Examen General</h3>
+                        </div>
+                        <div class="">
+                            <div class="tab-content">
+                                <div class="" id="general">
+                                    <form @submit="insertar_examen_general" method='POST'>
+                                        <div class="container-fluid  ">
+                                                           
+                                            <div class="col-md-20 ">
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="col-md-6 ">
+                                                        <label>Frec. Cardiaca(lat/min):</label>
+                                                        <input type="number" v-model="frecuencia_cardiaca" data-decimals="2" min="1" max="3" step="0.01" class="form-control" ></input>
+                                                    </div>
+                                                    <div class="col-md-6 ">
+                                                        <label>Frec.Respiratoria(rep/min):</label>
+                                                        <input type="number" v-model="respiracion" data-decimals="2" min="1" max="3" step="0.01" class="form-control"  ></input>
+                                                    </div>
+                                                    <div class="col-md-6 ">
+                                                        <label>Pulso:</label>
+                                                        <input class="form-control" v-model="pulso" type='text' name='apellidom' placeholder="">
+                                                    </div>
+                                                    <div class="col-md-6 " >
+                                                        <label>Estado Nutricional:</label>
+                                                        <input  class="form-control" type='text' v-model="estado_nutricional">
+                                                    </div>
+                                                    <div class="">
+                                                        <label> Presión Arterial Brazo Isquierdo(mmHg):</label>
+                                                        <input type="text" class="form-control" v-model="presion_brazo_isquierdo" ></input>
+                                                    </div>
+                                                
+                                                    
+                                                    <div class="">
+                                                        <label>Presión Arterial Brazo Derecho(mmHg):</label>
+                                                        <input type="text" class="form-control" v-model="presion_brazo_derecho" ></input>
+                                                    </div>                
+                                                </div>
+                                                <div class="col-md-6 ">
+                                                    <div class="col-md-4 row ">
+                                                        <label>Peso(kg):</label> 
+                                                        <input type="number" v-model="peso"  data-decimals="2" min="10" max="500" step="0.1"class="form-control" maxlength="5">
+                                                    </div>
+                                                    <div class="col-md-5  ">
+                                                        <label>Talla(m):</label> 
+                                                        <input class="form-control" v-model="talla" type='text' data-decimals="2" min="1" max="3" step="0.01" class="form-control" maxlength="3">
+                                                   </div>
+                                                    <div class="col-md-4 row ">
+                                                        <label >IMC:</label> 
+                                                        <input class="form-control" v-model="imc" placeholder="">
+                                                    </div>
+                                                
+                                                    <div class="col-md-6 row">
+                                                        <label>Temp.(°C):</label> 
+                                                        <input type="number" v-model="temperatura" data-decimals="2" min="10" max="100" step="0.1" class="form-control" maxlength="5">
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-12 row">
+                                                        <label class="control-label">Observaciones:</label>
+                                                        <textarea class="form-control" v-model="otros" ></textarea>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-12 page-content ">
+                                               
+                                            <div class="col-md-8 " v-if="one_examen == ''">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                                                <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
+                                                <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                                            </div>
+
+                                            <div class="col-md-8 " v-else>
+                                               <!--  <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                                                <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button> -->
+                                                <a v-if="one_examen.estado_update == true" @click="update_examen" class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Actualizar</a>
+                                            </div>
+                                        </div>
+                                                   
+                                    </form>
+                                </div>
+                                        <!--<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<lista examen>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>
+                                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                                    <a @click="elminar_datas_examen">volver</a>
+                                        <div class="col-lg-12 "> 
+                                                <section class="panel default blue_title h2">
+                                                    <div class="panel-heading">
+                                                         <span class="h6">Lista de Examenes físicos</span>
+                                                    </div>
+                                                    <div id="div1" class="">
+                                                    
+                                                          <table class="table table-hover" >
+                                                            <thead>
+                                                                  <tr>
+                                                                    <th>#</th>
+                                                                    <th>Fecha</th>
+                                                                    <th>Peso</th>
+                                                                    <th>Talla</th>
+                                                                    <th>Temperatura</th>                                                                   
+                                                                    <th>Ver</th>
+                                                                  </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <template v-for="(list,index) in examen_list">
+                                                                    <tr>
+                                                                       <td>{{index+1}}</td>
+                                                                       <td>{{list.fecha_revision}}</td>
+                                                                       <td>{{list.peso}}</td>
+                                                                       <td>{{list.talla}}</td>
+                                                                       <td>{{list.temperatura}}</td>
+                                                                       <td><a @click="oneExamen(list.id)">ver</a></td>
+                                                                    </tr>
+                                                                </template>
+                                                               
+                                                            </tbody>
+                                                        
+                                                            </table>
+                                                        
+                                                    </div>
+                                                </section>
+                                        </div>
+                                    </div>
+                        </div>       
+                    </div>
+                </div>
+                </div>
         </div>
     </div>      
 </div>
@@ -558,138 +701,6 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="ExamenFisico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog " id="mdialTamanio">
-        <div class="modal-content  ">
-            <div class="modal-header ">
-                <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
-                <h3 class="modal-title" id="myModalLabel">Examen General</h3>
-            </div>
-            <div class="">
-                <div class="tab-content">
-                    <div class="" id="general">
-                        <form class=" " action='/paciente/postPaciente' method='post'>
-                            <div class="container-fluid  ">
-                                <div class="col-md-20 ">
-                                    <div class="col-md-6">
-                                        <div class="col-md-6 ">
-                                            <label>Frec. Cardiaca(lat/min):</label>
-                                            <input type="number" value="1.08" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="respiracion" ></input>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <label>Frec.Respiratoria(rep/min):</label>
-                                            <input type="number" value="1.08" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="respiracion" ></input>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <label>Pulso:</label>
-                                            <input class="form-control" type='text' name='apellidom' placeholder="">
-                                        </div>
-                                        <div class="col-md-6 " >
-                                            <label>Estado Nutricional:</label>
-                                            <input  class="form-control"type='text' name='nombre'placeholder="">
-                                        </div>
-                                        <div class="">
-                                            <label> Presión Arterial Brazo Isquierdo(mmHg):</label>
-                                            <input type="text" class="form-control" name="presion" ></input>
-                                        </div>
-                                      
-                                        
-                                        <div class="">
-                                            <label>Presión Arterial Brazo Derecho(mmHg):</label>
-                                            <input type="text" class="form-control" name="presion" ></input>
-                                        </div>                
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <div class="col-md-4 row ">
-                                            <label>Peso(kg):</label> 
-                                        	<input type="number" value="50.08" data-decimals="2" min="10" max="500" step="0.1"class="form-control" name="peso" maxlength="5">
-										</div>
-                                        <div class="col-md-5  ">
-                                            <label>Talla(m):</label> 
-                                            <input class="form-control" type='text' name='apellidom' pl" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="talla" maxlength="3">
-                                       </div>
-                                        <div class="col-md-4 row ">
-                                            <label >IMC:</label> 
-                                            <input class="form-control"  name='apellidom' placeholder="">
-                                        </div>
-                                        <div class="col-md-6 row">
-                                            <label>Temp. Axilar(°C):</label> 
-                                        	<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
-								        </div>
-                                        <div class="col-md-6 ">
-                                            <label>Temp. Rectal(°C):</label> 
-                                        	<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
-								        </div>
-                                        <div class="col-sm-12 row">
-                                            <label class="control-label">Observaciones:</label>
-                                            <textarea class="form-control" name="otros" ></textarea>
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 page-content ">
-                                <div class="col-md-8 ">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-                                    <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
-                                    <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-                                </div>
-                            </div>
-                                       
-                        </form>
-                    </div>
-                            <!--<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<lista examen>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>
-                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-                    <div class="col-lg-12 "> 
-                            <section class="panel default blue_title h2">
-                                <div class="panel-heading">
-                                    <span class="h6">Lista de Examenes físicos</span>
-                                </div>
-                                <div id="div1" class="">
-                                    <table class="display table table-bordered table-striped" id="dynamic-table2">
-                                        <thead>
-                                              <tr>
-                                                <th>#</th>
-                                                <th>Fecha</th>
-                                                <th>Peso</th>
-                                                <th>Talla</th>
-                                                <th>Temperatura</th>
-                                                
-                                                <th>Ver</th>
-                                              </tr>
-                                        </thead>
-                                        <tbody v-for="(list,index) in examen_list">														  
-                                            <tr class="gradeX">
-                                                <td>{{index+1}}</td>
-                                                <td>{{list.fecha_revision}}</td>
-                                                <td>{{list.peso}}</td>
-                                                <td>{{list.talla}}</td>
-                                                <td>{{list.temperatura}}</td>
-                                                <td >																			
-                                                    <a @click="oneExamen(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr class="gradeX">
-                                                <td>{{index+1}}</td>
-                                                <td>{{list.fecha_revision}}</td>
-                                                <td>{{list.peso}}</td>
-                                                <td>{{list.talla}}</td>
-                                                <td>{{list.temperatura}}</td>
-                                                <td >																			
-                                                    <a @click="oneExamen(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                        </section>
-                    </div>
-                </div>
-            </div>       
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
     <div class="vertical-alignment-helper">

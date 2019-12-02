@@ -9,8 +9,7 @@
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
-		<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" /> 
+		
 		<link href="/css/tamM.css" rel="stylesheet" type="text/css">
 		<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 	<link href="/css/moldeable.css" rel="stylesheet" type="text/css" />
@@ -40,7 +39,8 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
 	<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
-
+  
+    <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 
 	<style>
 		div.a {
@@ -57,9 +57,9 @@
 
 <body class="light_theme  fixed_header left_nav_fixed">
 	<!-- Content page-->
-	<div class="wrapper cleari" >
+	<div class="wrapper scroll1" >
 		<!--\\\\\\\ wrapper Start \\\\\\-->
-		<div id="ocultoI" class="header_bar">
+		<div id="ocultoIl" class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
@@ -74,7 +74,7 @@
 				
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							
@@ -87,7 +87,7 @@
 		</div>
 		<div class="inner" id="lab_consulta_externa">
 			<!--\\\\\\\ inner start \\\\\\-->
-			<div id="ocultoI" class="left_nav">
+			<div id="ocultoIl" class="left_nav">
 
 				<!--\\\\\\\left_nav start \\\\\\-->
 
@@ -116,7 +116,7 @@
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
-			<div id="ocultoI" class="contentpanel">
+			<div id="ocultoIl" class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
@@ -299,8 +299,9 @@
 																		<div class="col-md-8 ">
 																			<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 																			<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-																			<a href="/paciente/imprimirLaboratorio"> Imprimir</a>
+																	<!--		<a href="/paciente/imprimirLaboratorio"> Imprimir</a>
 																			<button type="reset"class="btn btn-warning btn-icon"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+																	-->		
 																		</div>
 																	</div>
 																</form>						
@@ -329,7 +330,7 @@
 																	<div class="porlets-content">
 																		<div class="row">																	
 																			<div class="col-md-12 panel panel-default">
-																				<div id="ocultoI" class=" panel panel-default">
+																				<div id="ocultoIl" class=" panel panel-default">
 																					<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Torax</li>            
 																				</div>
 																				<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse ">
@@ -378,7 +379,7 @@
 																			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Abdomen >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																		
 																			<div class="col-md-12 panel panel-default ">
-																				<div id="ocultoI"class=" panel panel-default">
+																				<div id="ocultoIl"class=" panel panel-default">
 																					<li href="#ac3-3" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Abdomen</li>            
 																				</div>
 																				<div style="height: 0px;" id="ac3-3" class="panel-collapse collapse ">
@@ -421,7 +422,7 @@
 																			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Cráneo y Macizo Facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																			<div class="form-group">
 																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoI" class=" panel panel-default">
+																					<div id="ocultoIl" class=" panel panel-default">
 																						<li href="#ac3-craneo" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Cráneo y Macizo Facial</li>            
 																					</div>
 																					<div style="height: 0px;" id="ac3-craneo" class="panel-collapse collapse ">
@@ -486,7 +487,7 @@
 																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Placas Radiograficas de craneo y macizo facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																			<div class="form-group">
 																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoI" class=" panel panel-default">
+																					<div id="ocultoIl" class=" panel panel-default">
 																						<li href="#ac3-placas" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Placas Radiográficas de craneo y macizo facial</li>            
 																					</div>
 																					<div style="height: 0px;" id="ac3-placas" class="panel-collapse collapse ">
@@ -898,8 +899,8 @@
 																
 																<div class="col-lg-12 his">
 																		<h5 class="center">Solicitud de Examens</h5>
-																	<section class="panel default blue_title h2 clear">
-																	 
+																	<section class="panel default blue_title h2 scrollV">
+																	
 																	<div class="panel-body">	
 																		<label v-if="group_rayosX.torax != ''">Torax:</label><br>													
 																		<!-- Standard gray button with gradient -->
@@ -1832,11 +1833,11 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade" id="modal-info">
+			<div class="modal modal-info fade scroll1" id="modal-info">
 				<div class="modal-dialog">
-				  <div class="modal-content">
-					<div class="modal-header">
-					  <button id="ocultoI" type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <div class="modal-content" >
+					<div class="modal-header" id="">
+					  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>
 					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 					</div>
@@ -1853,7 +1854,7 @@
 										<p>{{lab_one.otros}}</p>
 										
 									</div>
-									<div class="col-md-3"> 										
+									<div class="col-md-3 horaI"> 										
 										<p for="">Hora: {{lab_one.hora}}</p>
 									</div>
 									<div class="col-md-12">
@@ -1867,9 +1868,15 @@
 								
 							</div>
 						</div>
+						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+						<div class="arriba"> 
+							<p class="firmaPa center cafirmaP"></p>
+							<p class="firmaDoc center cafirmaDoc"></p>
+						</div>
+						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 						
 					</div>
-					<div id="ocultoI" class="modal-footer">
+					<div id="ocultoIl" class="modal-footer">
 					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
 					  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 													
@@ -1887,11 +1894,11 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade" id="modal_x">
-					<div class="modal-dialog">
+			<div class="modal modal-info fade scroll1" id="modal_x">
+					<div class="modal-dialog" id="">
 					  <div class="modal-content">
 						<div class="modal-header">
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span></button>
 						  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 						</div>
@@ -1909,7 +1916,7 @@
 
 											
 										</div>
-										<div class="col-md-3"> 										
+										<div class="col-md-3 horaI"> 										
 											<p for="">Hora: {{lab_one.hora}}</p>
 										</div>
 										<div class="col-md-12">
@@ -1971,10 +1978,16 @@
 									
 								</div>
 							</div>
-							
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							<div class="arriba"> 
+								<p class="firmaPa center cafirmaP"></p>
+								<p class="firmaDoc center cafirmaDoc"></p>
+							</div>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 						</div>
-						<div class="modal-footer">
+						<div id="ocultoIl" class="modal-footer">
 						  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+						  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 						 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 						</div>
 					  </div>
@@ -1989,16 +2002,16 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade" id="modal_lab">
-				<div class="modal-dialog" id="mdialTamanio">
-				  <div class="modal-content">
+			<div class="modal modal-info fade scroll1 centerTodo" id="modal_lab">
+				<div class="modal-dialog " id="mdialTamanio">
+				  <div class="modal-content" id="">
 					<div class="modal-header">
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>
 					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 					</div>
 					
-					<div class="modal-body">
+					<div class="modal-body" id="">
 						<div class="">
 							<div class="card row" style="width: 55rem;">
 								<div class="col-md-14">									
@@ -2009,10 +2022,10 @@
 										<p>Otros Examenes:</p>
 										<p>{{lab_one.otros}}</p>										
 									</div>
-									<div class="col-md-3"> 										
+									<div class="col-md-3 horaIR"> 										
 										<p for="">Hora: {{lab_one.hora}}</p>
 									</div>
-									<div class="col-md-12">
+									<div class="col-md-12 scrollV">
 										<label for="">Examene diagnosticado</label><br>
 										<div class="col-md-3" v-if="examen_lab.Hemotología != ''">
 											<p>Hemotología:</p>
@@ -2106,10 +2119,17 @@
 								
 							</div>
 						</div>
+						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+						<div class="arriba"> 
+							<p class="firmaPa center cafirmaP"></p>
+							<p class="firmaDoc center cafirmaDoc"></p>
+						</div>
+						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 						
 					</div>
-					<div class="modal-footer">
+					<div id="ocultoIl" class="modal-footer">
 					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+					  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 					</div>
 				  </div>
@@ -2137,29 +2157,111 @@
 			  });
 		   	}, 2000);
 		</script>  -->
-		<style >
-			
-					@media print{
-						.tituloDiagnostico:before {
-							content: " Dignóstico";
-							font-weight: negrita;
-							color:black;
-							text-align: center;
-							padding: 0%;
-							margin: 0%;
-							font: Arial;
-							float: left;
-							padding-left: 5%;
-						}    
-						.oreden1:before {
-							content: "<{{lab_one.fecha}}";
-							float: left;
-							padding-left: 5%;
-						}
-						
-							
-					}
-				</style>
+<style >
+	@page {
+		size: 8.5in 11in portraint;
+		page-size: 190mm;
+		page-size: 190mm;
+	}			
+	@media print {
+	    .page {
+	        margin: 0;
+	        border: initial;
+	        border-radius: initial;
+	        width: initial;
+	        min-height: initial;
+	        box-shadow: initial;
+	        background: initial;
+	        page-break-after: always;
+		}
+		#ocultoIl{
+	    	display: none;   
+		}
+		.scroll1 {
+	        overflow-y:hidden;
+			border: hidden;
+		}
+		.firmaPa:before {
+	    content: " FIRMA DEL PACIENTE ";
+	    font-weight: negrita;
+	    color:black;
+	    text-align: center;
+	    padding: 0%;
+	    margin: 0%;
+	    font: Arial;
+	    border: 0px;
+		margin-top: 10%;
+		}
+		.firmaDoc:before {
+		    content: " FIRMA DEL DOCTOR ";
+		    font-weight: negrita;
+		    color:black;
+		    text-align: center;
+		    padding: 0%;
+		    margin: 0%;
+		    font: Arial;
+		    border: 0px;
+		    padding-top: 1%;
+		
+		    margin-top: auto;
+		    border-top-style: dashed;
+		    border-right-style: double;
+		    border-bottom-style: dotted;
+		    border-left-style: solid;
+		}
+		.cafirmaP{
+		    width: 30%;
+		    float:left;
+		    border-top-style: dotted;
+		}
+		.cafirmaDoc{
+		    width: 30%;   
+		    float: right;
+		    border-top-style: dotted;
+		}
+		.arriba{
+			margin-top: 5%;
+			margin-bottom: 5%;
+			padding-bottom: 5%;
+		}
+		.horaI{
+			width: 30%;
+			float:left;
+			position:absolute;
+ 			top:5%;
+ 			right:0;
+		}
+		.labI{
+			width: 1000%;
+		}
+		.centerTodo{
+	    padding-top: 0%;
+	    width: 115%;
+		padding-left: 0%;
+	   justify-content: center;
+	   align-items: center;
+	   border: 1px;
+	   border-top-style: dashed;
+	   border-right-style: double;
+	   border-bottom-style: dotted;
+	   border-left-style: solid; 
+	}
+
+	}
+	.scrollV{
+		
+		width: 190%;
+		overflow-y:scroll;
+        overflow-x:hidden;
+	}	
+	.horaIR{
+			width: 30%;
+			float:left;
+			position:absolute;
+ 			top:5%;
+ 			right:0;
+		}						
+</style>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautifier.js"></script>
 
@@ -2244,6 +2346,7 @@
 			});
 
 		</script>
+		        <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   <!-- vue cdn -->
 		<script src="/moment/moment.js"></script>
 		<script src="/moment/locale/af.js"></script>

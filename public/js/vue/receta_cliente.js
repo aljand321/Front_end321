@@ -52,19 +52,21 @@ const receta_cliente = new Vue({
       fetch(this.url+'/farmacia/Vue_medicamentos_farmacia')
       .then(res => res.json())
       .then(res => {
-          console.log(res, "  esto es lo que quiero ver")
+          
           for(var i = 0; i < res.length; i++){
-            this.ListMedicamentos.push({
-              id_fecha:res[i].id,
-              id : res[i].medicamento.id,
-              nombre : res[i].medicamento.nombre,
-              cantidad : res[i].cantidad_unidad,
-              codificacion: res[i].medicamento.codificacion,
-              precio : res[i].medicamento.precio_compra,
-              presentacion : res[i].medicamento.presentacion,
-              fecha_v: -(moment().diff(res[i].fehca_vencimineto, 'days')),
-              cant:0
-            }) 
+            if( -(moment().diff(res[i].fehca_vencimineto, 'days')) > 0 && res[i].cantidad_unidad != 0){
+              this.ListMedicamentos.push({
+                id_fecha:res[i].id,
+                id : res[i].medicamento.id,
+                nombre : res[i].medicamento.nombre,
+                cantidad : res[i].cantidad_unidad,
+                codificacion: res[i].medicamento.codificacion,
+                precio : res[i].medicamento.precio_compra,
+                presentacion : res[i].medicamento.presentacion,
+                fecha_v: -(moment().diff(res[i].fehca_vencimineto, 'days')),
+                cant:0
+              }) 
+            }
           }
       })       
     },
