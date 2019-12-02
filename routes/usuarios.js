@@ -530,6 +530,40 @@ function remove_filter_data2(id) {
   delete filter_ventas[id];
 }
 
+router.post ('/vue_filter_datas', (req,res) => {
+  var datos = req.body;  
+     var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+    fetch('http://localhost:3600/api/filter_list',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      res.status(200).json(data)
+    })
+})
+router.post ('/vue_filter_datas1', (req,res) => {
+  var datos = req.body;  
+     var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+    fetch('http://localhost:3600/api/filter_users',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      res.status(200).json(data)
+    })
+})
+
+
 ///filter datas
 router.post('/filter_datas/:token_id', (req,res) => {
   const { token_id } = req.params;
@@ -651,14 +685,14 @@ router.get('/onlyfarma/:token_id',(req, res) =>{
     res.redirect('/')
   }
 })
-router.get('/onlyperso/:token_id',(req, res) =>{
+router.get('/allreg/:token_id',(req, res) =>{
   const { token_id } = req.params
   if( datas.name.token[token_id] ){ 
 
-    fetch('http://localhost:3600/api/OnlyPersonal')        
+    fetch('http://localhost:3600/api/personal')        
     .then(resp => resp.json())
     .then(data =>{  
-      res.render('reporAdmin/impriA', {
+      res.render('reporAdmin/impriRol', {
         data,
         data_doc:datas.name.data_user[token_id]
       })

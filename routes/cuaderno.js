@@ -349,7 +349,6 @@ router.get('/vue_list_EspCons/:id_especialidad', (req,res) => {
     })
 })
 
-
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -386,6 +385,8 @@ router.get('/Cuadernos/:token_id', (req,res) => {
                 data_doc:datas.name.data_user[token_id],
                 msg:msg_Consulta_emergencia[token_id],
                 OnlyC:update_cuaderno[token_id],
+                
+
             })
         })
         .catch(error => {
@@ -568,6 +569,9 @@ router.post('/updateCuaderno/:id/:token_id', (req,res) => {
         res.redirect('/')
     }
 })
+
+
+
 
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -1488,6 +1492,17 @@ router.get('/alldataDoctor/:id/:id_cuaderno', (req,res) => {
 
 //ruta vue
 
+// ruta para mostrar one cunsulta especialidad
+router.get('/vue_one_consulta_especialidad/:id', (req, res) =>{
+    const { id } = req.params;
+    fetch('http://localhost:4600/api/OneEspCons/'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        res.status(200).json(resp)
+    });
+})
+///* */
 router.get('/vueCuaderno/:id', (req,res) => {
     const { id } = req.params;
     fetch('http://localhost:4600/api/docAllData/'+id)
@@ -1524,13 +1539,49 @@ router.get('/recuadernos/:token_id',(req, res) => {
         .then(data =>{  
             res.render('reprtescuader', {
               data,
-              data_doc:datas.name.data_user[token_id]
+              data_doc:datas.name.data_user[token_id],
+              filter: filter_ventas[token_id],
+              filter1: filter_ventas1[token_id],
+                msg:msg_Consulta_emergencia[token_id],
+                
             })
         })
     }else{
         res.redirect('/')
     }
 });
+router.get('/general/:token_id', (req,res) =>{
+    const { token_id } = req.params
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:4600/api/especialidad')        
+        .then(resp => resp.json())
+        .then(data =>{  
+            res.render('reporAdmin/impriA', {
+                data,
+                data_doc:datas.name.data_user[token_id]
+            })
+        })
+    }else{
+        res.redirect('/')
+    }
+})
+
+router.get('/general1/:token_id', (req,res) =>{
+    const { token_id } = req.params
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:4600/api/liscuaderno')        
+        .then(resp => resp.json())
+        .then(data =>{  
+            res.render('reporAdmin/impriCu', {
+                data,
+                data_doc:datas.name.data_user[token_id]
+            })
+        })
+    }else{
+        res.redirect('/')
+    }
+})
+
 router.get('/repespecialidad/:token_id',(req, res) => {
     const { token_id } = req.params
     if( datas.name.token[token_id] ){
@@ -1538,13 +1589,265 @@ router.get('/repespecialidad/:token_id',(req, res) => {
         .then(resp => resp.json())
         .then(data =>{  
             res.render('reporteespe', {
-              data,
-              data_doc:datas.name.data_user[token_id]
+                data,
+                data_doc:datas.name.data_user[token_id],
+                filter: filter_ventas[token_id],
+                
+                msg:msg_Consulta_emergencia[token_id],
+                
             })
         })
     }else{
         res.redirect('/')
     }
 });
+///////*****filtros */
+var filter_ventas1= {}
+function filter_cliente_ventas(data,id){
+  let storedItem = filter_ventas1[id];
+    if (!storedItem) {
+      storedItem = filter_ventas1[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_data3 () {
+  let arr = [];
+  for (const id in filter_ventas1) {
+      arr.push(filter_ventas1[id]);
+  }
+  return arr;
+}
+
+function remove_filter_data2(id) {
+  delete filter_ventas1[id];
+}
+
+router.post ('/vue_filter_datas1', (req,res) => {
+    var datos = req.body;  
+       var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch('http://localhost:4600/api/fitra_espe',esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+        res.status(200).json(data)
+      })
+  })
+///filter datas
+router.post('/filter_datas1/:token_id', (req,res) => {
+    const { token_id } = req.params;
+    var datos = req.body;  
+    if(datas.name.token[token_id]){
+      var msg_p;
+       var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch('http://localhost:4600/api/fitra_espe',esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+        if(data.success == false){
+          if(msg_Consulta_emergencia[token_id] == null){
+            msg_p = {
+              success:false,
+              data:data.msg
+            }
+            msg_data(msg_p,token_id)
+            }else{
+              msg_p = {
+                success:false,
+                data:data.msg
+              }
+              remove(token_id)
+              msg_data(msg_p,token_id)
+            }
+            remove_filter_data2(token_id)
+            setTimeout(()=>{
+              remove(token_id)
+            },1000);   
+            res.redirect('/cuaderno/recuadernos/'+token_id)
+          }else{
+            if(filter_ventas1[token_id] == null){
+              msg_p = {
+                success:false,
+                data_cliente:data
+              }
+              filter_cliente_ventas(msg_p,token_id)
+            }else{
+              msg_p = {
+                success:false,
+                data_cliente:data
+              }
+              remove_filter_data2(token_id)
+              filter_cliente_ventas(msg_p,token_id)
+            }
+            remove_filter_data1(token_id)
+            res.redirect('/cuaderno/recuadernos/'+token_id)
+        }
+      })
+    }else{
+      res.redirect('/');
+    }
+       
+  })
+  
+  //<<<<<<<<<<<<<<<<<<<<<<<<<<
+  //***filtrar cuadernos  */
+  var filter_ventas ={}
+function filter_cliente_ventas1(data,id){
+    let storedItem = filter_ventas[id];
+      if (!storedItem) {
+        storedItem = filter_ventas[id] = {
+          data: data,
+          qty: 0
+        };
+      }
+      storedItem.qty++;
+  }
+  
+  function array_filter_data3 () {
+    let arr = [];
+    for (const id in filter_ventas) {
+        arr.push(filter_ventas[id]);
+    }
+    return arr;
+  }
+  
+  function remove_filter_data1(id) {
+    delete filter_ventas[id];
+  }
+
+  router.post ('/vue_filter_datas', (req,res) => {
+    var datos = req.body;  
+       var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch('http://localhost:4600/api/filtrar_cuader',esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+        res.status(200).json(data)
+      })
+  })
+
+  //ruta que muestra una lista de doctores con sus cuadernos
+  router.get('/vue_doctro_cuaderno', (req,res) => {
+
+    fetch('http://localhost:4600/api/lista_doctores_cuadernos')
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      res.status(200).json(data)
+    })
+  })
+  router.get('/vue_especi', (req,res) => {
+
+    fetch('http://localhost:4600/api/especialidad')
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      res.status(200).json(data)
+    })
+  })
+  //ruta es para poder filtar cuadernos fechas
+  router.post('/filter_datas/:token_id', (req,res) => {
+    const { token_id } = req.params;
+    var datos = req.body;  
+    if(datas.name.token[token_id]){
+      var msg_p;
+       var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch('http://localhost:4600/api/filtrar_cuader',esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+        if(data.success == false){
+          if(msg_Consulta_emergencia[token_id] == null){
+            msg_p = {
+              success:false,
+              data:data.msg
+            }
+            msg_data(msg_p,token_id)
+            }else{
+              msg_p = {
+                success:false,
+                data:data.msg
+              }
+              remove(token_id)
+              msg_data(msg_p,token_id)
+            }
+            remove_filter_data1(token_id)
+            setTimeout(()=>{
+              remove(token_id)
+            },1000);   
+            res.redirect('/cuaderno/recuadernos/'+token_id)
+          }else{
+            if(filter_ventas[token_id] == null){
+              msg_p = {
+                success:false,
+                data_cliente:data
+              }
+              filter_cliente_ventas1(msg_p,token_id)
+            }else{
+              msg_p = {
+                success:false,
+                data_cliente:data
+              }
+              remove_filter_data1(token_id)
+              filter_cliente_ventas1(msg_p,token_id)
+            }
+            remove_filter_data2(token_id)
+            res.redirect('/cuaderno/recuadernos/'+token_id)
+        }
+      })
+    }else{
+      res.redirect('/');
+    }
+       
+  })
+/////*** */
+router.get('/Vue_Cuadernos', (req,res) => {
+
+    fetch('http://localhost:4600/api/liscuaderno')        
+    .then(resp => resp.json())
+    .then( datas =>{
+      res.status(200).json(datas)
+    })
+  
+})
+////////*** */
+router.get('/Vue_Especialidades', (req,res) => {
+
+    fetch('http://localhost:4600/api/list_consEsp')        
+    .then(resp => resp.json())
+    .then( datas =>{
+      res.status(200).json(datas)
+    })
+  
+})
+
+/** */
 
 module.exports = router;

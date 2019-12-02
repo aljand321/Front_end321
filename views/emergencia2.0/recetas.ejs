@@ -299,7 +299,9 @@
                                                             <td>{{list.frecuencia}}</td>
                                                             <td>{{list.duracion}}</td>
                                                             <td>{{list.cantidad}}</td>
-                                                            <td><a @click="eliminar(index)">eliminar</a></td>
+                                                            <td id="ocultoI">
+                                                              <a @click="eliminar(index)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-trash-o "></i></a>
+                                                            </td>
                                                           </tr>                                                                                 
                                                         </tbody>
                                                       </table>
@@ -495,7 +497,9 @@
                                           <td class="center">{{list.duracion}}</td>
                                           <td class="center">{{list.cantidad}}</td>
                                           <template v-if="One_receta.estado == false">
-                                            <td id="ocultoI"><a @click="eliminar_update(index)">eliminar</a></td>
+                                            <td id="ocultoI">
+                                              <a @click="eliminar_update(index)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-trash-o "></i></a>
+                                            </td>
                                           </template>
                                           
                                           </tr>                                                                                 
@@ -527,7 +531,7 @@
                               <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
                               
 																</form>
-                              </template>
+                            </template>
 												
 											</div> 
 										</div>

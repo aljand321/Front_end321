@@ -54,7 +54,7 @@
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <!--Boton i,prir-->
         <div class="btn-group"> <a class="btn btn-warning" href="" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
-        <div class="btn-group"> <a class="btn btn-success" href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
+        <div class="btn-group"> <a class="btn btn-success" href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
         
       </div>
       <!--\\\\\\\ header top bar end \\\\\\-->
@@ -128,17 +128,16 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th class="text-center">Fecha Creación</th>	
-                      <th class="text-center">Nombre</th>
-                      <th class="text-center">Area</th>	
-                    </tr>
+                        <th class="text-center">Fecha Creación</th>	
+                        <th class="text-center">Titulo</th>
+                        <th class="text-center">Grupo Asociado</th>	
                   </thead>
                     <tbody>
                       <%for (var i = 0; i< data.length; i++) { %>
                         <tr>
                           <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                          <td class="text-center"><%=data[i].nombre%></td>
-                          <td class="text-center"><%=data[i].descripcion%></td>
+                          <td class="text-center"><%=data[i].titulo%></td>
+                          <td class="text-center"><%=data[i].grupo%></td>
                         </tr>
                       <% } %>
                     </tbody>
