@@ -24,6 +24,11 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -101,17 +106,17 @@
               </li>
               <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                 <ul class="opened" style="display:block">
-                    <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                    <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Farmacia</b></a> </li>
-                    <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                    <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                    <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                    <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Pacientes</b> </a> </li>
+                    <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte Farmacia</b></a> </li>
+                    <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Personal</b> </a> </li>
+                    <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Servicios</b> </a> </li>
+                    <!--<li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>-->
                 </ul>
               </li>
               <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
                 <ul>
                   <li> <a href="/backup/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                  <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+                  <li> <a href="/role/role/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
                 </ul>
               </li>
             </ul>
@@ -131,60 +136,60 @@
                 <br>
                 <br>
                 <div class="porlets-content">
-                    <form class="form-horizontal" name="formulario1"  >
-                        <div class="form-group">
-                          <label class="col-sm-4 control-label">Desde:</label>
-                          <div class="col-sm-4">
-                            <input type="date" class="form-control" >
-                          </div>
-                        </div><!--/form-group--> 
-                        <div class="form-group">
-                          <label  class="col-sm-4 control-label">Hasta:</label>
-                          <div class="col-sm-4">
-                            <input type="date" class="form-control" >
-                          </div>
-                        </div><!--/form-group-->  
-                        <div class="form-group">
-                            <label  class="col-sm-4 control-label">Especifica:</label>
-                            <div class="col-sm-4">
-                                <select class="seleccion" name="cosa" onchange="cambia()">
-                                    <option value="0">---Seleccione---
-                                    <option value="1">ESPECIFICOS
-                                  </select>
-                            </div>
-                          </div><!--/form-group--> 
-                          <div class="form-group">
-                              <label  class="col-sm-4 control-label">tipo:</label>
-                              <div class="col-sm-4">
-                                  <select class="seleccion" name="opt">
-                                      <option value="-">---Seleccione---
-                                    </select>
-                              </div>
-                            </div><!--/form-group--> 
-                      
-                    </form>
+                  <form  action="/filter_ventas/<%=data_doc.data.token_id%>" method="POST" class="form-horizontal" name="formulario1"  >
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Desde:</label>
+                      <div class="col-sm-4">
+                        <input name="fecha_inicio" type="date" class="form-control" >
+                      </div>
+                    </div><!--/form-group--> 
+                    <div class="form-group">
+                      <label  class="col-sm-4 control-label">Hasta:</label>
+                      <div class="col-sm-4">
+                        <input name="fecha_final" type="date" class="form-control" >
+                      </div>
+                    </div><!--/form-group-->  
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                          <button type="submit" class="btn btn-primary"><i class="fa fa-search" ></i><span>&nbsp;</span>Por Rango<span>&nbsp;</span></button>
+                          <a href="/allmedi/<%=data_doc.data.token_id%>" type="submit" class="btn btn-default"><i class="fa fa-search" ></i><span>&nbsp;</span>Total<span>&nbsp;</span></a>
+                        </div>
+                      </div><!--/form-group--> 
+                  </form>
                 </div>
-                <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                <div class="form-group">
+                  <div class="col-sm-offset-9 col-sm-10">
+                    <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
+                  </div>
+                </div><!--/form-group--> 
+                <br><br><br><br>
                 <div class="table-responsive">
                   <table  class="display table table-bordered table-striped " id="dynamic-table">
                     <thead>
-                      <tr>                          
+                      <tr> 
+                        <th>Fecha de ingreso</th>                         
                         <th>N° Codigo</th>
                         <th>Nombre Medicamento</th>
+                        <th>Presentación</th>
+                        <th>Nombre Genérico</th>
                         <th>Cantidad Unidades</th>
-                        <th>Fecha de increso</th>
+                        <th>Vendidas</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <% for (var i=0; i< data.length; i++) { %>
-                        <tr>
-                          <td class="text-center"><%=data[i].codificacion%></td>
-                          <td class="text-center"><%=data[i].nombre%></td>
-                          <td class="text-center"><%=data[i].unidades%></td>
-                          <td class="text-center"><%=data[i].apellidom%></td>
-                          <td class="text-center"><%=data[i].ci%></td>
-                        </tr>
-                      <% } %>
+                      <%if (filter != null) { %>
+                        <% for (var i=0; i< filter.data.data_cliente.length; i++) { %>
+                          <tr>
+                            <td class="text-center"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+                            <td class="text-center"><%=filter.data.data_cliente[i].codificacion%></td>
+                            <td class="text-center"><%=filter.data.data_cliente[i].nombre%></td>
+                            <td class="text-center"><%=filter.data.data_cliente[i].presentacion%></td>
+                            <td class="text-center"><%=filter.data.data_cliente[i].generico%></td>
+                            <td class="text-center"><%=filter.data.data_cliente[i].cantidad_unidad%></td>
+                            <td class="text-center"><%=filter.data.data_cliente[i].ventas%></td>
+                          </tr>
+                        <% } %>
+                      <% } %>  
                     <tbody>
                   </table>
                 </div>
@@ -272,7 +277,8 @@
 <script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
 <script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
 
-
+<script src="/js/toastr.js"></script>
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 
 <script src="/plugins/validation/parsley.min.js"></script>
 <script src="/plugins/data-tables/jquery.dataTables.js"></script>
@@ -326,6 +332,29 @@
 
 </script>
 
+<script>
+  /*  <%if(msg) { %> */
+    /*  <%if(msg.data.success == false) { %> */
+     msg_false()
+     function msg_false(){
+     swal.fire(
+       'Error!',
+       '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+       'error'
+     )
+     }
+     /* <% } else {%> */
+     msg_true()
+     function msg_true(){
+     swal.fire(
+       'Success!',
+       '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+       'success'
+     )
+     }
+    /*  <% } %> */
+  /*  <% } %> */
+</script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
 

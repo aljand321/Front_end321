@@ -2,31 +2,28 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Administrador</title>
+<title >Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-  <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
-<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/css/select2.css" rel="stylesheet">
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
-
+  <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+  <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+  <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+  <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+  <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+  <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+  <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -42,7 +39,7 @@
     text-align: center;
   }
 </style>
-  <style>
+<style>
       @media print{
         @page {
       top: 1cm;
@@ -137,7 +134,7 @@ table td:last-child {display:none}
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-  <div class="wrapper">
+  <div class="wrapper" id="personal">
     <div id="ocultoI" class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -178,11 +175,11 @@ table td:last-child {display:none}
             </li>
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul class="opened" style="display:block">
-                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
+                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Pacientes</b> </a> </li>
+                <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte Personal</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Servicios</b> </a> </li>
+                <!--<li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>-->
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -198,133 +195,165 @@ table td:last-child {display:none}
         <br>
         <div class="container clear_both padding_fix">
           <div class="row">
-            <div class="col-md-12">
-              <div class="block-web">
-                <div class="header">
-                  <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                  <h3 class="content-header ">Reportes Personal</h3>
-                </div>
-                <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-									<div class="dim2 posiondeImagen">
-                      <img class="oculVistaReal "  src="/images/hospital1.png" />
-                    </div>
-                <br>
-                <br>
-                <div class="porlets-content">
-                    <!--<a type="button" class="btn btn-primary btn-lg btn-block bs" href="/usuarios/onlymedico/<%=data_doc.data.token_id%>">Medicos</a>
-                  <form class="form-horizontal"  >
-                    <div class="form-group">
-                      <div class="col-md-4">
-                        <div class="btn-group">
-                          <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Generales<span class="caret"></span></button>
-                          <ul role="menu" class="dropdown-menu">
-                            <li></li>
-                            <li><a href="/usuarios/onlyperso/<%=data_doc.data.token_id%>">Personales</a></li>
-                            <li><a href="/usuarios/onlyenferme/<%=data_doc.data.token_id%>">Enfermeras</a></li>
-                            <li><a href="/usuarios/onlyfarma/<%=data_doc.data.token_id%>">Farmaceuticos</a></li>
-
-                          </ul>
-                        </div>  
-                      </div>
-                    </div>
-                    <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-													
-                    <div class="form-group">
-                    <div class="col-md-4">
-                      <div class="btn-group">
-                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Usuarios<span class="caret"></span></button>
-                        <ul role="menu" class="dropdown-menu">
-                          <li><a href="/usuarios/allcuentas/<%=data_doc.data.token_id%>">Cuentas</a></li>
-                          <li><a href="/usuarios/allroles/<%=data_doc.data.token_id%>">Roles</a></li>
-                          
-                        </ul>
-                      </div>
-                    </div>
-                    </div>
-                  </form>-->
-                  <form action="/usuarios/filter_datas/<%=data_doc.data.token_id%>" method="POST" class="form-horizontal" name="formulario1"  >
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label">Desde:</label>
-                      <div class="col-sm-4">
-                        <input name="fecha_inicio" type="date"  class="form-control" >
-                      </div>
-                    </div><!--/form-group--> 
-                    <div class="form-group">
-                      <label  class="col-sm-4 control-label">Hasta:</label>
-                      <div class="col-sm-4">
-                        <input name="fecha_final" type="date"  class="form-control" >
-                      </div>
-                    </div><!--/form-group--> 
-                    <!--<input type="text" name="cargo" value="medico"> -->
-                    <!-- <div class="form-group">
-                        <label  class="col-sm-4 control-label">Especifica:</label>
-                        <div class="col-sm-4">
-                            <select class="seleccion" name="cosa" onchange="cambia()">
-                                <option value="0">---Seleccione---
-                                <option value="1">Personal
-                                <option value="2">Tecnico
-                              </select>
-                        </div>
-                      </div> --><!--/form-group-->
-
-                      <div class="form-group">
-                          <label  class="col-sm-4 control-label">tipo:</label>
-                          <div class="col-sm-4">
-                              <select  class="seleccion" name="cargo">
-                                <option value="-">---Seleccione---
-                                <option value="medico">MÉDICO</option>
-                                <option class="uppercase"value="enfermera">ENFERMERA</option>
-                                <option class="uppercase" value="personal">PERSONAL</option>
-                                <option class="uppercase" value="farmaseutico">FARMACEUTICO</option>
-                                <option value="ECOGRAFIA">LABORATORISTA DE ECOGRAFIA</option>
-                                <option value="Rayos_x">LABORATORISTA DE RAYOS X</option>
-                                <option value="LABORATORIO">LABORATORISTA</option>
-                              </select>
-                          </div>
-                        </div> <!--/form-group--> 
-                        <button type="submit" class="btn btn-info">Insertar</button>
-                  </form>
-                  
-                  <a class="btn btn-warning center" href="/usuarios/onlymedico/<%=data_doc.data.token_id%>" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
-                  <br>
-                  <div class="table-responsive">
-                    <table  class="display table table-bordered table-striped cleari12" id="dynamic-table01">
-                      
-                      <thead>
-                        <tr>
-                          <th class="text-center">Fecha Creación</th>
-                          <th class="text-center">Nombre</th>
-                          <th class="text-center">Apellido Paterno</th>
-                          <th class="text-center">Apellido Materno</th>	
-                          <th class="text-center">N° C.I.</th>	
-                          <th class="text-center">Telf.-Cel</th>	
-                          <th class="text-center">Cargo</th>	
-                          
-                          <th id="ocultoI" class="text-center">Optiones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <%if (filter != null) { %>
-                          <% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
-                            <tr>
-                              <td class="text-center"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
-                              <td class="text-center "><%=filter.data.data_cliente[i].nombre%></td>
-                              <td class="text-center"><%=filter.data.data_cliente[i].apellidop%></td>
-                              <td class="text-center"><%=filter.data.data_cliente[i].apellidom%></td>
-                              <td class="text-center"><%=filter.data.data_cliente[i].ci%></td>
-                              <td class="text-center"><%=filter.data.data_cliente[i].telefono%></td>
-                              <td class="text-center"><%=filter.data.data_cliente[i].cargo%></td>
-                              <td id="ocultoI"><a href="/usuarios/cuentas/<%=filter.data.data_cliente[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
-                              </td>
-                            </tr>
-                          <% } %>
-                        <% } %>
-                      </tbody>
-                    </table>
+              <div class="col-md-12">
+                <section class="panel default blue_title h2">
+                  <div class="panel-heading">
+                    <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
+                    <h3 class="content-header " style="color: black;">Reportes Personal</h3>
+                        
                   </div>
+                  <div class="panel-body">
+                    <div class="tabs_right">
+                      <ul class="nav nav-tabs" id="myTab">
+                        <li class="active"><a data-toggle="tab" href="#Section1">Personal </a></li>
+                        <li><a data-toggle="tab" href="#Section2">Cuentas </a></li>
+                        
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div id="Section1" class="tab-pane fade in active">
+                            <form id="ocultoI" @submit="filter_data" method="POST" class="form-horizontal" name="formulario1"  >
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Desde:</label>
+                                <div class="col-sm-4">
+                                  <input v-model="fecha_inicio" type="date"  class="form-control" >
+                                </div>
+                              </div><!--/form-group--> 
+                              <div class="form-group">
+                                <label  class="col-sm-4 control-label">Hasta:</label>
+                                <div class="col-sm-4">
+                                  <input v-model="fecha_final" type="date"  class="form-control" >
+                                </div>
+                              </div><!--/form-group--> 
+                              <!--<input type="text" name="cargo" value="medico"> -->
+                              <!-- <div class="form-group">
+                                  <label  class="col-sm-4 control-label">Especifica:</label>
+                                  <div class="col-sm-4">
+                                      <select class="seleccion" name="cosa" onchange="cambia()">
+                                          <option value="0">---Seleccione---
+                                          <option value="1">Personal
+                                          <option value="2">Tecnico
+                                        </select>
+                                  </div>
+                                </div> --><!--/form-group-->
+        
+                                <div class="form-group">
+                                  <label  class="col-sm-4 control-label">tipo:</label>
+                                  <div class="col-sm-4">
+                                    <select  class="seleccion" v-model="cargo">
+                                      <option value="-">---Seleccione---</option>
+                                      <option value="medico">MÉDICO</option>
+                                      <option class="uppercase"value="enfermera">ENFERMERA</option>
+                                      <option class="uppercase" value="personal">PERSONAL</option>
+                                      <option class="uppercase" value="farmaseutico">FARMACEUTICO</option>
+                                      <option value="ECOGRAFIA">LABORATORISTA DE ECOGRAFIA</option>
+                                      <option value="Rayos_x">LABORATORISTA DE RAYOS X</option>
+                                      <option value="LABORATORIO">LABORATORISTA</option>
+                                    </select>
+                                  </div>
+                                </div> 
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-10">
+                                      <button type="submit" class="btn btn-primary"><i class="fa fa-search" ></i><span>&nbsp;</span>Por Rango<span>&nbsp;</span></button>
+                                      <a href="/usuarios/allreg/<%=data_doc.data.token_id%>" type="submit" class="btn btn-default"><i class="fa fa-search" ></i><span>&nbsp;</span>Total<span>&nbsp;</span></a>
+                                    </div>
+                                  </div><!--/form-group--> 
+                            </form>
+                            <div  id="ocultoI" class="form-group">
+                                <div class="col-sm-offset-9 col-sm-10">
+                                  <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
+                                </div>
+                              </div><!--/form-group--> 
+                              <br><br><br><br>
+                            <div class="table-responsive">
+                              <table  class=" table table-bordered table-striped ">
+                                
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">Fecha Creación</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Apellido Paterno</th>
+                                    <th class="text-center">Apellido Materno</th>	
+                                    <th class="text-center">N° C.I.</th>	
+                                    <th class="text-center">Telf.-Cel</th>	
+                                    <th class="text-center">Cargo</th>	
+                                    
+                                    <th id="ocultoI" class="text-center">Optiones</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  
+                                  <tr v-for = "data in list">
+                                    <td class="text-center">{{data.createdAt.split("T")[0]}}</td>
+                                    <td class="text-center ">{{data.nombre}}</td>
+                                    <td class="text-center">{{data.apellidop}}</td>
+                                    <td class="text-center">{{data.apellidom}}</td>
+                                    <td class="text-center">{{data.ci}}</td>
+                                    <td class="text-center">{{data.telefono}}</td>
+                                    <td class="text-center">{{data.cargo}}</td>
+                                    <!--<td class="text-center" id="ocultoI"><a :href="'/usuarios/cuentas/'+data.id+'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>-->
+                                    </td>
+                                  </tr>
+                                    
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                        <div id="Section2" class="tab-pane fade">
+                            <form id="ocultoI" @submit="filter_data1" method="POST" class="form-horizontal"   >
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Desde:</label>
+                                <div class="col-sm-4">
+                                  <input v-model="fecha_inicio" type="date"  class="form-control" >
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label  class="col-sm-4 control-label">Hasta:</label>
+                                <div class="col-sm-4">
+                                  <input v-model="fecha_final" type="date"  class="form-control" >
+                                </div>
+                              </div>
+        
+                                <div class="form-group">
+                                  <div class="col-sm-offset-4 col-sm-10">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search" ></i><span>&nbsp;</span>Por Rango<span>&nbsp;</span></button>
+                                    <a href="/usuarios/allcuentas/<%=data_doc.data.token_id%>" type="submit" class="btn btn-default"><i class="fa fa-search" ></i><span>&nbsp;</span>Total<span>&nbsp;</span></a>
+                                  </div>
+                                </div><!--/form-group--> 
+                            </form>
+                            <div  id="ocultoI" class="form-group">
+                                <div class="col-sm-offset-9 col-sm-10">
+                                  <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
+                                </div>
+                              </div><!--/form-group--> 
+                              <br><br><br><br>
+                            <div class="table-responsive">
+                              <table  class=" table table-bordered table-striped " >
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">Fecha Creación</th>
+                                    <th class="text-center">Cuenta</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Nombre Personal</th>
+                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr v-for="data1 in list_usu">
+                                    <td class="text-center">{{data1.createdAt.split("T")[0]}}</td>
+                                    <td class="text-center">{{data1.username}}</td>
+                                    <td class="text-center">{{data1.email}}</td>
+                                    <td class="text-center">{{data1.email}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -350,147 +379,209 @@ table td:last-child {display:none}
       </div>
     </div> 
   </div>
-  <script type="text/javascript">
-    //1) Definir Las Variables Correspondintes
-    var opt_1 = new Array ("-", "MÉDICO", "ENFERMERA", "PERSONAL", "FARMACEUTICO","LABORATORISTA DE ECOGRAFIA","LABORATORISTA DE RAYOS X","LABORATORISTA", "...");
-    var opt_2 = new Array ("-", "CENTAS", "ROLES", "...");
-    // 2) crear una funcion que permita ejecutar el cambio dinamico
-    
-    function cambia(){
-      var cosa;
-      //Se toma el vamor de la "cosa seleccionada"
-      cosa = document.formulario1.cosa[document.formulario1.cosa.selectedIndex].value;
-      //se chequea si la "cosa" esta definida
-      if(cosa!=0){
-        //selecionamos las cosas Correctas
-        mis_opts=eval("opt_" + cosa);
-        //se calcula el numero de cosas
-        num_opts=mis_opts.length;
-        //marco el numero de opt en el select
-        document.formulario1.opt.length = num_opts;
-        //para cada opt del array, la pongo en el select
-        for(i=0; i<num_opts; i++){
-          document.formulario1.opt.options[i].value=mis_opts[i];
-          document.formulario1.opt.options[i].text=mis_opts[i];
-        }
-        }else{
-          //si no habia ninguna opt seleccionada, elimino las cosas del select
-          document.formulario1.opt.length = 1;
-          //ponemos un guion en la unica opt que he dejado
-          document.formulario1.opt.options[0].value="-";
-          document.formulario1.opt.options[0].text="-";
-        }
-        //hacer un reset de las opts
-        document.formulario1.opt.options[0].selected = true;
+  <script src="/js/jquery-2.1.0.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/common-script.js"></script>
+  <script src="/js/jquery.slimscroll.min.js"></script>
+  <script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+  <script src="/plugins/checkbox/zepto.js"></script>
+  <script src="/plugins/checkbox/icheck.js"></script>
+  <script src="/js/icheck-init.js"></script>
+  <script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+  <script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+  <script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+  <script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+  <script type="text/javascript" src="/js/form-components.js"></script> 
+  <script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+  <script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+  <script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+  <script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+  <script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+  
+  <script src="/js/toastr.js"></script>
+  <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+  
+  
+  <script src="/plugins/validation/parsley.min.js"></script>
+  <script src="/plugins/data-tables/jquery.dataTables.js"></script>
+  <script src="/plugins/data-tables/DT_bootstrap.js"></script>
+  <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+  <script src="/plugins/edit-table/edit-table.js"></script>
+  
+  <script>
+  
+  
+  /*==Porlets Actions==*/
+      $('.minimize').click(function(e){
+        var h = $(this).parents(".header");
+        var c = h.next('.porlets-content');
+        var p = h.parent();
         
-      }
-    
-    
+        c.slideToggle();
+        
+        p.toggleClass('closed');
+        
+        e.preventDefault();
+      });
+      
+      $('.refresh').click(function(e){
+        var h = $(this).parents(".header");
+        var p = h.parent();
+        var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+        
+        loading.appendTo(p);
+        loading.fadeIn();
+        setTimeout(function() {
+          loading.fadeOut();
+        }, 1000);
+        
+        e.preventDefault();
+      });
+      
+      $('.close-down').click(function(e){
+        var h = $(this).parents(".header");
+        var p = h.parent();
+        
+        p.fadeOut(function(){
+          $(this).remove();
+        });
+        e.preventDefault();
+      });
   
   </script>
-<script src="/js/jquery-2.1.0.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/common-script.js"></script>
-<script src="/js/jquery.slimscroll.min.js"></script>
-<script src="/js/jquery-ui.min.js"></script> 
-<script src="/plugins/bootstrap-editable/bootstrap-editable.min.js"></script>
-<script src="/plugins/x-editable/form-x-editable.js"></script> 
-<script src="/plugins/x-editable/form-x-editable-demo.js"></script>
-<script src="/plugins/mockjax/jquery.mockjax.min.js"></script> 
-<script src="/js/moment.min.js"></script>
-<script src="/js/select2.min.js"></script> 
-<script src="/js/address.min.js"></script> 
-<script src="/plugins/typeahead/typeahead.min.js"></script> 
-<script src="/plugins/typeahead/typeaheadjs.min.js"></script> 
-<script type="/text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
-<script src="/plugins/checkbox/zepto.js"></script>
-<script src="/plugins/checkbox/icheck.js"></script>
-<script src="/js/icheck-init.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
-<script type="text/javascript" src="/js/form-components.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
-<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
-<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
-<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+  <script>
+    /*  <%if(msg) { %> */
+      /*  <%if(msg.data.success == false) { %> */
+       msg_false()
+       function msg_false(){
+       swal.fire(
+         'Error!',
+         '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+         'error'
+       )
+       }
+       /* <% } else {%> */
+       msg_true()
+       function msg_true(){
+       swal.fire(
+         'Success!',
+         '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+         'success'
+       )
+       }
+      /*  <% } %> */
+    /*  <% } %> */
+  </script>
+  <script src="/js/jPushMenu.js"></script> 
+  <script src="/js/side-chats.js"></script>
+  
+  <script src="/url/export.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script src="/axios/dist/axios.min.js"></script>
 
-<script src="/js/toastr.js"></script>
-<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
-
-<script src="/plugins/validation/parsley.min.js"></script>
-<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-<script src="/plugins/data-tables/dynamic_table_init.js"></script>
-<script src="/plugins/edit-table/edit-table.js"></script>
 
 
 <script>
-/*==Porlets Actions==*/
-    $('.minimize').click(function(e){
-      var h = $(this).parents(".header");
-      var c = h.next('.porlets-content');
-      var p = h.parent();
+  const personal = new Vue({
+    el:"#personal",
+    data:() => ({
+      url:data_url,
+      buscar_in_list:'',
+      cargo:'',
+      list:[],
+      list_usu:[],
+      fecha_inicio:'',
+      fecha_final:'',
       
-      c.slideToggle();
-      
-      p.toggleClass('closed');
-      
-      e.preventDefault();
-    });
-    
-    $('.refresh').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
-      
-      loading.appendTo(p);
-      loading.fadeIn();
-      setTimeout(function() {
-        loading.fadeOut();
-      }, 1000);
-      
-      e.preventDefault();
-    });
-    
-    $('.close-down').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      
-      p.fadeOut(function(){
-        $(this).remove();
-      });
-      e.preventDefault();
-    });
-</script>
+      list_est:[]
+    }),
+    methods:{
+      filter_data(e){
+        e.preventDefault();
+        var datos = {
+          cargo: this.cargo,
+          fecha_inicio: this.fecha_inicio,
+          fecha_final: this.fecha_final
+        };  
+       var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch(this.url.url_front_end+'/usuarios/vue_filter_datas',esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data1 => {
+        this.list = data1
+        console.log(data1, "  <<<<<<<<<<<<<<<<  asdasd")
+      })
+      },
+      filter_data1(e){
+        e.preventDefault();
+        var datos = {
+          fecha_inicio: this.fecha_inicio,
+          fecha_final: this.fecha_final
+        };  
+       var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch(this.url.url_front_end+'/usuarios/vue_filter_datas1',esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data1 => {
+        this.list_usu = data1
+        console.log(data1, "  <<<<<<<<<<<<<<<<  asdasd")
+      })
+      },
+      /*getListCua(){
+        fetch(this.url.url_front_end+'/cuaderno/Vue_Cuadernos/')
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            this.buscar.lists = data
+          })
+      },
+      getListEspe(){
+        fetch(this.url.url_front_end+'/cuaderno/Vue_Especialidades/')
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            this.buscar1.lisBus1  = data
+          })
+      }*/
+    },
+    computed:{
+      Buscar () {
+        return this.buscar.lists.filter((item) => {
+            return item.lists.toLowerCase().includes(this.buscar.lists.toLowerCase()) || 
+            item.nombre.toLowerCase().includes(this.buscar.lists.toLowerCase()) ||
+            item.descripcion.toLowerCase().includes(this.buscar.lists.toLowerCase());
+        });
+      },
+      Buscar1 () {
+        return this.buscar1.lisBus1 .filter((item) => {
+            return item.lisBus1.toLowerCase().includes(this.buscar1.lisBus1.toLowerCase()) || 
+            item.titulo.toLowerCase().includes(this.buscar1.lisBus1.toLowerCase()) ||
+            item.grupo.toLowerCase().includes(this.buscar1.lisBus1.toLowerCase());
+        });
+      },
+      buscar: function () {
+        return this.list.filter((item) => 
+        item.createdAt.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
+        || item.titulo.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
+        || item.grupo.toLowerCase().includes(this.buscar_in_list.toLowerCase()))
+      }
 
-<script>
-		/*  <%if(msg) { %> */
-		  /*  <%if(msg.data.success == false) { %> */
-			 msg_false()
-			 function msg_false(){
-			 swal.fire(
-			   'Error!',
-			   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
-			   'error'
-			 )
-			 }
-		   /* <% } else {%> */
-			 msg_true()
-			 function msg_true(){
-			 swal.fire(
-			   'Success!',
-			   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
-			   'success'
-			 )
-			 }
-		  /*  <% } %> */
-		/*  <% } %> */
+    }
+  })
 </script>
-<script src="/js/jPushMenu.js"></script> 
-<script src="/js/side-chats.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
+    
+
 </body>
 </html>

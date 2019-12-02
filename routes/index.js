@@ -628,28 +628,154 @@ router.get('/backup/:token_id',(req, res) => {
     res.redirect('/');
   }
 });
+var msg_Consulta_emergencia = {}
+function msg_data(data,id){
+  let msg_data = msg_Consulta_emergencia[id];
+    if (!msg_data) {
+        msg_data = msg_Consulta_emergencia[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    msg_data.qty++;
+}
 
-///paciente admin
+function array () {
+  let arr = [];
+  for (const id in msg_Consulta_emergencia) {
+      arr.push(msg_Consulta_emergencia[id]);
+  }
+  return arr;
+}
+function remove(id) {
+    delete msg_Consulta_emergencia[id];
+}
+
+
+///medicamentos admin
 router.get('/pacientead/:token_id',(req, res) => {
   const { token_id } = req.params
   if(datas.name.token[token_id]){
-    fetch('http://localhost:3500/api/medicamento')        
+    fetch('http://localhost:3200/api/mostrar_medicamentos')        
     .then(resp => resp.json())
     .then(data =>{  
       res.render('pacientead', {
         data,
-        data_doc:datas.name.data_user[token_id]  
+        data_doc:datas.name.data_user[token_id],
+        filter:filter_ventas1[token_id],
+        msg:msg_Consulta_emergencia[token_id],
+        
       })
     })  
   }else{
     res.redirect('/')
   }
 });
+
+var filter_ventas1 = {}
+function filter_cliente_ventas1(data,id){
+  let storedItem = filter_ventas1[id];
+    if (!storedItem) {
+      storedItem = filter_ventas1[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_data3 () {
+  let arr = [];
+  for (const id in filter_ventas1) {
+      arr.push(filter_ventas1[id]);
+  }
+  return arr;
+}
+
+function remove_filter_data1(id) {
+  delete filter_ventas1[id];
+}
+
+//filter ventas
+
+router.post ('/filter_ventas/:token_id', (req,res) => {
+  const { token_id } = req.params
+  var msg_p;
+  if(datas.name.token[token_id]){
+    var data = req.body;
+    var enviar = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type' : "application/json"
+      }
+    }
+    fetch('http://localhost:3200/api/filter_ventas',enviar)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(data => {
+      if(data.success == false){
+        if(msg_Consulta_emergencia[token_id] == null){
+          msg_p = {
+            success:false,
+            data:data.msg
+          }
+          msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          remove_filter_data2(token_id)
+          setTimeout(()=>{
+            remove(token_id)
+          },1000);   
+          res.redirect('/pacientead/'+token_id)
+        }else{
+          if(filter_ventas1[token_id] == null){
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            filter_cliente_ventas1(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            remove_filter_data1(token_id)
+            filter_cliente_ventas1(msg_p,token_id)
+          }
+          res.redirect('/pacientead/'+token_id)
+      }
+    })
+  }else{
+    res.redirect('/')
+  }
+})
+router.get('/allmedi/:token_id',(req, res) =>{
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){ 
+    fetch('http://localhost:3200/api/mostrar_medicamentos')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporAdmin/impriM', {
+        data,
+        data_doc:datas.name.data_user[token_id]
+      })
+    })
+  }else{
+    res.redirect('/')
+  }
+})
 // Internacion salas 
 
 
 //Se movio a routas salas
-
+////solo pacintes
 router.get('/paciente_Inter/:token_id',(req, res) => {
   const { token_id } = req.params
   if(datas.name.token[token_id]){
@@ -658,7 +784,9 @@ router.get('/paciente_Inter/:token_id',(req, res) => {
     .then(data =>{  
       res.render('paciente_Inter', {
         data,
-        data_doc:datas.name.data_user[token_id]        
+        data_doc:datas.name.data_user[token_id],
+        filter:filter_ventas[token_id],
+        msg:msg_Consulta_emergencia[token_id],        
       })
     })
   }else{
@@ -667,6 +795,105 @@ router.get('/paciente_Inter/:token_id',(req, res) => {
  
 });
 
+var filter_ventas = {}
+function filter_cliente_ventas(data,id){
+  let storedItem = filter_ventas[id];
+    if (!storedItem) {
+      storedItem = filter_ventas[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_filter_data2 () {
+  let arr = [];
+  for (const id in filter_ventas) {
+      arr.push(filter_ventas[id]);
+  }
+  return arr;
+}
+
+function remove_filter_data(id) {
+  delete filter_ventas[id];
+}
+
+/***filtros pacientes */
+router.post ('/filter_pacientes/:token_id', (req,res) => {
+  const { token_id } = req.params
+  var msg_p;
+  if(datas.name.token[token_id]){
+    var data = req.body;
+    var enviar = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type' : "application/json"
+      }
+    }
+    fetch('http://localhost:3000/api/filtro_pacientes',enviar)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(data => {
+      if(data.success == false){
+        if(msg_Consulta_emergencia[token_id] == null){
+          msg_p = {
+            success:false,
+            data:data.msg
+          }
+          msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          remove_filter_data(token_id)
+          setTimeout(()=>{
+            remove(token_id)
+          },1000);   
+          res.redirect('/paciente_Inter/'+token_id)
+        }else{
+          if(filter_ventas[token_id] == null){
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            filter_cliente_ventas(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data_cliente:data
+            }
+            remove_filter_data(token_id)
+            filter_cliente_ventas(msg_p,token_id)
+          }
+          res.redirect('/paciente_Inter/'+token_id)
+      }
+    })
+  }else{
+    res.redirect('/')
+  }
+})
+router.get('/allpacientes/:token_id',(req, res) =>{
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){ 
+    fetch('http://localhost:3000/api/list_onli_pacientes')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporAdmin/impriP', {
+        data,
+        data_doc:datas.name.data_user[token_id]
+      })
+    })
+  }else{
+    res.redirect('/')
+  }
+})
+/////////////////////////////////////////////////////
 router.get('/mostrar/:id_paciente', (req,res) => {
   const { id_paciente } = req.params
   fetch('http://localhost:3000/api/paciente_alergias/'+id_paciente  )        

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>Administrador</title>
+<title >Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
@@ -88,6 +88,12 @@ td.uppercase
   vertical-align: middle;
   text-align: center;
 }
+.oculta1{
+    display: none;
+}
+#ocultoI{
+    display: none;   
+}
 </style>
 <script>
   /* <%if(login != null){%> */
@@ -126,11 +132,11 @@ td.uppercase
 </head>
 <body class="light_theme  fixed_header left_nav_fixed" onload="startTime()">
   <div class="wrapper">
-    <div class="header_bar">
+    <div  class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
-      <div class="header_top_bar">
+      <div  class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         <div class="top_right_bar">
           <div class="user_admin dropdown" > <a href="javascript:void(0);" data-toggle="dropdown">
@@ -170,11 +176,11 @@ td.uppercase
 
             <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="/paciente_Inter/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles1/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                <li> <a href="/paciente_Inter/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Pacientes</b> </a> </li>
+                <li> <a href="/pacientead/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles1/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Personal</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte Servicios</b> </a> </li>
+                <!--<li> <a href="/cuaderno/repespecialidad/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>-->
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>

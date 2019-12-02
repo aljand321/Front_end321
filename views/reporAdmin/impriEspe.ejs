@@ -20,6 +20,10 @@
 		{
 			text-transform: uppercase;
 		}
+      div.uppercase
+		{
+			text-transform: uppercase;
+		}
 	</style>
 </head>
 <script type="text/javascript">
@@ -39,6 +43,7 @@
     //window.location.replace('/')
   },500000);
 </script>
+
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
     <!--\\\\\\\ wrapper Start \\\\\\-->
@@ -54,7 +59,7 @@
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <!--Boton i,prir-->
         <div class="btn-group"> <a class="btn btn-warning" href="" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
-        <div class="btn-group"> <a class="btn btn-success" href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
+        <div class="btn-group"> <a class="btn btn-success" href=""> <i class="fa fa-reply"></i> Salir</a> </div>
         
       </div>
       <!--\\\\\\\ header top bar end \\\\\\-->
@@ -110,45 +115,81 @@
         <!--Hoja-->
           <div class="invoice ">
             <div class="invoice_body" data-print-content>
-              <div  class="pull-left">
-                <address>
-                  <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
-                  Av. Italia Final S/N<br>
-                  Telfs. 26246064-26244960<br>
-                  POTOSI-BOLIVIA
-                </address>
-              </div>
-              <div class="pull-right">
-                <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
-              </div>
-              <div class="clearfix"></div>
-              <br/>
-              <h2 class="text-center uppercase">Reporte General</h2>
-              <div class="row">
+                <div  class="pull-left">
+                    <address>
+                        <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
+                        Av. Italia Final S/N<br>
+                        Telfs. 26246064-26244960<br>
+                        POTOSI-BOLIVIA
+                    </address>
+                </div>
+                <div class="pull-right">
+                    <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
+                </div>
+                <div class="clearfix"></div>
+                <br/>
+                <br/>
+                <h2 class="text-center">REPORTES ESPECIFICO PERSONAL</h2>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div> <strong>NOMBRE COMPLETO :</strong>  <span>&nbsp;</span> <span>&nbsp;</span>   </div>
+                        <div> <strong>C.I. :</strong>   </div>
+                        <div> <strong>CEL-TELF :</strong> </div>
+                        <div> <strong>DIRECCION:</strong> </div>
+                        <div class="uppercase"> <strong>CARGO:</strong>   </div>
+                        
+                      <br/>
+                  </div>
+                </div>
                 <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th class="text-center">Fecha Creación</th>	
-                      <th class="text-center">Nombre</th>
-                      <th class="text-center">Area</th>	
-                    </tr>
-                  </thead>
-                    <tbody>
-                      <%for (var i = 0; i< data.length; i++) { %>
+                    <thead>
                         <tr>
-                          <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                          <td class="text-center"><%=data[i].nombre%></td>
-                          <td class="text-center"><%=data[i].descripcion%></td>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Correo</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Fecha Creación</th>
+                            <th class="text-center">Rol</th>
                         </tr>
-                      <% } %>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        </tr>
                     </tbody>
                 </table>
-              </div>
+                
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center"></th>
+                            <th class="text-center">Correo</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Fecha Creación</th>
+                            <th class="text-center">Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table> 
             </div>
+            
+           
+            
           </div>
         </div>
-    <!--\\\\\\\ content panel end \\\\\\-->
       </div>
+    <!--\\\\\\\ content panel end \\\\\\-->
     </div>
   </div>
 

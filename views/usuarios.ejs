@@ -4,7 +4,7 @@
 <head>
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Administrador</title>
+	<title class="ocultoI">Administrador</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
@@ -67,7 +67,12 @@
       vertical-align: middle;
       text-align: center;
     }
-    
+    .oculta1{
+    display: none;
+    }
+    #ocultoI{
+    display: none;   
+    }
   </style>
 
 
@@ -139,11 +144,11 @@
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Pacientes</b> </a> </li>
+                <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Personal</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Servicios</b> </a> </li>
+                <!--<li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>-->
 
               </ul>
             </li>
@@ -160,20 +165,20 @@
         <div class="container clear_both padding_fix col-lg-8">
           <br>
           <div class="row">
-            <div class="col-lg-12 ">
-              <div id="main-content" class=" block-web">
+            <div  class="col-lg-12 ">
+              <div id="main-content" class=" block-web ocultoI">
                 <div class="header">
                   <div class="info blue_symbols"><i class="fa fa-users icon"></i></div>
                   <h3 class="content-header ">Registros</h3>
                 </div>
                 <div class="page-content">
-                  <div class="row">
+                  <div  class="row">
                     <div class="col-md-12">
-                      <div class="block-web">
-                        <div class="header">
+                      <div class="block-web ocultoI">
+                        <div  class="header">
                           <div class="actions"> 
                             <a class="minimize" data-toggle="collapse" data-target="#demo" ><i class="fa fa-chevron-down" style="color: blue;"></i></a> 
-                            <a class="refresh" href="/usuarios/quitar/<%=data_doc.data.token_id%>"><i class="fa fa-repeat" style="color: blue;"></i></a>
+                            <a class=" refresh" href="/usuarios/quitar/<%=data_doc.data.token_id%>"><i class="fa fa-repeat" style="color: blue;"></i></a>
                           </div>
                         </div>
                         <br>
