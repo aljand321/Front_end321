@@ -28,6 +28,19 @@
     top:0;
     width:200px;
 }
+
+/*----------------------logo de historial clinico de emergencia ------------------------------*/
+.dim2E:before{
+    content: url('../images/hospital1.png'); 
+    position: absolute;
+    top: 0%;   
+}
+.posiondeImagenE{
+  
+    top:0;
+    float: right;
+    width:200px;
+}
 /*--------cosas pasa ocultar en la vista real-----------*/
 .verOculto{
     visibility: collapse;
