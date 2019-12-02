@@ -1101,6 +1101,15 @@ router.post('/reg_cliente/:token_id/:token_partial', (req,res) => {
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+router.get('/vue_one_receta_ciente/:id_receta', (req,res) => {
+  const { id_receta } = req.params
+  fetch('http://localhost:3200/api/one_receta_cliente/'+id_receta)
+  .then(res => res.json())
+  .then(data => {
+    res.status(200).json(data);
+  })
+})
+
 router.get('/reg_venta/:id_cliente/:token_id/:token_partial',(req, res) => {
   const { id_cliente, token_id, token_partial } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
