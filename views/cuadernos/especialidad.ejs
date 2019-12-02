@@ -431,27 +431,30 @@
             </div>
             </section>
             <form class="form-horizontal" @submit="register_medicos" parsley-validate novalidate>
-              <div class="form-group"><br>
-	    	  	  	<label for="inputPassword3" class="col-sm-4 control-label">C.I.:</label>
-	    	  	  	<div class="col-sm-4">
-                  <v-select v-for = "list in list_ci_med"  @click="list_medicos" required placeholder="Selecione Especialidad" >
-                    <label for="">{{list.ci}}</label>
-                  </v-select>
-	    	  	  	</div>
-	    	  	  </div><!--/form-group-->
-              <div class="form-group">
-                <label  class="col-sm-4 control-label">Personal Médico:</label>
-                <div class="col-sm-5">
-                    <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change" readonly/>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">C.I.:</label>
+                  <div class="col-sm-4">
+                    <select v-model="ci_medico" @click="list_medicos">
+                        <option value="">--Seleccione--</option>
+                      <% for(var i = 0; i< Lista_medicos.length; i++) { %>
+                        <option><%=Lista_medicos[i].ci%></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div><!--/form-group-->
+                <div class="form-group">
+                  <label  class="col-sm-4 control-label">Personal Médico:</label>
+                  <div class="col-sm-5">
+                      <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change" readonly/>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-5">
-                    <button type="submit" class="btn btn-success btn-icon"  >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                    <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                </div>
-              </div> 
-            </form>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                      <button type="submit" class="btn btn-success btn-icon"  >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                      <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                  </div>
+                </div> 
+                </form>
            
           </div>
         </div>

@@ -103,18 +103,48 @@ const recetas = new Vue({
         insertar(){
 
             if(this.lista.medicamento == "" || this.lista.medicamento == undefined){
-                this.data_msg.msg_false = "Inserte nombre del medicamento"
+                //this.data_msg.msg_false = "Inserte nombre del medicamento"
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                )
             }else if (this.lista.dosis == "" || this.lista.dosis == undefined){
-                this.data_msg.msg_false = "Inserte dosis"                
+               // this.data_msg.msg_false = "Inserte dosis"     
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                )           
             }else if (this.lista.frecuencia == "" || this.lista.frecuencia == undefined){
-                this.data_msg.msg_false = "Inserte Frecuencia"   
+               // this.data_msg.msg_false = "Inserte Frecuencia"  
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                ) 
             }else if (this.lista.duracion == "" || this.lista.duracion == undefined){
-                this.data_msg.msg_false = "Inserte duracion"                  
+               // this.data_msg.msg_false = "Inserte duracion"      
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                )            
             }else if(this.lista.cantidad == "" || this.lista.cantidad == undefined || isNaN(this.lista.cantidad)){
                 if(isNaN(this.lista.cantidad)){
-                    this.data_msg.msg_false = "Cantidad solo puede contener numeros"
+                    //this.data_msg.msg_false = "Cantidad solo puede contener numeros"
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        'error'
+                    )
                 }else{
                     this.data_msg.msg_false = "Inserte cantidad"
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        'error'
+                    )
                 }                
             }else{
                 if(this.lista.id_medicamento == 0){
@@ -160,6 +190,11 @@ const recetas = new Vue({
             if(this.medicamentos.length != 0 ){
                 if(this.data_receta.fecha == "" || this.data_receta.fecha == undefined){
                     this.data_msg.msg_false = "Inserte la fecha actual por favor"
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        'error'
+                    )
                 }else{
                     var data  = {
                         tipoConsulta:this.data_receta.tipoConsulta,
@@ -183,19 +218,34 @@ const recetas = new Vue({
                     .then(data => { 
                         console.log(data.success)
                         if(data.success == true){
+                            swal.fire(
+                                'Success!',
+                                '<label style="color:green;">'+ data.msg +'</label>',
+                                'success'
+                            )
                             this.data_msg.msg_true = data.message
                             this.data_msg.msg_false = ""
                             this.medicamentos=[]
                             this.get_receta()
                         }else{
-                            console.log(data)
-                            this.data_msg.msg_false = data.msg
+                             swal.fire(
+                                'Error!',
+                                '<label style="color:red;">Inserte nombre del medicamento</label>',
+                                'error'
+                            )
+                            /*console.log(data)
+                            this.data_msg.msg_false = data.msg*/
                         }
                         
                     })   
                 }                
             }else{
                 this.data_msg.msg_false = "Porfavor inserte medicamentos"
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                )
                 console.log(this.data_msg.msg_false)
             }
                   
@@ -203,17 +253,47 @@ const recetas = new Vue({
         insertar_update(){
             if(this.lista.medicamento == "" || this.lista.medicamento == undefined){
                 this.data_msg.msg_false = "Inserte nombre del medicamento"
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                )
             }else if (this.lista.dosis == "" || this.lista.dosis == undefined){
-                this.data_msg.msg_false = "Inserte dosis"                
+                this.data_msg.msg_false = "Inserte dosis"  
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                )              
             }else if (this.lista.frecuencia == "" || this.lista.frecuencia == undefined){
-                this.data_msg.msg_false = "Inserte Frecuencia"   
+                this.data_msg.msg_false = "Inserte Frecuencia" 
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                )  
             }else if (this.lista.duracion == "" || this.lista.duracion == undefined){
-                this.data_msg.msg_false = "Inserte duracion"                  
+                this.data_msg.msg_false = "Inserte duracion" 
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    'error'
+                )                 
             }else if(this.lista.cantidad == "" || this.lista.cantidad == undefined || isNaN(this.lista.cantidad)){
                 if(isNaN(this.lista.cantidad)){
                     this.data_msg.msg_false = "Cantidad solo puede contener numeros"
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        'error'
+                    )
                 }else{
                     this.data_msg.msg_false = "Inserte cantidad"
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        'error'
+                    )
                 }
             }else{
                 if(this.lista.id_medicamento == 0){
@@ -287,10 +367,20 @@ const recetas = new Vue({
                 .then(data => { 
                     console.log(data)
                     if(data.success == true){
+                        swal.fire(
+                            'Success!',
+                            '<label style="color:green;">'+ data.msg +'</label>',
+                            'success'
+                        )
                         this.data_msg.msg_true = data.msg
                         this.data_msg.msg_false = ""
                         this.get_receta()
                     }else{
+                        swal.fire(
+                            'Error!',
+                            '<label style="color:red;">'+ data.msg +'</label>',
+                            'error'
+                        )
                         this.data_msg.msg_false = "Algo salio mal no se pudo actualizar la receta"
                     }
                 }) 

@@ -55,13 +55,11 @@
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
 			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
@@ -82,34 +80,20 @@
 		<div class="inner">
 			<!--\\\\\\\ inner start \\\\\\-->
 			<div class="left_nav">
-
 				<!--\\\\\\\left_nav start \\\\\\-->
-
 				<div class="left_nav_slidebar">
 					<ul>
-						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
-									class="left_nav_pointer"></span> <span class="plus"><i
-										class="fa fa-plus"></i></span> </a>
+						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
 								<li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b>
 									</a> </li>
 							</ul>
 						</li>
-
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-									class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i
-										class="fa fa-plus"></i></span></a>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/paciente/citas"> <span>&nbsp;</span> <i
-											class="fa fa-circle theme_color"></i>
-										<b class="theme_color">Citas Medicas</b>
-									</a> </li>
-
+								<li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Medicas</b> </a> </li>
 							</ul>
 						</li>
-
-
-
 					</ul>
 				</div>
 			</div>
@@ -118,14 +102,8 @@
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
-
 					<div class="row">
-
 						<div class="col-lg-12 ">
-
-
-
-
 							<!-- Content page -->
 							<div class="container-fluid">
 								<div class="page-header">
@@ -133,19 +111,13 @@
 										Recerva de Ficha Médica </h1>
 								</div>
 							</div>
-
-
-
-
 							<div class="porlets-content">
 								<div id="citas">
 									<%if(citaUpdate == null) { %>
-
 									<form action="/paciente/cita_medica/<%=id.id %>" method="POST"
 										class=" group-border-dashed">
 										<div class="row">
 											<div class="col-md-12 ">
-
 												<div class="block-web">
 													<div class="header">
 														<div class="actions"> <a class="minimize" href="#"><i
@@ -172,8 +144,6 @@
 																<br>
 																<div class="col-md-12">
 																	<div class="col-md-4">
-
-
 																		<div class="form-group">
 																			<label> Historial Clinico:</label>
 																			<input type="text" value="<%=historial	%>"
@@ -183,8 +153,6 @@
 																			<input parsley-type="number"  type="text" name="saldo_total"
 																				class="form-control" required placeholder="Enter only numbers">
 																		</div>
-
-
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group">Consultorio De:<br>
@@ -238,24 +206,11 @@
 																				data-valmsg-for="PhoneNumber"
 																				data-valmsg-replace="true"></span>
 																		</div><br>
-
-
-
-
 																	</div>
 																</div>
-
-
-
-
 																<div class="form group entrada">
-
-
-
 																</div>
 																<br>
-
-
 															</div>
 
 
@@ -637,13 +592,12 @@
 				</div>
 
 			</div>
-
 			<!--\\\\\\\ container  end \\\\\\-->
 		</div>
 		<!--\\\\\\\ content panel end \\\\\\-->
-	</div>
+
 	<!--\\\\\\\ inner end\\\\\\-->
-	</div>
+
 	<!--\\\\\\\ wrapper end\\\\\\-->
 
 
