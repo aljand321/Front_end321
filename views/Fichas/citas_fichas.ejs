@@ -75,7 +75,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/cajera.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> John Doe</span> <b
+								src="/images/cajera.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -566,28 +566,11 @@
 			EditableTable.init();
 		});
 	</script>
-			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 	<script>
 
-			msg_false()
-			   function msg_false(){
-				 swal.fire(
-				   'Error!',
-				   '<label style="color:red;">'+``+'</label>',
-				   'error'
-				 )
-			   }
-		   
-			   msg_true()
-			   function msg_true(){
-				 swal.fire(
-				   'Success!',
-				   '<label style="color:green;">'+ `` +'</label>',
-				   'success'
-				 )
-			   }
-		 
+
 	</script>
 	<script src="/url/export.js"></script>
 

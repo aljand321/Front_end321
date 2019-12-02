@@ -43,7 +43,7 @@
             
             <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
             <li href="javascript:void(0);" class="btn btn-info " data-toggle="modal" data-target="#diagnostico"><i class="fa fa-plus-square"></i> <span> Diagnostico</span> </li>
-             
+        
             <div class="top_right_bar">
                 <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
                     src="/images/medico.png" /> <span class="user_adminname">
@@ -229,8 +229,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-web">  
-                                    
-                                   
                                 <div class="porlets-content">
                                     <template v-if="consulta_update == '' || consulta_update == null">
                                         <form @submit="reg_consulta" parsley-validate novalidate>
@@ -320,7 +318,7 @@
                                                                 <%if(updateCita != "") { %>
                                                                     <li><a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <i class="fa fa-building-o"></i>Receta</a></li>  
                                                                     <li><a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
-                                                                    <li><a href="/laboratorios/lab_consulta_externa/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li>
+                                                                    <li><a href="/laboratorios/lab_consulta_externa/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li> 
                                                                 <% }  %>                                                                        
                                                             </ul>  
                                                         </div>
@@ -429,7 +427,6 @@
                             <span style="color: red">{{msg_false_paciente}}</span>
                             <span style="color: blue">{{msg_paciente}}</span>
                         </div>
-                        
                         <template v-if="paciente_data == '' || paciente_data == null || paciente_data.length == 0">
                         
                             <form class="" method='post'>
@@ -483,7 +480,6 @@
                                 <div class="container-fluid  "><br>
                                     <div class="col-md-14 ">
                                         <div class="col-md-6 ">
-                                        
                                             <div class=" " >
                                                 <label>Estado Civil:</label>
                                                 <input  class="form-control"type='text' placeholder=" " required  parsley-trigger="change"  v-model="paciente_data.estadocivil" onkeyup="mayus(this);">
@@ -507,21 +503,16 @@
                                                 <label>Telefono:</label>
                                                 <input parsley-type="number" class="form-control" type='text' name='apellidom'  required placeholder="XX-XXXXXX" maxlength="8"   parsley-trigger="change" v-model="paciente_data.telef" >
                                             </div>
-                                            
                                         </div>
-                                        
                                     </div>
-                                
-                        
                                 <div class="col-md-12 modal-footer ">
-								
-                                    <div class="col-md-8 row">
+								    <div class="col-md-8 row">
                                         <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
                                         <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
                                         <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
                             </form>
                         </template>
                    </div>
@@ -625,7 +616,7 @@
                                                     </div>
                                                     <div id="div1" class="">
                                                     
-                                                          <table class="display table table-bordered table-striped" id="dynamic-table2">
+                                                          <table class="table table-hover" >
                                                             <thead>
                                                                   <tr>
                                                                     <th>#</th>
@@ -677,17 +668,14 @@
                 <div class="container-fluid  "><br>
                     <div class="col-md-14 ">
                         <div class="col-md-6 ">
-                
                             <div class=" " >
                                 <label>Estado Civil:</label>
                                 <input  class="form-control"type='text' name='nombre'placeholder="Estado Civil" required  parsley-trigger="change">
                             </div>
-                            
                             <div class="">
                                 <label>Domicilio:</label>
                                 <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
                             </div>
-                            
                         </div>
                         <div class="col-md-6  ">
                             <div class="">
@@ -695,17 +683,14 @@
                                 <input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change">
                             </div>
                             <div class="">
-                                    <label>Telefono:</label>
-                                   
-                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
-                                </div>
+                                <label>Telefono:</label>
+                                <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                            </div>
                         </div>
                     </div>
                 </div>
-               
                 <div class="col-md-12 modal-footer ">
-								
-                    <div class="col-md-8 row">
+					<div class="col-md-8 row">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
                         <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
                         <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
@@ -715,7 +700,6 @@
        </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     

@@ -214,7 +214,7 @@ router.get('/home/:id/:token_part', (req,res) => {
         token_id: {},
         token_part:{},
         personal:{},        
-      }
+    }
     
     fetch('http://localhost:3600/api/user/'+id)
     .then(resp => resp.json())

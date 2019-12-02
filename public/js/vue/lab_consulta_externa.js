@@ -337,22 +337,22 @@ const lab_consulta_externa = new Vue({
                     this.ecografia = []
                     this.otros_eco = ""
                     this.msg_eco_false = ""
-                    toastr.success(data.msg,'Error' ,{
-                        "progressBar": true,
-                        "positionClass": "toast-top-center",
-                        "closeButton": true,
-                    })
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+  data.msg +'</label>',
+                        'success'
+                    )
                 }else{
                     this.msg_eco_false = data.msg
                     this.msg_eco = ""
                     setTimeout(()=>{
                         this.msg_eco_false = ""
                     },5000);
-                    toastr.error(data.msg,'Error' ,{
-                        "progressBar": true,
-                        "positionClass": "toast-top-center",
-                        "closeButton": true,
-                    } )
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+ data.msg+'</label>',
+                        'error'
+                    )
                 }                
             })
         },  
@@ -531,11 +531,11 @@ const lab_consulta_externa = new Vue({
                 setTimeout(()=>{
                     this.msg_rayos_x_false = ""
                 },5000);
-                toastr.error('Selecione uno o varios por favor','Error' ,{
-                    "progressBar": true,
-                    "positionClass": "toast-top-center",
-                    "closeButton": true,
-                } )
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Selecione uno o varios por favor</label>',
+                    'error'
+                )
             }else{
                 var data = {
                     consultorio: this.consultorio,
@@ -576,22 +576,22 @@ const lab_consulta_externa = new Vue({
                         this.group_rayosX.Miembros_inferiores =[]
                        
                         this.msg_rayos_x_false = ""
-                        toastr.success(data.msg,'Error' ,{
-                            "progressBar": true,
-                            "positionClass": "toast-top-center",
-                            "closeButton": true,
-                        })
+                        swal.fire(
+                            'Success!',
+                            '<label style="color:green;">'+  data.msg +'</label>',
+                            'success'
+                        )
                     }else{
                         this.msg_rayos_x_false = data.msg
                         this.msg_rayos_x = ""
                         setTimeout(()=>{
                             this.msg_rayos_x_false = ""
                         },5000);
-                        toastr.error(data.msg,'Error' ,{
-                            "progressBar": true,
-                            "positionClass": "toast-top-center",
-                            "closeButton": true,
-                        } )
+                        swal.fire(
+                            'Error!',
+                            '<label style="color:red;">'+data.msg+'</label>',
+                            'error'
+                        )
                     }           
                 }) 
             }
@@ -884,11 +884,11 @@ const lab_consulta_externa = new Vue({
                 setTimeout(()=>{
                     this.msg_lab_false = ""
                 },5000);
-                toastr.error('Selecione uno o varios por favor','Error' ,{
-                    "progressBar": true,
-                    "positionClass": "toast-top-center",
-                    "closeButton": true,
-                } )
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;">Selecione uno o varios por favor</label>',
+                    'error'
+                )
             }else{
                 var data = {
                     consultorio: this.consultorio,
@@ -935,22 +935,22 @@ const lab_consulta_externa = new Vue({
                         this.otros_lab = ""
                                               
                         this.msg_lab_false = ""
-                        toastr.success(data.msg,'Error' ,{
-                            "progressBar": true,
-                            "positionClass": "toast-top-center",
-                            "closeButton": true,
-                        })
+                        swal.fire(
+                            'Success!',
+                            '<label style="color:green;">'+  data.msg +'</label>',
+                            'success'
+                        )
                     }else{
                         this.msg_lab_false = data.msg
                         this.msg_lab = ""
                         setTimeout(()=>{
                             this.msg_lab_false = ""
                         },5000);
-                        toastr.error(data.msg,'Error' ,{
-                            "progressBar": true,
-                            "positionClass": "toast-top-center",
-                            "closeButton": true,
-                        } )
+                        swal.fire(
+                            'Error!',
+                            '<label style="color:red;">'+data.msg+'</label>',
+                            'error'
+                        )
                     }           
                 }) 
             }

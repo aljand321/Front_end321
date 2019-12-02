@@ -556,9 +556,7 @@ router.get('/usuarios',(req, res) => {
 });
 
 
-router.get('/homec',(req, res) => {
-  res.render('homec')
-});
+
 router.get('/citas_fichas2',(req, res) => {
   res.render('citas_fichas2')
 });
