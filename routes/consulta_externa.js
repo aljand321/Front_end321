@@ -130,7 +130,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                 .then(resp => resp.json())
                 .catch(error => console.error('Error',error))
                 .then(resp => {
-                  console.log(resp, " esto es lo que quiero ver  api/personal")
+                  
                   data_token.medico = resp 
                   if(data_user[data_token.token_id] == null){
                     user(data_token, data_token.token_id)

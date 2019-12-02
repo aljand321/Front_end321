@@ -31,6 +31,8 @@
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
+    <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 
 
 
@@ -92,9 +94,10 @@
                     <a href="javascript:void(0);" class="add_user" @click="alta_paciente = true"> <i class="fa fa-plus-square"></i> <span>ALTA DEL PACIENTE</span> </a>
                 </template>
                 <template v-else>
-                    <a href="javascript:void(0);" class="add_user" @click="alta_paciente = false"> <i class="fa fa-plus-square"></i> <span>VOLVER</span> </a>
-                    
+                    <a href="javascript:void(0);" class="add_user" @click="alta_paciente = false"> <i class="fa fa-plus-square"></i> <span>VOLVER</span> </a>                    
                 </template>
+                
+                <a href="/laboratorios/lab_hopitalizacion/<%=one_internacion[0].id%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>" class="add_user"> <i class="fa fa-plus-square"></i> <span>Laboratorios</span> </a>
 
                 <div class="top_right_bar">
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
@@ -519,7 +522,9 @@
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                            
                                              -->
                                             <div id="Tab1" class="tab-pane fade in active">
-                                                <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span>NUEVA NOTA</span> </a>
+                                                <%if (one_internacion[0].estado_alta == false) { %>
+                                                    <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span>NUEVA NOTA</span> </a>
+                                                <% } %>    
                                                 <br>
                                                 <br>
                                                 <br>
@@ -657,13 +662,21 @@
                                                             
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-offset-4 col-sm-10">
-                                                                <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                                                                <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                                                                <button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+                                                        <%if (one_internacion[0].estado_alta == false) { %>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-4 col-sm-10">
+                                                                    <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                                                    <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                                                                    <button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        <% } else { %>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-4 col-sm-10">
+                                                                    <button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+                                                                </div>
+                                                            </div>
+                                                        <% } %>    
                                                     </form>
 
                                                 </template>
@@ -787,8 +800,9 @@
                                              -->
 
                                             <div id="Tab3" class="tab-pane fade">
-
-                                                <a href="javascript:void(0);" @click="ord_int.msg = '', ord_int.msg_false = '', ord_int.one_intervencion = ''" class="add_user" data-toggle="modal" data-target="#myModal2"> <i class="fa fa-plus-square"></i> <span>NUEVA NOTA</span> </a>
+                                                <%if (one_internacion[0].estado_alta == false) { %>
+                                                    <a href="javascript:void(0);" @click="ord_int.msg = '', ord_int.msg_false = '', ord_int.one_intervencion = ''" class="add_user" data-toggle="modal" data-target="#myModal2"> <i class="fa fa-plus-square"></i> <span>REGISTRAR</span> </a>
+                                                <% } %>
                                                 <br>
                                                 <br>                                       
 
@@ -855,7 +869,7 @@
 
                         <template v-else>
                            
-                            <div class="row">
+                            <div class="row" v-if= "data_one_epicrisis == null">
                                 <div class="col-md-12">
                                     <div class="block-web">
                                         <div class="header">
@@ -1010,6 +1024,169 @@
                                     </div><!--/block-web--> 
                                 </div><!--/col-md-6-->
                             </div>
+
+                            <!-- 
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                            formulario para poder actualizar epicrisis
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                            -->
+                            <div class="row" v-else>
+                                <div class="col-md-12">
+                                    <div class="block-web">
+                                        <div class="header">
+                                            <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+                                            <h3 class="content-header"> EPICRISIS</h3>
+                                        </div>
+                                        <div class="porlets-content">
+                                            <span style="color: blue">{{epicrisis.msg}}</span>
+                                            <span style="color: red">{{epicrisis.msg_false}}</span>
+                                            <form @submit="update_epicrisis" parsley-validate novalidate>
+                                                <div class="col-md-14">
+                                                    <div class="form-group col-md-6">
+                                                        <label>FECHA INTERNACION: <%=one_internacion[0].fechaIngreso%></label>
+                                                        <input type="text" readonly class='form-control' :value="data_one_epicrisis.Fecha_internacion">
+                                                    </div><!--/form-group-->
+                                                    <div class="form-group col-md-6">
+                                                        <label>FECHA ALTA:</label>
+                                                        <input type="text" readonly class="form-control" v-model = "data_one_epicrisis.Fecha_alta">
+                                                    </div><!--/form-group-->
+                                                </div>
+                                                <div class="col-md-14">
+                                                    <div class="form-group col-md-6">
+                                                        <label>DATOS CLINICOS:</label>
+                                                        <textarea class='form-control autoExpand' rows='2'  data-min-rows='2' v-model="data_one_epicrisis.datos_clinicos"></textarea>
+                                                    </div><!--/form-group-->
+
+                                                    <div class="form-group col-md-6">
+                                                        <label>DIAGNOSTICO DE ADMINSION:</label>
+                                                        <textarea class='form-control autoExpand' rows='2'  data-min-rows='2' v-model="data_one_epicrisis.diagnostico_admicion"></textarea>                                                   
+                                                    </div><!--/form-group-->
+                                                </div>                                               
+                                    
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 row">
+                                                        <label>DIAGNOSTICO DE EGRESO:</label>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-10">
+                                                        <label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="1"  type="radio" value="Anatomico" v-model="data_one_epicrisis.diagnostico_egreso">Anatomico</label>
+                                                        <label class="radio-inline"><input id="2"  type="radio" value="Etiologico" v-model="data_one_epicrisis.diagnostico_egreso">Etiologico</label>
+                                                        <label class="radio-inline"><input id="3"  type="radio" value="Funcional" v-model="data_one_epicrisis.diagnostico_egreso">Funcional</labe> 
+                                                        <!-- <span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true" ></span> -->
+                                                
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-12 ">
+                                                    <div class="col-md-2 row">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                      
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 ">
+                                                    <div class="col-md-2 row">
+                                                        <label>CONDICIÓN DE EGRESO:</label>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="1"  type="radio" value="Curado" v-model="data_one_epicrisis.condicion_egreso">Curado</label>
+                                                        <label class="radio-inline"><input id="2"  type="radio" value="Mejorado" v-model="data_one_epicrisis.condicion_egreso">Mejorado</label>
+                                                        <label class="radio-inline"><input id="3"  type="radio" value="Invariable" v-model="data_one_epicrisis.condicion_egreso">Invariable</label>    
+                                                        <label class="radio-inline"><input id="4"  type="radio" value="En_estudio" v-model="data_one_epicrisis.condicion_egreso">En estudio</label> 
+                                                         <!-- <span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true" ></span> -->
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 ">
+                                                    <div class="col-md-2 row">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                      
+                                                    </div> 
+                                                </div>     
+                                                       
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 row">
+                                                        <label>CAUSAS DE EGRESO :</label>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <label class="radio-inline"><input  checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="1"  type="radio" value="Alta_medica" v-model="data_one_epicrisis.causa_egreso"> Alta medica</label>
+                                                        <label class="radio-inline"><input id="2"  type="radio" value="alta_solicitada" v-model="data_one_epicrisis.causa_egreso"> Alta solicitada</label>
+                                                        <label class="radio-inline"><input id="3"  type="radio" value="fuga" v-model="data_one_epicrisis.causa_egreso"> Fuga</label>    
+                                                        <!-- <span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true" ></span> -->   
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 ">
+                                                    <div class="col-md-2 row">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                      
+                                                    </div> 
+                                                </div>     
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>EXAMENES COMPLEMENTARIOS DE DIAGNOSTICOS REALIZADOS:</label>
+                                                        <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.examenes_complementario"></textarea>                                                   
+                                                    </div><!--/form-group-->
+                                                </div>
+                                               
+                                                <div class="col-md-12 text-center">
+                                                    <h6>TRATAMIENTO REALIZADO</h6>                                                        
+                                                </div>
+                                                <div class="col-md-14">
+                                                    <div class="form-group col-md-6">                                                        
+                                                        <label>TRATAMIENTO QUIRURGICO:</label>
+                                                        <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.tratamiento_quirurgico"></textarea>                                                   
+                                                    </div><!--/form-group-->
+                                                    <div class="form-group col-md-6">                                                       
+                                                        <label>TRATAMIENTO MEDICO:</label>
+                                                        <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.tratamiento_medico"></textarea>                                                   
+                                                    </div><!--/form-group-->
+                                                </div>
+                                                
+                                                <div class="form-group col-md-12">
+                                                    <label>COMPLIACIONES:</label>
+                                                    <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.complicaciones"></textarea>                                                   
+                                                </div><!--/form-group-->
+
+                                                <div class="col-md-14">
+                                                    <div class="form-group col-md-6">
+                                                        <label>PRONOSTICO VITAL:</label>
+                                                        <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.pronostico_vital"></textarea>                                                   
+                                                    </div><!--/form-group-->
+                                                    <div class="form-group col-md-6">
+                                                        <label>PRONOSTICO FUNCIONAL:</label>
+                                                        <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.pronostico_funcional"></textarea>                                                   
+                                                    </div><!--/form-group-->
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label>CONTROL Y TRATAMIENTO A SEGUIR:</label>
+                                                    <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.control_tratamiento"></textarea>                                                   
+                                                </div><!--/form-group-->
+
+                                                <div class="form-group col-md-12">
+                                                    <label>RECOMENDACIONES:</label>
+                                                    <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.recomendaciones"></textarea>                                                   
+                                                </div><!--/form-group-->
+                                               
+                                                <div >
+                                                    <button :disabled="data_one_epicrisis.estado_update" class="btn btn-primary" type="submit">Submit</button>
+                                                    <button :disabled="data_one_epicrisis.estado_update" class="btn btn-default">Cancel</button>
+                                                </div>
+                                                
+                                            </form>
+                                        </div><!--/porlets-content-->
+                                    </div><!--/block-web--> 
+                                </div><!--/col-md-6-->
+                            </div>
+                            
                         </template>
                     </div>
                 </div>

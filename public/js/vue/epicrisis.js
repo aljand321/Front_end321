@@ -89,6 +89,8 @@ var hospital = new Vue({
             recomendaciones:''
         },
 
+        data_one_epicrisis:'',
+
         /*
         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
@@ -123,6 +125,14 @@ var hospital = new Vue({
             this.ord_int.list_operaciones = response.data 
             console.log(this.ord_int.list_operaciones, "  <<<< lista de ordenes de intervencion")    
         })
+
+        fetch(this.url+'/internaciones/one_epicrisis/'+this.idHist.id_int)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+            this.data_one_epicrisis = data[0]
+            console.log(data)
+        }) 
     },
     methods:{  
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -150,14 +160,21 @@ var hospital = new Vue({
             .then(data => {
                 console.log(data)
                 if (data.success == true){
-                    this.nota_evolucion.msg = data.msg,
-                    this.nota_evolucion.fecha = "";
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                    )
+                    
                     this.nota_evolucion.nota_evolucion = "";
-                    this.nota_evolucion.msg_false = ""
+                   
                     this.list_notaEvolucion()
                 }else{
-                    this.nota_evolucion.msg_false = data.msg
-                    this.nota_evolucion.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                    )
 
                 }
 
@@ -228,14 +245,21 @@ var hospital = new Vue({
             .then(data => {
                 console.log(data, "<<<<<<<<<<<<<<<<asd ")
                 if (data.success == true){
-                    this.daigTratameinto.msg = data.msg
-                    this.daigTratameinto.fecha = ""
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                    )
+                    
                     this.daigTratameinto.evolucion=""
                     this.daigTratameinto.medicamentos=[]
-                    this.daigTratameinto.msg_false = ""
+                    
                 }else{
-                    this.daigTratameinto.msg_false = data.msg
-                    this.daigTratameinto.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                    )
                 }
             })
         },  
@@ -287,7 +311,11 @@ var hospital = new Vue({
             .then(data => {
                 console.log(data, " <<<<<<<<<< asdasd <<<<<<<<<<<<<< asd")
                 if(data.success == true){
-                    this.ord_int.msg = data.msg
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                    )   
                     this.ord_int.fechaOrden = ""
                     this.ord_int.nombre_cirujano = ""
                     this.ord_int.ayudantes = ""
@@ -297,7 +325,11 @@ var hospital = new Vue({
                     this.ord_int.msg_false = ""
                     this.list_orden_intervencion()
                 }else{
-                    this.ord_int.msg_false = data.msg
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                    )
                     this.ord_int.msg = ""
                 }
             })
@@ -316,6 +348,16 @@ var hospital = new Vue({
             .then(response => {
                 this.ord_int.one_intervencion = response.data                      
             })
+        },
+
+        get_one_epicrisis(){
+            fetch(this.url+'/internaciones/one_epicrisis/'+this.idHist.id_int)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => { 
+                this.data_one_epicrisis = data[0]
+                console.log(data)
+            })   
         },
 
         formSubmit(e){
@@ -350,10 +392,13 @@ var hospital = new Vue({
             fetch(this.url+'/internaciones/Vue_reg_epicrisis/'+this.idHist.id_int,esto)
             .then(res => res.json())
             .then(data => { 
-                if (data.success == true){
-                    this.epicrisis.msg = data.msg
-                    this.epicrisis.Fecha_internacion = ""
-                    this.epicrisis.Fecha_alta = ""
+                if (data.success == true){                   
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                    )            
+                   
                     this.epicrisis.datos_clinicos = ""
                     this.epicrisis.diagnostico_admicion = ""
                     this.epicrisis.diagnostico_egreso = ""
@@ -370,14 +415,69 @@ var hospital = new Vue({
                     this.epicrisis.msg_false = ""
                     this.update_estado_internacion()
                     this.liverar_cama()
+                    this.get_one_epicrisis()
                 
                     this.estado_alta = 'false'
                 }else{
-                    this.epicrisis.msg_false = data.msg
-                    this.epicrisis.msg = ""
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                    )
                     this.estado_alta = 'false'
                 }
             
+            })
+        },
+
+        //update epicrisis
+        update_epicrisis(e){
+            e.preventDefault();
+
+            var data = {
+               
+                datos_clinicos:this.data_one_epicrisis.datos_clinicos,
+                diagnostico_admicion:this.data_one_epicrisis.diagnostico_admicion,
+                diagnostico_egreso:this.data_one_epicrisis.diagnostico_egreso,
+                condicion_egreso:this.data_one_epicrisis.condicion_egreso,
+                causa_egreso:this.data_one_epicrisis.causa_egreso,
+                examenes_complementario:this.data_one_epicrisis.examenes_complementario,
+                tratamiento_quirurgico:this.data_one_epicrisis.tratamiento_quirurgico,
+                tratamiento_medico:this.data_one_epicrisis.tratamiento_medico,
+                complicaciones:this.data_one_epicrisis.complicaciones,
+                pronostico_vital:this.data_one_epicrisis.pronostico_vital,
+                pronostico_funcional:this.data_one_epicrisis.pronostico_funcional,
+                control_tratamiento:this.data_one_epicrisis.control_tratamiento,
+                recomendaciones:this.data_one_epicrisis.recomendaciones,
+
+            }
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch(this.url+'/internaciones/Vue_update_epicrisis/'+this.data_one_epicrisis.id, esto)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.success == true){
+                    this.get_one_epicrisis()
+                    swal.fire(
+                        'Success!',
+                        '<label style="color:green;">'+ data.msg +'</label>',
+                        'success'
+                    )
+                }else{
+                    console.log(data, " no funciono")
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">'+data.msg+'</label>',
+                        'error'
+                    )
+                }
+                
             })
         },
 

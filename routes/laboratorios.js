@@ -468,6 +468,68 @@ router.post('/vue_insert_lab_consulta_emg/:id_consulta', (req,res) => {
         res.status(200).json(data)
     })
 })
+
+
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        esta ruta es para poder renderizar laboratorios desde consulta externa
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ */
+router.get('/lab_hopitalizacion/:id_consulta/:historial/:token_id', (req,res) => {
+    const { id_consulta, historial, token_id} = req.params
+    if(datas.name.token[token_id]){
+        fetch('http://localhost:3000/api/One_intern/'+id_consulta)
+        .then(res => res.json())
+        .then(one_internacion => { 
+           
+            fetch('http://localhost:3000/api/onlyPaciente/'+historial)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data_paciente => {
+                
+                res.render('hospitalizaciones/lab_hospitalizacion',{
+                    one_internacion,
+                    data_doc:datas.name.data_user[token_id],
+                    data_paciente
+                })
+
+            })
+            
+        })
+        .catch(error => {
+            res.status(500).json({
+                success:false,
+                msg:"No hay coneccion que el servidor 3000",
+                error
+            })
+        })
+    }else{
+        res.redirect('/')
+    }
+})
+
+// ruta para poder insertar en consulta de emergencia
+router.post('/vue_insert_lab_hospitalizacion/:id_hospitalizacion', (req,res) => {
+    const { id_hospitalizacion } = req.params
+    var data = req.body
+    console.log(data, " z<<<")
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3050/api/create_lab_hospitalizacion/'+id_hospitalizacion,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then( data => {
+        res.status(200).json(data)
+    })
+})
  
 module.exports = router;
 

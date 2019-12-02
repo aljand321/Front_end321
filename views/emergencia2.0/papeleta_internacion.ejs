@@ -130,7 +130,7 @@
                                                     
 													<div class="porlets-content">
                               <%if(updateInternacion == "") { %>
-														<form class="form-horizontal group-border-dashed" action="/emergencia2.0/Pinternacion/<%=resp[0].id%>/<%=resp[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+														<form class="form-horizontal group-border-dashed" action="/emergencia2.0/Pinternacion/<%=resp[0].id%>/<%=resp[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" method="POST" parsley-validate novalidate>
 													   
 															<div class="col-md-12 panel panel-defaulth ">
                                 <!-- 
@@ -148,7 +148,7 @@
                                     <div id=""class="col-md-4 ">
                                       <div class="">
                                         <label class=" ">N° de Historia:</label><p><b><%=resp[0].Nhistorial%></b></p>
-                                        <input type="hidden" name="Nhistorial" class="form-control" value="<%=resp[0].Nhistorial%>" readonly/>
+                                        <input type="hidden" name="Historial" class="form-control" value="<%=resp[0].Nhistorial%>" readonly/>
                                       </div>
                                       <div class=" ">
                                         <label class=" "> Sexo: </label><p><b><%=resp[0].Citas_Medica.Paciente.sexo%></b></p>
@@ -157,9 +157,7 @@
                                     </div>
                                     <div id="" class="col-md-4">
                                       <label class=" ">Nombre Completo:</label><p><b> <%=resp[0].Citas_Medica.Paciente.nombre%> <%=resp[0].Citas_Medica.Paciente.apellidop%> "<%=resp[0].Citas_Medica.Paciente.apellidom%></b></p>
-                                      <input type="hidden" class="form-control" name="nombre" value="<%=resp[0].Citas_Medica.Paciente.nombre%>" readonly />
-                                      <input type="hidden" class="form-control" name="apellidop" value="<%=resp[0].Citas_Medica.Paciente.apellidop%>" readonly />
-                                      <input type="hidden"  class="form-control"name="apellidom" value="<%=resp[0].Citas_Medica.Paciente.apellidom%>" readonly/>
+                                     
                                       <div class=" ">
                                         <label class="">Fecha de Nacimiento:</label><p><b><%=resp[0].Citas_Medica.Paciente.fechanacimiento%></b></p>
                                         <input type="hidden"class="form-control" name="fechanacimiento" value="<%=resp[0].Citas_Medica.Paciente.fechanacimiento%>" readonly/>
@@ -170,6 +168,7 @@
                                             <label class="">Profecional Médico:</label><p><b><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%></b></p>
                                             <input type="hidden"  value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>">
                                             <input type="hidden" name="id_medico" value="<%=data_doc.data.medico.id%>">  
+                                            <input type="hidden" name="nombreDoctor"  value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>">
                                         </div>
                                     </di>
                                   </div>  
@@ -220,13 +219,13 @@
                                                                 </div>
                                                             </div>
                                                             
-			                      </form>
-                              <% } else { %>
-                              <h3 id="ocultoI" class="text-center">Formulario de Actualizacion</h3>
-                              <form class="form-horizontal group-border-dashed" action="/emergencia2.0/updatePinter/<%=updateInternacion[0].id%>/<%=resp[0].id%>/<%=resp[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
-                                  <input type="hidden" name="estado" value='false'>
-                                  <di class="form-group col-md-12">
-													    <div class="col-md-12 panel panel-defaulth ">
+			                                                    </form>
+                                                            <% } else { %>
+                                                            <h3 id="ocultoI" class="text-center">Formulario de Actualizacion</h3>
+                                                            <form class="form-horizontal group-border-dashed" action="/emergencia2.0/updatePinter/<%=updateInternacion[0].id%>/<%=resp[0].id%>/<%=resp[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" method="POST" parsley-validate novalidate>
+                                                                <input type="hidden" name="estado" value='false'>
+                                                                <di class="form-group col-md-12">
+													                                  <div class="col-md-12 panel panel-defaulth ">
                                                                 <!-- 
                                                                   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                                   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -242,7 +241,7 @@
                                                                     <div id=""class="col-md-4  ">
                                                                       <div class="his1I">
                                                                         <label class=" ">N° de Historia:</label><p><b><%=resp[0].Nhistorial%></b></p>
-                                                                        <input type="hidden" name="Nhistorial" class="form-control" value="<%=resp[0].Nhistorial%>" readonly/>
+                                                                        
                                                                       </div>
                                                                       <div class=" his1I">
                                                                         <label class=" "> Sexo: </label><p><b><%=resp[0].Citas_Medica.Paciente.sexo%></b></p>

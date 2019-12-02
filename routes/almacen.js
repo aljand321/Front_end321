@@ -594,7 +594,7 @@ router.get('/reportes_salidas/:token_id/:token_part', (req,res) => {
                     .catch(error => console.error('Error',error))
                     .then(dat =>{   
                         
-                        fetch('http://localhost:3600/api/role_farmacia')     
+                        fetch('http://localhost:3600/api/role_alamcen')     
                         .then(resp => resp.json())
                         .catch(error => console.error('Error',error))
                         .then(personal_farmacia =>{
