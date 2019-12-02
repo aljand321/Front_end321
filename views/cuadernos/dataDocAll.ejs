@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>Medicos</title>
+<title>Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -140,10 +140,10 @@
                   <br>
                   <br>
                   <a class="btn btn-info"href="/cuaderno/volver_a_doctor"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
-                  <form class="form-horizontal group-border-dashed" action="/cuaderno/docCuaderno" method="POST" parsley-validate novalidate>
+                  <form class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                     <div class="form-group centera" >
                       <div class="col-sm-4 " style="width: 300px; margin: 0 auto;" >  
-                        <button @click="buscador(<%=id_cuaderno%>)" class="btn btn-primary btn-icon" v-if="!buscar.lists.length" >Buscar Doctor  <span>&nbsp;</span><i class="fa fa-search"></i></button>
+                        <a @click="buscador(<%=id_cuaderno%>)" class="btn btn-primary btn-icon" v-if="!buscar.lists.length" >Buscar Doctor  <span>&nbsp;</span><i class="fa fa-search"></i></a>
                         <ul class="list-group" v-else>
                           <li class="list-group-item">
                               <input type="text" placeholder="buscar" class="form-control" v-model="buscar.name">
@@ -179,7 +179,7 @@
                       <div class="col-sm-4">
                         <strong>FECHA DE ESTADIA DEL DOCTOR</strong><span>&nbsp;</span><br>
                         <select  class="form-control" id="source" v-model="id" @click="mostrar(<%=resp[0].id%>)"> <br>
-                              <option disabled="disabled" value>Seleccione</option>
+                            <option disabled="disabled" value>Seleccione</option>
                             <%for(var i = 0; i< resp[0].Fechas.length; i++) {%>
                               <option value="<%=resp[0].Fechas[i].id%>"> Del <%=resp[0].Fechas[i].fechaini.split("T")[0]%> al <%=resp[0].Fechas[i].fechafin.split("T")[0]%> </option>
                             <%}%>
@@ -188,6 +188,7 @@
                     </div><!--/form-group--> 
                   </form>
                 </div><!--/block-web--> 
+                <h3>{{nombre_consultorio}}</h3>
                 <div class="porlets-content">
                   <div class="table-responsive">
                     <table  class="table table-bordered" >
@@ -196,13 +197,15 @@
                             <th class="text-center">#</th>
                             <th class="text-center">Dia Atención</th>
                             <th class="text-center">Turno</th>
+                            <th class="text-center">Fichas</th>
                           </tr>
                       </thead>
                       <tbody v-for="(data, index) in Turnos">
-                        <tr >
+                        <tr>
                           <td class="text-center">{{index+1}}</td>
                           <td class="text-center">{{data.diasAten}}</td>
                           <td class="text-center">{{data.turno}}</td>
+                          <td class="text-center">{{data.horas_of_trunos.length}}</td>
                         </tr>
                       </tbody>
                   </table>
