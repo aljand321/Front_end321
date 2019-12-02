@@ -729,7 +729,7 @@ router.post ('/filter_ventas/:token_id', (req,res) => {
             remove(token_id)
             msg_data(msg_p,token_id)
           }
-          remove_filter_data2(token_id)
+          remove_filter_data1(token_id)
           setTimeout(()=>{
             remove(token_id)
           },1000);   

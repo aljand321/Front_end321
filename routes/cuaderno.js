@@ -1565,6 +1565,7 @@ router.get('/general/:token_id', (req,res) =>{
         res.redirect('/')
     }
 })
+
 router.get('/general1/:token_id', (req,res) =>{
     const { token_id } = req.params
     if( datas.name.token[token_id] ){
@@ -1746,6 +1747,26 @@ function filter_cliente_ventas1(data,id){
       })
   })
 
+  //ruta que muestra una lista de doctores con sus cuadernos
+  router.get('/vue_doctro_cuaderno', (req,res) => {
+
+    fetch('http://localhost:4600/api/lista_doctores_cuadernos')
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      res.status(200).json(data)
+    })
+  })
+  router.get('/vue_especi', (req,res) => {
+
+    fetch('http://localhost:4600/api/especialidad')
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      res.status(200).json(data)
+    })
+  })
+  //ruta es para poder filtar cuadernos fechas
   router.post('/filter_datas/:token_id', (req,res) => {
     const { token_id } = req.params;
     var datos = req.body;  

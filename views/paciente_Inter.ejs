@@ -188,7 +188,20 @@
                             <td class="text-center"><%=filter.data.data_cliente[i].sexo%></td>
                           </tr>
                         <% } %>
-                      <% } %>
+                          <% }else {%>  
+                            <% for (var i=0; i< data.length; i++) { %>
+                              <tr>
+                                <td><%=data[i].createdAt.split("T")[0]%></td>
+                                <td><%=data[i].numeroHistorial%></td>
+                                <td><%=data[i].nombre%></td>
+                                <td><%=data[i].apellidop%></td>
+                                <td><%=data[i].apellidom%></td>
+                                <td><%=data[i].ci%></td>
+                                <td><%=data[i].direccion%></td>
+                                <td><%=data[i].sexo%></td>
+                              </tr>
+                          <% } %>  
+                      <%}%> 
                     <tbody>
                   </table>
                 </div>

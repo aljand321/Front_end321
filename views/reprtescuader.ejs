@@ -175,22 +175,23 @@
                             <table  class="table table-bordered table-striped" >
                               <thead>
                                 <tr>
-                                  <th class="text-center">Fecha Creación</th>	
-                                  <th class="text-center">Titulo</th>
-                                  <th class="text-center">Grupo Asociado</th>	
-                                  <th class="text-center">Optiones</th>
+                                    <th class="text-center">Fecha Creación</th>	
+                                    <th class="text-center">Titulo</th>
+                                    <th class="text-center">Medico</th>	
+                                    <th class="text-center">Enfermera</th>
+                                    <th class="text-center">Opciones</th>
                                 </tr>
                               </thead>
                               <tbody >
                                 <tr v-for = "data in searchNoticia">
-                                  <td class="text-center">{{data.createdAt.split("T")[0]}}</td>
-                                  <td class="text-center">{{data.titulo}}</td>
-                                  <td class="text-center">{{data.grupo}}</td>
-                                  <td>
-                                    <a  data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
-                                    <a :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>
-                                  </td>
-                                  </td>
+                                    <td class="text-center">{{data.Cuaderno.createdAt.split("T")[0]}}</td>
+                                    <td class="text-center">{{data.Cuaderno.titulo}}</td>
+                                    <td class="text-center">{{data.nombre}}</td>
+                                    <td class="text-center">{{data.enfermera}}</td>
+                                    <td>
+                                      <a  data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                                      <a :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>
+                                    </td>
                                 </tr>
                               </tbody>
                             </table>
@@ -211,15 +212,17 @@
                                 <tr>
                                   <th class="text-center">Fecha Creación</th>	
                                   <th class="text-center">Titulo</th>
-                                  <th class="text-center">Grupo Asociado</th>	
-                                  <th class="text-center">Optiones</th>
+                                  <th class="text-center">Medico</th>	
+                                  <th class="text-center">Enfermera</th>
+                                  <th class="text-center">Opciones</th>
                                 </tr>
                               </thead>
                               <tbody >
                                 <tr v-for = "data in Buscar">
-                                  <td class="text-center">{{data.createdAt.split("T")[0]}}</td>
-                                  <td class="text-center">{{data.titulo}}</td>
-                                  <td class="text-center">{{data.grupo}}</td>
+                                  <td class="text-center">{{data.Cuaderno.createdAt.split("T")[0]}}</td>
+                                  <td class="text-center">{{data.Cuaderno.titulo}}</td>
+                                  <td class="text-center">{{data.nombre}}</td>
+                                  <td class="text-center">{{data.enfermera}}</td>
                                   <td>
                                     <a  data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
                                     <a :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>
@@ -255,36 +258,66 @@
                             </div><!--/form-group--> 
                         </form>
                         <div  id="ocultoI" class="form-group">
-                            <div class="col-sm-offset-10 col-sm-10">
-                              <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button> <br>
-                              
-                            </div>
+                          <div class="col-sm-offset-10 col-sm-10">
+                            <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button> <br>
+                          </div>
+                        </div><!--/form-group--> 
+                        <template v-if ="list_esp != ''">
+                          <div class="form-group">
                             <br><br><br>
                             <div class="col-sm-offset-8 col-sm-10">
-                                <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" >
+                                <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list" >
                             </div>
-                            
-                        </div><!--/form-group--> 
-                        <br>
-                        <div class="table-responsive">
-                          <table  class=" table table-bordered table-striped" >
-                            <thead>
-                              <tr>
-                                <th class="text-center">Fecha Creación</th>	
-                                <th class="text-center">Nombre</th>
-                                <th class="text-center">Area</th>	
-                              </tr>
-                            </thead>
-                            
-                            <tbody  >
-                              <tr v-for="data1 in list_esp">
-                                <td class="text-center">{{data1.createdAt.split("T")[0]}}</td>
-                                <td class="text-center">{{data1.nombre}}</td>
-                                <td class="text-center">{{data1.descripcion}}</td>
-                              </tr>
-                            </tbody> 
-                          </table>
-                        </div>
+                          </div>
+                          <br>
+                          <div class="table-responsive">
+                            <table  class=" table table-bordered table-striped" >
+                              <thead>
+                                <tr>
+                                  <th class="text-center">Fecha Creación</th>	
+                                  <th class="text-center">Nombre</th>
+                                  <th class="text-center">Area</th>	
+                                </tr>
+                              </thead>
+
+                              <tbody  >
+                                <tr v-for="data1 in BucarEspe">
+                                  <td class="text-center">{{data1.createdAt.split("T")[0]}}</td>
+                                  <td class="text-center">{{data1.nombre}}</td>
+                                  <td class="text-center">{{data1.descripcion}}</td>
+                                </tr>
+                              </tbody> 
+                            </table>
+                          </div>
+                        </template>
+                        <template v-else>
+                            <div class="form-group">
+                              <br><br><br>
+                              <div class="col-sm-offset-8 col-sm-10">
+                                  <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list1">
+                              </div>
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                              <table  class=" table table-bordered table-striped" >
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">Fecha Creación</th>	
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Area</th>	
+                                  </tr>
+                                </thead>
+                                
+                                <tbody  >
+                                  <tr v-for="data1 in BucarEspe1">
+                                    <td class="text-center">{{data1.createdAt.split("T")[0]}}</td>
+                                    <td class="text-center">{{data1.nombre}}</td>
+                                    <td class="text-center">{{data1.descripcion}}</td>
+                                  </tr>
+                                </tbody> 
+                              </table>
+                            </div>
+                          </template>
                       </div>
                     </div>
                   </div>
@@ -427,13 +460,15 @@ const cuadernos = new Vue({
     data:() => ({
       url:data_url,
       buscar_in_list:'',
+      buscar_in_list_esp:'',
       buscar_in_list1:'',
       list:[],
       list_esp:[],
       fecha_inicio:'',
       fecha_final:'',
 
-      list_est:[]
+      list_est:[],
+      list_est_esp:[]
       
     }),
 
@@ -441,23 +476,39 @@ const cuadernos = new Vue({
       searchNoticia: function () {
         return this.list.filter((item) => 
         item.createdAt.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
-        || item.titulo.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
-        || item.grupo.toLowerCase().includes(this.buscar_in_list.toLowerCase()))
+        || item.Cuaderno.titulo.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
+        || item.nombre.toLowerCase().includes(this.buscar_in_list.toLowerCase()))
       },
       Buscar: function () {
         return this.list_est.filter((item) => 
         item.createdAt.toLowerCase().includes(this.buscar_in_list1.toLowerCase()) 
-        || item.titulo.toLowerCase().includes(this.buscar_in_list1.toLowerCase()) 
-        || item.grupo.toLowerCase().includes(this.buscar_in_list1.toLowerCase()))
+        || item.Cuaderno.titulo.toLowerCase().includes(this.buscar_in_list1.toLowerCase()))
+      },
+      BucarEspe: function () {
+        return this.list_esp.filter((item) => 
+        item.createdAt.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
+        || item.nombre.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
+        || item.descripcion.toLowerCase().includes(this.buscar_in_list.toLowerCase()))
+      },
+      BucarEspe1: function () {
+        return this.list_est_esp.filter((item) => 
+        item.createdAt.toLowerCase().includes(this.buscar_in_list1.toLowerCase()) 
+        || item.nombre.toLowerCase().includes(this.buscar_in_list1.toLowerCase())
+        || item.descripcion.toLowerCase().includes(this.buscar_in_list1.toLowerCase()))
       }
     },
     mounted(){
-      fetch(this.url.url_front_end+'/cuaderno/Vue_Cuadernos/')
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-            this.list_est = data
-          })
+      fetch(this.url.url_front_end+'/cuaderno/vue_doctro_cuaderno')
+      .then(res => res.json())
+      .then(data => {
+        this.list_est = data
+      })
+      fetch(this.url.url_front_end+'/cuaderno/vue_especi')
+      .then(res => res.json())
+      .then(data => {
+        this.list_est_esp = data
+      })
+
     },
     methods:{
       filter_data(e){
