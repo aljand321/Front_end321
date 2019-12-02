@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Administrador</title>
+<%- include("../partials/head") -%>
+<link href="/css/pdf.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+		
+	h2.uppercase
+	{
+		text-transform: uppercase;
+	}
+</style>
+<style type="text/css">
+		
+	td.uppercase
+	{
+		text-transform: uppercase;
+	}
+</style>
+</head>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	console.log(data)
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
+<body class="light_theme  fixed_header left_nav_fixed">
+  <div class="wrapper">
+    <!--\\\\\\\ wrapper Start \\\\\\-->
+    <div class="header_bar">
+      <!--\\\\\\\ header Start \\\\\\-->
+      <div class="brand">
+        <!--\\\\\\\ brand Start \\\\\\-->
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <!--\\\\\\\ brand end \\\\\\-->
+      <div class="header_top_bar oculto-impresion">
+        <!--\\\\\\\ header top bar start \\\\\\-->
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+        <!--Boton i,prir-->
+        <div class="btn-group"> <a class="btn btn-warning" href="" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
+        <div class="btn-group"> <a class="btn btn-success" href="/pacientead/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
+        
+      </div>
+      <!--\\\\\\\ header top bar end \\\\\\-->
+    </div>
+    <!--\\\\\\\ header end \\\\\\-->
+    <div class="inner">
+      <!--\\\\\\\ inner start \\\\\\-->
+      <div class="left_nav">
+            <div class="left_nav">
+              <div class="left_nav_slidebar">
+                <ul>
+                  <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                    <ul >
+                      <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                    </ul>
+                  </li>
+                  <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+                    <ul  >
+                      <li> <a href="/usuarios/usuarios/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+                    </ul>
+                  </li>
+                  <li > <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
+                    <ul >
+                      <li> <a href="/cuaderno/especialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                      <li> <a href="/cuaderno/Cuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                      <li> <a href="/salas/salas/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+                    </ul>
+                  </li>
+                  <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                    <ul class="opened" style="display:block">
+                      <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Pacientes</b> </a> </li>
+                      <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte Farmacia</b></a> </li>
+                      <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Personal</b> </a> </li>
+                      <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Servicios</b> </a> </li>
+                      <!--<li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>-->
+                    </ul>
+                  </li>
+                  <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+                    <ul>
+                      <li> <a href="/backup/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                      <li> <a href="/role/role/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      <!--Contenido-->
+      <div class="contentpanel"><br>
+        <!--\\\\\\\ contentpanel start\\\\\\-->
+        <div class="container clear_both padding_fix">
+        <!--\\\\\\\ container  start \\\\\\-->
+        <!--Hoja-->
+          <div class="invoice ">
+            <div class="invoice_body" data-print-content>
+              <div  class="pull-left">
+                <address>
+                  <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
+                  Av. Italia Final S/N<br>
+                  Telfs. 26246064-26244960<br>
+                  POTOSI-BOLIVIA
+                </address>
+              </div>
+              <div class="pull-right">
+                <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
+              </div>
+              <div class="clearfix"></div>
+              <br/>
+              <h2 class="text-center uppercase">Reporte General</h2>
+              <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr> 
+                            <th>Fecha de ingreso</th>                         
+                            <th>N° Codigo</th>
+                            <th>Nombre Medicamento</th>
+                            <th>Presentación</th>
+                            <th>Nombre Genérico</th>
+                            <th>Cantidad Unidades</th>
+                            <th>Vendidas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <%for (var i = 0; i< data.length; i++) { %>
+                        <tr>
+                            <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                            <td class="text-center"><%=data[i].codificacion%></td>
+                            <td class="text-center"><%=data[i].nombre%></td>
+                            <td class="text-center"><%=data[i].presentacion%></td>
+                            <td class="text-center"><%=data[i].generico%></td>
+                            <td class="text-center"><%=data[i].cantidad_unidad%></td>
+                            <td class="text-center"><%=data[i].ventas%></td>
+                        </tr>
+                      <% } %>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!--\\\\\\\ content panel end \\\\\\-->
+      </div>
+    </div>
+  </div>
+
+  <%- include("../partials/scripts") -%>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="https://www.jqueryscript.net/demo/Print-Specified-Area-Of-A-Page-PrintArea/demo/jquery.PrintArea.js"></script>
+  <script src="/js/imprimir.js"></script>
+</body>
+</html>
+
