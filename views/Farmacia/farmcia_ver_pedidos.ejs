@@ -71,9 +71,9 @@
                         <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul>
                                 <li> <a href="/Farmacia/reportes_solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-                                <li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+                                <li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
                                 <li> <a href="/Farmacia/reportes_ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
-                                <li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+                                <li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
                                 <li> <a href="/Farmacia/reportes_facturacion/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
                                 <li> <a href="/Farmacia/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
                                 <li> <a href="/Farmacia/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
@@ -314,12 +314,13 @@
                                     </div><!--/form-group--> 
                                     <!--/form-group--> 
                                     
-                                    <div class="col-md-11"> 
-                                       
-                                        <section class="panel default black_title h4">
-                                            <div class="panel-heading">Solicitud Realizada</div>
+                                    <div class="col-md-12"> 
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Solicitud Realizada </a> </h4>
+                                        </div>  
+                                        <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse"> 
                                             <div class="panel-body">
-                                                <table class="table table-hover">
+                                                <table class="table table-hover text-center">
                                                     <thead>
                                                         <tr>
                                                         <th>#</th>
@@ -328,8 +329,6 @@
                                                         <th>Precio</th>
                                                         <th style="color: crimson;">Cantidad</th>
                                                         <th>Precio Total</th>
-                                                        
-                                                       
                                                         </tr>
                                                     </thead>
                                                     <tbody v-for="(item, index) in  list">  
@@ -340,8 +339,6 @@
                                                         <td>{{item.item.price}}</td>
                                                         <td style="color: crimson;">{{item.qty}}</td>
                                                         <td>{{item.price}}</td>
-                                                      
-                                                        
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -380,152 +377,148 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </section>
+                                        </div> 
                                     </div>
-
-                                    <div class="col-lg-12"> 
-                                        <section class="panel default black_title h4">
-                                            <div class="panel-heading">Solicitud Entregada</div>
+                                    <div class="col-lg-12">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-2"> <i class="fa fa-angle-right"></i> Solicitud Entregada </a> </h4>
+                                        </div>  
+                                        <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse"> 
                                             <div class="panel-body">
-                                                <table class="table table-hover">
+                                                <table class="table table-hover text-center">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
-                                                            <th style="color: crimson;">Cantidad del Producto</th>
-                                                            <th>Codigo</th>
-                                                            <th>Descripcion</th>
-                                                            
-                                                            <th>Precio</th>
-                                                            <th>Precio Toal</th>
-                                                           
+                                                        <th>#</th>
+                                                        <th style="color: crimson;">Cantidad del Producto</th>
+                                                        <th>Codigo</th>
+                                                        <th>Descripcion</th>                        
+                                                        <th>Precio</th>
+                                                        <th>Precio Toal</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody v-for="(car, index) in list_almacen.lista_med">                                                    
                                                         <tr>
-                                                          <td>{{index+1}}</td>
-                                                          <td style="color: crimson;">{{car.qty}}</td>
-                                                          <td>{{car.item.codificacion}}</td>
-                                                          <td>{{car.item.nombre}}</td>
-                                                         
-                                                          <td>{{car.item.price}}</td>
-                                                          <td>{{car.price}}</td>
-                                                                                                          
+                                                        <td>{{index+1}}</td>
+                                                        <td style="color: crimson;">{{car.qty}}</td>
+                                                        <td>{{car.item.codificacion}}</td>
+                                                        <td>{{car.item.nombre}}</td>
+                                                        <td>{{car.item.price}}</td>
+                                                        <td>{{car.price}}</td>
                                                         </tr>                                                   
                                                     </tbody>
                                                 </table>
-                                            </div>
-                                        </section>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="col-sm-9">
-                                                    <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
-                                                        <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalQty">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
+                                                                    <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalQty">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                            <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalPrice">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
+                                                                    <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalPrice">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                                    <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalPrice * 0.13">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
+                                                                    <input type="text" class="form-control" disabled="" v-model="list_almacen.totalPrice + list_almacen.totalPrice * 0.13">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                  <div class="col-sm-9">
-                                                      <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                        <input type="text" class="form-control"  disabled="" v-model="list_almacen.totalPrice * 0.13">
-                                                      </div>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                            <input type="text" class="form-control" disabled="" v-model="list_almacen.totalPrice + list_almacen.totalPrice * 0.13">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </div>     
                                     </div>
-
-                                    <div class="col-md-11"> 
-                                            <section class="panel default black_title h4">
-                                                <div class="panel-heading">Solicitud Regristrada</div>
-                                                <div class="panel-body">
-                                                    <table class="table table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                            <th>#</th>
-                                                            <th>Codigo</th>
-                                                            <th>Nombre</th>
-                                                            <th>Precio</th>
-                                                            <th style="color: crimson;">Cantidad</th>
-                                                            <th>Precio Total</th>
-                                                            <th>Fecha de vencimiento</th>
-                                                           
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody v-for="(item, index) in  list_acep_farmacia.lista_med">  
-                                                            <tr>
-                                                            <td>{{index+1}}</td>
-                                                            <td>{{item.item.codificacion}}</td>
-                                                            <td>{{item.item.nombre}}</td>
-                                                            <td>{{item.item.price}}</td>
-                                                            <td style="color: crimson;">{{item.qty}}</td>
-                                                            <td>{{item.price}}</td>
-                                                            <td>{{item.fehca_vencimineto}}</td>
-                                                            
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <div class="col-sm-9">
-                                                                    <div class="input-group"> <span class="input-group-addon" >Cantidad total:</span>
-                                                                    <input type="text" class="form-control"  disabled="" :value="list_acep_farmacia.totalQty"></div>
-                                                                </div>
+                                    <div class="col-md-12">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-3"> <i class="fa fa-angle-right"></i> Solicitud Regristrada </a> </h4>
+                                        </div>  
+                                        <div style="height: 0px;" id="ac3-3" class="panel-collapse collapse"> 
+                                            <div class="panel-body">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                        <th>#</th>
+                                                        <th>Codigo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Precio</th>
+                                                        <th style="color: crimson;">Cantidad</th>
+                                                        <th>Precio Total</th>
+                                                        <th>Fecha de vencimiento</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody v-for="(item, index) in  list_acep_farmacia.lista_med">  
+                                                        <tr>
+                                                        <td>{{index+1}}</td>
+                                                        <td>{{item.item.codificacion}}</td>
+                                                        <td>{{item.item.nombre}}</td>
+                                                        <td>{{item.item.price}}</td>
+                                                        <td style="color: crimson;">{{item.qty}}</td>
+                                                        <td>{{item.price}}</td>
+                                                        <td>{{item.fehca_vencimineto}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon" >Cantidad total:</span>
+                                                                <input type="text" class="form-control"  disabled="" :value="list_acep_farmacia.totalQty"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <div class="col-sm-9">
-                                                                    <div class="input-group"> <span class="input-group-addon" >S/ Sub Total:</span>
-                                                                    <input type="text" class="form-control"  disabled="" :value="list_acep_farmacia.totalPrice"></div>
-                                                                </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon" >S/ Sub Total:</span>
+                                                                <input type="text" class="form-control"  disabled="" :value="list_acep_farmacia.totalPrice"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <div class="col-sm-9">
-                                                                    <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                                    <input type="text" class="form-control"  disabled="" :value="list_acep_farmacia.totalPrice * 0.16"></div>
-                                                                </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                                <input type="text" class="form-control"  disabled="" :value="list_acep_farmacia.totalPrice * 0.16"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <div class="col-sm-9">
-                                                                    <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                    <input type="text" class="form-control" disabled="" :value="list_acep_farmacia.totalPrice + list_acep_farmacia.totalPrice * 0.16"></div>
-                                                                </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
+                                                                <input type="text" class="form-control" disabled="" :value="list_acep_farmacia.totalPrice + list_acep_farmacia.totalPrice * 0.16"></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </section>
-                                        </div>
-                                    
-                                    <div class="form-group"  >
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="form-group"  > 
+                                        <div class="col-sm-offset-0 col-sm-10">
+                                            <br>
+                                            <a class="btn btn-info" href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-reply"></i> Salir</a>
                                         </div>
                                     </div><!--/form-group--> 
                                 </form>

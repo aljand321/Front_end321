@@ -60,9 +60,9 @@
 			  			<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul class="opened" style="display:block">
 				  				<li> <a href="/Farmacia/reportes_solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-					  			<li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+					  			<li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
-								<li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Cajas</b> </a> </li>
+								<li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Rec.</b> </a> </li>
 				  				<li> <a href="/Farmacia/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
 				  				<li> <a href="/Farmacia/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 							</ul>
@@ -79,7 +79,7 @@
 							<div class="block-web">
 						  		<div class="header">
 									<div class="actions"> </div>
-									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div> Reporte de Cajas</h2> 
+									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div> Reporte de Recetas</h2> 
 								</div>
 				  				<div class="porlets-content">
 									<div class="panel-body">
@@ -101,7 +101,7 @@
 													<div class="col-md-12">
 														<div class="col-md-6">
 															<div class="form-group">
-																  <label class="col-sm-4 control-label">ENCARGADO <i class="fa fa-users"></i> :</label>
+																  <label class="col-sm-4 control-label">PACIENTE <i class="fa fa-users"></i> :</label>
 																  <select name="historial" class="selectpicker" data-show-subtext="true" data-live-search="true">
 																	<option value="" selected disabled hidden>Selecione</option>
 																	<% for (var i = 0; i < data_paciente.length; i++) { %>
