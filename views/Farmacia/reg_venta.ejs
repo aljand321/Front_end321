@@ -5,8 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Farmacia</title>
-  <%- include("../partials/head") -%>	
-  <style>
+  <style scoped>
+		@media print{
+			/* para orden de internacion*/
+		.oreden1:before {
+			content: " ";
+			font-weight: negrita;
+			color:black;
+			text-align: center;
+			padding: 0%;
+			margin: 0%;
+			font: Arial
+		}
+		.tprueba{
+			content: var(--medicamento);
+		}
+		.itabla:before{
+			content: "v-model=list.medicamento";
+
+		}
+		td:hover { background-color: var(--bg-hover-color); }  
+		}
+
+		#sacar{
+			height: 9%;
+		
+			overflow-x: hidden;
+		}
+	</style>
+
+
+<style>
+	div.a {
+		text-align: center;
+	}
+	h1.letras {
+		font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+	}
+	#scroll{
+		position:absolute;
+		border:1px solid;
+		height:150px;
+		width:315px;
+		overflow-y:scroll;
+		overflow-x:hidden;
+	}
+	.info2{ border-radius:100%; float: left; height:80px; width:80px; }
+	  .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
 	.vertical-alignment-helper {
 		display:table;
 		height: 100%;
@@ -18,13 +63,16 @@
 		vertical-align: middle;
 		text-align: center;
 	}
-  </style>
+</style>
+  <%- include("../partials/head") -%>
+<link rel="stylesheet" type="text/css" href="/css/imp_rec_farm.css" media="print" /> 
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">	
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   	<div class="wrapper">
-    	<div class="header_bar">
+    	<div id="ocultoI" class="header_bar">
       		<div class="brand">
         		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       		</div>
@@ -114,7 +162,7 @@
 					</div>
 				</div>
 			</div> 
-      		<div class="left_nav">
+      		<div id="ocultoI" class="left_nav">
         		<div class="left_nav_slidebar">
 					<ul>
 			  			<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -134,9 +182,9 @@
 			  			<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
 									<li> <a href="/Farmacia/reportes_solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Sol.</b> </a> </li>
-									<li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+									<li> <a href="/Farmacia/reportes_recetas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de  Cajas</b> </a> </li>
 									<li> <a href="/Farmacia/reportes_ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
-									<li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+									<li> <a href="/Farmacia/reportes_cajas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
 									<li> <a href="/Farmacia/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
 									<li> <a href="/Farmacia/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 							</ul>
@@ -145,13 +193,13 @@
 		  		</div>
       		</div>
      		<!--Contenido-->
-     		<div class="contentpanel"><br>
+     		<div  id="sinMargen1" class="contentpanel" v-if = "cliente_receta_one == ''"><br>
 				<!--Formulario-->
-				<div class="container clear_both padding_fix">
+				<div  id="margendiv" class="container clear_both padding_fix col-lg-8">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="block-web">
-								<div class="header">
+								<div id="ocultoI" class="header">
 									<div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a></div>
 									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div> Ventas /<span class="semi-bold"> Registro de Venta</span></h2>  
 								</div>
@@ -161,6 +209,10 @@
 										<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
 										<input type="hidden" :value="id_cliente = '<%=one_cliente[0].id%>'">
 										<div class="col-md-12">									
+											
+										</div><br>
+										
+										<div class="col-md-12">
 											<div class="col-md-4">
 												<div class="form-group">
 													<label>Empleado</label>
@@ -168,33 +220,17 @@
 													<input type="hidden" :value=" empleado = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
 												</div>
 											</div>
-										</div><br>
-										
-										<div class="col-md-12">
-											<label for="" class="col-md-12">Cliente:</label>
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<div class="form-group">
 													<label>C.I.:</label>
 													<input type="text" readonly :value=" ci = '<%=one_cliente[0].ci%>'" class="form-control" onkeyup="mayus(this);">
 													
 												</div>
 											</div>
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<div class="form-group">
-													<label>Apellido Paterno:</label>
-													<input type="text" readonly value="<%=one_cliente[0].apellidop%>" class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>Apellido Materno:</label>
-													<input type="text"readonly value="<%=one_cliente[0].apellidom%>" class="form-control" onkeyup="mayus(this);">
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>Nombre(s):</label>
-													<input type="text" readonly value="<%=one_cliente[0].nombre%>" class="form-control" onkeyup="mayus(this);">
+													<label>Cliente:</label>
+													<input type="text" readonly value="<%=one_cliente[0].nombre%> <%=one_cliente[0].apellidop%> <%=one_cliente[0].apellidom%>" class="form-control" onkeyup="mayus(this);">
 												</div>
 											</div>
 										</div>
@@ -260,6 +296,93 @@
 										</div><br><br><br>
 										<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Registrar Venta</button>
 										<a class="btn btn-danger" href="/farmacia/ventas"><i class="fa fa-times"></i> Cancelar</a>
+									</form>
+								</div><!--/porlets-content--> 
+						  	</div><!--/block-web--> 
+						</div><!--/col-md-12--> 
+					</div>
+				</div>
+			</div>
+
+			<div id="sinMargen1" class="contentpanel" v-else><br>
+				<!--Formulario-->
+				<div id="margendiv" class="container clear_both padding_fix">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="block-web">
+								<div id="ocultoI" class="header">
+									<div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a></div>
+									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div> Ventas /<span class="semi-bold"> Registro de Venta</span></h2>  
+								</div>
+								<!-- <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea> -->
+								<div class="porlets-content">
+									<form method="POST" ><br><br>
+											<div class="" >
+												<div  class="pull-left his2">
+												  	<address class="">
+														<strong>HOPITAL DANIEL BRACAMONTE</strong><br>
+														Av. Italia Final S/N<br>
+														Telfs. 26246064-26244960<br>
+														POTOSI-BOLIVIA
+													</address>
+												</div>
+												<div  class="pull-right his3">
+												  	<div class="invoice_logo  "><img src="/images/hospital2.png" /></div>
+												</div>
+												<div class="clearfix"></div><br/>
+												<h5 class="text-center"> <strong> RECIBO DE RECETA</strong></h5>
+												<div class="row">
+													<div class="col-sm-9">
+														<div> <strong>CODIGO DE RECETA:</strong> {{cliente_receta_one.codigo_venta}}   </div>
+														<div> <strong>FECHA :</strong>{{cliente_receta_one.createdAt.split('T')[0]}}     </div>
+														<div> <strong>EMPLEADO :</strong> {{cliente_receta_one.empleado}}  </div>
+														<div> <strong>C.I. :</strong>  {{cliente_receta_one.ci}} </div>
+														<div> <strong>PACIENTE :</strong> <%=one_cliente[0].nombre%> <%=one_cliente[0].apellidop%> <%=one_cliente[0].apellidom%><br/></div><br/>
+													</div>
+												</div>
+												<div id="sacar" class="table-responsive">
+													<table   class="table table-bordered tablaI " >
+														<thead>
+															<tr>
+															<th>#</th>
+															<th>Cantidad del Producto</th>
+															<th>Codigo</th>
+															<th>Descripcion</th>
+															<th>Precio</th>
+															<th>Precio Total</th>
+															</tr>
+														</thead>
+														<tbody v-for="(car, index) in cliente_receta_one.medicamentos.medicamentos">                                                    
+															<tr>
+															<td>{{index}}</td>
+															<td>{{car.qty}}</td>
+															<td>{{car.item.codificacion}}</td>
+															<td>{{car.item.nombre}}</td>
+															<td>{{car.item.price}}</td>
+															<td>{{car.price}}</td>                                                      
+															</tr>   
+															<tr>
+															<td colspan="5">S/ Sub Total</td>
+															<td><strong>{{cliente_receta_one.medicamentos.totalPrice}}</strong></td>
+															</tr>
+															<tr> <td colspan="5">S/ IGV 18.00%:</td>
+															<td><strong>{{cliente_receta_one.medicamentos.iva}}</strong></td></tr>
+															<tr>
+															<td colspan="5">Total</td>
+															<td><strong> {{cliente_receta_one.medicamentos.total}}</strong></td>
+														  	</tr>                                                 
+														</tbody>
+												  	</table>
+												</div><!--/table-responsive-->
+											</div>
+											<br>
+											<div class="form-group">
+											  	<div class="col-sm-offset-0 col-sm-10">
+													<div class="btn-group">  <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+												</div>
+											</div><!--/form-group-->
+										</div>
+										</div>
 									</form>
 								</div><!--/porlets-content--> 
 						  	</div><!--/block-web--> 

@@ -3,6 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 var url = require('./url/export');
+import { user_data1, remove_user12 } from './url/export';
 
 const datas = require('./url/export');
 
@@ -166,6 +167,7 @@ router.get('/home/:id_user',(req, res) => {
                         
                                 if(data_user[data_token.token_id] == null){
                                     user(data_token, data_token.token_id)
+                                    user_data1(data_token, data_token.token_id)
                                     res.render('hospitalizaciones/homeHospitalizacion',{
                                         data_token,
                                         lista_paciente:lista_paciente.length,
@@ -186,7 +188,9 @@ router.get('/home/:id_user',(req, res) => {
                                     status = null
                                 }else{
                                     remove_user( data_token.token_id)
+                                    remove_user12(data_token.token_id)
                                     user(data_token, data_token.token_id)
+                                    user_data1(data_token, data_token.token_id)
                                     res.render('hospitalizaciones/homeHospitalizacion',{
                                         data_token,
                                         lista_paciente:lista_paciente.length,
@@ -323,6 +327,16 @@ router.get('/One_form_Internacion/:id_Pinternacion', (req,res) => {
         res.send("no hay coneccion con el servidor");
     }) 
 }) */
+
+router.get('/vue_one_papeleta_internacion/:id', (req,res) => {
+    const { id } = req.params
+    fetch(url.name.url+'/api/one_Form_internacion/'+id) 
+    .then(resp => resp.json())
+    .then(data =>{
+        res.status(200).json(data)
+    })
+})
+
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //esta ruta es para poder traer una papeleta de internacion
@@ -421,6 +435,7 @@ function remove_post(id) {
 router.post('/internacion/:idPinternacion/:id_especialidad/:token_id', (req,res) => {
     const { idPinternacion,id_especialidad, token_id } = req.params;
     
+   
     var msg_p
     var data_body = req.body
     if(data_body.cama == "" || data_body.cama == null){
@@ -563,7 +578,7 @@ router.post('/internacion/:idPinternacion/:id_especialidad/:token_id', (req,res)
             }
             
         }) 
-    }    
+    } 
 });
 
 /*
@@ -580,7 +595,7 @@ router.get('/estadoCama1/:idCama/:historial/:token_id/:idPinternacion/:provieneD
     fetch(url.name.url+'/api/updateEstadoCama/'+data.idCama+"/"+data.historial) 
     .then(resp => resp.json())
     .then(resp =>{
-        console.log(resp, " estado 1")
+       
         res.redirect( '/internaciones/only_pInternacion/'+data.idPinternacion+"/"+data.id_especialidad+"/"+data.provieneDE+"/"+data.historial+"/"+data.token_id); 
     })        
     .catch(error => {
@@ -606,7 +621,7 @@ router.get('/update_estado_cama/:idCama/:newIDcama/:historial/:token_id/:idPinte
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-        console.log(data ," <<<< estado")
+      
         res.redirect('/internaciones/estadoCama1/'+newIDcama+"/"+historial+'/'+token_id+'/'+idPinternacion+'/'+provieneDE+"/"+id_especialidad);
     }) 
 })
@@ -754,7 +769,7 @@ router.post('/vuePOstReceta/:id', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-        console.log(data)
+      
         res.status(200).json(data)
     })
 })
@@ -800,7 +815,7 @@ router.get('/list_internados_alta/:id_especialidad/:token_id', (req,res) => {
         fetch('http://localhost:3000/api/list_internacion_especialidad_false/'+id_especialidad)
         .then(res => res.json())
         .then(list_internacion => { 
-            console.log(list_internacion, "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+           
             res.render('hospitalizaciones/list_pacientes_alta',{
                 list_internacion,
                 data_doc: data_user[token_id]
@@ -825,7 +840,7 @@ router.get('/paciente_internacion/:id/:token_id', (req,res) => {
         fetch('http://localhost:3000/api/One_intern/'+id)
         .then(res => res.json())
         .then(one_internacion => { 
-            console.log(one_internacion, "   <<<<<<<<<<<<<    11111  <<<<<<<<<<<<<<<<<<")
+           
             paciente(one_internacion[0].historial)
             function paciente(data){
 
@@ -872,9 +887,32 @@ router.get('/one_epicrisis/:id_internacion', (req,res) => {
     }) 
 })
 
+//ruta para poder actualizar en epicrissi
+router.post('/Vue_update_epicrisis/:id_epicrisis', (req,res) => {
+    const  { id_epicrisis } = req.params;
+
+   
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/update_epicrisis/'+id_epicrisis,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)
+    })
+
+})
+
+//ruta para poder insertar en epicrisis
 router.post('/Vue_reg_epicrisis/:id_paciente', (req,res) => {
     const { id_paciente } = req.params;
-    console.log(id_paciente)
+   
     var data = req.body;
     var esto = {
         method: 'POST',
@@ -924,7 +962,7 @@ router.post('/vue_update_estado_alta/:id_internacion', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
-        console.log (data, " esto es el estado alta")
+      
         res.status(200).json(data)
     })
 })
@@ -943,7 +981,7 @@ router.post('/vue_update_cama_estado/:id_cama', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
-        console.log(data, " esto es el estado cama")
+       
         res.status(200).json(data)
     })
 })
@@ -970,7 +1008,7 @@ router.post('/Vue_regOrden_Intervencion/:id_internacion' , (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-        console.log(data);
+       
         res.status(200).json(data)
     })
 })
@@ -1103,7 +1141,7 @@ router.get('/traslado_interno/:id_internacion/:token_id',(req,res) =>{
         fetch('http://localhost:3000/api/One_intern/'+id_internacion)
         .then(res => res.json())
         .then(one_internacion => { 
-            console.log(one_internacion, "   <<<<<<<<<<<<<    22222  <<<<<<<<<<<<<<<<<<")
+           
             fetch('http://localhost:3000/api/onlyPaciente/'+one_internacion[0].historial)
             .then(res => res.json())
             .then(data_paciente => {
@@ -1158,7 +1196,7 @@ router.get('/traslado_interno2/:id_internacion/:token_id',(req,res) =>{
         fetch('http://localhost:3000/api/One_intern/'+id_internacion)
         .then(res => res.json())
         .then(one_internacion => { 
-            console.log(one_internacion, "   <<<<<<<<<<<<<    22222  <<<<<<<<<<<<<<<<<<")
+           
             fetch('http://localhost:3000/api/onlyPaciente/'+one_internacion[0].historial)
             .then(res => res.json())
             .then(data_paciente => {
@@ -1231,6 +1269,25 @@ router.post('/vue_register_traslado/:id_paleta_internacion', (req,res) => {
     
 })
 
+//RUTA VUE PARA PODER ACTUALIZAR TRASLADO DEL PACIENTE
+router.post('/vue_update_traslado/:id_traslado', (req,res) => { 
+    const { id_traslado } = req.params;
+    var data  = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/update_traslado/'+id_traslado,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
 router.get('/vue_traslado_int/:id_internacion', (req,res) => {
     const { id_internacion } = req.params
     fetch('http://localhost:3000/api/traslados_id_internacion/'+id_internacion,)
@@ -1242,11 +1299,13 @@ router.get('/vue_traslado_int/:id_internacion', (req,res) => {
 })
 
 //para ver las especialidades
-router.get('/vue_ver_especialidades', (req,res) => {
-    fetch('http://localhost:4600/api/especialidad')
+router.get('/vue_ver_especialidades/:id_especialidad', (req,res) => {
+    const { id_especialidad } = req.params;
+    fetch('http://localhost:4600/api/EspOne/'+id_especialidad)
     .then(resp => resp.json())
-    .then(especialidad =>{
-        res.status(200).json(especialidad)
+    .then(data =>{
+        console.log(data, "  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Zz  esto es one especialidad")
+        res.status(200).json(data)
     })
 })
 
@@ -1257,7 +1316,7 @@ router.get('/vue_ver_operaciones_internacion/:id_internacion', (req,res) => {
     .then(resp => resp.json())
     .then(especialidad =>{
         res.status(200).json(especialidad)
-        console.log(especialidad)
+       
     })
 })
 
@@ -1323,7 +1382,7 @@ router.get('/internacion_traslado/:id_traslado/:historial/:id_especialidad/:toke
                 fetch(url.name.url+'/api/list_internacion_paciente/'+id_especialidad+"/"+historial) 
                 .then(resp => resp.json())
                 .then(paciente_internacion =>{ 
-                    console.log(paciente_internacion, " <zxzxzx<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<zxczx  paciente_internacion  sdfsdf")
+                   
                     fetch(url.name.url+'/api/one_intern_of_traslado/'+id_traslado) 
                     .then(resp => resp.json())
                     .then(update =>{
@@ -1563,7 +1622,7 @@ router.get('/estadoCama1/:idCama/:historial/:token_id/:id_traslado/:id_especiali
     fetch(url.name.url+'/api/updateEstadoCama/'+data.idCama+"/"+data.historial) 
     .then(resp => resp.json())
     .then(resp =>{
-        console.log(resp, " estado 1")
+       
         res.redirect( '/internaciones/internacion_traslado/'+data.id_traslado+"/"+data.historial+"/"+data.id_especialidad+"/"+data.token_id); 
     })        
     .catch(error => {
@@ -1589,7 +1648,7 @@ router.get('/update_estado_cama/:idCama/:newIDcama/:historial/:token_id/:id_tras
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-        console.log(data ," <<<< estado")
+       
         res.redirect('/internaciones/estadoCama1/'+newIDcama+"/"+historial+'/'+token_id+'/'+id_traslado+"/"+id_especialidad);
     }) 
 })

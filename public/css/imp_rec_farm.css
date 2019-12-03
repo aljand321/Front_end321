@@ -10,7 +10,7 @@
   
   
     margin-top: 0px;
-    border: 1px;
+    border: 0px;
     padding: 0px;
     
     width: 0px;
@@ -24,22 +24,9 @@
     content: url('../images/hospital1.png');    
 }
 .posiondeImagen{
-    position:absolute;
-    top:0;
-    width:200px;
-}
-
-/*----------------------logo de historial clinico de emergencia ------------------------------*/
-.dim2E:before{
-    content: url('../images/hospital1.png'); 
-    position: absolute;
-    top: 0%;   
-}
-.posiondeImagenE{
-  
-    top:0;
     float: right;
-    width:200px;
+    margin-top: 0%;
+    
 }
 /*--------cosas pasa ocultar en la vista real-----------*/
 .verOculto{
@@ -54,6 +41,9 @@
 #ocultoI{
     display: none;   
 }
+/* encabezado*/
+
+
 /* es para la papaeleta de internacion EMERGENCA*/
 .sinmagen{
     border: 0%;
@@ -135,11 +125,11 @@
 {
 clear:both;
 }
-#sinMargen{
-    top: 9%;
+#sinMargen1{
+    top: 2%;
     border: 0px;
    padding-left: 0% ;
- padding-top: 5%;
+    padding-top: 0%;
    margin-left: 0%;
     margin-right: 0%;
   
@@ -156,7 +146,7 @@ clear:both;
 
 #margendiv{
 
-    top: 5px;
+    top: 2px;
     margin: 0%;
     margin-top: 0px;
     border: 0px;
@@ -219,15 +209,16 @@ clear:both;
     border-bottom-style: dotted;
     border-left-style: solid; 
 }
-.his{
+.hisF{
     padding: 0% 0;
     left: 0px;
     height: auto;
-	width: auto;
+	width: 30%;
     margin:0px;
     float:left;
    border: 0px;
 
+   float:left;
     position: relative;
     border-top-style: dashed;
     border-right-style: double;
@@ -248,17 +239,23 @@ clear:both;
 
 }
 .his2{
-    padding: 0%;
-    left: 0px;
-    height: 5%;
-	width: 100%;
-    margin:0px;
-    bottom: 0%;
-    float:left;
-    margin-left: 0%;
+   top: 2%;
+   
     border: 0px;
-    margin-bottom: 0%;
-     
+    padding-right: 0%;
+    
+    
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+}
+.his3{
+    top: 1%;
+   
+    border: 0px;
+    float: left;
+    
     border-top-style: dashed;
     border-right-style: double;
     border-bottom-style: dotted;
@@ -488,8 +485,7 @@ float:left;
 }
 /* para orden de internacion*/
 .oreden:before {
-    
-    content: " ORDEN DE INTERNACIÓN " /* <%=resp[0].nombreDoctor%> */;
+    content: " ORDEN DE INTERNACIÓN";
     font-weight: negrita;
     color:black;
     text-align: center;

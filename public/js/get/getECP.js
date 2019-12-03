@@ -74,7 +74,8 @@
       .then(response => (this.mensaje = response.data[0].Historial ))
   }
 })*/
- new Vue({
+
+const options = new Vue({
   el:'#options',
     
     data () {
@@ -84,7 +85,12 @@
         mostrar:'',
         salaID:'',
         camas:[],
-        fecha_Registro:''
+        fecha_Registro:'',
+
+        data_one_internacion:'',
+        numero_cama:'',
+        sala:''
+
       }
     },
     mounted(){
@@ -113,7 +119,18 @@
           })
         }
        
-      } 
+      },
+      //one_papeleta internacion id
+      one_papeleta_onternacion(id){
+        fetch(this.url+'/internaciones/vue_one_papeleta_internacion/'+id) 
+        .then(resp => resp.json())
+        .then(data =>{
+          this.numero_cama = data[0].Cama.numeroCama;
+          this.sala = data[0].Cama.Sala.descripcionSala;
+          this.data_one_internacion = data[0]
+          console.log( this.data_one_internacion, " asdasd")
+        })
+      }
     }
 })
 

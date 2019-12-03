@@ -106,10 +106,10 @@ router.get('/especialidad/:token_id', (req,res) => {
         fetch(url.name.cuadernos+'/api/especialidad')
         .then(res => res.json())
         .then(resp => { 
-            fetch(url.name.pruebas+'/api/Only_Medicos')
+            fetch(url.name.pruebas+'/api/role_hospitalizacion')
             .then(res => res.json())
             .then(Lista_medicos => {
-                console.log(update_esp[token_id], "  <<   < < < < < < < < < < < << ")
+                
                 res.render('cuadernos/especialidad',{
                     resp,
                     espONE:update_esp[token_id],

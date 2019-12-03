@@ -129,6 +129,11 @@ const ver_pedido =  new Vue({
             }
             
         },
+
+        removeItem(id) {            
+            this.subTotal -= this.list[id].price;
+            this.list.splice(id, 1)
+        },
         update(e){
             e.preventDefault();
             var data

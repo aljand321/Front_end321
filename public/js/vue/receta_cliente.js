@@ -47,6 +47,9 @@ const receta_cliente = new Vue({
             ListMedicamentos: [],
             filteredMeds: [],
         },
+
+
+        cliente_receta_one:''
     }),
     mounted(){
       fetch(this.url+'/farmacia/Vue_medicamentos_farmacia')
@@ -402,7 +405,7 @@ const receta_cliente = new Vue({
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
-              console.log(data, "esto es lo que quiero ver")
+              console.log(data, "esto es lo que quiero ver    respuesta del post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><")
               if(data.success == true){
                
                 swal.fire(
@@ -412,6 +415,7 @@ const receta_cliente = new Vue({
                 )
                 this.update_cantidad();
                 this.reduce_cantidad();
+                this.one_receta_cliente(data.data.id)
                 this.msg_false_post = ""
                 this.listItems = {}
               }else{
@@ -474,6 +478,17 @@ const receta_cliente = new Vue({
             }); 
           }
           
+        },
+
+        one_receta_cliente(id){
+          console.log(id, " esto es el id de one receta cliente")
+          fetch(this.url+'/farmacia/vue_one_receta_ciente/' + id)
+          .then(res => res.json())
+          .catch(error => console.error('Error:', error))
+          .then(data => {
+            this.cliente_receta_one = data[0]
+            console.log(data, " esto es lo que quiero ver   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< < < < < < < < <<<<<<<<<<<<<<<<<<<");
+          })
         }
     }
 })

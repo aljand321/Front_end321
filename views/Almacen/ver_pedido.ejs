@@ -156,6 +156,7 @@
                                                             <th>Precio Total</th>
                                                             <th>Fecha de vencimiento</th>
                                                             <th>Modificar</th>
+                                                            <th>Eliminar</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody v-for="(item, index) in  list">  
@@ -172,6 +173,7 @@
                                                                 <a @click="reduceByOne(index)">Reduce</a> 
                                                                 <a @click="add_one(index)">Añadir</a>
                                                             </td>
+                                                            <td><a @click="removeItem(index)">Eliminar</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -208,7 +210,7 @@
                                     <template v-else>
                                         <div class="page-content">  
                                             <div class="row">
-                                                <div class="col-md-11"> 
+                                                <div class="col-md-12"> 
                                                     <div class="panel-heading">
                                                         <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Pedido Realizado </a> </h4>
                                                     </div>
