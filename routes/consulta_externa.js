@@ -763,8 +763,8 @@ router.get('/VUE_One_p/:id_p', (req,res) => {
 })
 
 
-router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
-  const {id_consulta, token_id, token_p } = req.params;
+router.post('/Pinternacion/:id_consulta/:token_id/:token_p/:id_cita',(req,res) => {
+  const {id_consulta, token_id, token_p, id_cita } = req.params;
   var datos = req.body;
   var msg_p;
   var esto = {
@@ -795,7 +795,7 @@ router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
             remove(token_id)
             msg_data(msg_p,token_id)
           }
-          res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+          res.redirect( '/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p+'/'+ id_cita );
           }else{
             if(msg_Consulta_Externa[token_id] == null){
               msg_p = {
@@ -811,7 +811,7 @@ router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
               remove(token_id)
               msg_data(msg_p,token_id)
             }
-            res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+            res.redirect( '/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p+'/'+ id_cita );
           }          
           setTimeout(() => { 
             remove(token_id);
@@ -820,8 +820,8 @@ router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
 });
 
 
-router.post('/updateInternacion/:id/:id_consulta/:token_id/:token_p', (req,res) => {
-  const { id, id_consulta, token_id, token_p } = req.params;
+router.post('/updateInternacion/:id/:id_consulta/:token_id/:token_p/:id_cita', (req,res) => {
+  const { id, id_consulta, token_id, token_p, id_cita } = req.params;
   var data = req.body;
   var msg_p
   var esto = {
@@ -851,7 +851,7 @@ router.post('/updateInternacion/:id/:id_consulta/:token_id/:token_p', (req,res) 
             remove(token_id)
             msg_data(msg_p,token_id)
           }
-          res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+          res.redirect( '/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p+'/'+id_cita );
           }else{
             if(msg_Consulta_Externa[token_id] == null){
               msg_p = {
@@ -867,7 +867,7 @@ router.post('/updateInternacion/:id/:id_consulta/:token_id/:token_p', (req,res) 
               remove(token_id)
               msg_data(msg_p,token_id)
             }
-            res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+            res.redirect( '/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p+'/'+id_cita );
           }          
           setTimeout(() => { 
             remove(token_id);
