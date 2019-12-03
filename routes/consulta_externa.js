@@ -575,8 +575,8 @@ router.post('/vue_update_consulta/:id_consulta', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
 
-router.get('/receta/:id_consulta/:token_id/:token_p', (req,res) => {
-  const { id_consulta, token_id, token_p } = req.params
+router.get('/receta/:id_consulta/:token_id/:token_p/:id_cita', (req,res) => {
+  const { id_consulta, token_id, token_p, id_cita } = req.params
   
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
      
@@ -597,7 +597,8 @@ router.get('/receta/:id_consulta/:token_id/:token_p', (req,res) => {
               paciente_Data,
               ConsultaOnly,
               data_doc: data_user[token_id],
-              List_recetas
+              List_recetas,
+              id_cita
             })
           })
           
@@ -691,8 +692,8 @@ router.post('/VueupdateReceta/:id', (req,res) => {
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
 
-router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) => {
-  const {id_consulta, token_id, token_p } = req.params
+router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p/:id_cita', (req,res) => {
+  const {id_consulta, token_id, token_p, id_cita } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
      
     fetch('http://localhost:3000/api/OnlyConsulta/'+id_consulta)        
@@ -718,7 +719,7 @@ router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) =>
                   fetch('http://localhost:3000/api/ListPinternacion_hist/'+one_consulta[0].numeroHistorial)        
                   .then(resp => resp.json())
                   .then(list_p =>{
-                    console.log(msg_Consulta_Externa[token_id], " list_p pppp ppppppppppppp   lis_p")
+                    
                     res.render('consulta_externa/papeleta_internacion',{          
                       dataPaciente,
                       one_consulta,
@@ -726,8 +727,10 @@ router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) =>
                       resp,
                       especialidad,
                       msg:msg_Consulta_Externa[token_id],
-                      list_p
+                      list_p,
+                      id_cita
                     })
+                    
                   })
                   
                 })

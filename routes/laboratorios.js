@@ -142,8 +142,8 @@ router.get('/home/:id_user',(req, res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  */
-router.get('/lab_consulta_externa/:id_consulta/:token_id/:token_p', (req,res) => {
-    const { id_consulta, token_id, token_p} = req.params
+router.get('/lab_consulta_externa/:id_consulta/:token_id/:token_p/:id_cita', (req,res) => {
+    const { id_consulta, token_id, token_p, id_cita } = req.params
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
         fetch('http://localhost:3000/api/OnlyConsulta/'+id_consulta)        
         .then(resp => resp.json())
@@ -157,7 +157,8 @@ router.get('/lab_consulta_externa/:id_consulta/:token_id/:token_p', (req,res) =>
                 res.render('consulta_externa/O_Laboratorio',{
                     ConsultaOnly,
                     data_doc:datas.name.data_user[token_id],
-                    data_paciente
+                    data_paciente,
+                    id_cita
                 })
              })
             

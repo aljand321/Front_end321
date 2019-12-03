@@ -156,6 +156,7 @@
                                                             <th>Precio Total</th>
                                                             <th>Fecha de vencimiento</th>
                                                             <th>Modificar</th>
+                                                            <th>Eliminar</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody v-for="(item, index) in  list">  
@@ -172,6 +173,7 @@
                                                                 <a @click="reduceByOne(index)">Reduce</a> 
                                                                 <a @click="add_one(index)">Añadir</a>
                                                             </td>
+                                                            <td><a @click="removeItem(index)">Eliminar</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
