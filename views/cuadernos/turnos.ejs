@@ -48,7 +48,8 @@
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a> <span>&nbsp;</span>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+            <img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
               <li> <a data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i>Salir</a> </li>
@@ -258,7 +259,7 @@
                                       <td class="text-center">
                                         <a href="/cuaderno/midificarDoct/<%=listDoc[i].id%>/<%=id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil" style="color:rgb(80, 145, 80)"></i></a>
                                         <a href="/cuaderno/FechaDoc/<%=listDoc[i].id%>/<%=data_doc.data.token_id%>/<%=id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Turnos"><i class="fa fa-user-md "></i></a>
-                                        <a href="/cuaderno/alldataDoctor/<%=listDoc[i].id%>/<%=listDoc[i].idCuaderno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>
+                                        <!--<a href="/cuaderno/alldataDoctor/<%=listDoc[i].id%>/<%=listDoc[i].idCuaderno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>-->
                                       </td>
                                     </tr>
                                   <% } %>

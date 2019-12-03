@@ -271,12 +271,17 @@
                                                                         </div>
                                                                       </di>
                                                                   </div>  
-                                                                </div>																				
+                                                                </div>		
+                                                                																		
                                                             </div>
                                                         </di>
+                                                         <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                                         <p class="areInternacion"></p>
+                                                         
+                                                          <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
                                                             <h3 id="ocultoI" class="text-center">Informe de la Orden Internación</h3>
                                                             <div class="form-group his2">
-                                                                    <div class="col-sm-3">
+                                                                    <div id="ocultoI" class="col-sm-3">
                                                                         <label class="control-label">Area de Internacion:</label>
                                                                         <select class="form-control" id="source" name="especialidad">
                                                                             <option><%=updateInternacion[0].especialidad%></option>
@@ -302,16 +307,17 @@
                                                                 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
                               
                                                             <br><br>
+                                                            <div id="ocultoI" class="col-md-12 page-content ">
+                                                                <div class="col-md-8 ">
                                                             <%if(updateInternacion[0].estado_update != false) { %>
-									                        <div class="form-group">
-																<div class="col-sm-offset-4 col-sm-12">
+                                                             
 																	<button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
-																	<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button> <span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
-																</div>
-                              </div>
+															
                               <% } %>
                               <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-                        </form>
+                            </div>
+                          </div>
+                            </form>
 														<% } %>
 													</div>
                         </div>
@@ -444,6 +450,50 @@
 	</div>
 
 
+
+
+  <style >
+      /*  <%if (resp[0] != null) { %> */
+          @media print{
+              .tituloDiagnostico:before {
+                  content: " Dignóstico";
+                  font-weight: negrita;
+                  color:black;
+                  text-align: center;
+                  padding: 0%;
+                  margin: 0%;
+                  font: Arial;
+                  float: left;
+                  padding-left: 5%;
+              }    
+              .oreden1:before {
+                  content: "";
+                  float: left;
+                  padding-left: 5%;
+              }
+              .areInternacion:before {
+                  content: "Áre de Internación: <%=updateInternacion[0].especialidad%>";
+                  font-weight: negrita;
+                  color:black;
+                  width: 50%;   
+                  float: left;
+                  padding-left: 5%;
+              }
+              .fechao:before{
+                  content: "Fecha de Ingreso ";
+                  font-weight: negrita;
+                  color:black;
+                  width: 30%;
+                  float: right;
+              }
+              .acomodar{
+                  width: 30%;
+                  float: left;
+              }
+                  
+          }
+      /*   <% } %>     */
+      </style>
 <script src="/js/fecha.js"></script>
     
 <script src="/js/jquery-2.1.0.js"></script>
