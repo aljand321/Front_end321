@@ -110,7 +110,7 @@ router.get('/home/:id/:token_part', (req,res) => {
     .catch(error => console.error('Error',error))
     .then(resp => {
 
-      fetch('http://localhost:3000/api/lista_pacaiente/'+id)  // esto es para sacar el token del usuario
+      fetch('http://localhost:3000/api/lista_pacaiente/'+resp.perso_id)  // esto es para sacar el token del usuario
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(lista_pacientes => {

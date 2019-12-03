@@ -93,6 +93,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                   fetch('http://localhost:3600/api/Only_Medicos')
                   .then(resp => resp.json())
                   .then(medi => {
+                    
                     fetch('http://localhost:4600/api/especialidad')
                     .then(resp => resp.json())
                     .then(epe => {
@@ -116,7 +117,12 @@ router.get('/home/:id/:token_part', (req,res) => {
                           user(data_token1, data_token1.token_id)
                           res.render('Fichas/homec',{
                             resp:personal,
-                            data_token
+                            data_token,
+                            resp:personal,
+                            data_token,
+                            med:medi.length,
+                            espe: epe.length,
+                            pacien:paci.length
                           })
                           status = null
                         }

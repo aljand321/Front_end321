@@ -69,7 +69,7 @@
 	<!-- Content page-->
 	<div class="wrapper" >
 		<!--\\\\\\\ wrapper Start \\\\\\-->
-		<div class="header_bar">
+		<div id="ocultoIl"  class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
@@ -97,7 +97,7 @@
 		</div>
 		<div class="inner" id="lab_consulta_externa">
 			<!--\\\\\\\ inner start \\\\\\-->
-			<div class="left_nav">
+			<div  id="ocultoIl" class="left_nav">
 
 				<!--\\\\\\\left_nav start \\\\\\-->
 
@@ -130,7 +130,7 @@
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
-			<div class="contentpanel">
+			<div  id="ocultoIl" class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
@@ -320,7 +320,9 @@
 																		<div class="col-md-8 ">
 																			<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 																			<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		<!--
 																			<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+																		-->
 																		</div>
 																	</div>
 																</form>						
@@ -990,7 +992,9 @@
 																	<div class="col-md-8 ">
 																		<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		<!--
 																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+																	-->
 																	</div>
 																</div>
 
@@ -1656,7 +1660,9 @@
 																	<div class="col-md-8 ">
 																		<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		<!--
 																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+																	-->
 																	</div>
 																</div>
 															</form>
@@ -1796,11 +1802,11 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade" id="modal-info">
+			<div class="modal modal-info fade scroll1" id="modal-info">
 				<div class="modal-dialog">
 				  <div class="modal-content">
 					<div class="modal-header">
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <button  id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>
 					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 					</div>
@@ -1818,7 +1824,7 @@
 										<p>{{lab_one.otros}}</p>
 										
 									</div>
-									<div class="col-md-3"> 										
+									<div class="col-md-3 horaIR"> 										
 										<p for="">Hora: {{lab_one.hora}}</p>
 									</div>
 									<div class="col-md-12">
@@ -1832,11 +1838,19 @@
 								
 							</div>
 						</div>
-						
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							<div class="arriba"> 
+									<p class="firmaPa center cafirmaP"></p>
+									<p class="firmaDoc center cafirmaDoc"></p>
+								</div>
+								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							
 					</div>
-					<div class="modal-footer">
+					<div  id="ocultoIl" class="modal-footer">
 					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
+					  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+					 
+					  <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 					</div>
 				  </div>
 				  <!-- /.modal-content -->
@@ -1850,11 +1864,11 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade" id="modal_x">
+			<div class="modal modal-info fade scroll1" id="modal_x">
 					<div class="modal-dialog">
 					  <div class="modal-content">
 						<div class="modal-header">
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <button  id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span></button>
 						  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 						</div>
@@ -1873,7 +1887,7 @@
 
 											
 										</div>
-										<div class="col-md-3"> 										
+										<div class="col-md-3 horaIR"> 										
 											<p for="">Hora: {{lab_one.hora}}</p>
 										</div>
 										<div class="col-md-12">
@@ -1935,11 +1949,19 @@
 									
 								</div>
 							</div>
-							
+								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+								<div class="arriba"> 
+										<p class="firmaPa center cafirmaP"></p>
+										<p class="firmaDoc center cafirmaDoc"></p>
+									</div>
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+								
 						</div>
-						<div class="modal-footer">
+						<div  id="ocultoIl" class="modal-footer">
 						  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-						 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
+						  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+					 
+						  <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 						</div>
 					  </div>
 					  <!-- /.modal-content -->
@@ -1953,11 +1975,11 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade" id="modal_lab">
+			<div class="modal modal-info fade scroll1 centerTodo" id="modal_lab">
 				<div class="modal-dialog">
 				  <div class="modal-content">
 					<div class="modal-header">
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <button  id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>
 					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 					</div>
@@ -1974,7 +1996,7 @@
 										<p>Otros Examenes:</p>
 										<p>{{lab_one.otros}}</p>										
 									</div>
-									<div class="col-md-3"> 										
+									<div class="col-md-3 horaIR"> 										
 										<p for="">Hora: {{lab_one.hora}}</p>
 									</div>
 									<div class="col-md-12">
@@ -2071,11 +2093,19 @@
 								
 							</div>
 						</div>
-						
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							<div class="arriba"> 
+									<p class="firmaPa center cafirmaP"></p>
+									<p class="firmaDoc center cafirmaDoc"></p>
+								</div>
+								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							
 					</div>
-					<div class="modal-footer">
+					<div  id="ocultoIl" class="modal-footer">
 					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
+					  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+					 
+					  <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 					</div>
 				  </div>
 				  <!-- /.modal-content -->
@@ -2124,6 +2154,111 @@
 		   	}, 2000);
 		</script>  -->
 
+		<style >
+				@page {
+				size: A4 portrait;
+			
+			
+			}			
+			@media print {
+				.page {
+					margin: 0;
+					border: initial;
+					border-radius: initial;
+					width: initial;
+					min-height: initial;
+					box-shadow: initial;
+					background: initial;
+					page-break-after: always;
+				}
+				#ocultoIl{
+					display: none;   
+				}
+				.scroll1 {
+					overflow-y:hidden;
+					border: hidden;
+				}
+				.firmaPa:before {
+				content: " FIRMA DEL PACIENTE ";
+				font-weight: negrita;
+				color:black;
+				text-align: center;
+				padding: 0%;
+				margin: 0%;
+				font: Arial;
+				border: 0px;
+				margin-top: 10%;
+				}
+				.firmaDoc:before {
+					content: " FIRMA DEL DOCTOR ";
+					font-weight: negrita;
+					color:black;
+					text-align: center;
+					padding: 0%;
+					margin: 0%;
+					font: Arial;
+					border: 0px;
+					padding-top: 1%;
+				
+					margin-top: auto;
+					border-top-style: dashed;
+					border-right-style: double;
+					border-bottom-style: dotted;
+					border-left-style: solid;
+				}
+				.cafirmaP{
+					width: 30%;
+					float:left;
+					border-top-style: dotted;
+				}
+				.cafirmaDoc{
+					width: 30%;   
+					float: right;
+					border-top-style: dotted;
+				}
+				.arriba{
+					margin-top: 5%;
+					margin-bottom: 5%;
+					padding-bottom: 5%;
+				}
+				.horaI{
+					width: 30%;
+					float:left;
+					position:absolute;
+					 top:5%;
+					 right:0;
+				}
+				.labI{
+					width: 1000%;
+				}
+				.centerTodo{
+				padding-top: 0%;
+				width: 100%;
+				padding-left: 0%;
+			   justify-content: center;
+			   align-items: center;
+			   border: 0px;
+			   border-top-style: dashed;
+			   border-right-style: double;
+			   border-bottom-style: dotted;
+			   border-left-style: solid; 
+			}
+		
+			}
+			.scrollV{
+				
+				width: 190%;
+				overflow-y:scroll;
+				overflow-x:hidden;
+			}	
+			.horaIR{
+					width: 30%;
+					float:left;
+					position:absolute;
+					 top:5%;
+					 right:0;
+				}						
+		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautifier.js"></script>
 
 		<script src="/js/jquery-2.1.0.js"></script>
