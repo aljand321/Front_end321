@@ -90,26 +90,42 @@ router.get('/home/:id/:token_part', (req,res) => {
                 .then(resp => resp.json())
                 .catch(error => console.error('Error',error))
                 .then(personal => {
-                    //res.send(resp)
-                    data_token1.personal = personal
-                    if(data_user[data_token.token_id] == null){
-                      user(data_token1, data_token.token_id)
-                      res.render('Fichas/homec',{
-                        resp:personal,
-                        data_token
+                  fetch('http://localhost:3600/api/Only_Medicos')
+                  .then(resp => resp.json())
+                  .then(medi => {
+                    fetch('http://localhost:4600/api/especialidad')
+                    .then(resp => resp.json())
+                    .then(epe => {
+                      fetch('http://localhost:3000/api/pacientes')
+                      .then(resp => resp.json())
+                      .then( paci =>{
+                          //res.send(resp)
+                        data_token1.personal = personal
+                        if(data_user[data_token.token_id] == null){
+                          user(data_token1, data_token.token_id)
+                          res.render('Fichas/homec',{
+                            resp:personal,
+                            data_token,
+                            med:medi.length,
+                            espe: epe.length,
+                            pacien:paci.length
+                          })
+                          status = null
+                        }else{
+                          remove_user( data_token1.token_id)                        
+                          user(data_token1, data_token1.token_id)
+                          res.render('Fichas/homec',{
+                            resp:personal,
+                            data_token
+                          })
+                          status = null
+                        }
                       })
-                      status = null
-                    }else{
-                      remove_user( data_token1.token_id)                        
-                      user(data_token1, data_token1.token_id)
-                      res.render('Fichas/homec',{
-                        resp:personal,
-                        data_token
-                      })
-                      status = null
-                    }
-                   
+                    
+                    })
+                  })
                 })
+                    
             }else{
               res.redirect('/')
             }
@@ -685,4 +701,9 @@ router.get('/H_Consulta', (req,res) => {
 router.get('/ultimaCOnsultaH',(req,res) =>{
   res.render('consulta_externa/ultimaCOnsultaH')
 });
+
+
+/**home citas medicas */
+
+///** */
 module.exports = router;

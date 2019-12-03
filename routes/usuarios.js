@@ -747,5 +747,25 @@ router.get('/allroles/:token_id',(req, res) =>{
     res.redirect('/')
   }
 })
+///**vue personal */
+router.get('/vue_personal', (req,res) => {
+
+  fetch('http://localhost:3600/api/personal')
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+router.get('/vue_alluser', (req,res) => {
+
+  fetch('http://localhost:3600/api/allUser')
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+////** */
 
 module.exports = router;

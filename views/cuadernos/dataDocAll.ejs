@@ -61,7 +61,7 @@
       <div class="header_top_bar">
       <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-        <div class="top_right_bar">
+        <!--<div class="top_right_bar">
           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
@@ -71,7 +71,7 @@
               <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
             </ul>
           </div>
-       </div>
+       </div>-->
       </div>
     <!--\\\\\\\ header top bar end \\\\\\-->
     </div>
@@ -79,45 +79,36 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+                <li> <a href="/home/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
-            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul  >
+                <li> <a href="/usuarios/usuarios/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              </ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul >
+                <li> <a href="/cuaderno/especialidad/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul class="opened" style="display:block">
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Personal</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Cuadernos</b> </a> </li>
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/paciente_Inter/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte  Pacientes</b> </a> </li>
+                <li> <a href="/pacientead/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles1/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Personal</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte Servicios</b> </a> </li>
+                <!--<li> <a href="/cuaderno/repespecialidad/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>-->
               </ul>
             </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
-                <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
-                <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-                <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-                <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                <li> <a href="/backup/"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role/"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -139,7 +130,7 @@
                 <div class="porlets-content">
                   <br>
                   <br>
-                  <a class="btn btn-info"href="/cuaderno/volver_a_doctor"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
+                  <!--<a class="btn btn-info"href="/cuaderno/volver_a_doctor"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>-->
                   <form class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                     <div class="form-group centera" >
                       <div class="col-sm-4 " style="width: 300px; margin: 0 auto;" >  
@@ -149,7 +140,7 @@
                               <input type="text" placeholder="buscar" class="form-control" v-model="buscar.name">
                           </li>
                           <li v-for="item in search" class="list-group-item">
-                              <a :href="'/cuaderno/alldataDoctor/'+item.id+'/'+item.idCuaderno">{{item.nombre}}</a>                                
+                              <a :href="'/cuaderno/alldataDoctor/'+item.id+'/'+item.idCuaderno">{{item.nombre.split("/")[0]}}</a>                                
                           </li>
                           <button @click="deleteList" type="button" class="close" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
@@ -162,7 +153,7 @@
                     <div class="form-group">
                       <div class="col-sm-4 uppercase">
                         <strong>COMPLETO DEL MEDICO :</strong><span>&nbsp;</span><br>
-                        <label  class="control-label"><%=resp[0].nombre%> </label>
+                        <label  class="control-label"><%=resp[0].nombre.split("/")[0]%> </label>
                       </div>
                       
                       <div class="col-sm-4 uppercase">
@@ -185,10 +176,19 @@
                             <%}%>
                         </select>
                       </div>
+                      <div class="col-sm-4">
+                        <strong>ESPECIALIDAD :</strong><span>&nbsp;</span><br>
+                        <label class="control-label">{{nombre_consultorio}}</label>
+                      </div>
                     </div><!--/form-group--> 
                   </form>
                 </div><!--/block-web--> 
-                <h3>{{nombre_consultorio}}</h3>
+                <div class="form-group">
+                    <div class="col-sm-offset-9 col-sm-10">
+                      <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
+                    </div>
+                  </div><!--/form-group-->
+                  <br><br>
                 <div class="porlets-content">
                   <div class="table-responsive">
                     <table  class="table table-bordered" >
