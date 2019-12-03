@@ -186,11 +186,11 @@
                                 <tr v-for = "data in searchNoticia">
                                     <td class="text-center">{{data.Cuaderno.createdAt.split("T")[0]}}</td>
                                     <td class="text-center">{{data.Cuaderno.titulo}}</td>
-                                    <td class="text-center">{{data.nombre}}</td>
+                                    <td class="text-center">{{data.nombre.split("/")[0]}}</td>
                                     <td class="text-center">{{data.enfermera}}</td>
                                     <td>
-                                      <a  data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
-                                      <a :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>
+                                      <a  :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno"data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                                     
                                     </td>
                                 </tr>
                               </tbody>
@@ -221,11 +221,10 @@
                                 <tr v-for = "data in Buscar">
                                   <td class="text-center">{{data.Cuaderno.createdAt.split("T")[0]}}</td>
                                   <td class="text-center">{{data.Cuaderno.titulo}}</td>
-                                  <td class="text-center">{{data.nombre}}</td>
+                                  <td class="text-center">{{data.nombre.split("/")[0]}}</td>
                                   <td class="text-center">{{data.enfermera}}</td>
                                   <td>
-                                    <a  data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
-                                    <a :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>
+                                    <a  :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno"data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
                                   </td>
                                 </tr>
                               </tbody>

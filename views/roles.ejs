@@ -23,7 +23,9 @@
   <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
   <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+  
   <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -87,12 +89,10 @@
     padding: 0px;
     
     position: relative;
-
     border-top-style: dashed;
     border-right-style: double;
   
     border-left-style: solid; 
-
 } 
 .cleari12
 {
@@ -102,14 +102,10 @@ clear:both !important;
 {
 clear:both;
 } 
-
-
 .oculto-impresion, .oculto-impresion *{
     display: none !important;
   }
-
 table {border-collapse:collapse; border: none;}
-
 table td:last-child {display:none}
        table th:last-child {display:none}
 }
@@ -239,8 +235,8 @@ table td:last-child {display:none}
                                 <div class="form-group">
                                   <label  class="col-sm-4 control-label">tipo:</label>
                                   <div class="col-sm-4">
-                                    <select  class="seleccion" v-model="cargo">
-                                      <option value="-">---Seleccione---</option>
+                                    <select  class="form-control" id="source" v-model="cargo" required placeholder="">
+                                      <option value="" selected disabled hidden>--Seleccione--</option>
                                       <option value="medico">MÉDICO</option>
                                       <option class="uppercase"value="enfermera">ENFERMERA</option>
                                       <option class="uppercase" value="personal">PERSONAL</option>
@@ -263,40 +259,91 @@ table td:last-child {display:none}
                                   <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
                                 </div>
                               </div><!--/form-group--> 
-                              <br><br><br><br>
-                            <div class="table-responsive">
-                              <table  class=" table table-bordered table-striped ">
-                                
-                                <thead>
-                                  <tr>
-                                    <th class="text-center">Fecha Creación</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Apellido Paterno</th>
-                                    <th class="text-center">Apellido Materno</th>	
-                                    <th class="text-center">N° C.I.</th>	
-                                    <th class="text-center">Telf.-Cel</th>	
-                                    <th class="text-center">Cargo</th>	
-                                    
-                                    <th id="ocultoI" class="text-center">Optiones</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  
-                                  <tr v-for = "data in list">
-                                    <td class="text-center">{{data.createdAt.split("T")[0]}}</td>
-                                    <td class="text-center ">{{data.nombre}}</td>
-                                    <td class="text-center">{{data.apellidop}}</td>
-                                    <td class="text-center">{{data.apellidom}}</td>
-                                    <td class="text-center">{{data.ci}}</td>
-                                    <td class="text-center">{{data.telefono}}</td>
-                                    <td class="text-center">{{data.cargo}}</td>
-                                    <td class="text-center" id="ocultoI"><a :href="'/usuarios/cuentas/'+data.id+'/<%=data_doc.data.token_id%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
-                                    </td>
-                                  </tr>
-                                    
-                                </tbody>
-                              </table>
-                            </div>
+                              <template v-if ="list != ''">
+                                  <div class="form-group">
+                                      <br><br><br>
+                                      <div class="col-sm-offset-8 col-sm-10">
+                                          <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list" >
+                                      </div>
+                                    </div>
+                                    <br>
+                                  <div class="table-responsive">
+                                    <table  class=" table table-bordered table-striped ">
+                                      
+                                      <thead>
+                                        <tr>
+                                          <th class="text-center">Fecha Creación</th>
+                                          <th class="text-center">Nombre</th>
+                                          <th class="text-center">Apellido Paterno</th>
+                                          <th class="text-center">Apellido Materno</th>	
+                                          <th class="text-center">N° C.I.</th>	
+                                          <th class="text-center">Telf.-Cel</th>	
+                                          <th class="text-center">Cargo</th>	
+                                          
+                                          <th id="ocultoI" class="text-center">Optiones</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        
+                                        <tr v-for = "data in searchNoticia">
+                                          <td class="text-center">{{data.createdAt.split("T")[0]}}</td>
+                                          <td class="text-center ">{{data.nombre}}</td>
+                                          <td class="text-center">{{data.apellidop}}</td>
+                                          <td class="text-center">{{data.apellidom}}</td>
+                                          <td class="text-center">{{data.ci}}</td>
+                                          <td class="text-center">{{data.telefono}}</td>
+                                          <td class="text-center">{{data.cargo}}</td>
+                                          <td class="text-center" id="ocultoI"><a :href="'/usuarios/cuentas/'+data.id+'/<%=data_doc.data.token_id%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                                          </td>
+                                        </tr>
+                                          
+                                      </tbody>
+                                    </table>
+                                  </div>
+                              </template>
+                              <template v-else>
+                                  <div class="form-group">
+                                      <br><br><br>
+                                      <div class="col-sm-offset-8 col-sm-10">
+                                          <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list1" >
+                                      </div>
+                                    </div>
+                                    <br>
+                                  <div class="table-responsive">
+                                    <table  class=" table table-bordered table-striped ">
+                                      
+                                      <thead>
+                                        <tr>
+                                          <th class="text-center">Fecha Creación</th>
+                                          <th class="text-center">Nombre</th>
+                                          <th class="text-center">Apellido Paterno</th>
+                                          <th class="text-center">Apellido Materno</th>	
+                                          <th class="text-center">N° C.I.</th>	
+                                          <th class="text-center">Telf.-Cel</th>	
+                                          <th class="text-center">Cargo</th>	
+                                          
+                                          <th id="ocultoI" class="text-center">Optiones</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        
+                                        <tr v-for = "data in Buscar">
+                                          <td class="text-center">{{data.createdAt.split("T")[0]}}</td>
+                                          <td class="text-center ">{{data.nombre}}</td>
+                                          <td class="text-center">{{data.apellidop}}</td>
+                                          <td class="text-center">{{data.apellidom}}</td>
+                                          <td class="text-center">{{data.ci}}</td>
+                                          <td class="text-center">{{data.telefono}}</td>
+                                          <td class="text-center">{{data.cargo}}</td>
+                                          <td class="text-center" id="ocultoI"><a :href="'/usuarios/cuentas/'+data.id+'/<%=data_doc.data.token_id%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                                          </td>
+                                        </tr>
+                                          
+                                      </tbody>
+                                    </table>
+                                  </div>
+                              </template>
+                              
                         </div>
                         <div id="Section2" class="tab-pane fade">
                             <form id="ocultoI" @submit="filter_data1" method="POST" class="form-horizontal"   >
@@ -325,7 +372,45 @@ table td:last-child {display:none}
                                   <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
                                 </div>
                               </div><!--/form-group--> 
-                              <br><br><br><br>
+                              <template v-if ="list_usu != ''">
+                                  <div class="form-group">
+                                      <br><br><br>
+                                      <div class="col-sm-offset-8 col-sm-10">
+                                          <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list" >
+                                      </div>
+                                    </div>
+                                    <br>
+                                  <div class="table-responsive">
+                                    <table  class=" table table-bordered table-striped " >
+                                      <thead>
+                                        <tr>
+                                          <th class="text-center">Fecha Creación</th>
+                                          <th class="text-center">Cuenta</th>
+                                          <th class="text-center">Email</th>
+                                          <th class="text-center">Nombre Personal</th>
+                                          
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr v-for="data1 in BucarUser">
+                                          <td class="text-center">{{data1.createdAt.split("T")[0]}}</td>
+                                          <td class="text-center">{{data1.username}}</td>
+                                          <td class="text-center">{{data1.email}}</td>
+                                          <td class="text-center">{{data1.Registro_personal.nombre}},{{data1.Registro_personal.apellidop}}</td>
+                                          
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                              </template>
+                              <template v-else>
+                              <div class="form-group">
+                                <br><br><br>
+                                <div class="col-sm-offset-8 col-sm-10">
+                                    <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list1" >
+                                </div>
+                              </div>
+                              <br>
                             <div class="table-responsive">
                               <table  class=" table table-bordered table-striped " >
                                 <thead>
@@ -338,15 +423,17 @@ table td:last-child {display:none}
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr v-for="data1 in list_usu">
+                                  <tr v-for="data1 in BucarUser1">
                                     <td class="text-center">{{data1.createdAt.split("T")[0]}}</td>
                                     <td class="text-center">{{data1.username}}</td>
                                     <td class="text-center">{{data1.email}}</td>
-                                    <td class="text-center">{{data1.email}}</td>
+                                    <td class="text-center">{{data1.Registro_personal.nombre}} {{data1.Registro_personal.apellidop}} {{data1.Registro_personal.apellidom}}</td>
+                                    
                                   </tr>
                                 </tbody>
                               </table>
                             </div>
+                          </template>
                         </div>
                       </div>
                     </div>
@@ -487,14 +574,29 @@ table td:last-child {display:none}
     data:() => ({
       url:data_url,
       buscar_in_list:'',
+      buscar_in_list1:'',
       cargo:'',
       list:[],
       list_usu:[],
       fecha_inicio:'',
       fecha_final:'',
       
-      list_est:[]
+      list_est:[],
+      list_est_user:[]
     }),
+    mounted(){
+      fetch(this.url.url_front_end+'/usuarios/vue_personal')
+      .then(res => res.json())
+      .then(data => {
+        this.list_est = data
+      })
+      fetch(this.url.url_front_end+'/usuarios/vue_alluser')
+      .then(res => res.json())
+      .then(data => {
+        this.list_est_user = data
+      })
+
+    },
     methods:{
       filter_data(e){
         e.preventDefault();
@@ -514,8 +616,17 @@ table td:last-child {display:none}
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(data1 => {
-        this.list = data1
-        console.log(data1, "  <<<<<<<<<<<<<<<<  asdasd")
+        if(data1.success == false){
+          swal.fire(
+            'Error!',
+            '<label style="color:red;">'+data1.msg+'</label>',
+            'error'
+          )
+        }else{
+          this.list = data1
+          console.log(data1, "  <<<<<<<<<<<<<<<<  asdasd")
+        }
+        
       })
       },
       filter_data1(e){
@@ -535,49 +646,42 @@ table td:last-child {display:none}
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(data1 => {
-        this.list_usu = data1
-        console.log(data1, "  <<<<<<<<<<<<<<<<  asdasd")
+        if(data1.success == false){
+          swal.fire(
+            'Error!',
+            '<label style="color:red;">'+data1.msg+'</label>',
+            'error'
+          )
+        }else{
+          this.list_usu = data1
+          console.log(data1, "  <<<<<<<<<<<<<<<<  asdasd")
+        }
+        
       })
-      },
-      /*getListCua(){
-        fetch(this.url.url_front_end+'/cuaderno/Vue_Cuadernos/')
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-            this.buscar.lists = data
-          })
-      },
-      getListEspe(){
-        fetch(this.url.url_front_end+'/cuaderno/Vue_Especialidades/')
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-            this.buscar1.lisBus1  = data
-          })
-      }*/
+      }
     },
     computed:{
-      Buscar () {
-        return this.buscar.lists.filter((item) => {
-            return item.lists.toLowerCase().includes(this.buscar.lists.toLowerCase()) || 
-            item.nombre.toLowerCase().includes(this.buscar.lists.toLowerCase()) ||
-            item.descripcion.toLowerCase().includes(this.buscar.lists.toLowerCase());
-        });
-      },
-      Buscar1 () {
-        return this.buscar1.lisBus1 .filter((item) => {
-            return item.lisBus1.toLowerCase().includes(this.buscar1.lisBus1.toLowerCase()) || 
-            item.titulo.toLowerCase().includes(this.buscar1.lisBus1.toLowerCase()) ||
-            item.grupo.toLowerCase().includes(this.buscar1.lisBus1.toLowerCase());
-        });
-      },
-      buscar: function () {
+      searchNoticia: function () {
         return this.list.filter((item) => 
         item.createdAt.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
-        || item.titulo.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
-        || item.grupo.toLowerCase().includes(this.buscar_in_list.toLowerCase()))
+        || item.nombre.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
+        || item.apellidop.toLowerCase().includes(this.buscar_in_list.toLowerCase()))
+      },
+      Buscar: function () {
+        return this.list_est.filter((item) => 
+        item.createdAt.toLowerCase().includes(this.buscar_in_list1.toLowerCase()) 
+        || item.nombre.toLowerCase().includes(this.buscar_in_list1.toLowerCase()))
+      },
+      BucarUser: function () {
+        return this.list_usu.filter((item) => 
+        item.createdAt.toLowerCase().includes(this.buscar_in_list.toLowerCase()) 
+        || item.username.toLowerCase().includes(this.buscar_in_list.toLowerCase()))
+      },
+      BucarUser1: function () {
+        return this.list_est_user.filter((item) => 
+        item.createdAt.toLowerCase().includes(this.buscar_in_list1.toLowerCase()) 
+        || item.username.toLowerCase().includes(this.buscar_in_list1.toLowerCase()))
       }
-
     }
   })
 </script>
