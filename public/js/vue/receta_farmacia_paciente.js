@@ -6,7 +6,10 @@ const receta_paciente = new Vue({
   data : () => ({
     url:data_url.url_front_end,
     msg: 'aljand',
+    data_fecha:'',
 
+    one_Receta_paciente:'',
+    list_medicamentos_one:'',
     list2 : [],
    
 
@@ -60,6 +63,7 @@ const receta_paciente = new Vue({
         
   }),
   mounted(){
+    this.data_fecha =  moment().format('l'); 
     fetch(this.url+'/farmacia/vue_one_receta/'+this.id_receta)
     .then(resp => resp.json())
     .then(data_receta_paciente => { 
@@ -85,6 +89,19 @@ const receta_paciente = new Vue({
         }
         this.insert_men_receta(data_receta_paciente[0].medicamentos[i].id,data_receta_paciente[0].medicamentos[i].cantidad,data_receta_paciente[0].medicamentos[i].medicamento)
       } 
+    })
+
+    fetch(this.url+'/farmacia/vue_one_receta_medicamento/'+this.id_receta)
+    .then(resp => resp.json())
+    .then(data => {
+     
+      if( data[0] != ""){
+        console.log(data, "    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        this.one_Receta_paciente = data[0];
+        this.list_medicamentos_one = data[0].medicamentos
+       
+      }
+     
     })
   },
 
@@ -117,6 +134,20 @@ const receta_paciente = new Vue({
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   },
   methods:{ 
+    data_one_receta(){
+      fetch(this.url+'/farmacia/vue_one_receta_medicamento/'+this.id_receta)
+      .then(resp => resp.json())
+      .then(data => {
+       
+        if( data[0] != ""){
+          console.log(data, "    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+          this.one_Receta_paciente = data[0];
+          this.list_medicamentos_one = data[0].medicamentos
+         
+        }
+       
+      })
+    },
     clearSearchItemMed(){
       this.searchMed = undefined
       this.searchInTheListMed('')
@@ -531,8 +562,10 @@ const receta_paciente = new Vue({
             .then(data => {
               console.log(data, "esto es lo que quiero ver")
               if(data.success == true){
-                this.update_cantidad();
-                this.update_estad_atendido();               
+                this.update_cantidad()
+                this.msg_false_post = ""
+                this.data_one_receta();
+                this.update_estad_atendido()
                 swal.fire(
                   'Success!',
                   '<label style="color:green;">'+ data.msg +'</label>',

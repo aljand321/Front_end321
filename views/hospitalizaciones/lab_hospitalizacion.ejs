@@ -9,7 +9,6 @@
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
-		
 		<link href="/css/tamM.css" rel="stylesheet" type="text/css">
 		<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 	<link href="/css/moldeable.css" rel="stylesheet" type="text/css" />
@@ -39,8 +38,7 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
 	<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
-  
-    <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 
 	<style>
 		div.a {
@@ -57,9 +55,9 @@
 
 <body class="light_theme  fixed_header left_nav_fixed">
 	<!-- Content page-->
-	<div class="wrapper scroll1" >
+	<div class="wrapper" >
 		<!--\\\\\\\ wrapper Start \\\\\\-->
-		<div id="ocultoIl" class="header_bar">
+		<div class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
@@ -70,11 +68,11 @@
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>		
-				<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </a>
+				<a href="/internaciones/paciente_internacion/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </a>
 				
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							
@@ -87,36 +85,96 @@
 		</div>
 		<div class="inner" id="lab_consulta_externa">
 			<!--\\\\\\\ inner start \\\\\\-->
-			<div id="ocultoIl" class="left_nav">
+			<div class="left_nav">
 
 				<!--\\\\\\\left_nav start \\\\\\-->
 
 				<div class="left_nav_slidebar">
-					<ul>
-						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul>
-								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
-							</ul>
-						</li>
-						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul>
-								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b> </a> </li>
-							</ul>
-						</li>
-						
-						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul>
-									<li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
-									<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-									<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
-							   </ul>
-						</li>
-						
-					</ul>
+                        <ul>
+                                <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home<span class="plus"><i class="fa fa-plus"></i></span> </a>
+                                    <ul >
+                                        <li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b><%=data_doc.data.area_esp.nombre%></b>
+                                        </a> </li>
+                                    </ul>
+                                </li>
+                                
+                                <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Listas de Paciente <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
+                                    <ul  class="opened" style="display:block">
+                                        <li> 
+                                            <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Listas de Internación</b> </a> 
+                                        </li>
+                                        
+                                        <%if (one_internacion[0].estado_alta != true) { %>
+                                            <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                                <b class="theme_color">Pacientes Internados</b>
+                                                </a> 
+                                            </li>
+                                            <li> 
+                                                <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i><b >Pacientes de alta </b></a> 
+                                            </li>
+                                        <% } else { %>
+                                            <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                                <b >Pacientes Internados</b>
+                                                </a> 
+                                            </li>
+                                            <li> 
+                                                <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i><b class="theme_color">Pacientes de alta </b></a> 
+                                            </li> 
+                                        <% } %>
+                                        <li> 
+                                            <a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                                <b >Traslados</b>
+                                            </a> 
+                                        </li>
+                                        
+                                    </ul>
+                                </li>
+                                <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+                                    <ul >
+                                        <li> 
+                                            <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> 
+                                        </li>
+                                        <li> 
+                                            <a href="/hospitalizacion/antecedentesvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> 
+                                        </li>
+                                        <li> 
+                                            <a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a> 
+                                        </li>
+                                        
+                                        <li> 
+                                            <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a> 
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Traslados<span class="plus"><i class="fa fa-plus"></i></span></a>
+                                    <ul >
+                                        <%if(one_internacion[0].idPinternacion != null) { %>
+                                        <li> 
+                                            <a href="/internaciones/traslado_interno/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Traslado Interno</b> </a> 
+                                        </li>
+                                        <% } else { %>
+                                            <li> 
+                                                <a href="/internaciones/traslado_interno2/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Traslado Interno</b> </a> 
+                                            </li>
+                                        <% } %>
+                                        
+                                        
+                                    </ul>
+                                </li>
+                                <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+                                    <ul >
+                                        <li> 
+                                            <a href="/hospitalizacion/reporteP"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
+                                        </li>
+                                        
+                                    </ul>
+                                </li>
+                                
+                            </ul>
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
-			<div id="ocultoIl" class="contentpanel">
+			<div class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
@@ -129,7 +187,12 @@
 										<div class="head">
 											<div class="actions">
 												<div class="btn-group">
-													<button type="button" class="btn btn-info btn-flat" @click="volver()">Listas de:</button>
+													<%if (one_internacion[0].estado_alta == true) { %>
+														<button type="button" class="btn btn-info btn-flat">Listas de:</button>
+													<% } else { %>
+														<button type="button" class="btn btn-info btn-flat" @click="volver()">Listas de:</button>
+													<% } %>		
+													
 													<button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
 														<span class="caret"></span>
 														<span class="sr-only">Toggle Dropdown</span>
@@ -139,8 +202,11 @@
 														<li><a @click="list_rayosX_data()">Rayos X</a></li>
 														<li><a  @click="list_lab_data()">Laboratorios</a></li>
 														<li class="divider"></li>
-														<li><a @click="volver()">Volver</a></li>
+														<%if (one_internacion[0].estado_alta == false) { %>
+															<li><a @click="volver()">Volver</a></li>
+														<% } %>	
 													</ul>
+													<input type="hidden" :value="estado_alta = '<%=one_internacion[0].estado_alta%>'">
 												</div>
 											</div>
 											<div class="header">
@@ -152,6 +218,7 @@
 										
 										<br>
 										<br>
+										
 										<div class="block-web">
 											<div class="col-md-14">
 												<div class="row">
@@ -188,8 +255,9 @@
 																						tab de laboratorios
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-									 -->
-									<div class="col-lg-14" v-if="view_list" v-if="view_list">
+                                     -->
+                                    
+									<div class="col-lg-14" v-if="view_list">
 										<section class="panel default blue_title h2">
 											<div class="panel-heading">EXAMENES COMPLEMENTARIOS <span class="semi-bold"> </span> </div>										
 									
@@ -202,10 +270,10 @@
 												<div class="tab-content" id="myTabContent">
 													<div id="Tab1" class="tab-pane fade in active">
 														<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
-														<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
-														<input type="hidden" :value="nombre_doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
+														<input type="hidden" :value="id_internacion = '<%=one_internacion[0].id%>'">
+														<input type="hidden" :value="nombre_doctor = '<%=one_internacion[0].doctor%>'">
 														<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
-														<input type="hidden" :value="consultorio = '<%=ConsultaOnly[0].tipoConsulta%>'">
+														<input type="hidden" :value="consultorio = '<%=one_internacion[0].especialidad%>'">
 														<!-- 
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -299,9 +367,7 @@
 																		<div class="col-md-8 ">
 																			<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 																			<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-																	<!--		<a href="/paciente/imprimirLaboratorio"> Imprimir</a>
-																			<button type="reset"class="btn btn-warning btn-icon"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
-																	-->		
+																			<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 																		</div>
 																	</div>
 																</form>						
@@ -330,7 +396,7 @@
 																	<div class="porlets-content">
 																		<div class="row">																	
 																			<div class="col-md-12 panel panel-default">
-																				<div id="ocultoIl" class=" panel panel-default">
+																				<div id="ocultoI" class=" panel panel-default">
 																					<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Torax</li>            
 																				</div>
 																				<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse ">
@@ -379,7 +445,7 @@
 																			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Abdomen >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																		
 																			<div class="col-md-12 panel panel-default ">
-																				<div id="ocultoIl"class=" panel panel-default">
+																				<div id="ocultoI"class=" panel panel-default">
 																					<li href="#ac3-3" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Abdomen</li>            
 																				</div>
 																				<div style="height: 0px;" id="ac3-3" class="panel-collapse collapse ">
@@ -422,7 +488,7 @@
 																			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Cráneo y Macizo Facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																			<div class="form-group">
 																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoIl" class=" panel panel-default">
+																					<div id="ocultoI" class=" panel panel-default">
 																						<li href="#ac3-craneo" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Cráneo y Macizo Facial</li>            
 																					</div>
 																					<div style="height: 0px;" id="ac3-craneo" class="panel-collapse collapse ">
@@ -487,7 +553,7 @@
 																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Placas Radiograficas de craneo y macizo facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																			<div class="form-group">
 																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoIl" class=" panel panel-default">
+																					<div id="ocultoI" class=" panel panel-default">
 																						<li href="#ac3-placas" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Placas Radiográficas de craneo y macizo facial</li>            
 																					</div>
 																					<div style="height: 0px;" id="ac3-placas" class="panel-collapse collapse ">
@@ -899,8 +965,8 @@
 																
 																<div class="col-lg-12 his">
 																		<h5 class="center">Solicitud de Examens</h5>
-																	<section class="panel default blue_title h2 scrollV">
-																	
+																	<section class="panel default blue_title h2 clear">
+																	 
 																	<div class="panel-body">	
 																		<label v-if="group_rayosX.torax != ''">Torax:</label><br>													
 																		<!-- Standard gray button with gradient -->
@@ -1833,11 +1899,11 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade scroll1" id="modal-info">
+			<div class="modal modal-info fade" id="modal-info">
 				<div class="modal-dialog">
-				  <div class="modal-content" >
-					<div class="modal-header" id="">
-					  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>
 					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 					</div>
@@ -1854,7 +1920,7 @@
 										<p>{{lab_one.otros}}</p>
 										
 									</div>
-									<div class="col-md-3 horaI"> 										
+									<div class="col-md-3"> 										
 										<p for="">Hora: {{lab_one.hora}}</p>
 									</div>
 									<div class="col-md-12">
@@ -1868,18 +1934,10 @@
 								
 							</div>
 						</div>
-						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-						<div class="arriba"> 
-							<p class="firmaPa center cafirmaP"></p>
-							<p class="firmaDoc center cafirmaDoc"></p>
-						</div>
-						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 						
 					</div>
-					<div id="ocultoIl" class="modal-footer">
+					<div class="modal-footer">
 					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-					  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-													
 					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 					</div>
 				  </div>
@@ -1894,11 +1952,11 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade scroll1" id="modal_x">
-					<div class="modal-dialog" id="">
+			<div class="modal modal-info fade" id="modal_x">
+					<div class="modal-dialog">
 					  <div class="modal-content">
 						<div class="modal-header">
-						  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span></button>
 						  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 						</div>
@@ -1916,7 +1974,7 @@
 
 											
 										</div>
-										<div class="col-md-3 horaI"> 										
+										<div class="col-md-3"> 										
 											<p for="">Hora: {{lab_one.hora}}</p>
 										</div>
 										<div class="col-md-12">
@@ -1978,16 +2036,10 @@
 									
 								</div>
 							</div>
-							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-							<div class="arriba"> 
-								<p class="firmaPa center cafirmaP"></p>
-								<p class="firmaDoc center cafirmaDoc"></p>
-							</div>
-							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							
 						</div>
-						<div id="ocultoIl" class="modal-footer">
+						<div class="modal-footer">
 						  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-						  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 						 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 						</div>
 					  </div>
@@ -2002,16 +2054,16 @@
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
-			<div class="modal modal-info fade scroll1 centerTodo" id="modal_lab">
-				<div class="modal-dialog " id="mdialTamanio">
-				  <div class="modal-content" id="">
+			<div class="modal modal-info fade" id="modal_lab">
+				<div class="modal-dialog" id="mdialTamanio">
+				  <div class="modal-content">
 					<div class="modal-header">
-					  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>
 					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 					</div>
 					
-					<div class="modal-body" id="">
+					<div class="modal-body">
 						<div class="">
 							<div class="card row" style="width: 55rem;">
 								<div class="col-md-14">									
@@ -2022,10 +2074,10 @@
 										<p>Otros Examenes:</p>
 										<p>{{lab_one.otros}}</p>										
 									</div>
-									<div class="col-md-3 horaIR"> 										
+									<div class="col-md-3"> 										
 										<p for="">Hora: {{lab_one.hora}}</p>
 									</div>
-									<div class="col-md-12 scrollV">
+									<div class="col-md-12">
 										<label for="">Examene diagnosticado</label><br>
 										<div class="col-md-3" v-if="examen_lab.Hemotología != ''">
 											<p>Hemotología:</p>
@@ -2119,17 +2171,10 @@
 								
 							</div>
 						</div>
-						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-						<div class="arriba"> 
-							<p class="firmaPa center cafirmaP"></p>
-							<p class="firmaDoc center cafirmaDoc"></p>
-						</div>
-						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 						
 					</div>
-					<div id="ocultoIl" class="modal-footer">
+					<div class="modal-footer">
 					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-					  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 					</div>
 				  </div>
@@ -2157,111 +2202,6 @@
 			  });
 		   	}, 2000);
 		</script>  -->
-<style >
-	@page {
-		size: 8.5in 11in portraint;
-		page-size: 190mm;
-		page-size: 190mm;
-	}			
-	@media print {
-	    .page {
-	        margin: 0;
-	        border: initial;
-	        border-radius: initial;
-	        width: initial;
-	        min-height: initial;
-	        box-shadow: initial;
-	        background: initial;
-	        page-break-after: always;
-		}
-		#ocultoIl{
-	    	display: none;   
-		}
-		.scroll1 {
-	        overflow-y:hidden;
-			border: hidden;
-		}
-		.firmaPa:before {
-	    content: " FIRMA DEL PACIENTE ";
-	    font-weight: negrita;
-	    color:black;
-	    text-align: center;
-	    padding: 0%;
-	    margin: 0%;
-	    font: Arial;
-	    border: 0px;
-		margin-top: 10%;
-		}
-		.firmaDoc:before {
-		    content: " FIRMA DEL DOCTOR ";
-		    font-weight: negrita;
-		    color:black;
-		    text-align: center;
-		    padding: 0%;
-		    margin: 0%;
-		    font: Arial;
-		    border: 0px;
-		    padding-top: 1%;
-		
-		    margin-top: auto;
-		    border-top-style: dashed;
-		    border-right-style: double;
-		    border-bottom-style: dotted;
-		    border-left-style: solid;
-		}
-		.cafirmaP{
-		    width: 30%;
-		    float:left;
-		    border-top-style: dotted;
-		}
-		.cafirmaDoc{
-		    width: 30%;   
-		    float: right;
-		    border-top-style: dotted;
-		}
-		.arriba{
-			margin-top: 5%;
-			margin-bottom: 5%;
-			padding-bottom: 5%;
-		}
-		.horaI{
-			width: 30%;
-			float:left;
-			position:absolute;
- 			top:5%;
- 			right:0;
-		}
-		.labI{
-			width: 1000%;
-		}
-		.centerTodo{
-	    padding-top: 0%;
-	    width: 115%;
-		padding-left: 0%;
-	   justify-content: center;
-	   align-items: center;
-	   border: 1px;
-	   border-top-style: dashed;
-	   border-right-style: double;
-	   border-bottom-style: dotted;
-	   border-left-style: solid; 
-	}
-
-	}
-	.scrollV{
-		
-		width: 190%;
-		overflow-y:scroll;
-        overflow-x:hidden;
-	}	
-	.horaIR{
-			width: 30%;
-			float:left;
-			position:absolute;
- 			top:5%;
- 			right:0;
-		}						
-</style>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautifier.js"></script>
 
@@ -2346,13 +2286,12 @@
 			});
 
 		</script>
-		        <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   <!-- vue cdn -->
 		<script src="/moment/moment.js"></script>
 		<script src="/moment/locale/af.js"></script>
 		<script src="/url/export.js"></script>
 
-		<script src="/js/vue/lab_consulta_externa.js"></script>
+		<script src="/js/vue/lab_hospitalizacion.js"></script>
 
 
 

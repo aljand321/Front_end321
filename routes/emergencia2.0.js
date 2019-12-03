@@ -579,8 +579,8 @@ router.get('/vue_receta_emergencia/:id_consulta',(req,res) =>{
  })
 
 //ruta para para poder insertar papeletas de internacion
-router.post('/Pinternacion/:id_consulta/:historial/:token_id/:token_partial', (req,res) => {
-  const { id_consulta, historial, token_id, token_partial } = req.params;
+router.post('/Pinternacion/:id_consulta/:historial/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id_consulta, historial, token_id, token_partial, id_cita } = req.params;
   var msg_p;
   var data = req.body 
   var esto = {
@@ -610,7 +610,7 @@ router.post('/Pinternacion/:id_consulta/:historial/:token_id/:token_partial', (r
           remove(token_id)
           msg_data(msg_p,token_id)
         }
-      res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial); 
+      res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial+'/'+id_cita); 
     }else{
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {
@@ -626,7 +626,7 @@ router.post('/Pinternacion/:id_consulta/:historial/:token_id/:token_partial', (r
         remove(token_id)
         msg_data(msg_p,token_id)
       }
-      res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial); 
+      res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial+'/'+id_cita); 
     }      
     setTimeout(()=>{
       remove(token_id)
@@ -634,8 +634,8 @@ router.post('/Pinternacion/:id_consulta/:historial/:token_id/:token_partial', (r
   }) 
 })
 
-router.post('/updatePinter/:id/:id_consulta/:historial/:token_id/:token_partial', (req,res) => {
-  const { id, id_consulta, historial, token_id, token_partial } = req.params;
+router.post('/updatePinter/:id/:id_consulta/:historial/:token_id/:token_partial/:id_cita', (req,res) => {
+  const { id, id_consulta, historial, token_id, token_partial, id_cita } = req.params;
   var msg_p;
   var data = req.body;
   var esto = {
@@ -665,7 +665,7 @@ router.post('/updatePinter/:id/:id_consulta/:historial/:token_id/:token_partial'
         remove(token_id)
         msg_data(msg_p,token_id)
       } 
-      res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial); 
+      res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial+'/'+id_cita); 
     }else{
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {
@@ -681,7 +681,7 @@ router.post('/updatePinter/:id/:id_consulta/:historial/:token_id/:token_partial'
         remove(token_id)
         msg_data(msg_p,token_id)
       }
-      res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial); 
+      res.redirect('/emergencia2.0/papeleta_internacion/'+id_consulta+'/'+historial+'/'+token_id+'/'+token_partial+'/'+id_cita); 
     }  
     setTimeout(()=>{
       remove(token_id)

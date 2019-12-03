@@ -315,11 +315,13 @@
                                                         <li href="#collapse4" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Herramientas</li>
                                                         <div class="file_sidebar_list panel-collapse collapse in"   id="collapse4" style="height: auto;">
                                                             <ul>
-                                                                <%if(updateCita != "") { %>
-                                                                    <li><a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <i class="fa fa-building-o"></i>Receta</a></li>  
-                                                                    <li><a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
-                                                                    <li><a href="/laboratorios/lab_consulta_externa/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li> 
-                                                                <% }  %>                                                                        
+                                                                
+                                                                <template v-if="consulta_update != ''">                                                               
+                                                                    <li><a :href="'/consulta_externa/receta/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"> <i class="fa fa-building-o"></i>Receta</a></li>  
+                                                                    <li><a :href="'/consulta_externa/papeleta_internacion/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
+                                                                    <li><a :href="'/laboratorios/lab_consulta_externa/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li> 
+                                                                </template>
+                                                                                                                                    
                                                             </ul>  
                                                         </div>
                                                     </div>                                                 

@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
-
+    <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 
 
     <style>
@@ -255,15 +255,15 @@
 				    						<div class="col-md-12">
 				    							<div class="form-group col-md-2">
 				    								<label>Fecha</label>
-				    								<input type="text" readonly parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
+				    								<input type="text"  parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-2">
                                                         <label>hora</label>
-                                                        <input type="text" readonly parsley-trigger="change" required class="form-control" v-model="traslado.hora">
+                                                        <input type="text"  parsley-trigger="change" required class="form-control" v-model="traslado.hora">
                                                     </div><!--/form-group-->
 				    							<div class="form-group col-md-2">
 				    								<label>Enviado de:</label>
-				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value= " traslado.enviado_de = '<%=data_doc.data.area_esp.nombre%>'">
+				    								<input type="text" parsley-trigger="change"  class="form-control" :value= " traslado.enviado_de = '<%=data_doc.data.area_esp.nombre%>'">
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-3">
                                                     <label>Area de traslado:</label><br>
@@ -275,25 +275,25 @@
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-3">
 				    								<label>Doctor:</label>
-				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value=" traslado.nombre_doctor = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
+				    								<input type="text" parsley-trigger="change"  class="form-control" :value=" traslado.nombre_doctor = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
                                                 </div><!--/form-group-->
 				    						</div>
 				    						<div class="col-md-12">
 				    							<div class="form-group col-md-12">
 				    								<label>Operaciones</label>												
-				    								<textarea name="" id="" cols="30" rows="5" required class="form-control" v-model="traslado.operaciones"></textarea>
+				    								<textarea name="" id="" cols="30" rows="5"  class="form-control" v-model="traslado.operaciones"></textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
 				    								<label>Diagnostico Principal</label>												
-				    								<textarea name="" id="" cols="30" rows="5" required class="form-control" v-model=" traslado.diagnostico_principal"></textarea>
+				    								<textarea name="" id="" cols="30" rows="5"  class="form-control" v-model=" traslado.diagnostico_principal"></textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
 				    								<label>Otros diagnosticos</label>												
-				    								<textarea name="" id="" cols="30" rows="6" required class="form-control" v-model="traslado.otros_diagnosticos"></textarea>
+				    								<textarea name="" id="" cols="30" rows="6"  class="form-control" v-model="traslado.otros_diagnosticos"></textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
 				    								<label>Causa Externa</label>												
-				    								<textarea name="" id="" cols="30" rows="1" required class="form-control" v-model="traslado.causa_externa"></textarea>
+				    								<textarea name="" id="" cols="30" rows="1"  class="form-control" v-model="traslado.causa_externa"></textarea>
                                                 </div><!--/form-group-->
 
 				    						</div>							
@@ -308,8 +308,9 @@
                     
                     </div>                
                 </template>
-
+               
                 <template v-else>
+                   
                     <div class="container clear_both padding_fix col-lg-8">
 				    	<div class="row">
 				    		<div class="col-md-12">
@@ -321,58 +322,60 @@
 				    			  	<div class="porlets-content">
                                         <span style="color: red">{{traslado.msg_false}}</span>
                                         <span style="color: blue">{{traslado.msg}}</span>
-				    					<form  parsley-validate novalidate>
+				    					<form @submit="traslado_update" parsley-validate novalidate>
                                         
 				    						<div class="col-md-12">
 				    							<div class="form-group col-md-2">
 				    								<label>Fecha</label>
-				    								<input type="text" readonly parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
+				    								<input type="text" readonly parsley-trigger="change" required class="form-control" v-model="one_traslado.fecha_hora">
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-2">
 				    								<label>hora</label>
-				    								<input type="text" readonly parsley-trigger="change" required class="form-control" v-model="traslado.hora">
+				    								<input type="text" readonly parsley-trigger="change" required class="form-control" v-model="one_traslado.hora">
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-2">
 				    								<label>Enviado de:</label>
-				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value= " traslado.enviado_de = '<%=data_doc.data.area_esp.nombre%>'">
+				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value= " one_traslado.enviado_de">
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-3">
                                                     <label>Area de traslado:</label><br>
-                                                    <input type="text" parsley-trigger="change" readonly class="form-control" v-model="esp">
-                                                   <!--  <select v-model="idHist.id_especialidad">
+                                                    <!-- <input type="text" parsley-trigger="change" readonly class="form-control" v-model="esp"> -->
+                                                    <select v-model="one_traslado.id_especialidad">
+                                                        <option :value="idHist.id_especialidad">{{esp}}</option>
+                                                        <option value="">-------------------------------</option>
                                                         <% for (var i = 0; i < especialidad.length; i++) { %>
                                                             <option value="<%=especialidad[i].id%>"><%=especialidad[i].nombre%></option>
                                                         <% } %>
-                                                    </select> -->
+                                                    </select> 
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-3">
 				    								<label>Doctor:</label>
-				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value=" traslado.nombre_doctor = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
+				    								<input type="text" parsley-trigger="change"  class="form-control" :value=" one_traslado.nombre_doctor">
                                                 </div><!--/form-group-->
 				    						</div>
 				    						<div class="col-md-12">
 				    							<div class="form-group col-md-12">
 				    								<label>Operaciones</label>												
-				    								<textarea name="" id="" cols="30" rows="5" readonly required class="form-control" v-model="traslado.operaciones">                                                   
+				    								<textarea name="" id="" cols="30" rows="5"  required class="form-control" v-model="one_traslado.operaciones">                                                   
                                                     </textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
 				    								<label>Diagnostico Principal</label>												
-				    								<textarea name="" id="" cols="30" rows="5" readonly required class="form-control" v-model=" traslado.diagnostico_principal"></textarea>
+				    								<textarea name="" id="" cols="30" rows="5"  required class="form-control" v-model=" one_traslado.diagnostico_principal"></textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
 				    								<label>Otros diagnosticos</label>												
-				    								<textarea name="" id="" cols="30" rows="6" readonly required class="form-control" v-model="traslado.otros_diagnosticos"></textarea>
+				    								<textarea name="" id="" cols="30" rows="6"  required class="form-control" v-model="one_traslado.otros_diagnosticos"></textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
 				    								<label>Causa Externa</label>												
-				    								<textarea name="" id="" cols="30" rows="1" readonly required class="form-control" v-model="traslado.causa_externa"></textarea>
+				    								<textarea name="" id="" cols="30" rows="1"  required class="form-control" v-model="one_traslado.causa_externa"></textarea>
                                                 </div><!--/form-group-->
                                                 
 				    						</div>							
                                         
-				    					  	<button class="btn btn-primary" disabled>Submit</button>
-				    					  	<button class="btn btn-default" disabled>Cancel</button>
+				    					  	<button class="btn btn-primary" >Submit</button>
+				    					  	<button class="btn btn-default" >Cancel</button>
 				    					</form>
 				    			  	</div><!--/porlets-content-->
 				    			</div><!--/block-web--> 
@@ -432,7 +435,7 @@
 
     <script src="/js/jPushMenu.js"></script>
     
-
+    <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/js/side-chats.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="/axios/dist/axios.min.js"></script>
@@ -442,8 +445,9 @@
     <script>
     var traslados = new Vue({
         el:"#traslados",
-        data:{            
-            idHist:{
+        data:{ 
+            url:data_url.url_front_end,           
+            idHist:{                
                 id_int:'',
                 hist:'',
                 id_medico:'',
@@ -469,11 +473,12 @@
             esp:'',
             operaciones:[]
         },
+        
         mounted(){
             this.traslado.fecha_hora = moment().format('l'); 
-            this.traslado.hora = moment().format('HH:mm:ss')
+            this.traslado.hora = moment().format('HH:mm:ss')        
             
-            fetch('http://localhost:7000/internaciones/vue_traslado_int/'+ this.idHist.id_int)
+            fetch(this.url+'/internaciones/vue_traslado_int/'+ this.idHist.id_int)
             .then(res => res.json())
             .then(data => {
                 console.log (data , " <<<<<<<<<<<< sadf")
@@ -486,6 +491,7 @@
                    
                     console.log('si null <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
                     this.one_traslado = data[0]
+                    this.mostara_one_traslado(data[0].id_especialidad)
                     this.traslado.fecha_hora = data[0].fecha_hora
                     this.traslado.operaciones = data[0].operaciones
                     this.traslado.diagnostico_principal = data[0].diagnostico_principal
@@ -493,24 +499,10 @@
                     this.traslado.causa_externa = data[0].causa_externa  
                     
                     this.idHist.id_especialidad = data[0].id_especialidad     
-                }
-                        
+                }                      
                 
-            })
-            fetch('http://localhost:7000/internaciones/vue_ver_especialidades')
-            .then(res => res.json())
-            .then(data => {
-                
-                for(var i = 0; i < data.length; i++){
-                    if(data[i].id == this.idHist.id_especialidad){
-                        
-                        this.esp = data[i].nombre
-
-                    }
-                }
-            })
-            
-            fetch('http://localhost:7000/internaciones/vue_ver_operaciones_internacion/' + this.idHist.id_int)
+            })           
+            fetch(this.url+'/internaciones/vue_ver_operaciones_internacion/' + this.idHist.id_int)
             .then(res => res.json())
             .then(data => {
                    
@@ -521,6 +513,14 @@
            
         },
         methods:{ 
+            mostara_one_traslado(id){
+                fetch(this.url+'/internaciones/vue_ver_especialidades/'+id)
+                .then(res => res.json())
+                .then(data => {                   
+                    this.esp = data[0].nombre       
+                    console.log(data,  " esto es el nombre de la especialidad")            
+                })
+            },
             register_traslado(e){
                 e.preventDefault();
                 console.log(this.idHist.id_int)
@@ -547,14 +547,16 @@
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/internaciones/vue_register_traslado/'+this.idHist.id_paleta_internacion,esto)
+                fetch(this.url+'/internaciones/vue_register_traslado/'+this.idHist.id_paleta_internacion,esto)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
                     if(data.success == true){
-                        this.traslado.msg = data.msg
-                        nombre_doctor:this.traslado.nombre_doctor,
-                        this.traslado.fecha_hora = ''
+                        swal.fire(
+                          'Success!',
+                          '<label style="color:green;">'+ data.msg +'</label>',
+                          'success'
+                        )              
                         this.traslado.enviado_de = ''
                         this.traslado.operaciones = ''
                         this.traslado.diagnostico_principal = ''
@@ -565,10 +567,53 @@
                         this.liverar_cama()
                         this.oneTraslado()
                     }else{
-                        this.traslado.msg_false = data.msg
-                        this.traslado.msg = ''
+                        swal.fire(
+                          'Error!',
+                          '<label style="color:red;">'+data.msg+'</label>',
+                          'error'
+                        )
                     }
 
+                })
+            },
+
+            //funcion para poder actualziar el estado del traslado
+            traslado_update(e){
+                e.preventDefault();
+                console.log(this.idHist.id_int)
+                var data = {
+                    
+                    enviado_de:this.one_traslado.enviado_de,
+                    operaciones:this.one_traslado.operaciones,
+                    diagnostico_principal:this.one_traslado.diagnostico_principal,
+                    otros_diagnosticos:this.one_traslado.otros_diagnosticos,
+                    causa_externa:this.one_traslado.causa_externa,
+                    id_especialidad: this.one_traslado.id_especialidad
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch(this.url+'/internaciones/vue_update_traslado/'+this.one_traslado.id,esto)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success == true){
+                        swal.fire(
+                          'Success!',
+                          '<label style="color:green;">'+ data.msg +'</label>',
+                          'success'
+                        )
+                        this.oneTraslado()
+                    }else{
+                        swal.fire(
+                          'Error!',
+                          '<label style="color:red;">'+data.msg+'</label>',
+                          'error'
+                        )
+                    }
                 })
             },
             update_estado_internacion(){
@@ -583,7 +628,7 @@
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/internaciones/vue_update_estado_alta/'+this.idHist.id_int,esto)
+                fetch(this.url+'/internaciones/vue_update_estado_alta/'+this.idHist.id_int,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(data => {
@@ -604,7 +649,7 @@
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/internaciones/vue_update_cama_estado/'+this.idHist.id_cama,esto)
+                fetch(this.url+'/internaciones/vue_update_cama_estado/'+this.idHist.id_cama,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(data => {
@@ -613,7 +658,7 @@
             },
 
             oneTraslado(){
-                fetch('http://localhost:7000/internaciones/vue_traslado_int/'+ this.idHist.id_int)
+                fetch(this.url+'/internaciones/vue_traslado_int/'+ this.idHist.id_int)
                 .then(res => res.json())
                 .then(data => {
                     console.log (data , " <<<<<<<<<<<< sadf")
@@ -626,6 +671,7 @@
                     
                         console.log('si null <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
                         this.one_traslado = data[0]
+                        this.mostara_one_traslado(data[0].id_especialidad)
                         this.traslado.fecha_hora = data[0].fecha_hora
                         this.traslado.operaciones = data[0].operaciones
                         this.traslado.diagnostico_principal = data[0].diagnostico_principal

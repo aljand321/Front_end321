@@ -849,12 +849,14 @@ router.get('/recetas_farm/:token_id/:token_partial',(req, res) => {
         fetch('http://localhost:3000/api/list_pacientes')
         .then(resp => resp.json())
         .then(paciente => {
+          
           res.render('Farmacia/recetas_farm',{
             resp,
             data_doc : data_user[token_id],
             paciente,
             atendidos
           })
+
         })
 
       })
@@ -891,7 +893,8 @@ router.get('/reg_receta/:id_receta/:token_id/:token_partial',(req, res) => {
         res.render('Farmacia/reg_receta',{
           data_receta,
           data_doc : data_user[token_id],
-          one_paciente
+          one_paciente,
+          id_receta
         })
       })
 
@@ -902,6 +905,17 @@ router.get('/reg_receta/:id_receta/:token_id/:token_partial',(req, res) => {
   }
     
 });
+
+//ruta para poder mostrar one recete del paciente
+router.get('/vue_one_receta_medicamento/:id_receta', (req,res) => {
+  const { id_receta } = req.params;
+  fetch('http://localhost:3200/api/one_receta_paciente/'+id_receta)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
 
 router.get('/vue_one_receta/:id_receta', (req,res) => {
   const { id_receta } = req.params
@@ -1086,6 +1100,15 @@ router.post('/reg_cliente/:token_id/:token_partial', (req,res) => {
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+router.get('/vue_one_receta_ciente/:id_receta', (req,res) => {
+  const { id_receta } = req.params
+  fetch('http://localhost:3200/api/one_receta_cliente/'+id_receta)
+  .then(res => res.json())
+  .then(data => {
+    res.status(200).json(data);
+  })
+})
 
 router.get('/reg_venta/:id_cliente/:token_id/:token_partial',(req, res) => {
   const { id_cliente, token_id, token_partial } = req.params
@@ -1277,7 +1300,7 @@ router.get('/reportes_facturacion',(req, res) => {
 
 
 
-
+///Listas de Ventas Clientes
 router.get('/ventas_cli/:id/:token_id/:token_partial', (req,res) => {
   const { id, token_id, token_partial }  = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){

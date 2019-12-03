@@ -122,6 +122,80 @@
             <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
         
         <div class="main-content" id="receta"> 
+          <!-- 
+            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                          Modal de vista receta
+            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                      
+           -->
+           <div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Detalles de la Receta</h4>
+                  </div>
+                      <div>
+                        <div class="">
+                          <div id="main-content">
+                            <div class="">		
+                              <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade active in " id="neww">
+                                  <div class="col-md-14">
+                                    <div class="">
+                                      <div class=" ">
+                                        <p></p>
+                                        <span></span>
+                                        <span style="color: rgb(21, 21, 149)">N° de Historial:  </span> {{receta_id.historiaClinica}}<br>
+                                        <span style="color: rgb(21, 21, 149)">Nombre Completo:</span>  <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%><br>
+                                        <span style="color: rgb(21, 21, 149)">Fecha de la Receta:</span>  {{receta_id.fecha}} <br>
+                                        <span style="color: rgb(21, 21, 149)"> Nombre del Médico:</span> {{receta_id.doctor}}<br>
+                                        <span style="color: rgb(21, 21, 149)">Especialidad:</span>  {{receta_id.tipoConsulta}}<br>
+                                        <span style="color: rgb(21, 21, 149)">Medicamento:</span>
+                                        <div class="col-lg-11"> 
+                                          <section class="panel default blue_title h2">  
+                                            <div class="panel-body"> 
+                                              <table class="table table-hover">
+                                              <thead>
+                                                <tr>
+                                                <th>#</th>
+                                                <th>Medicamento</th>
+                                                <th>Dosis</th>
+                                                <th>Via de Administración</th>
+                                                <th>Duracion</th>
+                                                <th>Cantidad</th> 
+                                                </tr>
+                                              </thead>
+                                              <tbody v-for="(list, index) in receta_id.medicamentos">
+                                                <tr>
+                                                <td>{{index + 1 }}</td>
+                                                <td>{{list.medicamento}}</td>
+                                                <td>{{list.dosis}}</td>
+                                                <td>{{list.frecuencia}}</td>
+                                                <td>{{list.duracion}}</td>
+                                                <td>{{list.cantidad}}</td> 
+                                                </tr>                                           
+                                              </tbody>
+                                              </table> 
+                                            </div>
+                                            </section>
+                                            </div>   
+                                      </div>
+                                    </div>      
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>  
+                      </div>
+                </div>
+              </div>
+            </div>
 					<section class="panel default h2 ">
 					  <div class="panel-body englobacaja ">
 							<ul class="nav nav-tabs ocultarIm" id="myTab">
@@ -614,80 +688,7 @@
 		  </div>
 		</div> 
 	</div>
-<!-- 
-  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                Modal de vista receta
-  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                      
- -->
- <div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Detalles de la Receta</h4>
-      </div>
-          <div>
-            <div class="">
-              <div id="main-content">
-                <div class="">		
-                  <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade active in " id="neww">
-                      <div class="col-md-12">
-                        <div class="">
-                          <div class=" ">
-                            <p></p>
-                            <span></span>
-                            <span style="color: rgb(21, 21, 149)">N° de Historial:  </span> {{receta_id.historiaClinica}}<br>
-                            <span style="color: rgb(21, 21, 149)">Nombre Completo:</span>  <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%><br>
-                            <span style="color: rgb(21, 21, 149)">Fecha de la Receta:</span>  {{receta_id.fecha}} <br>
-                            <span style="color: rgb(21, 21, 149)"> Nombre del Médico:</span> {{receta_id.doctor}}<br>
-                            <span style="color: rgb(21, 21, 149)">Especialidad:</span>  {{receta_id.tipoConsulta}}<br>
-                            <span style="color: rgb(21, 21, 149)">Medicamento:</span>
-                            <div class="col-lg-12"> 
-                              <section class="panel default blue_title h2">  
-                                <div class="panel-body"> 
-                                  <table class="table table-hover">
-                                  <thead>
-                                    <tr>
-                                    <th>#</th>
-                                    <th>Medicamento</th>
-                                    <th>Dosis</th>
-                                    <th>Via de Administración</th>
-                                    <th>Duracion</th>
-                                    <th>Cantidad</th> 
-                                    </tr>
-                                  </thead>
-                                  <tbody v-for="(list, index) in receta_id.medicamentos">
-                                    <tr>
-                                    <td>{{index + 1 }}</td>
-                                    <td>{{list.medicamento}}</td>
-                                    <td>{{list.dosis}}</td>
-                                    <td>{{list.frecuencia}}</td>
-                                    <td>{{list.duracion}}</td>
-                                    <td>{{list.cantidad}}</td> 
-                                    </tr>                                           
-                                  </tbody>
-                                  </table> 
-                                </div>
-                                </section>
-                                </div>   
-                          </div>
-                        </div>      
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>  
-          </div>
-    </div>
-  </div>
-                </div>
+
 
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>

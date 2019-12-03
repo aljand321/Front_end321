@@ -435,9 +435,9 @@
                   <label for="inputPassword3" class="col-sm-4 control-label">C.I.:</label>
                   <div class="col-sm-4">
                     <select v-model="ci_medico" @click="list_medicos">
-                        <option value="">--Seleccione--</option>
-                      <% for(var i = 0; i< Lista_medicos.length; i++) { %>
-                        <option><%=Lista_medicos[i].ci%></option>
+                      <option value="">--Seleccione--</option>
+                      <% for(var i = 0; i< Lista_medicos[0].user.length; i++) { %>
+                        <option><%=Lista_medicos[0].user[i].Registro_personal.ci%></option>
                       <% } %>
                     </select>
                   </div>

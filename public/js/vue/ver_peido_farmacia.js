@@ -121,7 +121,7 @@ const ver_pedido_farmacia =  new Vue({
             storedItem.qty++;
             storedItem.price = storedItem.item.price * storedItem.qty;
             this.total_cantidad++;
-            this.totalPrice += 1*storedItem.item.price;
+            this.total_cantidad += 1*storedItem.item.price;
     
           },
 
@@ -163,6 +163,12 @@ const ver_pedido_farmacia =  new Vue({
                 arr.push(this.list[id]);
             }
             return arr;
+        },
+
+        removeItem(id) {
+            this.total_cantidad -= this.list[id].qty;
+            this.totalPrice -= this.list[id].price;
+            this.list.splice(id, 1)
         },
 
         update_pedido(e){
