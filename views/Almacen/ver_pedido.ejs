@@ -105,8 +105,10 @@
                                 <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div> Pedido /<span class="semi-bold"> Ver Pedido</span></h2>  
                             </div>
                             <div class="porlets-content">
-                                <span style="color: red;">{{error}}</span>
-                                <span style="color: blue;">{{msg}}</span><br><br>
+                                <p class="text-center">
+                                        <span style="color: red;">{{error}}</span>
+                                        <span style="color: blue;">{{msg}}</span><br><br>
+                                </p>
                                 <form @submit="update" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">Codigo de Compra:</label>

@@ -5,34 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Farmacia</title>
-  <style scoped>
-      @media print{
-        /* para orden de internacion*/
-      .oreden1:before {
-        content: " ";
-        font-weight: negrita;
-        color:black;
-        text-align: center;
-        padding: 0%;
-        margin: 0%;
-        font: Arial
-      }
-      .tprueba{
-        content: var(--medicamento);
-      }
-      .itabla:before{
-        content: "v-model=list.medicamento";
+  <style type="text/css">
+		@media print{
+		  @page {
+			seze: A4 landscape;
+		}
+		.margeni{
+	
+			width: 100%;
+		  border: 1px;
   
-      }
-      td:hover { background-color: var(--bg-hover-color); }  
-      }
+		   position: relative;
+		  border-top-style: dashed;
   
-      #sacar{
-        height: 9%;
-      
-        overflow-x: hidden;
-      }
-    </style>
+		  border-bottom-style: dotted;
+		  border-left-style: solid; 
+		}
+		#sacar{
+				height: 9%;
+			
+				overflow-x: hidden;
+			}
+	  }
+		</style>
   
   
   <style>
@@ -121,7 +116,7 @@
       <!--Contenido-->
       <div  id="sinMargen1" class="contentpanel"><br>
 		<!--Formulario-->
-    <div id="margendiv" class="container clear_both padding_fix col-lg-8">
+    <div id="margendiv" class="container clear_both padding_fix ">
       <div class="row">
         <div class="col-md-12">
           <div class="block-web">
@@ -190,7 +185,6 @@
                     <th>Trimestre</th>
                     <th>Responsable</th>
                     <th>Destino</th>
-                    <th>Trimestre</th>
                     <th>Estado</th>
                     </tr>
                   </thead>
@@ -204,7 +198,6 @@
                       <td><%=filter.data.data_cliente[i].trimestre%></td>
                       <td><%=filter.data.data_cliente[i].responsable%></td>
                       <td><%=filter.data.data_cliente[i].destino%></td>
-                      <td><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
                       <% if (filter.data.data_cliente[i].medicamento_mandado_almacen == null ) { %>											
                         <td style="color: crimson;">Pedido realizado</td>
                       <% } else { %>

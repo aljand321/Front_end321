@@ -419,7 +419,7 @@ float:left;
     padding-top: 1%;
 }
 .texTitulo2:before{
-    content: "HOSPITAL ";
+    content: "REPORTE ADMINISTRATIVO DE ALMACEN ";
     font-weight: negrita;
     color:black;
     text-align: center;
@@ -440,6 +440,17 @@ float:left;
     font: Arial;
     border: 0px;
     padding-top: 10px;
+}
+.firmaPa1:before {
+    content: " FIRMA DEL JEFE DE ALMACEN  ";
+    font-weight: negrita;
+    color:black;
+    text-align: center;
+    padding: 1%;
+    margin: 1%;
+    font: Arial;
+    border: 1px;
+    padding-top: 1%;
 }
 .firmaPa:before {
     content: " FIRMA DEL JEFE DE FARMACIA  ";

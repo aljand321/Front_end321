@@ -5,35 +5,31 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	  <title>Farmacia</title>
-	  <style scoped>
-			@media print{
-				/* para orden de internacion*/
-			.oreden1:before {
-				content: " ";
-				font-weight: negrita;
-				color:black;
-				text-align: center;
-				padding: 0%;
-				margin: 0%;
-				font: Arial
-			}
-			.tprueba{
-				content: var(--medicamento);
-			}
-			.itabla:before{
-				content: "v-model=list.medicamento";
+	  
 	
-			}
-			td:hover { background-color: var(--bg-hover-color); }  
-			}
-
-			#sacar{
+    <style type="text/css">
+		@media print{
+		  @page {
+			seze: A4 landscape;
+		}
+		.margeni{
+	
+			width: 100%;
+		  border: 1px;
+  
+		   position: relative;
+		  border-top-style: dashed;
+  
+		  border-bottom-style: dotted;
+		  border-left-style: solid; 
+		}
+		#sacar{
 				height: 9%;
 			
 				overflow-x: hidden;
 			}
+	  }
 		</style>
-
 
 	<style>
 		div.a {
