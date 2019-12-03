@@ -9,8 +9,7 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-        <link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
-        <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
+
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -35,8 +34,32 @@
     <style type="text/css">
       @media print{
         @page {
-          seze: A4 landscape;
+         
+          size:  A4 landscape;
+          page-size: 190mm;
+          page-size: auto;
+          top: 1cm;
+    margin: 1cm; 
+    border: 0px;
+   
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+  
+  
+    margin-top: 0px;
+    border: 1px;
+    padding: 0px;
+    
+    width: 0px;
+    bottom: 0px;
+  
+    page-break-before: always
       }
+      #ocultoI{
+    display: none;   
+}
       .margeni{
   
 	      width: 100%;
@@ -165,7 +188,7 @@
                     <div class="col-md-12">
                       <h6>ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS EL SO ILICITO DE ESTA SERA SANCIONADO DE ACUEREO A LEY</h6>
                       <p id="ocultoI" class="text-center">
-                        <a href="/paciente/voler" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Cancelar</a>
+                        <a href="/paciente/voler" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; voler</a>
                         <button type="button" value="Imprimir" onclick="window.print()"	class="btn btn-success btn-raised"><i class="fa fa-print"></i> &nbsp;&nbsp;	Imprimir</button>
                       </p> 
                     </div>
