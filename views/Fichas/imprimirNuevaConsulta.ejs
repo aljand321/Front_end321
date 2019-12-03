@@ -113,7 +113,7 @@
                           <h6 >HOSPITAL DANIEL BRACAMONTE - AV. ITALIA FINAL S/N</h6>
                           <h6 >Telfs. 26246064-26244960</h6>
                           <h6 >POTOSI-BOLIVIA</h6>
-                          <h6 >NOMBRE: <%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%> </h6>
+                          <h6 >NOMBRE-CAJERO: <%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%> </h6>
                           <h6 >NIT/CI: <%=data_doc.data.personal.ci%>  </h6>
                           <h6 >Lugar y Fecha: <%=data_imprecion.createdAt%></h6>
                         </div>
@@ -122,10 +122,11 @@
                       <div class="col-sm-6 col-sm-6">
                         <div class="form-group">
                           <div class="entrada">
-                            <h6 >NIT:</h6>
+                         <!--especialidad   <h6 >NIT:</h6>
                             <h6 >N° Factura:</h6>
                             <h6 >N° Autorización:</h6>
-                            <h6 >Servicios y/o actividades al IVA</h6>
+                            <h6 >Servicios y/o actividades al IVA</h6> 
+                         --><br><br><br><br><br><br><br>
                             <h6 >Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h6>
                             <h6 >NUM.H.C:  <%=paciente[0].ci%></h6>
                             <h6 >MEDICO: <%=data_imprecion.medico%>   </h6>
@@ -138,8 +139,8 @@
                       <table class="display table table-bordered table-striped" >
                         <thead>
                           <tr>
-                            <th>Descripción</th>
-                            
+                          <!--  <th>Descripción</th>
+                            -->
                            
                             <th>Especialidad</th>
                             <th>Total</th>
@@ -149,8 +150,9 @@
                         <tbody>														
                                                 
                           <tr class="gradeX">
+                            <!--
                             <td>a</td>
-                            
+                            -->
                             
                             <td><%=data_imprecion.especialidad%></td>
                             <td><%=data_imprecion.saldo_total%></td>
@@ -162,6 +164,7 @@
                       </table>
           
                     </div>
+                  <!--  
                     <div class="col-md-12">
                       <div class="col-sm-6 col-sm-6">
                         <div class="entrada ">
@@ -185,7 +188,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-12">
+                  -->
+                    <div class="col-md-12"><br><br><br>
                       <h6>ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS EL SO ILICITO DE ESTA SERA SANCIONADO DE ACUEREO A LEY</h6>
                       <p id="ocultoI" class="text-center">
                         <a href="/paciente/voler" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; voler</a>
