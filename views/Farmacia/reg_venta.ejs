@@ -295,7 +295,7 @@
 											</div>
 										</div><br><br><br>
 										<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Registrar Venta</button>
-										<a class="btn btn-danger" href="/farmacia/ventas"><i class="fa fa-times"></i> Cancelar</a>
+										<a class="btn btn-danger" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i> Cancelar</a>
 									</form>
 								</div><!--/porlets-content--> 
 						  	</div><!--/block-web--> 
@@ -378,7 +378,10 @@
 											<br>
 											<div class="form-group">
 											  	<div class="col-sm-offset-0 col-sm-10">
-													<div class="btn-group">  <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													<div class="btn-group"> 
+														<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+														<a id="ocultoI" class="btn btn-info" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-shopping-cart"></i> Terminar Venta</a>
+													</div>
 												</div>
 											</div><!--/form-group-->
 										</div>
