@@ -387,7 +387,7 @@ table td:last-child {display:none}
                                           <th class="text-center">Fecha Creación</th>
                                           <th class="text-center">Cuenta</th>
                                           <th class="text-center">Email</th>
-                                          <th class="text-center">Nombre Personal</th>
+                                          <!-- <th class="text-center">Nombre Personal</th> -->
                                           
                                         </tr>
                                       </thead>
@@ -396,7 +396,7 @@ table td:last-child {display:none}
                                           <td class="text-center">{{data1.createdAt.split("T")[0]}}</td>
                                           <td class="text-center">{{data1.username}}</td>
                                           <td class="text-center">{{data1.email}}</td>
-                                          <td class="text-center">{{data1.Registro_personal.nombre}},{{data1.Registro_personal.apellidop}}</td>
+                                         <!--  <td class="text-center">{{data1.Registro_personal.nombre}},{{data1.Registro_personal.apellidop}}</td> -->
                                           
                                         </tr>
                                       </tbody>
@@ -646,6 +646,7 @@ table td:last-child {display:none}
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(data1 => {
+        
         if(data1.success == false){
           swal.fire(
             'Error!',

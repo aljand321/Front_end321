@@ -24,9 +24,9 @@
     content: url('../images/hospital1.png');    
 }
 .posiondeImagen{
-    float: right;
-    margin-top: 0%;
-    
+    position:absolute;
+    top:0;
+    width:200px;
 }
 /*--------cosas pasa ocultar en la vista real-----------*/
 .verOculto{
@@ -408,7 +408,7 @@ float:left;
 }
 
 .texTitulo1:before {
-    content: " RECETA MEDICA ";
+    content: " REPORTE ADMINISTRATIVO DE FARMACIA ";
     font-weight: negrita;
     color:black;
     text-align: center;
@@ -419,7 +419,7 @@ float:left;
     padding-top: 1%;
 }
 .texTitulo2:before{
-    content: "HOSPITAL ";
+    content: "REPORTE ADMINISTRATIVO DE ALMACEN ";
     font-weight: negrita;
     color:black;
     text-align: center;
@@ -430,7 +430,7 @@ float:left;
     padding-top: 10px;
 }
 .texTitulo3:before{
-    content: " DANIEL BRACAMONTE";
+    content: " HOSPITAL DANIEL BRACAMONTE";
     
     font-weight: negrita;
     color:black;
@@ -441,19 +441,30 @@ float:left;
     border: 0px;
     padding-top: 10px;
 }
-.firmaPa:before {
-    content: " FIRMA DEL PACIENTE ";
+.firmaPa1:before {
+    content: " FIRMA DEL JEFE DE ALMACEN  ";
     font-weight: negrita;
     color:black;
     text-align: center;
-    padding: 0%;
-    margin: 0%;
+    padding: 1%;
+    margin: 1%;
     font: Arial;
-    border: 0px;
+    border: 1px;
+    padding-top: 1%;
+}
+.firmaPa:before {
+    content: " FIRMA DEL JEFE DE FARMACIA  ";
+    font-weight: negrita;
+    color:black;
+    text-align: center;
+    padding: 1%;
+    margin: 1%;
+    font: Arial;
+    border: 1px;
     padding-top: 1%;
 }
 .firmaDoc:before {
-    content: " FIRMA DEL DOCTOR ";
+    content: " FIRMA DEL DPTO. DE ADMINISTRACION ";
     font-weight: negrita;
     color:black;
     text-align: center;

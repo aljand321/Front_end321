@@ -5,24 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Farmacia</title>
-  <%- include("../partials/head") -%>	
-  <style>
-	.vertical-alignment-helper {
-		display:table;
-		height: 100%;
-		margin-left: 41%;
+  <style type="text/css">
+	@media print{
+	  @page {
+		seze: A4 landscape;
 	}
-	.vertical-align-center {
-		/* To center vertically */
-		display: table-cell;
-		vertical-align: middle;
-		text-align: center;
+	.margeni{
+
+		width: 100%;
+	  border: 1px;
+
+	   position: relative;
+	  border-top-style: dashed;
+
+	  border-bottom-style: dotted;
+	  border-left-style: solid; 
 	}
-  </style>
+	#sacar{
+			height: 9%;
+		
+			overflow-x: hidden;
+		}
+  }
+	</style>
+
+
+<style>
+div.a {
+  text-align: center;
+}
+h1.letras {
+  font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+}
+#scroll{
+  position:absolute;
+  border:1px solid;
+  height:150px;
+  width:315px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}
+.info2{ border-radius:100%; float: left; height:80px; width:80px; }
+  .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+.vertical-alignment-helper {
+  display:table;
+  height: 100%;
+  margin-left: 41%;
+}
+.vertical-align-center {
+  /* To center vertically */
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+</style>
+<%- include("../partials/head") -%>
+<link rel="stylesheet" type="text/css" href="/css/imp_rec_farm.css" media="print" /> 
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   	<div class="wrapper">
-    	<div class="header_bar">
+    	<div id="ocultoI" class="header_bar">
       		<div class="brand">
         		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       		</div>
@@ -40,7 +83,7 @@
       		</div>
     	</div>
     	<div class="inner">
-      		<div class="left_nav">
+      		<div id="ocultoI" class="left_nav">
         		<div class="left_nav_slidebar">
 					<ul>
 			  			<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -71,19 +114,30 @@
 				</div>
     		</div>
     		<!--Contenido-->
-    		<div class="contentpanel"><br>
+    		<div id="sinMargen1" class="contentpanel"><br>
 				<!--Formulario-->
-				<div class="container clear_both padding_fix">
+				<div id="margendiv" class="container clear_both padding_fix">
 					<div class="row">
 					 	<div class="col-md-12">
 							<div class="block-web">
-						  		<div class="header">
+						  		<div id="ocultoI" class="header">
 									<div class="actions"> </div>
 									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div> Reporte de Recetas</h2> 
 								</div>
 				  				<div class="porlets-content">
 									<div class="panel-body">
-											<form  action="/Farmacia/filter_receta_paciente/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+										 <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									<div class="dim2 posiondeImagen">
+											.
+											<img class="oculVistaReal "  src="/images/hospital1.png" />
+										  </div>
+										  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+										  <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										  <h4 class="texTitulo3 text-center"></h4>
+									<h5 class="texTitulo1 text-center"></h5>
+									
+												  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+											<form id="ocultoI"  action="/Farmacia/filter_receta_paciente/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
 													<div class="col-md-12">
 														  <div class="col-md-6">
 															<div class="form-group">
@@ -114,15 +168,16 @@
 														  <div class="col-md-6">
 															<div class="form-group">
 																  <div class="col-sm-offset-2 col-sm-10">
-																	<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
-																  </div>
+																		<button type="submit" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+																		<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
+																	  </div>
 															</div><!--/form-group--> 
 														</div>
 													</div>
 											  </form>
 									</div>  
-									<div class="table-responsive">
-										<table  class="display table table-bordered table-striped " id="dynamic-table">
+									<div id="sacar" class="table-responsive">
+											<table  class="table table-bordered"   >
 					  						<thead>
 					  							<tr>
 												<th>#</th>
@@ -161,7 +216,13 @@
 						  		</div><!--/porlets-content-->
 							</div><!--/block-web--> 
 						</div><!--/col-md-12--> 
-					</div><!--/row-->
+					</div><!--/row--><br><br><br><br><br><br><br><br><br><br><br><br>
+					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+					<p class="firmaPa center cafirmaP"></p>
+																  
+					<p class="firmaDoc center cafirmaDoc"></p></p>
+					
+					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 				</div>
 			</div>
 		</div>
