@@ -1727,6 +1727,7 @@
 															<th>Fecha hora</th>
 															<th>Doctor</th>
 															<th>Ver</th>
+															<th>Estado</th>
 													  	</tr>
 													</thead>
 													<tbody v-for="(list, index) in data_list_eco">
@@ -1735,6 +1736,8 @@
 															<td>{{list.fecha}}  {{list.hora}}</td>
 															<td>{{list.nombre_doctor}}</td>
 															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info" @click="one_lab(list.id)">Ver</button></td>
+															<td v-if = "list.resp_labs == ''"> <p style="color: brown;">Examen mandado</p> </td>
+															<td v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>	
 													  	</tr>											  
 													</tbody>
 								  				</table>
@@ -1763,6 +1766,7 @@
 															<th>Fecha hora</th>
 															<th>Doctor</th>
 															<th>Ver</th>
+															<th>Estado</th>
 													  	</tr>
 													</thead>
 													<tbody v-for="(list, index) in data_list_rayosX">
@@ -1771,6 +1775,8 @@
 															<td>{{list.fecha}}  {{list.hora}}</td>
 															<td>{{list.nombre_doctor}}</td>
 															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_x" @click="one_lab(list.id)"  >Ver</button></td>
+															<td v-if = "list.resp_labs == ''"> <p style="color: brown;">Examen mandado</p> </td>
+															<td v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>	
 															
 													  	</tr>											  
 													</tbody>
@@ -1800,6 +1806,7 @@
 															<th>Fecha hora</th>
 															<th>Doctor</th>
 															<th>Ver</th>
+															<th>Estado</th>
 													  	</tr>
 													</thead>
 													<tbody v-for="(list, index) in data_list_lab">
@@ -1808,7 +1815,8 @@
 															<td>{{list.fecha}}  {{list.hora}}</td>
 															<td>{{list.nombre_doctor}}</td>
 															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_lab" @click="one_lab(list.id)"  >Ver</button></td>
-															
+															<td v-if = "list.resp_labs == ''"> <p style="color: brown;">Examen mandado</p> </td>
+															<td v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>																
 													  	</tr>											  
 													</tbody>
 											  	</table>
@@ -1845,24 +1853,64 @@
 					<div class="modal-body">
 						<div class="">
 							<div class="card row" style="width: 55rem;">
-								<div class="col-md-14">									
-									<div class="col-md-9">										
-										<p>Fecha: {{lab_one.fecha}}</p>
-										<p> Medico:  {{lab_one.nombre_doctor}}</p>
-										<p> N° Historial: {{lab_one.historial}}</p>
-										<p>Otros Examenes:</p>
-										<p>{{lab_one.otros}}</p>
-										
-									</div>
-									<div class="col-md-3 horaI"> 										
-										<p for="">Hora: {{lab_one.hora}}</p>
-									</div>
-									<div class="col-md-12">
-										<label for="">Examene diagnosticado</label>
-										<ul v-for="list in lab_one.examen">
-											<li>{{list.estudio}}: {{list.descripcion}}</li>
-										</ul>
-									</div>
+								<div class="col-md-14">	
+
+
+									<div class="col-lg-14">
+										<section class="panel default blue_title h2">
+										  
+											  <div class="panel-body">
+												<ul class="nav nav-tabs" id="myTab">
+												  <li class="active"><a data-toggle="tab" href="#Examen_eco">Examen pedido</a></li>
+												  <li v-if="resp_eco != null"><a data-toggle="tab" href="#respuesta_eco">Respuesta del examen</a></li>
+												  
+												</ul>
+												<div class="tab-content" id="myTabContent">
+													  <div id="Examen_eco" class="tab-pane fade in active">
+														  <div class="col-md-14">
+															<div class="col-md-9">										
+																<p>Fecha: {{lab_one.fecha}}</p>
+																<p> Medico:  {{lab_one.nombre_doctor}}</p>
+																<p> N° Historial: {{lab_one.historial}}</p>
+																<p>Otros Examenes:</p>
+																<p>{{lab_one.otros}}</p>
+
+															</div>
+															<div class="col-md-3"> 										
+																<p for="">Hora: {{lab_one.hora}}</p>
+															</div>
+															<div class="col-md-12">
+																<label for="">Examene diagnosticado</label>
+																<ul v-for="list in lab_one.examen">
+																	<li>{{list.estudio}}: {{list.descripcion}}</li>
+																</ul>
+															</div>
+														  </div>
+													  </div>
+													  <div id="respuesta_eco" class="tab-pane fade" >
+														<div v-if="resp_eco != null" class="col-md-14">
+															<div class="col-md-9">										
+																<p>Fecha: {{resp_eco.fecha}}</p>
+																<p> Responsable:  {{resp_eco.nombre_user}}</p>
+																<p> N° Historial: {{resp_eco.historial}}</p>
+																<p>Descripcion:</p>
+																<p>{{resp_eco.descripcion}}</p>
+															</div>
+															<div class="col-md-3"> 										
+																<p for="">Hora: {{resp_eco.hora}}</p>
+															</div>
+															<div class="col-md-14">
+																<embed :src=" url +'/'+ resp_eco.imagen_resp" type="application/pdf" width="100%" height="400px" />
+																<a :href=" url +'/'+ resp_eco.imagen_resp">Ver</a>
+															</div>
+														</div>
+													  </div>
+												 
+												</div>
+											  </div>
+										</section>
+									</div>								
+									
 											
 								</div>
 								
@@ -1906,76 +1954,107 @@
 						<div class="modal-body">
 							<div class="">
 								<div class="card row" style="width: 55rem;">
-									<div class="col-md-14">									
-										<div class="col-md-9">										
-											<p>Fecha: {{lab_one.fecha}}</p>
-											<p> Medico:  {{lab_one.nombre_doctor}}</p>
-											<p> N° Historial: {{lab_one.historial}}</p>
-											<p>Otros Examenes:</p>
-											<p>{{lab_one.otros}}</p>
 
-											
-										</div>
-										<div class="col-md-3 horaI"> 										
-											<p for="">Hora: {{lab_one.hora}}</p>
-										</div>
-										<div class="col-md-12">
-											<label for="">Examene diagnosticado</label><br>
-											<div class="col-md-3" v-if="examen_x.torax != ''">
-												<p>Torax:</p>
-												<ul v-for="list in examen_x.torax">
-													<li>{{list.descripcion}}</li>
-												</ul> 
+									<div class="col-lg-14">
+										<section class="panel default blue_title h2">
+											<div class="panel-body">
+												<ul class="nav nav-tabs" id="myTab">
+													<li class="active"><a data-toggle="tab" href="#Examen_rayosX">Examen pedido</a></li>
+													<li  v-if="resp_rayosX != null"><a data-toggle="tab" href="#respuesta_rayosX">Respuesta del examen</a></li>															
+												</ul>
+												<div class="tab-content" id="myTabContent">
+													<div id="Examen_rayosX" class="tab-pane fade in active">
+														<div class="col-md-14">									
+															<div class="col-md-9">										
+																<p>Fecha: {{lab_one.fecha}}</p>
+																<p> Medico:  {{lab_one.nombre_doctor}}</p>
+																<p> N° Historial: {{lab_one.historial}}</p>
+																<p>Otros Examenes:</p>
+																<p>{{lab_one.otros}}</p>										
+															</div>
+															<div class="col-md-3"> 										
+																<p for="">Hora: {{lab_one.hora}}</p>
+															</div>
+															<div class="col-md-12">
+																<label for="">Examene diagnosticado</label><br>
+																<div class="col-md-3" v-if="examen_x.torax != ''">
+																	<p>Torax:</p>
+																	<ul v-for="list in examen_x.torax">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+					
+																</div> 
+																<div class="col-md-3" v-if="examen_x.abdomen != ''">
+																	<p>Abdomen:</p>
+																	<ul v-for="list in examen_x.abdomen">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+					
+																</div> 
+																<div class="col-md-3" v-if="examen_x.craneo_Macizo_Facial != ''">
+																	<p>Craneo Macizo Facial:</p>
+																	<ul v-for="list in examen_x.craneo_Macizo_Facial">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+					
+																</div> 
+					
+																<div class="col-md-3" v-if="examen_x.Placas_Radiograficas != ''">
+																	<p>Placas Radiograficas:</p>
+																	<ul v-for="list in examen_x.Placas_Radiograficas">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+					
+																</div> 
+																<div class="col-md-3" v-if="examen_x.Columna_vertebral != ''">
+																	<p>Columna vertebral:</p>
+																	<ul v-for="list in examen_x.Columna_vertebral">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+					
+																</div> 
+																<div class="col-md-3" v-if="examen_x.Miembros_superiores != ''">
+																	<p>Miembros superiores:</p>
+																	<ul v-for="list in examen_x.Miembros_superiores">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+					
+																</div> 
+																	<div class="col-md-3" v-if="examen_x.Miembros_inferiores != ''">
+																	<p>Miembros inferiores:</p>
+																	<ul v-for="list in examen_x.Miembros_inferiores">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+					
+																</div> 
+															
+															</div>
+																			
+														</div>
+													</div>
+													<div id="respuesta_rayosX" class="tab-pane fade" >
+														<div v-if="resp_rayosX != null" class="col-md-14">
+															<div class="col-md-9">										
+																<p>Fecha: {{resp_rayosX.fecha}}</p>
+																<p> Responsable:  {{resp_rayosX.nombre_user}}</p>
+																<p> N° Historial: {{resp_rayosX.historial}}</p>
+																<p>Descripcion:</p>
+																<p>{{resp_rayosX.descripcion}}</p>
+															</div>
+															<div class="col-md-3"> 										
+																<p for="">Hora: {{resp_rayosX.hora}}</p>
+															</div>
+															<div class="col-md-14">
+																<embed :src=" url +'/'+ resp_rayosX.imagen_resp" type="application/pdf" width="100%" height="400px" />
+																<a :href=" url +'/'+ resp_rayosX.imagen_resp">Ver</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
 
-											</div> 
-											<div class="col-md-3" v-if="examen_x.abdomen != ''">
-												<p>Abdomen:</p>
-												<ul v-for="list in examen_x.abdomen">
-													<li>{{list.descripcion}}</li>
-												</ul> 
-
-											</div> 
-											<div class="col-md-3" v-if="examen_x.craneo_Macizo_Facial != ''">
-												<p>Craneo Macizo Facial:</p>
-												<ul v-for="list in examen_x.craneo_Macizo_Facial">
-													<li>{{list.descripcion}}</li>
-												</ul> 
-
-											</div> 
-
-											<div class="col-md-3" v-if="examen_x.Placas_Radiograficas != ''">
-												<p>Placas Radiograficas:</p>
-												<ul v-for="list in examen_x.Placas_Radiograficas">
-													<li>{{list.descripcion}}</li>
-												</ul> 
-
-											</div> 
-											<div class="col-md-3" v-if="examen_x.Columna_vertebral != ''">
-												<p>Columna vertebral:</p>
-												<ul v-for="list in examen_x.Columna_vertebral">
-													<li>{{list.descripcion}}</li>
-												</ul> 
-
-											</div> 
-											<div class="col-md-3" v-if="examen_x.Miembros_superiores != ''">
-												<p>Miembros superiores:</p>
-												<ul v-for="list in examen_x.Miembros_superiores">
-													<li>{{list.descripcion}}</li>
-												</ul> 
-
-											</div> 
-												<div class="col-md-3" v-if="examen_x.Miembros_inferiores != ''">
-												<p>Miembros inferiores:</p>
-												<ul v-for="list in examen_x.Miembros_inferiores">
-													<li>{{list.descripcion}}</li>
-												</ul> 
-
-											</div> 
-										
-										</div>
-												
-									</div>
-									
+									</div>								
 								</div>
 							</div>
 							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
@@ -2014,108 +2093,142 @@
 					<div class="modal-body" id="">
 						<div class="">
 							<div class="card row" style="width: 55rem;">
-								<div class="col-md-14">									
-									<div class="col-md-12">										
-										<p>Fecha: {{lab_one.fecha}}</p>
-										<p> Medico:  {{lab_one.nombre_doctor}}</p>
-										<p> N° Historial: {{lab_one.historial}}</p>
-										<p>Otros Examenes:</p>
-										<p>{{lab_one.otros}}</p>										
-									</div>
-									<div class="col-md-3 horaIR"> 										
-										<p for="">Hora: {{lab_one.hora}}</p>
-									</div>
-									<div class="col-md-12 scrollV">
-										<label for="">Examene diagnosticado</label><br>
-										<div class="col-md-3" v-if="examen_lab.Hemotología != ''">
-											<p>Hemotología:</p>
-											<ul v-for="list in examen_lab.Hemotología">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Química_Sanguínea != ''">
-											<p>Química Sanguínea:</p>
-											<ul v-for="list in examen_lab.Química_Sanguínea">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Orina != ''">
-											<p>Orina:</p>
-											<ul v-for="list in examen_lab.Orina">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-									
-										<div class="col-md-3" v-if="examen_lab.Prueba_Embarazo != ''">
-											<p>Prueba Embarazo:</p>
-											<ul v-for="list in examen_lab.Prueba_Embarazo">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Heces != ''">
-											<p>Heces:</p>
-											<ul v-for="list in examen_lab.Heces">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Expectoración != ''">
-											<p>Expectoración:</p>
-											<ul v-for="list in examen_lab.Expectoración">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Exámenes_Especiales != ''">
-											<p>Exámenes Especiales:</p>
-											<ul v-for="list in examen_lab.Exámenes_Especiales">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Perfil_Preoperatorio != ''">
-											<p>Perfil Preoperatorio:</p>
-											<ul v-for="list in examen_lab.Perfil_Preoperatorio">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Perfil_Obstetrico != ''">
-											<p>Perfil Obstetrico:</p>
-											<ul v-for="list in examen_lab.Perfil_Obstetrico">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Perfil_Reumático != ''">
-											<p>Perfil Reumático:</p>
-											<ul v-for="list in examen_lab.Perfil_Reumático">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Perfil_hepatico != ''">
-											<p>Perfil hepatico:</p>
-											<ul v-for="list in examen_lab.Perfil_hepatico">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-										<div class="col-md-3" v-if="examen_lab.Perfil_lipidico != ''">
-											<p>Perfil lipidico:</p>
-											<ul v-for="list in examen_lab.Perfil_lipidico">
-												<li>{{list.descripcion}}</li>
-											</ul> 
-										
-										</div> 
-									
-									</div>
-											
+								<div class="col-lg-14">
+									<section class="panel default blue_title h2">
+										<div class="panel-body">
+											<ul class="nav nav-tabs" id="myTab">
+												<li class="active"><a data-toggle="tab" href="#Examen_lab">Examen pedido</a></li>
+												<li v-if="resp_lab != null"><a data-toggle="tab" href="#respuesta_lab">Respuesta del examen</a></li>															
+											</ul>
+											<div class="tab-content" id="myTabContent">
+												<div id="Examen_lab" class="tab-pane fade in active">
+													<div class="col-md-14">									
+														<div class="col-md-12">										
+															<p>Fecha: {{lab_one.fecha}}</p>
+															<p> Medico:  {{lab_one.nombre_doctor}}</p>
+															<p> N° Historial: {{lab_one.historial}}</p>
+															<p>Otros Examenes:</p>
+															<p>{{lab_one.otros}}</p>										
+														</div>
+														<div class="col-md-3"> 										
+															<p for="">Hora: {{lab_one.hora}}</p>
+														</div>
+														<div class="col-md-12">
+															<label for="">Examene diagnosticado</label><br>
+															<div class="col-md-3" v-if="examen_lab.Hemotología != ''">
+																<p>Hemotología:</p>
+																<ul v-for="list in examen_lab.Hemotología">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Química_Sanguínea != ''">
+																<p>Química Sanguínea:</p>
+																<ul v-for="list in examen_lab.Química_Sanguínea">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Orina != ''">
+																<p>Orina:</p>
+																<ul v-for="list in examen_lab.Orina">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+														
+															<div class="col-md-3" v-if="examen_lab.Prueba_Embarazo != ''">
+																<p>Prueba Embarazo:</p>
+																<ul v-for="list in examen_lab.Prueba_Embarazo">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Heces != ''">
+																<p>Heces:</p>
+																<ul v-for="list in examen_lab.Heces">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Expectoración != ''">
+																<p>Expectoración:</p>
+																<ul v-for="list in examen_lab.Expectoración">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Exámenes_Especiales != ''">
+																<p>Exámenes Especiales:</p>
+																<ul v-for="list in examen_lab.Exámenes_Especiales">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Perfil_Preoperatorio != ''">
+																<p>Perfil Preoperatorio:</p>
+																<ul v-for="list in examen_lab.Perfil_Preoperatorio">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Perfil_Obstetrico != ''">
+																<p>Perfil Obstetrico:</p>
+																<ul v-for="list in examen_lab.Perfil_Obstetrico">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Perfil_Reumático != ''">
+																<p>Perfil Reumático:</p>
+																<ul v-for="list in examen_lab.Perfil_Reumático">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Perfil_hepatico != ''">
+																<p>Perfil hepatico:</p>
+																<ul v-for="list in examen_lab.Perfil_hepatico">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+															<div class="col-md-3" v-if="examen_lab.Perfil_lipidico != ''">
+																<p>Perfil lipidico:</p>
+																<ul v-for="list in examen_lab.Perfil_lipidico">
+																	<li>{{list.descripcion}}</li>
+																</ul> 
+															
+															</div> 
+														
+														</div>
+																		
+													</div>
+												</div>
+												<div id="respuesta_lab" class="tab-pane fade" >
+													<div v-if="resp_lab != null" class="col-md-14">
+														<div class="col-md-9">										
+															<p>Fecha: {{resp_lab.fecha}}</p>
+															<p> Responsable:  {{resp_lab.nombre_user}}</p>
+															<p> N° Historial: {{resp_lab.historial}}</p>
+															<p>Descripcion:</p>
+															<p>{{resp_lab.descripcion}}</p>
+														</div>
+														<div class="col-md-3"> 										
+															<p for="">Hora: {{resp_lab.hora}}</p>
+														</div>
+														<div class="col-md-14">
+															<embed :src=" url +'/'+ resp_lab.imagen_resp" type="application/pdf" width="100%" height="400px" />
+															<a :href=" url +'/'+ resp_lab.imagen_resp">Ver</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+	
 								</div>
+								
 								
 							</div>
 						</div>

@@ -231,7 +231,10 @@ const lab_consulta_externa = new Vue({
         otros_lab:'',
         examen_lab:[],
 
-        lab_one:''
+        lab_one:'',
+        resp_eco:'',
+        resp_rayosX:'',
+        resp_lab:''
     }),
     mounted(){
         this.fecha = moment().format('l'); 
@@ -261,12 +264,18 @@ const lab_consulta_externa = new Vue({
             .catch(error => console.error('Error:', error))
             .then(data => {
                 this.lab_one = data[0]
+                //console.log(this)
+               
                 if (data[0].tipo_laboratorio == "Rayos_x"){
                     this.examen_x = data[0].examen
-                    console.log(this.examen_x, "  asdasdasdasd" )
+                    this.resp_rayosX = data[0].resp_labs[0]
                 }else if (data[0].tipo_laboratorio == "LABORATORIO"){
                     this.examen_lab = data[0].examen
-                    console.log(this.examen_lab, "  asdasdasdasd" )
+                    this.resp_lab = data[0].resp_labs[0]
+                    
+                }else{
+                    this.resp_eco = data[0].resp_labs[0]
+                    console.log(this.resp_eco, " esto es lo que quiero ver")
                 }
             })
         },
@@ -277,7 +286,7 @@ const lab_consulta_externa = new Vue({
             this.list_eco = true
             this.list_rayosX = false
             this.lis_lab = false
-            fetch(this.url+'/laboratorios/list_ecografias/'+this.historial)
+            fetch(this.url+'/laboratorios/list_ecografias_hopitalizacion/'+this.historial+'/'+this.id_internacion)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
@@ -369,11 +378,12 @@ const lab_consulta_externa = new Vue({
             this.list_eco = false
             this.list_rayosX = true
             this.lis_lab = false
-            fetch(this.url+'/laboratorios/list_rayosX/'+this.historial)
+            fetch(this.url+'/laboratorios/list_rayosX_hopitalizacion/'+this.historial+'/'+this.id_internacion)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
                 this.data_list_rayosX = data
+                console.log(data)
             })
         },
         rayosX_select(id,num,descripcion){
@@ -609,7 +619,7 @@ const lab_consulta_externa = new Vue({
             this.list_eco = false
             this.list_rayosX = false
             this.lis_lab = true
-            fetch(this.url+'/laboratorios/list_laboratorios/'+this.historial)
+            fetch(this.url+'/laboratorios/lista_lab_hospitalizacion/'+this.historial+'/'+this.id_internacion)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
