@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -28,6 +30,27 @@
 
 <link href="/css/toastr.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
+<style scoped>
+  @media print{
+    /* para orden de internacion*/
+  .oreden1:before {
+    content: " v-model:"'data_receta.fecha' "
+    v-model="'data_receta.fecha'"
+
+  
+  }
+
+  .tprueba{
+    content: var(--medicamento);
+  }
+  .itabla:before{
+    content: "data_receta.fecha";
+
+  }
+  td:hover { background-color: var(--bg-hover-color); }  
+  }
+</style>
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:20px 9px 9px 25px;}
@@ -63,7 +86,7 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
@@ -80,8 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="inner">
-      <div class="left_nav">
+    <div class="inner" id="">
+      <div id="ocultoI" class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -119,19 +142,34 @@
           </ul>
         </div>
       </div>
-      <div class="contentpanel">
+      <div id="sinMargen" class="contentpanel">
         <br>
-        <div class="container clear_both padding_fix">
+        <div  id="" class="container clear_both padding_fix">
           <div class="row">
-            <div class="col-md-12">
-              <div class="block-web">
-                  <div class="header">
-                    <div class="info2 blue_symbols"><i class="fa fa-male icon"></i></div>
-                    <h3 class="content-header ">Reportes General Pacientes</h3>
+            <div  id="margendiv"  class="col-md-12">
+              <div id="" class="block-web">
+                <!-- Content page -->
+								<div id="" class="head  ">
+                  <div id="" class="actions ">
+                    <p  name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
                   </div>
+                  <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                  <div class="dim2 posiondeImagen">
+                    .
+                    <img class="oculVistaReal "  src="/images/hospital1.png" />
+                  </div>
+                  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
+                  <div id="ocultoI" class="header">
+                    <div id="ocultoI"class="info2 blue_symbols"><i class="fa fa-male icon"></i></div>
+                    <h3 id="ocultoI" class="content-header ">Reportes General Pacientes</h3>
+                  </div>
+                </div>
+                <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							<h5 class="texTitulo1 text-center"></h5>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
                 <br>
                 <br>
-                <div class="porlets-content">
+                <div id="ocultoI" class="porlets-content">
                   <form  action="/filter_pacientes/<%=data_doc.data.token_id%>" method="POST" class="form-horizontal" name="formulario1"  >
                     <div class="form-group">
                       <label class="col-sm-4 control-label">Desde:</label>
@@ -153,9 +191,9 @@
                       </div><!--/form-group--> 
                   </form>
                 </div>
-                <div class="form-group">
+                <div  id="ocultoI" class="form-group">
                   <div class="col-sm-offset-9 col-sm-10">
-                    <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
+                    <button onclick="window.print();"  type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
                   </div>
                   
                 </div><!--/form-group--> 
