@@ -357,7 +357,7 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    console.log(resp, " esto es http://localhost:3600/api/login")
+    //console.log(resp, " esto es http://localhost:3600/api/login")
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -369,103 +369,129 @@ router.post('/login', (req,res)  => {
       msg3 = " Contraceña Incorrecta "
       res.redirect('/')   
     }else if ( datas.name.token[resp.user.id] == null ){
-      token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
-      tok(resp,resp.user.id); //funcion para añadir token del usuario  
-
-      var session = {
-        login:true
-      }
-      sessions(session,resp.user.id)
-      datas.name.session = login // esto es para ver si el usuario inicio session desde login
-
-      datas.name.token = listItems // esto es para añadir tokens a datas
-      fetch('http://localhost:3600/api/user/'+resp.user.id)
+      fetch('http://localhost:3600/api/personal/'+resp.user.perso_id)
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
-      .then(resp => {
-        if(resp.role[0] == null || resp.role[0] == ""){
+      .then(personal => {
+        //console.log(personal, " estao es la respuesta que quiero ver")
+        if(personal.estado == false){
+          token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
+          tok(resp,resp.user.id); //funcion para añadir token del usuario  
+    
+          var session = {
+            login:true
+          }
+          sessions(session,resp.user.id)
+          datas.name.session = login // esto es para ver si el usuario inicio session desde login
+    
+          datas.name.token = listItems // esto es para añadir tokens a datas
+          fetch('http://localhost:3600/api/user/'+resp.user.id)
+          .then(resp => resp.json())
+          .catch(error => console.error('Error',error))
+          .then(resp => {
+            if(resp.role[0] == null || resp.role[0] == ""){
+              res.status(400).json({
+                success:false,
+                msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
+              })
+            }else{
+              //console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
+              
+              if(resp.role[0].name == "Almacen"){
+                //res.send(resp.role[0].name)
+                res.redirect('/almacen/home/'+resp.id + '/' + token_part )
+              }else if(resp.role[0].name == "fichaje"){
+                res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
+                //res.send(resp.role)
+              }else if(resp.role[0].name == "medico"){
+                res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+              }else if(resp.role[0].name == "emergencia"){
+                res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
+              }else if(resp.role[0].name == "farmacia"){
+                res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
+              }else if(resp.role[0].name == "hospitalizacion"){
+                res.redirect('/Internaciones/home/'+resp.id)
+              }else  if(resp.role[0].name == "laboratorio") {
+                res.redirect('/laboratorios/home/'+resp.id)
+              }else if (resp.role[0].name == "administrcion"){
+                res.redirect('/home/'+resp.id)
+              }
+              
+            }
+            //res.redirect('/almacen/home/'+resp.user.id)
+          }) 
+        }else{
           res.status(400).json({
             success:false,
-            msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
+            msg:"No puede entrar por que se dio de baja al personal"
           })
-        }else{
-          console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
-          
-          if(resp.role[0].name == "Almacen"){
-            //res.send(resp.role[0].name)
-            res.redirect('/almacen/home/'+resp.id + '/' + token_part )
-          }else if(resp.role[0].name == "fichaje"){
-            res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
-            //res.send(resp.role)
-          }else if(resp.role[0].name == "medico"){
-            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
-          }else if(resp.role[0].name == "emergencia"){
-            res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
-          }else if(resp.role[0].name == "farmacia"){
-            res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
-          }else if(resp.role[0].name == "hospitalizacion"){
-            res.redirect('/Internaciones/home/'+resp.id)
-          }else  if(resp.role[0].name == "laboratorio") {
-            res.redirect('/laboratorios/home/'+resp.id)
-          }else if (resp.role[0].name == "administrcion"){
-            res.redirect('/home/'+resp.id)
-          }
-          
         }
-        //res.redirect('/almacen/home/'+resp.user.id)
-      }) 
+      })
+      
     }else {
-
-      var session = {
-        login:true
-      }
-      remove_session(resp.user.id)
-      sessions(session,resp.user.id)
-      datas.name.session = login // esto es para ver si el usuario inicio session desde login
-
-
-      token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
-      remove_Token(resp.user.id)
-      
-      tok(resp,resp.user.id); //funcion para añadir token del usuario  
-      
-      datas.name.token = listItems // esto es para añadir tokens a datas
-      fetch('http://localhost:3600/api/user/'+resp.user.id)
+      fetch('http://localhost:3600/api/personal/'+resp.user.perso_id)
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
-      .then(resp => {
-        if(resp.role[0] == null || resp.role[0] == ""){
+      .then(personal => {
+        //console.log(personal, " estao es la respuesta que quiero ver")
+        console.log(personal.estado)
+        if(personal.estado == false){
+          var session = {
+            login:true
+          }
+          remove_session(resp.user.id)
+          sessions(session,resp.user.id)
+          datas.name.session = login // esto es para ver si el usuario inicio session desde login
+    
+    
+          token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
+          remove_Token(resp.user.id)
+          
+          tok(resp,resp.user.id); //funcion para añadir token del usuario  
+          
+          datas.name.token = listItems // esto es para añadir tokens a datas
+          fetch('http://localhost:3600/api/user/'+resp.user.id)
+          .then(resp => resp.json())
+          .catch(error => console.error('Error',error))
+          .then(resp => {
+            if(resp.role[0] == null || resp.role[0] == ""){
+              res.status(400).json({
+                success:false,
+                msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
+              })
+            }else{
+              
+              if(resp.role[0].name == "Almacen"){
+                //res.send(resp.role[0].name)
+                res.redirect('/almacen/home/'+resp.id+ '/'+ token_part)
+              }else if(resp.role[0].name == "fichaje"){
+                res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
+                //res.send(resp.role)
+              }else if(resp.role[0].name == "medico"){
+                res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+                console.log(resp, " entro y mostro esto")
+              }else if(resp.role[0].name == "emergencia"){
+                res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
+              }else if(resp.role[0].name == "farmacia"){
+                res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
+              }else if(resp.role[0].name == "hospitalizacion"){
+                res.redirect('/Internaciones/home/'+resp.id)
+              }else if(resp.role[0].name == "laboratorio"){
+                res.redirect('/laboratorios/home/'+resp.id)
+              }else if (resp.role[0].name == "administrcion"){
+                res.redirect('/home/'+resp.id)
+              }
+              
+            }
+            //res.redirect('/almacen/home/'+resp.user.id)
+          }) 
+        }else{
           res.status(400).json({
             success:false,
-            msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
+            msg:"No puede entrar por que se dio de baja al personal"
           })
-        }else{
-          
-          if(resp.role[0].name == "Almacen"){
-            //res.send(resp.role[0].name)
-            res.redirect('/almacen/home/'+resp.id+ '/'+ token_part)
-          }else if(resp.role[0].name == "fichaje"){
-            res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
-            //res.send(resp.role)
-          }else if(resp.role[0].name == "medico"){
-            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
-            console.log(resp, " entro y mostro esto")
-          }else if(resp.role[0].name == "emergencia"){
-            res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
-          }else if(resp.role[0].name == "farmacia"){
-            res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
-          }else if(resp.role[0].name == "hospitalizacion"){
-            res.redirect('/Internaciones/home/'+resp.id)
-          }else if(resp.role[0].name == "laboratorio"){
-            res.redirect('/laboratorios/home/'+resp.id)
-          }else if (resp.role[0].name == "administrcion"){
-            res.redirect('/home/'+resp.id)
-          }
-          
         }
-        //res.redirect('/almacen/home/'+resp.user.id)
-      }) 
-      
+      })
     }
     
   })

@@ -122,6 +122,7 @@ const options = new Vue({
       },
       //one_papeleta internacion id
       one_papeleta_onternacion(id){
+        console.log(id, " esto es el id que quiero ver ")
         fetch(this.url+'/internaciones/vue_one_papeleta_internacion/'+id) 
         .then(resp => resp.json())
         .then(data =>{
