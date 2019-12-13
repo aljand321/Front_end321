@@ -49,6 +49,7 @@ const citas = new Vue({
           console.log("no se seleciono nada")
         }
       },
+      
       saca_horas(){
         if(this.selectDoctor != ""){
           var horas_turnos, mayor = 0;
@@ -88,6 +89,7 @@ const citas = new Vue({
           console.log("no se selecciono doctor")
         }
       },
+
       saca_horas_reservadas(){
         if(this.selectDoctor != ""){
           var horas_turnos, mayor = 0;
@@ -184,13 +186,18 @@ const citas = new Vue({
                 this.horas_Turno_atendido = [];
                 this.arr = []
                 console.log(res, "esto es fetch")
+                this.saca_horas();
               }
              
 
             })
           }
         }else{
-          console.log("no hay nada para liverar")
+          swal.fire(
+            'Error!',
+            '<label style="color:red;">No hay nada para liberar</label>',
+            'error'
+          )
         }
         
       },
