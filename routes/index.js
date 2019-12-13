@@ -327,7 +327,9 @@ router.get('/home/:id_user',(req, res) => {
       /* data_doc:datas.name.data_user[data_token.token_id], */
     })
   })
-  });
+});
+
+
 
 var msg1,msg2,msg3, token_part;
 router.post('/login', (req,res)  => {
