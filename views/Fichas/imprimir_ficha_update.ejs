@@ -115,7 +115,8 @@
                           <h6 >POTOSI-BOLIVIA</h6>
                           <h6 >NOMBRE-CAJERO: <%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%> </h6>
                           <h6 >NIT/CI: <%=data_doc.data.personal.ci%>  </h6>
-                          <h6 >Lugar y Fecha: <%=data_imprecion.data.createdAt%></h6>
+                          <h6 >Fecha: <%=One_cita[0].createdAt.split("T")[0]%></h6>
+                          <h6 >Hora: <%=One_cita[0].hora.split("/")[0]%></h6>
                         </div>
                       </div>
                                      
@@ -128,8 +129,9 @@
                             <h6 >Servicios y/o actividades al IVA</h6> 
                          --><br><br><br><br><br><br><br>
                             <h6 >Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h6>
+                            <h6 >Historial: <%=paciente[0].numeroHistorial%></h6>
                             <h6 >NUM.H.C:  <%=paciente[0].ci%></h6>
-                            <h6 >MEDICO: <%=data_imprecion.data.medico%>   </h6>
+                            <h6 >MEDICO: <%=One_cita[0].medico%>   </h6>
                                             
                           </div>
                         </div>
@@ -142,7 +144,7 @@
                           <!--  <th>Descripción</th>
                             -->
                            
-                            <th>Especialidad</th>
+                            <th>Lugar de atención</th>
                             <th>Total</th>
                             
                           </tr>
@@ -154,8 +156,8 @@
                             <td>a</td>
                             -->
                             
-                            <td><%=data_imprecion.data.especialidad%></td>
-                            <td><%=data_imprecion.data.saldo_total%></td>
+                            <td><%=One_cita[0].especialidad%></td>
+                            <td><%=One_cita[0].saldo_total%></td>
                                                  
                           </tr>													
 
@@ -192,7 +194,7 @@
                     <div class="col-md-12"><br><br><br>
                       <h6>ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS EL SO ILICITO DE ESTA SERA SANCIONADO DE ACUEREO A LEY</h6>
                       <p id="ocultoI" class="text-center">
-                        <a href="/paciente/voler/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Salir</a>
+                        <a href="/paciente/citaPAciente/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=paciente[0].numeroHistorial%>" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Salir</a>
                         <button type="button" value="Imprimir" onclick="window.print()"	class="btn btn-success btn-raised"><i class="fa fa-print"></i> &nbsp;&nbsp;	Imprimir</button>
                       </p> 
                     </div>
