@@ -21,15 +21,61 @@
 
 /*----------------------logo------------------------------*/
 .dim2:before{
-    content: url('../images/hospital1.png');    
+    content: url('../images/hospital1.png');  
 }
 .posiondeImagen{
     position:absolute;
-    top:0;
+    top:0%;
     width:200px;
 }
+/*----------------------PARA EL ENCANEZADO------------------------------------------------*/
+.hospitalI:before {  
+    content: " HOSPITAL DANIEL BRACAMONTE" ;
+
+    color:black;
+    font: oblique bold 70% cursive;
+  }
+  .dondeES:before {  
+    content: " AV. Italia Final S/N" ;
+ 
+    color:black;
+    font: oblique bold 90% cursive;
+   
+  }
+  .telefo:before {  
+    content: " Telfs. 26246064-2624960" ;
+  
+    color:black;
+    font: oblique bold 90% cursive;
+  }
+  .fechaI{
+    font: oblique bold 90% cursive;
+  }
+/*----------------------PARA EL ENCANEZADO------------------------------------------------*/
+ .hospitalI:before {  
+    content: " HOSPITAL DANIEL BRACAMONTE" ;
+
+    color:black;
+   
+    font: Arial;
+  }
+  .dondeES:before {  
+    content: " AV. Italia Final S/N" ;
+  
+    color:black;
+    font: Arial;
+   
+  }
+  .telefo:before {  
+    content: " Telfs. 26246064-2624960" ;
+  
+    color:black;
+    font: Arial;
+  }
+
 
 /*----------------------logo de historial clinico de emergencia ------------------------------*/
+
 .dim2E:before{
     content: url('../images/hospital1.png'); 
     position: absolute;

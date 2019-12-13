@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -62,9 +65,9 @@
   },500000);
 </script>
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
@@ -83,7 +86,7 @@
       </div>
     </div>
     <div class="inner">
-      <div class="left_nav">
+      <div id="ocultoI" class="left_nav">
         <div class="left_nav">
           <div class="left_nav_slidebar">
             <ul>
@@ -123,19 +126,38 @@
           </div>
         </div>
       </div>
-      <div class="contentpanel">
+      <div id="sinMargen" class="contentpanel">
         <br>
         <div class="container clear_both padding_fix">
           <div class="row">
             <div class="col-md-12">
               <div class="block-web">
-                <div class="header">
-                  <div class="info blue_symbols"><i class="fa fa-briefcase icon"></i></div>
-                  <h3 class="content-header ">Reportes Farmacia</h3>
+                <div id="" class="head  ">
+                  <div id="" class="actions ">
+                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                    <P class="dondeES"></P>
+                    <p class="telefo"></p>
+                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                   
+                    <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                  </div>
+                  <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                  <div class="dim2 posiondeImagen">
+                    
+                    <img class="oculVistaReal "  src="/images/hospital1.png" />
+                    <p class="hospitali"></p>
+                  </div>
+                  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
+                  <div id="ocultoI" class="header">
+                    <div class="info blue_symbols"><i class="fa fa-briefcase icon"></i></div>
+                    <h3 class="content-header ">Reportes Farmacia</h3>
+                  </div>
                 </div>
+              
                 <br>
+                
                 <br>
-                <div class="porlets-content">
+                <div id="ocultoI" class="porlets-content">
                   <form  action="/filter_ventas/<%=data_doc.data.token_id%>" method="POST" class="form-horizontal" name="formulario1"  >
                     <div class="form-group">
                       <label class="col-sm-4 control-label">Desde:</label>
@@ -157,48 +179,53 @@
                       </div><!--/form-group--> 
                   </form>
                 </div>
-                <div class="form-group">
+                <div id="ocultoI" class="form-group">
                   <div class="col-sm-offset-9 col-sm-10">
-                    <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
+                    <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
                   </div>
                 </div><!--/form-group--> 
-                <br><br><br><br>
-                <div class="table-responsive">
-                  <table  class="display table table-bordered table-striped " id="dynamic-table">
+                <br><br><br>
+                <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							  <h5 class=" ordendetitulo tituloRoles text-center"></h5>
+							  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                
+                <br>
+                <div class="table-responsive scrollV">
+                  <table id="tablei" class="table table-bordered ">
                     <thead>
                       <tr> 
-                        <th>Fecha de ingreso</th>                         
-                        <th>N° Codigo</th>
-                        <th>Nombre Medicamento</th>
-                        <th>Presentación</th>
-                        <th>Nombre Genérico</th>
-                        <th>Cantidad Unidades</th>
-                        <th>Vendidas</th>
+                        <th id="thi" class="tamm" >Fecha de ingreso</th>                         
+                        <th id="thi" class="tamm" >N° Codigo</th>
+                        <th id="thi" class="tamm" >Nombre Medicamento</th>
+                        <th id="thi" class="tamm" >Presentación</th>
+                        <th id="thi" class="tamm" >Nombre Genérico</th>
+                        <th id="thi" class="tamm" >Cantidad Unidades</th>
+                        <th id="thi" class="tamm" >Vendidas</th>
                       </tr>
                     </thead>
                     <tbody>
                       <%if (filter != null) { %>
                         <% for (var i=0; i< filter.data.data_cliente.length; i++) { %>
                           <tr>
-                            <td class="text-center"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].codificacion%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].nombre%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].presentacion%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].generico%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].cantidad_unidad%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].ventas%></td>
+                            <td id="tdi" class="text-center"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+                            <td id="tdi" class="text-center"><%=filter.data.data_cliente[i].codificacion%></td>
+                            <td id="tdi" class="text-center"><%=filter.data.data_cliente[i].nombre%></td>
+                            <td id="tdi" class="text-center"><%=filter.data.data_cliente[i].presentacion%></td>
+                            <td id="tdi" class="text-center"><%=filter.data.data_cliente[i].generico%></td>
+                            <td id="tdi" class="text-center"><%=filter.data.data_cliente[i].cantidad_unidad%></td>
+                            <td id="tdi" class="text-center"><%=filter.data.data_cliente[i].ventas%></td>
                           </tr>
                         <% } %>
                       <% }else {%>  
                         <% for (var i=0; i< data.length; i++) { %>
-                          <tr>
-                            <td><%=data[i].createdAt.split("T")[0]%></td>
-                            <td><%=data[i].codificacion%></td>
-                            <td><%=data[i].nombre%></td>
-                            <td><%=data[i].presentacion%></td>
-                            <td><%=data[i].generico%></td>
-                            <td><%=data[i].cantidad_unidad%></td>
-                            <td><%=data[i].ventas%></td>
+             t             <tr>
+                            <td id="tdi"><%=data[i].createdAt.split("T")[0]%></td>
+                            <td id="tdi"><%=data[i].codificacion%></td>
+                            <td id="tdi"><%=data[i].nombre%></td>
+                            <td id="tdi"><%=data[i].presentacion%></td>
+                            <td id="tdi"><%=data[i].generico%></td>
+                            <td id="tdi"><%=data[i].cantidad_unidad%></td>
+                            <td id="tdi"><%=data[i].ventas%></td>
                           </tr>
                         <% } %>  
                       <%}%>                  
@@ -234,6 +261,54 @@
       </div>
     </div> 
   </div>
+  <style scoped>
+      @media print{
+    
+        /* tamaño de página*/
+        @page { 
+        size: A4;
+        size: 10in 11in;
+      } 
+      .scrollV{
+        width: 102%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .tituloRoles:before {  
+        content: " REPORTE GENERAL DE PACIENTE" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .ordendetitulo{
+        position:static;
+        margin-top: 4%;
+      }
+      .tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 100%/200% serif;
+        width: 25%;
+        text-align: left;
+        vertical-align: top;
+        border: 1px solid #000;
+        border-spacing: 0;
+      }
+      #tr{
+        width: 5%;
+      }
+      #tablei {
+   width: 10%;
+}
+#thi, #tdi {
+   width: 5%;
+   text-align: left;
+}
+      
+    }
+  </style>
+<script src="/js/fecha.js"></script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

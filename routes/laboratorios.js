@@ -32,7 +32,28 @@ function remove_user(id) {
   delete data_user[id];
 }
 
+var msg= {}
+function msg_data(data,id){
+  let msg_data = msg[id];
+    if (!msg_data) {
+        msg_data = msg[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    msg_data.qty++;
+}
 
+function array () {
+  let arr = [];
+  for (const id in msg) {
+      arr.push(msg[id]);
+  }
+  return arr;
+}
+function remove(id) {
+    delete msg[id];
+}
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -202,27 +223,27 @@ router.post('/vue_insert_lab_consultaExterna/:id_consulta', (req,res) => {
 })
 
 //rutas para la lista de laboratorios
-router.get('/list_ecografias/:historial', (req,res) => {
-    const { historial } = req.params
-    fetch('http://localhost:3050/api/list_ecografia/'+historial)
+router.get('/list_ecografias/:historial/:id_consulta', (req,res) => {
+    const { historial, id_consulta } = req.params
+    fetch('http://localhost:3050/api/list_ecografia/'+historial+'/'+id_consulta)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
         res.status(200).json(data)
     })
 })
-router.get('/list_rayosX/:historial', (req,res) => {
-    const { historial } = req.params
-    fetch('http://localhost:3050/api/list_rayosX/'+historial)
+router.get('/list_rayosX/:historial/:id_consulta', (req,res) => {
+    const { historial, id_consulta } = req.params
+    fetch('http://localhost:3050/api/list_rayosX/'+historial+'/'+id_consulta)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
         res.status(200).json(data)
     })
 })
-router.get('/list_laboratorios/:historial', (req,res) => {
-    const { historial } = req.params
-    fetch('http://localhost:3050/api/list_lab/'+historial)
+router.get('/list_laboratorios/:historial/:id_consulta', (req,res) => {
+    const { historial, id_consulta } = req.params
+    fetch('http://localhost:3050/api/list_lab/'+historial+'/'+id_consulta)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
@@ -241,6 +262,77 @@ router.get('/vue_one_lab/:id_lab', (req,res) => {
 })
 
 
+//lista de ecografias de hopitalizacion segun historial del paciente 
+router.get('/list_ecografias_hopitalizacion/:historial/:id_hospitalizacion', (req,res) => {
+    const { historial,id_hospitalizacion } = req.params
+    fetch('http://localhost:3050/api/lista_Ecografia_hospitalizacion/'+historial+'/'+id_hospitalizacion)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
+//lista de rayos x de hospitalizacion
+
+router.get('/list_rayosX_hopitalizacion/:historial/:id_hospitalizacion', (req,res) => {
+    const { historial, id_hospitalizacion} = req.params
+    fetch('http://localhost:3050/api/lista_rayosX_hopitalizacion/'+historial +'/'+ id_hospitalizacion)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
+//lista de laboratorios de hospitalizacion
+router.get('/lista_lab_hospitalizacion/:historial/:id_hospitalizacion', (req,res) => {
+    const { historial, id_hospitalizacion } = req.params
+    fetch('http://localhost:3050/api/lista_lab_hospitalizacion/'+historial+'/'+id_hospitalizacion)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z
+                                lista de laboratorios de emergencia
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z
+*/
+
+//rutas para la lista de laboratorios
+router.get('/list_ecografias_emg/:historial/:id_emg', (req,res) => {
+    const { historial, id_emg } = req.params
+    console.log(req.params)
+    fetch('http://localhost:3050/api/lista_Ecografia_emg/'+id_emg +'/'+historial)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+router.get('/list_rayosX_emg/:historial/:id_emg', (req,res) => {
+    const { historial, id_emg } = req.params
+    fetch('http://localhost:3050/api/lista_rayosX_emg/'+id_emg+'/'+historial)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+router.get('/list_laboratorios_emg/:historial/:id_emg', (req,res) => {
+    const { historial, id_emg } = req.params
+    fetch('http://localhost:3050/api/lista_lab_emg1/'+id_emg+'/'+historial)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
 
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -318,23 +410,25 @@ router.get('/vue_one_lab/:id_lab', (req,res) => {
         .then(data_paciente => {   
            fetch('http://localhost:3050/api/one_lab/'+id_lab) 
            .then(res => res.json())    
-           .then(one_lab => { 
-                fetch('http://localhost:3000/api/one_consulta_id/'+one_lab[0].id_consulta)
+           .then(one_lab => {     
+               
+                fetch('http://localhost:3050/api/one_resp_lab/'+id_lab) 
                 .then(res => res.json())    
-                .then(data_consulta => { 
-                    console.log(data_consulta," <<<<<<<<<<<<<<<   asdasdasd    <<<<<<<<<<<<<<<<<<<<<<<<<")
+                .then(data_one_resp_lab => { 
                     res.render('laboratorio/IntroducirLab',{
                         data_paciente,
                         data_doc: data_user[token_id],
                         one_lab,
-                        data_consulta
+                        data_one_resp_lab,
+                        msg:msg[token_id]
                     })
-                })
+                })     
+            
                 .catch(error => {
                     res.render('laboratorio/404error',{
-                     data_doc: data_user[token_id],
-                     msg:"Algo paso con el servidor 3000",
-                     error
+                        data_doc: data_user[token_id],
+                        msg:"Algo paso con el servidor 3050",
+                        error
                     })
                  }) 
                
@@ -362,28 +456,138 @@ router.get('/vue_one_lab/:id_lab', (req,res) => {
  })
 
  //ruta vue para insertar en la respuesta laboratorio
- router.post('/vue_register_respLab/:id_lab', (req,res) => {
-    const { id_lab } = req.params
-    var datos = req.body;
-   /*  var datos1 = req.fiel;
-    console.log(datos, "  <<<<<<<<<<<< < << < < < < < <  <<<<<<<<<<<<<<<<<<<<<<")
-    console.log(datos1, "  <<<<<<<<<<<< < << < < < < < <  <<<<<<<<<<<<<<<<<<<<<<") */
+ router.post('/vue_register_respLab/:id_lab/:historial1/:token_id', (req,res) => {
+    const { id_lab, historial1, token_id } = req.params;
+    var msg_p
+    if( datas.name.token[token_id] ){
+        if( req.file == '' || req.file == null ){
+            if(msg[token_id] == null){
+                msg_p = {
+                  success:false,
+                  data_p:"selecione un archivo por favor antes de registrar"
+                }
+                msg_data(msg_p,token_id)
+            }else{
+                msg_p = {
+                  success:false,
+                  data_p:"selecione un archivo por favor antes de registrar"
+                }
+                remove(token_id)
+                msg_data(msg_p,token_id)
+            }
+            res.redirect('/laboratorios/laboratorio/'+id_lab+'/'+historial1+'/'+token_id)
+        }else{
+            var file = req.file.filename.split('.')[1]
+            if( file == 'pdf' || file == 'jpg' || file == 'png' || file == 'JPEG'){
+                const { historial,nombre_user,fecha,id_user,descripcion, hora, imagen_resp, img_id } = req.body
+                var datos = {
+                    fecha,
+                    hora,
+                    historial,
+                    nombre_user,
+                    imagen_resp,
+                    img_id,
+                    descripcion,
+                    id_user,
+    
+                    imagen_resp:req.file.filename,
+                    img_id:req.file.path,
+                
+                }
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(datos),
+                    headers:{
+                      'Content-type' : "application/json"
+                      //'Content-Type': 'multipart/form-data'
+                    }
+                };
+                fetch('http://localhost:3050/api/registrar_espuesta_lab/'+id_lab,esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => {
+                    if(data.success == true){
+                        if(msg[token_id] == null){
+                            msg_p = {
+                              success:true,
+                              data_p:data.msg
+                            }
+                            msg_data(msg_p,token_id)
+                        }else{
+                            msg_p = {
+                              success:true,
+                              data_p:data.msg 
+                            }
+                            remove(token_id)
+                            msg_data(msg_p,token_id)
+                        }
+                        update_estado(id_lab);
+                        res.redirect('/laboratorios/laboratorio/'+id_lab+'/'+historial1+'/'+token_id)
+                    }else{
+                        if(msg[token_id] == null){
+                            msg_p = {
+                              success:false,
+                              data_p:data.msg
+                            }
+                            msg_data(msg_p,token_id)
+                        }else{
+                            msg_p = {
+                              success:false,
+                              data_p:data.msg
+                            }
+                            remove(token_id)
+                            msg_data(msg_p,token_id)
+                        }
+                        res.redirect('/laboratorios/laboratorio/'+id_lab+'/'+historial1+'/'+token_id)    
+                    }
+                }) 
+                }else{
+                if(msg[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:"Solo se permite archivos de tipo .PDF, .JPG, .JPEG y .PNG"
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:"Solo se permite archivos de tipo .PDF, .JPG, .JPEG y .PNG"
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect('/laboratorios/laboratorio/'+id_lab+'/'+historial1+'/'+token_id) 
+    
+            }
+        }
 
+    }else{
+        res.redirect('/');
+    }
+    setTimeout(()=>{
+        remove(token_id)
+    },1000);
+    
+ })
+
+ function update_estado (id_lab){
+    var datos = {
+        estado:'false'
+    };
     var esto = {
         method: 'POST',
         body: JSON.stringify(datos),
         headers:{
-          'Content-type' : "application/json",
-          'Content-Type': 'multipart/form-data'
+          'Content-type' : "application/json"
         }
     };
-    fetch('http://localhost:3050/api/registrar_espuesta_lab/'+id_lab,esto)
+    fetch('http://localhost:3050/api/update_estado_labRespuesta/'+id_lab,esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
-        res.status(200).json(data)
+        console.log(data)
     })
- })
+ }
 
  //ruta para poder actualizar el estado de resp lab
  router.post('/vue_update_estado_Lab/:id_lab', (req,res) => {

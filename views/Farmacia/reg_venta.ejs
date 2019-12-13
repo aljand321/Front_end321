@@ -91,7 +91,7 @@
     	</div>
    		<div class="inner receta_cliente" >
 			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
+				<div class="modal-dialog  modal-lg ">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -295,7 +295,7 @@
 											</div>
 										</div><br><br><br>
 										<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Registrar Venta</button>
-										<a class="btn btn-danger" href="/farmacia/ventas"><i class="fa fa-times"></i> Cancelar</a>
+										<a class="btn btn-danger" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i> Cancelar</a>
 									</form>
 								</div><!--/porlets-content--> 
 						  	</div><!--/block-web--> 
@@ -360,7 +360,9 @@
 															<td>{{car.item.nombre}}</td>
 															<td>{{car.item.price}}</td>
 															<td>{{car.price}}</td>                                                      
-															</tr>   
+															</tr> 
+														</tbody>  
+														<tbody>
 															<tr>
 															<td colspan="5">S/ Sub Total</td>
 															<td><strong>{{cliente_receta_one.medicamentos.totalPrice}}</strong></td>
@@ -378,7 +380,10 @@
 											<br>
 											<div class="form-group">
 											  	<div class="col-sm-offset-0 col-sm-10">
-													<div class="btn-group">  <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													<div class="btn-group"> 
+														<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+														<a id="ocultoI" class="btn btn-info" href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-shopping-cart"></i> Terminar Venta</a>
+													</div>
 												</div>
 											</div><!--/form-group-->
 										</div>

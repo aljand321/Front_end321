@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -28,6 +30,8 @@
 
 <link href="/css/toastr.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
+
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:20px 9px 9px 25px;}
@@ -61,9 +65,9 @@
   },500000);
 </script>
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
@@ -80,8 +84,8 @@
         </div>
       </div>
     </div>
-    <div class="inner">
-      <div class="left_nav">
+    <div class="inner" id="">
+      <div id="ocultoI" class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -119,19 +123,37 @@
           </ul>
         </div>
       </div>
-      <div class="contentpanel">
+      <div id="sinMargen" class="contentpanel">
         <br>
-        <div class="container clear_both padding_fix">
+        <div  id="" class="container clear_both padding_fix">
           <div class="row">
-            <div class="col-md-12">
-              <div class="block-web">
-                  <div class="header">
-                    <div class="info2 blue_symbols"><i class="fa fa-male icon"></i></div>
-                    <h3 class="content-header ">Reportes General Pacientes</h3>
+            <div  id=""  class="col-md-12">
+              <div id="" class="block-web">
+                <!-- Content page -->
+								<div id="" class="head  ">
+                  <div id="" class="actions ">
+                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                    <P class="dondeES"></P>
+                    <p class="telefo"></p>
+                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                   
+                    <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
                   </div>
+                  <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                  <div class="dim2 posiondeImagen">
+                    
+                    <img class="oculVistaReal "  src="/images/hospital1.png" />
+                    <p class="hospitali"></p>
+                  </div>
+                  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
+                  <div id="ocultoI" class="header">
+                    <div id="ocultoI"class="info2 blue_symbols"><i class="fa fa-male icon"></i></div>
+                    <h3 id="ocultoI" class="content-header ">Reportes General Pacientes</h3>
+                  </div>
+                </div>
+              <br>
                 <br>
-                <br>
-                <div class="porlets-content">
+                <div id="ocultoI" class="porlets-content">
                   <form  action="/filter_pacientes/<%=data_doc.data.token_id%>" method="POST" class="form-horizontal" name="formulario1"  >
                     <div class="form-group">
                       <label class="col-sm-4 control-label">Desde:</label>
@@ -153,52 +175,57 @@
                       </div><!--/form-group--> 
                   </form>
                 </div>
-                <div class="form-group">
+                <div  id="ocultoI" class="form-group">
                   <div class="col-sm-offset-9 col-sm-10">
-                    <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
+                    <button onclick="window.print();"  type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
                   </div>
+              </div><!--/form-group--> 
                   
-                </div><!--/form-group--> 
-                <br><br><br><br>
-                <div class="table-responsive">
-                  <table  class="display table table-bordered table-striped " id="dynamic-table">
+                <br><br>
+                <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							  <h5 class=" ordendetitulo tituloRoles text-center"></h5>
+							  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                <br>
+                <div class="table-responsive scrollV "id="">
+                  
+                  <table  class="table table-bordered  " >
                     <thead>
-                      <tr>
-                        <th class="text-center">Fecha Creación</th>                          
-                        <th class="text-center">N° Historial</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Apellido Paterno</th>
-                        <th class="text-center">Apellido Materno</th>
-                        <th class="text-center">C.I.</th>
-                        <th class="text-center">Dirección</th>
-                        <th class="text-center">Sexo</th>
+                      <tr class="">
+                        <th class="text-center tamm">Fecha Creación</th>                          
+                        <th class="text-center tamm">N° Historial</th>
+                        <th class="text-center tamm">Nombre</th>
+                        <th class="text-center tamm">Apellido Paterno</th>
+                        <th class="text-center tamm">Apellido Materno</th>
+                        <th class="text-center tamm">C.I.</th>
+                        <th class="text-center tamm">Dirección</th>
+                        <th class="text-center tamm">Sexo</th>
                       </tr>
                     </thead>
                     <tbody>
                       <%if (filter != null) { %>
                         <% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
                           <tr>
-                            <td class="text-center"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
-                            <td class="text-center "><%=filter.data.data_cliente[i].numeroHistorial%></td>
-                            <td class="text-center "><%=filter.data.data_cliente[i].nombre%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].apellidop%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].apellidom%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].ci%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].direccion%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].sexo%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+                            <td class="text-center tamm "><%=filter.data.data_cliente[i].numeroHistorial%></td>
+                            <td class="text-center tamm "><%=filter.data.data_cliente[i].nombre%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].apellidop%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].apellidom%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].ci%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].direccion%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].sexo%></td>
                           </tr>
                         <% } %>
                           <% }else {%>  
                             <% for (var i=0; i< data.length; i++) { %>
                               <tr>
-                                <td><%=data[i].createdAt.split("T")[0]%></td>
-                                <td><%=data[i].numeroHistorial%></td>
-                                <td><%=data[i].nombre%></td>
-                                <td><%=data[i].apellidop%></td>
-                                <td><%=data[i].apellidom%></td>
-                                <td><%=data[i].ci%></td>
-                                <td><%=data[i].direccion%></td>
-                                <td><%=data[i].sexo%></td>
+                                <td class="tamm"><%=data[i].createdAt.split("T")[0]%></td>
+                                <td class="tamm"><%=data[i].numeroHistorial%></td>
+                                <td class="tamm"><%=data[i].nombre%></td>
+                                <td class="tamm"><%=data[i].apellidop%></td>
+                                <td class="tamm"><%=data[i].apellidom%></td>
+                                <td class="tamm"><%=data[i].ci%></td>
+                                <td class="tamm"><%=data[i].direccion%></td>
+                                <td class="tamm"><%=data[i].sexo%></td>
                               </tr>
                           <% } %>  
                       <%}%> 
@@ -233,6 +260,48 @@
       </div>
     </div> 
   </div>
+  <style scoped>
+      @media print{
+    
+        /* tamaño de página*/
+        @page {
+      
+        size: A4;
+        size: 11in 11in;
+      } 
+      .scrollV{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .tituloRoles:before {  
+        content: " REPORTE GENERAL DE PACIENTE" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .ordendetitulo{
+        position:static;
+        margin-top: 4%;
+      }
+      .tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 100%/200% serif;
+        width: 25%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-spacing: 0;
+      }
+      #tr{
+        width: 5%;
+      }
+      
+    }
+  </style>
+<script src="/js/fecha.js"></script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

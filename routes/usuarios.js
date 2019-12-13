@@ -231,6 +231,127 @@ router.post('/usuarios/:token_id', (req,res) => {
     }
       
 });
+
+//ruta para dar de baja al personal
+router.get('/dar_baja/:id/:token_id', (req,res) => {
+  const { id,token_id } = req.params
+  var  msg_p;
+    if( datas.name.token[token_id] ){
+      var data = {
+        estado:'true'
+      };
+      var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json",
+          //'Authorization': datas.name.token
+        }
+      };
+      fetch('http://localhost:3600/api/baja_personal/'+id,esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+        if(data.success == true){
+          if(msg_Consulta_emergencia[token_id] == null){
+            msg_p = {
+              success:true,
+              data_p:data.msg
+            }
+            msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:true,
+              data_p:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          res.redirect('/usuarios/usuarios/'+token_id)
+        }else{
+          if(msg_Consulta_emergencia[token_id] == null){
+            msg_p = {
+              success:false,
+              data_p:data.msg
+            }
+            msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data_p:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          res.redirect('/usuarios/usuarios/'+token_id);
+        }
+      })
+      
+    }else{
+      res.redirect('/');
+    }
+
+})
+
+router.get('/habilitar_user/:id/:token_id', (req,res) => {
+  const { id,token_id } = req.params
+  var  msg_p;
+    if( datas.name.token[token_id] ){
+      var data = {
+        estado:'false'
+      };
+      var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json",
+          //'Authorization': datas.name.token
+        }
+      };
+      fetch('http://localhost:3600/api/baja_personal/'+id,esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+        if(data.success == true){
+          if(msg_Consulta_emergencia[token_id] == null){
+            msg_p = {
+              success:true,
+              data_p:data.msg
+            }
+            msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:true,
+              data_p:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          res.redirect('/usuarios/usuarios/'+token_id)
+        }else{
+          if(msg_Consulta_emergencia[token_id] == null){
+            msg_p = {
+              success:false,
+              data_p:data.msg
+            }
+            msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:false,
+              data_p:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          res.redirect('/usuarios/usuarios/'+token_id);
+        }
+      })
+      
+    }else{
+      res.redirect('/');
+    }
+
+})
   
 router.get('/usuario/:id',(req, res) => {
   var id = req.params;

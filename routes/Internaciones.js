@@ -330,7 +330,7 @@ router.get('/One_form_Internacion/:id_Pinternacion', (req,res) => {
 
 router.get('/vue_one_papeleta_internacion/:id', (req,res) => {
     const { id } = req.params
-    fetch(url.name.url+'/api/one_Form_internacion/'+id) 
+    fetch(url.name.url+'/api/one_Form_internacion1/'+id) 
     .then(resp => resp.json())
     .then(data =>{
         res.status(200).json(data)

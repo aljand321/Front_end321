@@ -62,17 +62,9 @@
 
 </head>
 <script type="text/javascript">
-    // este scrip es para verificar si esta el token en local starge
-    var data = localStorage.getItem('data')
-    console.log(data)
-    if (data == null){
-        window.location.replace('/')
-    }
-</script>
-<script type="text/javascript">
 	// este scrip es para verificar si esta el token en local starge
 	var data = localStorage.getItem('data')
-	console.log(data)
+	
 	if (data == null){
 		window.location.replace('/')
   }
@@ -177,12 +169,7 @@
 												<div class="row">
 
 												
-													<div class="col-md-12">
-
-														<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
-														<input type="hidden" :value="nombre_user = '<%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%>'">
-														<input type="hidden" :value="id_lab = '<%=one_lab[0].id%>'">
-														<input type="hidden" :value="id_user = '<%=data_doc.data.personal.id%>'">
+													<div class="col-md-12">												
 
 														<section class="panel default blue_title h2">
 															<div class="col-md-6 panel panel-default">
@@ -260,7 +247,7 @@
 																		<div class="col-sm-6 col-sm-6">
 																			<div class="entrada">
 																				<label class="">Especialidad:</label>
-																				<p><b><%=data_consulta[0].tipoConsulta%></b>
+																				<p><b><%=one_lab[0].consultorio%></b>
 																				</p>
 																				<input type="hidden" name="tipoConsulta" class="form-control" readonly="" value="Read only text goes here">
 																			</div>
@@ -280,69 +267,284 @@
 														</section>
 													</div>
 													<label> <b>Peticiones del Médico</b></label>
-													<div class=" col-md-12" >
+													<div class=" col-md-14" >
 														<div class="col-md-6">
+															<input type="hidden" :value=" id_lab = '<%=one_lab[0].id%>'">
 															<% for (var i = 0; i < one_lab[0].examen.length; i++) { %>
 
 																<label> <b><%=one_lab[0].examen[i].estudio%></b>  </label>
 																<p> <%=one_lab[0].examen[i].descripcion%></p>
 															<% } %>
+															
+															<div v-if="examen_x != ''" class="col-md-14">																									
+																<div class="col-md-14">
+																	
+																	<div class="col-md-4" v-if="examen_x.torax != ''">
+																		<p>Torax:</p>
+																		<ul v-for="list in examen_x.torax">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-4" v-if="examen_x.abdomen != ''">
+																		<p>Abdomen:</p>
+																		<ul v-for="list in examen_x.abdomen">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-4" v-if="examen_x.craneo_Macizo_Facial != ''">
+																		<p>Craneo Macizo Facial:</p>
+																		<ul v-for="list in examen_x.craneo_Macizo_Facial">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																
+																	<div class="col-md-4" v-if="examen_x.Placas_Radiograficas != ''">
+																		<p>Placas Radiograficas:</p>
+																		<ul v-for="list in examen_x.Placas_Radiograficas">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-4" v-if="examen_x.Columna_vertebral != ''">
+																		<p>Columna vertebral:</p>
+																		<ul v-for="list in examen_x.Columna_vertebral">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-4" v-if="examen_x.Miembros_superiores != ''">
+																		<p>Miembros superiores:</p>
+																		<ul v-for="list in examen_x.Miembros_superiores">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																		<div class="col-md-4" v-if="examen_x.Miembros_inferiores != ''">
+																		<p>Miembros inferiores:</p>
+																		<ul v-for="list in examen_x.Miembros_inferiores">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																
+																</div>									
+															</div>
+
+															<div v-if="examen_lab != ''" class="col-md-14">
+																	<label for="">Examene diagnosticado</label><br>
+																	<div class="col-md-5" v-if="examen_lab.Hemotología != ''">
+																		<p>Hemotología:</p>
+																		<ul v-for="list in examen_lab.Hemotología">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Química_Sanguínea != ''">
+																		<p>Química Sanguínea:</p>
+																		<ul v-for="list in examen_lab.Química_Sanguínea">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Orina != ''">
+																		<p>Orina:</p>
+																		<ul v-for="list in examen_lab.Orina">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																
+																	<div class="col-md-5" v-if="examen_lab.Prueba_Embarazo != ''">
+																		<p>Prueba Embarazo:</p>
+																		<ul v-for="list in examen_lab.Prueba_Embarazo">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Heces != ''">
+																		<p>Heces:</p>
+																		<ul v-for="list in examen_lab.Heces">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Expectoración != ''">
+																		<p>Expectoración:</p>
+																		<ul v-for="list in examen_lab.Expectoración">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Exámenes_Especiales != ''">
+																		<p>Exámenes Especiales:</p>
+																		<ul v-for="list in examen_lab.Exámenes_Especiales">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Perfil_Preoperatorio != ''">
+																		<p>Perfil Preoperatorio:</p>
+																		<ul v-for="list in examen_lab.Perfil_Preoperatorio">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Perfil_Obstetrico != ''">
+																		<p>Perfil Obstetrico:</p>
+																		<ul v-for="list in examen_lab.Perfil_Obstetrico">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Perfil_Reumático != ''">
+																		<p>Perfil Reumático:</p>
+																		<ul v-for="list in examen_lab.Perfil_Reumático">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Perfil_hepatico != ''">
+																		<p>Perfil hepatico:</p>
+																		<ul v-for="list in examen_lab.Perfil_hepatico">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																	<div class="col-md-5" v-if="examen_lab.Perfil_lipidico != ''">
+																		<p>Perfil lipidico:</p>
+																		<ul v-for="list in examen_lab.Perfil_lipidico">
+																			<li>{{list.descripcion}}</li>
+																		</ul> 
+																	
+																	</div> 
+																
+															</div>
 														</div>
 														
 													</div>
-                                                        
-													<div class="header">
 
-														<h3 class="content-header center">
-															<span>&nbsp;&nbsp;&nbsp;</span>Llenado del laboratorio </h3>
-													</div>
-
-													<form  @submit="register_rep_lab" method="POST" enctype="multipart/form-data">
-
-														<div class="col-md-6">
-															<div class="block-web">
-																<div class="header">
-																   <h3 class="content-header">Subir la Laboratorio</h3>
-																</div>
-																<div class="porlets-content">
-																	
-																	<br>
-																	<input type="file" name="image" @change="getImage" accept="image/*">
-																	  
-																   
-																</div><!--/porlets-content--> 
-															</div><!--/block-web--> 
-														</div><!--/col-md-6-->
-															  
-														<div class="col-md-6">
-															<div class="block-web">
-																<div class="header">
-																	<h3 class="content-header">Detalles</h3>
-																</div>
-																<div class="porlets-content">																	
-																	<div class="col-sm-4">
-																		<label class="control-labe">Descripción:</label>
-																		<textarea v-model="descripcion" class="large-compact" name="diagnostico" cols="50" rows="10"></textarea>
-																		<!-- <input v-model="descripcion" type="text" name="titulo"  class="form-control" parsley-trigger="change"  required placeholder="Introdusca CI." /> -->
-																	</div>
-																</div><!--/porlets-content--> 
-														</div><!--/block-web--> 
-														  </div><!--/col-md-6-->
-														<div class="col-md-12"><br>
-															<div class="col-sm-6">
+													<div class="col-md-14">
+														
 																
-																<button type="submit" class="btn btn-success btn-icon">Guardar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-																<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-																<button type="button" onclick="scan();"> falta Scan</button>
-																<!-- Triggers scan -->
-																<div id="images">
-																	<!-- Displays scanned images  -->
-																</div>
-															</div>
-														</div>
+														<div class="col-md-12">
 
-													</form>
-													
+															<h3 class="content-header center">
+															<span>&nbsp;&nbsp;&nbsp;</span>Llenado del laboratorio</h3>
+																
+																<%if(data_one_resp_lab == "") { %>
+
+																	<form action="/laboratorios/vue_register_respLab/<%=one_lab[0].id%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>" method="POST" enctype="multipart/form-data">
+																		<input type="hidden" name="historial" value="<%=data_paciente[0].numeroHistorial%>">
+																		<input type="hidden" name="nombre_user" value="<%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%>">
+																		<input type="hidden" name="fecha" :value="fecha">
+																		<input type="hidden" name="hora" :value="hora">
+																		<input type="hidden" name="id_user" value="<%=data_doc.data.personal.id%>">
+				
+																		<div class="col-md-6">
+																			<div class="block-web">
+																				<div class="header">
+																				   <h3 class="content-header">Subir la Laboratorio</h3>
+																				</div>
+																				<div class="porlets-content">
+																					
+																					<br>
+																					<input type="file" name="imagen" accept="image/*">
+																					  
+																				   
+																				</div><!--/porlets-content--> 
+																			</div><!--/block-web--> 
+																		</div><!--/col-md-6-->
+																			  
+																		<div class="col-md-6">
+																			<div class="block-web">
+																				<div class="header">
+																					<h3 class="content-header">Detalles</h3>
+																				</div>
+																				<div class="porlets-content">																	
+																					<div class="col-sm-4">
+																						<label class="control-labe">Descripción:</label>
+																						<textarea class="large-compact" name="descripcion" cols="50" rows="10"></textarea>
+																						<!-- <input v-model="descripcion" type="text" name="titulo"  class="form-control" parsley-trigger="change"  required placeholder="Introdusca CI." /> -->
+																					</div>
+																				</div><!--/porlets-content--> 
+																		</div><!--/block-web--> 
+																		  </div><!--/col-md-6-->
+																		<div class="col-md-12"><br>
+																			<div class="col-sm-6">
+																				
+																				<button type="submit" class="btn btn-success btn-icon">Guardar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+																				<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+																				<button type="button" onclick="scan();"> falta Scan</button>
+																				<!-- Triggers scan -->
+																				<div id="images">
+																					<!-- Displays scanned images  -->
+																				</div>
+																			</div>
+																		</div>
+				
+																	</form>
+				
+																<% } else { %>
+																		
+																	<form action="/laboratorios/vue_register_respLab/<%=one_lab[0].id%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>" method="POST" enctype="multipart/form-data">														
+				
+																		<div class="col-md-6">
+																			<div class="block-web">
+																				<div class="header">
+																				   <h3 class="content-header">Subir la Laboratorio</h3>
+																				</div>
+																				<div class="porlets-content">
+																					
+																					<br>
+																					<div class="col-md-12">
+																						<div class="row">
+																							<!-- <img src="<%=data_one_resp_lab[0].imagen_resp%>"> -->
+																							<embed :src=" url + '/<%=data_one_resp_lab[0].imagen_resp%>'" type="application/pdf" width="100%" height="600px" />
+																							<a :href=" url + '/<%=data_one_resp_lab[0].imagen_resp%>'">Ver</a>
+																						</div>
+			
+																					</div>
+			
+																					  
+																				   
+																				</div><!--/porlets-content--> 
+																			</div><!--/block-web--> 
+																		</div><!--/col-md-6-->
+																			  
+																		<div class="col-md-6">
+																			<div class="block-web">
+																				<div class="header">
+																					<h3 class="content-header">Detalles</h3>
+																				</div>
+																				<div class="porlets-content">																	
+																					<div class="col-sm-4">
+																						<label class="control-labe">Descripción:</label>
+																						<textarea class="large-compact" name="descripcion" cols="50" rows="10"><%=data_one_resp_lab[0].descripcion%></textarea>
+																						<!-- <input v-model="descripcion" type="text" name="titulo"  class="form-control" parsley-trigger="change"  required placeholder="Introdusca CI." /> -->
+																					</div>
+																				</div><!--/porlets-content--> 
+																		</div><!--/block-web--> 
+																		  </div><!--/col-md-6-->
+																		<div class="col-md-12"><br>
+																			<div class="col-sm-6">
+																				
+																				<button type="submit" class="btn btn-success btn-icon">Guardar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+																				<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+																				<button type="button" onclick="scan();"> falta Scan</button>
+																				<!-- Triggers scan -->
+																				<div id="images">
+																					<!-- Displays scanned images  -->
+																				</div>
+																			</div>
+																		</div>
+				
+																	</form>
+																<% } %>
+														</div>
+													</div>							
 												</div>
 											</div>
 
@@ -526,163 +728,60 @@
 	<script src="/moment/locale/af.js"></script>
 	<script src="/url/export.js"></script>
 	<script>
-		var laboratorio = new Vue({
-    		el:"#laboratorio",
-			data:{
-				url:data_url.url_front_end,
-				msg_false:'',
-				msg:'',
-				imagen:'',
-				//Post
-				id_lab:'',
-				fecha:'',
-                hora:'',
-                historial:'',
-                nombre_user:'',
-                descripcion:'',
-                
-                id_user:''
-			},
-			mounted(){
-        		this.fecha = moment().format('l'); 
-        		this.hora = moment().format('HH:mm:ss')        
-    		},
-			methods:{
-				getImage(event){
-                	//Asignamos la imagen a  nuestra data
-					this.imagen = event.target.files[0];
-					
-            	},
-				register_rep_lab(e){
-					
-					e.preventDefault();
-					/* console.log(this.imagen)
-					let formData = new FormData();
-					formData.append('file', this.imagen);
-					console.log (formData, '<<<<<<<<<<<<<<<<  <>>>>>>>>>>>>>>>>>>>>    <<<<')
-					axios.post(this.url+'/laboratorios/vue_register_respLab/'+this.id_lab, formData,
-       				{
-       				   headers: {
-       				     'Content-Type': 'multipart/form-data'
-       				   }
-       				})
-       				.then(function (response) {
-					
-       				  console.log(response)
-					  
-       				})
-       				.catch(function (error) {
-       				    console.log(error);
-       				}); */
-					var datos = {
-						//archivo: formData,
-						fecha:this.fecha,
-                		hora:this.hora,
-                		historial:this.historial,
-                		nombre_user:this.nombre_user,
-                		descripcion:this.descripcion,
-                		id_user:this.id_user
-					};
-    				var esto = {
-    				    method: 'POST',
-    				    body: JSON.stringify(datos),
-    				    headers:{
-						  'Content-Type' : "application/json",
-						  //'Content-Type': 'multipart/form-data'
-    				    }
-    				};
-    				fetch(this.url+'/laboratorios/vue_register_respLab/'+this.id_lab,esto)
-    				.then(res => res.json())
-    				.catch(error => console.error('Error:', error))
-    				.then(data => {
-						if(data.success == true){
-							this.descripcion = ''
-							
-							swal.fire(
-								'Success!',
-								'<label style="color:green;">'+data.msg+'</label>',
-								'success'
-							)
-							this.update_estado_lab()
-							this.msg_false = ""
-						}else{
-							this.msg = ""
-							console.log(data.msg)
-							 /* Swal.fire({
-							  type: 'error',
-							  title: 'Oops...',
-							  text:  data.msg,
-							  footer: '<a href>Why do I have this issue?</a>' 
-							}) */ 
-							 swal.fire(
-								'Error!',
-								'<label style="color:red;">'+data.msg+'</label>',
-								'error'
-							) 
-							//mensaje en la parte de arriba
-							/*  swal.fire({    
-								position: 'top',
-								type:'error',
-								title:data.msg,
-								showConfirmButton:true,
-								timer:3500
-								
-							})  */
-							//css animated
-							/* swal.fire({    
-								title:'Error',
-								animation:false,
-								customClass:{
-									popup:'animated bounce'
-								}
-								
-							}) */
-							//personalizado
-							/*  swal.fire({    
-								title:'esto es lo que yo quiero',
-								text:data.msg,
-								
-								width:600,
-								padding:'5em',
-								background:'#fff url(/images/red.jpg)',
-								backdrop:`
-								rgba(5, 5, 25 0.4)
-								url("/images/red.jpg")
-								center left
-								no-repeat
-								`								
-							}) 
-							 toastr.error(data.msg,'Error' ,{
-                    		    "progressBar": true,
-                    		    "positionClass": "toast-top-center",
-                    		    "closeButton": true,
-                    		} )  */
-						}
-    				    
-    				})
-				},
-				update_estado_lab(){
-					var datos = {
-						estado:'false'
-					};
-    				var esto = {
-    				    method: 'POST',
-    				    body: JSON.stringify(datos),
-    				    headers:{
-    				      'Content-type' : "application/json"
-    				    }
-    				};
-    				fetch(this.url+'/laboratorios/vue_update_estado_Lab/'+this.id_lab,esto)
-    				.then(res => res.json())
-    				.catch(error => console.error('Error:', error))
-    				.then(data => {
-    				    console.log(data, " <<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-    				})
-				}
-			}
-		})
+			/*  <%if(msg) { %> */
+			  /*  <%if(msg.data.success == false) { %> */
+				   msg_false()
+				   function msg_false(){
+					 swal.fire(
+					   'Error!',
+					   '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+					   'error'
+					 )
+				   }
+			   /* <% } else {%> */
+				   msg_true()
+				   function msg_true(){
+					 swal.fire(
+					   'Success!',
+					   '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+					   'success'
+					 )
+				   }
+			  /*  <% } %> */
+			/*  <% } %> */
 	</script>
+	<script>
+	const laboratorio = new Vue({
+    	el:"#laboratorio",
+    	data:() => ({
+			id_lab:'',
+			fecha:'',
+			hora:'',
+			url:data_url.url_front_end,
+			examen_x:'',
+			examen_lab:''
+		}),
+		mounted(){
+			this.fecha = moment().format('l')
+			this.hora = moment().format('HH:mm:ss')
+			console.log(this.fecha, this.hora)
 
+			fetch(this.url+'/laboratorios/vue_one_lab/'+this.id_lab)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+				console.log(data, "  <<<<<<<<<<<<<<<<<<<<<<sdss")
+                this.lab_one = data[0]
+                if (data[0].tipo_laboratorio == "Rayos_x"){
+                    this.examen_x = data[0].examen                   
+                }else if (data[0].tipo_laboratorio == "LABORATORIO"){
+                    this.examen_lab = data[0].examen                    
+                }
+            })
+		}
+	})
+	</script>
+	
 
 </body>
 

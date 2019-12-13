@@ -453,7 +453,7 @@
 
 
   <style >
-      /*  <%if (resp[0] != null) { %> */
+      /*  <%if (updateInternacion != "") { %> */
           @media print{
               .tituloDiagnostico:before {
                   content: " Dignóstico";
@@ -472,6 +472,7 @@
                   padding-left: 5%;
               }
               .areInternacion:before {
+
                   content: "Áre de Internación: <%=updateInternacion[0].especialidad%>";
                   font-weight: negrita;
                   color:black;
@@ -493,7 +494,7 @@
                   
           }
       /*   <% } %>     */
-      </style>
+  </style>
 <script src="/js/fecha.js"></script>
     
 <script src="/js/jquery-2.1.0.js"></script>

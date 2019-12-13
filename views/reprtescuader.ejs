@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -27,6 +29,65 @@
 
 <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 
+  <style scoped>
+      @media print{
+    
+        /* tamaño de página*/
+        @page {
+      
+        size: A4;
+        size: 8.5in 11in;
+      } 
+      .scrollV{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .tituloCuaderno:before {  
+        content: " REPORTE DE CUADERNOS" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .tituloEspecialidad:before {  
+        content: " REPORTE DE ESPECIALIDAD" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .ordendetitulo{
+        position:static;
+        margin-top: 1%;
+      }
+      .tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 100%/200% serif;
+        width: 25%;
+        text-align: left;
+        vertical-align: top;
+        border: 1px solid #000;
+        border-spacing: 0;
+      }
+      #tr{
+        width: 5%;
+      }
+      .centerTodoi{
+    padding-top: 1%;
+    width: 100%;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 0px;
+   border-top-style: dashed;
+   border-right-style: double;
+   border-bottom-style: dotted;
+   border-left-style: solid; 
+}
+      
+    }
+  </style>
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -59,9 +120,9 @@
   },500000);
 </script>
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper" id="cuadernos">
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
@@ -79,8 +140,8 @@
         </div>
       </div>
     </div>
-    <div class="inner">
-      <div class="left_nav">
+    <div class="inner" id="">
+      <div id="ocultoI"class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -119,25 +180,44 @@
         </div>
       </div>
       
-      <div class="contentpanel">
+      <div id="sinMargen" class="contentpanel">
         <br>
-        <div class="container clear_both padding_fix">
+        <div id="" class="container clear_both padding_fix">
           <div class="row">
-            <div class="col-md-12">
+            <div id="margendiv"  class="col-md-12">
               <section class="panel default blue_title h2">
-                <div class="panel-heading">
-                  <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                  <h3 class="content-header " style="color: black;">Reportes Servicios </h3>
+                <div  class="col-lg-12 block-web"> 
+                  <div class="head">
+                    <div id="" class="actions pull-rigth">
+                       <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                      <P class="dondeES"></P>
+                      <p class="telefo"></p>
+                      <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                      <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                    </div>
+                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                    <div class="dim2 posiondeImagen">
+                       .
+                       <img class="oculVistaReal "  src="/images/hospital1.png" />
+                       <p class="hospitali"></p>
+                      </div>
+                     <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
+                    <div id="ocultoI" class="header"id="ocultoI">
+                       <div id="" class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
+                       <h3  class=" " style="color: black;">Reportes Servicios </h3>
+                    </div>
+                  </div>
                 </div>
-                <div class="panel-body">
+                <div   class="panel-body ">
                   <div class="tabs_right">
-                    <ul class="nav nav-tabs" id="myTab">
+                    <ul id="ocultoI" class="nav nav-tabs" id="myTab">
                       <li class="active"><a data-toggle="tab" href="#Section1">Cuadernos </a></li>
                       <li><a data-toggle="tab" href="#Section2">Especialidades </a></li>
                     </ul>
-                    <div class="tab-content " id="myTabContent">
-                      <div id="Section1" class="tab-pane fade in active">
-                        <form @submit="filter_data" method="POST" class="form-horizontal"  >
+                    <div class="tab-content centerTodoi " id="myTabContent">
+                      <div id="Section1" class="tab-pane fade in active centerTodoi ">
+                      
+                        <form id="ocultoI" @submit="filter_data" method="POST" class="form-horizontal"  >
                           <div class="form-group">
                             <label class="col-sm-4 control-label">Desde:</label>
                             <div class="col-sm-4">
@@ -157,27 +237,28 @@
                               </div>
                             </div><!--/form-group--> 
                         </form>
-                        <div class="form-group">
+                       <div class="col-md-14 panel-body panel panel-defaulth">
+                        <div id="ocultoI" class="form-group">
                           <div class="col-sm-offset-9 col-sm-10">
-                            <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
+                            <button  onclick="window.print();" type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
                           </div>
                         </div><!--/form-group-->
                         <template v-if ="list != ''">
-                          <br><br><br>
-                          <div class="form-group">
+                          
+                          <div id="ocultoI" class="form-group">
                             <div class="col-sm-offset-8 col-sm-10">
-                              <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list" >
+                              <input id="ocultoI" type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list" >
                             </div>
                           </div>
-
+                     
                           <br>
-                          <div class="table-responsive">
+                          <div class="table-responsive scrollV">
                             <table  class="table table-bordered table-striped" >
                               <thead>
                                 <tr>
                                     <th class="text-center">Fecha Creación</th>	
-                                    <th class="text-center">Titulo</th>
-                                    <th class="text-center">Medico</th>	
+                                    <th class="text-center">Título</th>
+                                    <th class="text-center">Médico</th>	
                                     <th class="text-center">Enfermera</th>
                                     <th class="text-center">Opciones</th>
                                 </tr>
@@ -188,7 +269,7 @@
                                     <td class="text-center">{{data.Cuaderno.titulo}}</td>
                                     <td class="text-center">{{data.nombre.split("/")[0]}}</td>
                                     <td class="text-center">{{data.enfermera}}</td>
-                                    <td>
+                                    <td class="text-center">
                                       <a  :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno"data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
                                      
                                     </td>
@@ -197,24 +278,29 @@
                             </table>
                           </div>
                         </template>
+                        
                         <template v-else>
-                          <br><br><br>
-                          <div class="form-group">
+                          <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							            <h5 class=" ordendetitulo tituloCuaderno text-center"></h5>
+							            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                
+                          
+                          <div id="ocultoI"class="form-group">
                             <div class="col-sm-offset-8 col-sm-10">
                               <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list1" >
                             </div>
                           </div>
-                              
+                         
                           <br>
-                          <div class="table-responsive">
+                          <div class="table-responsive scrollV">
                             <table  class="table table-bordered table-striped" >
                               <thead>
                                 <tr>
                                   <th class="text-center">Fecha Creación</th>	
-                                  <th class="text-center">Titulo</th>
-                                  <th class="text-center">Medico</th>	
+                                  <th class="text-center">Título</th>
+                                  <th class="text-center">Médico</th>	
                                   <th class="text-center">Enfermera</th>
-                                  <th class="text-center">Opciones</th>
+                                  <th id="ocultoI" class="text-center">Opciones</th>
                                 </tr>
                               </thead>
                               <tbody >
@@ -223,7 +309,7 @@
                                   <td class="text-center">{{data.Cuaderno.titulo}}</td>
                                   <td class="text-center">{{data.nombre.split("/")[0]}}</td>
                                   <td class="text-center">{{data.enfermera}}</td>
-                                  <td>
+                                  <td id="ocultoI" class="text-center">
                                     <a  :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno"data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
                                   </td>
                                 </tr>
@@ -231,7 +317,7 @@
                             </table>
                           </div>
                         </template>
-
+                       </div>
                       </div>
 
                       <div id="Section2" class="tab-pane fade">
@@ -258,8 +344,8 @@
                         </form>
                         <div  id="ocultoI" class="form-group">
                           <div class="col-sm-offset-10 col-sm-10">
-                            <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button> <br>
-                          </div>
+                          		<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													</div>
                         </div><!--/form-group--> 
                         <template v-if ="list_esp != ''">
                           <div class="form-group">
@@ -269,6 +355,10 @@
                             </div>
                           </div>
                           <br>
+                           <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							            <h5 class=" ordendetitulo tituloEspecialidad text-center"></h5>
+							            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                
                           <div class="table-responsive">
                             <table  class=" table table-bordered table-striped" >
                               <thead>
@@ -290,13 +380,18 @@
                           </div>
                         </template>
                         <template v-else>
-                            <div class="form-group">
+                           <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							            <h5 class=" ordendetitulo tituloEspecialidad text-center"></h5>
+							            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                
+                            <div id="ocultoI" class="form-group">
                               <br><br><br>
-                              <div class="col-sm-offset-8 col-sm-10">
+                              <div  class="col-sm-offset-8 col-sm-10">
                                   <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list1">
                               </div>
                             </div>
                             <br>
+                            
                             <div class="table-responsive">
                               <table  class=" table table-bordered table-striped" >
                                 <thead>
@@ -349,6 +444,7 @@
       </div>
     </div> 
   </div>
+  <script src="/js/fecha.js"></script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

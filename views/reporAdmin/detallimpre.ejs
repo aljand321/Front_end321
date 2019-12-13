@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Administrador</title>
+  <title>Administrador1</title>
   <%- include("../partials/head") -%>
+  <link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
   <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
+  
   <style type="text/css">
 		
 		h2.uppercase
@@ -24,7 +27,48 @@
 		{
 			text-transform: uppercase;
 		}
-	</style>
+  </style>
+    <style scoped>
+      @media print{
+    
+        /* tamaño de página*/
+        @page {
+      
+        size: A4;
+        size: 8.5in 11in;
+      } 
+      .scrollV{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .tituloo:before {  
+        content: " REPORTES ESPECÍFICO PERSONAL" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .ordendetitulo{
+        position:static;
+        margin-top: 15%;
+      }
+      .tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 100%/200% serif;
+        width: 25%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-spacing: 0;
+      }
+      #tr{
+        width: 5%;
+      }
+      
+    }
+  </style>
 </head>
 <script type="text/javascript">
 	// este scrip es para verificar si esta el token en local starge
@@ -44,10 +88,10 @@
   },500000);
 </script>
 
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
     <!--\\\\\\\ wrapper Start \\\\\\-->
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <!--\\\\\\\ header Start \\\\\\-->
       <div class="brand">
         <!--\\\\\\\ brand Start \\\\\\-->
@@ -63,11 +107,11 @@
         
       </div>
       <!--\\\\\\\ header top bar end \\\\\\-->
-    </div>
+    </div >
     <!--\\\\\\\ header end \\\\\\-->
     <div class="inner">
       <!--\\\\\\\ inner start \\\\\\-->
-      <div class="left_nav">
+      <div id="ocultoI" class="left_nav">
         <div class="left_nav">
             <div class="left_nav_slidebar">
               <ul>
@@ -108,82 +152,84 @@
         </div>
       </div>
       <!--Contenido-->
-      <div class="contentpanel"><br>
+      <div id="sinMargen" class="contentpanel"><br>
         <!--\\\\\\\ contentpanel start\\\\\\-->
-        <div class="container clear_both padding_fix">
+        <div class="container clear_both padding_fix col-lg-8">
         <!--\\\\\\\ container  start \\\\\\-->
         <!--Hoja-->
-          <div class="invoice ">
-            <div class="invoice_body" data-print-content>
+          <div class="main-content panel default  block-web">
+            <div id="" class="head  ">
+              <div id="" class="actions ">
+                <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                <P class="dondeES"></P>
+                <p class="telefo"></p>
+                <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+              </div>
+              <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+              <div class="dim2 posiondeImagen">
+                <img class="oculVistaReal "  src="/images/hospital1.png" />
+                <p class="hospitali"></p>
+              </div>
+              <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
+              <div id="ocultoI" class="header">
+                <h2 class="">REPORTES ESPECÍFICO PERSONAL</h2>
+              </div>
+            </div>
+            <div class="">
+              <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							<h5 class="tituloo ordendetitulo text-center"></h5>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+        
               <div  class="pull-left">
-                <address>
-                  <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
-                  Av. Italia Final S/N<br>
-                  Telfs. 26246064-26244960<br>
-                  POTOSI-BOLIVIA
-                </address>
-              </div>
-            <div class="pull-right">
-                <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
-            </div>
-            <div class="clearfix"></div>
-            <br/>
-            <br/>
-            <h2 class="text-center">REPORTES ESPECIFICO PERSONAL</h2>
-            <div class="row">
-                <div class="col-sm-9">
-                    <div> <strong>NOMBRE COMPLETO :</strong> <%=one_person.apellidop%> <span>&nbsp;</span> <%=one_person.apellidom%><span>&nbsp;</span>  <%=one_person.nombre%> </div>
-                    <div> <strong>C.I. :</strong>  <%=one_person.ci%>  </div>
-                    <div> <strong>CEL-TELF :</strong> <%=one_person.telefono%></div>
-                    <div> <strong>DIRECCION:</strong> <%=one_person.direcion%></div>
-                    <div class="uppercase"> <strong>CARGO:</strong> <%=one_person.cargo%>  </div>
-                    
+                <div class="col-sm-12">
+                  <div> <strong>NOMBRE COMPLETO :</strong> <%=one_person.apellidop%> <span>&nbsp;</span> <%=one_person.apellidom%><span>&nbsp;</span>  <%=one_person.nombre%> </div>
+                  <div> <strong>C.I. :</strong>  <%=one_person.ci%>  </div>
+                  <div> <strong>CEL-TELF :</strong> <%=one_person.telefono%></div>
+                  <div> <strong>DIRECCION:</strong> <%=one_person.direcion%></div>
+                  <div class="uppercase"> <strong>CARGO:</strong> <%=one_person.cargo%>  </div>
                   <br/>
+                </div>
               </div>
-            </div>
-            
-            <table class="table table-bordered">
+              <div class="clearfix"></div>
+              <br/>
+              <br/>
+              <table class="table table-bordered">
                 <thead>
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th class="text-center">Correo</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Fecha Creación</th>
-                        <th class="text-center">Rol</th>
-                    </tr>
+                  <tr>
+                    <th id="ocultoI" class="text-center">#</th>
+                    <th class="text-center">Correo</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Fecha Creación</th>
+                    <th class="text-center">Rol</th>
+                  </tr>
                 </thead>
                 <tbody>
-                       <% for (var i=0; i< data.length; i++) { %>
-                      <tr>
-                        <td class="text-center"><%=i+1%></td>
-                        <td class="text-center"><%=data[i].username %></td>
-                        <td class="text-center"><%=data[i].email %></td>
-                        <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                        
-                          <td>
-                            <%for (var j = 0; j < data[i].role.length; j++) { %>
-                              <%=data[i].role[j].name%>
-                            <% } %>
-                          </td>
-                        
-                      </tr>
-                        <% } %>
+                  <% for (var i=0; i< data.length; i++) { %>
+                    <tr>
+                      <td id="ocultoI" class="text-center"><%=i+1%></td>
+                      <td class="text-center"><%=data[i].username %></td>
+                      <td class="text-center"><%=data[i].email %></td>
+                      <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                        <td>
+                          <%for (var j = 0; j < data[i].role.length; j++) { %>
+                            <%=data[i].role[j].name%>
+                          <% } %>
+                        </td>
+                    </tr>
+                    <% } %>
                 </tbody>
-            </table>
-                  
+              </table>
             </div>
-            
-           
-            
           </div>
-          </div>
+        </div>
       </div>
     <!--\\\\\\\ content panel end \\\\\\-->
     </div>
   </div>
 
   <%- include("../partials/scripts") -%>
-  
+  <script src="/js/fecha.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   <script src="https://www.jqueryscript.net/demo/Print-Specified-Area-Of-A-Page-PrintArea/demo/jquery.PrintArea.js"></script>
   <script src="/js/imprimir.js"></script>
