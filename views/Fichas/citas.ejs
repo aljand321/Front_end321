@@ -82,7 +82,42 @@
 		</div>
 		<div class="inner">
 			<!--\\\\\\\ inner start \\\\\\-->
-			<%- include("partials/menu") -%>	
+			<div class="left_nav">
+
+				<!--\\\\\\\left_nav start \\\\\\-->
+				<div class="left_nav_slidebar">
+					<ul>
+						<li ><a href="javascript:void(0);"><i
+									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
+									class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> <a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b>
+									</a> 
+								</li>
+							</ul>
+						</li>
+					
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Médicas <span
+									class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+								<li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Médicas</b> </a></li>
+							</ul>
+						</li>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
+							class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+								<li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
+								<li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
+							</ul>
+						
+						</li>
+						
+			
+			
+					</ul>
+				</div>
+			</div>	
 			<!--\\\\\\\left_nav end \\\\\\-->
 			<div class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
@@ -131,7 +166,7 @@
 																	<td><%=resp[i].apellidop %> <%=resp[i].apellidom %></td>
 																	<td><%=resp[i].ci %></td>
 																	<td class="text-center">
-																		<a href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial%>/<%=data_token.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ficha nueva" ><i
+																		<a href="/paciente/citaPAciente/<%= resp[i].id %>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=resp[i].numeroHistorial%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ficha nueva" ><i
 																			class="fa fa-list-ol"></i></a>
 																		
 																	</td>
@@ -180,7 +215,7 @@
 						<% } %>
 
 					</div>
-					<form class=" " action='/paciente/postPaciente/<%=data_token.token_id%>' method='post'>
+					<form class=" " action='/paciente/postPaciente/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>' method='post'>
 						<div class="container-fluid  ">
 							<div class="col-md-14 "> <br>
 								<div class="col-md-4 " >
