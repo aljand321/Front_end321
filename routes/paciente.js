@@ -31,7 +31,6 @@ function array () {
 
 var data_user = {}
 function user(data,id){
-    console.log(data, id , "  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
   let storedItem = data_user[id];
     if (!storedItem) {
       storedItem = data_user[id] = {

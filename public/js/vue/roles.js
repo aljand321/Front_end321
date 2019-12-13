@@ -16,7 +16,9 @@ const roles = new Vue({
             roles:{},
             rolUser: ""
 
-        }
+        },
+
+        id_personal:''
     }),
     methods:{
         traer(id){
@@ -41,6 +43,6 @@ const roles = new Vue({
                     this.roles.rolUser = this.roles.roles[i].role[0].name
                 }
             }
-        }
+        },
     }
 })
