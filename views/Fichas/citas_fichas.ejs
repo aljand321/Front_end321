@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Reserva de Ficha Médicas</title>
+	<title>Cajas</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
-
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -16,67 +13,52 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<!--validaciones-->
-
+	<!--validaciones-->
 	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-<link rel="stylesheet" type="text/css" href="/css/imprimir.css" media="print" />
-<style>
-	div.a {
-		text-align: center;
-	}
-	h1.letras {
+	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+	<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+	<link rel="stylesheet" type="text/css" href="/css/imprimir.css" media="print" />
+	<style>
+		div.a {
+			text-align: center;
+		}
+		h1.letras {
 		font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-	}
-	.vertical-alignment-helper {
-  	  display:table;
-  	  height: 100%;
-  	  margin-left: 41%;
-  	}
-  	.vertical-align-center {
-  	  /* To center vertically */
-  	  display: table-cell;
-  	  vertical-align: middle;
-  	  text-align: center;
-  	}
-</style>
-<%- include("../partials/head") -%>
+		}
+		.vertical-alignment-helper {
+  	  		display:table;
+  	  		height: 100%;
+  	  		margin-left: 41%;
+  		}
+  		.vertical-align-center {
+  	  		/* To center vertically */
+  	  		display: table-cell;
+  	  		vertical-align: middle;
+  	  		text-align: center;
+  		}
+	</style>
+	<%- include("../partials/head") -%>
 </head>
-
 <body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
-	<!-- SideBar -->
-
-	<!-- Content page-->
 	<div class="wrapper">
-		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div class="header_bar">
-			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
-				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
-			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
-				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
 				<div class="top_right_bar">
-
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/cajera.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b
-								class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/cajera.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i>Salir</a> </li>
@@ -84,23 +66,12 @@
 					</div>
 				</div>
 			</div>
-			<!--\\\\\\\ header top bar end \\\\\\-->
 		</div>
 		<div class="inner">
-			<!--\\\\\\\ inner start \\\\\\-->
 			<div class="left_nav">
-
-				<!--\\\\\\\left_nav start \\\\\\-->
-
 				<div class="left_nav_slidebar">
 					<ul>
-						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul>
-								<li> 
-									<a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b></a> 
-								</li>
-							</ul>
-						</li>
+						<li><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 								<li> 
@@ -119,73 +90,69 @@
 					</ul>
 				</div>
 			</div>
-			<!--\\\\\\\left_nav end \\\\\\-->
 			<div class="contentpanel">
-				<!--\\\\\\\ contentpanel start\\\\\\-->
-				<div class="container clear_both padding_fix col-lg-8">
-					<br>
+				<div class="container clear_both padding_fix col-lg-8"><br>
 					<div class="row">
 						<div class="col-lg-12  ">
-							<!-- Content page -->
 							<div id="main-content" class=" block-web">
 								<div class="header">
 									<div class="actions">
 										<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
 									</div>
-									<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
+									<div class="info blue_symbols"> <i class="fa fa-edit icon"></i></div>
 									<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h2>
 								</div>
-							<div class="porlets-content">
-								<div id="citas">
-									<%if(citaUpdate == null) { %>
-									<form action="/paciente/cita_medica/<%=id.id%>" method="POST" class=" group-border-dashed">
-										<input type="hidden" name="id_user" value="<%=data_token.token_id%>">
-										<div class="row">
-											<div class="col-md-12 ">
-												<div class="block-web">
-													<% if(msg_false != null) { %>
-													<div class="bs-example">
-														<div class="alert alert-danger fade in">
-															<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-															<strong><%=msg_false%></strong></div>
+								<div class="porlets-content">
+									<div id="citas">
+										<%if(citaUpdate == null) { %>
+										<form action="/paciente/cita_medica/<%=id.id%>" method="POST" class=" group-border-dashed">
+											<input type="hidden" name="id_user" value="<%=data_token.token_id%>">
+											<div class="row">
+												<div class="col-md-12 ">
+													<div class="block-web">
+														<% if(msg_false != null) { %>
+														<div class="bs-example">
+															<div class="alert alert-danger fade in">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<strong><%=msg_false%></strong>
+															</div>
 														</div>
-													<% } %>
-													<div class="porlets-content">
-														<div class="entrada"> Seleccione Dia:<br>
-															<select v-model="dia" @click="especilida">
-																<option>Lunes</option>
-																<option>Martes</option>
-																<option>Miercoles</option>
-																<option>Jueves</option>
-																<option>Viernes</option>
-																<option>Sabado</option>
-																<option>Domingo</option>
-															</select><br>
-														</div>
-														<div class="form-group">
-															<div class="row"> 
-																<br>
-																<div class="col-md-12">
-																	<div class="col-md-4">
-																		<div class="form-group">
-																			<label> Historial Clinico:</label>
-																			<input type="text" value="<%=historial	%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
+														<% } %>
+														<div class="porlets-content">
+															<div class="entrada"> Seleccione Dia:<br>
+																<select v-model="dia" @click="especilida">
+																	<option>Lunes</option>
+																	<option>Martes</option>
+																	<option>Miercoles</option>
+																	<option>Jueves</option>
+																	<option>Viernes</option>
+																	<option>Sabado</option>
+																	<option>Domingo</option>
+																</select><br>
+															</div>
+															<div class="form-group">
+																<div class="row"><br>
+																	<div class="col-md-12">
+																		<div class="col-md-4">
+																			<div class="form-group">
+																				<label> Historial Clinico:</label>
+																				<input type="text" value="<%=historial	%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
+																			</div>
+																			<div class="form-group">Costo de Ficha:<br>
+																				<input parsley-type="number"  type="text" name="saldo_total" class="form-control" required placeholder="">
+																			</div>
 																		</div>
-																		<div class="form-group">Costo de Ficha:<br>
-																			<input parsley-type="number"  type="text" name="saldo_total" class="form-control" required placeholder="">
-																		</div>
-																	</div>
-																	<div class="col-md-4">
-																		<div class="form-group">Consultorio De:<br>
-																			<select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
-																				<option disabled="disabled" value>Seleccione</option>
-																				<template v-for="(especialidad, index) in especialidades">
-																					<option>{{especialidad.nombre}}
-																					</option>
-																				</template>
-																			</select>
-																		</div>
-																		<div class="form-group">Turno:<br>
+																		<div class="col-md-4">
+																			<div class="form-group">Consultorio De:<br>
+																				<select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
+																					<option disabled="disabled" value>Seleccione</option>
+																					<template v-for="(especialidad, index) in especialidades">
+																						<option>{{especialidad.nombre}}
+																						</option>
+																					</template>
+																				</select>
+																			</div>
+																			<div class="form-group">Turno:<br>
 																			<select class="form-control" name="turno" v-model="turno" @click="especilida">
 																				<option>Mañanas</option>
 																				<option>Tardes</option>

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Alergia</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+	<title>Consulta</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-	<meta name="viewport"
-		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -16,7 +14,6 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-
 	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
 	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
 	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
@@ -30,10 +27,6 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
-
-
-
 	<style>
 		div.a {
 			text-align: center;
@@ -57,33 +50,16 @@
 	</style>
 	<%- include("partials/head") -%>
 </head>
-
 <body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
-	<!-- SideBar -->
-
-
-
-	<!-- Content page-->
 	<div class="wrapper">
-		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div class="header_bar">
-			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
-				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
-			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
-				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-				<div class="btn-group">	<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
-				</div>
 				<div class="top_right_bar">
-
-					<div class=" user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
-								class="caret"></b> </a>
+					<div class=" user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a></li>
@@ -91,330 +67,186 @@
 					</div>
 				</div>
 			</div>
-			<!--\\\\\\\ header top bar end \\\\\\-->
 		</div>
 		<div class="inner">
-			<!--\\\\\\\ inner start \\\\\\-->
 			<div class="left_nav">
-
-				<!--\\\\\\\left_nav start \\\\\\-->
-
 				<div class="left_nav_slidebar">
 					<ul>
-						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
-									class="left_nav_pointer"></span> <span class="plus"><i
-										class="fa fa-plus"></i></span> </a>
-							<ul>
-								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
-											class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
-							</ul>
+						<li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b></a> </li>
+                            </ul>
+                        </li>
+						<li class=""> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte Enferm.</b> </a> </li>
+								<li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de consulta</b> </a> </li>
+							</ul> 
 						</li>
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-									class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
-										class="fa fa-plus"></i></span></a>
-							<ul class="opened" style="display:block">
-								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
-											class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>
-									</a> </li>
-							</ul>
-						</li>
-						<%- include("partials/footerDocotr") -%>
 					</ul>
-
 				</div>
 			</div>
 		</div>
-			<!--\\\\\\\left_nav end \\\\\\-->
-			<div class="contentpanel" id="alergias">
-				<!--\\\\\\\ contentpanel start\\\\\\-->
-				<div class="container clear_both padding_fix col-lg-8">
-					<br>
-					<div class="row">
-						<!-- Content page -->
-					
-						<!-- Alergias de consultas-->
-						<div class="container-fluid">
-							<div class="">
-								<div class="col-md-12 ">
-									<div class="block-web col-md-12">	
-										<div class="porlets-content">
-											<div class="form-group">
-												<div class="row">
-													<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
-													<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
-													<!--
-													<span style="color: red">{{msg_false}}</span>
-													<span style="color: blue">{{msg}}</span>
-													-->
-													<template v-if="oneAlergia == ''">
-													
-														<form @submit="reg_alergias" method="POST">
-															<div class="col-md-12">
-																<div class="col-md-12">		
-																	<div class="head">
-																		<div class="actions"> 
-																		</div>
-																		<div class="header">
-																			<div class="info blue_symbols"><i class="fa fa-group icon"></i></div>
-																				<h2 class="content-header "> Alergias {{msg}}</h2>
-																		</div>	
-																	</div><br><br>
-																</div>
-																<div class="col-md-9">
-
-																	<div class="col-sm-4 col-sm-4">
-																		<div class="entrada ">
-																			<label class="">N° de Historia:</label>
-																			<input type="text" name="numeroHistorial"
-																					value="<%=dataPaciente[0].numeroHistorial%>"
-																						class="form-control" readonly=""
-																						value="Read only text goes here">
-																		</div>
-																	</div>
-																	<div class="col-sm-8 col-sm-9">
-																		<div class="form-group">
-																			<div class="entrada">
-																				<label class=" ">Nombre Completo: </label>
-																				<input type="text" name="numeroHistorial"
-																					value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-																					class="form-control" readonly=""
-																					value="Read only text goes here">
-																			</div>
-																		</div>
-																	</div>
-																	<div class="">
-																		<div class="col-sm-4 col-sm-4">
-																			<div class="entrada">
-																				<label>Fecha:</label> 
-																				<input class="form-control" type="text" readonly name="fecha"require v-model="fecha_registro"><br>
-																			</div>
-																		</div>
-																		<div class="col-sm-8 col-sm-9">
-																			<div class="entrada">
-																				<label>Tipo de Alergia</label> <br>
-																				<input type="text" name="tipoAlergia" value="" size="20" class="form-control" v-model="tipoAlergia"><br>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-md-9">
-																		<div class="entrada">
-																			<label>Descripción:</label> 
-																		</div>
-																		<textarea class="large-compact" name="descripcion" cols="80" rows="5" v-model="descripcion"></textarea>
-																	</div>
-																</div>
-
-																		<br>
-																		<br>
-																	<div class="col-md-3">
-																		<div class="file_sidebar">                   
-																			<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>				  
-																			<div class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
-																			<ul>
-																				<li><a href="/datos_generales_paciente/lista_antecedentes/<%=id_cita%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
-																				<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Alergias</a></li>
-																				<!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
-																				<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
-																					  
-																			   <!-- <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-																			   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-																			   <li><a href="/paciente/vacunas" data-toggle="modal" ><i class="fa fa-user"></i>Vacunas</a></li>
-																			   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-																			   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> -->
-																			</ul>
-																	   </div>
-																	 </div>
-																</div>
-															</div>
-															<br><br>
-															<p class=""><br>
-																
-																<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="fa fa-refresh"></i> &nbsp;&nbsp; Limpiar</button>
-																<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
-															
-															</p>
-														</form>
-
-													</template>
-													<template v-else>
-														<form @submit="update_alergia" method="POST">
-															<div class="col-md-12">
-																<div class="col-md-12">
-																	<div class="header">
-																		<div class="actions"> 
-																			<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
-																		</div><br>
-																			<h3 class="">Registro de Alergias</h3>
-																	</div>
-																</div>
-																<div class="col-md-9">
-
-																	<div class="col-sm-4 col-sm-4">
-																		<div class="entrada ">
-																			<h6 class=" blue_info">N° de Historia:</h6>
-																			<input type="text" name="numeroHistorial"
-																					value="<%=dataPaciente[0].numeroHistorial%>"
-																						class="form-control" readonly=""
-																						value="Read only text goes here">
-																		</div>
-																	</div>
-																	<div class="col-sm-8 col-sm-9">
-																		<div class="form-group">
-																			<div class="entrada">
-																				<h6 class=" blue_info">Nombre Completo:
-																				</h6>
-																				<input type="text" name="numeroHistorial"
-																					value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-																					class="form-control" readonly=""
-																					value="Read only text goes here">
-																			</div>
-																		</div>
-																	</div>
-																	<div class="">
-																		<div class="col-sm-4 col-sm-4">
-																			<div class="entrada">Fecha:<br>
-
-																				<input class="form-control" type="text" readonly name="fecha"require v-model="oneAlergia.fecha_registro"><br>
-																			</div>
-																		</div>
-																		<div class="col-sm-8 col-sm-9">
-																			<div class="entrada">Tipo de Alergia<br>
-																				<input type="text" name="tipoAlergia" value=""
-																					size="20" class="form-control" v-model="oneAlergia.tipoAlergia"><br>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-md-9">
-																		<div class="entrada">Descripción:<br>
-																		
-																		</div>
-																		<textarea class="large-compact" name="descripcion"
-																				cols="80" rows="5" v-model="oneAlergia.descripcion"></textarea>
-																	</div>
-																</div>
-
-																		<br>
-																		<br>
-																	<div class="col-md-3">
-																		<div class="file_sidebar">                   
-																			<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>				  
-																			<div class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
-																			<ul>
-																				<li><a href="/datos_generales_paciente/lista_antecedentes/<%=id_cita%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
-																				<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Alergias</a></li>
-																				<!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
-																				<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
-																					  
-																			   <!-- <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-																			   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-																			   <li><a href="/paciente/vacunas" data-toggle="modal" ><i class="fa fa-user"></i>Vacunas</a></li>
-																			   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-																			   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> -->
-																			</ul>
-																	   </div>
-																	 </div>
-																</div>
-															</div>
-
-															<p class="">
-																<template v-if="oneAlergia.estado_update == true">
-																	<button type="submit" class="btn btn-success"><i class="fa fa-undo"></i> &nbsp;&nbsp; Actualizar</button>
-																</template>&nbsp;&nbsp;
-																<button  @click="oneAlergia = ''" class="btn btn-info btn-raised"><i class="fa fa-reply"></i> &nbsp;&nbsp;Volver</button>
-															</p>
-														</form>
-													</template>
-
-													<div class="col-lg-12"> 
-														<section class="panel default blue_title h2">
-															<div class="panel-heading">
-															 	<span class="h6">Lista de alergias</span>
-															</div>
-															<div class="panel-body">
-															
-													  			<table class="table table-hover">
-																	<thead>
-																	  	<tr>
-																			<th>#</th>
-																			<th>Fecha</th>
-																			<th>Tipo de Alergia</th>
-																			<th>Descripción</th>
-																			<th>Opciones</th>
-																	  	</tr>
-																	</thead>
-																	<tbody v-for="(list,index) in alergias_list">														  
-																		<tr class="gradeX">
-																			<td>{{index+1}}</td>
-																			<td>{{list.fecha_registro}}</td>
-																			<td>{{list.tipoAlergia}}</td>
-																			<td>{{list.descripcion}}</td>
-																			<td >																			
-																				<a @click="one_alergia(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
-																																										
-																			</td>
-	
-																		</tr>
-																	</tbody>
-																	<tfoot>
-																		<tr>
-																			<th></th>
-																			<th>Fecha</th>
-																			<th>Tipo de Alergia</th>
-																			<th>Descripción</th>
-																			<th>Opciones</th>
-																		</tr>
-																	</tfoot>
-													  			</table>
-												   
-															</div>
-														</section>
-													</div>
-
-
-												
-													<br>
+		<div class="contentpanel" id="alergias">
+			<div class="container clear_both padding_fix col-lg-8"><br>
+				<div class="row">
+					<!-- Alergias de consultas-->
+					<div class="container-fluid">
+						<div class="block-web col-md-12">	
+							<div class="porlets-content">
+								<div class="header">
+									<div class="info blue_symbols"><i class="fa fa-group icon"></i></div>
+									<h2 class="content-header"> Consulta Externa /<span class="semi-bold"> Registro de Alergias</span></h2>
+								</div>	
+								<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
+								<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
+								<template v-if="oneAlergia == ''">
+									<form @submit="reg_alergias" method="POST">
+										<div class="col-md-12">	
+											<div class="col-sm-2">
+												<div class="entrada ">
+													<label class="">N° de Historia</label>
+													<input type="text" name="numeroHistorial" value="<%=dataPaciente[0].numeroHistorial%>" class="form-control" readonly="" value="Read only text goes here">
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="entrada">
+													<label class=" ">Paciente </label>
+													<input type="text" name="numeroHistorial" value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>" class="form-control" readonly="" value="Read only text goes here">
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<div class="entrada">
+													<label>Fecha</label> 
+													<input class="form-control" type="text" readonly name="fecha"require v-model="fecha_registro"><br>
+												</div>
+											</div>
+											<div class="col-sm-5">
+												<div class="entrada">
+													<label>Tipo de Alergia</label> 
+													<input type="text" name="tipoAlergia" value="" size="20" class="form-control" v-model="tipoAlergia"><br>
 												</div>
 											</div>
 										</div>
-									</div>
-									<!--/col-md-12-->
+										<div class="col-md-12">	
+											<div class="col-sm-9">
+												<div class="entrada">
+													<label>Descripción</label><br>
+													<textarea class="large-compact" name="descripcion" cols="130" rows="3" v-model="descripcion"></textarea><br>
+												</div>
+											</div>
+										</div>
+										<p class=""><br>
+											<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+											<button type="reset" class="btn btn-danger" style="margin-right: 20px;"><i class="fa fa-times"></i> &nbsp;&nbsp; Cancelar</button>
+											<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info"><i class="fa fa-reply"></i>&nbsp;&nbsp;   Volver a Consulta</a>
+										</p>
+									</form>
+								</template>
+								<template v-else>
+									<form @submit="update_alergia" method="POST">
+										<div class="col-md-12">
+											<div class="col-sm-2">
+												<div class="entrada ">
+													<h6 class="">N° de Historia</h6>
+													<input type="text" name="numeroHistorial" value="<%=dataPaciente[0].numeroHistorial%>" class="form-control" readonly="" value="Read only text goes here">
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="entrada">
+													<h6 class=" ">Paciente</h6>
+													<input type="text" name="numeroHistorial" value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>" class="form-control" readonly="" value="Read only text goes here">
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<div class="entrada">
+													<h6 class=" ">Fecha</h6>
+													<input class="form-control" type="text" readonly name="fecha"require v-model="oneAlergia.fecha_registro"><br>
+												</div>
+											</div>
+											<div class="col-sm-5">
+												<div class="entrada">
+													<h6 class=" ">Tipo de Alergia</h6>
+													<input type="text" name="tipoAlergia" value="" size="20" class="form-control" v-model="oneAlergia.tipoAlergia"><br>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="col-sm-9">
+												<div class="entrada">
+													<h6 class=" ">Descripción</h6>	
+													<textarea class="large-compact" name="descripcion" cols="130" rows="4" v-model="oneAlergia.descripcion"></textarea>
+												</div>
+											</div>
+										</div>
+										<p class="">
+											<template v-if="oneAlergia.estado_update == true">
+												<button type="submit" class="btn btn-success"><i class="fa fa-undo"></i> &nbsp;&nbsp; Guardar</button>
+											</template>&nbsp;&nbsp;															
+											<button  @click="oneAlergia = ''" class="btn btn-danger btn-raised"><i class="fa fa-times"></i> &nbsp;&nbsp;Cancelar</button>
+										</p>
+									</form>
+								</template>
+								<div class="col-lg-12"> 
+									<section class="panel default black_title h2">
+										<div class="panel-heading">
+											<span class="h4">Lista de Alergias</span>
+										</div>
+										<div class="col-xs-12 ">
+											<table class="table table-bordered">
+												<thead>
+												  	<tr>
+													<th>#</th>
+													<th>Fecha</th>
+													<th>Tipo de Alergia</th>
+													<th>Descripción</th>
+													<th>Opciones</th>
+													</tr>
+												</thead>
+												<tbody v-for="(list,index) in alergias_list">														  
+													<tr class="gradeX">
+													<td>{{index+1}}</td>
+													<td>{{list.fecha_registro}}</td>
+													<td>{{list.tipoAlergia}}</td>
+													<td>{{list.descripcion}}</td>
+													<td >																			
+														<a @click="one_alergia(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
+													</td>
+													</tr>
+												</tbody>
+											</table>			   
+										</div>
+									</section>
 								</div>
-								<!--/row-->
 							</div>
 						</div>
-
 					</div>
-
-
-				
+				</div>
 			</div>
 		</div>
 	</div>
-
+	<!--Modal-->
 	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-		<div class="vertical-alignment-helper">
-		  <div class="modal-dialog vertical-align-center modal-sm ">
-			<div class="modal-content">
-			  <br>
-				<div class="center">
-				  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+    	<div class="vertical-alignment-helper">
+		  	<div class="modal-dialog vertical-align-center modal-sm ">
+				<div class="modal-content"><br>
+					<div class="center">
+				  		<i><img src="/images/salir.gif" width="100" height="100" /></i>
+					</div>
+					<div class="center">
+						<h5><b>¿Cerrar Sesión?</b></h5>
+					</div>
+			  		<div class="modal-footer">
+						<div class="center">
+				 	 		<a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  			<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+						</div>
+			  		</div>
 				</div>
-				<div class="center">
-				  <h5><b>¿Cerrar Sesión?</b></h5>
-				</div>
-			  <div class="modal-footer">
-				<div class="center">
-				  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-				</div>
-			  </div>
 			</div>
-		  </div>
 		</div> 
-	  </div>
-
-
+	</div>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
 	<script src="/js/get/consultaget.js"></script>
@@ -447,7 +279,5 @@
     <script src="/moment/locale/af.js"></script>
 	<script src="/url/export.js"></script>
 	<script src="/js/vue/vue_alergias.js"></script>
-	
 </body>
-
 </html>

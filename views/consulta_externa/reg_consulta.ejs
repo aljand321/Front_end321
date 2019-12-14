@@ -1,337 +1,305 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Consulta Externa</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Consulta</title>
     <meta charset="UTF-8">
     <%- include("../partials/head") -%>	
-
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <style>
+        div.a {
+            text-align: center;
+        }
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+        }
+        .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+        .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 20px 10px 18px;}
         .vertical-alignment-helper {
-		  display:table;
-		  height: 100%;
-		  margin-left: 41%;
-		}
-		.vertical-align-center {
-		  /* To center vertically */
-		  display: table-cell;
-		  vertical-align: middle;
-		  text-align: center;
-		}
+            display:table;
+            height: 100%;
+            margin-left: 41%;
+        }
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
     </style>
 </head>
-
 <body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
-    <!-- SideBar -->
-
-
-    <!-- Content page-->
-<div class="wrapper" >
-    <!--\\\\\\\ wrapper Start \\\\\\-->
-    <div class="header_bar">
-        <!--\\\\\\\ header Start \\\\\\-->
-        <div class="brand">
-           <!--\\\\\\\ brand Start \\\\\\-->
-           <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-        </div>
-            <!--\\\\\\\ brand end \\\\\\-->
-        <div class="header_top_bar">
-            <!--\\\\\\\ header top bar start \\\\\\-->
-            
-            <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-            <li href="javascript:void(0);" class="btn btn-info " data-toggle="modal" data-target="#diagnostico"><i class="fa fa-plus-square"></i> <span> Diagnostico</span> </li>
-        
-            <div class="top_right_bar">
-                <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                    src="/images/medico.png" /> <span class="user_adminname">
-                            <span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%>
-                    </span> <b class="caret"></b> </a>
-                    <ul class="dropdown-menu">
-                        <div class="top_pointer"></div>
-                        <li> <a href="javascript:void(0);"data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
-                    </ul>
+    <div class="wrapper" >
+        <div class="header_bar">
+            <div class="brand">
+                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+            </div>
+            <div class="header_top_bar">
+                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+                <div class="top_right_bar">
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <div class="top_pointer"></div>
+                            <li> <a href="javascript:void(0);"data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <!--\\\\\\\ header top bar end \\\\\\-->
-    </div>
-    <div class="inner">
-        <!--\\\\\\\ inner start \\\\\\-->
-        <div class="left_nav">
-            <!--\\\\\\\left_nav start \\\\\\-->
-            <div class="left_nav_slidebar">
-                <ul>
-                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                        <ul>
-                            <li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
-                        </ul>
-                    </li>
-                    <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
-                        <ul class="opened" style="display:block">
-                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>  </a> </li>
-                        </ul>
-                    </li>
-                    <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
-                        <ul >
-                           <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
-                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
-                        </ul>
-                    </li>
-                </ul>
+        <div class="inner">
+            <div class="left_nav">
+                <div class="left_nav_slidebar">
+                    <ul>
+                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b></a> </li>
+                            </ul>
+                        </li>
+                        <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul >
+                                <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!--\\\\\\\left_nav end \\\\\\-->
-        <div class="contentpanel " id="consulta">
-            <!--\\\\\\\ contentpanel start\\\\\\-->
-            <div class="container clear_both padding_fix col-lg-8">
-                <br>
-                <div class="col-lg-12 block-web"> 
-                <!-- Content page -->
-                    <div class="header ">
-                        <div class="">
-                            <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa {{msg}}</h2>
-                        </div>       
-                    </div>
-                    <!-- <div id="" class="col-md-2">	
-                        <div class="">
-                            <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-                        </div>				
-                    </div> -->
-                   <!-- 
-                       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            <div class="contentpanel " id="consulta">
+                <div class="container clear_both padding_fix col-lg-8"><br>
+                    <div class="col-lg-12 block-web"> 
+                        <div class="header ">
+                            <div class="info2 blue_symbols "> <i class="fa fa-user-md icon "></i></div> <br>
+                            <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa </h2>          
+                        </div>
+                        <!-- 
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                                 DATOS GENERALES DEL PACIENTE Y LA CITA
-                       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                    -->
-                    <div class="row ">
-                        <input type="hidden"  :value="id_medico = '<%=data_doc.data.medico.id%>'">  
-                        <input type="hidden"  :value="id_cita = '<%=cita[0].id%>'">  
-                        <input type="hidden"  :value=" tipoConsulta = '<%=cita[0].especialidad%>'" > 
-                        <input type="hidden"  :value="numeroHistorial = '<%=dataPaciente[0].numeroHistorial%>'" >
-                        <input type="hidden"  :value="id_hora = '<%=cita[0].hora.split("/")[1]%>'">   
-                        <!-- 
-                            para examen general
-                         -->
-                        <input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
-                        <input type="hidden" :value=" id_paciente ='<%=dataPaciente[0].id%>'">
-                        <!-- 
-                            <<<<<<<<<<<<<<<
-                         -->
-                        <div class="col-md-9">
-                            <section class="panel default blue_title h2">  
-                                <div class="col-md-6 panel panel-default">
-                                    <div class=" panel panel-default">
-                                        <li  href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Personales</li>            
-                                    </div>
-                                    <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
-                                        <div class="">             
-                                            <div class="col-md-5">
-                                                <div class="entrada ">
-                                                    <label class=" ">N° de Historial:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        -->
+                        <div class="row "><br>
+                            <input type="hidden"  :value="id_medico = '<%=data_doc.data.medico.id%>'">  
+                            <input type="hidden"  :value="id_cita = '<%=cita[0].id%>'">  
+                            <input type="hidden"  :value=" tipoConsulta = '<%=cita[0].especialidad%>'" > 
+                            <input type="hidden"  :value="numeroHistorial = '<%=dataPaciente[0].numeroHistorial%>'" >
+                            <input type="hidden"  :value="id_hora = '<%=cita[0].hora.split("/")[1]%>'">   
+                            <!-- para examen general-->
+                            <input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
+                            <input type="hidden" :value=" id_paciente ='<%=dataPaciente[0].id%>'">
+                            <!-- 
+                                <<<<<<<<<<<<<<<
+                             -->
+                            <div class="col-md-9">
+                                <section class="panel default blue_title h2">  
+                                    <div class="col-md-6 panel panel-default">
+                                        <div class=" panel panel-default">
+                                            <li  href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos del Paciente</li>            
+                                        </div>
+                                        <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+                                            <div class="">             
+                                                <div class="col-md-5">
+                                                    <div class="entrada ">
+                                                        <label class=" ">N° de Historial:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
                                                         <input type="hidden" name="numeroHistorial"  value="<%=dataPaciente[0].numeroHistorial%>"  class="form-control" readonly="" value="Read only text goes here">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="entrada">
-                                                    <label class=" ">CI.:</label><p><b><%=dataPaciente[0].ci%></b></p>
-                                                    <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                <div class="col-md-4">
+                                                    <div class="entrada">
+                                                        <label class=" ">C.I.:</label><p><b><%=dataPaciente[0].ci%></b></p>
+                                                        <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-4 col-sm-4">
-                                                <div class="entrada">
-                                                    <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
-                                                    <input type="hidden" name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                <div class="col-sm-4 col-sm-4">
+                                                    <div class="entrada">
+                                                        <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
+                                                        <input type="hidden" name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-8 col-sm-9">
-                                                <div class="entrada">
-                                                    <label class="">Fecha de Nacimiento:</label><p><b><%=dataPaciente[0].fechanacimiento%></b></p>
-                                                    <input  type="hidden" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
-                                                </div>
-                                            </div> 
-                                            <div class="col-sm-12 col-sm-12">
-                                                <div class="entrada">
-                                                    <label class=" ">Nombre Completo:</label><p><b><%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%></b></p>
-                                                        <input type="hidden" name="nombre apellidop apellidom" 
-                                                            value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-                                                            class="form-control" readonly=""
-                                                            value="Read only text goes here">
+                                                <div class="col-sm-8 col-sm-9">
+                                                    <div class="entrada">
+                                                        <label class="">Fecha de Nacimiento:</label><p><b><%=dataPaciente[0].fechanacimiento%></b></p>
+                                                        <input  type="hidden" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                    </div>
                                                 </div> 
-                                            </div> 
-                                            <div>
-                                                <li @click="data_paciente" href="javascript:void(0);" class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i> <span> Dar mas Información</span> </li>
+                                                <div class="col-sm-12 col-sm-12">
+                                                    <div class="entrada">
+                                                        <label class=" ">Paciente:</label><p><b><%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%></b></p>
+                                                        <input type="hidden" name="nombre apellidop apellidom" 
+                                                        value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+                                                        class="form-control" readonly=""
+                                                        value="Read only text goes here">
+                                                    </div> 
+                                                </div> 
+                                                <div>
+                                                    <li @click="data_paciente" href="javascript:void(0);" class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i> <span> Dar mas Información</span> </li>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 panel panel-default">    
-                                    <div class=" panel panel-default">
-                                        <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Cita</li>            
-                                    </div>
-                                    <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
-                                        <div class="col-sm-12 row">                              
-                                            <div class=" col-sm-14 row">
-                                                <div class="col-sm-2 ">
-                                                    <div class="entrada">
-                                                        <label class="">Hora:</label>
+                                    <div class="col-md-6 panel panel-default">    
+                                        <div class=" panel panel-default">
+                                            <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Consulta</li>            
+                                        </div>
+                                        <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
+                                            <div class="col-sm-12 row">                              
+                                                <div class=" col-sm-14 row">
+                                                    <div class="col-sm-2 ">
+                                                        <div class="entrada">
+                                                            <label class="">Hora de Consulta:</label>
                                                             <p><%=cita[0].hora.split("/")[0]%></p>
                                                             <input type="hidden" name="hora" value="<%=cita[0].hora%>">        
-                                                    </div>                               
-                                                </div>
-                                                <div class="col-sm-9 text-center">
-                                                    <div class="entrada ">
-                                                        <label class="">Especialidad:</label><p><b><%=cita[0].especialidad%></b></p>                                                                     
+                                                        </div>                               
                                                     </div>
+                                                    <div class="col-sm-9 text-center">
+                                                        <div class="entrada ">
+                                                            <label class="">Especialidad:</label><p><b><%=cita[0].especialidad%></b></p>                                                                     
+                                                        </div>
+                                                    </div> 
                                                 </div> 
-                                            </div> 
-                                            <div class=" col-sm-12 ">
-                                                <div class="col-sm- 12 col-sm-12">
-                                                    <div class="entrada">
-                                                        <label class="">Nombre del Médico:</label><p><b><%=cita[0].medico%></b></p>
-                                                        <input type="hidden" value="<%=cita[0].medico%>" class="form-control" readonly="" value="Read only text goes here" >
+                                                <div class=" col-sm-12 ">
+                                                    <div class="col-sm- 12 col-sm-12">
+                                                        <div class="entrada">
+                                                            <label class="">Médico:</label><p><b><%=cita[0].medico%></b></p>
+                                                            <input type="hidden" value="<%=cita[0].medico%>" class="form-control" readonly="" value="Read only text goes here" >
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>               
-                                        </div>
-                                    </div>    
-                                </div> 
-                            </section>          
-                        </div>  
-                        <div class="col-md-3">
-                            <div class="file_sidebar">   
-                                <li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
-                                <div  class="file_sidebar_list panel-collapse collapse "   id="collapse" style="height: auto;">
-                                    <ul>
-                                        <li><a href="/datos_generales_paciente/lista_antecedentes/<%=cita[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
-                                        <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=cita[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-                                        <!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
-                                        <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=cita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
-                                        <li href="javascript:void(0);"  data-toggle="modal" data-target="#ExamenFisico"><a  ><i class="fa fa-users"></i>Examen General</a></li>
-                                    </ul>
+                                                </div>               
+                                            </div>
+                                        </div>    
+                                    </div> 
+                                </section>          
+                            </div>  
+                            <div class="col-md-3">
+                                <div class="file_sidebar">   
+                                    <li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
+                                    <div  class="file_sidebar_list panel-collapse collapse "   id="collapse" style="height: auto;">
+                                        <ul>
+                                            <li><a href="/datos_generales_paciente/lista_antecedentes/<%=cita[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
+                                            <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=cita[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
+                                          <!--<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=cita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>-->
+                                            <li href="javascript:void(0);"  data-toggle="modal" data-target="#ExamenFisico"><a  ><i class="fa fa-users"></i>Examen General</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- 
-                       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        <!-- 
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                                 REGISTRAR CONSULTA EXTERNA
-                       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                    -->
-                    
-                   
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-web">  
-                                <div class="porlets-content">
-                                    <template v-if="consulta_update == '' || consulta_update == null">
-                                        <form @submit="reg_consulta" parsley-validate novalidate>
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        -->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="block-web">  
+                                    <div class="porlets-content">
+                                        <template v-if="consulta_update == '' || consulta_update == null">
+                                            <form @submit="reg_consulta" parsley-validate novalidate>
                                                 <% if(msg != null) { %>
                                                     <%if (msg.data.success == false ) {%>
-                                                        <span style="color: red">{{msg_false}}</span> 
-                                                        <span style="color: blue">{{msg}}</span>
+                                                    <span style="color: red">{{msg_false}}</span> 
+                                                    <span style="color: blue">{{msg}}</span>
                                                     <% } %>
-                                                <% } %>
-                                                
+                                                <% } %>            
                                                 <span style="color: red">{{msg_false}}</span> 
-                                            <div class="col-md-12">
                                                 <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Motivo de consulta</label>
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca motivo de consulta" class="form-control" v-model = "anamnesis"onkeyup="mayus(this);" ></textarea>
-                                                    </div><!--/form-group-->
-                                                </div> 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Tratamiento</label>
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca el tratamiento" class="form-control" v-model = "tratamiento" onkeyup="mayus(this);"></textarea>
-                                                    </div><!--/form-group-->
-                                                </div>    
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Observaciones</label>
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca las Observaciones" class="form-control" v-model = "observaciones" onkeyup="mayus(this);"></textarea>
-                                                    </div><!--/form-group-->
-                                                </div> 
-                                                <template v-for="(list,index) of diagnostico">
-                                                    <div class="col-md-4">
-                                                        <section class="panel default orange_border vertical_border h1">
-                                                            <div class="task-header orange_task">{{list.codigo}}<span><i></i><font size="2">{{list.descripcion}}</font></span> </div>
-                                                            <div class="row task_inner inner_padding">
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <label>Observaciones</label>
-                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones" onkeyup="mayus(this);"></textarea>                                                                    
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="task-footer row">
-                                                                <div class="col-md-4 ">
-                                                                    <a @click="eliminarDiag(index)" class="btn btn-success " style='width:83px; height:30px'><i class="fa fa-times-circle"></i><font size="1"> Quitar</font></a>	
-										                        </div>
-                                                            </div>
-                                                        </section>
-                                                    </div> 
-                                                </template> 
-                                            </div>
-											<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
-											<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
-                                        </form>
-                                    </template>
-                                    <template v-else>
-                                        <form @submit="update_consulta" parsley-validate novalidate>
-                                            <div class="col-md-12">
-                                                <div class="col-md-9">
                                                     <div class="col-md-12">
+                                                        <button  type="button" data-target="#diagnostico" data-toggle="modal" class="btn btn-info"><i class='fa fa-stethoscope'></i>  Diagnóstico</button>
+                                                        <a href="javascript:void(0);"  data-toggle="modal" data-target="#ExamenFisico"class="btn btn-info" ><i class="fa fa-users"></i>Examen General</a></li><br><br>
                                                         <div class="form-group">
                                                             <label>Motivo de consulta</label>
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.anamnesis"onkeyup="mayus(this);"></textarea>
-                                                        </div><!--/form-group-->
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzca el motivo de la consulta" class="form-control" v-model = "anamnesis"onkeyup="mayus(this);" ></textarea>
+                                                        </div>
                                                     </div> 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Tratamiento</label>
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.tratamiento" onkeyup="mayus(this);"></textarea>
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzca el tratamiento" class="form-control" v-model = "tratamiento" onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div>    
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Observaciones</label>
-    
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.observaciones" onkeyup="mayus(this);"></textarea>
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzca las observaciones" class="form-control" v-model = "observaciones" onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div> 
+                                                    <template v-for="(list,index) of diagnostico">
+                                                        <div class="col-md-4">
+                                                            <section class="panel default orange_border vertical_border h1">
+                                                                <div class="task-header orange_task">{{list.codigo}}<span><i></i><font size="2">{{list.descripcion}}</font></span> </div>
+                                                                <div class="row task_inner inner_padding">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label>Observaciones</label>
+                                                                                <textarea rows="10" class="form-control" v-model="list.observaciones" onkeyup="mayus(this);"></textarea>                                                                    
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="task-footer row">
+                                                                    <div class="col-md-4 ">
+                                                                        <a @click="eliminarDiag(index)" class="btn btn-success " style='width:83px; height:30px'><i class="fa fa-trash-o"></i><font size="1"> Eliminar</font></a>	
+				        						                    </div>
+                                                                </div>
+                                                            </section>
+                                                        </div> 
+                                                    </template> 
                                                 </div>
-                                                <div class="col-md-3">    
-                                                    <div class="file_sidebar">  
-                                                        <li href="#collapse4" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Herramientas</li>
-                                                        <div class="file_sidebar_list panel-collapse collapse in"   id="collapse4" style="height: auto;">
-                                                            <ul>
-                                                                
-                                                                <template v-if="consulta_update != ''">                                                               
-                                                                    <li><a :href="'/consulta_externa/receta/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"> <i class="fa fa-building-o"></i>Receta</a></li>  
-                                                                    <li><a :href="'/consulta_externa/papeleta_internacion/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
-                                                                    <li><a :href="'/laboratorios/lab_consulta_externa/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li> 
-                                                                </template>
-                                                                                                                                    
-                                                            </ul>  
-                                                        </div>
-                                                    </div>                                                 
-                                                </div>
-                                                <template v-for="(list,index) of consulta_update.diagnostico">
-                                                    <div class="col-md-4">
-                                                        <section class="panel default orange_border vertical_border h1">
-                                                            <div class="task-header orange_task">{{list.codigo}}<span ><i></i><font size="2">{{list.descripcion}}</font></span> </div>
-                                                            <div class="row task_inner inner_padding">
-                                                                <div class="row">
+											    <button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
+										    	<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
+                                            </form>
+                                        </template>
+                                        <template v-else>
+                                            <form @submit="update_consulta" parsley-validate novalidate>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-9">
+                                                        <button  type="button" data-target="#diagnostico" data-toggle="modal" class="btn btn-info"><i class='fa fa-stethoscope'></i>  Diagnóstico</button>
+                                                        <a href="javascript:void(0);"  data-toggle="modal" data-target="#ExamenFisico"class="btn btn-info" ><i class="fa fa-users"></i>Examen General</a></li><br><br>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Motivo de consulta</label>
+                                                                <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.anamnesis"onkeyup="mayus(this);"></textarea>
+                                                            </div><!--/form-group-->
+                                                        </div> 
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Tratamiento</label>
+                                                                <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.tratamiento" onkeyup="mayus(this);"></textarea>
+                                                            </div><!--/form-group-->
+                                                        </div>    
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Observaciones</label>
+                                                                <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.observaciones" onkeyup="mayus(this);"></textarea>
+                                                            </div><!--/form-group-->
+                                                        </div> 
+                                                    </div>
+                                                    <div class="col-md-3">    
+                                                        <div class="file_sidebar">  
+                                                            <li href="#collapse4" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Herramientas</li>
+                                                            <div class="file_sidebar_list panel-collapse collapse in"   id="collapse4" style="height: auto;">
+                                                                <ul>
+                                                                    <template v-if="consulta_update != ''">  
+                                                                        <li><a :href="'/laboratorios/lab_consulta_externa/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li>                                                              
+                                                                        <li><a :href="'/consulta_externa/receta/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"> <i class="fa fa-building-o"></i>Receta Médica</a></li>  
+                                                                        <li><a :href="'/consulta_externa/papeleta_internacion/'+consulta_update.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=idCIta%>'"><i class="fa fa-exclamation-triangle"></i>Orden de Hospitalización</a></li>        
+                                                                    </template>                                                                                    
+                                                                </ul>  
+                                                            </div>
+                                                        </div>                                                 
+                                                    </div>
+                                                    <template v-for="(list,index) of consulta_update.diagnostico">
+                                                        <div class="col-md-4">
+                                                            <section class="panel default orange_border vertical_border h1">
+                                                                <div class="task-header orange_task">{{list.codigo}}<span ><i></i><font size="2">{{list.descripcion}}</font></span> </div>
+                                                                <div class="row task_inner inner_padding">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label>Observaciones</label>
@@ -339,392 +307,361 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="task-footer row">
-                                                                <div class="col-md-4 ">
-                                                                    <a @click="eliminarDiag_update(index)" class="btn btn-success " style='width:83px; height:30px'><i class="fa fa-times-circle"></i><font size="1"> Quitar</font></a>	
+                                                                <div class="task-footer row">
+                                                                    <div class="col-md-4 ">
+                                                                        <a @click="eliminarDiag_update(index)" class="btn btn-success " style='width:83px; height:30px'><i class="fa fa-times-circle"></i><font size="1"> Quitar</font></a>	
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </section>
-                                                    </div> 
-                                                </template> 
-                                            </div>
-                                            <button class="btn btn-success btn-raised" type="submit"> <i class='fa fa-save'></i>&nbsp;&nbsp;Actualizar</button>
-                                        </form>
-                                    </template>
-                                </div><!--/porlets-content-->
-                            </div><!--/block-web--> 
-                        </div><!--/col-md-6-->
-                    </div><!-- row -->
-                </div>     
-            </div>
-             <!-- 
+                                                            </section>
+                                                        </div> 
+                                                    </template> 
+                                                </div>
+                                                <button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
+										    	<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
+                                            </form>
+                                        </template>
+                                    </div><!--/porlets-content-->
+                                </div><!--/block-web--> 
+                            </div><!--/col-md-6-->
+                        </div><!-- row -->
+                    </div>     
+                </div>
+                <!-- 
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                             Modal de diagnostico
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            -->
-            <div class="modal fade" id="diagnostico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Diagnosticos</h4>
-                        </div>
-                        <div class="modal-body"> 
-                          <div id="div2">
-                            <template v-if="consulta_update == '' || consulta_update == null">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <input type="text" placeholder="Buscar" class="form-control" v-model="data">
-                                            </li>
-                                            <li class="list-group-item" v-for="list in buscar">
-                                                 <a @click="insertar(list.codigo)" data-dismiss="modal">{{list.codigo}}  {{list.descripcion}}</a>
-                                            </li>
-                                        </ul>
-                                    </div>  
-                                </div>
-                            </template>
-                            
-                            <template v-else>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <input type="text" placeholder="Buscar" class="form-control" v-model="data">
-                                            </li>
-                                            <li class="list-group-item" v-for="list in buscar">
-                                                 <a @click="insertar_update(list.codigo)">{{list.codigo}}  {{list.descripcion}}</a>
-                                            </li>
-                                        </ul>
-                                    </div>  
-                                </div>
-                            </template>
-                          </div>  
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                -->
+                <div class="modal fade" id="diagnostico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel"><i class='fa fa-stethoscope'></i> Lista de Diagnósticos</h4>
+                            </div>
+                            <div class="modal-body"> 
+                                <div id="div2">
+                                    <template v-if="consulta_update == '' || consulta_update == null">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <input type="text" placeholder="Buscar" class="form-control" v-model="data">
+                                                    </li>
+                                                    <li class="list-group-item" v-for="list in buscar">
+                                                        <a @click="insertar(list.codigo)" data-dismiss="modal">{{list.codigo}}  {{list.descripcion}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>  
+                                        </div>
+                                    </template>
+                                    <template v-else>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <input type="text" placeholder="Buscar" class="form-control" v-model="data">
+                                                    </li>
+                                                    <li class="list-group-item" v-for="list in buscar">
+                                                        <a @click="insertar_update(list.codigo)">{{list.codigo}}  {{list.descripcion}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>  
+                                        </div>
+                                    </template>
+                                </div>  
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- 
+                <!-- 
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                             MODAL ACTUALIZAR DATOS DEL PACIENTE
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            -->
-            <!-- Modal datos extra paciente -->
-            <div class="modal fade" id="DPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content  ">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
-                            <h4 >Información del Paciente</h4>
-                            <span style="color: red">{{msg_false_paciente}}</span>
-                            <span style="color: blue">{{msg_paciente}}</span>
-                        </div>
-                        <template v-if="paciente_data == '' || paciente_data == null || paciente_data.length == 0">
-                        
-                            <form class="" method='post'>
-                                <div class="container-fluid  "><br>
-                                    <div class="col-md-14 ">
-                                        <div class="col-md-6 ">
-                                        
-                                            <div class=" " >
-                                                <label>Estado Civil:</label>
-                                                <input readonly class="form-control"type='text' placeholder="Estado Civil" required  parsley-trigger="change" value="<%=dataPaciente[0].estadocivil%>">
-                                            </div>
-
-                                            <div class="">
-                                                <label>Zona donde vive:</label>
-                                                <input readonly class="form-control" type='text' name='Zona' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].zona%>">
-                                            </div>
-                                            <div class="">
-                                                <label>Tipo de Sangre:</label>
-                                                <input readonly class="form-control" type='text' name='ocupacion' class='' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].tipoSangre%>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6  ">
-                                            <div class="">
-                                                <label>Ocupación:</label>
-                                                <input readonly class="form-control" type='text' name='ocupacion' class='upper' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].ocupacion%>">
-                                            </div>
-                                            <div class="">
-                                                <label>Telefono:</label>
-                                                <input parsley-type="number" readonly class="form-control" type='text' name='Telefono'required placeholder="XX-XXXXXX" maxlength="8" placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].telef%>">
-                                            </div>
-                                            
-                                        </div>
-                                       
-                                    </div>
+                -->
+                <!-- Modal datos extra paciente -->
+                <div class="modal fade" id="DPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content  ">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
+                                <h4 ><i class='fa fa-user'></i>  Información del Paciente</h4>
+                                <p class="text-center">
+                                    <span style="color: red">{{msg_false_paciente}}</span>
+                                    <span style="color: blue">{{msg_paciente}}</span>
+                                </p>
                                 
-                               
-                                <div class="col-md-12 modal-footer ">
-								
-                                    <div class="col-md-8 row">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-                                        <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
-                                        <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-                                    </div>
-                                </div>
                             </div>
-                            </form>
-
-                        </template>
-                        <template v-else>
-                            <form @submit="updateDataPaciente" method='post'>
-                                <div class="container-fluid  "><br>
-                                    <div class="col-md-14 ">
-                                        <div class="col-md-6 ">
-                                            <div class=" " >
-                                                <label>Estado Civil:</label>
-                                                <input  class="form-control"type='text' placeholder=" " required  parsley-trigger="change"  v-model="paciente_data.estadocivil" onkeyup="mayus(this);">
-                                            </div>
-
-                                            <div class="">
-                                                <label>Zona:</label>
-                                                <input class="form-control" type='text' name='apellidom'placeholder=" " required  parsley-trigger="change" v-model="paciente_data.zona" onkeyup="mayus(this);">
-                                            </div>
-                                            <div class="">
-                                                <label>Tipo de sangre:</label>
-                                                <input class="form-control" type='text' name='apellidop' class='upper' placeholder=" " required  parsley-trigger="change" v-model="paciente_data.tipoSangre" onkeyup="mayus(this);">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6  ">
-                                            <div class="">
-                                                <label>Ocupación:</label>
-                                                <input class="form-control" type='text' name='apellidop' class='upper' placeholder=" " required  parsley-trigger="change" v-model="paciente_data.ocupacion" onkeyup="mayus(this);">
-                                            </div>
-                                            <div class="">
-                                                <label>Telefono:</label>
-                                                <input parsley-type="number" class="form-control" type='text' name='apellidom'  required placeholder="XX-XXXXXX" maxlength="8"   parsley-trigger="change" v-model="paciente_data.telef" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                <div class="col-md-12 modal-footer ">
-								    <div class="col-md-8 row">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-                                        <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
-                                        <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </form>
-                        </template>
-                   </div>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="ExamenFisico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog " id="mdialTamanio">
-                    <div class="modal-content  ">
-                        <div class="modal-header ">
-                            <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
-                            <h3 class="modal-title" id="myModalLabel">Examen General</h3>
-                        </div>
-                        <div class="">
-                            <div class="tab-content">
-                                <div class="" id="general">
-                                    <form @submit="insertar_examen_general" method='POST'>
-                                        <div class="container-fluid  ">
-                                                           
-                                            <div class="col-md-20 ">
-                                            
-                                                <div class="col-md-6">
-                                                    <div class="col-md-6 ">
-                                                        <label>Frec. Cardiaca(lat/min):</label>
-                                                        <input type="number" v-model="frecuencia_cardiaca" data-decimals="2" min="1" max="3" step="0.01" class="form-control" ></input>
-                                                    </div>
-                                                    <div class="col-md-6 ">
-                                                        <label>Frec.Respiratoria(rep/min):</label>
-                                                        <input type="number" v-model="respiracion" data-decimals="2" min="1" max="3" step="0.01" class="form-control"  ></input>
-                                                    </div>
-                                                    <div class="col-md-6 ">
-                                                        <label>Pulso:</label>
-                                                        <input class="form-control" v-model="pulso" type='text' name='apellidom' placeholder="">
-                                                    </div>
-                                                    <div class="col-md-6 " >
-                                                        <label>Estado Nutricional:</label>
-                                                        <input  class="form-control" type='text' v-model="estado_nutricional">
-                                                    </div>
-                                                    <div class="">
-                                                        <label> Presión Arterial Brazo Isquierdo(mmHg):</label>
-                                                        <input type="text" class="form-control" v-model="presion_brazo_isquierdo" ></input>
-                                                    </div>
-                                                
-                                                    
-                                                    <div class="">
-                                                        <label>Presión Arterial Brazo Derecho(mmHg):</label>
-                                                        <input type="text" class="form-control" v-model="presion_brazo_derecho" ></input>
-                                                    </div>                
+                            <template v-if="paciente_data == '' || paciente_data == null || paciente_data.length == 0">
+                                <form class="" method='post'>
+                                    <div class="container-fluid"><br>
+                                        <div class="col-md-14 ">
+                                            <div class="col-md-6 ">
+                                                <div class=" " >
+                                                    <label>Estado Civil:</label>
+                                                    <input readonly class="form-control"type='text' placeholder="Estado Civil" required  parsley-trigger="change" value="<%=dataPaciente[0].estadocivil%>">
                                                 </div>
-                                                <div class="col-md-6 ">
-                                                    <div class="col-md-4 row ">
-                                                        <label>Peso(kg):</label> 
-                                                        <input type="number" v-model="peso"  data-decimals="2" min="10" max="500" step="0.1"class="form-control" maxlength="5">
-                                                    </div>
-                                                    <div class="col-md-5  ">
-                                                        <label>Talla(m):</label> 
-                                                        <input class="form-control" v-model="talla" type='text' data-decimals="2" min="1" max="3" step="0.01" class="form-control" maxlength="3">
-                                                   </div>
-                                                    <div class="col-md-4 row ">
-                                                        <label >IMC:</label> 
-                                                        <input class="form-control" v-model="imc" placeholder="">
-                                                    </div>
-                                                
-                                                    <div class="col-md-6 row">
-                                                        <label>Temp.(°C):</label> 
-                                                        <input type="number" v-model="temperatura" data-decimals="2" min="10" max="100" step="0.1" class="form-control" maxlength="5">
-                                                    </div>
-                                                    
-                                                    <div class="col-sm-12 row">
-                                                        <label class="control-label">Observaciones:</label>
-                                                        <textarea class="form-control" v-model="otros" ></textarea>
-                                                      </div>
-                                                    </div>
+                                                <div class="">
+                                                    <label>Zona:</label>
+                                                    <input readonly class="form-control" type='text' name='Zona' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].zona%>">
                                                 </div>
+                                                <div class="">
+                                                    <label>Tipo de Sangre:</label>
+                                                    <input readonly class="form-control" type='text' name='ocupacion' class='' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].tipoSangre%>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6  ">
+                                                <div class="">
+                                                    <label>Ocupación:</label>
+                                                    <input readonly class="form-control" type='text' name='ocupacion' class='upper' placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].ocupacion%>">
+                                                </div>
+                                                <div class="">
+                                                    <label>Telefono:</label>
+                                                    <input parsley-type="number" readonly class="form-control" type='text' name='Telefono'required placeholder="XX-XXXXXX" maxlength="8" placeholder="" required  parsley-trigger="change" value="<%=dataPaciente[0].telef%>">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-12 page-content ">
-                                               
-                                            <div class="col-md-8 " v-if="one_examen == ''">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-                                                <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
+                                        <div class="col-md-12 modal-footer ">
+								            <div class="col-md-8 row text-left">
                                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                                                <button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
                                             </div>
-
-                                            <div class="col-md-8 " v-else>
+                                        </div>
+                                    </div>
+                                </form>
+                            </template>
+                            <template v-else>
+                                <form @submit="updateDataPaciente" method='post'>
+                                    <div class="container-fluid  "><br>
+                                        <div class="col-md-14 ">
+                                            <div class="col-md-6 ">
+                                                <div class=" " >
+                                                    <label>Estado Civil:</label>
+                                                    <input  class="form-control"type='text' placeholder=" " required  parsley-trigger="change"  v-model="paciente_data.estadocivil" onkeyup="mayus(this);">
+                                                </div>
+                                                <div class="">
+                                                    <label>Zona:</label>
+                                                    <input class="form-control" type='text' name='apellidom'placeholder=" " required  parsley-trigger="change" v-model="paciente_data.zona" onkeyup="mayus(this);">
+                                                </div>
+                                                <div class="">
+                                                    <label>Tipo de sangre:</label>
+                                                    <input class="form-control" type='text' name='apellidop' class='upper' placeholder=" " required  parsley-trigger="change" v-model="paciente_data.tipoSangre" onkeyup="mayus(this);">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6  ">
+                                                <div class="">
+                                                    <label>Ocupación:</label>
+                                                    <input class="form-control" type='text' name='apellidop' class='upper' placeholder=" " required  parsley-trigger="change" v-model="paciente_data.ocupacion" onkeyup="mayus(this);">
+                                                </div>
+                                                <div class="">
+                                                    <label>Telefono:</label>
+                                                    <input parsley-type="number" class="form-control" type='text' name='apellidom'  required placeholder="XX-XXXXXX" maxlength="8"   parsley-trigger="change" v-model="paciente_data.telef" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 modal-footer ">
+			    					        <div class="col-md-12 row text-left">
+                                                <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                                                <button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="ExamenFisico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog " id="mdialTamanio">
+                        <div class="modal-content  ">
+                            <div class="modal-header ">
+                                <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
+                                <h3 class="modal-title" id="myModalLabel"> <i class='fa fa-user-md'></i>   Examen General</h3>
+                            </div>
+                            <div class="">
+                                <div class="tab-content">
+                                    <div class="" id="general">
+                                        <form @submit="insertar_examen_general" method='POST'>
+                                            <div class="container-fluid  ">
+                                                <div class="col-md-20 ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-6 ">
+                                                            <label>Frec. Cardiaca(lat/min):</label>
+                                                            <input type="number" v-model="frecuencia_cardiaca" data-decimals="2" min="1" max="3" step="0.01" class="form-control" ></input>
+                                                        </div>
+                                                        <div class="col-md-6 ">
+                                                            <label>Frec.Respiratoria(rep/min):</label>
+                                                            <input type="number" v-model="respiracion" data-decimals="2" min="1" max="3" step="0.01" class="form-control"  ></input>
+                                                        </div>
+                                                        <div class="col-md-6 ">
+                                                            <label>Pulso:</label>
+                                                            <input class="form-control" v-model="pulso" type='text' name='apellidom' placeholder="">
+                                                        </div>
+                                                        <div class="col-md-6 " >
+                                                            <label>Estado Nutricional:</label>
+                                                            <input  class="form-control" type='text' v-model="estado_nutricional">
+                                                        </div>
+                                                        <div class="">
+                                                            <label> Presión Arterial Brazo Isquierdo(mmHg):</label>
+                                                            <input type="text" class="form-control" v-model="presion_brazo_isquierdo" ></input>
+                                                        </div>
+                                                        <div class="">
+                                                            <label>Presión Arterial Brazo Derecho(mmHg):</label>
+                                                            <input type="text" class="form-control" v-model="presion_brazo_derecho" ></input>
+                                                        </div>                
+                                                    </div>
+                                                    <div class="col-md-6 ">
+                                                        <div class="col-md-6 row ">
+                                                            <label>Peso(kg):</label> 
+                                                            <input type="number" v-model="peso"  data-decimals="2" min="10" max="500" step="0.1"class="form-control" maxlength="5">
+                                                        </div>
+                                                        <div class="col-md-6  ">
+                                                            <label>Talla(m):</label> 
+                                                            <input class="form-control" v-model="talla" type='text' data-decimals="2" min="1" max="3" step="0.01" class="form-control" maxlength="3">
+                                                       </div>
+                                                        <div class="col-md-6 row ">
+                                                            <label >IMC:</label> 
+                                                            <input class="form-control" v-model="imc" placeholder="">
+                                                        </div>
+                                                        <div class="col-md-6 ">
+                                                            <label>Temp.(°C):</label> 
+                                                            <input type="number" v-model="temperatura" data-decimals="2" min="10" max="100" step="0.1" class="form-control" maxlength="5">
+                                                        </div>
+                                                        <div class="col-sm-12 row">
+                                                            <label class="control-label">Observaciones:</label>
+                                                            <textarea class="form-control" v-model="otros" ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 page-content ">   
+                                                <div class="col-md-8 " v-if="one_examen == ''">
+                                                    <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                                                    <button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                                                </div>
+                                                <div class="col-md-8 " v-else>
                                                <!--  <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
                                                 <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button> -->
-                                                <a v-if="one_examen.estado_update == true" @click="update_examen" class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Actualizar</a>
+                                                    <a v-if="one_examen.estado_update == true" @click="update_examen" class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</a>
+                                                    <button type="reset" class="btn btn-danger" > <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                                   
-                                    </form>
-                                </div>
-                                        <!--<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<lista examen>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>
-                                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-                                    <a @click="elminar_datas_examen">volver</a>
-                                        <div class="col-lg-12 "> 
-                                                <section class="panel default blue_title h2">
-                                                    <div class="panel-heading">
-                                                         <span class="h6">Lista de Examenes físicos</span>
-                                                    </div>
-                                                    <div id="div1" class="">
-                                                    
-                                                          <table class="table table-hover" >
-                                                            <thead>
-                                                                  <tr>
-                                                                    <th>#</th>
-                                                                    <th>Fecha</th>
-                                                                    <th>Peso</th>
-                                                                    <th>Talla</th>
-                                                                    <th>Temperatura</th>                                                                   
-                                                                    <th>Ver</th>
-                                                                  </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <template v-for="(list,index) in examen_list">
-                                                                    <tr>
-                                                                       <td>{{index+1}}</td>
-                                                                       <td>{{list.fecha_revision}}</td>
-                                                                       <td>{{list.peso}}</td>
-                                                                       <td>{{list.talla}}</td>
-                                                                       <td>{{list.temperatura}}</td>
-                                                                       <td><a @click="oneExamen(list.id)">ver</a></td>
-                                                                    </tr>
-                                                                </template>
-                                                               
-                                                            </tbody>
-                                                        
-                                                            </table>
-                                                        
-                                                    </div>
-                                                </section>
-                                        </div>
+                                        </form>
                                     </div>
-                        </div>       
+                                    <!--<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<lista examen>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>
+                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                                    <div class="col-lg-12 "> 
+                                        <section class="panel default black_title h2">
+                                            <div class="panel-heading">
+                                                <span class="h5">Lista de examenes físicos</span>
+                                            </div>
+                                            <div class="col-xs-12 ">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                        <th>#</th>
+                                                        <th>Fecha</th>
+                                                        <th>Peso</th>
+                                                        <th>Talla</th>
+                                                        <th>Temperatura</th>                                                                   
+                                                        <th>Opciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <template v-for="(list,index) in examen_list">
+                                                            <tr>
+                                                            <td>{{index+1}}</td>
+                                                            <td>{{list.fecha_revision}}</td>
+                                                            <td>{{list.peso}}</td>
+                                                            <td>{{list.talla}}</td>
+                                                            <td>{{list.temperatura}}</td>
+                                                            <td class="center hidden-phone">
+                                                                <a  @click="oneExamen(list.id)"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Examen General"><i class="fa fa-eye" style="color:rgb(1, 67, 173)"></i></a><span>&nbsp;</span></td>
+                                                            </tr>
+                                                        </template>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
                     </div>
                 </div>
-                </div>
-        </div>
-    </div>      
-</div>
-
-        
-<!-- Modal datos extra paciente -->
-<div class="modal fade" id="DPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content  ">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
-                <h4 >Información del Paciente</h4>
             </div>
-            <form class=" " action='/paciente/postPaciente' method='post'>
-                <div class="container-fluid  "><br>
-                    <div class="col-md-14 ">
-                        <div class="col-md-6 ">
-                            <div class=" " >
-                                <label>Estado Civil:</label>
-                                <input  class="form-control"type='text' name='nombre'placeholder="Estado Civil" required  parsley-trigger="change">
-                            </div>
-                            <div class="">
-                                <label>Domicilio:</label>
-                                <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
-                            </div>
-                        </div>
-                        <div class="col-md-6  ">
-                            <div class="">
-                                <label>Ocupación:</label>
-                                <input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change">
-                            </div>
-                            <div class="">
-                                <label>Telefono:</label>
-                                <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 modal-footer ">
-					<div class="col-md-8 row">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-                        <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
-                        <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-                    </div>
-                </div>	
-            </form>
-       </div>
+        </div>      
     </div>
-</div>
 
-<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-    <div class="vertical-alignment-helper">
-      <div class="modal-dialog vertical-align-center modal-sm ">
-        <div class="modal-content">
-          <br>
-            <div class="center">
-              <i><img src="/images/salir.gif" width="100" height="100" /></i>
-            </div>
-            <div class="center">
-              <h5><b>¿Cerrar Sesión?</b></h5>
-            </div>
-          <div class="modal-footer">
-            <div class="center">
-              <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-            </div>
-          </div>
+    <!-- Modal datos extra paciente -->
+    <div class="modal fade" id="DPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content  ">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
+                    <h4 > <i class='fa fa-user'></i> Información del Paciente</h4>
+                </div>
+                <form class=" " action='/paciente/postPaciente' method='post'>
+                    <div class="container-fluid  "><br>
+                        <div class="col-md-14 ">
+                            <div class="col-md-6 ">
+                                <div class=" " >
+                                    <label>Estado Civil:</label>
+                                    <input  class="form-control"type='text' name='nombre'placeholder="Estado Civil" required  parsley-trigger="change">
+                                </div>
+                                <div class="">
+                                    <label>Domicilio:</label>
+                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                </div>
+                            </div>
+                            <div class="col-md-6  ">
+                                <div class="">
+                                    <label>Ocupación:</label>
+                                    <input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change">
+                                </div>
+                                <div class="">
+                                    <label>Telefono:</label>
+                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 modal-footer ">
+			    		<div class="col-md-8 row text-left">
+                            <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                        </div>
+                    </div>	
+                </form>
+           </div>
         </div>
-      </div>
-    </div> 
-</div>
+    </div>
+
+    <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center modal-sm ">
+                <div class="modal-content"><br>
+                    <div class="center">
+                        <i><img src="/images/salir.gif" width="100" height="100" /></i>
+                    </div>
+                    <div class="center">
+                        <h5><b>¿Cerrar Sesión?</b></h5>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="center">
+                            <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
 <script>
     function mayus(e) {
     e.value = e.value.toUpperCase();
@@ -770,6 +707,7 @@
     <script src="/moment/locale/af.js"></script>
     <script src="/url/export.js"></script>
     <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
-    <script src="/js/vue/cunsulta_externa.js"></script>
+    <script src="/js/vue/cunsulta_externa.js">
+</script>
 </body>
 </html>

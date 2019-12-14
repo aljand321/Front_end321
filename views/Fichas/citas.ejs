@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Citas</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
-
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -16,57 +13,47 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<!--validaciones-->
-
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
-<style>
-	div.a {
-		text-align: center;
-	}
-	h1.letras {
-		font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-	}
-	.vertical-alignment-helper {
-  	  display:table;
-  	  height: 100%;
-  	  margin-left: 41%;
-  	}
-  	.vertical-align-center {
-  	  /* To center vertically */
-  	  display: table-cell;
-  	  vertical-align: middle;
-  	  text-align: center;
-  	}
-</style>
-
+	<!--validaciones-->
+	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />			
+	<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+	<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+	<style>
+		div.a {
+			text-align: center;
+		}
+		h1.letras {
+			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+		}
+		.vertical-alignment-helper {
+  	  		display:table;
+  	  		height: 100%;
+  	  		margin-left: 41%;
+  		}
+  		.vertical-align-center {
+  	 		/* To center vertically */
+  	  		display: table-cell;
+  	  		vertical-align: middle;
+  	  		text-align: center;
+  		}
+	</style>
 </head>
-
 <body class="light_theme  fixed_header left_nav_fixed">
-	<!-- Content page-->
 	<div class="wrapper">
-		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div class="header_bar">
-			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
-				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
 			</div>
-			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
-				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
 				<div class="top_right_bar">
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
@@ -78,10 +65,8 @@
 					</div>
 				</div>
 			</div>
-			<!--\\\\\\\ header top bar end \\\\\\-->
 		</div>
 		<div class="inner">
-			<!--\\\\\\\ inner start \\\\\\-->
 			<%- include("partials/menu") -%>	
 			<!--\\\\\\\left_nav end \\\\\\-->
 			<div class="contentpanel">
