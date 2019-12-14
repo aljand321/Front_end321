@@ -31,7 +31,7 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 	<style>
 		div.a {
 			text-align: center;
@@ -49,7 +49,7 @@
 	<!-- SideBar -->
 
 	<!-- Content page-->
-	<div class="wrapper">
+	<div class="wrapper" id="reporte">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
@@ -66,7 +66,7 @@
 													
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
@@ -90,21 +90,21 @@
 						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
 								<li> 
-                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
+                                    <a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" > <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
                                 </li>
 							</ul>
 						</li>
 						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/citas/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
+								<li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
                         	</ul>
                         </li>
                         <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
                             class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block" >
-                                <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
-                                <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
-                                <li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Citas </b> </a></li>                
+                                <li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+                                
+                                <li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%><%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Citas </b> </a></li>                
                             </ul>
                         </li>
                         
@@ -136,7 +136,11 @@
                                                             
                                                     <div class="col-md-3 ">
                                                         <div class="form-group">paciente:<br>
-                                                            <input type='' name='' class="form-control"><br>
+                                                            <select v-model="historial">
+																<%for ( var i = 0; i < list_pacietne.length; i++) { %>
+																	<option :value="<%=list_pacietne[i].numeroHistorial%>" ><%=list_pacietne[i].nombre%> <%=list_pacietne[i].apellidop%> <%=list_pacietne[i].apellidom%></option>
+																<% } %>
+															</select>
                                                         </div>
                                                     </div>
                                                   
@@ -150,12 +154,13 @@
                                 </div>
                                
                                 <p class="text-center">
-                                    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
-                                    <button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
+                                    <button @click="data_resp = ''" type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+                                    <button @click="buscar()" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
                 
                                 </p>
 							</div>
-                        </div>
+						</div>
+						
                         <div id="main-content">
                             <section class="panel default blue_title h2">
                         <div class="page-content">			
@@ -172,22 +177,36 @@
                                                     <th>Historial Clinico</th>
                                                     
                                                     <th>Doctor</th>
-                                                    <th>Especialidad</th>
-                                                    <th>Cantidad de visitas</th>
+													<th>Especialidad</th>
+													<th>Hora</th>
+													<th>Dia</th>
+                                                   
                                                    
                                                 </tr>
                                             </thead>
-                                            <tbody>														
-                                                
-                                                <tr class="gradeX">
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                  
-                                                    
-                                                </tr>													
+                                            <tbody>		
+												<template v-if="data_resp == ''">
+													<%for (var i = 0; i < list_citas.length; i++) { %>
+														<tr class="gradeX">
+															<td><%=i+1%></td>
+															<td><%=list_citas[i].codigo_p%></td>
+															<td><%=list_citas[i].medico%></td>
+															<td><%=list_citas[i].especialidad%></td>	
+															<td><%=list_citas[i].hora.split("/")[0]%></td>	
+															<td>falta en la bd</td>											
+														</tr>	
+													<% } %>	
+												</template>												
+                                               	<template v-else>
+													<tr class="gradeX" v-for="(list, index) in data_resp">
+														<td>{{index+1}}</td>
+														<td>{{list.codigo_p}}</td>
+														<td>{{list.medico}}</td>
+														<td>{{list.especialidad}}</td>	
+														<td>{{list.hora.split("/")[0]}}</td>	
+														<td>falta en la bd</td>											
+													</tr>
+												</template>										
 
                                             </tbody>
                                            
@@ -215,15 +234,6 @@
 	</div>
 	<!--\\\\\\\ wrapper end\\\\\\-->
 
-
-
-
-
-
-
-
-
-
 	<!--====== Scripts -->
 	<script src="/js/jquery-2.1.0.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
@@ -241,18 +251,11 @@
 			EditableTable.init();
 		});
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<!-- etiqueta sin internet-->
-	<script src="/axios/dist/axios.min.js"></script>
+	
 
 	<script src="/js/jPushMenu.js"></script>
 	<script src="/js/side-chats.js"></script>
 
-
-
-
-
-	<script src="/js/vue/citasMedicas.js"></script>
 
 
 <!--validaciones-->
@@ -319,7 +322,53 @@
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 
+<script src="/moment/moment.js"></script>
+<script src="/moment/locale/af.js"></script>
+<script src="/url/export.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="/axios/dist/axios.min.js"></script>
+<script>
+	const reporte = new Vue({
+        el:"#reporte",
+		data:{
+			url:data_url.url_front_end,
+			historial:'',
+			data_resp:''
+		},
+		methods:{
+			buscar(){
+				var estado = {
+                    historial: this.historial
+                }
+                var esto = {
+                  method: 'POST',
+                  body: JSON.stringify(estado),
+                  headers:{
+                    'Content-type' : "application/json"
+                  }
+                };
+                fetch(this.url+'/paciente/vue_citas_paciente_historial',esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(resp => {
+                    console.log(resp)
+                    if(resp.success == false){
+                        swal.fire(
+                          'Error!',
+                          '<label style="color:red;">'+resp.msg+'</label>',
+                          'error'
+                        )
+                    }else{
+                        this.data_resp = resp
+                    }
+                })
+			}
+		}
+	})
+</script>
 
 </body>
 
