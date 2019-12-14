@@ -37,7 +37,7 @@ function tok(token,id){
 function array () {
   let arr = [];
   for (const id in listItems) {
-      arr.push(listItems[id]);
+    arr.push(listItems[id]);
   }
   return arr;
 }
@@ -141,6 +141,7 @@ router.get('/home/:id_user',(req, res) => {
         .then(resp => resp.json())
         .catch(error => console.error('Error',error))
         .then(personal => {
+          console.log(datas.name.token, " asdasdasd <<<<<<<<<<<<<<<<<<<<<<<<<")
             data_token.personal = personal 
             if(data_user[data_token.token_id] == null){
                 user(data_token, data_token.token_id)
@@ -170,8 +171,9 @@ router.get('/home/:id_user',(req, res) => {
                                 fetch('http://localhost:3000/api/pacientes')
                                 .then(resp => resp.json())
                                 .then(paci =>{
-
+                                  
                                   res.render('home',{
+                                    session:datas.name.token.length,
                                     lo,
                                     medi,
                                     data,
@@ -253,6 +255,7 @@ router.get('/home/:id_user',(req, res) => {
                                 .then(paci =>{
 
                                   res.render('home',{
+                                    session:datas.name.token.length,
                                     lo,
                                     medi,
                                     data,
@@ -327,7 +330,9 @@ router.get('/home/:id_user',(req, res) => {
       /* data_doc:datas.name.data_user[data_token.token_id], */
     })
   })
-  });
+});
+
+
 
 var msg1,msg2,msg3, token_part;
 router.post('/login', (req,res)  => {

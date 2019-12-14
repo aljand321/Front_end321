@@ -436,8 +436,10 @@
                   <div class="col-sm-4">
                     <select v-model="ci_medico" @click="list_medicos">
                       <option value="">--Seleccione--</option>
-                      <% for(var i = 0; i< Lista_medicos[0].user.length; i++) { %>
-                        <option><%=Lista_medicos[0].user[i].Registro_personal.ci%></option>
+                      <%if (Lista_medicos[0] != null) { %>
+                        <% for(var i = 0; i< Lista_medicos[0].user.length; i++) { %>
+                          <option><%=Lista_medicos[0].user[i].Registro_personal.ci%></option>
+                        <% } %>
                       <% } %>
                     </select>
                   </div>

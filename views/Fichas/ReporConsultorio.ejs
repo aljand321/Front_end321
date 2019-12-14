@@ -32,6 +32,8 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 <style>
 	div.a {
 		text-align: center;
@@ -58,7 +60,7 @@
 	<!-- SideBar -->
 
 	<!-- Content page-->
-	<div class="wrapper">
+	<div class="wrapper" id="reporte">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
@@ -75,7 +77,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-                        <img src="/images/cajera.png" /><span class="user_adminname"> John Doe</span> <b class="caret"></b> </a>
+                        <img src="/images/cajera.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i>Salir</a> </li>
@@ -97,15 +99,15 @@
 						</li>
 						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/citas/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
+								<li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
                         	</ul>
                         </li>
                         <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
                             class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block" >
-                                <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reportes consultorio </b> </a></li>
-                                <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
-                                <li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
+                                <li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reportes consultorio </b> </a></li>
+                              
+                                <li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
                             </ul>
                         </li>
                         
@@ -126,7 +128,7 @@
 							<div id="main-content" class=" block-web">
 							<div class="header">
 								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
-								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reporte por Consultorio </h3>
+								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reporte por Consultorio</h3>
 							</div>
 							<div class="porlets-content">
                                 <div class="row">
@@ -141,7 +143,7 @@
                                                         <div class="col-md-12">
                                                             <div class="col-md-3">
                                                                 <div class="form-group">Turno:
-                                                                    <select class="form-control" name="turno" v-model="turno" @click="especilida">
+                                                                    <select class="form-control" v-model="turno">
                                                                         <option>Mañanas</option>
                                                                         <option>Tardes</option>
                                                                         <option>Noches</option>
@@ -149,30 +151,31 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <div class="form-group">Fecha:<br>
-                                                                    <input type='date' name='' class="form-control"><br>
+                                                                <div class="form-group">Fecha inicio:<br>
+                                                                    <input type='date' v-model="fecha_inicio" class="form-control"><br>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">Fecha final:<br>
+                                                                    <input type='date' v-model="fecha_final" class="form-control"><br>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">Consultorio De:<br>
-                                                                    <select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
-                                                                        <option disabled="disabled" value>Seleccione</option>
-                                                                        <template v-for="(especialidad, index) in especialidades">
-                                                                            <option>{{especialidad.nombre}}
-                                                                            </option>
-                                                                        </template>
+                                                                    <select class="form-control" name="especialidad" v-model="id" @click="list_doc()" >
+                                                                        <option disabled="disabled" value = "">Seleccione</option>
+                                                                        <% for (var i = 0; i < consultorios.length; i++) { %>
+                                                                            <option :value="<%=consultorios[i].id%>"> <%=consultorios[i].nombre%> </option>
+                                                                        <% } %>
                                                                     </select>
                                                                 </div>
                                                                 
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group"> Doctor:<br>
-                                                                    <select class="form-control" name="medico" v-model="selectDoctor" @click="saca_horas(),saca_horas_reservadas(),saca_horas_atendidas()">
+                                                                    <select class="form-control" name="medico" >
                                                                         <option disabled="disabled" value> Seleccione </option>
-                                                                        <option v-for="(doctor, index) of doctores" :value="doctor.nombre">
-                                                                            {{doctor.nombre.split("/")[0]}}
-                                                                            
-                                                                        </option>
+                                                                        <option v-for="list of list_doc1" :value=" id_doctor = list.nombre.split('/')[1]"> {{list.nombre}} </option>
                                                                     </select>
                                                                 </div>
                                                                
@@ -189,12 +192,13 @@
                                 </div>
                                
                                 <p class="text-center">
-                                    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
-                                    <button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
+                                    <button @click="data_resp = ''" type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+                                    <button @click="buscar()" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
                 
                                 </p>
 							</div>
                         </div>
+                        
                         <div id="main-content">
                             <section class="panel default blue_title h2">
                         <div class="page-content">			
@@ -212,30 +216,46 @@
                                                     <th>Doctor</th>
                                                     <th>Especialidad</th>
                                                     <th>Saldo</th>
-                                                    <th>Opciones</th>
+                                                    <th>Turno</th>
+                                                   
                                                 </tr>
                                             </thead>
-                                            <tbody>														
+                                            <tbody>	
                                                 
-                                                <tr class="gradeX">
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    
-                                                </tr>													
+                                                <template v-if="data_resp == ''">
+                                                    <% for (var i = 0; i < list_citas.length; i++) { %>
+                                                        <tr class="gradeX">
+                                                            <td><%=i+1%></td>
+                                                            <td><%=list_citas[i].codigo_p%></td>
+                                                            <td><%=list_citas[i].medico%></td>
+                                                            <td><%=list_citas[i].especialidad%></td>
+                                                            <td><%=list_citas[i].saldo_total%></td>
+                                                            <td><%=list_citas[i].turno%></td>
+                                                        </tr>	
+                                                    <% } %>	
+                                                </template>
+                                                <template v-else>
+                                                    <tr class="gradeX" v-for="(list, index) in  data_resp">
+                                                        <td>{{index +1}}</td>
+                                                        <td>{{list.codigo_p}}</td>
+                                                        <td>{{list.medico}}</td>
+                                                        <td>{{list.especialidad}}</td>
+                                                        <td>{{list.saldo_total}}</td>
+                                                        <td>{{list.turnoturno}}</td>
+                                                    </tr>
+                                                </template>
+                                               											
 
                                             </tbody>
                                             <tfoot>
-                                                <tr>
+                                                <tr>id
                                                     <th>#</th>
                                                     <th>Historial Clinico</th>
                                                     <th>Doctor</th>
                                                     <th>Especialidad</th>
                                                     <th>Saldo</th>
-                                                    <th>Opciones</th>
+                                                    <th>Turno</th>
+                                                   
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -256,7 +276,7 @@
 
 			<!--\\\\\\\ container  end \\\\\\-->
 		</div>
-		<!--\\\\\\\ content panel end \\\\\\-->
+		<!--\\\\\\\ content panel end \\\\\\-->id
 	</div>
 	<!--\\\\\\\ inner end\\\\\\-->
 	</div>
@@ -293,10 +313,7 @@
 
 
 <!--====== Scripts -->
-<script src="/js/jquery-2.1.0.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/common-script.js"></script>
-<script src="/js/jquery.slimscroll.min.js"></script>
+<script src="/js/jquery-2.1.0.js"></script>id
 <script src="/plugins/data-tables/jquery.dataTables.js"></script>
 <script src="/plugins/data-tables/DT_bootstrap.js"></script>
 <script src="/plugins/data-tables/dynamic_table_init.js"></script>
@@ -309,15 +326,13 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- etiqueta sin internet-->
-<script src="/axios/dist/axios.min.js"></script>
 <script src="/js/jPushMenu.js"></script>
 <script src="/js/side-chats.js"></script>
-<script src="/js/vue/citasMedicas.js"></script>
 
 
 <!--validaciones-->
 <script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
-<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/zepto.js"></script>id
 <script src="/plugins/checkbox/icheck.js"></script>
 <script src="/js/icheck-init.js"></script>
 <script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
@@ -379,6 +394,85 @@
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
+<script src="/moment/moment.js"></script>
+<script src="/moment/locale/af.js"></script>
+<script src="/url/export.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="/axios/dist/axios.min.js"></script>
+
+<script>
+    const reporte = new Vue({
+        el:"#reporte",
+        data:{
+            url:data_url.url_front_end,
+            data:'aljand321',
+            id:'', // esto es el id de la consulta
+            list_doc1:'',
+            // datas para poder buscar
+            id_doctor:'',
+            fecha_inicio:'',
+            fecha_final:'',
+            turno:'',
+
+            data_resp:''
+        },
+        methods:{
+            list_doc(){
+                fetch(this.url+'/paciente/Vue_list_doctores/'+this.id) // esta ruta es la que muestra todas las citas de todos loa pacientes
+                .then(res => res.json()) 
+                .catch(error => console.error('Error:', error))
+                .then(doctores => {
+                    this.list_doc1 = doctores
+                    console.log( this.list_doc1, "  <<<<< esto es lo que quiero ")
+                })
+            },
+            buscar(){
+                if (this.id_doctor == ""){
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Selecione doctor</label>',
+                        'error'
+                    ) 
+                }else{
+                    var estado = {
+                        fecha_inicio:this.fecha_inicio, 
+                        fecha_final:this.fecha_final, 
+                        turno: this.turno, 
+                        id_esp: this.id
+                    }
+                    var esto = {
+                      method: 'POST',
+                      body: JSON.stringify(estado),
+                      headers:{
+                        'Content-type' : "application/json"
+                      }
+                    };
+                    fetch(this.url+'/paciente/vue_repot_buscar/'+this.id_doctor,esto)
+                    .then(res => res.json())
+                    .catch(error => console.error('Error:', error))
+                    .then(resp => {
+                        console.log(resp)
+                        if(resp.success == false){
+                            swal.fire(
+                              'Error!',
+                              '<label style="color:red;">'+resp.msg+'</label>',
+                              'error'
+                            )
+                        }else{
+                            this.data_resp = resp
+                        }
+
+                    })
+                }
+                
+            }
+        }
+    })
+</script>
 
 
 </body>

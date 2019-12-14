@@ -125,7 +125,7 @@
 			<div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Principal <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
                 <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
@@ -221,7 +221,7 @@
                                       <option value="" selected disabled hidden>--Seleccione--</option>
                                       <option value="medico">MÉDICO</option>
                                       <option value="enfermera">ENFERMERA</option>
-                                      <option value="personal">PERSONAL ADMINSTRATIVO</option>
+                                      <option value="personal">PERSONAL </option>
                                       <option value="farmaseutico">FARMACÉUTICO</option>
                                       <option value="ECOGRAFIA">LABORATORISTA DE ECOGRAFIA</option>
                                       <option value="Rayos_x">LABORATORISTA DE RAYOS X</option>
@@ -314,18 +314,23 @@
                                     <td class="text-center"><%=resp[i].ci %></td>
                                     <td class="text-center uppercase"><%=resp[i].cargo %></td>										
                                     <td class="text-center"> 
-                                      <a href="/usuarios/UsuraioCuenta/<%=resp[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user "></i></a><span>&nbsp;</span>
-                                      <a href="#!" @click="id_personal = '<%=resp[i].id%>'"  data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                                      <a href="#!" @click="id_personal = '<%=resp[i].id%>'"  data-target="#myModal78" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Habilitar_personal"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                                      <a href="/usuarios/usuarios/<%=resp[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
-                                      <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Detalles"><i class="fa fa-eye " style="color:black"></i></a>
+                                      
+                                        <% if(resp[i].estado_adm != true) { %>
+                                          <% if (resp[i].estado == false) { %>
+                                            <a href="/usuarios/UsuraioCuenta/<%=resp[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user "></i></a><span>&nbsp;</span>
+                                          <% } %>
+                                          <a href="#!" @click="id_personal = '<%=resp[i].id%>'"  data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                          <a href="#!" @click="id_personal = '<%=resp[i].id%>'"  data-target="#myModal78" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Habilitar_personal"><i class="fa fa-plus " style="color: darkblue;"></i></a><span>&nbsp;</span>
+                                          <a href="/usuarios/usuarios/<%=resp[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
+                                          <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Detalles"><i class="fa fa-eye " style="color:black"></i></a>
+                                        <% } %>
                                     </td>
                                   </tr>
                                   <% } %>
                                   <% } %>
                                 </tbody>
                               </table>
-                              <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+                              
                             </div>
                           </div>
                         </div>
@@ -416,7 +421,7 @@
                 <i  class="fa fa-exclamation-triangle red fa-6x"></i>
               </div>
               <div class="center">
-                <h5><b>¿Estás seguro?  {{id_personal}}</b></h5>
+                <h5><b>¿Estás seguro?  </b></h5>
                 <p>De dar baja al Personal...</p>
               </div>
             <div class="modal-footer">
@@ -435,10 +440,10 @@
           <div class="modal-content">
             <br>
               <div class="center">
-                <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+                <i  class="fa fa-plus  fa-6x" style="color: darkgreen;"></i>
               </div>
               <div class="center">
-                <h5><b>¿Estás seguro?  {{id_personal}}</b></h5>
+                <h5><b>¿Estás seguro?</b></h5>
                 <p>De dar baja al Personal...</p>
               </div>
             <div class="modal-footer">
@@ -625,7 +630,7 @@
         msg_true()
         function msg_true(){
           swal.fire(
-						'Correcto!',
+						'Confirmado!',
 						'<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
 						'success'
 					)

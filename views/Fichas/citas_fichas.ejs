@@ -15,6 +15,7 @@
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
 	<!--validaciones-->
 	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<<<<<<< HEAD
 	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
 	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
 	<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
@@ -48,6 +49,44 @@
   		}
 	</style>
 	<%- include("../partials/head") -%>
+=======
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+<link rel="stylesheet" type="text/css" href="/css/imprimir.css" media="print" />
+
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+<style>
+	div.a {
+		text-align: center;
+	}
+	h1.letras {
+		font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+	}
+	.vertical-alignment-helper {
+  	  display:table;
+  	  height: 100%;
+  	  margin-left: 41%;
+  	}
+  	.vertical-align-center {
+  	  /* To center vertically */
+  	  display: table-cell;
+  	  vertical-align: middle;
+  	  text-align: center;
+  	}
+</style>
+<%- include("../partials/head") -%>
+
+>>>>>>> 05407b0109ef1643589cbad84ef8c8fa8b02b979
 </head>
 <body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
 	<div class="wrapper">
@@ -71,20 +110,30 @@
 			<div class="left_nav">
 				<div class="left_nav_slidebar">
 					<ul>
+<<<<<<< HEAD
 						<li><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+=======
+						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> 
+									<a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b></a> 
+								</li>
+							</ul>
+						</li>
+>>>>>>> 05407b0109ef1643589cbad84ef8c8fa8b02b979
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 								<li> 
-									<a href="/paciente/citas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Médicas</b>
+									<a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Médicas</b>
 									</a> 
 								</li>
 							</ul>
 						</li>
 						<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
-								<li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
-								<li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
+								<li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+								<!-- <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li> -->
+								<li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
 						   </ul>
 						</li>
 					</ul>
@@ -102,6 +151,7 @@
 									<div class="info blue_symbols"> <i class="fa fa-edit icon"></i></div>
 									<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h2>
 								</div>
+<<<<<<< HEAD
 								<div class="porlets-content">
 									<div id="citas">
 										<%if(citaUpdate == null) { %>
@@ -141,6 +191,60 @@
 																			<div class="form-group">Costo de Ficha:<br>
 																				<input parsley-type="number"  type="text" name="saldo_total" class="form-control" required placeholder="">
 																			</div>
+=======
+							<div class="porlets-content">
+									<h1>Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h1>
+								<div id="citas">
+									<%if(citaUpdate == null) { %>
+									<form action="/paciente/cita_medica/<%=id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=paciente[0].numeroHistorial%>" method="POST" class=" group-border-dashed">
+										<input type="hidden" name="id_user" value="<%=data_doc.data.personal.id%>">
+										<div class="row">
+											<div class="col-md-12 ">
+												<div class="block-web">
+													<% if(msg_false != null) { %>
+													<div class="bs-example">
+														<div class="alert alert-danger fade in">
+															<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+															<strong><%=msg_false%></strong></div>
+														</div>
+													<% } %>
+													<div class="porlets-content">
+														<div class="entrada"> Seleccione Dia:<br>
+															<select name="dia" v-model="dia" @click="especilida">
+																<option>Lunes</option>
+																<option>Martes</option>
+																<option>Miercoles</option>
+																<option>Jueves</option>
+																<option>Viernes</option>
+																<option>Sabado</option>
+																<option>Domingo</option>
+															</select><br>
+														</div>
+
+														
+														<div class="form-group">
+															<div class="row"> 
+																<br>
+																<div class="col-md-12">
+																	<div class="col-md-4">
+																		<div class="form-group">
+																			<label> Historial Clinico:</label>
+																			<input type="text" value="<%=paciente[0].numeroHistorial%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
+																		</div>
+																		<div class="form-group">Costo de Ficha:<br>
+																			<input parsley-type="number"  type="text" name="saldo_total" class="form-control" required placeholder="">
+																		</div>
+																	</div>
+																	<div class="col-md-4">
+																		<div class="form-group">Consultorio De:<br>
+																			<select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
+																				<option disabled="disabled" value>Seleccione</option>
+																				<template v-for="(especialidad, index) in especialidades">
+																					<option>{{especialidad.nombre}}
+																					</option>
+																				</template>
+																			</select>
+>>>>>>> 05407b0109ef1643589cbad84ef8c8fa8b02b979
 																		</div>
 																		<div class="col-md-4">
 																			<div class="form-group">Consultorio De:<br>
@@ -275,12 +379,12 @@
 									</form>
 								</div>
 								<% } else { %>
-								<form action="/paciente/updateCita/<%=citaUpdate[0].id%>" method="POST">
+								<form action="/paciente/updateCita/<%=citaUpdate.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
 									<div class="row">
 										<div class="col-md-12 ">
 											<div class="block-web">
 												<div class="header">
-													<h3 class="content-header">  <a  href="/paciente/clean" class="btn btn-primary" >
+													<h3 class="content-header">  <a  href="/paciente/clean/<%=id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=citaUpdate.data[0].codigo_p%>" class="btn btn-primary" >
 														<i class="fa fa-arrow-left"></i> <span> Volver a Fichas</span> </a> Nueva Cita<span class="semi-bold">/Actualizar</span>
 													</h3>
 												</div>
@@ -290,15 +394,15 @@
 														<div class="col-md-12">
 															<div class="col-md-4">
 																<div class="entrada">Historial Clinico:
-																	<input type="text" value="<%=historial	%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
+																	<input type="text" value="<%=citaUpdate.data[0].codigo_p%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
 																</div>
 																<div class="entrada">Costo de Ficha:
-																	<input type="text" name="saldo_total" class="form-control" value="<%=citaUpdate[0].saldo_total%>"><br>
+																	<input type="text" name="saldo_total" class="form-control" value="<%=citaUpdate.data[0].saldo_total%>"><br>
 																</div>
 															</div>
 															<div class="col-md-4">
 																<div class="entrada">Cuaderno:
-																	<%=citaUpdate[0].especialidad%><br>
+																	<%=citaUpdate.data[0].especialidad%><br>
 																	<select  class="form-control"name="especialidad" @click="especilida"
 																		v-model="selectEsp">
 																		<option
@@ -306,7 +410,7 @@
 																			{{especialidad.nombre}}</option>
 																	</select>
 																</div>
-																<div class="entrada">Turno: <%=citaUpdate[0].turno%><br>
+																<div class="entrada">Turno: <%=citaUpdate.data[0].turno%><br>
 																	<select class="form-control" name="turno" v-model="turno"
 																		@click="especilida">
 																		<option>Mañanas</option>
@@ -317,7 +421,7 @@
 															</div>
 															<div class="col-md-4">
 																<div class="entrada">Doctor:
-																	<%=citaUpdate[0].medico%><br>
+																	<%=citaUpdate.data[0].medico%><br>
 																	<select class="form-control" name="medico" v-model="selectDoctor"
 																		@click="saca_horas">
 																		<option disabled="disabled" value>Seleccione
@@ -357,7 +461,7 @@
 													<div class="col-md-4 ">
 														<div class="block-web green-bg-color">
 															<h3 class="content-header ">Hora de Reserva</h3>
-															<input type="radio" name="hora" value="<%= citaUpdate[0].hora%>" checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
+															<input type="radio" name="hora" value="<%= citaUpdate.data[0].hora%>" checked><%= citaUpdate.data[0].hora.split("/")[0]  %><br>
 														</div>
 														<!--/block-web-->
 													</div>
@@ -367,7 +471,7 @@
 														<div class="block-web blue-bg-color">
 															<h3 class="content-header ">Cambiar hora </h3>
 															<label for="">></label>
-															<input type="radio" name="hora" value="<%= citaUpdate[0].hora%>" checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
+															<input type="radio" name="hora" value="<%= citaUpdate.data[0].hora%>" checked><%= citaUpdate.data[0].hora.split("/")[0]  %><br>
 															<template v-for="(horas, index, key) in horas_Turno">
 																<label for="">{{index+1}}</label>
 																<input type="radio" name="hora" :value="horas.h +'/'+horas.id">{{horas.h}}<br>
@@ -380,9 +484,11 @@
 										</div><!-- row de hora-->
 										<div class="">
 											<p class="col-md-6">
-												<a href="/paciente/imprimirNuevaConsulta" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i> &nbsp;&nbsp;Imprimir</a> 
-												<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar/Imprimir</button>
-												<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-mail-reply'></i>&nbsp;&nbsp; Cancelar</button>
+												<a href="/paciente/imprimir_2/<%=citaUpdate.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=citaUpdate.data[0].codigo_p%>/<%=id%>" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i> &nbsp;&nbsp;Imprimir</a> 
+												<%if (citaUpdate.data[0].estado_update == true) { %>
+													<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i> &nbsp;&nbsp; Actualizar</button>
+													<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-mail-reply'></i>&nbsp;&nbsp; Cancelar</button>
+												<% } %>
 											</p>
 										</div>		
 									</div>
@@ -407,6 +513,7 @@
 																	<th>Especialidad</th>
 																	<th>Fecha </th>
 																	<th>Saldo</th>
+																	<th>hora</th>
 																	<th>Opciones</th>
 																</tr>
 															</thead>
@@ -420,8 +527,9 @@
 																	<td><%=pacienteCita[i].especialidad%></td>
 																	<td><%=pacienteCita[i].createdAt.split("T")[0]%></td>
 																	<td><%=pacienteCita[i].saldo_total%></td>
+																	<td><%=pacienteCita[i].hora.split("/")[0]%></td>
 																	<td class="center">
-																		<a href="/paciente/onliCita/<%=pacienteCita[i].id%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+																		<a href="/paciente/onliCita/<%=pacienteCita[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
 																		
 																	</td>
 																</tr>
@@ -446,18 +554,7 @@
 																</tr>
 															</tfoot>
 														</table>
-														<div class="table-responsive">
-															<div class="table-wrapper">
-																<div id="correo">
-																	<div class="entrada">
-																		<button type="reset" class="btn btn-info  "
-																			style="margin-right: 20px;"><i
-																				class="zmdi zmdi-roller"></i>
-																			&nbsp;&nbsp; Limpiar Fichajes</button>
-																	</div>
-																</div>
-															</div>
-														</div>
+														
 												
 											</div>
 											<div class="tab-pane fade " id="listt">
@@ -496,7 +593,7 @@
 				</div>
 			  <div class="modal-footer">
 				<div class="center">
-				  <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  <a href="/delete_token/<%=data_doc.data.token_id%>"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 				</div>
 			  </div>
@@ -547,12 +644,7 @@
 
 	<script src="/js/jPushMenu.js"></script>
 	<script src="/js/side-chats.js"></script>
-
-
-
-
-
-	<script src="/js/vue/citasMedicas.js"></script>
+	
 
 
 <!--validaciones-->
@@ -619,6 +711,34 @@
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/js/vue/citasMedicas.js"></script>
+
+<script>
+	
+	/*  <%if(msg) { %> */
+	  /*  <%if(msg.data.success == false) { %> */
+		   msg_false()
+		   function msg_false(){
+			 swal.fire(
+			   'Error!',
+			   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+			   'error'
+			 )
+		   }
+	   /* <% } else {%> */
+		   msg_true()
+		   function msg_true(){
+			 swal.fire(
+			   'Success!',
+			   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+			   'success'
+			 )
+		   }
+	  /*  <% } %> */
+	/*  <% } %> */
+</script>
 
 
 </body>

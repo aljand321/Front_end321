@@ -887,6 +887,33 @@ router.get('/vue_alluser', (req,res) => {
     res.status(200).json(data)
   })
 })
-////** */
+/////////** eliminar Cuenta*/////////////////
+/////////////////////
+router.get('/deluser/:id/:token_id/:idpersonal', (req, res) => {
+  const { id, token_id, idpersonal }= req.params;
+  var msg_p
+  fetch('http://localhost:3600/api/eliminUser/'+id)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp =>{
+    if(msg_Consulta_emergencia[token_id] == null){
+      msg_p = {
+        success:true,
+        data_p1:resp.message
+      }
+      msg_data(msg_p,token_id)
+    }else{
+      msg_p = {
+        success:true,
+        data_p1:resp.message
+      }
+      remove(token_id)
+      msg_data(msg_p,token_id)
+    }
+    res.redirect('/usuarios/UsuraioCuenta/'+idpersonal+'/'+token_id);
+  });
+  
+});
+
 
 module.exports = router;

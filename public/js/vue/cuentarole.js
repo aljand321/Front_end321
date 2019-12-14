@@ -7,7 +7,8 @@ var reg_roles = new Vue({
         msg_false:"",
         url:data_url,
         iduser: '',
-        nomrol: ""
+        nomrol: "",
+        id_cu:''
 
     }),
      
@@ -40,7 +41,7 @@ var reg_roles = new Vue({
                     this.idUser = "",
                     this.nomrol = ""
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+  data.msg +'</label>',
                         'success',
                         

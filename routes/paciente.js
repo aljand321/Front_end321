@@ -53,7 +53,6 @@ function remove_user(id) {
   delete data_user[id];
 }
 
-
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -105,7 +104,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                           user(data_token1, data_token.token_id)
                           res.render('Fichas/homec',{
                             resp:personal,
-                            data_token,
+                            data_token: data_token1,
                             med:medi.length,
                             espe: epe.length,
                             pacien:paci.length
@@ -116,9 +115,8 @@ router.get('/home/:id/:token_part', (req,res) => {
                           user(data_token1, data_token1.token_id)
                           res.render('Fichas/homec',{
                             resp:personal,
-                            data_token,
+                            data_token: data_token1,
                             resp:personal,
-                            data_token,
                             med:medi.length,
                             espe: epe.length,
                             pacien:paci.length
@@ -151,7 +149,7 @@ router.get('/citas/:id/:token_part',(req, res) => {
           resp,
           data_token,
           msg:msg_Consulta_Externa[id],
-          data_doc: data_user[data_token.token_id],
+          data_doc: data_user[id],
         });    
       })
       .catch(error => {
@@ -203,8 +201,8 @@ router.get('/reg_paciente',(req, res) => {
   });
  
   
-router.post('/postPaciente/:token_id', (req,res) => {
-  const { token_id } = req.params
+router.post('/postPaciente/:token_id/:token_part', (req,res) => {
+  const { token_id, token_part } = req.params
   var msg_p
   var aleatorio = Math.floor(Math.random()*(9000-1000))+1000
   var paciente = {
@@ -216,7 +214,7 @@ router.post('/postPaciente/:token_id', (req,res) => {
     fechanacimiento: req.body.fechanacimiento,
     direccion : req.body.direccion,
     sexo: req.body.sexo,
-    id_user:data_token.token_id
+    id_user:token_id
   };
   //console.log(paciente);
   var esto = {
@@ -230,6 +228,7 @@ fetch('http://localhost:3000/api/pacientes',esto)
 .then(res => res.json())
 .catch(error => console.error('Error:', error))
 .then(data => {
+  //console.log(data, " esto es la respuesta del post <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<")
   if (data.success == true){
 
     if(msg_Consulta_Externa[token_id] == null){
@@ -246,7 +245,7 @@ fetch('http://localhost:3000/api/pacientes',esto)
       remove(token_id)
       msg_data(msg_p,token_id)
     }
-    res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial + '/' + data_token.token_p);
+    res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+token_id + '/' + token_part+'/'+data.pacienteData.numeroHistorial);
   }else{
     if(msg_Consulta_Externa[token_id] == null){
       msg_p = {
@@ -262,15 +261,18 @@ fetch('http://localhost:3000/api/pacientes',esto)
       remove(token_id)
       msg_data(msg_p,token_id)
     }
-    res.redirect('/paciente/citas/'+token_id+'/'+data_token.token_p);
+    res.redirect('/paciente/citas/'+token_id+'/'+token_part);
   } 
+  setTimeout(()=>{
+    remove(token_id)
+  },1000); 
 })
 });
 
 //cita medica o ficha que se le va a dar al paciente
 
 function sacar(id){
-  console.log(id, "<z<zzzzzzzzzzzzzzzzzzzzzzzzzzz")
+  //console.log(id, "<z<zzzzzzzzzzzzzzzzzzzzzzzzzzz")
   fetch('http://localhost:3000/api/OneCita/'+id)
   .then(resp => resp.json())
   .then(resp =>{
@@ -281,72 +283,122 @@ function sacar(id){
 }
 
 var datos , data_imprecion;
-router.post('/cita_medica/:id', (req,res) => {
-  var id = req.params;
-  datos = {
-    id_user:req.body.id_user,
-    codigo_p:req.body.codigo_p,
-    saldo_total:req.body.saldo_total,
-    especialidad:req.body.especialidad,
-    turno:req.body.turno,
-    medico:req.body.medico.split("/")[0],
-    hora:req.body.hora,
-    id_medico:req.body.medico.split("/")[1]
-  };
-  
-  var esto = {
-    method: 'POST',
-    body: JSON.stringify(datos),
-    headers:{
-      'Content-type' : "application/json"
-    }
-  };
-  fetch('http://localhost:3000/api/reg_cita/'+id.id,esto)
-  .then(res => res.json())
-  .catch(error => console.error('Error:', error))
-  .then(resp => {
-    
-    if(resp.success == true){ 
-
-      data_imprecion = resp.cita_pData
-
-      sacar(resp.cita_pData.id) //esto saca el id para poder mandar a la funcion id
-
-      cambiarEstadoHOra(datos.hora.split("/")[1]);
-
-      function cambiarEstadoHOra(id){
-        var estado = {
-          estado: "reservado"
-        }
-        var esto = {
-          method: 'POST',
-          body: JSON.stringify(estado),
-          headers:{
-            'Content-type' : "application/json"
-          }
-        };
-        fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
-        .then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(resp => {
-          console.log(resp, "  <<<<")
-          res.redirect('/paciente/imprimirNuevaConsulta')
-          //res.redirect('/paciente/citas/'+data_token.token_id + '/' + data_token.token_p);
-          msg_false = null
-        })
+router.post('/cita_medica/:id/:token_id/:token_part/:historial', (req,res) => {
+  const { id, token_id, token_part, historial } = req.params
+  var msg_p;
+  if( req.body.medico == "" || req.body.medico == null ){
+    if(msg_Consulta_Externa[token_id] == null){
+      msg_p = {
+        success:false,
+        data:"Seleccioné doctor por favor"
       }
+      msg_data(msg_p,token_id)
     }else{
-      msg_false = resp.msg
-      res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial + '/'+ data_token.token_p);      
-    }    
-  }) 
+      msg_p = {
+        success:false,
+        data:"Seleccioné doctor por favor"
+      }
+      remove(token_id)
+      msg_data(msg_p,token_id)
+    }
+    setTimeout(()=>{
+      remove(token_id)
+    },1000); 
+    res.redirect('/paciente/citaPAciente/'+id+'/'+token_id + "/" + token_part+'/'+historial); 
+  }else{
+    var data1;
+    datos = {
+      dia:req.body.dia,
+      id_user:req.body.id_user,
+      codigo_p:req.body.codigo_p,
+      saldo_total:req.body.saldo_total,
+      especialidad:req.body.especialidad,
+      turno:req.body.turno,
+      medico:req.body.medico.split("/")[0],
+      hora:req.body.hora,
+      id_medico:req.body.medico.split("/")[1]
+    };
+
+    var esto = {
+      method: 'POST',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+    fetch('http://localhost:3000/api/reg_cita/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp => {
+      console.log(resp, " esto es la respuesta de cita medica")
+      if(resp.success == true){ 
+        if(data_imprimir[token_id] == null){
+          data1 = resp.cita_pData
+
+
+          one_impimir(data1,token_id)
+        }else{
+          data1 = resp.cita_pData
+          remove_imprimir(token_id)
+          one_impimir(data1,token_id)
+        }
+
+
+        sacar(resp.cita_pData.id) //esto saca el id para poder mandar a la funcion id
+
+        cambiarEstadoHOra(datos.hora.split("/")[1]);
+
+        function cambiarEstadoHOra(id){
+          var estado = {
+            estado: "reservado"
+          }
+          var esto = {
+            method: 'POST',
+            body: JSON.stringify(estado),
+            headers:{
+              'Content-type' : "application/json"
+            }
+          };
+          fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+          .then(res => res.json())
+          .catch(error => console.error('Error:', error))
+          .then(resp => {
+            //console.log(resp, "  <<<<")
+            res.redirect('/paciente/imprimirNuevaConsulta/'+token_id + "/" + token_part)
+            //res.redirect('/paciente/citas/'+data_token.token_id + '/' + data_token.token_p);
+            msg_false = null
+          })
+        }
+      }else{
+        if(msg_Consulta_Externa[token_id] == null){
+          msg_p = {
+            success:false,
+            data:resp.msg
+          }
+          msg_data(msg_p,token_id)
+        }else{
+          msg_p = {
+            success:false,
+            data:resp.msg
+          }
+          remove(token_id)
+          msg_data(msg_p,token_id)
+        }  
+        setTimeout(()=>{
+          remove(token_id)
+        },1000);       
+        res.redirect('/paciente/citaPAciente/'+id+'/'+token_id + "/" + token_part+'/'+historial); 
+      }    
+    }) 
+  }
+  
 });
 
 // esta funcion es para poder mandar un usrio para que sea actualizado mediante usario
 var data_imprimir = {}   // esto falta usar
 function one_impimir(data,id){
   let storedItem = data_imprimir[id];
-    if (!storedItem) {r
+    if (!storedItem) {
       storedItem = data_imprimir[id] = {
         data: data,
         qty: 0
@@ -368,24 +420,56 @@ function remove_imprimir(id) {
 }
 
 //IMPRIMIR CITAS
-router.get('/imprimirNuevaConsulta', (req,res) => {
-
-  fetch('http://localhost:3000/api/onlyPaciente/'+data_imprecion.codigo_p)
-  .then(resp => resp.json())
-  .then(paciente =>{
-
-    console.log(data_imprecion, "    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzssssssssssssssss")
-    res.render('Fichas/imprimirNuevaConsulta',{   
-      data_imprecion,
-      paciente,
-      data_doc: data_user[data_token.token_id]
-    })
-
-  })
+router.get('/imprimirNuevaConsulta/:token_id/:token_part', (req,res) => {
+  const { token_id, token_part } = req.params;
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+   
+    fetch('http://localhost:3000/api/onlyPaciente/'+data_imprimir[token_id].data.codigo_p)
+    .then(resp => resp.json())
+    .then(paciente =>{
+    
+      //console.log(paciente, "    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzssssssssssssssss")
+      res.render('Fichas/imprimirNuevaConsulta',{   
+        data_imprecion: data_imprimir[token_id],
+        paciente,
+        data_doc: data_user[token_id]
+      })
+    
+    }) 
+  }else{
+    res.redirect('/');
+  }
 });
 
-router.get('/voler', (req,res) => {
-  res.redirect('/paciente/citas/'+data_token.token_id + '/' + data_token.token_p);
+// ruta para poder imprimir la cita actualizada
+router.get('/imprimir_2/:id/:token_id/:token_part/:historial/:id_cita', (req,res) => {
+  const { id, token_id, token_part, historial, id_cita } = req.params;
+
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+    fetch('http://localhost:3000/api/OneCita/'+id)
+    .then(resp => resp.json())
+    .then(One_cita =>{
+
+      fetch('http://localhost:3000/api/onlyPaciente/'+historial)
+      .then(resp => resp.json())
+      .then(paciente =>{
+        res.render('Fichas/imprimir_ficha_update',{
+          paciente,
+          One_cita,
+          data_doc: data_user[token_id],
+          id_cita
+        })
+
+      })
+    })
+  }else{
+    res.redirect('/');
+  }
+})
+
+router.get('/voler/:token_id/:token_part', (req,res) => {
+  const { token_id, token_part } = req.params
+  res.redirect('/paciente/citas/'+token_id+'/'+token_part);
 })
 
 /* 
@@ -397,57 +481,87 @@ router.get('/voler', (req,res) => {
 */
 
 
-router.get('/clean', (req,res) => {
-  citaUpdate = null;
-  res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial + '/'+ data_token.token_p);
+router.get('/clean/:id/:token_id/:token_part/:historial', (req,res) => {
+  const { id, token_id, token_part, historial } = req.params
+  remove_cita(token_id)
+  res.redirect('/paciente/citaPAciente/'+id + "/" + token_id + '/'+ token_part+'/'+ historial);
 })
 
-router.get('/EnviarCita/:id/:historial/:token_part', (req,res) => {
-  var id = req.params; 
-  if(datas.name.token[data_token.token_id] && datas.name.token[data_token.token_id].data.token.split(" ")[1].split(".")[2] == id.token_part){
-    fetch('http://localhost:3000/api/OnlyCita/'+id.id)
+ //ruta para sacar todas las citas de un paciente
+ router.get('/citaPAciente/:id/:token_id/:token_part/:historial',(req,res) => {
+   const { id,token_id, token_part, historial } = req.params;
+  /* var id = req.params;  
+  idH = id; */
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+    fetch('http://localhost:3000/api/citasPaciente/'+id)
     .then(resp => resp.json())
-    .then(resp =>{
-      res.render('Fichas/citas_fichas',{          //aqui esta la ruta
-        historial: id.historial,
-        id,
-        pacienteCita, // esto contiene las citas de un paciente
-        citaUpdate,
-        data_token,
-        msg_false,
-        citas_dia,
-        data_doc: data_user[data_token.token_id]
-      });
+    .then(pacienteCita =>{
+      console.log(msg_Consulta_Externa[token_id], "   rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")   
+      fetch('http://localhost:3000/api/onlyPaciente/'+historial)
+      .then(resp => resp.json())
+      .then(paciente =>{
+        res.render('Fichas/citas_fichas',{          //aqui esta la ruta
+          paciente,
+          id,
+          pacienteCita, // esto contiene las citas de un paciente
+          citaUpdate:update_cita[token_id],
+          data_token,
+          msg_false,
+          citas_dia,
+          data_doc: data_user[token_id],
+          msg:msg_Consulta_Externa[token_id]
+        });
+      })  
+      
+
     });
   }else{
     res.redirect('/');
   }
-});
-
-
- //ruta para sacar todas las citas de un paciente
- let pacienteCita, idH;
- router.get('/citaPAciente/:id/:historial/:token_part',(req,res) => {
-  var id = req.params;
-  idH = id;
-  fetch('http://localhost:3000/api/citasPaciente/'+id.id)
-  .then(resp => resp.json())
-  .then(resp =>{
-    pacienteCita = resp;//aqui
-    res.redirect('/paciente/EnviarCita/'+id.id + "/" + id.historial + '/' + id.token_part);
-  });
  })
+
+ var update_cita = {}
+function cita(data,id){
+  let storedItem = update_cita[id];
+    if (!storedItem) {
+      storedItem = update_cita[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array1 () {
+  let arr = [];
+  for (const id in update_cita) {
+      arr.push(update_cita[id]);
+  }
+  return arr;
+}
+
+function remove_cita(id) {
+  delete update_cita[id];
+}
 
  //RUTA PARA PODER MODIFICAR UNA CITA 
  let citaUpdate;
- router.get('/onliCita/:id', (req,res) => {
-   const { id } = req.params;
-   if(datas.name.token[data_token.token_id] && datas.name.token[data_token.token_id].data.token.split(" ")[1].split(".")[2] == data_token.token_p){
+ router.get('/onliCita/:id/:token_id/:token_part', (req,res) => {
+   console.log(req.params.token_id, " esto es el token ZZZZZ>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+   const { id, token_id, token_part } = req.params;
+   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
     fetch('http://localhost:3000/api/OneCita/'+id)
     .then(resp => resp.json())
     .then(resp =>{
-      citaUpdate = resp;
-      res.redirect('/paciente/citaPAciente/'+citaUpdate[0].id_Paciente + "/" + citaUpdate[0].codigo_p + '/'+ data_token.token_p);
+      if(update_cita[token_id] == null){
+        cita(resp, token_id)
+        res.redirect('/paciente/citaPAciente/'+resp[0].id_Paciente +'/'+token_id+'/'+token_part+ "/" + resp[0].codigo_p );
+      }else{
+        remove_cita(token_id)
+        cita(resp, token_id)
+        res.redirect('/paciente/citaPAciente/'+resp[0].id_Paciente +'/'+token_id+'/'+token_part+ "/" + resp[0].codigo_p );
+      }
+     
     });
    }else{
     res.redirect('/');
@@ -457,40 +571,45 @@ router.get('/EnviarCita/:id/:historial/:token_part', (req,res) => {
  
  
 
-router.post('/updateCita/:id',(req,res) => {
-  const { id } = req.params;
-  if(req.body.especialidad == null){
-    console.log("por favor selecione especialidad")
-  }else if(req.body.medico == null){
-    console.log("por favor selecione medico")
-    
+router.post('/updateCita/:id/:token_id/:token_part',(req,res) => {
+  const { id, token_id, token_part } = req.params;
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+    if(req.body.especialidad == null){
+      console.log("por favor selecione especialidad")
+    }else if(req.body.medico == null){
+      console.log("por favor selecione medico")
+
+    }else{
+
+      var update = {
+        estado_update:'false',
+        id_user:req.body.id_user,
+        codigo_p:req.body.codigo_p,
+        saldo_total:req.body.saldo_total,
+        especialidad:req.body.especialidad,
+        turno:req.body.turno,
+        medico:req.body.medico.split("/")[0],
+        hora:req.body.hora,
+        id_medico:req.body.medico.split("/")[1]
+      };
+      var esto = {
+        method: 'POST',
+        body: JSON.stringify(update),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+        fetch('http://localhost:3000/api/updateCita/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {
+          liberar(update_cita[token_id].data[0].hora.split("/")[1])
+          reservar(update.hora.split("/")[1])
+          res.redirect('/paciente/onliCita/'+id+'/'+token_id+'/'+token_part);
+      })
+    }
   }else{
-    
-    var update = {
-      id_user:req.body.id_user,
-      codigo_p:req.body.codigo_p,
-      saldo_total:req.body.saldo_total,
-      especialidad:req.body.especialidad,
-      turno:req.body.turno,
-      medico:req.body.medico.split("/")[0],
-      hora:req.body.hora,
-      id_medico:req.body.medico.split("/")[1]
-    };
-    var esto = {
-      method: 'POST',
-      body: JSON.stringify(update),
-      headers:{
-        'Content-type' : "application/json"
-      }
-    };
-      fetch('http://localhost:3000/api/updateCita/'+id,esto)
-      .then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then(data => {
-        liberar(citaUpdate[0].hora.split("/")[1])
-        reservar(update.hora.split("/")[1])
-        res.redirect('/paciente/onliCita/'+id);
-    })
+    res.redirect('/')
   }
 })
 
@@ -606,7 +725,115 @@ router.get('/vueDoctores/:esp/:dia/:turno', (req,res) => {
   });
 })
 
+//ruta para poder mostrar reportes de citas mediacas
+router.get('/ReporConsultorio/:token_id/:token_part', (req,res) => {
+  const { token_id, token_part } = req.params;
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+    fetch('http://localhost:3000/api/reg_citas') // esta ruta es la que muestra todas las citas de todos loa pacientes
+    .then(res => res.json()) 
+    .catch(error => console.error('Error:', error))
+    .then(list_citas => {
 
+      fetch('http://localhost:4600/api/list_consEsp') //esta ruta muestra los consultorios
+      .then(res => res.json()) 
+      .catch(error => console.error('Error:', error))
+      .then(consultorios => {
+        res.render('Fichas/ReporConsultorio', {
+          list_citas,
+          data_doc: data_user[token_id],
+          consultorios
+        })
+      })
+
+      
+    })    
+  }else{
+    res.redirect('/')
+  }
+});
+
+router.get('/Vue_list_doctores/:id_consultorio', (req,res) => {
+  const { id_consultorio } = req.params
+  fetch('http://localhost:4600/api/list_cons_doc/'+id_consultorio) // esta ruta es la que muestra todas las citas de todos loa pacientes
+    .then(res => res.json()) 
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      res.status(200).json(data)
+    })
+})
+
+// esta ruta es para poder buscar el reporte que quiero ver
+router.post('/vue_repot_buscar/:id_medico', (req,res) => {
+  const { id_medico } = req.params;
+  var estado = req.body
+  var esto = {
+    method: 'POST',
+    body: JSON.stringify(estado),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:3000/api/report_citas/'+id_medico,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp => {
+    res.status(200).json(resp)
+  })
+})
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                    reporte de lista de citas del paciente
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ */
+router.get('/ReporCita/:token_id/:token_part', (req,res) =>{
+  const { token_id, token_part } = req.params;
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+    fetch('http://localhost:3000/api/list_paciente_r') // esta ruta es la que muestra todas las citas de todos loa pacientes
+    .then(res => res.json()) 
+    .catch(error => console.error('Error:', error))
+    .then(list_pacietne => {
+
+      fetch('http://localhost:3000/api/reg_citas') // esta ruta es la que muestra todas las citas de todos loa pacientes
+      .then(res => res.json()) 
+      .catch(error => console.error('Error:', error))
+      .then(list_citas => {
+        res.render('Fichas/ReporCita',{
+          data_doc: data_user[token_id],
+          list_pacietne,
+          list_citas
+        })
+      })
+      
+    })
+  }else{
+    res.redirect('/')
+  }  
+});
+
+router.post('/vue_citas_paciente_historial', (req,res) => {
+  var estado = req.body
+  var esto = {
+    method: 'POST',
+    body: JSON.stringify(estado),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:3000/api/citas_paciente_historial',esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp => {
+    res.status(200).json(resp)
+  })
+})
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ */
 //imprimir receta
 router.get('/imprimirLaboratorio', (req,res) => {
   res.render('consulta_externa/imprimirLaboratorio')
@@ -626,12 +853,8 @@ router.get('/O_Laboratorio', (req,res) => {
 //reporte fichas
 
 
-router.get('/ReporConsultorio', (req,res) => {
-  res.render('Fichas/ReporConsultorio')
-});
-router.get('/ReporCita', (req,res) =>{
-  res.render('Fichas/ReporCita')
-});
+
+
 router.get('/ReporPaciente',(req,res)=>{
   res.render('Fichas/ReporPaciente')
 });

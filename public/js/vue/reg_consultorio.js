@@ -173,7 +173,7 @@ var reg_sala = new Vue({
                 this.lista_consulta()
                 this.msg_false=""
                 swal.fire(
-                  'Success!',
+                  'Confirmado!',
                   '<label style="color:green;">'+  data.msg +'</label>',
                   'success',
                   

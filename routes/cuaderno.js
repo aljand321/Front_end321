@@ -294,7 +294,10 @@ router.post('/updateEsp/:id/:token_id', (req,res)=> {
                     msg_data(msg_p,token_id);
                 }
                 res.redirect('/cuaderno/oneEsp/'+id+'/'+token_id);
-            }            
+            }  
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);          
            
         }) 
     }else{
