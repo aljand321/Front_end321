@@ -284,7 +284,7 @@ const consulta = new Vue({
                 if(data.success == true){
                     this.msg = data.msg
                     swal.fire(                  //esto
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ data.msg +'</label>',
                         'success'
                       )
@@ -360,7 +360,7 @@ const consulta = new Vue({
                     this.data_update_consulta()
                     this.msg_false = ""
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ resp.msg +'</label>',
                         'success'
                       )
@@ -427,7 +427,7 @@ const consulta = new Vue({
             
                 
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+data.msg+'</label>',
                         'success'
                     )
@@ -529,7 +529,7 @@ const consulta = new Vue({
             .then(data => {
                 if(data.success == true){
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+data.msg+'</label>',
                         'success'
                     )

@@ -61,12 +61,12 @@
 <script type="text/javascript">
 	// este scrip es para verificar si esta el token en local starge
 	var data = localStorage.getItem('data')
-	console.log(data)
+	
 	if (data == null){
 		window.location.replace('/')
   }
   function delete_local_storage(){
-		console.log ("ssss")
+		
 		localStorage.removeItem('data');
 		localStorage.removeItem('url');
   }
@@ -108,7 +108,7 @@
 			<div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Principal <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
                 <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
@@ -246,7 +246,7 @@
                                     <td class="text-center"><%=resp[i].username %></td>
                                     <td class="text-center"><%=resp[i].email %></td>
                                     <td class="text-center">
-                                      <a href="#!"  data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                      <a @click="id_cu='<%=resp[i].id%>'" data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
                                       <a @click="id_data(<%=resp[i].id%>)" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Rol"><i  class="fa fa-chain " style="color:black"></i></i></a><span>&nbsp;</span>
                                     </td>  
                                   </tr>
@@ -292,7 +292,10 @@
                   <select class="form-control" id="source" v-model="nomrol" >
                     <option value="">--Seleccione--</option>
                     <%for (var i = 0; i < list_role.length; i++) { %>
-                      <option value="<%=list_role[i].name%>" class="text-center uppercase"><%=list_role[i].name%></option>
+
+                      <%if (list_role[i].name != 'administrcion') { %>
+                        <option value="<%=list_role[i].name%>" class="text-center uppercase"><%=list_role[i].name%></option>
+                       <% } %> 
                     <% } %>
                    <!--  <option value="administrcion">ADMINISTRADOR</option>
                     <option value="medico">MÉDICO</option>
@@ -330,7 +333,7 @@
               </div>
             <div class="modal-footer">
               <div class="center">
-                <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                <a :href="'/usuarios/deluser/'+ id_cu+ '/<%=data_doc.data.token_id%>/<%=id%>'"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
               </div>
             </div>
@@ -386,11 +389,7 @@
 <script src="/plugins/data-tables/dynamic_table_init.js"></script>
 <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
 <script src="/plugins/edit-table/edit-table.js"></script>
-<script>
-	jQuery(document).ready(function () {
-		EditableTable.init();
-	});
-</script>
+
 <!--validaciones-->
 <script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
 <script src="/plugins/checkbox/zepto.js"></script>
@@ -475,7 +474,7 @@
          msg_true()
          function msg_true(){
            swal.fire(
-             'Success!',
+             'Confirmado!',
              '<label style="color:green;">'+ `<%=msg1.data.data_p1%>` +'</label>',
              'success'
            )
@@ -483,6 +482,7 @@
     /*  <% } %> */
   /*  <% } %> */
  </script>
+
 
 </body>
 

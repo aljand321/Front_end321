@@ -110,9 +110,9 @@
                         <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
                             class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block" >
-                                <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reportes consultorio </b> </a></li>
-                                <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
-                                <li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
+                                <li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reportes consultorio </b> </a></li>
+                              
+                                <li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
                             </ul>
                         </li>
                         
@@ -203,7 +203,7 @@
                                 </p>
 							</div>
                         </div>
-                        <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+                        
                         <div id="main-content">
                             <section class="panel default blue_title h2">
                         <div class="page-content">			

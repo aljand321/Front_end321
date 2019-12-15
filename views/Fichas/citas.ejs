@@ -106,9 +106,9 @@
 						<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
 							class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
-								<li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
-								<li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
+								<li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+								<!-- <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li> -->
+								<li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
 							</ul>
 						
 						</li>
@@ -290,7 +290,7 @@
 				</div>
 			  <div class="modal-footer">
 				<div class="center">
-				  <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  <a href="/delete_token/<%=data_doc.data.token_id%>"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 				</div>
 			  </div>
