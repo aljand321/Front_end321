@@ -9,7 +9,8 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-
+        <link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+        <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -31,14 +32,13 @@
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-    <style type="text/css">
-      @media print{
-        @page {
-         
-          size:  A4 landscape;
-          page-size: 190mm;
-          page-size: auto;
-          top: 1cm;
+<style type="text/css">
+@media print{
+  @page {
+   
+    size:  A4 landscape;
+    size: 12in 7in;
+    top: 1cm;
     margin: 1cm; 
     border: 0px;
    
@@ -59,7 +59,47 @@
       }
       #ocultoI{
     display: none;   
-}
+  }
+  #derecha1{
+		position: absolute;
+width: 50%;
+    margin-top: 5%;
+    
+    margin-left: 70%;
+			
+  }
+  .abajo1{
+		position: absolute;
+		float: center;
+		top: 19%;
+		bottom: 1%;
+    margin-top: 10%;
+    width: 95%;
+			
+  }
+
+  .izquierda1{
+		position: static;
+    margin-top: 2%;
+  }
+  .abajotabla1{
+		position: static;
+    margin-top: 4%;
+  }
+  .ordendetitulo{
+        position:static;
+        margin-top: 5%;
+        font: small-caps 170%/100% serif;
+      }
+
+  /**----------------------tamaño de letra en tabla---------------------*/
+  .tamm2{
+        margin: 2%;
+        border: none;
+       
+        font: small-caps 110%/100% serif;
+        
+      }
       .margeni{
   
 	      width: 100%;
@@ -73,6 +113,14 @@
       }
       
     }
+    #derecha1{
+		position: absolute;
+
+    margin-top: 5%;
+    
+    margin-left: 70%;
+			
+  }
       </style>
 
 
@@ -89,7 +137,7 @@
     </style>
     
 </head>
-<body class=" light_theme  fixed_header left_nav_fixed" >
+<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
 
  <!--\\\\\\\ contentpanel start\\\\\\-->
 <div class="container ">
@@ -99,50 +147,67 @@
     <div class="tab-pane fade active in" id="new">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-12"><BR>
 
             <div class="block-web">
-              <h3 class="content-header center "> FACTURA</h3>
-              <div class="">
+              <div class="head">
+                <div id="" class="actions pull-rigth">
+                   <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                  <P class="dondeES"></P>
+                  <p class="telefo"></p>
+                  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                  <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                </div>
+                <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                <div class="dim2 posiondeImagen">.
+                   
+                   <img class="oculVistaReal "  src="/images/hospital1.png" />
+                   <p class="hospitalI"></p>
+                  </div>
+                 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
+               
+              </div>
+              <h3 class="content-header center ordendetitulo "> RECIBO</h3>
+              <div class="abajo1">
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-12 margeni">
-                      <div class="col-sm-6 col-sm-6">
+                      <div class="col-sm-6 col-sm-6 izquierda1">
                         <div class="entrada ">
-                          <h6 >GOBIERNO AUTONOMO DEPARTAMENTAL DE POTOSI:</h6>
-                          <h6 >HOSPITAL DANIEL BRACAMONTE - AV. ITALIA FINAL S/N</h6>
-                          <h6 >Telfs. 26246064-26244960</h6>
-                          <h6 >POTOSI-BOLIVIA</h6>
-                          <h6 >NOMBRE-CAJERO: <%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%> </h6>
-                          <h6 >NIT/CI: <%=data_doc.data.personal.ci%>  </h6>
-                          <h6 >Lugar y Fecha: <%=data_imprecion.data.createdAt%></h6>
+                          <h6 class="tamm2">GOBIERNO AUTONOMO DEPARTAMENTAL DE POTOSI:</h6>
+                          <h6 class="tamm2">HOSPITAL DANIEL BRACAMONTE - AV. ITALIA FINAL S/N</h6>
+                          <h6 class="tamm2">Telfs. 26246064-26244960</h6>
+                          <h6 class="tamm2">POTOSI-BOLIVIA</h6>
+                          <h6 class="tamm2">NOMBRE-CAJERO: <%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%> </h6>
+                          <h6 class="tamm2">NIT/CI: <%=data_doc.data.personal.ci%>  </h6>
+                          <h6 class="tamm2">Fecha: <%=data_imprecion.data.createdAt%></h6>
                         </div>
                       </div>
                                      
-                      <div class="col-sm-6 col-sm-6">
-                        <div class="form-group">
-                          <div class="entrada">
+                      <div id="derecha1"class="">
+                        <div class="">
+                          <div class="">
                          <!--especialidad   <h6 >NIT:</h6>
                             <h6 >N° Factura:</h6>
                             <h6 >N° Autorización:</h6>
                             <h6 >Servicios y/o actividades al IVA</h6> 
-                         --><br><br><br><br><br><br><br>
-                            <h6 >Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h6>
-                            <h6 >NUM.H.C:  <%=paciente[0].ci%></h6>
-                            <h6 >MEDICO: <%=data_imprecion.data.medico%>   </h6>
+                         --><br><br><br><br>
+                            <h6 class="tamm2">Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h6>
+                            <h6 class="tamm2">NUM.H.C:  <%=paciente[0].ci%></h6>
+                            <h6 class="tamm2">MEDICO: <%=data_imprecion.data.medico%>   </h6>
                                             
                           </div>
                         </div>
                       </div>                   
                     </div>
-                    <div class="col-md-12">
-                      <table class="display table table-bordered table-striped" >
+                    <div class="col-md-12 abajotabla1">
+                      <table class="display table table-bordered table-striped abajotabla1" >
                         <thead>
                           <tr>
                           <!--  <th>Descripción</th>
                             -->
                            
-                            <th>Especialidad</th>
+                            <th >Especialidad</th>
                             <th>Total</th>
                             
                           </tr>
@@ -188,9 +253,9 @@
                         </div>
                       </div>
                     </div>
-                  -->
+                  --><br><br><br><br><br>
                     <div class="col-md-12"><br><br><br>
-                      <h6>ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS EL SO ILICITO DE ESTA SERA SANCIONADO DE ACUEREO A LEY</h6>
+                      <h6 class="tamm">ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS EL SO ILICITO DE ESTA SERA SANCIONADO DE ACUEREO A LEY</h6>
                       <p id="ocultoI" class="text-center">
                         <a href="/paciente/voler/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Salir</a>
                         <button type="button" value="Imprimir" onclick="window.print()"	class="btn btn-success btn-raised"><i class="fa fa-print"></i> &nbsp;&nbsp;	Imprimir</button>
@@ -208,7 +273,7 @@
   </div>
 </div>
 	<!--====== Scripts -->
- 
+  <script src="/js/fecha.js"></script>
   <script src="/js/get/consultaget.js"></script>
 
 
