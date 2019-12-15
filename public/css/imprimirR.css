@@ -483,29 +483,13 @@ float:left;
     content: " FIRMA DEL PACIENTE ";
     font-weight: negrita;
     color:black;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-    font: Arial;
-    border: 0px;
-    padding-top: 1%;
+    font: small-caps 100%/200% serif;
 }
 .firmaDoc:before {
     content: " FIRMA DEL DOCTOR ";
     font-weight: negrita;
     color:black;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-    font: Arial;
-    border: 0px;
-    padding-top: 1%;
-
-    margin-top: auto;
-    border-top-style: dashed;
-    border-right-style: double;
-    border-bottom-style: dotted;
-    border-left-style: solid;
+    font: small-caps 100%/200% serif;
 }
 
 .cafirmaP{

@@ -330,7 +330,7 @@ router.post('/cita_medica/:id/:token_id/:token_part/:historial', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(resp => {
-      console.log(resp, " esto es la respuesta de cita medica")
+      console.log(resp, " esto es la respuesta de cita médica")
       if(resp.success == true){ 
         if(data_imprimir[token_id] == null){
           data1 = resp.cita_pData
