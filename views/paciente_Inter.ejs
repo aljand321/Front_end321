@@ -31,26 +31,7 @@
 <link href="/css/toastr.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 
-<style scoped>
-  @media print{
-    /* para orden de internacion*/
-  .oreden1:before {
-    content: " v-model:"'data_receta.fecha' "
-    v-model="'data_receta.fecha'"
 
-  
-  }
-
-  .tprueba{
-    content: var(--medicamento);
-  }
-  .itabla:before{
-    content: "data_receta.fecha";
-
-  }
-  td:hover { background-color: var(--bg-hover-color); }  
-  }
-</style>
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:20px 9px 9px 25px;}
@@ -84,7 +65,7 @@
   },500000);
 </script>
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
     <div id="ocultoI" class="header_bar">
       <div class="brand">
@@ -146,17 +127,23 @@
         <br>
         <div  id="" class="container clear_both padding_fix">
           <div class="row">
-            <div  id="margendiv"  class="col-md-12">
+            <div  id=""  class="col-md-12">
               <div id="" class="block-web">
                 <!-- Content page -->
 								<div id="" class="head  ">
                   <div id="" class="actions ">
-                    <p  name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                    <P class="dondeES"></P>
+                    <p class="telefo"></p>
+                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                   
+                    <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
                   </div>
                   <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
                   <div class="dim2 posiondeImagen">
-                    .
+                    
                     <img class="oculVistaReal "  src="/images/hospital1.png" />
+                    <p class="hospitali"></p>
                   </div>
                   <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
                   <div id="ocultoI" class="header">
@@ -164,10 +151,7 @@
                     <h3 id="ocultoI" class="content-header ">Reportes General Pacientes</h3>
                   </div>
                 </div>
-                <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-							<h5 class="texTitulo1 text-center"></h5>
-							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-                <br>
+              <br>
                 <br>
                 <div id="ocultoI" class="porlets-content">
                   <form  action="/filter_pacientes/<%=data_doc.data.token_id%>" method="POST" class="form-horizontal" name="formulario1"  >
@@ -195,48 +179,53 @@
                   <div class="col-sm-offset-9 col-sm-10">
                     <button onclick="window.print();"  type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
                   </div>
+              </div><!--/form-group--> 
                   
-                </div><!--/form-group--> 
-                <br><br><br><br>
-                <div class="table-responsive">
-                  <table  class="display table table-bordered table-striped " id="dynamic-table">
+                <br><br>
+                <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							  <h5 class=" ordendetitulo tituloRoles text-center"></h5>
+							  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                <br>
+                <div class="table-responsive scrollV "id="">
+                  
+                  <table  class="table table-bordered  " >
                     <thead>
-                      <tr>
-                        <th class="text-center">Fecha Creación</th>                          
-                        <th class="text-center">N° Historial</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Apellido Paterno</th>
-                        <th class="text-center">Apellido Materno</th>
-                        <th class="text-center">C.I.</th>
-                        <th class="text-center">Dirección</th>
-                        <th class="text-center">Sexo</th>
+                      <tr class="">
+                        <th class="text-center tamm">Fecha Creación</th>                          
+                        <th class="text-center tamm">N° Historial</th>
+                        <th class="text-center tamm">Nombre</th>
+                        <th class="text-center tamm">Apellido Paterno</th>
+                        <th class="text-center tamm">Apellido Materno</th>
+                        <th class="text-center tamm">C.I.</th>
+                        <th class="text-center tamm">Dirección</th>
+                        <th class="text-center tamm">Sexo</th>
                       </tr>
                     </thead>
                     <tbody>
                       <%if (filter != null) { %>
                         <% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
                           <tr>
-                            <td class="text-center"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
-                            <td class="text-center "><%=filter.data.data_cliente[i].numeroHistorial%></td>
-                            <td class="text-center "><%=filter.data.data_cliente[i].nombre%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].apellidop%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].apellidom%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].ci%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].direccion%></td>
-                            <td class="text-center"><%=filter.data.data_cliente[i].sexo%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+                            <td class="text-center tamm "><%=filter.data.data_cliente[i].numeroHistorial%></td>
+                            <td class="text-center tamm "><%=filter.data.data_cliente[i].nombre%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].apellidop%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].apellidom%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].ci%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].direccion%></td>
+                            <td class="text-center tamm"><%=filter.data.data_cliente[i].sexo%></td>
                           </tr>
                         <% } %>
                           <% }else {%>  
                             <% for (var i=0; i< data.length; i++) { %>
                               <tr>
-                                <td><%=data[i].createdAt.split("T")[0]%></td>
-                                <td><%=data[i].numeroHistorial%></td>
-                                <td><%=data[i].nombre%></td>
-                                <td><%=data[i].apellidop%></td>
-                                <td><%=data[i].apellidom%></td>
-                                <td><%=data[i].ci%></td>
-                                <td><%=data[i].direccion%></td>
-                                <td><%=data[i].sexo%></td>
+                                <td class="tamm"><%=data[i].createdAt.split("T")[0]%></td>
+                                <td class="tamm"><%=data[i].numeroHistorial%></td>
+                                <td class="tamm"><%=data[i].nombre%></td>
+                                <td class="tamm"><%=data[i].apellidop%></td>
+                                <td class="tamm"><%=data[i].apellidom%></td>
+                                <td class="tamm"><%=data[i].ci%></td>
+                                <td class="tamm"><%=data[i].direccion%></td>
+                                <td class="tamm"><%=data[i].sexo%></td>
                               </tr>
                           <% } %>  
                       <%}%> 
@@ -271,6 +260,48 @@
       </div>
     </div> 
   </div>
+  <style scoped>
+      @media print{
+    
+        /* tamaño de página*/
+        @page {
+      
+        size: A4;
+        size: 11in 11in;
+      } 
+      .scrollV{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .tituloRoles:before {  
+        content: " REPORTE GENERAL DE PACIENTE" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .ordendetitulo{
+        position:static;
+        margin-top: 4%;
+      }
+      .tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 100%/200% serif;
+        width: 25%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-spacing: 0;
+      }
+      #tr{
+        width: 5%;
+      }
+      
+    }
+  </style>
+<script src="/js/fecha.js"></script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

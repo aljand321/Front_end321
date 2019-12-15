@@ -208,12 +208,13 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel">Datos del Paciente</h4>
+						<!--
 						<% if(msg != null) { %>
 							<%if (msg.data.success == false ) {%>
 								<span style="color: rgb(182, 0, 0);"><%=msg.data.msg%></span>
 							<% } %>
 						<% } %>
-
+						-->
 					</div>
 					<form class=" " action='/paciente/postPaciente/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>' method='post'>
 						<div class="container-fluid  ">

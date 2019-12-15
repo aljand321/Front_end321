@@ -8,24 +8,30 @@
   <style type="text/css">
 	@media print{
 	  @page {
-		seze: A4 landscape;
+		margin: 0;
+		size: A4 portrait;
 	}
 	.margeni{
 
 		width: 100%;
-	  border: 1px;
-
-	   position: relative;
-	  border-top-style: dashed;
-
-	  border-bottom-style: dotted;
-	  border-left-style: solid; 
+		border: 1px;
+		position: relative;
+		border-top-style: dashed;
+		border-bottom-style: dotted;
+		border-left-style: solid; 
 	}
+	.ordendetitulo{
+        position:static;
+        margin-top: 10%;
+    }
 	#sacar{
-			height: 9%;
-		
-			overflow-x: hidden;
-		}
+		height: 9%;
+	
+		overflow-x: hidden;
+	}
+	.tamm2{
+		width: 50%;
+	}
   }
 	</style>
 
@@ -63,7 +69,7 @@ h1.letras {
 <link rel="stylesheet" type="text/css" href="/css/imp_rec_farm.css" media="print" /> 
 <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   	<div class="wrapper">
     	<div id="ocultoI" class="header_bar">
       		<div class="brand">
@@ -120,23 +126,30 @@ h1.letras {
 					<div class="row">
 						<div class="col-md-12">
 				 			<div class="block-web">
-								<div id="ocultoI" class="header">
-									<div class="actions"> </div>
-									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>  Reporte de Cajas</h2> 
+								<div class="head">
+									<div class="actions"> 
+										<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<P class="dondeES"></P>
+										<p class="telefo"></p>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+										<p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+									</div>
+									<div id="ocultoI" class="header">
+										<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>  Reporte de Cajas</h2> 
+									</div>
 								</div>
 				  				<div class="porlets-content">
 									<div class="panel-body">
 										<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-									<div class="dim2 posiondeImagen">
-											.
+										<div class="dim2 posiondeImagen">.
 											<img class="oculVistaReal "  src="/images/hospital1.png" />
-										  </div>
-										  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-										  <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-										  <h4 class="texTitulo3 text-center"></h4>
-									<h5 class="texTitulo1 text-center"></h5>
-									
-												<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+											<p class="hospitalI"></p>
+										</div>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+									  	<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									  	<h4 class="texTitulo3 ordendetitulo text-center"></h4>
+										<h5 class="texTitulo1 text-center"></h5>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 										<form id="ocultoI" action="/Farmacia/filter_fecha_receta/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
 											<div class="col-md-12">
 												<div class="col-md-6">
@@ -177,8 +190,8 @@ h1.letras {
 										</form>
 									</div>  
 									<div id="sacar" class="table-responsive">
-											<table  class="table table-bordered"   >
-			  								<thead>
+										<table  class="table table-bordered"   >
+			  								<thead class="tamm2">
 					  							<tr>
 													<th>#</th>
 							  						<th>Codigo Recibo</th>

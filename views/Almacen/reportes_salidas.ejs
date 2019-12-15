@@ -6,19 +6,88 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Almacen</title>
   <%- include("../partials/head") -%>	
-  <style>
-		.vertical-alignment-helper {
-		  display:table;
-		  height: 100%;
-		  margin-left: 41%;
-		}
-		.vertical-align-center {
-		  /* To center vertically */
-		  display: table-cell;
-		  vertical-align: middle;
-		  text-align: center;
-		}
-	</style>
+<style type="text/css">
+	@media print{
+	  @page {
+		size: A4 landscape;
+		margin: 0;
+	}
+	.margeni{
+		width: 100%;
+		border: 1px;
+		position: relative;
+		border-top-style: dashed;
+		border-bottom-style: dotted;
+		border-left-style: solid; 
+	}
+	#sacar{
+		height: 9%;
+	
+		overflow-x: hidden;
+	}
+	.ordendetitulo{
+		position: absolute;
+		float: center;
+		top: 20%;
+		bottom: 1%;
+		margin-top: 3%;
+		margin-left: 12;
+		padding-left: 30%;
+		
+		
+	}
+	.cafirma1{
+    	width: 25%;
+    	margin-left: 5%;
+    	float:left;
+    	border-top-style: dotted;
+	}
+	.cafirma2{
+	    width: 25%;   
+	    margin-right: 5%;
+	    float: right;
+	    border-top-style: dotted;
+	}
+	#sinMarge{
+    top: 2%;
+    border: 0px;
+   padding-left: 0% ;
+    padding-top: 0%;
+   margin-left: 0%;
+    margin-right: 0%;
+  
+    padding: 0px;
+    
+    position: relative;
+
+    border-top-style: dashed;
+    border-right-style: double;
+  
+    border-left-style: solid; 
+
+}
+.texTitulo1:before {
+    content: " REPORTE ADMINISTRATIVO DE ALMACEN";
+    font-weight: negrita;
+    color:black;
+    font: small-caps 100%/200% serif;
+    margin-bottom: 0;
+}
+ 	}
+</style>
+<style>
+	.vertical-alignment-helper {
+	  display:table;
+	  height: 100%;
+	  margin-left: 41%;
+	}
+	.vertical-align-center {
+	  /* To center vertically */
+	  display: table-cell;
+	  vertical-align: middle;
+	  text-align: center;
+	}
+</style>
 </head>
 <script type="text/javascript">
 	// este scrip es para verificar si esta el token en local starge
@@ -37,9 +106,9 @@
     //window.location.replace('/')
   },500000);
 </script>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   	<div class="wrapper" id="vue_reportes">
-    	<div class="header_bar">
+    	<div id="ocultoI" class="header_bar">
       		<div class="brand">
         		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       		</div>
@@ -57,7 +126,7 @@
       		</div>
     	</div>
     	<div class="inner">
-      		<div class="left_nav">
+      		<div id="ocultoI" class="left_nav">
         		<div class="left_nav_slidebar">
           			<ul>
             			<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -87,27 +156,47 @@
         		</div>
       		</div>
      		<!--Contenido-->
-			 <div class="contentpanel"><br>
+			 <div id="sinMarge" class="contentpanel"><br>
 				<div class="container clear_both padding_fix col-lg-8">
 					<div class="main-content">
 					  	<div class="col-lg-12 block-web">
 							<div class="container-fluid">
-								<div class="header">
-									<div class="actions"></div>
-									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>Reporte de Salidas</h2>
-							  	</div>
+								<div class="head">
+									<div class="actions">
+										<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<P class="dondeES"></P>
+										<p class="telefo"></p>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+										<p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+									</div>
+									<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									<div class="dim2 posiondeImagen">
+										<img class="oculVistaReal "  src="/images/hospital1.png" />
+										<p class="hospitalI"></p>
+									</div>
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+									<div id="ocultoI" class="header">
+										<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>Reporte de Salidas</h2>
+									</div>
+									
+								</div>
 							</div>
 						</div>
-						<div class="main-content">
+						<div class="main-content"> 
 							<section class="panel default blue_title h2">
+								<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+								<h4 class="texTitulo1 ordendetitulo center"></h4>
+								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+							
 							  	<div class="page-content">
-									<ul class="nav nav-tabs" id="myTab">
+									<ul class="nav nav-tabs" id="ocultoI">
 									  	<li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab"><i class="fa fa-edit icon"></i><span>&nbsp;&nbsp;&nbsp;</span>Solicitudes de Farmacia </a></li>
 								  		<li class="col-lg-6 text-center"><a href="#listt" data-toggle="tab"><i class="fa fa-clipboard "></i><span>&nbsp;&nbsp;&nbsp;</span>Distribuciones Realizadas</a></li>
 									</ul>
 									<div id="myTabContent" class="tab-content">
+										
 								  		<div class="tab-pane fade active in " id="neww">
-											<div class="panel-body">
+											<div id="ocultoI" class="panel-body">
 												<form  @submit="traer_list" method="POST" parsley-validate novalidate>
 													<div class="col-md-12">
 														<div class="col-md-6">
@@ -138,7 +227,8 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																<div class="col-sm-offset-2 col-sm-10">
-																	<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>  Imprimir Reporte</button>
+																	<button type="submit" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+																	<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
 																</div>
 															</div><!--/form-group--> 
 														</div> <br> <br>
@@ -152,8 +242,7 @@
 													</div>
 												</form>
 											</div>
-											
-											<table  class="display table table-bordered table-striped " id="dynamic-table">
+											<table  class="table table-bordered table-striped" >
 									  			<thead>
 													<tr>
 													<th>#</th>
@@ -207,7 +296,7 @@
 								 	 	</div>
 								  		<div class="tab-pane fade " id="listt">
 											<div class="porlets-content">
-									  			<div class="panel-body">
+									  			<div id="ocultoI" class="panel-body">
 													<form @submit="list_distribucion_filter" method="POST" parsley-validate novalidate>
 														<div class="col-md-12">
 															<div class="col-md-6">
@@ -237,7 +326,8 @@
 															<div class="col-md-6">
 																<div class="form-group">
 																	<div class="col-sm-offset-2 col-sm-10">
-																		<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i>Imprimir Reporte</button>
+																		<button type="submit" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+																		<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
 																	</div>
 																</div><!--/form-group-->															
 															</div>
@@ -251,9 +341,9 @@
 														
 														</div>
 													</form>
-												</div>
+												</div >
 									  			<div class="table-responsive">
-													<table  class="display table table-bordered table-striped" id="dynamic-tablee">
+													<table  class="table table-bordered table-striped">
 														<thead>
 															<tr>
 															<th>#</th>
@@ -300,6 +390,12 @@
 							</section>
 						</div>
 					</div>
+					<br><br><br><br><br><br><br><br><br><br><br><br>
+					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+					<p class="firmaPa center cafirma1"></p>										  
+					<p class="firmaDoc center cafirma2"></p></p>
+					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+			
 				</div> 
 		 	</div><!--/main-content end--> 
 		</div>
@@ -372,6 +468,7 @@
 	 </div>
 <%- include("../partials/scripts") -%>
 <script src="/js/pdf.js"></script>
+<script src="/js/fecha.js"></script>
 <script>
 	const vue_reportes = new Vue({
   		el: '#vue_reportes', 
