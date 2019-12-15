@@ -5,6 +5,7 @@
 
 <title>Emergencias</title>
 <%- include("./partials/head") -%>
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 <style>
 		.vertical-alignment-helper {
 		  display:table;
@@ -20,7 +21,7 @@
 </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
+<div class="wrapper" id="list_vue">
 <!--Navegation-->
 <div class="header_bar">
     <div class="brand">
@@ -76,98 +77,143 @@
 				</div>
 			</div>
 			<br><br>
+			<a @click="click_1()">{{click}}</a>
 			<div class="main-content">
 				<div class="row">
 					<div class="col-lg-14 ">
 						<section class="panel default blue_title h2">
+							<input type="hidden"  :value="id_medico = '<%=id_medico%>'">
 							<div class="panel-body page-content">
 								<ul class="nav nav-tabs" id="myTab">
 									<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-list-alt "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes En Espera</a></li>
 									<li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Atendidos</a></li>
 								</ul>
-								<div class="tab-content" id="myTabContent">
-									<div id="Tab1" class="tab-pane fade in active">
-										<div class="row" >
-											<div class="col-md-12">
-												<div class="block-web">
-													<div class="porlets-content">
-														<div class="table-responsive">
-															<table  class="display table table-bordered table-striped" id="dynamic-table">
-																<thead>
-																	<tr>
-																		<th >#</th>
-																		<th >N° Historia </th>
-																		<th >Nombre Paciente</th>
-																		<th >Apellido Paterno</th>
-																		<th >Apellido Materno</th>	
-																		<th >Hora Atencion</th>	
-																		<th >Reg. Consulta</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	
-																	<% for(var i=0; i< resp.length; i++) { %>
-																	<tr>
-																		<td><%= i + 1 %></td>
-																		<td><%=resp[i].codigo_p %></td>
-																		<td><%=resp[i].Paciente.nombre %></td>
-																		<td><%=resp[i].Paciente.apellidop %></td>
-																		<td><%=resp[i].Paciente.apellidom %></td>
-																		<td><%=resp[i].hora.split("/")[0] %></td>
-																		<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=resp[i].id%>/<%=resp[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
-																	</tr>
-																	<% } %>
-																	
-																</tbody>
-															</table>
+								
+								<template v-if="data_list == ''">
+									<div class="tab-content" id="myTabContent">
+										<div id="Tab1" class="tab-pane fade in active">
+											<div class="row" >
+												<div class="col-md-12">
+													<div class="block-web">
+														<div class="porlets-content">
+															<div class="table-responsive">
+																<table  class="display table table-bordered table-striped" id="dynamic-table">
+																	<thead>																	
+																		<tr>
+																			<th >#</th>
+																			<th >N° Historia </th>
+																			<th >Nombre Paciente</th>
+																			<th >Apellido Paterno</th>
+																			<th >Apellido Materno</th>	
+																			<th >Hora Atencion</th>	
+																			<th >Reg. Consulta</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		
+																		<% for(var i=0; i< resp.length; i++) { %>
+																		<tr>
+																			<td><%= i + 1 %></td>
+																			<td><%=resp[i].codigo_p %></td>
+																			<td><%=resp[i].Paciente.nombre %></td>
+																			<td><%=resp[i].Paciente.apellidop %></td>
+																			<td><%=resp[i].Paciente.apellidom %></td>
+																			<td><%=resp[i].hora.split("/")[0] %></td>
+																			<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=resp[i].id%>/<%=resp[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+																		</tr>
+																		<% } %>
+																		
+																	</tbody>
+																</table>
+															</div>
+																				
 														</div>
-																			
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div id="Tab2" class="tab-pane fade">
-										<div class="row">
-											<div class="col-md-12">
-												<div class="block-web">
-													<div class="porlets-content">
-														<div class="table-responsive">
-															<table  class="display table table-bordered table-striped" id="dynamic-table2">
-																<thead>
-																	<tr>
-																		<th >#</th>
-																		<th >N° Historia </th>
-																		<th >Nombre Paciente</th>
-																		<th >Apellido Paterno</th>
-																		<th >Apellido Materno</th>	
-																		<th >Hora Atencion</th>	
-																		<th >Optiones</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	
-																	<% for(var i=0; i< list_false.length; i++) { %>
-																	<tr>
-																		<td><%= i + 1 %></td>
-																		<td><%=list_false[i].codigo_p %></td>
-																		<td><%=list_false[i].Paciente.nombre %></td>
-																		<td><%=list_false[i].Paciente.apellidop %></td>
-																		<td><%=list_false[i].Paciente.apellidom %></td>
-																		<td><%=list_false[i].hora.split("/")[0] %></td>
-																		<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
-																	</tr>
-																	<% } %>
-																	
-																</tbody>
-															</table>
+										<div id="Tab2" class="tab-pane fade">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="block-web">
+														<div class="porlets-content">
+															<div class="table-responsive">
+																<table  class="display table table-bordered table-striped" id="dynamic-table2">
+																	<thead>
+																		<tr>
+																			<th >#</th>
+																			<th >N° Historia </th>
+																			<th >Nombre Paciente</th>
+																			<th >Apellido Paterno</th>
+																			<th >Apellido Materno</th>	
+																			<th >Hora Atencion</th>	
+																			<th >Optiones</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		
+																		<% for(var i=0; i< list_false.length; i++) { %>
+																		<tr>
+																			<td><%= i + 1 %></td>
+																			<td><%=list_false[i].codigo_p %></td>
+																			<td><%=list_false[i].Paciente.nombre %></td>
+																			<td><%=list_false[i].Paciente.apellidop %></td>
+																			<td><%=list_false[i].Paciente.apellidom %></td>
+																			<td><%=list_false[i].hora.split("/")[0] %></td>
+																			<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+																		</tr>
+																		<% } %>
+																		
+																	</tbody>
+																</table>
+															</div>
 														</div>
-													</div>
-												</div> 
+													</div> 
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								</template>
+								<template v-else>
+									<div class="row">
+										<div class="col-lg-12">
+											<section class="panel default blue_title h2">
+												<div class="panel-heading">All in One Bootstrap 3.0 
+													<span class="semi-bold">Responsive Table</span>
+												</div>
+												<div class="panel-body">
+													<div class="table-responsive">
+											  			<table class="table table-bordered">
+															<thead>
+															  	<tr>
+																	<th >#</th>
+																	<th >N° Historia </th>
+																	<th >Nombre Paciente</th>
+																	<th >Apellido Paterno</th>
+																	<th >Apellido Materno</th>	
+																	<th >Hora Atencion</th>	
+																	<th >Optiones</th>
+															  	</tr>
+															</thead>
+															<tbody>
+															  	<tr v-for="(list, index) in data_list">
+																	<td>{{ index + 1 }}%></td>
+																	<td>{{list.codigo_p}}</td>
+																	<td>{{list.Paciente.nombre}}</td>
+																	<td>{{list.Paciente.apellidop}}</td>
+																	<td>{{list.Paciente.apellidom}}</td>
+																	<td>{{list.hora.split("/")[0]}}</td>
+																	<td class="text-center"><a  :href="'/emergencia2.0/registrar_emergencia/'+list.id+'/'+list.codigo_p+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>																	
+															  	</tr>
+															</tbody>
+											  			</table>
+													</div>
+												</div>
+											</section>
+										</div>
+									</div>
+								</template>
+
 							</div>
 						</section>
 					</div>
@@ -276,6 +322,72 @@
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
+<script src="/moment/moment.js"></script>
+<script src="/moment/locale/af.js"></script>
+<script src="/url/export.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="/axios/dist/axios.min.js"></script>
+
+<script>
+	const list_vue = new Vue({
+    	el:"#list_vue",
+    	data: () => ({
+			url:data_url.url_front_end,
+			data: 'aljand 321',
+			hoy: '',
+			id_medico:'',
+
+			data_list:'',
+
+			click :'Lista de Pacientes de hoy'
+			
+		}),
+		mounted(){
+			this.hoy = moment().format('l');
+			console.log(this.hoy) 	
+		},
+		methods:{
+			click_1(){
+				console.log(" click ss")
+				if(this.data_list == ''){
+					var datos = {
+						fecha: this.hoy
+					};
+  					var esto = {
+  					  method: 'POST',
+  					  body: JSON.stringify(datos),
+  					  headers:{
+  					    'Content-type' : "application/json"
+  					  }
+  					};
+					fetch(this.url+'/emergencia2.0/vue_list_hoy/'+this.id_medico, esto)        
+            		.then(resp => resp.json())
+            		.then( data =>{	
+						if (data.success == false){
+							swal.fire(
+                			    'Error!',
+                			    '<label style="color:red;">'+data.msg+'</label>',
+                			    'error'
+                			)
+						}else{
+							this.data_list = data
+							console.log(this.data_list, "   esto es lo que quiero ver")
+						}		
+            		}) 
+					this.click="Mostrar todas las citas"
+				}else{
+					this.click = "Lista de Pacientes de hoy"
+					this.data_list = ""
+				}
+				
+			},
+			
+		}
+	})
+</script>
 
 </body>
 </html>

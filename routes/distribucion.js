@@ -69,7 +69,7 @@ router.get('/vueDistribucion', (req,res) => {
 //esta ruta es para reducir los datos son mandados des vue distribucion
 router.post('/vueReduceStock', (req,res) => {
     var productos = req.body
-    //console.log(productos.producto, "  <<<<<<<<<<<<<<<<<<<<<<")
+    console.log(productos, "  <<<<<<<<<<<<<<<<<<<<<<  esto es la cantidad")
     for(var i = 0; i< productos.producto.length; i++){
         var unidades = { unidades: productos.producto[i].qty}
         var esto = {

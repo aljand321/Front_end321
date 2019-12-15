@@ -182,13 +182,13 @@
                                                                       <%if(data_fecha != null) { %>
                                                                         <% for (var i = 0; i < data_fecha.data.length; i++) { %>
                                                                             <tr class="gradeX">
-                                                                                <td><%=i+1%></td>
-                                                                                <td><%=data_fecha.data[i].codigo_p%></td>
-                                                                                <td><%=data_fecha.data[i].Paciente.nombre %></td>
-                                                                                <td><%=data_fecha.data[i].Paciente.apellidop %></td>
-                                                                                <td><%=data_fecha.data[i].Paciente.apellidom %></td>
-                                                                                <td><%=data_fecha.data[i].createdAt.split('T')[0] %></td>
-                                                                                <td><a href="/emergencia2.0/ultimaConsulta/<%=data_fecha.data[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">ver</a></td>
+                                                                              <td><%=i+1%></td>
+                                                                              <td><%=data_fecha.data[i].codigo_p%></td>
+                                                                              <td><%=data_fecha.data[i].Paciente.nombre %></td>
+                                                                              <td><%=data_fecha.data[i].Paciente.apellidop %></td>
+                                                                              <td><%=data_fecha.data[i].Paciente.apellidom %></td>
+                                                                              <td><%=data_fecha.data[i].createdAt.split('T')[0] %></td>
+                                                                              <td><a href="/emergencia2.0/ultimaConsulta/<%=data_fecha.data[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">ver</a></td>
                                                                             </tr> 
                                                                         <% } %>  
                                                                       <% } %>                                       
