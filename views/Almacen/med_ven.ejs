@@ -8,7 +8,8 @@
   <style type="text/css">
     @media print{
       @page {
-      seze: A4 landscape;
+      size: A4 landscape;
+      margin: 0;
     }
     .margeni{
   
@@ -20,6 +21,18 @@
   
       border-bottom-style: dotted;
       border-left-style: solid; 
+    }
+    .ordendetitulo{
+      position: absolute;
+      float: center;
+      top: 20%;
+      bottom: 1%;
+      margin-top: 5%;
+      margin-left: 12;
+      padding-left: 30%;
+      margin-bottom: 25%;
+      padding-bottom: 25%;
+      
     }
     #sacar{
         height: 9%;
@@ -80,7 +93,7 @@
     //window.location.replace('/')
   },500000);
 </script>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper" id="medicamentos">
     <div id="ocultoI" class="header_bar">
       <div class="brand">
@@ -136,22 +149,28 @@
           <div class="row">
             <div class="col-md-12">
               <div class="block-web">
-                <div id="ocultoI" class="header">
-                  <div class="actions">  </div>
-                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>Medicamentos Vencidos</h2>
+                <div  class="head">
+                  <div class="actions">  
+                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<P class="dondeES"></P>
+										<p class="telefo"></p>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+										<p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                  </div>
+                  <div id="ocultoI" class="header">
+                    <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>Medicamentos Vencidos</h2>
+                  </div>
                 </div>
                 <div class="porlets-content">
                   <div class="panel-body">
                      <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-									<div class="dim2 posiondeImagen">
-											.
+									  <div class="dim2 posiondeImagen">
 											<img class="oculVistaReal "  src="/images/hospital1.png" />
-										  </div>
+                      <p class="hospitalI"></p>
+                    </div>
 										  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 										  <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-										  <h4 class="texTitulo2 text-center"></h4>
-									<h5 class="texTitulo1 text-center"></h5>
-									
+										  <h4 class="texTitulo2 ordendetitulo text-center"></h4>
 												  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
                     <form id="ocultoI" @submit="traer_data" method="POST" parsley-validate novalidate>
                       <div class="col-md-12">
@@ -190,7 +209,7 @@
                       </div>
                     </form>
                   </div>  
-
+                  <br><br>
                   <template v-if="list == ''">
                       <div id="sacar" class="table-responsive">
                           <table  class="table table-bordered"   >
