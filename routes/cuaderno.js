@@ -611,18 +611,25 @@ router.get('/getEsp/:id/:token_id', (req,res) => {
                 .then(resp => { 
                     fetch(url.name.pruebas+'/api/OnlyEnfermera')
                     .then(res => res.json())
-                    .then(enfermeras => { 
+                    .then(enfermeras => {   
 
-                        res.render('cuadernos/turnos',{
-                            id, 
-                            data_doc:datas.name.data_user[token_id],
-                            msg:msg_Consulta_emergencia[token_id],
-                            resp, // esto contiene los doctores
-                            esp,   // esto trae las especialidades
-                            listDoc,
-                            modifDoct:modif_Doct[token_id],
-                            enfermeras
-                        });
+                        fetch(url.name.cuadernos+'/api/one_cuaderno/'+id)
+                        .then(res => res.json())
+                        .then(one_cuaderno => { 
+                            res.render('cuadernos/turnos',{
+                                id, 
+                                data_doc:datas.name.data_user[token_id],
+                                msg:msg_Consulta_emergencia[token_id],
+                                resp, // esto contiene los doctores
+                                esp,   // esto trae las especialidades
+                                listDoc,
+                                modifDoct:modif_Doct[token_id],
+                                enfermeras,
+                                one_cuaderno
+                            });
+                        })
+
+                        
 
                     })
                 
@@ -723,6 +730,7 @@ router.post('/docCuaderno/:id/:token_id', (req,res) => {
         .then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(data => {   
+
             console.log(data.message + " <<  < < < < <  esto es xxzxzx< < < < < <  <")
             if (data.success == true){
                 id_docCuaderno =  data.data.id
@@ -853,6 +861,10 @@ router.get('/FechaDoc/:id/:token_id/:id_anterior', (req,res) => {
         fetch(url.name.cuadernos+'/api/fechasList/'+id)
         .then(res => res.json())
         .then(docFecha => { 
+            fetch(url.name.cuadernos+'/api/one_medico/'+id)
+            .then(res => res.json())
+            .then(one_medico => { 
+
             console.log(modif_fecha[token_id], "  <<<<<<<< < < < < < < < < ")
             res.render('cuadernos/fechas',{
                 id,
@@ -863,8 +875,10 @@ router.get('/FechaDoc/:id/:token_id/:id_anterior', (req,res) => {
 
                 data_doc:datas.name.data_user[token_id],
                 msg:msg_Consulta_emergencia[token_id],
+                one_medico
             })
         })
+    })
         .catch(error => {
             console.error('Error:', error)
             res.send("no hay coneccion con el servidor");
@@ -1068,10 +1082,16 @@ router.get('/volver_a_trunos', (req,res) => {
 
 router.get('/turnos/:id_fechas/:token_id/:id_anterior/:id_volver_fechas', (req,res) => {
     const { id_fechas, token_id, id_anterior, id_volver_fechas } = req.params
+    
     if( datas.name.token[token_id] ){
         fetch(url.name.cuadernos+'/api/oneTurno/'+id_fechas)
         .then(res => res.json())
         .then(resp => {
+            fetch(url.name.cuadernos+'/api/one_medico/'+id_volver_fechas)
+            .then(res => res.json())
+            .then(one_medico => { 
+
+
             console.log(resp, "   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   esto") 
             res.render('cuadernos/diasTurnos',{
                 id_fechas,// este es el id para insertar en fechas
@@ -1079,9 +1099,11 @@ router.get('/turnos/:id_fechas/:token_id/:id_anterior/:id_volver_fechas', (req,r
                 id_volver_fechas,// esto es el id que me permite ir a el rango de fechas o el contrato del doctor
                 data_doc:datas.name.data_user[token_id],
                 resp,
-                msg:msg_Consulta_emergencia[token_id]
+                msg:msg_Consulta_emergencia[token_id],
+                one_medico
             });
         })
+    })
         .catch(error => {
             console.error('Error:', error)
             res.send("no hay coneccion con el servidor");

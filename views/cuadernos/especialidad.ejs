@@ -62,10 +62,8 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-              </ul>
+            <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
+              
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
@@ -107,7 +105,7 @@
                 
                 <div class="header">
                   <div class="info blue_symbols"><i class="fa fa-heart icon"></i></div>
-                  <h3 class="content-header ">Creación Especialidad </h3>
+                  <h3 class="content-header ">Creación de Especialidad </h3>
                 </div>
                 <div class="page-content">
                   <div class="row">
@@ -126,7 +124,7 @@
                             <%if (espONE == null) { %>
                               <form class="form-horizontal group-border-dashed" action="/cuaderno/especialidad/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                                 <div class="form-group">
-                                  <label class=" col-sm-4 control-label">Especialidad o Servicio :</label>
+                                  <label class=" col-sm-4 control-label">Especialidad o Servicio </label>
                                   <div class="col-sm-4">
                                     <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nombre" >
                                       <option value="" selected disabled hidden >--Seleccione--</option>
@@ -175,7 +173,7 @@
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                  <label class="col-sm-4  control-label">Area :</label>
+                                  <label class="col-sm-4  control-label">Area </label>
                                   <div class="col-sm-4">
                                     <input class="form-control" name="descripcion" parsley-trigger="change" required placeholder="Introdusca Area" onkeyup="mayus(this)" />
                                   </div>
@@ -189,7 +187,7 @@
                             <% } else { %>
                               <form class="form-horizontal group-border-dashed" action="/cuaderno/updateEsp/<%=espONE.data[0].id%>/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate >
                                 <div class="form-group">
-                                    <label class=" col-sm-4 control-label">Especialidad o Servicio :</label>
+                                    <label class=" col-sm-4 control-label">Especialidad o Servicio </label>
                                     <div class="col-sm-4">
                                       <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="nombre" required placeholder="" >
                                         <option ><%=espONE.data[0].nombre%></option>
@@ -239,7 +237,7 @@
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <label class="col-sm-4  control-label">Area :</label>
+                                    <label class="col-sm-4  control-label">Area </label>
                                     <div class="col-sm-4">
                                       <input class="form-control" name="descripcion" value="<%=espONE.data[0].descripcion%>" parsley-trigger="change" required placeholder onkeyup="mayus(this)"/>
                                     </div>
@@ -273,7 +271,7 @@
                                       <a @click="data(<%=resp[i].id%>),lista_consulta()" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-wheelchair "></i></a>
                                       <!--<a href=""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a>-->
                                       <a href="/cuaderno/oneEsp/<%=resp[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a>
-                                      <a @click="data(<%=resp[i].id%>),lista_doctores()" data-target="#myModal3" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar Doctor"><i class="fa fa-user-md"></i></a>                        
+                                      <a @click="data(<%=resp[i].id%>),lista_doctores()" data-target="#myModal3" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar Médico"><i class="fa fa-user-md"></i></a>                        
                                     </td>							
                                   </tr>
                                   <% } %>
@@ -348,13 +346,13 @@
             </section>
           <form class="form-horizontal" @submit="reg_consultorio" parsley-validate novalidate>
             <div class="form-group">
-              <label  class="col-sm-4 control-label">Sigla Especialidad:</label>
+              <label  class="col-sm-4 control-label">Sigla Especialidad </label>
               <div class="col-sm-6">
-                <input type="text" v-model="sigla" class="form-control"  required placeholder="Introdusca Sigla"  />
+                <input type="text" v-model="sigla" class="form-control"  required placeholder="Introdusca Sigla"  @input="forceUpper($event,  'sigla')" />
               </div>
             </div>
             <div class="form-group">
-              <label  class="col-sm-4 control-label">Nombre Especialidad:</label>
+              <label  class="col-sm-4 control-label">Nombre Especialidad </label>
               <div class="col-sm-6">
                 <!--<ul class="list-group">
                   <li class="list-group-item">
@@ -432,7 +430,7 @@
             </section>
             <form class="form-horizontal" @submit="register_medicos" parsley-validate novalidate>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-4 control-label">C.I.:</label>
+                  <label for="inputPassword3" class="col-sm-4 control-label">C.I. </label>
                   <div class="col-sm-4">
                     <select v-model="ci_medico" @click="list_medicos">
                       <option value="">--Seleccione--</option>
@@ -445,7 +443,7 @@
                   </div>
                 </div><!--/form-group-->
                 <div class="form-group">
-                  <label  class="col-sm-4 control-label">Personal Médico:</label>
+                  <label  class="col-sm-4 control-label">Personal Médico </label>
                   <div class="col-sm-5">
                       <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change" readonly/>
                   </div>
@@ -622,7 +620,7 @@
          msg_true()
          function msg_true(){
            swal.fire(
-             'Success!',
+             'Confirmado!',
              '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
              'success'
            )

@@ -2,20 +2,18 @@
 <html lang="es">
 
 <head>
-	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title class="ocultoI">Administrador</title>
-	<meta charset="UTF-8">
-	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
-
-	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title class="ocultoI">Administrador</title>
+<meta charset="UTF-8">
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
 <!--validaciones-->
 
 <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
@@ -125,10 +123,8 @@
 			<div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Principal <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-              </ul>
+            <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
+              
             </li>
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block" >
@@ -188,35 +184,35 @@
                               <form class="form-horizontal group-border-dashed" action="/usuarios/usuarios/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate >
                                 <div class="form-group">
                                   <div class="col-sm-4">
-                                    <label class="control-label">Apellido Paterno :</label>
+                                    <label class="control-label">Apellido Paterno </label>
                                     <input type="text"  class="form-control " parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" onkeyup="mayus(this)" autofocus />
                                   </div>
                                   <div class="col-sm-4">
-                                    <label class="control-label">Apellido Materno :</label>
+                                    <label class="control-label">Apellido Materno </label>
                                     <input type="text" class="form-control ma" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" onkeyup="mayus(this);" />
                                   </div>
                                   <div class="col-sm-4">
-                                    <label class="control-label">Nombre(s) :</label>
+                                    <label class="control-label">Nombre(s) </label>
                                     <input type="text" class="form-control ma" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" onkeyup="mayus(this);" />
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <div class="col-sm-4">
-                                    <label class="control-label">C.I. :</label>
+                                    <label class="control-label">C.I. </label>
                                     <input type="text" name="ci"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I."maxlength="10" />
                                   </div>
                                   <div class="col-sm-4">
-                                    <label class="control-label">Dirección :</label>
+                                    <label class="control-label">Dirección </label>
                                     <input type="text" class="form-control " name="direcion" parsley-trigger="change"   required placeholder="Introdusca Dirección" onkeyup="mayus(this);"  />
                                   </div>
                                   <div class="col-md-4">
-                                    <label class="control-label">Cel.-Telf. :</label>
+                                    <label class="control-label">Cel.-Telf. </label>
                                     <input  parsley-type="number" type="text" class="form-control" name="telefono" required placeholder="XX-XXXXXX" maxlength="8" />
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <div class="col-sm-4">
-                                    <label class="control-label" >Cargo :</label>
+                                    <label class="control-label" >Cargo </label>
                                     <select class="form-control" id="source" name="cargo" required placeholder="" >
                                       <option value="" selected disabled hidden>--Seleccione--</option>
                                       <option value="medico">MÉDICO</option>
@@ -239,35 +235,35 @@
                               <form class="form-horizontal group-border-dashed" action="/usuarios/updatePersonal/<%=onlyUSer.data.id%>/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                                 <div class="form-group">
                                   <div class="col-sm-4">
-                                    <label class="control-label">Apellido Paterno :</label>
+                                    <label class="control-label">Apellido Paterno </label>
                                     <input type="text" id="one" class="form-control ma" parsley-trigger="change"  name="apellidop" value="<%=onlyUSer.data.apellidop%>" required placeholder="" onkeyup="mayus(this);" />
                                   </div>
                                   <div class="col-sm-4">
-                                    <label class="control-label">Apellido Materno :</label>
+                                    <label class="control-label">Apellido Materno </label>
                                     <input type="text" class="form-control ma" parsley-trigger="change" name="apellidom" value="<%=onlyUSer.data.apellidom%>" required placeholder=""  onkeyup="mayus(this);"/>
                                   </div>
                                   <div class="col-sm-4">
-                                    <label class="control-label">Nombre(s) :</label>
+                                    <label class="control-label">Nombre(s) </label>
                                     <input type="text" class="form-control ma" parsley-trigger="change"  name="nombre" value="<%=onlyUSer.data.nombre%>" required placeholder=""  onkeyup="mayus(this);"/>
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <div class="col-sm-4">
-                                    <label class="control-label">C.I. :</label>
+                                    <label class="control-label">C.I. </label>
                                     <input type="text" name="ci" value="<%=onlyUSer.data.ci%>"  class="form-control" parsley-trigger="change"   required placeholder="" />
                                   </div>
                                   <div class="col-sm-4">
-                                    <label class="control-label">Dirección :</label>
+                                    <label class="control-label">Dirección </label>
                                     <input type="text" class="form-control ma" name="direcion" value="<%=onlyUSer.data.direcion%>" parsley-trigger="change"   required placeholder=""  onkeyup="mayus(this);"/>
                                   </div>
                                   <div class="col-sm-4">
-                                    <label class="control-label">Cel.-Telf. :</label>
+                                    <label class="control-label">Cel.-Telf. </label>
                                     <input parsley-type="number" type="text" class="form-control" name="telefono" value="<%=onlyUSer.data.telefono%>" required placeholder="" />
                                   </div>
                                 </div>
                                 <div class="form-group ">
                                   <div class="col-sm-4 ">
-                                    <label  class="control-label">Cargo :</label>
+                                    <label  class="control-label">Cargo </label>
                                     <select class="form-control" id="source" name="cargo" required placeholder="">
                                       <option class="uppercase"><%=onlyUSer.data.cargo%></option>
                                       <option>-----------------------</option>
@@ -285,10 +281,11 @@
                                   <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o" ></i><span>&nbsp;</span>Actualizar</button>
                                   <a class="btn btn-danger" href="/usuarios/quitar/<%=data_doc.data.token_id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
                                 </div>
+                                <br>
                               </form>
                             <% } %>
                           </div>
-                          <br><br>
+                          <br><br><br>
                           <div class="porlets-content">
                             <div class="table-responsive">
                               <table  class="display table table-bordered table-striped" id="dynamic-table" >
@@ -319,10 +316,15 @@
                                           <% if (resp[i].estado == false) { %>
                                             <a href="/usuarios/UsuraioCuenta/<%=resp[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user "></i></a><span>&nbsp;</span>
                                           <% } %>
-                                          <a href="#!" @click="id_personal = '<%=resp[i].id%>'"  data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                                          <a href="#!" @click="id_personal = '<%=resp[i].id%>'"  data-target="#myModal78" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Habilitar_personal"><i class="fa fa-plus " style="color: darkblue;"></i></a><span>&nbsp;</span>
-                                          <a href="/usuarios/usuarios/<%=resp[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
-                                          <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Detalles"><i class="fa fa-eye " style="color:black"></i></a>
+                                          <% if (resp[i].estado == false) { %>
+                                            <a href="#!" @click="id_personal = '<%=resp[i].id%>'"  data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                          <% } else { %>
+                                            <a href="#!" @click="id_personal = '<%=resp[i].id%>'"  data-target="#myModal78" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Habilitar_personal"><i class="fa fa-plus " style="color: darkblue;"></i></a><span>&nbsp;</span>
+                                          <% } %>
+                                          <% if (resp[i].estado == false) { %>
+                                            <a href="/usuarios/usuarios/<%=resp[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
+                                          <% } %>
+                                          <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_Detalles"><i class="fa fa-eye " style="color:black"></i></a>
                                         <% } %>
                                     </td>
                                   </tr>
@@ -364,33 +366,33 @@
             <form>
               <div class="form-group">
                 <div class="col-sm-6">
-                  <div><strong>NOMBRE :</strong><span>&nbsp;</span>{{roles.nombre}}</div><br>
+                  <div><strong>NOMBRE </strong><span>&nbsp;</span>{{roles.nombre}}</div><br>
                 </div>
                 <div class="col-sm-6">
-                  <div><strong>APELLIDO PATERNO :</strong><span>&nbsp;</span>{{roles.apellidop}}</div><br>
-                </div>
-              </div>
-              <br>
-              <div class="form-group">
-                <div class="col-sm-6">
-                  <div><strong>APELLIDO MATERNO :</strong><span>&nbsp;</span>{{roles.apellidom}}</div><br>
-                </div>
-                <div class="col-sm-6">
-                  <div><strong>CEL-TELF. :</strong><span>&nbsp;</span>{{roles.telefono}}</div><br>
+                  <div><strong>APELLIDO PATERNO </strong><span>&nbsp;</span>{{roles.apellidop}}</div><br>
                 </div>
               </div>
               <br>
               <div class="form-group">
                 <div class="col-sm-6">
-                  <div><strong>DIRECCiÓN :</strong><span>&nbsp;</span>{{roles.direcion}}</div><br>
+                  <div><strong>APELLIDO MATERNO </strong><span>&nbsp;</span>{{roles.apellidom}}</div><br>
+                </div>
+                <div class="col-sm-6">
+                  <div><strong>CEL-TELF. </strong><span>&nbsp;</span>{{roles.telefono}}</div><br>
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <div><strong>DIRECCiÓN </strong><span>&nbsp;</span>{{roles.direcion}}</div><br>
                 </div>
                 <div class="col-sm-6 uppercase">
-                  <div><strong>CARGO :</strong><span>&nbsp;</span>{{roles.cargo}}</div><br>
+                  <div><strong>CARGO </strong><span>&nbsp;</span>{{roles.cargo}}</div><br>
                 </div>
               </div><br>
               <div class="form-group">
                 <div class="col-sm-6">
-                  <div><strong>CUENTAS (Seleccione) :</strong><span>&nbsp;</span>
+                  <div><strong>CUENTAS (Seleccione) </strong><span>&nbsp;</span>
                     <select v-model="email" v-on:click="mostrar_roles" >
                       <template v-for="rol in roles.roles" >
                         <option>{{rol.email}}</option>
@@ -399,7 +401,7 @@
                   </div><br>
                 </div>
                 <div class="col-sm-6">
-                  <div class="uppercase"><strong>ROL CUENTA :</strong><span>&nbsp;</span>{{roles.rolUser}}</div><br>
+                  <div class="uppercase"><strong>ROL CUENTA </strong><span>&nbsp;</span>{{roles.rolUser}}</div><br>
                 </div>
               </div><br><br>
             </form>
@@ -443,8 +445,8 @@
                 <i  class="fa fa-plus  fa-6x" style="color: darkgreen;"></i>
               </div>
               <div class="center">
-                <h5><b>¿Estás seguro?</b></h5>
-                <p>De dar baja al Personal...</p>
+                <h5><b>¿Habilitar?</b></h5>
+                <p>Seguro que quiere habilitart al Personal...</p>
               </div>
             <div class="modal-footer">
               <div class="center">

@@ -93,6 +93,7 @@ router.get('/usuarios/:token_id',(req, res) => {
       fetch('http://localhost:3600/api/personal/',esto)
           .then(resp => resp.json())
           .then(resp =>{
+            console.log(msg_Consulta_emergencia[token_id], "   asd as d asd as da sd asd as d asd as d asd")
           res.render('usuarios',{
             resp, 
             onlyUSer:update_user[token_id],
@@ -387,6 +388,7 @@ router.post('/updatePersonal/:id/:token_id',(req,res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
+      console.log(resp, " esto es <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
       if(resp.success==false){
         if(msg_Consulta_emergencia[token_id] == null){
           msg_p = {
@@ -407,13 +409,13 @@ router.post('/updatePersonal/:id/:token_id',(req,res) => {
         if(msg_Consulta_emergencia[token_id] == null){
           msg_p = {
             success:true,
-            data_p:data.message
+            data_p:resp.message
           }
           msg_data(msg_p,token_id)
         }else{
           msg_p = {
             success:true,
-            data_p:data.message
+            data_p:resp.message
           }
           remove(token_id)
           msg_data(msg_p,token_id)
@@ -444,16 +446,20 @@ router.get('/UsuraioCuenta/:id/:token_id', (req,res) => {
       fetch('http://localhost:3600/api/roleall/')
       .then(resp => resp.json())
       .then(list_role =>{   
+        fetch('http://127.0.0.1:3600/api/personal/'+id)
+        .then(resp => resp.json())
+        .then(personal =>{
 
-        res.render('usuarioCuenta',{
-          id,
-          resp,
-          list_role,     
-          data_doc:datas.name.data_user[token_id],     
-          msg1:msg_Consulta_emergencia[token_id],
-          data: data_post[token_id], // esto es la respuesta del body
-          
-        });
+          res.render('usuarioCuenta',{
+            id,
+            resp,
+            list_role,     
+            data_doc:datas.name.data_user[token_id],     
+            msg1:msg_Consulta_emergencia[token_id],
+            data: data_post[token_id], // esto es la respuesta del body     
+            personal       
+          });
+        })       
         setTimeout(()=>{
           remove(token_id)
         },1000);
