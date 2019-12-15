@@ -8,26 +8,50 @@
   <style type="text/css">
 		@media print{
 		  @page {
-			seze: A4 landscape;
-		}
+        margin: 0;
+			size: A4 portrait;
+    }
+    @font-face {
+  font-family: "Encode Sans";
+  font-stretch: normal;
+  src: url("encode-sans-v2-latin-regular.woff") format("woff");
+}
 		.margeni{
-	
 			width: 100%;
 		  border: 1px;
-  
-		   position: relative;
+		  position: relative;
 		  border-top-style: dashed;
-  
 		  border-bottom-style: dotted;
 		  border-left-style: solid; 
-		}
+    }
+    .ordendetitulo{
+      position:static;
+      margin-top: 10%;
+    }
 		#sacar{
-				height: 9%;
-			
-				overflow-x: hidden;
-			}
-	  }
-		</style>
+			height: 9%;
+		width: 95%;
+		margin: 0;
+		overflow-x: hidden;
+    margin-left: 3%;
+    margin-right: 3%;
+    }
+    #table1 {
+      width: 100%;
+      margin: 0;
+    }
+    #tdi {
+
+      width: 10%;
+  margin: 0px;
+  padding: 1px;
+  padding-top: 1%;
+}
+    .margencero{
+      margin: 0;
+    }
+	}
+	</style>
   
   
   <style>
@@ -63,7 +87,7 @@
   <link rel="stylesheet" type="text/css" href="/css/imp_rec_farm.css" media="print" /> 
   <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
     <div id="ocultoI" class="header_bar">
       <div class="brand">
@@ -120,20 +144,30 @@
       <div class="row">
         <div class="col-md-12">
           <div class="block-web">
-            <div id="ocultoI"  class="header">
-              <div class="actions"> </div>
-              <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>  Reporte de Solicitudes</h2> 
+            <div class="head">
+              <div class="actions">
+                <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                <P class="dondeES"></P>
+                <p class="telefo"></p>
+                <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+              </div>
+              <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							<div class="dim2 posiondeImagen">
+                .
+                <img class="oculVistaReal "  src="/images/hospital1.png" />
+                <p class="hospitalI"></p>
+              </div>
+              <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+              <div id="ocultoI" class="header">
+                <h2  class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>  Reporte de Solicitudes</h2> 
+              </div>    
             </div>
             <div class="porlets-content">
               <div class="panel-body">
-                <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-									<div class="dim2 posiondeImagen">
-                      .
-                      <img class="oculVistaReal "  src="/images/hospital1.png" />
-                    </div>
-                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-                    <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-                    <h4 class="texTitulo3 text-center"></h4>
+              
+                <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                    <h4 class="ordendetitulo texTitulo3 text-center"></h4>
               <h5 class="texTitulo1 text-center"></h5>
               
 							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
@@ -175,36 +209,36 @@
                   </div>
 								</form>
               </div>  
-              <div id="sacar" class="table-responsive">
-                <table  class="table table-bordered"   >
+              <div id="sacar" class="table-responsive ">
+                <table id="table1" class="table table-bordered margencero"   >
                   <thead>
                     <tr>
-                    <th>#</th>
-                    <th>Fecha</th>
-                    <th>N° Solicitud</th>
-                    <th>Trimestre</th>
-                    <th>Responsable</th>
-                    <th>Destino</th>
-                    <th>Estado</th>
+                    <th id="ocultoI" >#</th>
+                    <th class="tamm">Fecha</th>
+                    <th class="tamm" id="tdi">N° Solicitud</th>
+                    <th class="tamm">Trimestre</th>
+                    <th class="tamm">Responsable</th>
+                    <th class="tamm">Destino</th>
+                    <th class="tamm">Estado</th>
                     </tr>
                   </thead>
                   <tbody>
                     <%if (filter != null ) { %>
                     <% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
                     <tr>
-                      <td><%=i+1%></td>
-                      <td><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
-                      <td><%=filter.data.data_cliente[i].num_solicitud%></td>
-                      <td><%=filter.data.data_cliente[i].trimestre%></td>
-                      <td><%=filter.data.data_cliente[i].responsable%></td>
-                      <td><%=filter.data.data_cliente[i].destino%></td>
+                      <td id="ocultoI" ><%=i+1%></td>
+                      <td class="tamm"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+                      <td class="center "><%=filter.data.data_cliente[i].num_solicitud%></td>
+                      <td class="tamm"><%=filter.data.data_cliente[i].trimestre%></td>
+                      <td class="tamm"><%=filter.data.data_cliente[i].responsable%></td>
+                      <td class="tamm"><%=filter.data.data_cliente[i].destino%></td>
                       <% if (filter.data.data_cliente[i].medicamento_mandado_almacen == null ) { %>											
-                        <td style="color: crimson;">Pedido realizado</td>
+                        <td class="tamm" style="color: crimson;">PEDIDO REALIZADO</td>
                       <% } else { %>
                         <% if(filter.data.data_cliente[i].medicamento_aceptado_farmacia == null) {%>
-                          <td style="color: rgb(217, 220, 20);">Pedido en espera</td>
+                          <td class="tamm" style="color: rgb(217, 220, 20);">Pedido en espera</td>
                         <% } else { %>
-                          <td style="color: rgb(2, 170, 44);">Aceptado</td>
+                          <td class="tamm" style="color: rgb(2, 170, 44);">Aceptado</td>
                         <% } %>
                       <% } %>
                     </tr>
@@ -253,6 +287,7 @@
 	</div> 
 </div>
 <%- include("../partials/scripts") -%>
+<script src="/js/fecha.js"></script>
 <script>
     /*  <%if(msg) { %> */
       /*  <%if(msg.data.success == false) { %> */

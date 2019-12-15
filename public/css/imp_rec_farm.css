@@ -1,22 +1,5 @@
 @page {
-    top: 1cm;
-    margin: 1cm; 
-    border: 0px;
-    size: A4;
-    border-top-style: dashed;
-    border-right-style: double;
-    border-bottom-style: dotted;
-    border-left-style: solid; 
-  
-  
-    margin-top: 0px;
-    border: 0px;
-    padding: 0px;
-    
-    width: 0px;
-    bottom: 0px;
-  
-    page-break-before: always
+
 }  
 
 /*----------------------logo------------------------------*/
@@ -411,87 +394,50 @@ float:left;
     content: " REPORTE ADMINISTRATIVO DE FARMACIA ";
     font-weight: negrita;
     color:black;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-    font: Arial;
-    border: 0px;
-    padding-top: 1%;
+    font: small-caps 100%/200% serif;
+    margin-bottom: 0;
 }
 .texTitulo2:before{
     content: "REPORTE ADMINISTRATIVO DE ALMACEN ";
-    font-weight: negrita;
+    
     color:black;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-    font: Arial;
-    border: 0px;
-    padding-top: 10px;
+    font: small-caps 100%/200% serif;
 }
 .texTitulo3:before{
     content: " HOSPITAL DANIEL BRACAMONTE";
     
-    font-weight: negrita;
+    font: small-caps 100%/200% serif;
     color:black;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-    font: Arial;
-    border: 0px;
-    padding-top: 10px;
+    
 }
 .firmaPa1:before {
     content: " FIRMA DEL JEFE DE ALMACEN  ";
-    font-weight: negrita;
+  
     color:black;
-    text-align: center;
-    padding: 1%;
-    margin: 1%;
-    font: Arial;
-    border: 1px;
-    padding-top: 1%;
+    font: small-caps 100%/200% serif;
 }
 .firmaPa:before {
     content: " FIRMA DEL JEFE DE FARMACIA  ";
-    font-weight: negrita;
+    font: small-caps 100%/200% serif;
     color:black;
-    text-align: center;
-    padding: 1%;
-    margin: 1%;
-    font: Arial;
-    border: 1px;
-    padding-top: 1%;
+   
 }
 .firmaDoc:before {
     content: " FIRMA DEL DPTO. DE ADMINISTRACION ";
-    font-weight: negrita;
+    
     color:black;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-    font: Arial;
-    border: 0px;
-    padding-top: 1%;
-
-    margin-top: auto;
-    border-top-style: dashed;
-    border-right-style: double;
-    border-bottom-style: dotted;
-    border-left-style: solid;
+    font: small-caps 100%/200% serif;
 }
-
 .cafirmaP{
-    width: 30%;
+    width: 35%;
+    margin-left: 5%;
     float:left;
-
     border-top-style: dotted;
-  
 }
 .cafirmaDoc{
-    width: 30%;   
+    width: 35%;   
+    margin-right: 5%;
     float: right;
-
     border-top-style: dotted;
 }
 /* para orden de internacion*/

@@ -31,7 +31,109 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+<%- include("../partials/head") -%>
+<style type="text/css">
+	@media print{
+	  @page {
+		size: A4 ;
+		margin: 0;
+	}
+	.margeni{
+		width: 100%;
+		border: 1px;
+		position: relative;
+		border-top-style: dashed;
+		border-bottom-style: dotted;
+		border-left-style: solid; 
+	}
+	#sacar{
+		height: 9%;
+	
+		overflow-x: hidden;
+	}
+	.ordendetitulo{
+		position: absolute;
+		float: center;
+		top: 25%;
+		bottom: 1%;
+		margin-top: 10%;
+		margin-left: 10%;
+		padding-left: 25%;
+	}
+	.ordende2{
+		position: static;
+		float: center;
+		top: 20%;
+		bottom: 1%;
+		margin-top: 14%;
+		
+	}
+	.cafirma1{
+    	width: 25%;
+    	margin-left: 5%;
+    	float:left;
+    	border-top-style: dotted;
+	}
+	.cafirma2{
+	    width: 25%;   
+	    margin-right: 5%;
+	    float: right;
+	    border-top-style: dotted;
+	}
+	#sinMarge{
+    top: 2%;
+    border: 0px;
+   padding-left: 0% ;
+    padding-top: 0%;
+   margin-left: 0%;
+    margin-right: 0%;
+  
+    padding: 0px;
+    
+    position: relative;
 
+    border-top-style: dashed;
+    border-right-style: double;
+  
+    border-left-style: solid; 
+
+}
+.texTitulo1:before {
+    content: " REPORTE DE CITA";
+    font-weight: negrita;
+    color:black;
+    font: small-caps 100%/200% serif;
+    margin-bottom: 0;
+}
+.firmaPa1:before {
+    content: " FIRMA DEL PACIENTE ";
+    font-weight: negrita;
+    color:black;
+    font: small-caps 100%/200% serif;
+}
+.firmaDoc2:before {
+    content: " FIRMA DEL DOCTOR ";
+    font-weight: negrita;
+    color:black;
+    font: small-caps 100%/200% serif;
+}
+
+.cafirmaP1{
+    width: 30%;
+    float:left;
+margin-left: 3%;
+    border-top-style: dotted;
+  
+}
+.cafirmaDoc2{
+    width: 30%;   
+    float: right;
+margin-right: 3%;
+    border-top-style: dotted;
+}
+ 	}
+</style>
 	<style>
 		div.a {
 			text-align: center;
@@ -45,28 +147,26 @@
 
 </head>
 
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
 	<!-- SideBar -->
 
 	<!-- Content page-->
-	<div class="wrapper">
+	<div class="wrapper" id="reporte">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
-		<div class="header_bar">
+		<div id="ocultoI" class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
 			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-                <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-													
+              									
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
@@ -81,7 +181,7 @@
 		</div>
 		<div class="inner">
 			<!--\\\\\\\ inner start \\\\\\-->
-			<div class="left_nav">
+			<div id="ocultoI" class="left_nav">
 
 				<!--\\\\\\\left_nav start \\\\\\-->
 
@@ -90,21 +190,21 @@
 						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
 								<li> 
-                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
+                                    <a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" > <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
                                 </li>
 							</ul>
 						</li>
-						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/citas/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
+								<li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
                         	</ul>
                         </li>
                         <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
                             class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block" >
-                                <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
-                                <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
-                                <li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Citas </b> </a></li>                
+                                <li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+                                
+                                <li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%><%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Citas </b> </a></li>                
                             </ul>
                         </li>
                         
@@ -113,116 +213,123 @@
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
-			<div class="contentpanel">
+			<div id="sinMargen" class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
-
 					<div class="row">
-
 						<div class="col-lg-12  ">
 							<!-- Content page -->
 							<div id="main-content" class=" block-web">
-							<div class="header">
-								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
-								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reporte por Citas </h3>
-							</div>
-							<div class="porlets-content">
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="block-web">
-                                            <div class="porlets-content">
-                                                <div class="col-md-12">
-                                                            
-                                                    <div class="col-md-3 ">
-                                                        <div class="form-group">paciente:<br>
-                                                            <input type='' name='' class="form-control"><br>
-                                                        </div>
-                                                    </div>
-                                                  
-                                                </div>
-                                             
-                                            </div>
-                                        </div>
-                                        <!--/col-md-12-->
+								<div class="head">
+                                    <div class="actions">
+	                                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                        <P class="dondeES"></P>
+                                        <p class="telefo"></p>
+                                        <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                                        <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
                                     </div>
-                                    <!--/row-->
-                                </div>
-                               
-                                <p class="text-center">
-                                    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
-                                    <button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
-                
-                                </p>
-							</div>
-                        </div>
-                        <div id="main-content">
-                            <section class="panel default blue_title h2">
-                        <div class="page-content">			
-                                <ul class="nav nav-tabs" id="myTab">
-                                    <li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab">Citas</a></li>
-                                    
-                                </ul>
-                                <div id="myTabContent" class="tab-content">
-                                    <div class="tab-pane fade active in " id="neww">
-                                        <table class="display table table-bordered table-striped" id="dynamic-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Historial Clinico</th>
-                                                    
-                                                    <th>Doctor</th>
-                                                    <th>Especialidad</th>
-                                                    <th>Cantidad de visitas</th>
-                                                   
-                                                </tr>
-                                            </thead>
-                                            <tbody>														
-                                                
-                                                <tr class="gradeX">
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                    <td>a</td>
-                                                  
-                                                    
-                                                </tr>													
-
-                                            </tbody>
-                                           
-                                        </table>
-                                        
+                                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                    <div class="dim2 posiondeImagen">
+                                        <img class="oculVistaReal "  src="/images/hospital1.png" />
+                                        <p class="hospitalI"></p>
                                     </div>
+                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                                    <div id="ocultoI" class="header">
+							        	<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
+										<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reporte por Citas </h2>
+									</div>
+                                    <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									<h4 class="texTitulo1 ordendetitulo center"></h4>
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+								</div>
+								<div id="ocultoI" class="porlets-content">
+                            	    <div class="row">
+                            	        <div class="col-md-12 ">
+                            	            <div class="block-web">
+                            	                <div class="porlets-content">
+                            	                    <div class="col-md-12">      
+                            	                        <div class="col-md-3 ">
+                            	                            <div class="form-group">paciente:<br>
+                            	                                <select v-model="historial">
+																	<%for ( var i = 0; i < list_pacietne.length; i++) { %>
+																		<option :value="<%=list_pacietne[i].numeroHistorial%>" ><%=list_pacietne[i].nombre%> <%=list_pacietne[i].apellidop%> <%=list_pacietne[i].apellidom%></option>
+																	<% } %>
+																</select>
+                            	                            </div>
+                            	                        </div>
+                            	                    </div>
+                            	                </div>
+                            	            </div>
+                            	            <!--/col-md-12-->
+                            	        </div>
+                            	        <!--/row-->
+                            	    </div>
+                            	    <p class="text-center">
+                            	        <button @click="data_resp = ''" type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+                            	        <button @click="buscar()" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
+										<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+									</p>
+								</div>
+							</div>
+                        	<div class="ordende2" id="main-content">
+								<h4 id="ocultoI" class="center">Lista de Citas</h4>
+                            	<section class="panel default blue_title h2">
+                        		<div class="page-content">
+                                    <table class="table table-hover" >
+                                        <thead>
+                                            <tr>
+                                                <th class="tamm">N°</th>
+                                                <th class="tamm">Historial Clínico</th>
+                                                <th class="tamm">Doctor</th>
+												<th class="tamm">Especialidad</th>
+												<th class="tamm">Hora</th>
+												<th class="tamm">Día</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>		
+											<template v-if="data_resp == ''">
+												<%for (var i = 0; i < list_citas.length; i++) { %>
+													<tr class="gradeX">
+														<td class="tamm"><%=i+1%></td>
+														<td class="tamm"><%=list_citas[i].codigo_p%></td>
+														<td class="tamm"><%=list_citas[i].medico%></td>
+														<td class="tamm"><%=list_citas[i].especialidad%></td>	
+														<td class="tamm"><%=list_citas[i].hora.split("/")[0]%></td>	
+														<td class="tamm">falta en la bd</td>											
+													</tr>	
+												<% } %>	
+											</template>												
+                                           	<template v-else>
+												<tr class="gradeX" v-for="(list, index) in data_resp">
+													<td class="tamm">{{index+1}}</td>
+													<td class="tamm">{{list.codigo_p}}</td>
+													<td class="tamm">{{list.medico}}</td>
+													<td class="tamm">{{list.especialidad}}</td>	
+													<td class="tamm">{{list.hora.split("/")[0]}}</td>	
+													<td class="tamm">falta en la bd</td>											
+												</tr>
+											</template>										
+                                        </tbody>
+                                    </table>
                                     
-                                </div>
-                                <!--/porlets-content-->
-                        </div>
-                    </section>
-                    </div>
+                    		    </div>
+								</section>
+							</div><br><br><br><br><br><br><br><br><br><br>
+								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+								<p class="firmaPa1 center cafirmaP1"></p>					
+								<p class="firmaDoc2 center cafirmaDoc2"></p>
+								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 						</div>
 						<!--/block-web-->
 					</div>
 				</div>
-
 			</div>
-
 			<!--\\\\\\\ container  end \\\\\\-->
 		</div>
-		<!--\\\\\\\ content panel end \\\\\\-->
-	</div>
 	<!--\\\\\\\ inner end\\\\\\-->
 	</div>
 	<!--\\\\\\\ wrapper end\\\\\\-->
-
-
-
-
-
-
-
-
-
 
 	<!--====== Scripts -->
 	<script src="/js/jquery-2.1.0.js"></script>
@@ -241,21 +348,15 @@
 			EditableTable.init();
 		});
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<!-- etiqueta sin internet-->
-	<script src="/axios/dist/axios.min.js"></script>
+	
 
 	<script src="/js/jPushMenu.js"></script>
 	<script src="/js/side-chats.js"></script>
 
 
 
-
-
-	<script src="/js/vue/citasMedicas.js"></script>
-
-
 <!--validaciones-->
+<script src="/js/fecha.js"></script>
 <script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
 <script src="/plugins/checkbox/zepto.js"></script>
 <script src="/plugins/checkbox/icheck.js"></script>
@@ -319,7 +420,53 @@
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 
+<script src="/moment/moment.js"></script>
+<script src="/moment/locale/af.js"></script>
+<script src="/url/export.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="/axios/dist/axios.min.js"></script>
+<script>
+	const reporte = new Vue({
+        el:"#reporte",
+		data:{
+			url:data_url.url_front_end,
+			historial:'',
+			data_resp:''
+		},
+		methods:{
+			buscar(){
+				var estado = {
+                    historial: this.historial
+                }
+                var esto = {
+                  method: 'POST',
+                  body: JSON.stringify(estado),
+                  headers:{
+                    'Content-type' : "application/json"
+                  }
+                };
+                fetch(this.url+'/paciente/vue_citas_paciente_historial',esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(resp => {
+                    console.log(resp)
+                    if(resp.success == false){
+                        swal.fire(
+                          'Error!',
+                          '<label style="color:red;">'+resp.msg+'</label>',
+                          'error'
+                        )
+                    }else{
+                        this.data_resp = resp
+                    }
+                })
+			}
+		}
+	})
+</script>
 
 </body>
 

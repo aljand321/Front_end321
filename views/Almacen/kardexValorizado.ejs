@@ -6,6 +6,76 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Almacen</title>
   <%- include("../partials/head") -%>
+  <style type="text/css">
+    @media print{
+      @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+    .margeni{
+      width: 100%;
+      border: 1px;
+      position: relative;
+      border-top-style: dashed;
+      border-bottom-style: dotted;
+      border-left-style: solid; 
+    }
+    #sacar{
+      height: 9%;
+    
+      overflow-x: hidden;
+    }
+    .ordendetitulo{
+      position: absolute;
+      float: center;
+      top: 20%;
+      bottom: 1%;
+      margin-top: 3%;
+      margin-left: 12;
+      padding-left: 30%;
+      margin-bottom: 25%;
+      padding-bottom: 25%;
+      
+    }
+    .cafirma1{
+        width: 25%;
+        margin-left: 5%;
+        float:left;
+        border-top-style: dotted;
+    }
+    .cafirma2{
+        width: 25%;   
+        margin-right: 5%;
+        float: right;
+        border-top-style: dotted;
+    }
+    #sinMarge{
+      top: 2%;
+      border: 0px;
+     padding-left: 0% ;
+      padding-top: 0%;
+     margin-left: 0%;
+      margin-right: 0%;
+    
+      padding: 0px;
+      
+      position: relative;
+  
+      border-top-style: dashed;
+      border-right-style: double;
+    
+      border-left-style: solid; 
+  
+  }
+  .texTitulo1:before {
+      content: " REPORTE ADMINISTRATIVO DE ALMACEN";
+      font-weight: negrita;
+      color:black;
+      font: small-caps 100%/200% serif;
+      margin-bottom: 0;
+  }
+     }
+  </style>
   <style>
     .vertical-alignment-helper {
       display:table;
@@ -37,9 +107,9 @@
     //window.location.replace('/')
   },500000);
 </script>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
@@ -57,7 +127,7 @@
       </div>
     </div>
     <div class="inner">
-      <div class="left_nav">
+      <div id="ocultoI" class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
             <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -87,20 +157,37 @@
         </div>
       </div>
       <!--Contenido-->
-      <div class="contentpanel"><br>
+      <div id="sinMarge" class="contentpanel"><br>
         <!--Formulario-->
         <div class="container clear_both padding_fix">
           <div class="row">
             <div class="col-md-12">
               <div class="block-web">
-                <div class="header">
-                  <div class="actions"> </div>
-                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-folder-open icon"></i></div>   Kardex Valorizado</h2> 
+                <div class="head">
+                  <div class="actions"> 
+                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<P class="dondeES"></P>
+										<p class="telefo"></p>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+										<p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                  </div>
+                  <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									<div class="dim2 posiondeImagen">
+										<img class="oculVistaReal "  src="/images/hospital1.png" />
+										<p class="hospitalI"></p>
+									</div>
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+									<div id="ocultoI" class="header">
+                    <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-folder-open icon"></i></div>   Kardex Valorizado</h2> 
+                	</div>
                 </div>
                 <div class="porlets-content">
-                  <div class="panel-body">
+                  <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+								<h4 class="texTitulo1 ordendetitulo center"></h4>
+								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+							    <div class="panel-body"><br>
                     <!-- Button trigger modal -->
-                    <div class="form-group">
+                    <div id="ocultoI" class="form-group">
                       <label for="inputPassword3" class="col-sm-3 control-label">GRUPO DE ASIGNACION  <i class="fa fa-archive"></i>:</label>
                       <div class="col-sm-7">
                         <select class="selectpicker" data-show-subtext="true" data-live-search="true">
@@ -109,11 +196,12 @@
                           <option>Luna</option>
                           <option>Daniela</option>
                         </select>
-                      </div>
+                        <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
+											</div>
                     </div><!--/form-group-->
-                  </div>  
+                  </div>  <br>
                   <div class="table-responsive">
-                    <table  class="display table table-bordered table-striped" id="dynamic-table">
+                    <table  class="table table-bordered table-striped" >
                       <thead>
                         <tr>
                         <th>#</th>
@@ -153,7 +241,12 @@
             </div><!--/col-md-12--> 
           </div><!--/row-->
         </div><!--/page-content end--> 
-      </div><!--/main-content end--> 
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+					<p class="firmaPa center cafirma1"></p>										  
+					<p class="firmaDoc center cafirma2"></p></p>
+					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+			</div><!--/main-content end--> 
     </div>
   </div>
   <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

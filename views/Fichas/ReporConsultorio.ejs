@@ -33,7 +33,76 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
 <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+<%- include("../partials/head") -%>
+<style type="text/css">
+	@media print{
+	  @page {
+		size: A4 landscape;
+		margin: 0;
+	}
+	.margeni{
+		width: 100%;
+		border: 1px;
+		position: relative;
+		border-top-style: dashed;
+		border-bottom-style: dotted;
+		border-left-style: solid; 
+	}
+	#sacar{
+		height: 9%;
+	
+		overflow-x: hidden;
+	}
+	.ordendetitulo{
+		position: absolute;
+		float: center;
+		top: 20%;
+		bottom: 1%;
+		margin-top: 3%;
+		margin-left: 12;
+		padding-left: 30%;
+		
+		
+	}
+	.cafirma1{
+    	width: 25%;
+    	margin-left: 5%;
+    	float:left;
+    	border-top-style: dotted;
+	}
+	.cafirma2{
+	    width: 25%;   
+	    margin-right: 5%;
+	    float: right;
+	    border-top-style: dotted;
+	}
+	#sinMarge{
+    top: 2%;
+    border: 0px;
+   padding-left: 0% ;
+    padding-top: 0%;
+   margin-left: 0%;
+    margin-right: 0%;
+  
+    padding: 0px;
+    
+    position: relative;
 
+    border-top-style: dashed;
+    border-right-style: double;
+  
+    border-left-style: solid; 
+
+}
+.texTitulo1:before {
+    content: " REPORTE DE CONSLTORIO";
+    font-weight: negrita;
+    color:black;
+    font: small-caps 100%/200% serif;
+    margin-bottom: 0;
+}
+ 	}
+</style>
 <style>
 	div.a {
 		text-align: center;
@@ -56,18 +125,14 @@
 
 </head>
 
-<body class="light_theme  fixed_header left_nav_fixed">
-	<!-- SideBar -->
-
-	<!-- Content page-->
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
 	<div class="wrapper" id="reporte">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
-		<div class="header_bar">
+		<div id="ocultoI" class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
 			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
@@ -75,9 +140,9 @@
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
 
 				<div class="top_right_bar">
-
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-                        <img src="/images/cajera.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
+                        <img src="/images/cajera.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b 
+                        class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i>Salir</a> </li>
@@ -89,10 +154,8 @@
 		</div>
 		<div class="inner">
 			<!--\\\\\\\ inner start \\\\\\-->
-			<div class="left_nav">
-
+			<div id="ocultoI" class="left_nav">
 				<!--\\\\\\\left_nav start \\\\\\-->
-
 				<div class="left_nav_slidebar">
 					<ul>
 						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -104,129 +167,122 @@
 						</li>
 						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
+								<li> 
+                                    <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Médicas</b> </a> 
+                                </li>
                         	</ul>
                         </li>
                         <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
                             class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block" >
-                                <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reportes consultorio </b> </a></li>
-                                <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li>
-                                <li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
+                                <li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reportes consultorio </b> </a></li>
+                              
+                                <li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
                             </ul>
                         </li>
-                        
-            
 					</ul>
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
-			<div class="contentpanel">
+			<div id="sinMargen"  class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
-
 					<div class="row">
-
 						<div class="col-lg-12  ">
 							<!-- Content page -->
-							<div id="main-content" class=" block-web">
-							<div class="header">
-								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
-								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reporte por Consultorio</h3>
-							</div>
-							<div class="porlets-content">
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="block-web">
-                                            <div class="porlets-content">
-                                               
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <h3 class="text-center"> </h3>
-                                                        <br>
-                                                        <div class="col-md-12">
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">Turno:
-                                                                    <select class="form-control" v-model="turno">
-                                                                        <option>Mañanas</option>
-                                                                        <option>Tardes</option>
-                                                                        <option>Noches</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">Fecha inicio:<br>
-                                                                    <input type='date' v-model="fecha_inicio" class="form-control"><br>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">Fecha final:<br>
-                                                                    <input type='date' v-model="fecha_final" class="form-control"><br>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">Consultorio De:<br>
-                                                                    <select class="form-control" name="especialidad" v-model="id" @click="list_doc()" >
-                                                                        <option disabled="disabled" value = "">Seleccione</option>
-                                                                        <% for (var i = 0; i < consultorios.length; i++) { %>
-                                                                            <option :value="<%=consultorios[i].id%>"> <%=consultorios[i].nombre%> </option>
-                                                                        <% } %>
-                                                                    </select>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group"> Doctor:<br>
-                                                                    <select class="form-control" name="medico" >
-                                                                        <option disabled="disabled" value> Seleccione </option>
-                                                                        <option v-for="list of list_doc1" :value=" id_doctor = list.nombre.split('/')[1]"> {{list.nombre}} </option>
-                                                                    </select>
-                                                                </div>
-                                                               
-                                                            </div>
-                                                        </div>
-                                                        <br>
-                                                    </div>
+							<div id="main-content" class=" block-web ">
+                                <div class="head">
+                                    <div class="actions">
+	                                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                        <P class="dondeES"></P>
+                                        <p class="telefo"></p>
+                                        <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                                        <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                                    </div>
+                                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                    <div class="dim2 posiondeImagen">
+                                        <img class="oculVistaReal "  src="/images/hospital1.png" />
+                                        <p class="hospitalI"></p>
+                                    </div>
+                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                                    <div id="ocultoI" class="header">
+							        	<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
+							        	<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reporte por Consultorio</h3>
+                                    </div>
+                                    <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+								<h4 class="texTitulo1 ordendetitulo center"></h4>
+								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+							
+                                </div>
+							    <div class="ocultarIm">
+                                    <div class="col-md-12 row ">
+                                           <br>
+                                        <div class="col-md-14 row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">Turno:
+                                                    <select class="form-control" v-model="turno">
+                                                        <option>Mañanas</option>
+                                                        <option>Tardes</option>
+                                                        <option>Noches</option>
+                                                    </select>
                                                 </div>
                                             </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">Fecha inicio:<br>
+                                                    <input type='date' v-model="fecha_inicio" class="form-control"><br>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">Fecha final:<br>
+                                                    <input type='date' v-model="fecha_final" class="form-control"><br>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">Consultorio De:<br>
+                                                    <select class="form-control" name="especialidad" v-model="id" @click="list_doc()" >
+                                                        <option disabled="disabled" value = "">Seleccione</option>
+                                                        <% for (var i = 0; i < consultorios.length; i++) { %>
+                                                            <option :value="<%=consultorios[i].id%>"> <%=consultorios[i].nombre%> </option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-2 row">
+                                                <div class="form-group"> Doctor:<br>
+                                                    <select class="form-control" name="medico" >
+                                                        <option disabled="disabled" value> Seleccione </option>
+                                                        <option v-for="list of list_doc1" :value=" id_doctor = list.nombre.split('/')[1]"> {{list.nombre}} </option>
+                                                    </select>
+                                                </div>
+                                               
+                                            </div>
                                         </div>
-                                        <!--/col-md-12-->
+                                        <br>
                                     </div>
-                                    <!--/row-->
-                                </div>
-                               
-                                <p class="text-center">
-                                    <button @click="data_resp = ''" type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
-                                    <button @click="buscar()" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
-                
-                                </p>
-							</div>
-                        </div>
-                        <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
-                        <div id="main-content">
-                            <section class="panel default blue_title h2">
-                        <div class="page-content">			
-                                <ul class="nav nav-tabs" id="myTab">
-                                    <li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab">Citas</a></li>
-                                    
-                                </ul>
-                                <div id="myTabContent" class="tab-content">
-                                    <div class="tab-pane fade active in " id="neww">
-                                        <table class="display table table-bordered table-striped" id="dynamic-table">
+                                    <p class="text-center">
+                                        <button @click="data_resp = ''" type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+                                        <button @click="buscar()" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
+                                        <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+									</p>
+							    </div>
+                            </div>
+                            <div id="main-content">
+                                <section class="panel default blue_title h2">
+                                    <div class="page-content">	
+                                        <table class="table table-hover" >
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Historial Clinico</th>
+                                                    <th>N°</th>
+                                                    <th>Historial Clínico</th>
                                                     <th>Doctor</th>
                                                     <th>Especialidad</th>
                                                     <th>Saldo</th>
                                                     <th>Turno</th>
-                                                   
                                                 </tr>
                                             </thead>
                                             <tbody>	
-                                                
                                                 <template v-if="data_resp == ''">
                                                     <% for (var i = 0; i < list_citas.length; i++) { %>
                                                         <tr class="gradeX">
@@ -249,41 +305,31 @@
                                                         <td>{{list.turnoturno}}</td>
                                                     </tr>
                                                 </template>
-                                               											
-
                                             </tbody>
                                             <tfoot>
-                                                <tr>id
+                                                <tr>
                                                     <th>#</th>
-                                                    <th>Historial Clinico</th>
+                                                    <th>Historial Clínico</th>
                                                     <th>Doctor</th>
                                                     <th>Especialidad</th>
                                                     <th>Saldo</th>
                                                     <th>Turno</th>
-                                                   
                                                 </tr>
                                             </tfoot>
                                         </table>
-                                        
+                                           
+                                        <!--/porlets-content-->
                                     </div>
-                                    
-                                </div>
-                                <!--/porlets-content-->
-                        </div>
-                    </section>
-                    </div>
+                                </section>
+                            </div>
 						</div>
 						<!--/block-web-->
 					</div>
 				</div>
-
 			</div>
-
 			<!--\\\\\\\ container  end \\\\\\-->
 		</div>
-		<!--\\\\\\\ content panel end \\\\\\-->id
-	</div>
-	<!--\\\\\\\ inner end\\\\\\-->
+		<!--\\\\\\\ inner end\\\\\\-->
 	</div>
 	<!--\\\\\\\ wrapper end\\\\\\-->
     <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -318,11 +364,17 @@
 
 
 <!--====== Scripts -->
-<script src="/js/jquery-2.1.0.js"></script>id
+<script src="/js/fecha.js"></script>
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
 <script src="/plugins/data-tables/jquery.dataTables.js"></script>
 <script src="/plugins/data-tables/DT_bootstrap.js"></script>
 <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+
 <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+
 <script src="/plugins/edit-table/edit-table.js"></script>
 <script>
 	jQuery(document).ready(function () {
@@ -397,8 +449,6 @@
 
 </script>
 
-<script src="/js/jPushMenu.js"></script> 
-<script src="/js/side-chats.js"></script>
 
 <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 
