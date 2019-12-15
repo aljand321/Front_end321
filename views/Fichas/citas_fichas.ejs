@@ -138,12 +138,15 @@
 									<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
 									<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h2>
 								</div>
+							
 							<div class="porlets-content">
 									<h1>Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h1>
 								<div id="citas">
+									
 									<%if(citaUpdate == null) { %>
 									<form action="/paciente/cita_medica/<%=id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=paciente[0].numeroHistorial%>" method="POST" class=" group-border-dashed">
 										<input type="hidden" name="id_user" value="<%=data_doc.data.personal.id%>">
+										<input type="hidden" name="fecha" :value="fecha">
 										<div class="row">
 											<div class="col-md-12 ">
 												<div class="block-web">
@@ -646,6 +649,8 @@
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+<script src="/moment/moment.js"></script>
+<script src="/moment/locale/af.js"></script>
 
 <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="/js/vue/citasMedicas.js"></script>

@@ -3,6 +3,7 @@ const citas = new Vue({
     el:"#citas",
     data: () => ({ 
         url:data_url,
+        fecha:'',
 
         dia:'Lunes',
         turno:'Mañanas',
@@ -20,11 +21,12 @@ const citas = new Vue({
     }),
     
     mounted(){
-        axios
-        .get(this.url.url_front_end+'/paciente/vueEspecialidades_consulta/')
-        .then(response => (
-          this.especialidades = response.data
-        ))
+      this.fecha = moment().format('l');   
+      axios
+      .get(this.url.url_front_end+'/paciente/vueEspecialidades_consulta/')
+      .then(response => (
+        this.especialidades = response.data
+      ))
         
     },
     methods:{
