@@ -4,6 +4,7 @@ const fetch = require('node-fetch');
 
 var url = require('./url/export');
 import { user_data1, remove_user12 } from './url/export';
+import { addListener } from 'cluster';
 
 const datas = require('./url/export');
 
@@ -348,7 +349,7 @@ router.get('/only_pInternacion/:id/:id_especialidad/:tipoCons/:historial/:token_
         fetch(url.name.url+'/api/one_Pinternacion/'+id+"/"+tipoCons) 
         .then(resp => resp.json())
         .then(Pint =>{
-            
+            console.log(Pint,  " Esto es lo que quiero ver  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             fetch(url.name.url+'/api/one_Form_internacion/'+id) 
             .then(resp => resp.json())
             .then(formUpdate_internacion =>{
@@ -848,12 +849,18 @@ router.get('/paciente_internacion/:id/:token_id', (req,res) => {
                 .then(res => res.json())
                 .then(data => { 
                     
-                    res.render('hospitalizaciones/paciente_internacion',{
-                        data_doc: data_user[token_id],
-                        one_internacion,
-                        data_paciente:data
-
-                    })    
+                    fetch('http://localhost:3600/api/role_hospitalizacion')
+                    .then(res => res.json())
+                    .then(doc_internacion => { 
+                        res.render('hospitalizaciones/paciente_internacion',{
+                            data_doc: data_user[token_id],
+                            one_internacion,
+                            data_paciente:data,
+                            doc_internacion
+    
+                        }) 
+                    })
+                       
                 }) 
                 .catch(error => {
                     res.render('hospitalizaciones/404error',{
@@ -1485,7 +1492,9 @@ router.post('/internacion_of_traslado/:id_traslado/:id_especialidad/:token_id', 
             remove_post_msg(token_id)
             post_msg(data_body,token_id)
         }
-
+        setTimeout(()=>{
+            remove_post_msg(token_id)
+        },100000); 
         res.redirect( '/internaciones/internacion_traslado/'+id_traslado+"/"+data_body.historial+"/"+id_especialidad+"/"+token_id );
     }else {
         var esto = {
@@ -1571,7 +1580,9 @@ router.post('/internacion_of_traslado/:id_traslado/:id_especialidad/:token_id', 
                         }
                         res.redirect( '/internaciones/internacion_traslado/'+id_traslado+"/"+data_body.historial+"/"+id_especialidad+"/"+token_id );
                     }
-    
+                    setTimeout(()=>{
+                        remove(token_id)
+                    },1000);
                 })
                 .catch(error => {
                     res.render('hospitalizaciones/500error',{
@@ -1601,6 +1612,9 @@ router.post('/internacion_of_traslado/:id_traslado/:id_especialidad/:token_id', 
                     remove_post_msg(token_id)
                     post_msg(data_body,token_id)
                 }
+                setTimeout(()=>{
+                    remove_post_msg(token_id)
+                },100000); 
                 res.redirect( '/internaciones/internacion_traslado/'+id_traslado+"/"+data_body.historial+"/"+id_especialidad+"/"+token_id );
             }
             
@@ -1709,10 +1723,88 @@ router.post('/update_Form_internacion1/:id/:id_especialidad/:id_cama/:token_id',
                 msg_data(msg_p,token_id)
             }
             res.redirect( '/internaciones/internacion_traslado/'+data_update.id_traslado+"/"+data_update.historial+"/"+id_especialidad+"/"+token_id ); 
-        }    
+        }  
+        setTimeout(()=>{
+            remove(token_id)
+        },1000);  
     }) 
 })
 
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        Historial clinico del pacinte
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/buscar_historial/:id_especialidad/:token_id', (req,res) => {
+    const { id_especialidad, token_id } = req.params;
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:3000/api/pacientes')
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(list_paciente => { 
+
+            fetch('http://localhost:3000/api/list_internacion_especialidad_false/'+id_especialidad)
+            .then(res => res.json())
+            .then(list_internacion => { 
+                res.render('hospitalizaciones/list_pacientes',{
+                    list_paciente,
+                    data_doc: data_user[token_id],
+                    list_internacion
+                })
+            })
+            
+        })  
+    }else{
+        res.redirect('/');
+    }
+})
+
+router.get('/historial_clinico/:id_internacion/:token_id', (req,res) => {
+    const  { id_internacion, token_id } = req.params;
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:3000/api/one_internacion_for_historial/'+id_internacion)
+        .then(res => res.json())
+        .then(one_internacion => { 
+           
+            fetch('http://localhost:3000/api/onlyPaciente/'+one_internacion[0].historial)
+            .then(resp => resp.json())
+            .then(dataPaciente =>{ 
+                
+                fetch('http://localhost:3050/api/lista_Ecografia_inter/'+id_internacion+'/'+one_internacion[0].historial)
+                .then(resp => resp.json())
+                .then(ecografias => {
+                    fetch('http://localhost:3050/api/lista_rayosX_inter/'+id_internacion+'/'+one_internacion[0].historial)
+                    .then(resp => resp.json())
+                    .then(rayosX => {
+
+                        fetch('http://localhost:3050/api/lista_lab_inter/'+id_internacion+'/'+one_internacion[0].historial)
+                        .then(resp => resp.json())
+                        .then(lab => {
+                            res.render('hospitalizaciones/historial',{
+                                one_internacion, // esto contiene la internacion y epicriris
+                                data_doc: data_user[token_id],
+                                dataPaciente,
+                                ecografias,
+                                rayosX,
+                                lab                                
+                            })
+                        })
+                    
+                    })
+                    
+                })
+                
+            })
+            
+        })
+    }else{
+        res.redirect('/');
+    }
+})
 
 
 module.exports = router;

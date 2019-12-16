@@ -79,6 +79,15 @@
         if (data == null){
             window.location.replace('/')
         }
+        function delete_local_storage(){
+		    console.log ("ssss")
+		    localStorage.removeItem('data');
+		    localStorage.removeItem('url');
+  	    }
+  	    setTimeout(()=>{
+  	      delete_local_storage()
+  	      //window.location.replace('/')
+  	    },500000);
     </script>
    
 </head>
@@ -98,7 +107,13 @@
                 </template>
                 
                 <a href="/laboratorios/lab_hopitalizacion/<%=one_internacion[0].id%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>" class="add_user"> <i class="fa fa-plus-square"></i> <span>Laboratorios</span> </a>
+                <%if(one_internacion[0].idPinternacion != null) { %>
+                    
+                    <a href="/internaciones/traslado_interno/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>"class="add_user" @click="alta_paciente = false"> <i class="fa fa-plus-square"></i> <span>Traslado interno</span> </a>
+                <% } else { %>
+                    <a href="/internaciones/traslado_interno2/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" class="add_user" @click="alta_paciente = false"> <i class="fa fa-plus-square"></i> <span>Traslado interno</span> </a>
 
+                <% } %>
                 <div class="top_right_bar">
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
                                 src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span>  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
@@ -171,7 +186,7 @@
                                 </li>
 							</ul>
                         </li>
-                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Traslados<span class="plus"><i class="fa fa-plus"></i></span></a>
+                       <!--  <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Traslados<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
                                 <%if(one_internacion[0].idPinternacion != null) { %>
                                 <li> 
@@ -185,7 +200,7 @@
 								
 								
 							</ul>
-                        </li>
+                        </li> -->
                         <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
 								<li> 
@@ -418,8 +433,13 @@
                                                             <input type="datetime-local"  parsley-trigger="change" required class="form-control" v-model="ord_int.fechaOrden">
                                                         </div><!--/form-group-->
                                                         <div class="form-group">
-                                                            <label>CIRUJANO</label>
-                                                            <input type="text" v-model="ord_int.nombre_cirujano" parsley-trigger="change" required placeholder="Nombre del Cirujano" class="form-control">
+                                                            <label>CIRUJANO</label>                                                        
+                                                            
+                                                            <select v-model="ord_int.nombre_cirujano" class="form-control autoExpand">
+                                                                <%for (var i = 0; i < doc_internacion[0].user.length; i++) { %>
+                                                                    <option><%=doc_internacion[0].user[i].Registro_personal.nombre%> <%=doc_internacion[0].user[i].Registro_personal.apellidop%> <%=doc_internacion[0].user[i].Registro_personal.apellidom%></option>
+                                                                <% } %>
+                                                            </select>
                                                         </div><!--/form-group-->
                                                         <div class="form-group">
                                                             <label>AYUDANTES</label>
@@ -818,9 +838,9 @@
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>#</th>
-                                                                                <th>Fecha Intervencion</th>
+                                                                                <th>Fecha y hora de intervención</th>
                                                                                 <th>Cirujano</th>
-                                                                                <th>Intervencion Practicada</th>
+                                                                                <th>Intervención Practicada</th>
                                                                                 <th>Ver</th>
                                                                             
                                                                             </tr>
@@ -830,7 +850,7 @@
                                                                             <template v-for="(list, index) in ord_int.list_operaciones">
                                                                                 <tr>
                                                                                     <td>{{index+1}}</td>
-                                                                                    <td>{{list.fechaOrden}}</td>
+                                                                                    <td>{{list.fechaOrden.split("T")[0]}} -- {{list.fechaOrden.split("T")[1]}}</td>
                                                                                     <td>{{list.nombre_cirujano}}</td>
                                                                                     <td>{{list.intr_parcticada}}</td>
                                                                                     <td class="text-center"><a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" @click="OneOrd_intervencion(list.id)" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-eye text-muted"></i></a></td>                                                
@@ -1207,7 +1227,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="center">
-                      <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                      <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
                       <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
                     </div>
                 </div>

@@ -125,6 +125,7 @@
 
 <body class="light_theme  fixed_header left_nav_fixed">
 	<script>
+		//localStorage.setItem('cont', 0 )
 		/* <%if(login != null){%> */
 			var esto  = `<%- JSON.stringify(token) %>`
 			var url = "/Internaciones/home/"
@@ -145,6 +146,25 @@
 					}
 			/* 	<% } %> */
 		/* <% } %> */
+
+		function delete_local_storage(){
+			console.log ("ssss")
+			localStorage.removeItem('data');
+			localStorage.removeItem('url');
+  		}
+  		setTimeout(()=>{
+  		  delete_local_storage()
+  		  //window.location.replace('/')
+		  },500000);
+		reload()
+
+		function reload(){
+			var data_storage = localStorage.getItem('cont')              
+              if(data_storage == 1){
+                localStorage.setItem('cont', 0 )
+            	window.location.replace('/')
+              }  
+		}
 	
 	</script>
 	<!-- SideBar -->
@@ -211,6 +231,10 @@
 								</li>
 								<li> <a href="/internaciones/lista_traslados/<%=especialidad.id%>/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 										<b >Traslados</b>
+									</a> 
+								</li>
+								<li> <a href="/internaciones/buscar_historial/<%=especialidad.id%>/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+										<b >Historial</b>
 									</a> 
 								</li>
 								
@@ -343,7 +367,7 @@
 				</div>
 				<div class="modal-footer">
 					<div class="center">
-					  <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+					  <a href="/delete_token/<%=data_token.token_id%>" onclick="delete_local_storage()" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 					  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 					</div>
 				</div>
