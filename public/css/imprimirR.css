@@ -1,35 +1,71 @@
 @page {
-    top: 1cm;
-    margin: 1cm; 
-    border: 0px;
-    size: A4;
-    border-top-style: dashed;
-    border-right-style: double;
-    border-bottom-style: dotted;
-    border-left-style: solid; 
-  
-  
-    margin-top: 0px;
-    border: 1px;
-    padding: 0px;
-    
-    width: 0px;
-    bottom: 0px;
-  
-    page-break-before: always
-}  
 
+}  
+/**----------------------tamaño de letra en tabla---------------------*/
+.tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 90%/100% serif;
+        
+      }
 /*----------------------logo------------------------------*/
 .dim2:before{
-    content: url('../images/hospital1.png');    
+    content: url('../images/hospital1.png');  
 }
 .posiondeImagen{
     position:absolute;
-    top:0;
+    top:0%;
     width:200px;
 }
+/*----------------------PARA EL ENCANEZADO------------------------------------------------*/
+.hospitalI:before {  
+    content: " HOSPITAL DANIEL BRACAMONTE" ;
+
+    color:black;
+    font: oblique bold 70% cursive;
+  }
+  .dondeES:before {  
+    content: " AV. Italia Final S/N" ;
+ 
+    color:black;
+    font: oblique bold 90% cursive;
+   
+  }
+  .telefo:before {  
+    content: " Telfs. 26246064-2624960" ;
+  
+    color:black;
+    font: oblique bold 90% cursive;
+  }
+  .fechaI{
+    font: oblique bold 90% cursive;
+  }
+/*----------------------PARA EL ENCANEZADO------------------------------------------------*/
+ .hospitalI:before {  
+    content: " HOSPITAL DANIEL BRACAMONTE" ;
+
+    color:black;
+   
+    font: Arial;
+  }
+  .dondeES:before {  
+    content: " AV. Italia Final S/N" ;
+  
+    color:black;
+    font: Arial;
+   
+  }
+  .telefo:before {  
+    content: " Telfs. 26246064-2624960" ;
+  
+    color:black;
+    font: Arial;
+  }
+
 
 /*----------------------logo de historial clinico de emergencia ------------------------------*/
+
 .dim2E:before{
     content: url('../images/hospital1.png'); 
     position: absolute;
@@ -138,9 +174,9 @@ clear:both;
 #sinMargen{
     top: 9%;
     border: 0px;
-   padding-left: 0% ;
- padding-top: 5%;
-   margin-left: 0%;
+    padding-left: 0% ;
+    padding-top: 5%;
+    margin-left: 0%;
     margin-right: 0%;
   
     padding: 0px;
@@ -165,7 +201,6 @@ clear:both;
     right: 0px;
     height: 100%;
     
-
     border-top-style:solid;
     border-right-style: solid;
     border-bottom-style: solid;
@@ -448,29 +483,13 @@ float:left;
     content: " FIRMA DEL PACIENTE ";
     font-weight: negrita;
     color:black;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-    font: Arial;
-    border: 0px;
-    padding-top: 1%;
+    font: small-caps 100%/200% serif;
 }
 .firmaDoc:before {
     content: " FIRMA DEL DOCTOR ";
     font-weight: negrita;
     color:black;
-    text-align: center;
-    padding: 0%;
-    margin: 0%;
-    font: Arial;
-    border: 0px;
-    padding-top: 1%;
-
-    margin-top: auto;
-    border-top-style: dashed;
-    border-right-style: double;
-    border-bottom-style: dotted;
-    border-left-style: solid;
+    font: small-caps 100%/200% serif;
 }
 
 .cafirmaP{

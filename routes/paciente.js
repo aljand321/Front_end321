@@ -306,9 +306,11 @@ router.post('/cita_medica/:id/:token_id/:token_part/:historial', (req,res) => {
     },1000); 
     res.redirect('/paciente/citaPAciente/'+id+'/'+token_id + "/" + token_part+'/'+historial); 
   }else{
+    console.log(req.body, "  esto es lo que quiero ver  <zzzzzzzzz<<<<z<z<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz<z<z<z<z<z<z")
     var data1;
     datos = {
       dia:req.body.dia,
+      fecha:req.body.fecha,
       id_user:req.body.id_user,
       codigo_p:req.body.codigo_p,
       saldo_total:req.body.saldo_total,
@@ -330,7 +332,7 @@ router.post('/cita_medica/:id/:token_id/:token_part/:historial', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(resp => {
-      console.log(resp, " esto es la respuesta de cita medica")
+      console.log(resp, " esto es la respuesta de cita médica")
       if(resp.success == true){ 
         if(data_imprimir[token_id] == null){
           data1 = resp.cita_pData
@@ -489,9 +491,8 @@ router.get('/clean/:id/:token_id/:token_part/:historial', (req,res) => {
 
  //ruta para sacar todas las citas de un paciente
  router.get('/citaPAciente/:id/:token_id/:token_part/:historial',(req,res) => {
-   const { id,token_id, token_part, historial } = req.params;
-  /* var id = req.params;  
-  idH = id; */
+  const { id,token_id, token_part, historial } = req.params;
+  
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
     fetch('http://localhost:3000/api/citasPaciente/'+id)
     .then(resp => resp.json())
@@ -511,8 +512,7 @@ router.get('/clean/:id/:token_id/:token_part/:historial', (req,res) => {
           data_doc: data_user[token_id],
           msg:msg_Consulta_Externa[token_id]
         });
-      })  
-      
+      })      
 
     });
   }else{

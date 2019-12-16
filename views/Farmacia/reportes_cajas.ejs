@@ -8,24 +8,29 @@
   <style type="text/css">
 	@media print{
 	  @page {
-		seze: A4 landscape;
+		margin: 0;
+		size: A4 portrait;
 	}
 	.margeni{
 
 		width: 100%;
-	  border: 1px;
+		border: 1px;
 
-	   position: relative;
-	  border-top-style: dashed;
+   		position: relative;
+   		border-top-style: dashed;
 
-	  border-bottom-style: dotted;
-	  border-left-style: solid; 
+		border-bottom-style: dotted;
+		border-left-style: solid; 
 	}
+	.ordendetitulo{
+        position:static;
+        margin-top: 15%;
+    }
 	#sacar{
-			height: 9%;
+		height: 9%;
 		
-			overflow-x: hidden;
-		}
+		overflow-x: hidden;
+	}
   }
 	</style>
 
@@ -63,7 +68,7 @@ h1.letras {
 <link rel="stylesheet" type="text/css" href="/css/imp_rec_farm.css" media="print" /> 
 <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   	<div class="wrapper">
     	<div id="ocultoI" class="header_bar">
       		<div class="brand">
@@ -120,23 +125,31 @@ h1.letras {
 					<div class="row">
 					 	<div class="col-md-12">
 							<div class="block-web">
-						  		<div id="ocultoI" class="header">
-									<div class="actions"> </div>
-									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div> Reporte de Recetas</h2> 
+						  		<div class="head">
+									<div class="actions"> 
+										<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<P class="dondeES"></P>
+										<p class="telefo"></p>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+										<p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+									</div>
+									<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									<div class="dim2 posiondeImagen">
+										
+										<img class="oculVistaReal "  src="/images/hospital1.png" />
+										<p class="hospitalI"></p>
+									</div>
+									 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+									<div id="ocultoI" class="header">
+										<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div> Reporte de Recetas</h2> 
+									</div>
 								</div>
 				  				<div class="porlets-content">
 									<div class="panel-body">
-										 <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-									<div class="dim2 posiondeImagen">
-											.
-											<img class="oculVistaReal "  src="/images/hospital1.png" />
-										  </div>
-										  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-										  <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-										  <h4 class="texTitulo3 text-center"></h4>
-									<h5 class="texTitulo1 text-center"></h5>
-									
-												  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+										<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<h4 class="texTitulo3 ordendetitulo text-center"></h4>
+										<h5 class="texTitulo1 text-center"></h5>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 											<form id="ocultoI"  action="/Farmacia/filter_receta_paciente/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
 													<div class="col-md-12">
 														  <div class="col-md-6">
@@ -230,49 +243,50 @@ h1.letras {
 		<!-- Modal -->
 	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
-			<div class="vertical-alignment-helper">
-			  <div class="modal-dialog vertical-align-center modal-sm ">
-				  <div class="modal-content">
-					<br>
-					<div class="center">
-					  <i><img src="/images/salir.gif" width="100" height="100" /></i>
-					</div>
-					<div class="center">
-					  <h5><b>¿Cerrar Sesión?</b></h5>
-					</div>
-					<div class="modal-footer">
-					<div class="center">
-					  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-					  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-					</div>
-					</div>
-				  </div>
+		<div class="vertical-alignment-helper">
+		  <div class="modal-dialog vertical-align-center modal-sm ">
+			  <div class="modal-content">
+				<br>
+				<div class="center">
+				  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+				</div>
+				<div class="center">
+				  <h5><b>¿Cerrar Sesión?</b></h5>
+				</div>
+				<div class="modal-footer">
+				<div class="center">
+				  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+				</div>
+				</div>
 			  </div>
-			</div> 
-		</div>
+		  </div>
+		</div> 
+	</div>
+<script src="/js/fecha.js"></script>
 <%- include("../partials/scripts") -%>
 <script>
-		/*  <%if(msg) { %> */
-		  /*  <%if(msg.data.success == false) { %> */
-			 msg_false()
-			 function msg_false(){
-			 swal.fire(
-			   'Error!',
-			   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
-			   'error'
-			 )
-			 }
-		   /* <% } else {%> */
-			 msg_true()
-			 function msg_true(){
-			 swal.fire(
-			   'Success!',
-			   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
-			   'success'
-			 )
-			 }
-		  /*  <% } %> */
-		/*  <% } %> */
+	/*  <%if(msg) { %> */
+	  /*  <%if(msg.data.success == false) { %> */
+		 msg_false()
+		 function msg_false(){
+		 swal.fire(
+		   'Error!',
+		   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
+		   'error'
+		 )
+		 }
+	   /* <% } else {%> */
+		 msg_true()
+		 function msg_true(){
+		 swal.fire(
+		   'Success!',
+		   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
+		   'success'
+		 )
+		 }
+	  /*  <% } %> */
+	/*  <% } %> */
 </script>
 </body>
 </html>

@@ -62,10 +62,8 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-              </ul>
+            <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
+              
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
@@ -106,7 +104,7 @@
               <div id="main-content" class="block-web">
                 <div class="header">
                   <div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div>
-                  <h3 class="content-header ">Asignación Médico</h3>
+                  <h3 class="content-header ">Asignación Médico <strong>/ <%=one_cuaderno[0].titulo%></strong></h3>
                 </div>
                 <br>
                 <br>
@@ -116,7 +114,7 @@
                       <div class="block-web">
                         <div class="header">
 													<div class="actions"> 
-                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down" style="color: blue;"></i></a> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" ><i class="fa fa-chevron-down" style="color: blue;"></i></a> 
                             <a class="refresh" href="/cuaderno/limpiarMDoc/<%=id%>/<%=data_doc.data.token_id%>"><i class="fa fa-repeat" style="color: blue;"></i></a>
                           </div>
                           <div class="porlets-contents ">
@@ -129,7 +127,7 @@
                                 
                                 <div class="form-group ">
                                   <div class="col-sm-3">
-                                    <label class="control-label">Médico :</label><br>
+                                    <label class="control-label">Médico </label><br>
                                     <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="nombre">
                                       <option value="" selected disabled hidden >--Seleccione--</option>
                                       <%for (var i=0; i < resp.length; i++) { %>
@@ -138,7 +136,7 @@
                                     </select>
                                   </div>
                                   <div class="col-sm-3">
-                                    <label class=" control-label">Especialidad :</label><br>
+                                    <label class=" control-label">Especialidad </label><br>
                                     <select   class="selectpicker form-control" data-show-subtext="true" data-live-search="true"  name="especialidad" >
                                       <option value="" selected disabled hidden >--Seleccione--</option>
                                       <%for (var i=0; i < esp.length; i++) { %>
@@ -153,7 +151,7 @@
                                   
                                 <div class="form-group ">
                                   <div class="col-sm-3">
-                                      <label class="control-label">Tipo :</label>
+                                      <label class="control-label">Tipo </label>
                                       <select class="form-control" id="source" name="TDoctor" required placeholder="">
                                         <option value="" selected disabled hidden>--Seleccione--</option>
                                         <option>MÉDICO TITULAR </option>
@@ -161,7 +159,7 @@
                                       </select>
                                   </div>
                                   <div class="col-sm-3">
-                                    <label class="control-label">Enfermera :</label>
+                                    <label class="control-label">Enfermera </label>
                                     <select class="form-control" name="enfermera" >
                                       <%for(var i = 0; i < enfermeras.length; i++) { %>
                                         <option><%=enfermeras[i].nombre%> <%=enfermeras[i].apellidop%> <%=enfermeras[i].apellidom%></option>
@@ -181,9 +179,11 @@
                               </form>
                             <% } else { %>
                               <form class="form-horizontal group-border-dashed" action="/cuaderno/updateDoctCuaderno/<%=modifDoct.data[0].id%>/<%=id%>/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
-                                <div class="form-group center">
+                                <div class="col-sm-3">
+                                </div>
+                                <div class="form-group ">    
                                   <div class="col-sm-3">
-                                    <label class="col-sm-4 control-label">Médico:</label>
+                                    <label class="col-sm-4 control-label">Médico </label>
                                     <select  class="selectpicker" data-show-subtext="true" data-live-search="true"  name="nombre" >
                                       <option value="<%=modifDoct.data[0].nombre%>"><%=modifDoct.data[0].nombre.split("/")[0]%></option>
                                       <option>---------------</option>
@@ -193,7 +193,7 @@
                                     </select>
                                   </div>
                                   <div class="col-sm-3">
-                                    <label class=" control-label">Especialidad:</label>
+                                    <label class=" control-label">Especialidad </label>
                                     <select  class="selectpicker" data-show-subtext="true" data-live-search="true" name="especialidad" >
                                       <option><%=modifDoct.data[0].Consulta_especilaida.nombre%></option>
                                       <option>---------------</option>
@@ -203,9 +203,11 @@
                                     </select>
                                   </div>
                                 </div>
-                                <div class="form-group center">
+                                <div class="col-sm-3">
+                                </div>
+                                <div class="form-group ">
                                   <div class="col-sm-3">
-                                    <label class=" control-label">Tipo :</label>
+                                    <label class=" control-label">Tipo  </label>
                                     <select  class="form-control" id="source" name="TDoctor" >
                                         <option><%=modifDoct.data[0].TDoctor%></option>
                                         <option>---------------</option>
@@ -214,7 +216,7 @@
                                     </select>
                                   </div>
                                   <div class="col-sm-3">
-                                      <label class=" control-label">Enfermera :</label>
+                                      <label class=" control-label">Enfermera  </label>
                                       <select name="enfermera" >
                                           <option><%=modifDoct.data[0].enfermera%></option>
                                           <option value="">------------------------------</option>

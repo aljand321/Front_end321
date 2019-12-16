@@ -166,7 +166,7 @@ margin-right: 3%;
               									
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
@@ -186,30 +186,42 @@ margin-right: 3%;
 				<!--\\\\\\\left_nav start \\\\\\-->
 
 				<div class="left_nav_slidebar">
-					<ul>
-						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul>
-								<li> 
-                                    <a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" > <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> 
-                                </li>
-							</ul>
-						</li>
-						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul >
-								<li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
-                        	</ul>
-                        </li>
-                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
-                            class="plus"><i class="fa fa-plus"></i></span></a>
-                            <ul class="opened" style="display:block" >
-                                <li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
-                                
-                                <li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Citas </b> </a></li>                
-                            </ul>
-                        </li>
+                    <ul>
+                            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span	class="plus"><i class="fa fa-plus"></i></span> </a>
+                                <ul >
+                                    <li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <%=data_doc.data.area_esp.nombre%>  <b ></b>
+                                        </a> 
+                                    </li>
+                                </ul>
+                            </li>
                         
-            
-					</ul>
+                            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Liatas de Pacientes <span class="plus"><i class="fa fa-plus"></i></span></a>
+                                <ul class="opened" style="display:block">
+                                    <li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                            <b  >Listas de Internación</b>
+                                        </a> 
+                                    </li>
+                                    <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b >Pacientes Internados</b>
+                                        </a> 
+                                    </li>
+                                    <li> <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>" > <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b >Pacientes de alta </b>
+                                        </a> 
+                                    </li>
+                                    <li> <a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b>Traslados</b>
+                                        </a> 
+                                    </li>
+                                    <li> <a href="/internaciones/buscar_historial/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b  class="theme_color" >Historail</b>
+                                        </a> 
+                                    </li>						
+                                </ul>
+                            </li>
+                        
+
+                    </ul>
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
@@ -250,10 +262,10 @@ margin-right: 3%;
                             	                <div class="porlets-content">
                             	                    <div class="col-md-12">      
                             	                        <div class="col-md-3 ">
-                            	                            <div class="form-group">paciente:<br>
+                            	                            <div class="form-group">paciente:{{msg}}<br>
                             	                                <select v-model="historial">
-																	<%for ( var i = 0; i < list_pacietne.length; i++) { %>
-																		<option :value="<%=list_pacietne[i].numeroHistorial%>" ><%=list_pacietne[i].nombre%> <%=list_pacietne[i].apellidop%> <%=list_pacietne[i].apellidom%></option>
+																	<%for ( var i = 0; i < list_paciente.length; i++) { %>
+																		<option :value="<%=list_paciente[i].numeroHistorial%>" ><%=list_paciente[i].nombre%> <%=list_paciente[i].apellidop%> <%=list_paciente[i].apellidom%></option>
 																	<% } %>
 																</select>
                             	                            </div>
@@ -264,10 +276,11 @@ margin-right: 3%;
                             	            <!--/col-md-12-->
                             	        </div>
                             	        <!--/row-->
-                            	    </div>
+                                    </div>
+                                    <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
                             	    <p class="text-center">
-                            	        <button @click="data_resp = ''" type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
-                            	        <button @click="buscar()" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
+                            	        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+                            	        <button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
 										<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 									</p>
 								</div>
@@ -281,35 +294,25 @@ margin-right: 3%;
                                             <tr>
                                                 <th class="tamm">N°</th>
                                                 <th class="tamm">Historial Clínico</th>
-                                                <th class="tamm">Doctor</th>
+                                                <th class="tamm">Nombre paciente</th>
+												<th class="tamm">Fecha ingreso</th>
 												<th class="tamm">Especialidad</th>
-												<th class="tamm">Hora</th>
-												<th class="tamm">Día</th> 
+                                                <th class="tamm">Doctor</th> 
+                                                <th class="tamm">Ver</th> 
                                             </tr>
                                         </thead>
-                                        <tbody>		
-											<template v-if="data_resp == ''">
-												<%for (var i = 0; i < list_citas.length; i++) { %>
-													<tr class="gradeX">
-														<td class="tamm"><%=i+1%></td>
-														<td class="tamm"><%=list_citas[i].codigo_p%></td>
-														<td class="tamm"><%=list_citas[i].medico%></td>
-														<td class="tamm"><%=list_citas[i].especialidad%></td>	
-														<td class="tamm"><%=list_citas[i].hora.split("/")[0]%></td>	
-														<td class="tamm">falta en la bd</td>											
-													</tr>	
-												<% } %>	
-											</template>												
-                                           	<template v-else>
-												<tr class="gradeX" v-for="(list, index) in data_resp">
-													<td class="tamm">{{index+1}}</td>
-													<td class="tamm">{{list.codigo_p}}</td>
-													<td class="tamm">{{list.medico}}</td>
-													<td class="tamm">{{list.especialidad}}</td>	
-													<td class="tamm">{{list.hora.split("/")[0]}}</td>	
-													<td class="tamm">falta en la bd</td>											
-												</tr>
-											</template>										
+                                        <tbody>
+                                            <% for (var i = 0; i < list_internacion.length; i++) { %>
+                                                <tr>
+                                                    <td><%=i+1%></td>
+                                                    <td><%=list_internacion[i].historial%></td>
+                                                    <td><%=list_internacion[i].Paciente.nombre%> <%=list_internacion[i].Paciente.apellidop%> <%=list_internacion[i].Paciente.apellidom%></td>
+                                                    <td><%=list_internacion[i].fechaIngreso%></td>
+                                                    <td><%=list_internacion[i].especialidad%></td>
+                                                    <td><%=list_internacion[i].doctor%></td>
+                                                    <td><a href="/internaciones/historial_clinico/<%=list_internacion[i].id%>/<%=data_doc.data.token_id%>">ver</a></td>
+                                                </tr>                                				
+                                            <% } %>				
                                         </tbody>
                                     </table>
                                     
@@ -432,6 +435,7 @@ margin-right: 3%;
 	const reporte = new Vue({
         el:"#reporte",
 		data:{
+            msg:"aljand321",
 			url:data_url.url_front_end,
 			historial:'',
 			data_resp:''

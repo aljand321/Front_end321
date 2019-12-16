@@ -28,55 +28,66 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
 <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
-<style scoped>
-  @media print{
-    @page {
-    top: 1cm;
-    margin: 1cm; 
-    border: 0px;
-    size: A4 landscape;
-  
-    
-  
-    page-break-before: always
-  }  
-  #sinMargen{
-    top: 9%;
-    border: 0px;
-    padding-left: 0% ;
-    padding-top: 5%;
-   margin-left: 0%;
-    margin-right: 0%;
-  
-    padding: 0px;
-    
-    position: relative;
 
-    border-top-style: dashed;
-    border-right-style: double;
-  
-    border-left-style: solid; 
-
+  <style scoped>
+      @media print{
+    
+        /* tamaño de página*/
+        @page {
+      
+        size: A4;
+        size: 8.5in 11in;
+      } 
+      .scrollV{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .tituloCuaderno:before {  
+        content: " REPORTE DE CUADERNOS" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .tituloEspecialidad:before {  
+        content: " REPORTE DE ESPECIALIDAD" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .ordendetitulo{
+        position:static;
+        margin-top: 1%;
+      }
+      .tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 100%/200% serif;
+        width: 25%;
+        text-align: left;
+        vertical-align: top;
+        border: 1px solid #000;
+        border-spacing: 0;
+      }
+      #tr{
+        width: 5%;
+      }
+      .centerTodoi{
+    padding-top: 1%;
+    width: 100%;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 0px;
+   border-top-style: dashed;
+   border-right-style: double;
+   border-bottom-style: dotted;
+   border-left-style: solid; 
 }
-
-    /* para orden de internacion*/
-  .oreden1:before {
-    content: " v-model:"'data_receta.fecha' "
-    v-model="'data_receta.fecha'"
-
-  
-  }
-
-  .tprueba{
-    content: var(--medicamento);
-  }
-  .itabla:before{
-    content: "data_receta.fecha";
-
-  }
-  td:hover { background-color: var(--bg-hover-color); }  
-  }
-</style>
+      
+    }
+  </style>
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -178,28 +189,34 @@
                 <div  class="col-lg-12 block-web"> 
                   <div class="head">
                     <div id="" class="actions pull-rigth">
-                      <p  name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                       <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                      <P class="dondeES"></P>
+                      <p class="telefo"></p>
+                      <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                      <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
                     </div>
                     <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
                     <div class="dim2 posiondeImagen">
                        .
                        <img class="oculVistaReal "  src="/images/hospital1.png" />
-                     </div>
+                       <p class="hospitalI"></p>
+                      </div>
                      <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
-                    <div class="header"id="ocultoI">
+                    <div id="ocultoI" class="header"id="ocultoI">
                        <div id="" class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
                        <h3  class=" " style="color: black;">Reportes Servicios </h3>
                     </div>
                   </div>
                 </div>
-                <div   class="panel-body">
+                <div   class="panel-body ">
                   <div class="tabs_right">
                     <ul id="ocultoI" class="nav nav-tabs" id="myTab">
                       <li class="active"><a data-toggle="tab" href="#Section1">Cuadernos </a></li>
                       <li><a data-toggle="tab" href="#Section2">Especialidades </a></li>
                     </ul>
-                    <div class="tab-content " id="myTabContent">
-                      <div id="Section1" class="tab-pane fade in active">
+                    <div class="tab-content centerTodoi " id="myTabContent">
+                      <div id="Section1" class="tab-pane fade in active centerTodoi ">
+                      
                         <form id="ocultoI" @submit="filter_data" method="POST" class="form-horizontal"  >
                           <div class="form-group">
                             <label class="col-sm-4 control-label">Desde:</label>
@@ -220,27 +237,28 @@
                               </div>
                             </div><!--/form-group--> 
                         </form>
+                       <div class="col-md-14 panel-body panel panel-defaulth">
                         <div id="ocultoI" class="form-group">
                           <div class="col-sm-offset-9 col-sm-10">
                             <button  onclick="window.print();" type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
                           </div>
                         </div><!--/form-group-->
                         <template v-if ="list != ''">
-                          <br><br><br>
+                          
                           <div id="ocultoI" class="form-group">
                             <div class="col-sm-offset-8 col-sm-10">
                               <input id="ocultoI" type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list" >
                             </div>
                           </div>
-
+                     
                           <br>
-                          <div class="table-responsive">
+                          <div class="table-responsive scrollV">
                             <table  class="table table-bordered table-striped" >
                               <thead>
                                 <tr>
                                     <th class="text-center">Fecha Creación</th>	
-                                    <th class="text-center">Titulo</th>
-                                    <th class="text-center">Medico</th>	
+                                    <th class="text-center">Título</th>
+                                    <th class="text-center">Médico</th>	
                                     <th class="text-center">Enfermera</th>
                                     <th class="text-center">Opciones</th>
                                 </tr>
@@ -260,22 +278,27 @@
                             </table>
                           </div>
                         </template>
+                        
                         <template v-else>
-                          <br><br><br>
+                          <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							            <h5 class=" ordendetitulo tituloCuaderno text-center"></h5>
+							            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                
+                          
                           <div id="ocultoI"class="form-group">
                             <div class="col-sm-offset-8 col-sm-10">
                               <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list1" >
                             </div>
                           </div>
-                              
+                         
                           <br>
-                          <div class="table-responsive">
+                          <div class="table-responsive scrollV">
                             <table  class="table table-bordered table-striped" >
                               <thead>
                                 <tr>
                                   <th class="text-center">Fecha Creación</th>	
-                                  <th class="text-center">Titulo</th>
-                                  <th class="text-center">Medico</th>	
+                                  <th class="text-center">Título</th>
+                                  <th class="text-center">Médico</th>	
                                   <th class="text-center">Enfermera</th>
                                   <th id="ocultoI" class="text-center">Opciones</th>
                                 </tr>
@@ -294,7 +317,7 @@
                             </table>
                           </div>
                         </template>
-
+                       </div>
                       </div>
 
                       <div id="Section2" class="tab-pane fade">
@@ -321,8 +344,8 @@
                         </form>
                         <div  id="ocultoI" class="form-group">
                           <div class="col-sm-offset-10 col-sm-10">
-                            <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button> <br>
-                          </div>
+                          		<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+													</div>
                         </div><!--/form-group--> 
                         <template v-if ="list_esp != ''">
                           <div class="form-group">
@@ -332,6 +355,10 @@
                             </div>
                           </div>
                           <br>
+                           <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							            <h5 class=" ordendetitulo tituloEspecialidad text-center"></h5>
+							            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                
                           <div class="table-responsive">
                             <table  class=" table table-bordered table-striped" >
                               <thead>
@@ -353,13 +380,18 @@
                           </div>
                         </template>
                         <template v-else>
-                            <div class="form-group">
+                           <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							            <h5 class=" ordendetitulo tituloEspecialidad text-center"></h5>
+							            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                
+                            <div id="ocultoI" class="form-group">
                               <br><br><br>
-                              <div class="col-sm-offset-8 col-sm-10">
+                              <div  class="col-sm-offset-8 col-sm-10">
                                   <input type="text" placeholder="Buscar" class="form-control " style="width:200px;" v-model="buscar_in_list1">
                               </div>
                             </div>
                             <br>
+                            
                             <div class="table-responsive">
                               <table  class=" table table-bordered table-striped" >
                                 <thead>

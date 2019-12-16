@@ -5,30 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Almacen</title>
-  <style type="text/css">
+<style type="text/css">
 	@media print{
 	  @page {
-		seze: A4 landscape;
+		size: A4 landscape;
+		margin: 0;
 	}
 	.margeni{
-
 		width: 100%;
-	  border: 1px;
-
-	   position: relative;
-	  border-top-style: dashed;
-
-	  border-bottom-style: dotted;
-	  border-left-style: solid; 
+		border: 1px;
+		position: relative;
+		border-top-style: dashed;
+		border-bottom-style: dotted;
+		border-left-style: solid; 
 	}
 	#sacar{
-			height: 9%;
-		
-			overflow-x: hidden;
-		}
-  }
-	</style>
-
+		height: 9%;
+	
+		overflow-x: hidden;
+	}
+	.ordendetitulo{
+        position:static;
+        margin-top: 3%;
+	}
+	.cafirma1{
+    	width: 25%;
+    	margin-left: 5%;
+    	float:left;
+    	border-top-style: dotted;
+	}
+	.cafirma2{
+	    width: 25%;   
+	    margin-right: 5%;
+	    float: right;
+	    border-top-style: dotted;
+	}
+}
+</style>
 
 <style>
 div.a {
@@ -80,7 +93,7 @@ h1.letras {
     //window.location.replace('/')
   },500000);
 </script>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   	<div class="wrapper">	
     	<div id="ocultoI" class="header_bar">
       		<div class="brand">
@@ -130,29 +143,36 @@ h1.letras {
         		</div>
       		</div>
      		<!--Contenido-->
-     		<div id="sinMargen1" class="contentpanel"><br>
+     		<div id="sinMargen1" class="contentpanel clear"><br>
       			<!--Formulario-->
-      			<div id="margendiv"  class="container clear_both padding_fix">
-					<div class="row">
-						<div class="col-md-12">
+      			<div id=""  class="container clear_both padding_fix">
+					<div class=" col-md-12 ">
+						<div class="block-web">
 						 	<div class="block-web">
-								<div   id="ocultoI" class="header">
-								  	<div class="actions"></div>
-					  				<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>   Reporte de Pedidos</h2>
+								<div class="head">
+									<div class="actions">
+										<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<P class="dondeES"></P>
+										<p class="telefo"></p>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+										<p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+									</div>
+									<div id="ocultoI" class="header" >
+										<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-bar-chart-o icon"></i></div>   Reporte de Pedidos</h2>
+									</div>  
 								</div>
-								<div class="porlets-content">
-					  				<div class="panel-body">
-										   <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+							</div>
+							<div class="porlets-content">
+					  			<div class="panel-body">
+									<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
 									<div class="dim2 posiondeImagen">
-											.
-											<img class="oculVistaReal "  src="/images/hospital1.png" />
-										  </div>
-										  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-										  <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-										  <h4 class="texTitulo2 text-center"></h4>
-									<h5 class="texTitulo1 text-center"></h5>
-									
-												  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+										<img class="oculVistaReal "  src="/images/hospital1.png" />
+										<p class="hospitalI"></p>
+									</div>
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+									<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<h4 class="texTitulo2 ordendetitulo text-center"></h4>
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 										<form   id="ocultoI" action="/almacen/filter_pedios_datas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" method="POST" parsley-validate novalidate>
 											<div class="col-md-12">
 												<div class="col-md-6">
@@ -248,17 +268,15 @@ h1.letras {
 						</div><!--/col-md-12--> 
 					</div><!--/row--><br><br><br><br><br><br><br><br><br><br><br><br>
 					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-					<p class="firmaPa1 center cafirmaP"></p>
-																  
-					<p class="firmaDoc center cafirmaDoc"></p></p>
-					
+					<p class="firmaPa1 center cafirma1"></p>										  
+					<p class="firmaDoc center cafirma2"></p></p>
 					<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 				</div><!--/page-content end--> 
 		  	</div><!--/main-content end--> 
 		</div>
   	</div>
   	<!-- Modal -->
-	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade ocultarIm" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
 		<div class="vertical-alignment-helper">
 		  <div class="modal-dialog vertical-align-center modal-sm ">

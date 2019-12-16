@@ -8,7 +8,11 @@
   <style type="text/css">
 	@media print{
 	  @page {
-		seze: A4 landscape;
+		size:  A4;
+          page-size: 190mm;
+          page-size: auto;
+		margin: 0;
+
 	}
 	.margeni{
 
@@ -21,11 +25,34 @@
 	  border-bottom-style: dotted;
 	  border-left-style: solid; 
 	}
+	.ordendetitulo{
+        position:static;
+        margin-top: 15%;
+    }
 	#sacar{
 			height: 9%;
-		
-			overflow-x: hidden;
-		}
+		width: 95%;
+		margin: 0;
+		overflow-x: hidden;
+    	margin-left: 3%;
+    	margin-right: 3%;
+    }
+    #table1 {
+      width: 100%;
+      margin: 0;
+    }
+    #tdi {
+
+      	width: 10%;
+  		margin: 0px;
+  		padding: 1px;
+  		padding-top: 1%;
+	}
+	#sinMargen2{
+    
+ 	top: 0%;
+  	 margin-left: 0%;
+	}
   }
 	</style>
 
@@ -63,7 +90,7 @@ h1.letras {
 <link rel="stylesheet" type="text/css" href="/css/imp_rec_farm.css" media="print" /> 
 <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   	<div class="wrapper" id="medicamentos">
     	<div id="ocultoI" class="header_bar">
       		<div class="brand">
@@ -114,29 +141,38 @@ h1.letras {
 		  		</div>
       		</div>
     		<!--Contenido-->
-    		<div id="sinMargen1" class="contentpanel"><br>
+    		<div id="sinMargen2" class="contentpanel"><br>
 				<!--Formulario-->
-				<div id="margendiv" class="container clear_both padding_fix">
+				<div id="" class="container clear_both padding_fix">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="block-web">
-								<div id="ocultoI" class="header">
-							  		<div class="actions">  </div>
-							  		<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>   Medicamentos Vencidos</h2>
-								</div>
+								<div class="head">
+									<div class="actions">  
+										<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<P class="dondeES"></P>
+										<p class="telefo"></p>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+										<p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+									</div>
+									<div id="ocultoI" class="header">
+										<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>   Medicamentos Vencidos</h2>
+									</div>  
+							  	</div>
+							
 								<div class="porlets-content">
 							  		<div class="panel-body">
-										   <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-									<div class="dim2 posiondeImagen">
+										<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										<div class="dim2 posiondeImagen">
 											.
 											<img class="oculVistaReal "  src="/images/hospital1.png" />
-										  </div>
-										  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-										  <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-										  <h4 class="texTitulo3 text-center"></h4>
-									<h5 class="texTitulo1 text-center"></h5>
-									
-												  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+											<p class="hospitalI"></p>
+										</div>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+										<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+										  	<h4 class="texTitulo3 ordendetitulo text-center"></h4>
+											<h5 class="texTitulo1 text-center"></h5>
+										<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 										<form id="ocultoI"  @submit="list_fecha" method="POST" parsley-validate novalidate>
 											<div class="col-md-12">
 											  	<div class="col-md-6">
@@ -175,19 +211,19 @@ h1.letras {
 										</form>
 									</div>  
 									<div id="sacar" class="table-responsive">
-											<table  class="table table-bordered"   >
+										<table id="table1" class="table table-bordered"   >
 									  		<thead>
 												<tr>
-													<th>#</th>
-													<th>Codigo</th>
-													<th>Descripcion</th>
-													
-													<th>Forma Farmaceutica</th>
-													<th>Cantidad</th>
-													<th>Fecha Vencimiento</th>
-													<th>Vencio hace</th>
-													<th>Precio de Compra</th>
-													<th>Precio de Venta</th>
+													<th class="tamm">#</th>
+													<th class="tamm">Codigo</th>
+													<th class="tamm">Descripcion</th>
+												
+													<th class="tamm">Forma Farmaceutica</th>
+													<th class="tamm">Cantidad</th>
+													<th class="tamm">Fecha Vencimiento</th>
+													<th class="tamm">Vencio hace</th>
+													<th class="tamm">Precio de Compra</th>
+													<th class="tamm">Precio de Venta</th>
 												</tr>
 											</thead>
 									  		<tbody>
