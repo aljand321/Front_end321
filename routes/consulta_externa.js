@@ -1053,7 +1053,11 @@ router.get('/HistorialGeneral/:token_id/:token_partial', (req,res) => {
   const { token_id,token_partial } = req.params
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
 
-    res.render('consulta_externa/HistorialGeneral')
+      res.render('consulta_externa/HistorialGeneral',{
+        data_doc: data_user[token_id],
+      })
+    }else{
+      res.redirect('/');
     }
 });
 
@@ -1061,8 +1065,12 @@ router.get('/ReporEnfermedades/:token_id/:token_partial', (req,res) => {
   const { token_id,token_partial } = req.params
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
 
-    res.render('consulta_externa/ReporEnfermedades')
-    }
+    res.render('consulta_externa/ReporEnfermedades',{
+      data_doc: data_user[token_id],
+    })
+  }else{
+    res.redirect('/');
+  }
 });
 
 module.exports = router;

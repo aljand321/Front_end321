@@ -38,7 +38,7 @@
             <div class="header_top_bar">
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
                 <div class="top_right_bar">
-                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
                             <li> <a href="javascript:void(0);"data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
@@ -51,18 +51,18 @@
             <div class="left_nav">
                 <div class="left_nav_slidebar">
                     <ul>
-                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio</span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
                         <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
                                 <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b></a> </li>
                             </ul>
                         </li>
-                        <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
-                            <ul >
-                                <li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Pacientes</b> </a> </li>
-								<li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de Consulta</b> </a> </li>
-                            </ul>
-                        </li>
+                        <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/consulta_externa/HistorialGeneral/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes </b>  </a> </li>
+								<li> <a href="/consulta_externa/ReporEnfermedades/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cons.</b>  </a> </li>
+							</ul> 
+						</li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 <div class="container clear_both padding_fix col-lg-8"><br>
                     <div class="col-lg-12 block-web"> 
                         <div class="header ">
-                            <div class="info2 blue_symbols "> <i class="fa fa-user-md icon "></i></div> <br>
+                            <div class="info2 blue_symbols "> <i class="fa fa-user-md icon "></i></div> 
                             <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa </h2>          
                         </div>
                         <!-- 
@@ -80,7 +80,7 @@
                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                         -->
-                        <div class="row "><br>
+                        <div class="row "><br><br>
                             <input type="hidden"  :value="id_medico = '<%=data_doc.data.medico.id%>'">  
                             <input type="hidden"  :value="id_cita = '<%=cita[0].id%>'">  
                             <input type="hidden"  :value=" tipoConsulta = '<%=cita[0].especialidad%>'" > 
@@ -485,16 +485,16 @@
                             <div class="">
                                 <div class="tab-content">
                                     <div class="" id="general">
-                                        <form @submit="insertar_examen_general" method='POST'>
+                                        <form @submit="insertar_examen_general" method='POST' parsley-validate novalidate>
                                             <div class="container-fluid  ">
                                                 <div class="col-md-20 ">
                                                     <div class="col-md-6">
                                                         <div class="col-md-6 ">
-                                                            <label>Frec. Cardiaca(lat/min):</label>
+                                                            <label>Frec. Cardiaca(lat/min)</label>
                                                             <input type="number" v-model="frecuencia_cardiaca" data-decimals="2" min="1" max="3" step="0.01" class="form-control" ></input>
                                                         </div>
                                                         <div class="col-md-6 ">
-                                                            <label>Frec.Respiratoria(rep/min):</label>
+                                                            <label>Frec.Respiratoria(rep/min)</label>
                                                             <input type="number" v-model="respiracion" data-decimals="2" min="1" max="3" step="0.01" class="form-control"  ></input>
                                                         </div>
                                                         <div class="col-md-6 ">
@@ -502,37 +502,37 @@
                                                             <input class="form-control" v-model="pulso" type='text' name='apellidom' placeholder="">
                                                         </div>
                                                         <div class="col-md-6 " >
-                                                            <label>Estado Nutricional:</label>
+                                                            <label>Estado Nutricional</label>
                                                             <input  class="form-control" type='text' v-model="estado_nutricional">
                                                         </div>
                                                         <div class="">
-                                                            <label> Presión Arterial Brazo Isquierdo(mmHg):</label>
+                                                            <label> Presión Arterial Brazo Isquierdo(mmHg)</label>
                                                             <input type="text" class="form-control" v-model="presion_brazo_isquierdo" ></input>
                                                         </div>
                                                         <div class="">
-                                                            <label>Presión Arterial Brazo Derecho(mmHg):</label>
+                                                            <label>Presión Arterial Brazo Derecho(mmHg)</label>
                                                             <input type="text" class="form-control" v-model="presion_brazo_derecho" ></input>
                                                         </div>                
                                                     </div>
                                                     <div class="col-md-6 ">
                                                         <div class="col-md-6 row ">
-                                                            <label>Peso(kg):</label> 
+                                                            <label>Peso(kg)</label> 
                                                             <input type="number" v-model="peso"  data-decimals="2" min="10" max="500" step="0.1"class="form-control" maxlength="5">
                                                         </div>
                                                         <div class="col-md-6  ">
-                                                            <label>Talla(m):</label> 
+                                                            <label>Talla(m)</label> 
                                                             <input class="form-control" v-model="talla" type='text' data-decimals="2" min="1" max="3" step="0.01" class="form-control" maxlength="3">
                                                        </div>
                                                         <div class="col-md-6 row ">
-                                                            <label >IMC:</label> 
+                                                            <label >IMC</label> 
                                                             <input class="form-control" v-model="imc" placeholder="">
                                                         </div>
                                                         <div class="col-md-6 ">
-                                                            <label>Temp.(°C):</label> 
+                                                            <label>Temp.(°C)</label> 
                                                             <input type="number" v-model="temperatura" data-decimals="2" min="10" max="100" step="0.1" class="form-control" maxlength="5">
                                                         </div>
                                                         <div class="col-sm-12 row">
-                                                            <label class="control-label">Observaciones:</label>
+                                                            <label class="control-label">Observaciones</label>
                                                             <textarea class="form-control" v-model="otros" ></textarea>
                                                         </div>
                                                     </div>

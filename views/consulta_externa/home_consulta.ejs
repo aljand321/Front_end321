@@ -112,7 +112,7 @@
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
 				<div class="top_right_bar">
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-						<img src="/images/admin.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b class="caret"></b> </a>
+						<img src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
@@ -131,7 +131,7 @@
 								<li> <a href="/consulta_externa/lista_pacientes/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Consultas</b> </a> </li>
 							</ul>
 						</li>
-						<li class=""> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
 								<li> <a href="/consulta_externa/HistorialGeneral/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes </b>  </a> </li>
 								<li> <a href="/consulta_externa/ReporEnfermedades/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cons.</b>  </a> </li>
