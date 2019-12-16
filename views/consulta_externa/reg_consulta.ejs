@@ -57,11 +57,10 @@
                                 <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b></a> </li>
                             </ul>
                         </li>
-                        <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+                        <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul >
-                                <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
-                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
+                                <li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Pacientes</b> </a> </li>
+								<li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de Consulta</b> </a> </li>
                             </ul>
                         </li>
                     </ul>
@@ -113,7 +112,7 @@
                                                         <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4 col-sm-4">
+                                                <div class="col-sm-4">
                                                     <div class="entrada">
                                                         <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
                                                         <input type="hidden" name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
@@ -149,14 +148,15 @@
                                                 <div class=" col-sm-14 row">
                                                     <div class="col-sm-2 ">
                                                         <div class="entrada">
-                                                            <label class="">Hora de Consulta:</label>
-                                                            <p><%=cita[0].hora.split("/")[0]%></p>
+                                                            <label class="">Hora de la Consulta:</label>
+                                                            <p><b><%=cita[0].hora.split("/")[0]%></b></p>
                                                             <input type="hidden" name="hora" value="<%=cita[0].hora%>">        
                                                         </div>                               
                                                     </div>
                                                     <div class="col-sm-9 text-center">
                                                         <div class="entrada ">
-                                                            <label class="">Especialidad:</label><p><b><%=cita[0].especialidad%></b></p>                                                                     
+                                                            <label class="">Especialidad:</label>
+                                                            <p><b><%=cita[0].especialidad%></b></p>                                                                     
                                                         </div>
                                                     </div> 
                                                 </div> 
@@ -180,8 +180,8 @@
                                         <ul>
                                             <li><a href="/datos_generales_paciente/lista_antecedentes/<%=cita[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
                                             <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=cita[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-                                          <!--<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=cita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>-->
-                                            <li href="javascript:void(0);"  data-toggle="modal" data-target="#ExamenFisico"><a  ><i class="fa fa-users"></i>Examen General</a></li>
+                                          <!--<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=cita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
+                                            <li href="javascript:void(0);"  data-toggle="modal" data-target="#ExamenFisico"><a  ><i class="fa fa-users"></i>Examen General</a></li>-->
                                         </ul>
                                     </div>
                                 </div>

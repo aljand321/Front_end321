@@ -63,7 +63,7 @@
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
                 <div class="top_right_bar">
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                        src="/images/medico.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%>
+                        src="/images/admin.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%>
                         </span> <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
@@ -84,11 +84,10 @@
                                 </li>
                             </ul>
                         </li>  
-                        <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+                        <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul >
-                                <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
-                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
+                                <li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Pacientes</b> </a> </li>
+								<li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de Consulta</b> </a> </li>
                             </ul>
                         </li>  
                     </ul>
@@ -102,8 +101,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 block-web">
                                         <div id="ocultoI" class="header">
-                                            <div class="info blue_symbols "><i class="fa fa-file-text icon "></i> </div>
-                                            <h2 id="ocultoI" class="content-header "> Consulta Externa /<span class="semi-bold"> Papeleta Internación</span></h2>
+                                            <h2 id="ocultoI" class="content-header"><div class="info2 blue_symbols"><i class="fa fa-file-text icon "></i></div> Consulta Externa /<span class="semi-bold"> Papeleta Internación</span></h2>  
                                         </div> 
                                         <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
 									    <div class="dim2 posiondeImagen">.
@@ -323,21 +321,8 @@
                                                                         </div>
                                                                     </form>
                                                                     <% } %>
-                                                        <div id="ocultoI" class="container-fluid">
-                                                            <div class="row">
-                                                                <div class="col-xs-12">
-                                                                    <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-
-                                                                        <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i>  Datos generales</a></li>
-                                                                        <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecendentes Personales</a></li>
-                                                                        <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecentes Famliares</a></li>
-
-                                                                    </ul>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                </div>
-                                            </div>
 
                                             
                                             <div class="tab-pane fade" id="list">
@@ -469,7 +454,7 @@
     <!--====== Scripts -->
     <%- include("../partials/scripts") -%>
     <style >
-    /*  <%if (resp[0] != null) { %> */
+    /*  <%if (resp != "") { %> */
         @media print{
             .tituloDiagnostico:before {
                 content: " Dignóstico";
@@ -488,7 +473,7 @@
                 padding-left: 5%;
             }
             .areInternacion:before {
-                content: "Áre de Internación: <%=especialidad[i].nombre%>";
+                content: "Áre de Internación: <%=especialidad[0].nombre%>";
                 font-weight: negrita;
                 color:black;
                 width: 50%;   

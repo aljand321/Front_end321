@@ -109,8 +109,8 @@
                         </li>
 						<li class=""> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte Enferm.</b> </a> </li>
-								<li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de consulta</b> </a> </li>
+								<li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Pacientes</b> </a> </li>
+								<li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de Consulta</b> </a> </li>
 							</ul> 
 						</li>
 					</ul>
@@ -187,7 +187,7 @@
 																				</div>	
 																			</div>
 																			<div id="" class="col-md-4 his">
-																				<label class=" ">Nombre Completo:</label><p><b><%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%></b></p>
+																				<label class=" ">Paciente:</label><p><b><%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%></b></p>
 																				<input type="hidden" name="nombre apellidop apellidom" 
 																					value="<%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%>"
 																					class="form-control " readonly="">
@@ -199,7 +199,7 @@
 																			<div class="col-md-4 row his">
 																				<div class=" ">
 																					<div class="">
-																						<label class="">Profecional Médico:</label><p><b><%=ConsultaOnly[0].Citas_Medica.medico%></b></p>
+																						<label class="">Médico:</label><p><b><%=ConsultaOnly[0].Citas_Medica.medico%></b></p>
 																						<input type="hidden" :value="data_receta.doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
 																					</div>
 																				</div>
@@ -296,7 +296,7 @@
 																				   </div>
 																				   <div id="ocultoI" class="col-sm-2 col-sm-6">
 																					   <div class="entrada">
-																						   <h6 class="">Duracion: </h6>
+																						   <h6 class="">Duración: </h6>
 																						   <input class="form-control" v-model="lista.duracion" onkeyup="mayus(this);">                                                           
 																					   </div>
 																				   </div>
@@ -320,7 +320,7 @@
 																										   <th>Medicamento</th>
 																										   <th>Dosis</th>
 																										   <th>Frecuencia</th>
-																										   <th>Duracion</th>
+																										   <th>Duración</th>
 																										   <th>Cantidad</th>
 																										   <th class="ocultartabla">Quitar</th>
 																									   </tr>
@@ -413,7 +413,7 @@
 																</div>
 																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" ">Duracion: </h6>
+																		<h6 class=" ">Duración: </h6>
 																		<input class="form-control" v-model="lista.duracion" onkeyup="mayus(this);">                                                           
 																	</div>
 																</div>
@@ -438,7 +438,7 @@
 																						<th>Medicamento</th>
 																						<th>Dosis</th>
 																						<th>Frecuencia</th>
-																						<th>Duracion</th>
+																						<th>Duración</th>
 																						<th>Cantidad</th>
 																						<th id="ocultoI">Quitar</th>
 																					</tr>
@@ -488,7 +488,6 @@
 																<th>#</th>
 																<th>De:</th>
 																<th>N° Historia</th>
-																
 																<th>Fecha</th>
 																<th>Doctor</th>
 																<th class="text-center" WIDTH="20%">Opciones </th>
@@ -541,11 +540,11 @@
 																			<p></p>
 																			<span></span>
 																			<span style="color: rgb(21, 21, 149)">N° de Historial:  </span> {{receta_id.historiaClinica}}<br>
-																			<span style="color: rgb(21, 21, 149)">Nombre Completo:</span>  <%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%><br>
+																			<span style="color: rgb(21, 21, 149)">Paciente:</span>  <%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%><br>
 																			<span style="color: rgb(21, 21, 149)">Fecha de la Receta:</span>  {{receta_id.fecha}} <br>
-																			<span style="color: rgb(21, 21, 149)"> Nombre del Médico:</span> {{receta_id.doctor}}<br>
+																			<span style="color: rgb(21, 21, 149)">Médico:</span> {{receta_id.doctor}}<br>
 																			<span style="color: rgb(21, 21, 149)">Especialidad:</span>  {{receta_id.tipoConsulta}}<br>
-																			<span style="color: rgb(21, 21, 149)">Medicamento:</span>
+																			<span style="color: rgb(21, 21, 149)">Medicamentos:</span>
 																			<div class="col-lg-12"> 
 																				<section class="panel default blue_title h2">
 
@@ -558,7 +557,7 @@
 																								<th>Medicamento</th>
 																								<th>Dosis</th>
 																								<th>Frecuencia</th>
-																								<th>Duracion</th>
+																								<th>Duración</th>
 																								<th>Cantidad</th>																						
 																						  	</tr>
 																						</thead>
@@ -573,26 +572,17 @@
 																						  	</tr> 																				  
 																						</tbody>
 																					  </table>
-																				  
 																					</div>
 																				</section>
 																			</div>
 																		</div>
 																	</div>
-																	
 																</div>
 															</div>
 														</div>
-														
 													</div>
 												</div>
-									  
 											</div>
-											<div class="modal-footer">
-											  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											 
-											</div>
-									  
 										</div>
 									</div>
 									</div>
