@@ -106,10 +106,8 @@
 			<div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-              </ul>
+            <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
+              
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
@@ -169,13 +167,13 @@
                             <% if (OnlyC == null) { %>
                             <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                               <div class="form-group">
-                                <label class=" col-sm-4 control-label">Titulo de Cuaderno :</label>
+                                <label class=" col-sm-4 control-label">Titulo de Cuaderno </label>
                                 <div class="col-sm-4">
                                   <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo"  onkeyup="mayus(this)" autofocus />
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-sm-4  control-label">Grupo de Asociado :</label>
+                                <label class="col-sm-4  control-label">Grupo de Asociado </label>
                                 <div class="col-sm-4">
                                   <select class="form-control" id="source" name="grupo" required placeholder="" >
                                     <option value="" selected disabled hidden >--Seleccione--</option>
@@ -196,13 +194,13 @@
                             <% } else { %>           
                             <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC.data[0].id%>/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                               <div class="form-group">
-                                <label class="col-sm-4 control-label">Titulo de Cuaderno :</label>
+                                <label class="col-sm-4 control-label">Titulo de Cuaderno </label>
                                 <div class="col-sm-4">
                                   <input type="text" name="titulo" value="<%=OnlyC.data[0].titulo%>" class="form-control" parsley-trigger="change"  name="nombre" required placeholder onkeyup="mayus(this)" />
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class=" col-sm-4 control-label">Grupo de Asociado :</label>
+                                <label class=" col-sm-4 control-label">Grupo de Asociado </label>
                                 <div class="col-sm-4">
                                   <select class="form-control" id="source" name="grupo" required placeholder="" >
                                     <option ><%=OnlyC.data[0].grupo%></option>
