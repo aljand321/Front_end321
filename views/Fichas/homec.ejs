@@ -2,8 +2,8 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>Fichas</title>
+<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+<title>Cajas</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
   <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
   <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -17,7 +17,6 @@
   <link rel="stylesheet" href="/plugins/scroll/nanoscroller.css">
   <link href="/plugins/calendar/fullcalendar.css" rel="stylesheet" type="text/css" />
   <link href="/plugins/calendar/fullcalendar.print.css" rel="stylesheet" type="text/css" />
-
   <style>
       .info2{ border-radius:100%; float: left; height:80px; width:80px; }
       .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -30,19 +29,15 @@
       -moz-box-sizing: border-box;
       box-sizing: border-box;
     }
-    
-    
     .widget {
       width: 80%;
       margin: 2em;
       /*margin:32px; */
     }
-    
     .widget p {
       display: inline-block;
       line-height: 1em;
     }
-    
     .fecha {
       font-family: Oswald, Arial;
       text-align: center;
@@ -53,7 +48,6 @@
       padding: 20px;
       width: 100%;
     }
-    
     .reloj {
       font-family: Oswald, Arial;
       width: 100%;
@@ -62,11 +56,9 @@
       text-align: center;
       background: rgba(0,0,0,.5);
     }
-    
     .reloj .caja-segundos {
       display: inline-block;
     }
-    
     .reloj .segundos,
     .reloj .ampm {
       font-size: 2rem;
@@ -88,10 +80,7 @@
       text-align: center;
     }
     </style>
- <script>
-    
-    
-      
+ <script> 
       function delete_local_storage(){
         console.log ("ssss")
         localStorage.removeItem('data');
@@ -105,109 +94,87 @@
     </script>
 <%- include("../partials/head") -%>
 </head>
-<body class="light_theme  fixed_header left_nav_fixed" onload="startTime()">
-<div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
-  <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
-    <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
-    </div>
-    <!--\\\\\\\ brand end \\\\\\-->
-    <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-    
-      <div class="top_right_bar">
-        
-        <div class=" user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-          <img src="/images/cajera.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i>Salir</a>  </li>
-          </ul>
-        </div> 
+<body class="light_theme  fixed_header left_nav_fixed" onload="startTime()">  
+  <div class="wrapper">
+    <div class="header_bar">
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <div class="header_top_bar">
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="top_right_bar">
+          <div class=" user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+            <img src="/images/cajera.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i>Salir</a>  </li>
+            </ul>
+          </div> 
+        </div>
       </div>
     </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
-  <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
-    <div class="left_nav">
-
-      <!--\\\\\\\left_nav start \\\\\\-->
-    
-      <div class="left_nav_slidebar">
-        <ul>
-          <li class="left_nav_active theme_border"><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul>
-              <li> <a href="/paciente/citas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
-              
-
+    <div class="inner">
+      <div class="left_nav">
+        <div class="left_nav_slidebar">
+          <ul>
+            <li class="left_nav_active theme_border"><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consultas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/paciente/citas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Médicas</b> </a> </li>
             </ul>
-          </li>
-          <li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
-            class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul >
-                <li> <a href="/paciente/ReporConsultorio/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul >
+                <li> <a href="/paciente/ReporConsultorio/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes por Cons. </b> </a></li>
                 <!-- <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li> -->
                 <li> <a href="/paciente/ReporCita/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
-            </ul>
-        
-        </li>
-         
-        </ul>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
-
-        <div class="contentpanel">
-        <div class="container clear_both padding_fix ">
-          <br>
+      <div class="contentpanel">
+        <div class="container clear_both padding_fix "><br>
           <div class="row">
-              <div class="user-profile-sidebar profile_widget">
-                  <div class="row"> <img src="/images/medico.png"> 
-                    <div class="user-identity"> 
-                      <h4>Bienvenido <strong><%=resp.nombre%> <%=resp.apellidop%></strong></h4>
-                      <p><i class=""></i> </p>
-                    </div>
-                  </div>
-                </div><br>
-            <div class="col-md-12 ">
-                <div class="col-sm-3 col-sm-6"data-target="#myModal2" data-toggle="modal">
-                    <div class="information blue_info">
-                      <div class="information_inner">
-                      <div class="info2 blue2_symbols"><i class="fa fa-user-md icon"></i></div>
-                        <span> MÉDICO</span>
-                        <h1 class="bolded"><%=med%></h1>
-                      </div>
-                    </div>
-                  </div>
-              <div class="col-sm-3 col-sm-6"  data-target="#myModal7" data-toggle="modal">
-                <div class="information silver_info">
-                  <div class="information_inner">
-                    <div class="info2 silver_symbols"><i class="fa fa-plus-square icon"></i></div>
-                    <span>ESPECIALIDADES</span>
-                    <h1 class="bolded"><%=espe%></h1>
-                  </div>
+            <div class="user-profile-sidebar profile_widget">
+              <div class="row"> <img src="/images/l-image.png"> 
+                <div class="user-identity"> 
+                  <h4>Bienvenido <strong><%=resp.nombre%> <%=resp.apellidop%></strong></h4>
+                  <p><i class=""></i> </p>
                 </div>
               </div>
-              <div class="col-sm-3 col-sm-6"  data-target="#myModal8" data-toggle="modal">
-                <div class="information blues_info">
+            </div><br>
+            <div class="col-md-12 ">
+              <div class="col-sm-3 col-sm-6"data-target="#myModal2" data-toggle="modal">
+                <div class="information blue_info">
                   <div class="information_inner">
-                    <div class="info2 blues_symbols"><i class="fa fa-wheelchair icon"></i></div>
-                    <span>PACIENTES</span>
-                    <h1 class="bolded"><%=pacien%></h1>
+                    <div class="info2 blue2_symbols"><i class="fa fa-user-md icon"></i></div>
+                      <span> MÉDICO</span>
+                      <h1 class="bolded"><%=med%></h1>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-sm-6"  data-target="#myModal7" data-toggle="modal">
+                  <div class="information silver_info">
+                    <div class="information_inner">
+                      <div class="info2 silver_symbols"><i class="fa fa-plus-square icon"></i></div>
+                      <span>ESPECIALIDADES</span>
+                      <h1 class="bolded"><%=espe%></h1>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-sm-6"  data-target="#myModal8" data-toggle="modal">
+                  <div class="information blues_info">
+                    <div class="information_inner">
+                      <div class="info2 blues_symbols"><i class="fa fa-wheelchair icon"></i></div>
+                      <span>PACIENTES</span>
+                      <h1 class="bolded"><%=pacien%></h1>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
+            <div class="row">
             <div class="col-md-12">
               <div class="col-md-6">
                 <div class="widget">
@@ -219,7 +186,6 @@
                     <p>del </p>
                     <p id="year" class="year">2015</p>
                   </div>
-                
                   <div class="reloj">
                     <p id="horas" class="horas">11</p>
                     <p>:</p>
@@ -234,17 +200,14 @@
               </div>
               <div class="col-md-6 ">
                 <div id='calendar'></div>
-                <!--/calendar end-->
               </div>
             </div>
           </div>
         </div>
       </div>
-  <!--\\\\\\\ inner end\\\\\\-->
-</div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-</div>
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+  </div>
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -264,26 +227,21 @@
                 </tr>
               </thead>
               <tbody>
-               
-                  <tr>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center uppercase"></td>										
-                  </tr>
-          
+                <tr>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center uppercase"></td>										
+                </tr>        
               </tbody>
             </table>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
-        </div>
       </div>
     </div>
-</div>
-<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  </div>
+  <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -302,17 +260,13 @@
               </thead>
               <tbody>
                 <tr>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>						
-                  </tr>
-                
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>						
+                </tr>    
               </tbody>
             </table>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
         </div>
       </div>
     </div>
@@ -337,55 +291,41 @@
               </tr>
               </thead>
               <tbody>
-             
-                  <tr>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                  </tr>
-              
+                <tr>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
-        </div>
       </div>
     </div>
   </div>
-
-<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-  <div class="vertical-alignment-helper">
-    <div class="modal-dialog vertical-align-center modal-sm ">
-      <div class="modal-content">
-        <br>
+  <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+      <div class="modal-dialog vertical-align-center modal-sm ">
+        <div class="modal-content"><br>
           <div class="center">
             <i><img src="/images/salir.gif" width="100" height="100" /></i>
           </div>
           <div class="center">
             <h5><b>¿Cerrar Sesión?</b></h5>
           </div>
-        <div class="modal-footer">
-          <div class="center">
-            <a href="/delete_token/<%=data_token.token_id%>"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+          <div class="modal-footer">
+            <div class="center">
+              <a href="/delete_token/<%=data_token.token_id%>"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div> 
-</div>
-
-
-
-
-
+    </div> 
+  </div>
 <%- include("../partials/scripts") -%>
-
 <script>
     (function(){
     var actualizarHora = function(){
@@ -479,28 +419,8 @@
       });
   
 </script>
-
-
-
-
-
 <script src="/js/jquery-ui.custom.min.js"></script>
 <script src="/plugins/calendar/fullcalendar.min.js"></script>
 <script src="/plugins/calendar/external-draging-calendar.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

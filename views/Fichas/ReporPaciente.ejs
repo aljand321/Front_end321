@@ -1,72 +1,69 @@
 <!DOCTYPE >
 <html >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Reportes Pacientes</title>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-<style>
-        .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+  <title>Cajas</title>
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+  <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+  <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+  <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+  <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+  <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+  <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+  <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+  <style>
+      .info2{ border-radius:100%; float: left; height:80px; width:80px; }
       .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
-      </style>
-
+  </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <div class="header_bar">
-    <div class="brand">
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-    </div>
-    <div class="header_top_bar">
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-			
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
-          </ul>
-        </div> 
+  <div class="wrapper">
+    <div class="header_bar">
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <div class="header_top_bar">
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>    
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+            </ul>
+          </div> 
+        </div>
       </div>
     </div>
-  </div>
-  <div class="inner">
-    <div class="left_nav">
+    <div class="inner">
       <div class="left_nav">
-        <div class="left_nav_slidebar">
-			<ul>
-				<li><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
-				<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
-					<ul >
-						<li> <a href="/paciente/citas/"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Medicas</b> </a> </li>
-                	</ul>
-                </li>
-                <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
-                    class="plus"><i class="fa fa-plus"></i></span></a>
-                    <ul class="opened" style="display:block" >
-                            <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
-                            <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Pacientes </b> </a></li>
+        <div class="left_nav">
+          <div class="left_nav_slidebar">
+      			<ul>
+			      	<li><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+      				<li class=""> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consultas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+                <ul>
+                  <li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Médicas</b> </a></li>
+                </ul>
+              </li>
+              <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span></a>
+                <ul class="opened" style="display:block" >
+                  <li> <a href="/paciente/ReporConsultorio"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes por Cons. </b> </a></li>
+                  <li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reporte de Pacientes </b> </a></li>
                             <li> <a href="/paciente/ReporCita"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
                     </ul>
                 </li>

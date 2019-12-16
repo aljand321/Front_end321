@@ -1041,5 +1041,28 @@ router.get('/vue_one_medicamentos/:nombre_medicamento', (req,res) => {
     res.status(200).json(data)
   })
 })
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                         Reportes de consulta externa
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/HistorialGeneral/:token_id/:token_partial', (req,res) => {
+  const { token_id,token_partial } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    res.render('consulta_externa/HistorialGeneral')
+    }
+});
+
+router.get('/ReporEnfermedades/:token_id/:token_partial', (req,res) => {
+  const { token_id,token_partial } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    res.render('consulta_externa/ReporEnfermedades')
+    }
+});
 
 module.exports = router;
