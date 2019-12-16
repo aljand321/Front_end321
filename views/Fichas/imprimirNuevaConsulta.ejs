@@ -32,112 +32,106 @@
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-<style type="text/css">
-@media print{
-  @page {
-   
-    size:  A4 landscape;
-    size: 12in 7in;
-    top: 1cm;
-    margin: 1cm; 
-    border: 0px;
-   
-    border-top-style: dashed;
-    border-right-style: double;
-    border-bottom-style: dotted;
-    border-left-style: solid; 
-  
-  
-    margin-top: 0px;
-    border: 1px;
-    padding: 0px;
-    
-    width: 0px;
-    bottom: 0px;
-  
-    page-break-before: always
-      }
-      #ocultoI{
-    display: none;   
-  }
-  #derecha1{
-		position: absolute;
-width: 50%;
-    margin-top: 5%;
-    
-    margin-left: 70%;
-			
-  }
-  .abajo1{
-		position: absolute;
-		float: center;
-		top: 19%;
-		bottom: 1%;
-    margin-top: 10%;
-    width: 95%;
-			
-  }
-
-  .izquierda1{
-		position: static;
-    margin-top: 2%;
-  }
-  .abajotabla1{
-		position: static;
-    margin-top: 4%;
-  }
-  .ordendetitulo{
-        position:static;
-        margin-top: 5%;
-        font: small-caps 170%/100% serif;
-      }
-
-  /**----------------------tamaño de letra en tabla---------------------*/
-  .tamm2{
-        margin: 2%;
-        border: none;
-       
-        font: small-caps 110%/100% serif;
+    <style type="text/css">
+      @media print{
+        @page {
+         
+          size:  A4 landscape;
+          size: 12in 7in;
+          top: 1cm;
+          margin: 1cm; 
+          border: 0px;
+         
+          border-top-style: dashed;
+          border-right-style: double;
+          border-bottom-style: dotted;
+          border-left-style: solid; 
         
+        
+          margin-top: 0px;
+          border: 1px;
+          padding: 0px;
+          
+          width: 0px;
+          bottom: 0px;
+        
+          page-break-before: always
       }
-      .margeni{
-  
-	      width: 100%;
-        border: 1px;
-
-         position: relative;
-        border-top-style: dashed;
-
-        border-bottom-style: dotted;
-        border-left-style: solid; 
-      }
+      #derecha1{
+          position: absolute;
+      width: 50%;
+          margin-top: 5%;
+          
+          margin-left: 70%;
+            
+        }
+        .abajo1{
+          position: absolute;
+          float: center;
+          top: 19%;
+          bottom: 1%;
+          margin-top: 10%;
+          width: 95%;
+            
+        }
       
-    }
-    #derecha1{
-		position: absolute;
-
-    margin-top: 5%;
-    
-    margin-left: 70%;
-			
-  }
+        .izquierda1{
+          position: static;
+          margin-top: 2%;
+        }
+        .abajotabla1{
+          position: static;
+          margin-top: 4%;
+        }
+        .ordendetitulo{
+              position:static;
+              margin-top: 5%;
+              font: small-caps 170%/100% serif;
+            }
+      
+        /**----------------------tamaño de letra en tabla---------------------*/
+        .tamm2{
+              margin: 2%;
+              border: none;
+             
+              font: small-caps 110%/100% serif;
+              
+            }
+            .margeni{
+        
+              width: 100%;
+              border: 1px;
+      
+               position: relative;
+              border-top-style: dashed;
+      
+              border-bottom-style: dotted;
+              border-left-style: solid; 
+            }
+            
+          }
+          #derecha1{
+          position: absolute;
+      
+          margin-top: 0%;
+          
+          margin-left: 70%;
+            
+        }
       </style>
-
 
 
     <style>
         div.a {
             text-align: center;
         }
-
         h1.letras {
             font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-
         }
     </style>
     
 </head>
-<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
+<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()" >
 
  <!--\\\\\\\ contentpanel start\\\\\\-->
 <div class="container ">
@@ -147,7 +141,7 @@ width: 50%;
     <div class="tab-pane fade active in" id="new">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-xs-12"><BR>
+          <div class="col-xs-12">
 
             <div class="block-web">
               <div class="head">
@@ -180,19 +174,19 @@ width: 50%;
                           <h6 class="tamm2">POTOSI-BOLIVIA</h6>
                           <h6 class="tamm2">NOMBRE-CAJERO: <%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%> </h6>
                           <h6 class="tamm2">NIT/CI: <%=data_doc.data.personal.ci%>  </h6>
-                          <h6 class="tamm2">Fecha: <%=data_imprecion.data.createdAt%></h6>
+                          <h6 class="tamm2">Lugar y Fecha: <%=data_imprecion.data.createdAt%></h6>
                         </div>
                       </div>
                                      
-                      <div id="derecha1"class="">
-                        <div class="">
-                          <div class="">
+                      <div id="derecha1" class="col-sm-6 col-sm-6">
+                        <div class="form-group">
+                          <div class="entrada">
                          <!--especialidad   <h6 >NIT:</h6>
                             <h6 >N° Factura:</h6>
                             <h6 >N° Autorización:</h6>
                             <h6 >Servicios y/o actividades al IVA</h6> 
-                         --><br><br><br><br>
-                            <h6 class="tamm2">Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h6>
+                         --><br><br><br><br><br><br><br>
+                            <h6 class="tamm2" >Paciente: <%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%></h6 class="tamm2">
                             <h6 class="tamm2">NUM.H.C:  <%=paciente[0].ci%></h6>
                             <h6 class="tamm2">MEDICO: <%=data_imprecion.data.medico%>   </h6>
                                             
@@ -207,7 +201,7 @@ width: 50%;
                           <!--  <th>Descripción</th>
                             -->
                            
-                            <th >Especialidad</th>
+                            <th>Especialidad</th>
                             <th>Total</th>
                             
                           </tr>
@@ -253,11 +247,11 @@ width: 50%;
                         </div>
                       </div>
                     </div>
-                  --><br><br><br><br><br>
+                  -->
                     <div class="col-md-12"><br><br><br>
                       <h6 class="tamm">ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAIS EL SO ILICITO DE ESTA SERA SANCIONADO DE ACUEREO A LEY</h6>
                       <p id="ocultoI" class="text-center">
-                        <a href="/paciente/voler/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Salir</a>
+                        <a href="/paciente/voler/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" type="submit" class="btn btn-danger"><i class="fa fa-mail-reply"></i> &nbsp;&nbsp; Salir</a>
                         <button type="button" value="Imprimir" onclick="window.print()"	class="btn btn-success btn-raised"><i class="fa fa-print"></i> &nbsp;&nbsp;	Imprimir</button>
                       </p> 
                     </div>
@@ -273,9 +267,9 @@ width: 50%;
   </div>
 </div>
 	<!--====== Scripts -->
-  <script src="/js/fecha.js"></script>
+ 
   <script src="/js/get/consultaget.js"></script>
-
+  <script src="/js/fecha.js"></script>
 
   <script src="/js/jquery-2.1.0.js"></script>
   <script src="/js/bootstrap.min.js"></script>

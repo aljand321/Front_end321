@@ -306,6 +306,7 @@ router.post('/cita_medica/:id/:token_id/:token_part/:historial', (req,res) => {
     },1000); 
     res.redirect('/paciente/citaPAciente/'+id+'/'+token_id + "/" + token_part+'/'+historial); 
   }else{
+    console.log(req.body, "  esto es lo que quiero ver  <zzzzzzzzz<<<<z<z<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz<z<z<z<z<z<z")
     var data1;
     datos = {
       dia:req.body.dia,
