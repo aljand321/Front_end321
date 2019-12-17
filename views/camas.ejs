@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Salas</title>
+<title>Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -84,10 +84,7 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-              </ul>
+            <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
@@ -147,7 +144,7 @@
                             <%if (onlyCamas == null) { %>
                             <form class="form-horizontal group-border-dashed" action="/salas/camas/<%=salas[0].id%>/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                               <div class="form-group">
-                                <label class="col-sm-4 control-label">Sala:</label>
+                                <label class="col-sm-4 control-label">Sala </label>
                                 <div class="col-sm-3">
                                   <select class="form-control" id="source"  name="descripcion" required placeholder="">
                                     <option><%=salas[0].descripcionSala%></option>
@@ -155,7 +152,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-sm-4 control-label">Número de Cama:</label>
+                                <label class="col-sm-4 control-label">Número de Cama </label>
                                 <div class="col-sm-3">
                                   <input class="form-control" type="text" name="numeroCama" required placeholder="">
                                 </div>
@@ -170,7 +167,7 @@
                             <% } else { %>
                             <form class="form-horizontal group-border-dashed" action="/salas/updateCama/<%=onlyCamas[0].id%>" method="POST" parsley-validate novalidate>
                               <div class="form-group">
-                                <label class="col-sm-4 control-label">Sala:</label>
+                                <label class="col-sm-4 control-label">Sala </label>
                                 <div class="col-sm-3">
                                   <select class="form-control" id="source"  name="descripcion">
                                     <option><%=onlyCamas[0].descripcion%></option>
@@ -178,7 +175,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-sm-4 control-label">Número de Cama :</label>
+                                <label class="col-sm-4 control-label">Número de Cama </label>
                                 <div class="col-sm-3">
                                   <input class="form-control" type="text" name="numeroCama" value="<%=onlyCamas[0].numeroCama%>">
                                 </div>

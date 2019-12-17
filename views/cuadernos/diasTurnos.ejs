@@ -58,10 +58,7 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-              </ul>
+            <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
@@ -122,7 +119,7 @@
                             
                             <form class="form-horizontal group-border-dashed" action="/cuaderno/turnos/<%=id_fechas%>/<%=data_doc.data.token_id%>/<%=id_anterior%>/<%=id_volver_fechas%>" method="POST" parsley-validate novalidate>  
 				                      <div class="form-group">
-                                <label class="control-label col-md-4">Día de atención :</label>
+                                <label class="control-label col-md-4">Día de atención </label>
                                 <div class="col-md-3 ">
                                   <select  class="form-control" id="source" name="diasAten"required placeholder="" >
                                     <option value="" selected disabled hidden>--Seleccione--</option>
@@ -137,7 +134,7 @@
                                 </div>                      
                               </div><!--/form-group--> 
                               <div class="form-group">
-                                <label class="control-label col-md-4">Turno :</label>
+                                <label class="control-label col-md-4">Turno </label>
                                 <div class="col-md-3 ">
                                   <select class="form-control" id="source" name="turno" required placeholder="">                               
                                     <option value="" selected disabled hidden>--Seleccione--</option>
@@ -217,6 +214,7 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Intervalo de Atención</h4>
+            <br>
             <a @click="ver = !ver" class="btn btn-info btn-icon" ><i class="fa fa-plus-square"></i><span>&nbsp;</span>Nuevo</a>
             <div class="center">
               <span style="color: blue">{{msg}}</span>
@@ -228,7 +226,7 @@
                 <form class="form-horizontal"  parsley-validate novalidate>
                     <p class="center" style="color:red;">*Asegurece de haber eliminado todas las Horas anteriores*</p>
                     <div class="form-group">
-                      <label class="col-sm-4 control-label">Cantidad de Fichas:</label>
+                      <label class="col-sm-4 control-label">Cantidad de Fichas </label>
                       <div class="col-sm-6">
                         <select  class="form-control" v-model="cantiFicha">
                           <option value="" selected disabled hidden>--Seleccione--</option>
@@ -255,7 +253,7 @@
                       </div>
                     </div> 
                     <div class="form-group">
-                      <label  class="col-sm-4 control-label">Intervalo de horas:</label>
+                      <label  class="col-sm-4 control-label">Intervalo de horas </label>
                       <div class="col-sm-6">
                         <select class="form-control" id="source" v-model="intervalo">
                           <option value="" selected disabled hidden>--Seleccione--</option>

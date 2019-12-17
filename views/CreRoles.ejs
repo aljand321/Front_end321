@@ -93,10 +93,7 @@
       
       <div class="left_nav_slidebar">
         <ul>
-          <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul >
-              <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-            </ul>
+          <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
           </li>
           <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul  >
@@ -164,11 +161,11 @@
               <div class="porlets-content">
                 <form id="ocultoI" class="form-horizontal" action="/role/role/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                   <div class="form-group">
-                    <label  class="col-sm-4 control-label">Tipo de Rol:</label>
+                    <label  class="col-sm-4 control-label">Tipo de Rol </label>
                     <div class="col-sm-4">
                     <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="name">
-                      <option value="administrcion">ADMINISTRACIÓN</option>
-                      <option value="usuario">USUARIOS</option>
+                      <!--<option value="administrcion">ADMINISTRACIÓN</option>
+                      <option value="usuario">USUARIOS</option>-->
                       <option value="medico">MÉDICO</option>
                       <option value="fichaje">FICHAJE</option>
                       <option value="Almacen">ALMACEN</option>
