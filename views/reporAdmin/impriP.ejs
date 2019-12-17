@@ -27,7 +27,7 @@
         /* tamaño de página*/
         @page {
       
-        size: A4;
+        size: A4 landscape;
         size: 8.5in 11in;
       } 
       .scrollV{
@@ -80,10 +80,10 @@
     //window.location.replace('/')
   },500000);
 </script>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
     <!--\\\\\\\ wrapper Start \\\\\\-->
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <!--\\\\\\\ header Start \\\\\\-->
       <div class="brand">
         <!--\\\\\\\ brand Start \\\\\\-->
