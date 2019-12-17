@@ -30,7 +30,7 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 	<style>
 		div.a {
 			text-align: center;
@@ -60,7 +60,16 @@
 	console.log(data)
 	if (data == null){
 		window.location.replace('/')
-	}
+    }
+    function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  	}
+  	setTimeout(()=>{
+  	  delete_local_storage()
+  	  //window.location.replace('/')
+  	},500000);
 </script>
 <body class="light_theme  fixed_header left_nav_fixed">
 	<div class="wrapper"  id="options">
@@ -126,81 +135,206 @@
 
 					</ul>
 				</div>
-			</div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Doctor: {{data_one_internacion.doctor}}</h4>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <section class="panel default blue_border vertical_border h1">
+                                        <div class="task-header blue_task">Fecha de ingreso <span><i class="fa fa-clock-o"></i>{{data_one_internacion.fechaIngreso}}</span> </div>
+                                        <div class="row task_inner inner_padding">
+                                            <div class="col-sm-12">
+                                                <p>Nombre doctor: {{data_one_internacion.doctor}}</p>
+                                                <p>Especialidad: {{data_one_internacion.especialidad}}</p>
+                                                <p>Sala: {{sala}}</p>
+                                                <p>Cama: {{numero_cama}}</p>
+                                            </div>   
+                                            <div class="col-sm-12">
+                                                <p>Diagnostico de prescripcion:</p>
+                                                <p>{{data_one_internacion.diagnostico}}</p>
+                                                <p>Observaciones:</p>
+                                                <p>{{data_one_internacion.observacion}}</p>
+                                            </div>                                         
+                                        </div>
+                                        
+                                    </section>
+                                </div>
+                            </div>    
+                           
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			<div class="contentpanel"> <br> <br>
                 <!--  -->
+
                 <div class="row">
-                   
-                    <!-- 
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                                                FORMULARIO DE INTERNACION
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                     -->
-                    <div class="col-lg-8">
-                        <section class="panel default blue_title h2">
-                            
-                            <div class="panel-body">
-                                      
-                                      
-                                      
-                                <div id="accordion" class="panel-group  accordion accordion-color">
-                                    <div class="panel panel-default">
-                                      <div class="panel-heading success">
-                                        <h4 class="panel-title ">
-                                          <a href="#collapse4" data-parent="#accordion" data-toggle="collapse" class="">
-                                           Datos generales del paciente
-                                          </a>
-                                        </h4>
-                                      </div>
-                                      <div class="panel-collapse collapse in" id="collapse4" style="height: auto;">
-                                        <div class="panel-body">
-                                            <div class="col-md-12 panel-body">
-                                                <div class="col-md-12">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">N° Historial</label>
-                                                            <select class="form-control" name="historial">
-                                                                <option><%=paciente_data[0].numeroHistorial%></option>                                                                       
-                                                            </select>
-                                                        </div>            
-                                                        
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Fecha Nacimiento</label>
-                                                            <input class="form-control" type="text" readonly value="<%=paciente_data[0].fechanacimiento%>">    
-                                                        </div>
-                                                           
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group label-floating">
-                                                                <label class="control-label">Nombres y Apellidos</label>
-                                                                <input class="form-control" type="text" readonly value="<%=paciente_data[0].nombre%> <%=paciente_data[0].apellidop%> <%=paciente_data[0].apellidom%>">
-                                                        </div>
-                                                     
-    
+
+                        <div class="col-lg-14">
+                            <div class="col-md-12">
+                                <section class="panel default blue_title h2">
+                                 
+                                    <div class="panel-body">
+                                        <ul class="nav nav-tabs" id="myTab">
+                                            <li class="active"><a data-toggle="tab" href="#datas_p">Datos del paciente</a></li>
+                                            <li><a data-toggle="tab" href="#list">Lista de consultas</a></li>
                                             
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Trasladado de:</label>
-                                                            <select class="form-control" name="provieneDE">
-                                                                <option><%=one_traslado[0].enviado_de%></option>
-                                                                
-                                                            </select>
-                                                        </div>               
+                                        </ul>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div id="datas_p" class="tab-pane fade in active">
+                                                  <!-- 
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                                                            FORMULARIO DE INTERNACION
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                 -->
+                                                <section class="panel default blue_title h2">
+                            
+                                                    <div class="panel-body">
+                                                              
+                                                        <div id="accordion" class="panel-group  accordion accordion-color">
+                                                            <div class="panel panel-default">
+                                                              <div class="panel-heading success">
+                                                                <h4 class="panel-title ">
+                                                                  <a href="#collapse4" data-parent="#accordion" data-toggle="collapse" class="">
+                                                                   Datos generales del paciente
+                                                                  </a>
+                                                                </h4>
+                                                              </div>
+                                                              <div class="panel-collapse collapse in" id="collapse4" style="height: auto;">
+                                                                <div class="panel-body">
+                                                                    <div class="col-md-12 panel-body">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group label-floating">
+                                                                                    <label class="control-label">N° Historial</label>
+                                                                                    <select class="form-control" name="historial">
+                                                                                        <option><%=paciente_data[0].numeroHistorial%></option>                                                                       
+                                                                                    </select>
+                                                                                </div>            
+                                                                                
+                                                                                <div class="form-group label-floating">
+                                                                                    <label class="control-label">Fecha Nacimiento</label>
+                                                                                    <input class="form-control" type="text" readonly value="<%=paciente_data[0].fechanacimiento%>">    
+                                                                                </div>
+                                                                                   
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group label-floating">
+                                                                                        <label class="control-label">Nombres y Apellidos</label>
+                                                                                        <input class="form-control" type="text" readonly value="<%=paciente_data[0].nombre%> <%=paciente_data[0].apellidop%> <%=paciente_data[0].apellidom%>">
+                                                                                </div>
+                                                                             
+                            
+                                                                    
+                                                                                <div class="form-group label-floating">
+                                                                                    <label class="control-label">Trasladado de:</label>
+                                                                                    <select class="form-control" name="provieneDE">
+                                                                                        <option><%=one_traslado[0].enviado_de%></option>
+                                                                                        
+                                                                                    </select>
+                                                                                </div>               
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                
+                                                        </div>
+                                                              
                                                     </div>
+                                                </section>
+                                            </div>
+                                            <div id="list" class="tab-pane fade">
+                                               <!-- 
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                                                            lISTA DE INTERNACIONES DEL PACIENTE
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                 -->
+                                                <div class="col-md-12">
+                                                    <section class="panel default red_border vertical_border h1">
+                                                        <div class="block-web">
+                                                            <div class="header">
+                                                                <div class="actions"> <a href="#" class="minimize"><i class="fa fa-chevron-down"></i></a> <a href="#" class="refresh"><i class="fa fa-repeat"></i></a> <a href="#" class="close-down"><i class="fa fa-times"></i></a> </div>
+                                                                <h3>Lista de Internacines del paciente</h3>
+                                                            </div>
+                                                            <div class="porlets-content">
+                                                            
+                                                                <div class="container-fluid">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12">
+                                                                            <table class="display table table-bordered table-striped" id="dynamic-table">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="text-center">#</th>
+                                                                                        <th >N° de historia </th>
+                                                                                        <th >Fecha de Internacion</th>	
+                                                                                        <th >Sala</th>	
+                                                                                        <th >N° Cama</th>	
+                                                                                        <th >Doctor</th>
+                                                                                        <th class="text-center" WIDTH="20%">Ver</th>  
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <% if(paciente_internacion != null) { %>
+                                                                                    
+                                                                                        <% for(var i=0; i< paciente_internacion.length; i++) { %>
+                                                                                        <tr>
+                                                                                            <td><%= i + 1 %></td>
+                                                                                            <td><%=paciente_internacion[i].historial %></td>
+                                                                                            <td><%=paciente_internacion[i].fechaIngreso %></td>
+                                                                                            <td><%=paciente_internacion[i].Cama.Sala.descripcionSala %></td>
+                                                                                            <td><%=paciente_internacion[i].Cama.numeroCama %></td>
+                                                                                            <td><%=paciente_internacion[i].doctor %></td>
+                                                                                        
+                                                                                            <td class="text-center" ><a data-toggle="modal" data-target="#myModal" @click="one_papeleta_onternacion(<%=paciente_internacion[i].id%>)" class="btn btn-success"><i class="zmdi zmdi-refresh">ver</i></a></td>
+                                                                                            
+                                                                                            <!-- router.get('/internacion_traslado/:id_traslado/:historial/:id_especialidad/:token_id', (req,res) => { -->
+                                                                                        </tr>
+                                                                                        <% } %>
+                                                                                    <% } else { %>
+                                                                                        <tr>
+                                                                                            <td> no hay datos </td>
+                                                                                        </tr>
+                                                                                    <% } %>							
+                                                                                </tbody>
+                                                                            </table>     
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                 
+                                                            
+                                                            </div>
+                                                        </div>
+                                                    </section>
                                                 </div>
                                             </div>
+                                          
                                         </div>
-                                      </div>
                                     </div>
-                        
+                                </section>
+                            </div>                              
+                        </div>
         
-                            </div>
-                                      
-                                      
-                            </div>
-                        </section>
+                   
+                  
+                    <div class="col-lg-12">
+                       
                       <section class="panel green_border horizontal_border_2">
                         <div class="block-web">
                             <div class="header">
@@ -214,13 +348,7 @@
                                             <div class="row">
                                                 
                                                 <div class="col-xs-12">
-                                                        <% if(msg != null) { %>
-                                                            <% if(msg.data.success == true) { %>
-                                                              <span style="color: blue"> <%=msg.data.data_p%></span>
-                                                            <% } else { %>
-                                                              <span style="color: red"> <%=msg.data.data_p%></span>
-                                                            <% } %>  
-                                                          <% } %>
+                                                        
                                                         <%if(update == "") { %>
                                                             <%if (data_post == null) {%>
                                                                 
@@ -518,71 +646,7 @@
                         </div>
                       </section>
                     </div>
-                    <!-- 
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                                                lISTA DE INTERNACIONES DEL PACIENTE
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                     -->
-                    <div class="col-lg-4">
-                        <section class="panel default red_border vertical_border h1">
-                            <div class="block-web">
-                                <div class="header">
-                                    <div class="actions"> <a href="#" class="minimize"><i class="fa fa-chevron-down"></i></a> <a href="#" class="refresh"><i class="fa fa-repeat"></i></a> <a href="#" class="close-down"><i class="fa fa-times"></i></a> </div>
-                                    <h3>Lista de Internacines del paciente</h3>
-                                </div>
-                                <div class="porlets-content">
-
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                                    
-                                            <div class="col-xs-12">
-                                                <table class="display table table-bordered table-striped" id="dynamic-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center">#</th>
-                                                            <th >N° de historia </th>
-                                                            <th >Fecha de Internacion</th>	
-                                                            <th >Sala</th>	
-                                                            <th >N° Cama</th>	
-                                                            <th >Doctor</th>
-                                                            
-                                                            <th class="text-center" WIDTH="20%">Ver</th>  
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <% if(paciente_internacion != null) { %>
-                                                        
-                                                            <% for(var i=0; i< paciente_internacion.length; i++) { %>
-                                                            <tr>
-                                                                <td><%= i + 1 %></td>
-                                                                <td><%=paciente_internacion[i].historial %></td>
-                                                                <td><%=paciente_internacion[i].fechaIngreso %></td>
-                                                                <td><%=paciente_internacion[i].Cama.Sala.descripcionSala %></td>
-                                                                <td><%=paciente_internacion[i].Cama.numeroCama %></td>
-                                                                <td><%=paciente_internacion[i].doctor %></td>
-                                                               
-                                                                <td class="text-center" ><a href="/internaciones/internacion_traslado/<%=paciente_internacion[i].id_traslado%>/<%=paciente_internacion[i].historial %>/<%=paciente_internacion[i].id_especialidad%>/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="zmdi zmdi-refresh">ver</i></a></td>
-                                                                <!-- router.get('/internacion_traslado/:id_traslado/:historial/:id_especialidad/:token_id', (req,res) => { -->
-                                                            </tr>
-                                                            <% } %>
-                                                        <% } else { %>
-                                                            <tr>
-                                                                <td> no hay datos </td>
-                                                            </tr>
-                                                        <% } %>							
-                                                    </tbody>
-                                                </table>     
-                                            </div>
-                                        </div>
-                                    </div>                                                                 
-
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -602,7 +666,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="center">
-                      <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                      <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
                       <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
                     </div>
                 </div>
@@ -674,9 +738,32 @@
     <script src="/moment/locale/af.js"></script>
     <script src="/js/jPushMenu.js"></script>
     <script src="/js/side-chats.js"></script>
-    
+    <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 	<script src="/axios/dist/axios.min.js"></script>
-	<script src="/js/get/getECP.js"></script>
+    <script src="/js/get/getECP.js"></script>
+    <script>
+        /*  <%if(msg != null) { %> */
+            /*  <%if(msg.data.success == false) { %> */
+                msg_false()
+                 function msg_false(){
+                   swal.fire(
+                     'Error!',
+                     '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+                     'error'
+                   )
+                 }
+             /* <% } else {%> */
+                 msg_true()
+                 function msg_true(){
+                   swal.fire(
+                     'Success!',
+                     '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+                     'success'
+                   )
+                 }
+            /*  <% } %> */
+        /*  <% } %> */
+    </script>
 </body>
 </html>

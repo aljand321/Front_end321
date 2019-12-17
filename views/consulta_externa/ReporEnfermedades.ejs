@@ -1,57 +1,57 @@
 <!DOCTYPE >
 <html >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Reportes</title>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-<style>
-  .info2{ border-radius:100%; float: left; height:80px; width:80px; }
-  .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
-  .vertical-alignment-helper {
-		display:table;
-		height: 100%;
-		margin-left: 41%;
-	}
-	.vertical-align-center {
-		 /* To center vertically */
-		 display: table-cell;
-		 vertical-align: middle;
-		 text-align: center;
-	}
-</style>
-
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+  <title>Consulta</title>
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+  <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+  <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+  <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+  <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+  <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+  <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+  <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+  <style>
+    .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+    .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+    .vertical-alignment-helper {
+      display:table;
+      height: 100%;
+      margin-left: 41%;
+    }
+    .vertical-align-center {
+      /* To center vertically */
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <div class="header_bar">
-    <div class="brand">
+  <div class="wrapper">
+    <div class="header_bar">
+      <div class="brand">
       <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
     </div>
     <div class="header_top_bar">
       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
       <div class="top_right_bar">
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-          <img src="/images/medico.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span> John Doe</span> <b class="caret"></b> </a>
+          <img src="/images/medico.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
             <li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
@@ -66,61 +66,91 @@
       <div class="left_nav">
           <div class="left_nav_slidebar">
             <ul>
-              <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul >
-                  <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
-                </ul>
-              </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul >
-                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b></a> </li>
-                </ul>
-              </li>
-             
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul class="opened" style="display:block">
-                        <li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte Enferm.</b> </a> </li>
-                        <li> <a href="/paciente/ReporPacenA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Reporte de consulta</b> </a> </li>
-                    </ul>
-              </li>						
+                <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio  <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                  <ul >
+                    <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Consultas</b></a> </li>
+                  </ul>
+                </li>
+                <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
+                  <ul class="opened" style="display:block" >
+                    <li> <a href="/consulta_externa/HistorialGeneral/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes </b>  </a> </li>
+                    <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Cons.</b>  </a> </li>
+                  </ul> 
+                </li>						
             </ul>
           </div>
       </div>
     </div>
-    <div class="contentpanel">
-      <br>
+    <div class="contentpanel"><br>
       <div class="container clear_both padding_fix">
         <div class="row">
           <div class="col-md-12">
             <div class="block-web">
               <div class="header">
-                    <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                    <h3 class="content-header ">Reportes Enfermedades</h3>
+                <div class="info blue_symbols"><i class="fa fa-signal icon"></i></div>
+                <h2 class="content-header ">  Reportes de Consultas</h2>
               </div>
               <br>
               <br>
               <div class="porlets-content">
-                
+                  <form   id="ocultoI" action="" method="" parsley-validate novalidate>
+                    <div class="col-md-12">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">Fecha de inicio</label>
+                          <input  type="date" class="form-control" >
+                        </div><!--/form-group--> 
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">Fecha final</label>
+                          <input  type="date" class="form-control" >
+                        </div><!--/form-group-->
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label">Paciente <i class="fa fa-users"></i> :</label>
+                          <select name="id_proveedor" class="selectpicker" data-show-subtext="true" data-live-search="true">
+                              <option>paco</option>				
+                          </select>
+                        </div><!--/form-group-->
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+                              <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
+                              </div>
+                        </div><!--/form-group--> 
+                      </div>
+                    </div>
+                  </form>
               </div>
               <div class="table-responsive">
-                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                <table class="table table-bordered">
                   <thead>
                     <tr>
-                          <th class="text-center">Enfermedad</th>
-                          <th class="text-center">C10</th>	
-                          <th class="text-center">Cantidad de Pacientes</th>	
-                          <th class="text-center">Optiones</th>
+                    <th>N° de Historia</th>
+                    <th>Paciente</th>	
+                    <th>Fecha</th>	
+                    <th>Hora</th>
+                    <th>Médico</th>
+                    <th>Estado</th>
                     </tr>
                   </thead>
                   <tbody>
-                    
-                      <tr>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center">
-                          <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print"></i></a>
-                        </td>
+                    <tr>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center">
+                      <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print"></i></a>
+                    </td>
            
                   </tbody>
                 </table>

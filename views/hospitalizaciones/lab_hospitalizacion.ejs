@@ -53,6 +53,24 @@
 
 </head>
 
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	console.log(data)
+	if (data == null){
+		window.location.replace('/')
+	}
+	function delete_local_storage(){
+	console.log ("ssss")
+	localStorage.removeItem('data');
+	localStorage.removeItem('url');
+	  }
+	  setTimeout(()=>{
+		delete_local_storage()
+		//window.location.replace('/')
+	  },500000);
+</script>
+
 <body class="light_theme  fixed_header left_nav_fixed">
 	<!-- Content page-->
 	<div class="wrapper" >
@@ -76,7 +94,7 @@
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							
-							<li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+							<li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
 						</ul>
 					</div>
 				</div>

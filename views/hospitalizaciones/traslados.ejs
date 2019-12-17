@@ -72,6 +72,7 @@
             <div class="header_top_bar">
                 <!--\\\\\\\ header top bar start \\\\\\-->
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+				<a href="/internaciones/paciente_internacion/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </a>
 
                 <div class="top_right_bar">
 
@@ -269,7 +270,9 @@
                                                     <label>Area de traslado:</label><br>
                                                     <select v-model="idHist.id_especialidad">
                                                         <% for (var i = 0; i < especialidad.length; i++) { %>
+                                                            <%if (especialidad[i].nombre != 'EMERGENCIA' && especialidad[i].nombre != one_internacion[0].especialidad) { %>
                                                             <option value="<%=especialidad[i].id%>"><%=especialidad[i].nombre%></option>
+                                                            <% } %>
                                                         <% } %>
                                                     </select>
                                                 </div><!--/form-group-->
@@ -344,7 +347,9 @@
                                                         <option :value="idHist.id_especialidad">{{esp}}</option>
                                                         <option value="">-------------------------------</option>
                                                         <% for (var i = 0; i < especialidad.length; i++) { %>
-                                                            <option value="<%=especialidad[i].id%>"><%=especialidad[i].nombre%></option>
+                                                            <%if (especialidad[i].nombre != 'EMERGENCIA' && especialidad[i].nombre != one_internacion[0].especialidad) { %>
+                                                                <option value="<%=especialidad[i].id%>"><%=especialidad[i].nombre%></option>
+                                                            <% } %>
                                                         <% } %>
                                                     </select> 
                                                 </div><!--/form-group-->

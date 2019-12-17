@@ -1,4 +1,4 @@
-console.log("esto es lo que queiro")
+console.log("esto es lo que quiero")
 const recetas = new Vue({
     el: '#recetas', 
     data : () => ({
@@ -106,28 +106,28 @@ const recetas = new Vue({
                 //this.data_msg.msg_false = "Inserte nombre del medicamento"
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte nombre del medicamento </label>',
                     'error'
                 )
             }else if (this.lista.dosis == "" || this.lista.dosis == undefined){
                // this.data_msg.msg_false = "Inserte dosis"     
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte la dosis</label>',
                     'error'
                 )           
             }else if (this.lista.frecuencia == "" || this.lista.frecuencia == undefined){
                // this.data_msg.msg_false = "Inserte Frecuencia"  
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte la via de Administración</label>',
                     'error'
                 ) 
             }else if (this.lista.duracion == "" || this.lista.duracion == undefined){
                // this.data_msg.msg_false = "Inserte duracion"      
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte la duración</label>',
                     'error'
                 )            
             }else if(this.lista.cantidad == "" || this.lista.cantidad == undefined || isNaN(this.lista.cantidad)){
@@ -135,14 +135,14 @@ const recetas = new Vue({
                     //this.data_msg.msg_false = "Cantidad solo puede contener numeros"
                     swal.fire(
                         'Error!',
-                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        '<label style="color:red;">Cantidad solo puede contener numeros</label>',
                         'error'
                     )
                 }else{
                     this.data_msg.msg_false = "Inserte cantidad"
                     swal.fire(
                         'Error!',
-                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        '<label style="color:red;">Por favor inserte la cantidad</label>',
                         'error'
                     )
                 }                
@@ -192,7 +192,7 @@ const recetas = new Vue({
                     this.data_msg.msg_false = "Inserte la fecha actual por favor"
                     swal.fire(
                         'Error!',
-                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        '<label style="color:red;">Inserte la fecha actual </label>',
                         'error'
                     )
                 }else{
@@ -230,7 +230,7 @@ const recetas = new Vue({
                         }else{
                              swal.fire(
                                 'Error!',
-                                '<label style="color:red;">Inserte nombre del medicamento</label>',
+                                '<label style="color:red;">Inserte el nombre del medicamento</label>',
                                 'error'
                             )
                             /*console.log(data)
@@ -240,10 +240,10 @@ const recetas = new Vue({
                     })   
                 }                
             }else{
-                this.data_msg.msg_false = "Porfavor inserte medicamentos"
+                this.data_msg.msg_false = "Por favor inserte medicamentos"
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte medicamentos</label>',
                     'error'
                 )
                 console.log(this.data_msg.msg_false)
@@ -252,46 +252,46 @@ const recetas = new Vue({
         },
         insertar_update(){
             if(this.lista.medicamento == "" || this.lista.medicamento == undefined){
-                this.data_msg.msg_false = "Inserte nombre del medicamento"
+                this.data_msg.msg_false = "Inserte el nombre del medicamento"
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte nombre del medicamento</label>',
                     'error'
                 )
             }else if (this.lista.dosis == "" || this.lista.dosis == undefined){
                 this.data_msg.msg_false = "Inserte dosis"  
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte la dosis</label>',
                     'error'
                 )              
             }else if (this.lista.frecuencia == "" || this.lista.frecuencia == undefined){
-                this.data_msg.msg_false = "Inserte Frecuencia" 
+                this.data_msg.msg_false = "Inserte frecuencia" 
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte nombre la frecuencia</label>',
                     'error'
                 )  
             }else if (this.lista.duracion == "" || this.lista.duracion == undefined){
-                this.data_msg.msg_false = "Inserte duracion" 
+                this.data_msg.msg_false = "Inserte duración" 
                 swal.fire(
                     'Error!',
-                    '<label style="color:red;">Inserte nombre del medicamento</label>',
+                    '<label style="color:red;">Por favor inserte la duración</label>',
                     'error'
                 )                 
             }else if(this.lista.cantidad == "" || this.lista.cantidad == undefined || isNaN(this.lista.cantidad)){
                 if(isNaN(this.lista.cantidad)){
-                    this.data_msg.msg_false = "Cantidad solo puede contener numeros"
+                    this.data_msg.msg_false = "Cantidad solo puede contener números"
                     swal.fire(
                         'Error!',
-                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        '<label style="color:red;">Cantidad solo puede contener números</label>',
                         'error'
                     )
                 }else{
                     this.data_msg.msg_false = "Inserte cantidad"
                     swal.fire(
                         'Error!',
-                        '<label style="color:red;">Inserte nombre del medicamento</label>',
+                        '<label style="color:red;">Por favor inserte la cantidad</label>',
                         'error'
                     )
                 }

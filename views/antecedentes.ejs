@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Antecedentes</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+	<title>Consulta</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -14,7 +14,6 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-
 	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
 	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
 	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
@@ -35,46 +34,32 @@
 
 		h1.letras {
 			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-
 		}
 		.vertical-alignment-helper {
-		  display:table;
-		  height: 100%;
-		  margin-left: 41%;
+		  	display:table;
+		  	height: 100%;
+		  	margin-left: 41%;
 		}
 		.vertical-align-center {
-		  /* To center vertically */
-		  display: table-cell;
-		  vertical-align: middle;
-		  text-align: center;
+		  	/* To center vertically */
+		  	display: table-cell;
+		  	vertical-align: middle;
+		  	text-align: center;
 		}
 	</style>
 	<%- include("partials/head") -%>
 </head>
-
 <body class=" light_theme  fixed_header left_nav_fixed">
-	<!-- SideBar -->
-
-	<!-- Content page-->
-<div class="wrapper" id="antecedentes">
-	<!--\\\\\\\ wrapper Start \\\\\\-->
-	<div class="header_bar">
-			<!--\\\\\\\ header Start \\\\\\-->
+	<div class="wrapper" id="antecedentes">
+		<div class="header_bar">
 			<div class="brand">
-				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
-			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
-				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-				<div class="btn-group"><a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a></div>
+				<div class="btn-group"></div>
 				<div class="top_right_bar">
-
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/medico.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
-								class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
@@ -82,323 +67,209 @@
 					</div>
 				</div>
 			</div>
-			<!--\\\\\\\ header top bar end \\\\\\-->
-	</div>
-	<div class="inner" >
-		<!--\\\\\\\ inner start \\\\\\-->
-		<div class="left_nav">
-				<!--\\\\\\\left_nav start \\\\\\-->
-			<div class="left_nav_slidebar">
-					<ul>
-						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
-									class="left_nav_pointer"></span> <span class="plus"><i
-										class="fa fa-plus"></i></span> </a>
-							<ul>
-								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
-											class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
-							</ul>
-						</li>
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-									class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
-										class="fa fa-plus"></i></span></a>
-							<ul class="opened" style="display:block">
-								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
-											class="fa fa-circle"></i> <b class="theme_color">Listas de Citas </b>
-									</a> </li>
-							</ul>
-						</li>
-						<%- include("partials/footerDocotr") -%>
-					</ul>
-
-			</div>
 		</div>
-			<!--\\\\\\\left_nav end \\\\\\-->
-		<div class="contentpanel">
-				<!--\\\\\\\ contentpanel start\\\\\\-->
-			<div class="container-fluid clear_both padding_fix col-lg-12">
-				<br>
-				<div class="main-content ">
-					<div class="col-lg-12 block-web ">
-						<!-- Content page -->
-						<div  >				
-							<div class="header">
-								<div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
-									<h2 class="content-header "> Registro de Antecedentes</h2>
-							</div>
-								<h1 class="text-titles"><i class="fa fa-hospital "></i> </h1>  			
-						</div>
-					
+		<div class="inner" >
+			<div class="left_nav">
+				<div class="left_nav_slidebar">
+					<ul>
+						<li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio  <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b></a> </li>
+                            </ul>
+                        </li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/consulta_externa/HistorialGeneral/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes </b>  </a> </li>
+								<li> <a href="/consulta_externa/ReporEnfermedades/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cons.</b>  </a> </li>
+							</ul> 
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="contentpanel">
+				<div class="container-fluid clear_both padding_fix col-lg-12"><br>
 					<div class="main-content ">
-							<!-- Antecedentes de consultas-->
-						<section class="">
-						<div class="col-lg-12">
-								
-							<div  class="">
-								<div class="">
-									
-									<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
-									<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
-								<!--	<span style="color: red">{{msg_false}}</span>
-									<span style="color: blue">{{msg}}</span>
-								-->
-									<template v-if="antecedente_one == ''">
-
-									
-										<form @submit="reg_antecedentes" method="POST">
-
-											<div class="col-md-12">
+						<div class="col-lg-12 block-web ">				
+								<div class="header">
+									<div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
+									<h2 class="content-header">Consulta Externa /<span class="semi-bold"> Registro de Antecedentes</span></h2>
+								</div>	
+							<div class="main-content ">
+								<!-- Antecedentes de consultas-->
+								<section class="">
+									<div class="col-lg-12">
+										<div  class="">
 											<div class="">
-												
-											<div class=" ">
-												<div class=" row col-md-9 ">
-												<div class=" ">
-													<div class="col-sm-4 col-sm-4">
-														<div class="entrada ">
-															<label class=" ">N° de Historia:</label>
-															<input
-																value="<%=dataPaciente[0].numeroHistorial%>"
-																class="form-control" readonly=""
-																value="Read only text goes here">
-														</div>
-													</div>
-													<div class="col-sm-8 col-sm-9">
-														<div class="form-group">
-															<div class="entrada">
-																<label class=" ">Nombre Completo:</label>
-																	<input
-																		value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-																		class="form-control" readonly=""
-																		value="Read only text goes here">
+												<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
+												<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
+												<template v-if="antecedente_one == ''">
+													<form @submit="reg_antecedentes" method="POST">
+														<div class="col-md-12">
+															<div class="col-sm-4">
+																<div class="entrada ">
+																	<label class=" ">N° de Historia:</label>
+																	<input value="<%=dataPaciente[0].numeroHistorial%>" class="form-control" readonly="" value="Read only text goes here">
+																</div>
+															</div>
+															<div class="col-sm-4">
+																<div class="entrada">
+																	<label class=" "> Paciente:</label>
+																	<input value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>" class="form-control" readonly="" value="Read only text goes here">
+																</div>
+															</div>
+															<div class="col-sm-4">
+																<div class="entrada">																		<label>Fecha:</label><br>
+																	<input type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
+																</div>
 															</div>
 														</div>
-													</div>
-
-												</div>
-											
-												<div class="">
-													<div class="col-sm-4 col-sm-4">
-														<div class="entrada">
-															<label>Fecha:</label>
-															<br>
-															<input type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
-														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">
-																<label>Antecedes de Familiares:</label> 
-																<input type="text" size="20" class="form-control" v-model="familiares"><br>
+														<div class="col-md-12">			
+															<div class="col-sm-6">
+																<div class="entrada">
+																	<label>Antecedes de Familiares:</label> 
+																	<input type="text" size="20" class="form-control" v-model="familiares"><br>
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="entrada">
+																	<label>Antecedes Patologicos:</label> 
+																	<input type="text"  size="20" class="form-control" v-model="personales_patologicos"><br>
+																</div>
 															</div>
 														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">
-																<label>Antecedes Patologicos:</label> 
-																<input type="text"  size="20" class="form-control" v-model="personales_patologicos"><br>
+														<div class="col-md-12">
+															<div class="col-sm-6">
+																<div class="entrada">
+																	<label>Antecedes no Patologicos:</label> <br>
+																	<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="personales_no_patologicos"><br>
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="entrada">
+																	<label>Gineco Obstetrico:</label> <br>
+																	<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="gineco_obstetrico"><br>
+																</div>
 															</div>
 														</div>
-													</div>
-												</div>
-												<div class="">
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">
-																<label>Antecedes no Patologicos:</label> <br>
-																<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="personales_no_patologicos"><br>
-															</div>
+														<div class="col-md-12">
+															<div class=" col-md-9">
+																<div class="entrada">Descripción:<br>
+																	<textarea class="large-compact" name="descripcion" cols="130" rows="3" v-model="descripcion"></textarea>
+																</div>
+															</div><br>
 														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="entrada">
-															<label>Gineco Obstetrico:</label> <br>
-															<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="gineco_obstetrico"><br>
-														</div>
-													</div>
-												</div>
-												<div class=" col-md-9">
-													<div class="entrada">Descripción:<br>
-														<textarea class="large-compact" name="descripcion" cols="115" rows="7" v-model="descripcion"></textarea>
-													 </div>
-												</div><br>
-												</div>
-												<div class="col-lg-3 row">
-														<div class="file_sidebar">                   
+														<!--<div class="col-lg-3 row">
+																<div class="file_sidebar">                   
 																<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
 																<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
 																<ul>
 																	<li><a href="/datos_generales_paciente/lista_antecedentes/<%=id_cita%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
 																	<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Alergias</a></li>
-																	<!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
+																	<li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> 
 																	<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
 																		  
-																   <!-- <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
+																   <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
 																   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
 																   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
 																   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
 																   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-																   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> -->
+																   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> 
 																</ul>
 														   </div>
-														 </div>
-													</div>
-													</div>
-													</div>
-												</div>
-												<br>
-												<br>
-												
-												<p class="">
-													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="fa fa-refresh"></i> &nbsp;&nbsp; Limpiar</button>
-													<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
-												</p>
-												
-										</form>
-											
-									</template>
-
-									<template v-else>
-
-										<form @submit="update_alergia" method="POST">
-
-											<div class="col-md-12">
-											<div class="">
-												
-											<div class=" ">
-												<div class=" row col-md-9 ">
-												<div class=" ">
-													<div class="col-sm-4 col-sm-4">
-														<div class="entrada ">
-															<h6 class=" ">N° de Historia:</h6>
-															<input
-																value="<%=dataPaciente[0].numeroHistorial%>"
-																class="form-control" readonly=""
-																value="Read only text goes here">
+														 	</div>
+														</div>-->
+														<p class="">
+															<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+															<button type="reset" class="btn btn-danger" style="margin-right: 20px;"><i class="fa fa-times"></i> &nbsp;&nbsp; Cancelar</button>
+															<a class="btn btn-info" href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-reply"></i> &nbsp;&nbsp; Volver</a>
+														</p>
+													</form>
+												</template>
+												<template v-else>
+													<form @submit="update_alergia" method="POST">
+														<div class="col-md-12">
+															<div class="col-sm-4">
+																<div class="entrada ">
+																	<h6 class=" ">N° de Historia:</h6>
+																	<input value="<%=dataPaciente[0].numeroHistorial%>" class="form-control" readonly="" value="Read only text goes here">
+																</div>
+															</div>
+															<div class="col-sm-4">
+																<div class="entrada">
+																	<h6 class=" ">Paciente:</h6>
+																	<input value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>" class="form-control" readonly="" value="Read only text goes here">
+																</div>
+															</div>
+															<div class="col-sm-4">
+																<div class="entrada">
+																	<h6 class=" ">Fecha:</h6>
+																	<input type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
+																</div>
+															</div>
 														</div>
-													</div>
-													<div class="col-sm-8 col-sm-9">
-														<div class="form-group">
-															<div class="entrada">
-																<h6 class=" ">Nombre Completo:</h6>
-																	<input
-																		value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-																		class="form-control" readonly=""
-																		value="Read only text goes here">
+														<div class="col-md-12">
+															<div class="col-sm-6">
+																<div class="entrada">Antecedes de Familiares:<br>
+																	<input type="text" size="20" class="form-control" v-model="antecedente_one.familiares"><br>
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="entrada">Antecedes Patologicos:<br>
+																	<input type="text"  size="20" class="form-control" v-model="antecedente_one.personales_patologicos"><br>
+																</div>
+															</div>
+														</div>
+														<div class="col-md-12">
+															<div class="col-sm-6">
+																<div class="entrada">Antecedes no Patologicos:<br>
+																	<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="antecedente_one.personales_no_patologicos"><br>
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="entrada">Gineco Obstetrico:<br>
+																	<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="antecedente_one.gineco_obstetrico"><br>
+																</div>
+															</div>
+														</div>
+														<div class="col-md-12">
+															<div class=" col-md-9">
+																<div class="entrada">Descripción:<br>
+																	<textarea class="large-compact" name="descripcion" cols="130" rows="5" v-model="antecedente_one.descripcion"></textarea>
+																</div>
+															</div>
+														</div>
+														<p class="">
+															<template v-if="antecedente_one.estado_update == true">
+																<button type="submit" class="btn btn-success btn-raised"><i class="fa fa-refresh"></i> &nbsp;&nbsp;Guardar</button>
+															</template>
+															<button  @click="antecedente_one = ''" type="button" class="btn btn-danger btn-raised"><i class="fa fa-reply"></i> &nbsp;&nbsp;Cancelar</button>
+														</p>
+													</form>
+												</template>
+											</div>	
+											<div class="container" ><br>
+												<div class="table-responsive">
+													<div class="block-web">
+														<div class="header">
+															<div class="head">
+																<h4 class="">Lista de  Antecedentes</h4>
 															</div>
 														</div>
 													</div>
-
-												</div>
-											
-												<div class="">
-													<div class="col-sm-4 col-sm-4">
-														<div class="entrada">Fecha:<br>
-															<input type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
-														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">Antecedes de Familiares:<br>
-																<input type="text" size="20" class="form-control" v-model="antecedente_one.familiares"><br>
-															</div>
-														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">Antecedes Patologicos:<br>
-																<input type="text"  size="20" class="form-control" v-model="antecedente_one.personales_patologicos"><br>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="">
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">Antecedes no Patologicos:<br>
-																<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="antecedente_one.personales_no_patologicos"><br>
-															</div>
-														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="entrada">Gineco Obstetrico:<br>
-															<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="antecedente_one.gineco_obstetrico"><br>
-														</div>
-													</div>
-												</div>
-												<div class=" col-md-9">
-													<div class="entrada">Descripción:<br>
-														<textarea class="large-compact" name="descripcion" cols="115" rows="10" v-model="antecedente_one.descripcion"></textarea>
-													 </div>
-												</div><br>
-												</div>
-												<div class="col-lg-3 row">
-														<div class="file_sidebar">                   
-																<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
-																<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
-																<ul>
-																	<li><a href="/datos_generales_paciente/lista_antecedentes/<%=id_cita%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
-																	<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Alergias</a></li>
-																	<!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
-																	<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
-																		  
-																  <!--  <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
-																   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-																   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-																   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
-																   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-																   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> -->
-																</ul>
-														   </div>
-														 </div>
-													</div>
-													</div>
-													</div>
-												</div>
-												<br>
-												<br>
-												<p class="">
-													<template v-if="antecedente_one.estado_update == true">
-														<button type="submit" class="btn btn-success btn-raised"><i class="fa fa-refresh"></i> &nbsp;&nbsp;Actualizar</button>
-
-													</template>
-													<button  @click="antecedente_one = ''" type="button" class="btn btn-info btn-raised"><i class="fa fa-reply"></i> &nbsp;&nbsp;Volver</button>
-												</p>
-										</form>
-									</template>
-								</div>					
-									<div >
-										<div class="container" > 
-										
-										
-											<br>
-											<div class="table-responsive">
-												<div class="block-web">
-													<div class="header">
-														<div class="actions"> 
-
-														</div>
-														<div class="head">
-															<h3 class="text-center ">Lista de  Antecedentes</h3>
-														</div>
-													</div>
-												
-												</div>
-
-												<div class="table-wrapper">
-
-													<table class=" table table-hover" id="">
-														<thead>
-															<tr>
+													<div class="col-xs-12 ">
+														<table class="table table-bordered">
+															<thead>
+																<tr>
 																<th>#</th>
 																<th>Antecedentes familiares</th>
 																<th>Antecedentes Patologicos</th>
 																<th>Atecedentes no Patologicos</th>
 																<th>Opciones</th>
-															
-															</tr>
-														</thead>
-														<tbody v-for="(list,index) in antc_list">
-															<tr>
+																</tr>
+															</thead>
+															<tbody v-for="(list,index) in antc_list">
+																<tr>
 																<td>{{index+1}}</td>
 																<td>{{list.familiares}}</td>
 																<td>{{list.personales_patologicos}}</td>
@@ -406,49 +277,42 @@
 																<td class="center">
 																	<a @click="one_antecedente(list.id)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-eye "></i></a>
 																</td>
-															</tr>
-
-														<tbody>
-													</table>
+																</tr>
+															<tbody>
+														</table>
+													</div>
 												</div>
 											</div>
-										
-										
 										</div>
 									</div>
-									
+								</section>
 							</div>
 						</div>
-						</section>
 					</div>
-				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-    <div class="vertical-alignment-helper">
-      <div class="modal-dialog vertical-align-center modal-sm ">
-        <div class="modal-content">
-          <br>
-            <div class="center">
-              <i><img src="/images/salir.gif" width="100" height="100" /></i>
-            </div>
-            <div class="center">
-              <h5><b>¿Cerrar Sesión?</b></h5>
-            </div>
-          <div class="modal-footer">
-            <div class="center">
-              <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> 
-</div>
+	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="vertical-alignment-helper">
+ 	     	<div class="modal-dialog vertical-align-center modal-sm ">
+        		<div class="modal-content"><br>
+		            <div class="center">
+        		      	<i><img src="/images/salir.gif" width="100" height="100" /></i>
+            		</div>
+            		<div class="center">
+              			<h5><b>¿Cerrar Sesión?</b></h5>
+            		</div>
+          			<div class="modal-footer">
+           		 		<div class="center">
+              				<a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+              				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            			</div>
+          			</div>
+        		</div>
+      		</div>
+    	</div> 
+	</div>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
     <script>
@@ -479,5 +343,4 @@
 	<script src="/url/export.js"></script>
 	<script src="/js/vue/antecedentes.js"></script>
 </body>
-
 </html>

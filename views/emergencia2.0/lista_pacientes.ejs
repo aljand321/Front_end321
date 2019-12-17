@@ -57,7 +57,7 @@
 						<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
 					</ul>
 				</li>
-				<li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Reportes <span ></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+				<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open"></i>Reportes <span ></span><span class="plus"><i class="fa fa-plus"></i></span></a>
 					<ul >
 					  <li> <a href="/emergencia2.0/lista_consultas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinica</b> </a> </li>
 					  
@@ -70,14 +70,19 @@
     <div class="contentpanel">
         <div class="container clear_both padding_fix">
 			<br>
-			<div class="col-lg-12 block-web"> 
-				<div class="header">
-					<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
-					<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
-				</div>
+			<div class="col-lg-12 block-web">
+				<div class="head">
+					<div class="actions">
+						<li @click="click_1()" class="btn btn-primary btn-raised"><i class='fa fa-list-ol'></i> {{click}}</li>
+					</div>
+					<div class="header">
+						<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
+						<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
+					</div>
+				</div> 
+				
 			</div>
-			<br><br>
-			<a @click="click_1()">{{click}}</a>
+		</div>
 			<div class="main-content">
 				<div class="row">
 					<div class="col-lg-14 ">
@@ -106,6 +111,7 @@
 																			<th >Apellido Paterno</th>
 																			<th >Apellido Materno</th>	
 																			<th >Hora Atencion</th>	
+																			<th>Fecha</th>
 																			<th >Reg. Consulta</th>
 																		</tr>
 																	</thead>
@@ -119,6 +125,7 @@
 																			<td><%=resp[i].Paciente.apellidop %></td>
 																			<td><%=resp[i].Paciente.apellidom %></td>
 																			<td><%=resp[i].hora.split("/")[0] %></td>
+																			<td><%=resp[i].fecha %></td>
 																			<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=resp[i].id%>/<%=resp[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
 																		</tr>
 																		<% } %>
@@ -147,6 +154,7 @@
 																			<th >Apellido Paterno</th>
 																			<th >Apellido Materno</th>	
 																			<th >Hora Atencion</th>	
+																			<th>Fecha</th>
 																			<th >Optiones</th>
 																		</tr>
 																	</thead>
@@ -160,6 +168,7 @@
 																			<td><%=list_false[i].Paciente.apellidop %></td>
 																			<td><%=list_false[i].Paciente.apellidom %></td>
 																			<td><%=list_false[i].hora.split("/")[0] %></td>
+																			<td><%=list_false[i].fecha %></td>
 																			<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
 																		</tr>
 																		<% } %>
@@ -178,12 +187,12 @@
 									<div class="row">
 										<div class="col-lg-12">
 											<section class="panel default blue_title h2">
-												<div class="panel-heading">All in One Bootstrap 3.0 
-													<span class="semi-bold">Responsive Table</span>
+												<div class="panel-heading">Pacientes de 
+													<span class="semi-bold">Hoy</span>
 												</div>
 												<div class="panel-body">
 													<div class="table-responsive">
-											  			<table class="table table-bordered">
+											  			<table class="display table table-bordered table-striped" id="dynamic-tablee">
 															<thead>
 															  	<tr>
 																	<th >#</th>
@@ -192,6 +201,7 @@
 																	<th >Apellido Paterno</th>
 																	<th >Apellido Materno</th>	
 																	<th >Hora Atencion</th>	
+																	<th>Fecha</th>
 																	<th >Optiones</th>
 															  	</tr>
 															</thead>
@@ -203,6 +213,7 @@
 																	<td>{{list.Paciente.apellidop}}</td>
 																	<td>{{list.Paciente.apellidom}}</td>
 																	<td>{{list.hora.split("/")[0]}}</td>
+																	<td>{{list.fecha}}</td>
 																	<td class="text-center"><a  :href="'/emergencia2.0/registrar_emergencia/'+list.id+'/'+list.codigo_p+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>																	
 															  	</tr>
 															</tbody>
@@ -271,6 +282,7 @@
 <script src="/plugins/data-tables/jquery.dataTables.js"></script>
 <script src="/plugins/data-tables/DT_bootstrap.js"></script>
 <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
 <script src="/plugins/edit-table/edit-table.js"></script>
 <script>
           jQuery(document).ready(function() {

@@ -2,18 +2,14 @@
 <html lang="es">
 
 <head>
-	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-	<title>Examenes Complementarios</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+	<title>Consulta</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
-		
-		<link href="/css/tamM.css" rel="stylesheet" type="text/css">
-		<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
+	<link href="/css/tamM.css" rel="stylesheet" type="text/css">
+	<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 	<link href="/css/moldeable.css" rel="stylesheet" type="text/css" />
-
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -21,9 +17,6 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-
-
-
 	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
 	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
 	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
@@ -37,346 +30,279 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
 	<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
-  
     <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
-
 	<style>
 		div.a {
-			text-align: center;
+            text-align: center;
+        }
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+        }
+        .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+        .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+        .vertical-alignment-helper {
+		  display:table;
+		  height: 100%;
+		  margin-left: 41%;
 		}
-
-		h1.letras {
-			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-
+		.vertical-align-center {
+		  /* To center vertically */
+		  display: table-cell;
+		  vertical-align: middle;
+		  text-align: center;
 		}
 	</style>
-
 </head>
-
 <body class="light_theme  fixed_header left_nav_fixed">
-	<!-- Content page-->
 	<div class="wrapper scroll1" >
-		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div id="ocultoIl" class="header_bar">
-			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
-				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
-			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
-				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>		
-				<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </a>
-				
 				<div class="top_right_bar">
-
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
-							
 							<li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<!--\\\\\\\ header top bar end \\\\\\-->
 		</div>
 		<div class="inner" id="lab_consulta_externa">
-			<!--\\\\\\\ inner start \\\\\\-->
 			<div id="ocultoIl" class="left_nav">
-
-				<!--\\\\\\\left_nav start \\\\\\-->
-
 				<div class="left_nav_slidebar">
 					<ul>
-						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul>
-								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
-							</ul>
+						<li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b> </a> 
+                                </li>
+                            </ul>
+                        </li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/consulta_externa/HistorialGeneral/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes </b>  </a> </li>
+								<li> <a href="/consulta_externa/ReporEnfermedades/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cons.</b>  </a> </li>
+							</ul> 
 						</li>
-						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul>
-								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b> </a> </li>
-							</ul>
-						</li>
-						
-						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul>
-									<li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
-									<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-									<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
-							   </ul>
-						</li>
-						
 					</ul>
 				</div>
 			</div>
-			<!--\\\\\\\left_nav end \\\\\\-->
 			<div id="ocultoIl" class="contentpanel">
-				<!--\\\\\\\ contentpanel start\\\\\\-->
-				<div class="container clear_both padding_fix col-lg-8">
-					<br>
-					<div class="row">
-						<div class="col-lg-12 ">
-							<!--\\\\\\\ contentpanel start\\\\\\-->
-							<div class="row">
-								<div class="col-md-12">
-									<div class="block-web">
-										<div class="head">
-											<div class="actions">
-												<div class="btn-group">
-													<button type="button" class="btn btn-info btn-flat" @click="volver()">Listas de:</button>
-													<button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
-														<span class="caret"></span>
-														<span class="sr-only">Toggle Dropdown</span>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a @click="list_ecografias_data()">Ecografia</a></li>
-														<li><a @click="list_rayosX_data()">Rayos X</a></li>
-														<li><a  @click="list_lab_data()">Laboratorios</a></li>
-														<li class="divider"></li>
-														<li><a @click="volver()">Volver</a></li>
-													</ul>
-												</div>
-											</div>
-											<div class="header">
-												<div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i>
-												</div>
-												<h2 class="content-header " > <span>&nbsp;&nbsp;&nbsp;</span>Orden de Examen </h2>
-											</div>
-										</div>
-										
-										<br>
-										<br>
-										<div class="block-web">
-											<div class="col-md-14">
-												<div class="row">
-													<div class="col-sm-12">
-														<div class="col-md-3 ">
-															<label class="control-labe">Nombre del Paciente:</label><p><b><%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%></b></p>
-															<input type="hidden" type="text" class="form-control" readonly value="<%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%>"  />
-														</div>
-														<div class="col-md-3">
-															<label class="control-labe">N° de Historial:</label><p><b><%=data_paciente[0].numeroHistorial%></b></p>
-															<input type="hidden" type="text" name="grupo" class="form-control" readonly value="<%=data_paciente[0].numeroHistorial%>" />
-														</div>
-														<div class="col-md-2">
-															<label class="control-labe">C.I.:</label><p><b><%=data_paciente[0].ci%></b></p>
-															<input type="hidden" type="text" name="titulo" class="form-control" value="<%=data_paciente[0].ci%>" readonly  />
-														</div>
-														
-														<div class="col-md-2">
-															<label class="control-labe">Fecha:</label>
-															<input type="text" class="form-control" readonly v-model="fecha"  />
-														</div>
-														<div class="col-md-2">
-															<label class="control-labe">Hora:</label>
-															<input type="text" class="form-control" readonly v-model="hora"  />
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
+				<div class="container clear_both padding_fix col-lg-8"><br>
+					<div class="main-content"></div>
+						<div class="col-xs-12 ">
+							<div class=" col-lg-12  block-web">
+								<div class="row">
+								<div class="header">
+									<h2 id="ocultoI" class="content-header"><div class="info2 blue_symbols"><i class="fa fa-edit icon "></i></div> Consulta Externa /<span class="semi-bold"> Registro de Orden de Examen Médico</span></h2>
+								</div><br><br>
+								<div class="col-sm-12">
+									<div class="col-md-3 ">
+										<label class="control-labe"> Paciente:</label><p><b><%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%></b></p>
+										<input type="hidden" type="text" class="form-control" readonly value="<%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%>"  />
 									</div>
-									<!-- 
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																						tab de laboratorios
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-									 -->
-									<div class="col-lg-14" v-if="view_list" v-if="view_list">
-										<section class="panel default blue_title h2">
-											<div class="panel-heading">EXAMENES COMPLEMENTARIOS <span class="semi-bold"> </span> </div>										
-									
-											<div class="panel-body" >
-												<ul class="nav nav-tabs" id="myTab">
-													<li class="active"><a data-toggle="tab" href="#Tab1">Ecografia</a></li>
-													<li><a data-toggle="tab" href="#Tab2">Rayos X</a></li>
-													<li><a data-toggle="tab" href="#Tab3">Laboratorios</a></li>
-												</ul>
-												<div class="tab-content" id="myTabContent">
-													<div id="Tab1" class="tab-pane fade in active">
-														<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
-														<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
-														<input type="hidden" :value="nombre_doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
-														<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
-														<input type="hidden" :value="consultorio = '<%=ConsultaOnly[0].tipoConsulta%>'">
-														<!-- 
-															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																											ECOGRAFIA
-															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-														 -->
-														 <!-- <div class="bs-example mover" v-if="vue_alert">
-															<div class="alert alert-danger fade in">
-															  <button class="close" type="button"></button>
-															  <strong>Esto es el mensaje que quiero ver</strong>
-															</div>
-														</div>
-														 <button @click="vue_alert = true, alert_vue()">pruevas</button> -->
-														
-														 <h4>ECOGRAFIA</h4>
-														 
-													<!-- 	<div class="bs-example mover" v-if="msg_eco_false">
-															<div class="alert alert-danger fade in">
-															  <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
-															  <strong>{{msg_eco_false}}</strong>
-															</div>
-														</div> -->
-														<span style="color: crimson;" >{{msg_eco_false}}</span>
-														<span style="color: darkblue;" >{{msg_eco}}</span>
-														 <div class="row">
-															<div class="col-md-12 ">
-																
-																<form @submit="register_ecografia" method="POST">
-																	<div class="col-md-12">
-																		
-																		<div class="checkbox-inline col-md-12"> &nbsp; 
-																			<label class=" ">
-																				<input @click="ecografia_select('1','ESTUDIO HEPATOBILIAR','HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES')" type="checkbox"  :checked= "eco_data[1].estado"/><!-- checked -->
-																				<FONT SIZE=1><b>1.- Estudio Hepatobiliar:</b> HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES</FONT>
-																			 </label>
-																		</div>
-																		<div class="checkbox-inline col-md-12">
-																			<label class=" ">
-																				<input @click="ecografia_select('2','ESTUDIO NEFROLÓGICO','RIÑONES - CONDUCTOS - VEJIGA URINARIA')" type="checkbox"  :checked= "eco_data[2].estado"/>
-																				<FONT SIZE=1><b>2.- Estudio Nefrológico:</b> RIÑONES - CONDUCTOS - VEJIGA URINARIA</FONT>
-																			</label>
-																		</div>
-																		<div class="checkbox-inline col-md-12">
-																			<label class=" ">
-																				<input @click="ecografia_select('3','ESTUDIO GINECOLÓGICO','ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR')" type="checkbox" :checked= "eco_data[3].estado" />
-																				<FONT SIZE=1><b>3.- Estudio Ginecológico:</b> ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR </FONT>
-																			 </label>
-																		</div>
-																		<div class="checkbox-inline col-md-12">
-																			<label class=" ">
-																				<input @click="ecografia_select('4','ESTUDIO OBSTÉTRICO','VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO')" type="checkbox" :checked= "eco_data[4].estado"/>
-																				<FONT SIZE=1><b>4.- Estudio Obstétrico:</b> VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO</FONT>
-																			 </label>
-																		</div>
-																		<div class="checkbox-inline col-md-12">
-																			<label class=" ">
-																				<input @click="ecografia_select('5','ESTUDIO UROLÓGICO','PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN')" type="checkbox" :checked= "eco_data[5].estado"/>
-																				<FONT SIZE=1><b>5.- Estudio Urológico:</b> PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN</FONT>
-																			 </label>
-																		</div>
-																		
+									<div class="col-md-3">
+										<label class="control-labe">N° de Historial:</label><p><b><%=data_paciente[0].numeroHistorial%></b></p>
+										<input type="hidden" type="text" name="grupo" class="form-control" readonly value="<%=data_paciente[0].numeroHistorial%>" />
+									</div>
+									<div class="col-md-2">
+										<label class="control-labe">C.I.:</label><p><b><%=data_paciente[0].ci%></b></p>
+										<input type="hidden" type="text" name="titulo" class="form-control" value="<%=data_paciente[0].ci%>" readonly  />
+									</div>
+									<div class="col-md-2">
+										<label class="control-labe">Fecha:</label>
+										<input type="text" class="form-control" readonly v-model="fecha"  />
+									</div>
+									<div class="col-md-2">
+										<label class="control-labe">Hora:</label>
+										<input type="text" class="form-control" readonly v-model="hora"  />
+									</div>
+									<div class="btn-group">
+											<button type="button" class="btn btn-info btn-flat" @click="volver()"><i class="fa fa-edit icon "></i> Listas de Examenes Complementarios</button>
+											<button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+												<span class="caret"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a @click="volver()">Registrar Examen</a></li>
+												<li><a @click="list_ecografias_data()">Ecografía</a></li>
+												<li><a @click="list_rayosX_data()">Rayos X</a></li>
+												<li><a  @click="list_lab_data()">Laboratorios</a></li>
+											</ul>
+										</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<!-- 
+						<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+						<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		tab de laboratorios
+						<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+						<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+								 -->
+								 
+								<div class="col-lg-14" v-if="view_list" v-if="view_list">
+									<section class="panel default black_title h4">
+										<div class="panel-heading">EXAMENES COMPLEMENTARIOS <span class="semi-bold"> </span></div>														
+										<div class="panel-body" >
+											<ul class="nav nav-tabs panel default blue_title h3" id="myTab">
+												<li class="active"><a data-toggle="tab" href="#Tab1">Ecografía</a></li>
+												<li><a data-toggle="tab" href="#Tab2">Rayos X</a></li>
+												<li><a data-toggle="tab" href="#Tab3">Laboratorios</a></li>
+											</ul>
+											<div class="tab-content" id="myTabContent">
+												<div id="Tab1" class="tab-pane fade in active">
+													<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
+													<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
+													<input type="hidden" :value="nombre_doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
+													<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
+													<input type="hidden" :value="consultorio = '<%=ConsultaOnly[0].tipoConsulta%>'">
+													<!-- 
+													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																									ECOGRAFIA
+													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+													-->
+													<h5>ECOGRAFÍA</h5>
+													<span style="color: crimson;" >{{msg_eco_false}}</span>
+													<span style="color: darkblue;" >{{msg_eco}}</span>
+													<div class="row">
+														<div class="col-md-12 ">
+															<form @submit="register_ecografia" method="POST">
+																<div class="col-md-12">
+																	<div class="checkbox-inline col-md-12"> &nbsp; 
+																		<label class=" ">
+																			<input @click="ecografia_select('1','ESTUDIO HEPATOBILIAR','HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES')" type="checkbox"  :checked= "eco_data[1].estado"/><!-- checked -->
+																			<FONT SIZE=1><b>1.- Estudio Hepatobiliar:</b> HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES</FONT>
+																		</label>
 																	</div>
-																	<!-- 
-																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																										Lista de Ecografias
-																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																	 -->
-																	<div class="col-lg-12">
-																		<section class="panel default blue_title h2">
-																		 
+																	<div class="checkbox-inline col-md-12">
+																		<label class=" ">
+																			<input @click="ecografia_select('2','ESTUDIO NEFROLÓGICO','RIÑONES - CONDUCTOS - VEJIGA URINARIA')" type="checkbox"  :checked= "eco_data[2].estado"/>
+																			<FONT SIZE=1><b>2.- Estudio Nefrológico:</b> RIÑONES - CONDUCTOS - VEJIGA URINARIA</FONT>
+																		</label>
+																	</div>
+																	<div class="checkbox-inline col-md-12">
+																		<label class=" ">
+																			<input @click="ecografia_select('3','ESTUDIO GINECOLÓGICO','ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR')" type="checkbox" :checked= "eco_data[3].estado" />
+																			<FONT SIZE=1><b>3.- Estudio Ginecológico:</b> ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR </FONT>
+																		 </label>
+																	</div>
+																	<div class="checkbox-inline col-md-12">
+																		<label class=" ">
+																			<input @click="ecografia_select('4','ESTUDIO OBSTÉTRICO','VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO')" type="checkbox" :checked= "eco_data[4].estado"/>
+																			<FONT SIZE=1><b>4.- Estudio Obstétrico:</b> VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO</FONT>
+																		</label>
+																	</div>
+																	<div class="checkbox-inline col-md-12">
+																		<label class=" ">
+																			<input @click="ecografia_select('5','ESTUDIO UROLÓGICO','PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN')" type="checkbox" :checked= "eco_data[5].estado"/>
+																			<FONT SIZE=1><b>5.- Estudio Urológico:</b> PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN</FONT>
+																		 </label>
+																	</div>	
+																</div>
+																<!-- 
+																<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																								Lista de Ecografias
+																<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																-->
+																<div class="col-lg-12">
+																	<section class="panel default blue_title h2">
 																		<div class="panel-body">														
-
-																			<!-- Standard gray button with gradient -->
 																			<template v-for="(list,index) in ecografia">
 																				<button type="button" class="btn btn-default" @click="delete_exografia(list.id,index)">{{list.estudio}}</button>
 																			</template>
-																		</div>
-																			
-																		</section>
+																		</div>				
+																	</section>
+																</div>
+																<div class="col-md-12 ">
+																	<label class="">Otros:</label><br>
+																	<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" v-model="otros_eco" class="form-control"></textarea>
+																</div>
+																<div class="col-md-12 page-content ">
+																	<div class="col-md-8 ">
+																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
+																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 																	</div>
-
-																	<div class="col-md-12 ">
-																		<label class="">Otros:</label><br>
-																		<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" v-model="otros_eco" class="form-control"></textarea>
-																	</div>
-																	
-																	<div class="col-md-12 page-content ">
-																		<div class="col-md-8 ">
-																			<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-																			<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-																	<!--		<a href="/paciente/imprimirLaboratorio"> Imprimir</a>
-																			<button type="reset"class="btn btn-warning btn-icon"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
-																	-->		
-																		</div>
-																	</div>
-																</form>						
-																		
-															</div>
-														 </div>
-
-
+																</div>
+															</form>						
+														</div>
 													</div>
-
-													<div id="Tab2" class="tab-pane fade">
-														<!-- 
-															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																							rayos x
-															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-														 -->
-														<div class="col-md-14">
-															<span style="color: crimson;">{{msg_rayos_x_false}}</span>
-															<span style="color: blue;">{{msg_rayos_x}}</span>
-															<form @submit="register_rayosX" method="POST">
-															
-																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Torax >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																<div class="col-md-3">
-																	<div class="porlets-content">
-																		<div class="row">																	
-																			<div class="col-md-12 panel panel-default">
-																				<div id="ocultoIl" class=" panel panel-default">
-																					<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Torax</li>            
-																				</div>
-																				<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse ">
-																					<div class="">
-																						<div class="col-sm-14 icheck ">
-																						  	<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('1','1','Tórax Pa.')" type="checkbox" :checked= "x_data[1].estado" >
-																									<label>Tórax Pa. </label>
-																								</div>
-																							</div>
-																							<div class="minimal-red single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('1','2','Tórax Osco')" type="checkbox":checked= "x_data[2].estado" >
-																									<label>Tórax Osco</label>
-																								</div>
-																							</div>
-																							<div class="minimal-green single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('1','3','Tórax Lateral')" type="checkbox":checked= "x_data[3].estado" >
-																									<label>Tórax Lateral</label>
-																								</div>
-																							</div>
-																							<div class="minimal-blue single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('1','4','Tórax en Trendelemburg')" type="checkbox" :checked= "x_data[4].estado">
-																								  	<label>Tórax en Trendelemburg</label>
-																							  	</div>
-																							</div>
-																							<div class="minimal-yellow single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('1','5','Hemitórax oblicua derecha (Arcos Costales)')" type="checkbox" :checked= "x_data[5].estado">
-																								  	<label>Hemitórax oblicua derecha (Arcos Costales)</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('1','6','Hemitórax oblicua izquierda (Arcos Costales)')" type="checkbox" :checked= "x_data[6].estado">
-																									<label>Hemitórax oblicua izquierda (Arcos Costales)</label>
-																								</div>
-																							</div>
+												</div>
+												<div id="Tab2" class="tab-pane fade">
+												<!-- 
+												<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+												<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																				rayos x
+												<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+												<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+											 	-->
+													<div class="col-md-14">
+													<span style="color: crimson;">{{msg_rayos_x_false}}</span>
+													<span style="color: blue;">{{msg_rayos_x}}</span>
+													<form @submit="register_rayosX" method="POST">						
+														<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Torax >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+														<div class="col-md-3">
+															<div class="porlets-content">
+																<div class="row">																	
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoIl" class=" panel panel-default">
+																			<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Torax</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse ">
+																			<div class="">
+																				<div class="col-sm-14 icheck ">
+																				  	<div class="minimal single-row">
+																						<div class="checkbox ">
+																							<input @click="rayosX_select('1','1','Tórax Pa.')" type="checkbox" :checked= "x_data[1].estado" >
+																							<label>Tórax Pa. </label>
+																						</div>
+																					</div>
+																					<div class="minimal-red single-row">
+																						<div class="checkbox ">
+																							<input @click="rayosX_select('1','2','Tórax Osco')" type="checkbox":checked= "x_data[2].estado" >
+																							<label>Tórax Osco</label>
+																						</div>
+																					</div>
+																					<div class="minimal-green single-row">
+																						<div class="checkbox ">
+																							<input @click="rayosX_select('1','3','Tórax Lateral')" type="checkbox":checked= "x_data[3].estado" >
+																							<label>Tórax Lateral</label>
+																						</div>
+																					</div>
+																					<div class="minimal-blue single-row">
+																						<div class="checkbox ">
+																							<input @click="rayosX_select('1','4','Tórax en Trendelemburg')" type="checkbox" :checked= "x_data[4].estado">
+																							<label>Tórax en Trendelemburg</label>
+																					  	</div>
+																					</div>
+																					<div class="minimal-yellow single-row">
+																						<div class="checkbox ">
+																							<input @click="rayosX_select('1','5','Hemitórax oblicua derecha (Arcos Costales)')" type="checkbox" :checked= "x_data[5].estado">
+																						  	<label>Hemitórax oblicua derecha (Arcos Costales)</label>
+																						</div>
+																					</div>
+																					<div class="minimal-purple single-row">
+																						<div class="checkbox ">
+																							<input @click="rayosX_select('1','6','Hemitórax oblicua izquierda (Arcos Costales)')" type="checkbox" :checked= "x_data[6].estado">
+																							<label>Hemitórax oblicua izquierda (Arcos Costales)</label>
 																						</div>
 																					</div>
 																				</div>
 																			</div>
-																			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Abdomen >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																		</div>
+																	</div>
+																	<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Abdomen >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																		
 																			<div class="col-md-12 panel panel-default ">
 																				<div id="ocultoIl"class=" panel panel-default">
@@ -426,7 +352,6 @@
 																						<li href="#ac3-craneo" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Cráneo y Macizo Facial</li>            
 																					</div>
 																					<div style="height: 0px;" id="ac3-craneo" class="panel-collapse collapse ">
-																						<label class="control-label">Cráneo y Macizo Facial</label><br>
 																						<div class="col-sm-14 icheck ">
 																							<div class="minimal single-row">
 																								<div class="checkbox ">
@@ -491,7 +416,6 @@
 																						<li href="#ac3-placas" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Placas Radiográficas de craneo y macizo facial</li>            
 																					</div>
 																					<div style="height: 0px;" id="ac3-placas" class="panel-collapse collapse ">
-																						<label class="control-label">Placas Radiográficas de craneo y macizo facial</label><br>
 																						<div class="col-sm-14 icheck ">
 																							<div class="minimal single-row">
 																								<div class="checkbox ">
@@ -565,7 +489,6 @@
 																						<li href="#ac3-columna" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Columna vertebral</li>            
 																					</div>
 																					<div style="height: 0px;" id="ac3-columna" class="panel-collapse collapse ">
-																						<label class="control-label">Columna vertebral</label><br>
 																						<div class="col-sm-14 icheck ">
 																							<div class="minimal single-row">
 																								<div class="checkbox ">
@@ -898,7 +821,7 @@
 																</div>
 																
 																<div class="col-lg-12 his">
-																		<h5 class="center">Solicitud de Examens</h5>
+																		<h4 class="center"><span>&nbsp;&nbsp;&nbsp;</span>Solicitud de Examenes</h4>
 																	<section class="panel default blue_title h2 scrollV">
 																	
 																	<div class="panel-body">	
@@ -959,8 +882,8 @@
 																</div>
 																<div class="col-md-12 page-content ">
 																	<div class="col-md-8 ">
-																		<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
 																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 																	</div>
 																</div>
@@ -1691,8 +1614,8 @@
 																</div>
 																<div class="col-md-12 page-content ">
 																	<div class="col-md-8 ">
-																		<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
 																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 																	</div>
 																</div>
@@ -1714,20 +1637,20 @@
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 									 -->
 									<div class="col-lg-14" v-if="list_eco"> 
-										<section class="panel default blue_title h2">
+										<section class="panel default black_title h4">
 											<div class="panel-heading">
-												<span class="semi-bold">Lista de ecografias del paciente</span> 
+												<span class="semi-bold">Lista de ecografías del paciente</span> 
 											</div>
 											<div class="panel-body">
-											
-								  				<table class="table table-hover">
+												<div class="col-xs-12 ">
+													<table class="table table-bordered">
 													<thead>
 													  	<tr>
 															<th>#</th>
-															<th>Fecha hora</th>
-															<th>Doctor</th>
-															<th>Ver</th>
+															<th>Fecha y hora</th>
+															<th>Médico</th>
 															<th>Estado</th>
+															<th>Ver</th>
 													  	</tr>
 													</thead>
 													<tbody v-for="(list, index) in data_list_eco">
@@ -1735,9 +1658,13 @@
 															<td>{{index+1}}</td>
 															<td>{{list.fecha}}  {{list.hora}}</td>
 															<td>{{list.nombre_doctor}}</td>
-															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info" @click="one_lab(list.id)">Ver</button></td>
-															<td v-if = "list.resp_labs == ''"> <p style="color: brown;">Examen mandado</p> </td>
-															<td v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>	
+															<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Ecografía Envia</p> </td>
+															<td class="text-center" v-else >
+																<a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> 
+															</td>
+															<td class="text-center">	
+																<a data-toggle="modal" data-target="#modal-info" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Ecografia"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+															</td>	
 													  	</tr>											  
 													</tbody>
 								  				</table>
@@ -1753,20 +1680,20 @@
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 									-->
 									<div class="col-lg-14" v-if="list_rayosX"> 
-										<section class="panel default blue_title h2">
+										<section class="panel default black_title h4">
 											<div class="panel-heading">
 												<span class="semi-bold">Lista de Rayos X del paciente</span> 
 											</div>
 											<div class="panel-body">
-											
-												<table class="table table-hover">
+													<div class="col-xs-12 ">
+															<table class="table table-bordered">
 													<thead>
 													  	<tr>
 															<th>#</th>
-															<th>Fecha hora</th>
-															<th>Doctor</th>
-															<th>Ver</th>
+															<th>Fecha y hora</th>
+															<th>Médico</th>
 															<th>Estado</th>
+															<th>Ver</th>
 													  	</tr>
 													</thead>
 													<tbody v-for="(list, index) in data_list_rayosX">
@@ -1774,10 +1701,11 @@
 															<td>{{index+1}}</td>
 															<td>{{list.fecha}}  {{list.hora}}</td>
 															<td>{{list.nombre_doctor}}</td>
-															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_x" @click="one_lab(list.id)"  >Ver</button></td>
-															<td v-if = "list.resp_labs == ''"> <p style="color: brown;">Examen mandado</p> </td>
-															<td v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>	
-															
+															<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Rayos X Enviada</p> </td>
+															<td class="text-center" v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>	
+															<td class="text-center"> 
+																<a data-toggle="modal" data-target="#modal_x" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Rayos X"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+															</td>
 													  	</tr>											  
 													</tbody>
 											  	</table>
@@ -1793,20 +1721,20 @@
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 									-->
 									<div class="col-lg-14" v-if="lis_lab"> 
-										<section class="panel default blue_title h2">
+										<section class="panel default black_title h4">
 											<div class="panel-heading">
 												<span class="semi-bold">Lista de laboratorios del paciente</span> 
 											</div>
 											<div class="panel-body">
-											
-												<table class="table table-hover">
+												<div class="col-xs-12 ">
+													<table class="table table-bordered">
 													<thead>
 													  	<tr>
 															<th>#</th>
-															<th>Fecha hora</th>
-															<th>Doctor</th>
-															<th>Ver</th>
+															<th>Fecha y hora</th>
+															<th>Médico</th>
 															<th>Estado</th>
+															<th>Ver</th>
 													  	</tr>
 													</thead>
 													<tbody v-for="(list, index) in data_list_lab">
@@ -1814,10 +1742,11 @@
 															<td>{{index+1}}</td>
 															<td>{{list.fecha}}  {{list.hora}}</td>
 															<td>{{list.nombre_doctor}}</td>
-															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_lab" @click="one_lab(list.id)"  >Ver</button></td>
-															<td v-if = "list.resp_labs == ''"> <p style="color: brown;">Examen mandado</p> </td>
-															<td v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>																
-													  	</tr>											  
+															<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Laboratorio Enviado</p> </td>
+															<td class="text-center" v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>																
+															<td class="text-center">
+																<a data-toggle="modal" data-target="#modal_lab" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Laboratorio"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+														</tr>											  
 													</tbody>
 											  	</table>
 											  
@@ -1827,13 +1756,9 @@
 
 								</div>
 							</div>
-						</div>
-						<!--\\\\\\\ container  end \\\\\\-->
+						</div>>
 					</div>
-					<!--\\\\\\\ content panel end \\\\\\-->
 				</div>
-				<!--\\\\\\\ inner end\\\\\\-->
-			</div>
 			<!-- 
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
