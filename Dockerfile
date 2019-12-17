@@ -1,4 +1,4 @@
-FROM node
+FROM node:10.17.0
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
 RUN chmod 777 /opt/app

@@ -31,6 +31,9 @@
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
+    <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+    <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
     <style>
         div.a {
             text-align: center;
@@ -72,7 +75,7 @@
     </script>
 </head>
 <body class=" light_theme  fixed_header left_nav_fixed" >
-	<div class="wrapper">
+	<div class="wrapper" id = "Fechas">
         <div class="header_bar">
             <div class="brand">
                 <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -132,64 +135,133 @@
 				</div>
             </div>
             <div class="contentpanel">
-             <div class="container clear_both padding_fix col-lg-8">
+                <div class="container clear_both padding_fix col-lg-8">
                     <br>
                     <div class="main-content">
+	                    <!--Listas de Emergencias-->
+	                    <div class="container-fluid">
+	                    	<div class="row">
+	                    		<div class="col-md-12 block-web">
+                                    <!-- Content page -->
+                                    <div class="header">
+                                        <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
+                                        <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Internados</h3>
+                                
+                                        <!-- PAcientes no Atendidos-->
+                                        <br>
+                                        <br>
+                                        
+                                        <br>
+                                       
+                                        <div class="col-md-14">
+                                            <div data-date-format="mm/dd/yyyy" data-date="13/07/2013" class="input-group input-large">
+                                                <input v-model="fecha_inicio" type="date" name="from" class="form-control dpd1">
+                                                <span class="input-group-addon">A</span>
+                                                <input v-model="fecha_final" type="date" name="to" class="form-control dpd2">
+                                            </div>
+                                            <span class="help-block">Selecione rango</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <v-select :options="lista_paciente" label="name" v-model="historial" placeholder="Nombre Paciente"></v-select>
+                                               <!--  <select name="" id="" class="form-control">
+                                                    <option value="">asd</option>
+                                                </select> -->
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <p class="text-center">
+                                                    <button @click="buscar()" type="button" value="Imprimir"  class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Buscar</button>
+                                                    <button @click="list_paciente_f =''" type="button" value="Imprimir"  class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; volver</button>
+                                                </p>
+                                            </div>
+                                        </div>
+	                                	<template v-if="list_paciente_f != ''">
+                                                <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <section class="panel default blue_title h2">
+                                                             
+                                                              <div class="panel-body">
+                                                              <div class="table-responsive">
+                                                      <table class="table table-bordered">
+                                                        <thead>
+                                                             <tr>
+                                                                <th class="text-center">#</th>
+                                                                <th class="" WIDTH="15%">N° de historia </th>
+                                                                <th class="" WIDTH="20%">Nombre del Paciente</th>
+                                                                <th class="" WIDTH="20%">Apellido paterno</th>
+                                                                <th class="" WIDTH="20%">Apellido materno</th>	
+                                                                <th class="" WIDTH="20%">Fecha Ingreso</th>	
+                                                                <th class="text-center" WIDTH="20%">Opciones</th> 
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="(list, index) in list_paciente_f">
+                                                                <td>{{index+1}}</td>
+                                                                <td>{{list.historial}}</td>
+                                                                <td>{{list.Paciente.nombre}}</td>
+                                                                <td>{{list.Paciente.apellidop}}</td>
+                                                                <td>{{list.Paciente.apellidom}}</td>
+                                                                <td>{{list.fechaIngreso}}</td>
+                                                                <td class="text-center" ><a :href="'/internaciones/paciente_internacion/' +list.id+'/<%=data_doc.data.token_id%>'" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
+                                                               
+                                                            </tr>
+                                                          
+                                                        </tbody>
+                                                      </table>
+                                                    </div>
+                                                              </div>
+                                                              </section>
+                                                              </div>
+                                                        </div>
 
-	
-	<!--Listas de Emergencias-->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12 block-web">
-                <!-- Content page -->
-    <div class="header">
-            <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
-            <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Internados</h3>
+                                        </template>
+                                        <template v-else>
+                                                <div class="table-responsive" >
+                                                        <table class="fl-table display table table-bordered table-striped" id="dynamic-tablee">
+                                                            <thead>
+                                                                  <tr>
+                                                                    <th class="text-center">#</th>
+                                                                    <th class="" WIDTH="15%">N° de historia </th>
+                                                                    <th class="" WIDTH="20%">Nombre del Paciente</th>
+                                                                    <th class="" WIDTH="20%">Apellido paterno</th>
+                                                                    <th class="" WIDTH="20%">Apellido materno</th>	
+                                                                    <th class="" WIDTH="20%">Fecha Ingreso</th>	
+                                                                    <th class="text-center" WIDTH="20%">Opciones</th> 
+                                                                  </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            
+                                                                <%for(var i = 0; i< list_internacion.length; i++) { %>
+                                                                    <tr>
+                                                                        <td><%=i+1%></td>
+                                                                        <td><%=list_internacion[i].historial%></td>
+                                                                        <td><%=list_internacion[i].Paciente.nombre%></td>
+                                                                        <td><%=list_internacion[i].Paciente.apellidop%></td>
+                                                                        <td><%=list_internacion[i].Paciente.apellidom%></td>
+                                                                        <td><%=list_internacion[i].fechaIngreso%></td>
+                                                                        <td class="text-center" ><a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
+                                                                    
+                                                                    </tr>
+                                                                <% } %>
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                        </template>
+	                                	
+	                                </div>
+                                
+	                    	    </div>
+	                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-				<!-- PAcientes no Atendidos-->
-				<p class="text-center">
-						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-					</p>
-						<div class="table-responsive" >
-							<table class="fl-table display table table-bordered table-striped" id="dynamic-tablee">
-								<thead>
-									  <tr>
-										<th class="text-center">#</th>
-										<th class="" WIDTH="15%">N° de historia </th>
-										<th class="" WIDTH="20%">Nombre del Paciente</th>
-										<th class="" WIDTH="20%">Apellido paterno</th>
-										<th class="" WIDTH="20%">Apellido materno</th>	
-										<th class="" WIDTH="20%">Fecha Ingreso</th>	
-										<th class="text-center" WIDTH="20%">Opciones</th> 
-									  </tr>
-								</thead>
-								<tbody>
-
-									<%for(var i = 0; i< list_internacion.length; i++) { %>
-										<tr>
-											<td><%=i+1%></td>
-											<td><%=list_internacion[i].historial%></td>
-											<td><%=list_internacion[i].Paciente.nombre%></td>
-											<td><%=list_internacion[i].Paciente.apellidop%></td>
-											<td><%=list_internacion[i].Paciente.apellidom%></td>
-											<td><%=list_internacion[i].fechaIngreso%></td>
-											<td class="text-center" ><a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
-											
-										</tr>
-									<% } %>
-									
-								</tbody>
-							</table>
-						</div>
-					</div>
-	  			
-		</div>
 	</div>
-</div>
-            </div>
-            </div>
-        </div>
-    </div>
 	<!--====== Scripts -->
 	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -233,7 +305,86 @@
             EditableTable.init();
         });
     </script>
+    
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script src="https://unpkg.com/vue-select@latest"></script>
+
 
     <script src="/js/jPushMenu.js"></script>
     <script src="/js/side-chats.js"></script>
+
+    <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
+    <script src="/moment/moment.js"></script>
+    <script src="/moment/locale/af.js"></script>
+    <script src="/url/export.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="/axios/dist/axios.min.js"></script>
+    <script>
+    Vue.component('v-select', VueSelect.VueSelect)
+    var id_esp = "<%=id_especialidad%>"
+    const Fechas = new Vue({        
+        el:"#Fechas",
+        data:() => ({
+            url:data_url.url_front_end,
+            data: "aljand321",
+            lista_paciente:[],
+            historial:'',
+            fecha_inicio:'',
+            fecha_final:'',
+            id_especialidad:id_esp,
+
+            list_paciente_f:''
+            
+        }),
+        mounted(){
+            fetch(this.url+'/internaciones/Vue_Paciente_all')
+            .then(res => res.json())
+            .then(data => { 
+
+                for (var i = 0; i < data.length; i++){
+                    this.lista_paciente.push({
+                        name: data[i].nombre+' '+data[i].apellidop+' '+data[i].apellidom,
+                        historial: data[i].numeroHistorial
+                        
+                    })
+                }
+                
+            })
+        },
+        methods:{
+            buscar(){
+                var data_body = {
+                    historial: this.historial.historial,
+                    fecha_inicio: this.fecha_inicio,
+                    fecha_final: this.fecha_final
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data_body),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch(this.url+'/internaciones/Vue_filter_fechas_altas/'+this.id_especialidad, esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => { 
+                    if (data.success == false){
+                        swal.fire(
+                          'Error!',
+                          '<label style="color:red;">'+data.msg+'</label>',
+                          'error'
+                        )
+                    }else{
+                        this.list_paciente_f = data
+                    }
+                   
+                })
+            }
+        }
+
+    })
+    </script>
 </body>

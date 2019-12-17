@@ -73,7 +73,7 @@
                 <!--\\\\\\\ header top bar start \\\\\\-->
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
                 <div class="btn-group">
-                    <a href="/emergencia2.0/lista_consultas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>ATRAS</a>	
+                    <a href="/internaciones/buscar_historial/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>ATRAS</a>	
                 </div>
                                
                 <div class="top_right_bar">
@@ -99,25 +99,40 @@
               
                 <div class="left_nav_slidebar">
                     <ul>
-                        <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                          <ul >
-                            <li> <a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
-                          </ul>
+                        <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span	class="plus"><i class="fa fa-plus"></i></span> </a>
+                            <ul >
+                                <li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <%=data_doc.data.area_esp.nombre%>  <b ></b>
+                                    </a> 
+                                </li>
+                            </ul>
                         </li>
-                        <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias <span class="plus"><i class="fa fa-plus"></i></span></a>
-                          <ul>
-                            <li> <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Cita</b> </a> </li>
-                            
-                          </ul>
+                    
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Liatas de Pacientes <span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                                <li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b  >Listas de Internación</b>
+                                    </a> 
+                                </li>
+                                <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                    <b >Pacientes Internados</b>
+                                    </a> 
+                                </li>
+                                <li> <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>" > <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                    <b >Pacientes de alta </b>
+                                    </a> 
+                                </li>
+                                <li> <a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                    <b>Traslados</b>
+                                    </a> 
+                                </li>
+                                <li> <a href="/internaciones/buscar_historial/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                    <b  class="theme_color" >Historial</b>
+                                    </a> 
+                                </li>						
+                            </ul>
                         </li>
-                
-                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Reportes <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-                          <ul class="opened" style="display:block">
-                            <li> <a href="/emergencia2.0/lista_consultas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Historial Clinica</b> </a> </li>
-                            
-                          </ul>
-                        </li>
-                                
+                        
+
                     </ul>
                 </div>
                   
@@ -184,11 +199,8 @@
 
                                     <div class="col-md-12  row"><br>
                                         <div class="col-md-3">
-                                            <label><b>Motivo de Consulta:</b></label> <br>
-                                            
-                                            <label><b>Diagnostico:</b></label> <br>
-                                            <label><b>Tratamiento :</b></label> <br>
-                                            <label><b>Observaciones u otra conducta:</b></label> <br>
+                                            <label><b>Motivo de Internacion:</b></label>  <%=one_internacion[0].diagnostico%> <br>                          
+                                            <label><b>Observaciones:</b></label>  <%=one_internacion[0].observacion%> <br>
                                         </div>
                                         <div class="col-md-9">
                                             <label></label> <br>
@@ -205,30 +217,114 @@
                                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<PARA LA RECETA>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
                                     <div class="col-md-12  header"><br><br>
                                         <div class="col-md-3">
-                                            <label><b>Receta:</b></label>
+                                            <label><b>Notas de Evolucion :</b></label>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label><b>Descripción:</b></label>
+                                        <div class="col-md-3">
+                                            <label><b>Fecha:</b></label>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label><b>Prescripción:</b></label>
+                                        <div class="col-md-3">
+                                            <label><b>Hora:</b></label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label><b>Descripcion:</b></label>
                                         </div>
                                     </div>
                                     <div class="col-md-12  row">
-                                       
+                                        <% if (notas_evolucion != null) { %>
+                                            <% for( var i = 0; i < notas_evolucion.length; i++ ) { %>
+                                                <div class="col-md-3">
+                                                    <label><b></b></label>
+                                                </div>
+                                            
+                                                <div class="col-md-3">
+                                                    <label><%=notas_evolucion[i].fecha%></label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label><%=notas_evolucion[i].hora%></label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label><%=notas_evolucion[i].nota_evolucion%></label>
+                                                </div>
+                                            <% } %>
+                                        <% } else { %>
+                                            <h4>No se registraron notas de evolucion</h4>
+                                        <% } %>
                                     </div>
                                     <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<ORDENES DE HOSPITALIZACION>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
                                    <div class="col-md-12  header"><br><br>
                                         <div class="col-md-3">
-                                            <label><b>Orden de Internación:</b></label>
+                                            <label><b>Diagnostico:</b></label>
                                         </div>
                                       
                                         <div class="col-md-4">
-                                            <label><b></b></label>
+                                            <label><b>Fecha:</b></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label><b>Descripcion:</b></label>
                                         </div>
                                     </div>
-                                    
+                                    <div class="col-md-12  row">
+                                        <%if ( list_diagnostico != null ) { %>    
+                                            <%for ( var i = 0; i < list_diagnostico.length; i++ ) { %>
+                                                <div class="col-md-3">
+                                                    <label><b></b></label>
+                                                </div>
+                                            
+                                                <div class="col-md-4">
+                                                    <label><%= list_diagnostico[i].fecha %></label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label><%= list_diagnostico[i].evolucion %></label>
+                                                </div>
+                                            <% } %>
+                                        <% } else { %>
+                                            <h4>No se registraron diagnosticos</h4>
+                                        <% } %>
+                                           
+                                    </div>
+                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<Intervenciones del paciente>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
+                                   <div class="col-md-12  header"><br><br>
+                                        <div class="col-md-3">
+                                            <label><b>Cirugias:</b></label>
+                                        </div>
+                                      
+                                        <div class="col-md-3">
+                                            <label><b>Fecha:</b></label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label><b>Cirujano:</b></label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label><b>Intervencion practicada:</b></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12  row">
+                                        <%if ( lista_intervencion != "" ) { %>    
+                                            <%for ( var i = 0; i < lista_intervencion.length; i++ ) { %>
+                                                <div class="col-md-3">
+                                                    <label><b></b></label>
+                                                </div>
+                                            
+                                                <div class="col-md-3">
+                                                    <label><%= lista_intervencion[i].fechaOrden.split("T")[0] %></label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label><%= lista_intervencion[i].nombre_cirujano %></label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label><%= lista_intervencion[i].intr_parcticada %></label>
+                                                </div>
+                                            <% } %>
+                                        <% } else { %>
+                                            <div class="col-md-3">
+                                                    <label><b></b></label>
+                                            </div>
+                                            <h4>-----------------------------------------------------------------------------------------------------------------------------</h4>
+                                        <% } %>
+                                           
+                                    </div>
                                      <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<examenes complementarios>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
                                    <div class="col-md-12  header"><br><br>
@@ -244,8 +340,9 @@
                                     </div>
                                     <div class="col-md-12  row">
                                         <div class="col-md-4">
-                                            <label for="">Ecografia</label>
+                                           
                                             <% if (ecografias != "") { %>
+                                                <label for="">Ecografia</label>
                                                 <% for (var i = 0; i < ecografias.length; i++ ) { %>
                                                     <% for ( var j = 0; j < ecografias[i].examen.length; j++) { %>
                                                         <ul v-for="list in lab_one.examen">
@@ -520,11 +617,54 @@
                                      <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<transferencia>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
                                    <div class="col-md-12  header"><br><br>
-                                        <div class="col-md-3">
-                                            <label><b>Transferencia a:</b></label>
-                                        </div>
-                                       
+                                        
+                                        <%if (traslado != "") { %>
+                                            <div class="col-md-4">
+                                                <label><b>Transferencia desde:</b> <%=traslado[0].enviado_de%> a <%=esp[0].nombre%></label>
+                                            </div>
+                                        <% } %>
                                     
+                                    </div>
+
+                                    <div class="col-md-12  header"><br><br>
+                                        <div class="col-md-3">
+                                            <label><b>Epicrisis:</b></label>
+                                        </div>
+                                      
+                                        <div class="col-md-3">
+                                            <label><b>Fecha internacion:</b></label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label><b>Fecha alta:</b></label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label><b>Causa de egreso:</b></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12  row">
+                                        <%if ( epicrisis != "" ) { %>    
+                                           
+                                            <div class="col-md-3">
+                                                <label><b></b></label>
+                                            </div>
+                                        
+                                            <div class="col-md-3">
+                                                <label><%= epicrisis[0].Fecha_internacion %></label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label><%= epicrisis[0].Fecha_alta %></label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label><%= epicrisis[0].causa_egreso %></label>
+                                            </div>
+                                           
+                                        <% } else { %>
+                                            <div class="col-md-3">
+                                                    <label><b></b></label>
+                                            </div>
+                                            <h4>-----------------------------------------------------------------------------------------------------------------------------</h4>
+                                        <% } %>
+                                           
                                     </div>
                                     
                                   
