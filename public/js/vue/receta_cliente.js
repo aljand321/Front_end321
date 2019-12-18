@@ -409,7 +409,7 @@ const receta_cliente = new Vue({
               if(data.success == true){
                
                 swal.fire(
-                  'Success!',
+                  'Confirmado!',
                   '<label style="color:green;">'+data.msg+'</label>',
                   'success'
                 )

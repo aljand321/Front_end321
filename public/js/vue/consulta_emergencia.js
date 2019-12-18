@@ -62,7 +62,7 @@ const consulta_emergencia = new Vue({
 
                     for(var i = 0; i < this.diagnostico.length; i++){
                         if (this.diagnostico[i].codigo == data[0].codigo){
-                            console.log(this.diagnostico[i].codigo ,"no puede haver dos diagnosticos del mismo tipo")
+                            console.log(this.diagnostico[i].codigo ,"No puede haber dos diagnósticos del mismo tipo")
                             data1 = false
                         }
                     }
@@ -137,7 +137,7 @@ const consulta_emergencia = new Vue({
                
                 if (resp.success == true){
                     swal.fire(
-                        'Success!',
+                        'Confirmado',
                         '<label style="color:green;">'+ resp.msg +'</label>',
                         'success'
                     )
@@ -149,7 +149,7 @@ const consulta_emergencia = new Vue({
                     },10000); */
                 }else{
                     swal.fire(
-                        'Error!',
+                        'Error',
                         '<label style="color:red;">'+resp.msg+'</label>',
                         'error'
                     )
@@ -181,7 +181,7 @@ const consulta_emergencia = new Vue({
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(resp => {
-                console.log(resp, " esto es la respuesta de la hora estado")
+                console.log(resp, " Esto es la respuesta de la hora del estado")
             })
         }, 
         
@@ -215,7 +215,7 @@ const consulta_emergencia = new Vue({
                
                 if (resp.success == true){
                     swal.fire(
-                        'Success!',
+                        'Confirmado',
                         '<label style="color:green;">'+ resp.msg +'</label>',
                         'success'
                     )
@@ -223,7 +223,7 @@ const consulta_emergencia = new Vue({
                     
                 }else{
                     swal.fire(
-                        'Error!',
+                        'Error',
                         '<label style="color:red;">'+resp.msg+'</label>',
                         'error'
                     )
@@ -248,7 +248,7 @@ const consulta_emergencia = new Vue({
 
                     for(var i = 0; i < this.one_cita_emergencia.diagnostico.length; i++){
                         if (this.one_cita_emergencia.diagnostico[i].codigo == data[0].codigo){
-                            console.log(this.one_cita_emergencia.diagnostico[i].codigo ,"no puede haver dos diagnosticos del mismo tipo")
+                            console.log(this.one_cita_emergencia.diagnostico[i].codigo ,"No puede haber dos diagnósticos del mismo tipo")
                             data = false
                         }
                     }

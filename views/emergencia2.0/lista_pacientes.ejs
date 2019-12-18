@@ -1,99 +1,84 @@
 <!DOCTYPE >
 <html >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<title>Emergencias</title>
-<%- include("./partials/head") -%>
-<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
-<style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+	<title>Emergencia</title>
+	<%- include("./partials/head") -%>
+	<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+	<style>
 		.vertical-alignment-helper {
-		  display:table;
-		  height: 100%;
-		  margin-left: 41%;
-	  }
-	  .vertical-align-center {
-		  /* To center vertically */
-		  display: table-cell;
-		  vertical-align: middle;
-		  text-align: center;
-	  }
-</style>
+			display:table;
+			height: 100%;
+			margin-left: 41%;
+		}
+		.vertical-align-center {
+			/* To center vertically */
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+	</style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper" id="list_vue">
-<!--Navegation-->
-<div class="header_bar">
-    <div class="brand">
-    <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
-    </div>
-    <div class="header_top_bar">
-    <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-			<img src="/images/medico.png" /><span class="user_adminname">  <span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="javascript:void(0);"data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
-            
-          </ul>
-        </div>
-       
-      </div>
-    </div>
-  </div>
-  <div class="inner">
-    <div class="left_nav">
-      <div class="left_nav_slidebar">
-          	<ul>
-				<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-					<ul >
-						<li> <a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
-					</ul>
-				</li>
-				<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
-					<ul class="opened" style="display:block">
-						<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
-					</ul>
-				</li>
-				<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open"></i>Reportes <span ></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-					<ul >
-					  <li> <a href="/emergencia2.0/lista_consultas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinica</b> </a> </li>
-					  
-					</ul>
-				 </li>
-            </ul>
-        </div>
-	</div>
-	
-    <div class="contentpanel">
-        <div class="container clear_both padding_fix">
-			<br>
-			<div class="col-lg-12 block-web">
-				<div class="head">
-					<div class="actions">
-						<li @click="click_1()" class="btn btn-primary btn-raised"><i class='fa fa-list-ol'></i> {{click}}</li>
-					</div>
-					<div class="header">
-						<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
-						<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
-					</div>
-				</div> 
-				
+	<div class="wrapper" id="list_vue">
+		<div class="header_bar">
+			<div class="brand">
+				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+			</div>
+			<div class="header_top_bar">
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+				<div class="top_right_bar">
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+						<img src="/images/medico.png" /><span class="user_adminname">  <span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="javascript:void(0);"data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
+						</ul>
+					</div>	
+				</div>
 			</div>
 		</div>
-			<div class="main-content">
-				<div class="row">
-					<div class="col-lg-14 ">
+		<div class="inner">
+			<div class="left_nav">
+				<div class="left_nav_slidebar">
+					<ul>
+						<li ><a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Consultas de Emerg.<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Lista de Consultas</b> </a> </li>
+							</ul>
+						</li>
+						<li class=""> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/emergencia2.0/ReporMotivoVisita"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Pacientes</b> </a> </li>
+								<li> <a href="/emergencia2.0/lista_consultas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cons.</b> </a> </li>
+							</ul>
+						</li> 
+					</ul>
+				</div>
+			</div>
+			<div class="contentpanel">
+				<div class="container clear_both padding_fix"><br>
+					<div class="col-lg-12 block-web">
+						<div class="head">
+							<div class="actions">
+								<li @click="click_1()" class="btn btn-info btn-raised"><i class='fa fa-list-ol'></i> {{click}}</li>
+							</div>
+							<div class="header">
+								<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
+								<h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Consultas de Emergencias</h>
+							</div>
+						</div>
+					</div>
+					<div class="main-content">
 						<section class="panel default blue_title h2">
 							<input type="hidden"  :value="id_medico = '<%=id_medico%>'">
 							<div class="panel-body page-content">
 								<ul class="nav nav-tabs" id="myTab">
-									<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-list-alt "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes En Espera</a></li>
+									<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-user "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes en espera</a></li>
 									<li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Atendidos</a></li>
-								</ul>
-								
+								</ul>					
 								<template v-if="data_list == ''">
 									<div class="tab-content" id="myTabContent">
 										<div id="Tab1" class="tab-pane fade in active">
@@ -105,35 +90,33 @@
 																<table  class="display table table-bordered table-striped" id="dynamic-table">
 																	<thead>																	
 																		<tr>
-																			<th >#</th>
-																			<th >N° Historia </th>
-																			<th >Nombre Paciente</th>
-																			<th >Apellido Paterno</th>
-																			<th >Apellido Materno</th>	
-																			<th >Hora Atencion</th>	
-																			<th>Fecha</th>
-																			<th >Reg. Consulta</th>
+																		<th >#</th>
+																		<th >N° Historia </th>
+																		<th >Nombre(s)</th>
+																		<th >Apellido Paterno</th>
+																		<th >Apellido Materno</th>	
+																		<th >Hora Atencion</th>	
+																		<th>Fecha</th>
+																		<th >Reg. Consulta</th>
 																		</tr>
 																	</thead>
-																	<tbody>
-																		
+																	<tbody>									
 																		<% for(var i=0; i< resp.length; i++) { %>
 																		<tr>
-																			<td><%= i + 1 %></td>
-																			<td><%=resp[i].codigo_p %></td>
-																			<td><%=resp[i].Paciente.nombre %></td>
-																			<td><%=resp[i].Paciente.apellidop %></td>
-																			<td><%=resp[i].Paciente.apellidom %></td>
-																			<td><%=resp[i].hora.split("/")[0] %></td>
-																			<td><%=resp[i].fecha %></td>
-																			<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=resp[i].id%>/<%=resp[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+																		<td><%= i + 1 %></td>
+																		<td><%=resp[i].codigo_p %></td>
+																		<td><%=resp[i].Paciente.nombre %></td>
+																		<td><%=resp[i].Paciente.apellidop %></td>
+																		<td><%=resp[i].Paciente.apellidom %></td>
+																		<td><%=resp[i].hora.split("/")[0] %></td>
+																		<td><%=resp[i].fecha %></td>
+																		<td class="text-center">
+																			<a  href="/emergencia2.0/registrar_emergencia/<%=resp[i].id%>/<%=resp[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-stethoscope" style="color:rgb(19, 125, 224)"></i></a><span>&nbsp;</span>
 																		</tr>
 																		<% } %>
-																		
 																	</tbody>
 																</table>
-															</div>
-																				
+															</div>										
 														</div>
 													</div>
 												</div>
@@ -148,31 +131,29 @@
 																<table  class="display table table-bordered table-striped" id="dynamic-table2">
 																	<thead>
 																		<tr>
-																			<th >#</th>
-																			<th >N° Historia </th>
-																			<th >Nombre Paciente</th>
-																			<th >Apellido Paterno</th>
-																			<th >Apellido Materno</th>	
-																			<th >Hora Atencion</th>	
-																			<th>Fecha</th>
-																			<th >Optiones</th>
+																		<th >#</th>
+																		<th >N° Historia </th>
+																		<th >Nombre(s)</th>
+																		<th >Apellido Paterno</th>
+																		<th >Apellido Materno</th>	
+																		<th >Hora Atención</th>	
+																		<th>Fecha</th>
+																		<th >Optiones</th>
 																		</tr>
 																	</thead>
-																	<tbody>
-																		
+																	<tbody>															
 																		<% for(var i=0; i< list_false.length; i++) { %>
 																		<tr>
-																			<td><%= i + 1 %></td>
-																			<td><%=list_false[i].codigo_p %></td>
-																			<td><%=list_false[i].Paciente.nombre %></td>
-																			<td><%=list_false[i].Paciente.apellidop %></td>
-																			<td><%=list_false[i].Paciente.apellidom %></td>
-																			<td><%=list_false[i].hora.split("/")[0] %></td>
-																			<td><%=list_false[i].fecha %></td>
-																			<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+																		<td><%= i + 1 %></td>
+																		<td><%=list_false[i].codigo_p %></td>
+																		<td><%=list_false[i].Paciente.nombre %></td>
+																		<td><%=list_false[i].Paciente.apellidop %></td>
+																		<td><%=list_false[i].Paciente.apellidom %></td>
+																		<td><%=list_false[i].hora.split("/")[0] %></td>
+																		<td><%=list_false[i].fecha %></td>
+																		<td class="text-center"><a  href="/emergencia2.0/registrar_emergencia/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Consulta"><i class="fa fa-eye" style="color:rgb(19, 125, 224)"></i></a><span>&nbsp;</span>
 																		</tr>
 																		<% } %>
-																		
 																	</tbody>
 																</table>
 															</div>
@@ -186,220 +167,188 @@
 								<template v-else>
 									<div class="row">
 										<div class="col-lg-12">
-											<section class="panel default blue_title h2">
-												<div class="panel-heading">Pacientes de 
-													<span class="semi-bold">Hoy</span>
-												</div>
+											<section class="panel default black_title h3">
+												<div class="panel-heading">Lista de Consultas de hoy</div>
 												<div class="panel-body">
 													<div class="table-responsive">
-											  			<table class="display table table-bordered table-striped" id="dynamic-tablee">
+														<table class="display table table-bordered table-striped" id="dynamic-tablee">
 															<thead>
-															  	<tr>
-																	<th >#</th>
-																	<th >N° Historia </th>
-																	<th >Nombre Paciente</th>
-																	<th >Apellido Paterno</th>
-																	<th >Apellido Materno</th>	
-																	<th >Hora Atencion</th>	
-																	<th>Fecha</th>
-																	<th >Optiones</th>
-															  	</tr>
+																<tr>
+																<th >#</th>
+																<th >N° Historia </th>
+																<th >Nombre(s)</th>
+																<th >Apellido Paterno</th>
+																<th >Apellido Materno</th>	
+																<th >Hora Atencion</th>	
+																<th>Fecha</th>
+																<th >Optiones</th>
+																</tr>
 															</thead>
 															<tbody>
-															  	<tr v-for="(list, index) in data_list">
-																	<td>{{ index + 1 }}%></td>
-																	<td>{{list.codigo_p}}</td>
-																	<td>{{list.Paciente.nombre}}</td>
-																	<td>{{list.Paciente.apellidop}}</td>
-																	<td>{{list.Paciente.apellidom}}</td>
-																	<td>{{list.hora.split("/")[0]}}</td>
-																	<td>{{list.fecha}}</td>
-																	<td class="text-center"><a  :href="'/emergencia2.0/registrar_emergencia/'+list.id+'/'+list.codigo_p+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>																	
-															  	</tr>
+																<tr v-for="(list, index) in data_list">
+																<td>{{ index + 1 }}%></td>
+																<td>{{list.codigo_p}}</td>
+																<td>{{list.Paciente.nombre}}</td>
+																<td>{{list.Paciente.apellidop}}</td>
+																<td>{{list.Paciente.apellidom}}</td>
+																<td>{{list.hora.split("/")[0]}}</td>
+																<td>{{list.fecha}}</td>
+																<td class="text-center"><a  :href="'/emergencia2.0/registrar_emergencia/'+list.id+'/'+list.codigo_p+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-stethoscope" style="color:rgb(19, 125, 224)"></i></a><span>&nbsp;</span>																	
+																</tr>
 															</tbody>
-											  			</table>
+														</table>
 													</div>
 												</div>
 											</section>
 										</div>
 									</div>
 								</template>
-
 							</div>
 						</section>
 					</div>
 				</div>
 			</div>
-      	</div>
-  </div>
-  
-</div>
-</div>
-<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-		<div class="vertical-alignment-helper">
-		  <div class="modal-dialog vertical-align-center modal-sm ">
-			<div class="modal-content">
-			  <br>
-				<div class="center">
-				  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+		</div>
+	</div>
+	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="vertical-alignment-helper">
+		  	<div class="modal-dialog vertical-align-center modal-sm ">
+				<div class="modal-content"><br>
+					<div class="center">
+						<i><img src="/images/salir.gif" width="100" height="100" /></i>
+					</div>
+					<div class="center">
+						<h5><b>¿Cerrar Sesión?</b></h5>
+					</div>
+					<div class="modal-footer">
+						<div class="center">
+						<a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+						<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+						</div>
+					</div>
 				</div>
-				<div class="center">
-				  <h5><b>¿Cerrar Sesión?</b></h5>
-				</div>
-			  <div class="modal-footer">
-				<div class="center">
-				  <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-				</div>
-			  </div>
 			</div>
-		  </div>
 		</div> 
 	</div>
-<script src="/js/jquery-2.1.0.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/common-script.js"></script>
-<script src="/js/jquery.slimscroll.min.js"></script>
-<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
-<script src="/plugins/checkbox/zepto.js"></script>
-<script src="/plugins/checkbox/icheck.js"></script>
-<script src="/js/icheck-init.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
-<script type="text/javascript" src="/js/form-components.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
-<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
-<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
-<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
-
-
-
-<script src="/plugins/validation/parsley.min.js"></script>
-<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-<script src="/plugins/data-tables/dynamic_table_init.js"></script>
-<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
-<script src="/plugins/edit-table/edit-table.js"></script>
-<script>
-          jQuery(document).ready(function() {
-              EditableTable.init();
-          });
- </script>
-<script>
-
-
-/*==Porlets Actions==*/
-    $('.minimize').click(function(e){
-      var h = $(this).parents(".header");
-      var c = h.next('.porlets-content');
-      var p = h.parent();
-      
-      c.slideToggle();
-      
-      p.toggleClass('closed');
-      
-      e.preventDefault();
-    });
-    
-    $('.refresh').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
-      
-      loading.appendTo(p);
-      loading.fadeIn();
-      setTimeout(function() {
-        loading.fadeOut();
-      }, 1000);
-      
-      e.preventDefault();
-    });
-    
-    $('.close-down').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      
-      p.fadeOut(function(){
-        $(this).remove();
-      });
-      e.preventDefault();
-    });
-
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="/js/jPushMenu.js"></script> 
-<script src="/js/side-chats.js"></script>
-<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
-
-<script src="/moment/moment.js"></script>
-<script src="/moment/locale/af.js"></script>
-<script src="/url/export.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-<script src="/axios/dist/axios.min.js"></script>
-
-<script>
-	const list_vue = new Vue({
-    	el:"#list_vue",
-    	data: () => ({
-			url:data_url.url_front_end,
-			data: 'aljand 321',
-			hoy: '',
-			id_medico:'',
-
-			data_list:'',
-
-			click :'Lista de Pacientes de hoy'
-			
-		}),
-		mounted(){
-			this.hoy = moment().format('l');
-			console.log(this.hoy) 	
-		},
-		methods:{
-			click_1(){
-				console.log(" click ss")
-				if(this.data_list == ''){
-					var datos = {
-						fecha: this.hoy
-					};
-  					var esto = {
-  					  method: 'POST',
-  					  body: JSON.stringify(datos),
-  					  headers:{
-  					    'Content-type' : "application/json"
-  					  }
-  					};
-					fetch(this.url+'/emergencia2.0/vue_list_hoy/'+this.id_medico, esto)        
-            		.then(resp => resp.json())
-            		.then( data =>{	
-						if (data.success == false){
-							swal.fire(
-                			    'Error!',
-                			    '<label style="color:red;">'+data.msg+'</label>',
-                			    'error'
-                			)
-						}else{
-							this.data_list = data
-							console.log(this.data_list, "   esto es lo que quiero ver")
-						}		
-            		}) 
-					this.click="Mostrar todas las citas"
-				}else{
-					this.click = "Lista de Pacientes de hoy"
-					this.data_list = ""
-				}
-				
+	<script src="/js/jquery-2.1.0.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/common-script.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+	<script src="/plugins/checkbox/zepto.js"></script>
+	<script src="/plugins/checkbox/icheck.js"></script>
+	<script src="/js/icheck-init.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+	<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+	<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+	<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+	<script type="text/javascript" src="/js/form-components.js"></script> 
+	<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+	<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+	<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+	<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+	<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+	<script src="/plugins/validation/parsley.min.js"></script>
+	<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+	<script src="/plugins/edit-table/edit-table.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+			EditableTable.init();
+		});
+	</script>
+	<script>
+		/*==Porlets Actions==*/
+		$('.minimize').click(function(e){
+		var h = $(this).parents(".header");
+		var c = h.next('.porlets-content');
+		var p = h.parent();
+		c.slideToggle();
+		p.toggleClass('closed');
+		e.preventDefault();
+		});
+		$('.refresh').click(function(e){
+		var h = $(this).parents(".header");
+		var p = h.parent();
+		var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+		loading.appendTo(p);
+		loading.fadeIn();
+		setTimeout(function() {
+			loading.fadeOut();
+		}, 1000);
+		e.preventDefault();
+		});
+		$('.close-down').click(function(e){
+		var h = $(this).parents(".header");
+		var p = h.parent();
+		p.fadeOut(function(){
+			$(this).remove();
+		});
+		e.preventDefault();
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="/js/jPushMenu.js"></script> 
+	<script src="/js/side-chats.js"></script>
+	<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+	<script src="/moment/moment.js"></script>
+	<script src="/moment/locale/af.js"></script>
+	<script src="/url/export.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	<script src="/axios/dist/axios.min.js"></script>
+	<script>
+		const list_vue = new Vue({
+			el:"#list_vue",
+			data: () => ({
+				url:data_url.url_front_end,
+				data: 'aljand 321',
+				hoy: '',
+				id_medico:'',
+				data_list:'',
+				click :'Lista de consultas de hoy'
+			}),
+			mounted(){
+				this.hoy = moment().format('l');
+				console.log(this.hoy) 	
 			},
-			
-		}
-	})
-</script>
-
+			methods:{
+				click_1(){
+					console.log(" click ss")
+					if(this.data_list == ''){
+						var datos = {
+							fecha: this.hoy
+						};
+						var esto = {
+						method: 'POST',
+						body: JSON.stringify(datos),
+						headers:{
+							'Content-type' : "application/json"
+						}
+						};
+						fetch(this.url+'/emergencia2.0/vue_list_hoy/'+this.id_medico, esto)        
+						.then(resp => resp.json())
+						.then( data =>{	
+							if (data.success == false){
+								swal.fire(
+									'Error!',
+									'<label style="color:red;">'+data.msg+'</label>',
+									'error'
+								)
+							}else{
+								this.data_list = data
+								console.log(this.data_list, "   esto es lo que quiero ver")
+							}		
+						}) 
+						this.click="Mostrar todas las consultas"
+					}else{
+						this.click = "Lista de Pacientes de hoy"
+						this.data_list = ""
+					}
+				},
+			}
+		})
+	</script>
 </body>
 </html>

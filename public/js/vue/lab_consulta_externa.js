@@ -343,7 +343,7 @@ const lab_consulta_externa = new Vue({
                     this.otros_eco = ""
                     this.msg_eco_false = ""
                     swal.fire(
-                        'Success!',
+                        'Confirmado',
                         '<label style="color:green;">'+  data.msg +'</label>',
                         'success'
                     )
@@ -354,7 +354,7 @@ const lab_consulta_externa = new Vue({
                         this.msg_eco_false = ""
                     },5000);
                     swal.fire(
-                        'Error!',
+                        'Error',
                         '<label style="color:red;">'+ data.msg+'</label>',
                         'error'
                     )
@@ -582,7 +582,7 @@ const lab_consulta_externa = new Vue({
                        
                         this.msg_rayos_x_false = ""
                         swal.fire(
-                            'Success!',
+                            'Confirmado',
                             '<label style="color:green;">'+  data.msg +'</label>',
                             'success'
                         )
@@ -593,7 +593,7 @@ const lab_consulta_externa = new Vue({
                             this.msg_rayos_x_false = ""
                         },5000);
                         swal.fire(
-                            'Error!',
+                            'Error',
                             '<label style="color:red;">'+data.msg+'</label>',
                             'error'
                         )
@@ -890,7 +890,7 @@ const lab_consulta_externa = new Vue({
                     this.msg_lab_false = ""
                 },5000);
                 swal.fire(
-                    'Error!',
+                    'Error',
                     '<label style="color:red;">Selecione uno o varios por favor</label>',
                     'error'
                 )
@@ -941,7 +941,7 @@ const lab_consulta_externa = new Vue({
                                               
                         this.msg_lab_false = ""
                         swal.fire(
-                            'Success!',
+                            'Confirmado',
                             '<label style="color:green;">'+  data.msg +'</label>',
                             'success'
                         )
