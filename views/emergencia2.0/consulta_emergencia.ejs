@@ -273,10 +273,10 @@
                                     <li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
                                     <div class="file_sidebar_list panel-collapse collapse "   id="collapse" style="height: auto;">
                                       <ul>
-                                        <% if (cita[0].estado_atendido == true) { %>
-                                          <li><a href="/emergencia2.0/datos_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" ><i class="fa fa-building-o"></i>Datos de responsable</a></li>
-                                          <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Datos de Interes</a></li>
-                                        <% } %>
+                                        
+                                        <li><a href="/emergencia2.0/datos_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>" ><i class="fa fa-building-o"></i>Datos de responsable</a></li>
+                                        <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Datos de Interes</a></li>
+                                       
                                       </ul>
                                     </div>
                                   </div>
@@ -338,10 +338,10 @@
                                     </div> 
                                   </template> 
                                 </div>  
-                                <% if (cita[0].estado_atendido == true) { %>
+                               
                                 <button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
                                 <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class="fa fa-times"></i> Cancelar</a>	
-                                <% } %>  
+                               
                               </form>
                             </template>
                             <template v-else>          
@@ -478,17 +478,6 @@
   <!--====== Scripts -->
   <%- include("../partials/scripts") -%>
   <script src="/js/vue/consulta_emergencia.js"></script>
-  <script>
-    /* <% if (cita[0].estado_atendido == false) { %> */
-    msg()
-    function msg(){
-      swal.fire(
-      'Error!',
-      '<label style="color:red;">Esta consulta ya no se puede proceder</label>',
-      'error'
-      )
-    }
-    /* <% } %> */
-  </script>
+ 
 </body>
 </html>
