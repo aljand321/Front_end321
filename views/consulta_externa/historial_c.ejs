@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Historial</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Consultorio</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
     <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
@@ -18,7 +16,6 @@
     <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
     <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
     <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-
     <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
     <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
     <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
@@ -32,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+    <%- include("../partials/head") -%>
     <style>
         div.a {
             text-align: center;
@@ -56,24 +54,15 @@
   
 </head>
 <body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()" >
-	<!-- SideBar -->
-
-    <!-- Content page-->
     <div class="wrapper">
-        <!--\\\\\\\ wrapper Start \\\\\\-->
         <div id="ocultoIl" class="header_bar">
-            <!--\\\\\\\ header Start \\\\\\-->
             <div class="brand">
-                <!--\\\\\\\ brand Start \\\\\\-->
                 <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
             </div>
-            <!--\\\\\\\ brand end \\\\\\-->
             <div class="header_top_bar">
-                <!--\\\\\\\ header top bar start \\\\\\-->
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
                 <div class="btn-group">
-                    <a href="/consulta_externa/historial_clinico/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>ATRAS</a>	
+                    	
                 </div>
                                
                 <div class="top_right_bar">
@@ -140,8 +129,8 @@
                             </div>
                             <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
                                 <div id="ocultoIl" class="header ">
-                                    <div class="info blue_symbols "> <i class="fa fa-archive icon "></i></div>
-                                        <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Historia Clínico</h2>
+                                    <div class="info blue_symbols "> <i class="fa fa-file-text icon "></i></div>
+                                        <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Reporte de Historiales clínicos /<span class="semi-bold"> Historia Clínica</span></h2>
                                 </div>
                                 <div class="col-md-12 ">
                                     <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
@@ -152,7 +141,7 @@
                                 <div class="">
                                     <div class="">
                                         <div class="actions"> </div>
-                                        <h3 class="center">HISTORIA CLINICA </h3> <br>
+                                        <h3 class="center">HISTORIA CLÍNICA </h3> <br>
                                     </div><br><br>
                                     <div class="col-md-12  header">
                                         <div class="col-md-6">
@@ -161,44 +150,41 @@
                                         <div class="col-md-6">
                                             <label><b>Fecha de consulta:</b> <%=data[0].fechaConsulta%></label>
                                         </div>
+                                        <div class="col-md-6">
+                                           
+                                                <label><b>Paciente:</b></label> <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%><br>
+                                                <label><b>Médico:</b></label> <%=doctor.nombre%> <%=doctor.apellidop%> <%=doctor.apellidom%><br>
+                                                
+                                                <label><b>Consultorio:</b></label> <%=data_cita[0].especialidad%><br>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label><b>Institución:</b> HOSPITAL DANIEL BRACAMONTE</label><br>
+                                                
+                                                <label><b>Sexo:</b></label> <%=dataPaciente[0].sexo%><br>
+                                                <label><b>Fecha de Nacimiento:</b></label> <%=dataPaciente[0].fechanacimiento%><br>
+                                            </div>
                                     </div>
 
                                     <div class="col-md-12  header"><br>
-                                        <div class="col-md-6">
-                                           
-                                            <label><b>Paciente:</b></label> <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%><br>
-                                            <label><b>Médico:</b></label> <%=doctor.nombre%> <%=doctor.apellidop%> <%=doctor.apellidom%><br>
-                                            
-                                            <label><b>Consultorio:</b></label> <%=data_cita[0].especialidad%><br>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label><b>Institución</b> Hospital</label><br>
-                                            
-                                            <label><b>Sexo:</b></label> <%=dataPaciente[0].sexo%><br>
-                                            <label><b>Fecha de Nacimiento</b></label> <%=dataPaciente[0].fechanacimiento%><br>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12  row"><br>
                                         <div class="col-md-3">
-                                            <label><b>Motivo de Consulta:</b></label> <br>
-                                            
-                                            <label><b>Diagnostico:</b></label> <br>
-                                            <label><b>Tratamiento :</b></label> <br>
-                                            <label><b>Observaciones u otra conducta:</b></label> <br>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <label><%=data[0].anamnesis%></label> <br>
-                                            
-                                            <label>
-                                                <%for (var i = 0; i < data[0].diagnostico.length; i++ ) { %>
-                                                    <%=data[0].diagnostico[i].descripcion%>
-                                                <% } %>
-                                            </label> <br>
-                                            <label><%=data[0].tratamiento%></label> <br>
-                                            <label><%=data[0].observaciones%></label> <br>
-
-                                        </div>
+                                                <label><b>Motivo de Consulta:</b></label> <br>
+                                                
+                                                <label><b>Diagnóstico:</b></label> <br>
+                                                <label><b>Tratamiento :</b></label> <br>
+                                                <label><b>Observaciones u otra conducta:</b></label> <br>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <label><%=data[0].anamnesis%></label> <br>
+                                                
+                                                <label>
+                                                    <%for (var i = 0; i < data[0].diagnostico.length; i++ ) { %>
+                                                        <%=data[0].diagnostico[i].descripcion%>
+                                                    <% } %>
+                                                </label> <br>
+                                                <label><%=data[0].tratamiento%></label> <br>
+                                                <label><%=data[0].observaciones%></label> <br>
+    
+                                            </div>
                                     </div>
                                     <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<PARA LA RECETA>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
@@ -212,8 +198,7 @@
                                         <div class="col-md-4">
                                             <label><b>Prescripción:</b></label>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12  row">
+                                        <div class="col-md-12  row">
                                         <% if (data[0].Recetas[0] != null) { %>
                                             <% for( var i = 0; i < data[0].Recetas[0].medicamentos.length; i++ ) { %>
                                                 <div class="col-md-3">
@@ -239,6 +224,7 @@
                                                 <label>-------------------------------------------------------------</label>
                                             </div>
                                         <% } %>
+                                    </div>
                                     </div>
                                     <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<ORDENES DE HOSPITALIZACION>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
@@ -571,12 +557,10 @@
                                     
                                 </div>
                                 <div id="ocultoIl" class="col-md-12"><br>
-                                    <div class="header"></div>
                                     <p class="col-md-8">
-                                        <button type="reset" class="btn btn-primary" style="margin-right: 20px;"><i class="fa fa-minus-square"></i> &nbsp;&nbsp; Limpiar</button>
                                         <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-					
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+                                        <a href="/consulta_externa/historial_clinico/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info btn-raised"><i class="fa fa-reply"></i>  Volver a Reportes</a>
+                                        
                                     </p>
                                 </div>
     
