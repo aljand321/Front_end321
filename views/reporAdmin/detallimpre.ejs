@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Administrador1</title>
+  <title>Administrador</title>
   <%- include("../partials/head") -%>
   <link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
 <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
@@ -38,6 +38,11 @@
         size: 8.5in 11in;
       } 
       .scrollV{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .scrollV1{
         width: 100%;
         overflow-y:hidden;
         overflow-x:hidden;
@@ -170,7 +175,7 @@
               </div>
               <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
               <div id="ocultoI" class="header">
-                <h2 class="">REPORTES ESPECÍFICO PERSONAL</h2>
+                <h2 class=""><strong>REPORTES ESPECÍFICO PERSONAL</strong> </h2>
               </div>
             </div>
             <div class="">
@@ -207,7 +212,7 @@
                       <td id="ocultoI" class="text-center"><%=i+1%></td>
                       <td class="text-center"><%=data[i].username %></td>
                       <td class="text-center"><%=data[i].email %></td>
-                      <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                      <td class="text-center scrollV"><%=data[i].createdAt.split("T")[0]%></td>
                         <td>
                           <%for (var j = 0; j < data[i].role.length; j++) { %>
                             <%=data[i].role[j].name%>
