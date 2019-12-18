@@ -63,7 +63,7 @@
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
                 <div class="top_right_bar">
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                        src="/images/admin.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%>
+                        src="/images/medico.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%>
                         </span> <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
@@ -77,7 +77,7 @@
             <div  id="ocultoI" class="left_nav">
                 <div  class="left_nav_slidebar">
                     <ul>
-                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
                         <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
                                 <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b> </a> 
@@ -102,17 +102,27 @@
                             <div  class="  col-xs-12 ">
                                 <div class="row">
                                     <div class="col-lg-12 block-web">
-                                        <div id="ocultoI" class="header">
-                                            <h2 id="ocultoI" class="content-header"><div class="info2 blue_symbols"><i class="fa fa-file-text icon "></i></div> Consulta Externa /<span class="semi-bold"> Papeleta Internación</span></h2>  
-                                        </div> 
+                                        <div class="head">
+                                            <div class="actions">
+                                                <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                                <P class="dondeES"></P>
+                                                <p class="telefo"></p>
+                                                <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                                                <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                                            </div>
+                                            <div id="ocultoI" class="header">
+                                                <h2 id="ocultoI" class="content-header"><div class="info2 blue_symbols"><i class="fa fa-file-text icon "></i></div> Consulta Externa /<span class="semi-bold"> Papeleta Internación</span></h2>  
+                                            </div> 
+                                        </div>
                                         <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-									    <div class="dim2 posiondeImagen">.
-									    	<img class="oculVistaReal "  src="/images/hospital1.png" />
-									    </div>
+									    <div class="dim2 posiondeImagen">
+                                            <p class="hospitalI"></p>
+                                            <img class="oculVistaReal "  src="/images/hospital1.png" />
+                                        </div>
 									    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
                                     </div>
                                     <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-                                    <P class="oreden center"></P>
+                                    <P class="oreden ordendetitulo center"></P>
                                     <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
                                     <div class="container-fluid">
                                         <div class="row ">
@@ -163,11 +173,11 @@
                                                                                                 <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Consulta</li>            
                                                                                             </div>
                                                                                             <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
-                                                                                                <div class="col-sm-6 col-sm-8 ">
+                                                                                                <div class="col-sm-6 col-sm-8">
                                                                                                     <label class="">Especialidad:</label><p><b><%=one_consulta[0].tipoConsulta%></b></p>
                                                                                                     <input type="hidden" name="tipoConsulta" value="<%=one_consulta[0].tipoConsulta%>"class="form-control" readonly="" value="Read only text goes here">                                                                
                                                                                                 </div>                 
-                                                                                                <div class="col-sm-6 col-sm-12">
+                                                                                                <div class="col-sm-6 col-sm-12 ">
                                                                                                     <label class="">Médico:</label><p><b><%=one_consulta[0].Citas_Medica.medico%></b></p>
                                                                                                     <input type="hidden" name="nombreDoctor" value="<%=one_consulta[0].Citas_Medica.medico%>" class="form-control" readonly="" value="Read only text goes here" >
                                                                                                 </div>
@@ -203,7 +213,7 @@
                                                                                 <div class="col-md-12">
                                                                                     <div class="col-sm-4">
                                                                                         <div class="entrada"> Diagnóstico<br>
-                                                                                            <textarea name="diagnostico" cols="100" rows="10" onkeyup="mayus(this);"></textarea><br>
+                                                                                            <textarea name="diagnostico" cols="140" rows="10" onkeyup="mayus(this);"></textarea><br>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -228,36 +238,39 @@
                                                                                                 <li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Importantes</li>            
                                                                                             </div>
                                                                                             <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse in">
-                                                                                                <div class="col-md-3  ">                         
-                                                                                                    <div class="entrada his">
+                                                                                                <div class="col-md-3 bloque1">                         
+                                                                                                    <div class="entrada  ">
                                                                                                         <label class=" ">N° de Historia:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
                                                                                                         <input type="hidden" name="Historial" value="<%=dataPaciente[0].numeroHistorial%>" class="form-control" readonly="" value="Read only text goes here">
                                                                                                     </div>
-                                                                                                    <div class="entrada his">
+                                                                                                    <div class="entrada">
                                                                                                         <div class="">
                                                                                                             <label class=" "> Paciente:</label><p><b><%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%></b></p>               
                                                                                                         </div> 
                                                                                                     </div> 
                                                                                                 </div>
-                                                                                                <div class="col-md-3 ">
-                                                                                                    <div class="entrada his">
+                                                                                                <div class="col-md-3 bloque1">
+                                                                                                    <div class="entrada ">
                                                                                                         <label class="">Fecha de Nacimiento:</label><p><b><%=dataPaciente[0].fechanacimiento%></b></p>
                                                                                                     </div> 
-                                                                                                    <div class="entrada his">
+                                                                                                    <div class="entrada ">
                                                                                                         <div class="">
                                                                                                             <label class=" ">CI.:</label><p><b><%=dataPaciente[0].ci%></b></p>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="col-md-2 his">    
-                                                                                                    <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
+                                                                                                <div class="col-md-2 bloque2">  
+                                                                                                    <div class="">
+                                                                                                        <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
+                                                                                                    </div>  
+                                                                                                    
                                                                                                 </div>
-                                                                                                <div class="col-md-3 ">
-                                                                                                    <div class="his entrada">
+                                                                                                <div class="col-md-3 bloque2">
+                                                                                                    <div class=" entrada">
                                                                                                         <label class="">Especialidad / Consultorio:</label><p><b><%=one_consulta[0].tipoConsulta%></b></p>
                                                                                                         <input type="hidden" name="tipoConsulta" value="<%=one_consulta[0].tipoConsulta%>"class="form-control" readonly="" value="Read only text goes here">                                                                
                                                                                                     </div>
-                                                                                                    <div class="his entrada">
+                                                                                                    <div class=" entrada">
                                                                                                         <label class="">Nombre del Médico:</label><p><b><%=one_consulta[0].Citas_Medica.medico%></b></p>
                                                                                                     </div>
                                                                                                 </div>
@@ -267,23 +280,28 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-                                                                        <p class="areInternacion"></p>
+                                                                     <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                                                      <!-- 
+                                                                     <p class="areInternacion"></p>
                                                                         <p class="fechao"></p>
+                                                                    -->
                                                                         <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
                                                                         <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                                                    <!--
                                                                         <p class="tituloDiagnostico"></p><br>
                                                                         <p class="oreden1"></p>
+                                                                    -->
                                                                         <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-                                                                        <div class="block-web">
-                                                                            <div id="ocultoI" class="header">
-                                                                            <h4  class="content-header">Estado del Paciente</h4>
-                                                                        </div> 
+                                                                        <div id="ocultoI" class="block-web">
+                                                                            <div class="header">
+                                                                                <h4  class="content-header">Estado del Paciente</h4>
+                                                                            </div> 
+                                                                        </div>
                                                                         <div   class="form-group">
                                                                             <div class="">
-                                                                                <div id="ocultoI" class="col-md-12">
-                                                                                    <div class="col-sm-6 col-sm-6 his">
-                                                                                        <div class="entrada "> Area de hospitalización
+                                                                                <div id="" class="col-md-12">
+                                                                                    <div class="col-sm-6 col-sm-6 bloque3">
+                                                                                        <div class="entrada "> Área de hospitalización
                                                                                             <select class="form-control" name="especialidad">
                                                                                                 <option><%=resp[0].especialidad%></option>
                                                                                                 <option>------------------------</option>
@@ -293,7 +311,7 @@
                                                                                             </select>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="col-sm-6 col-sm-6 his">
+                                                                                    <div class="col-sm-6 col-sm-6 bloque3">
                                                                                         <div class="entrada ">
                                                                                             <div class="entrada">Fecha de Ingreso
                                                                                                 <input class="form-control" type="text" readonly name="fechaIngreso" require value="<%=resp[0].fechaIngreso%>" ><br>
@@ -301,17 +319,19 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div id="ocultoI" class="col-md-10 ">
-                                                                                    <div class="entrada his ">
+                                                                                <div id="" class="col-md-10 bloque4">
+                                                                                    <div class="entrada  ">
                                                                                         <label class=""> Diagnóstico</label><br>
-                                                                                        <textarea class="acomodar" name="diagnostico" cols="100%" rows="10" onkeyup="mayus(this);"><%=resp[0].diagnostico%></textarea>
+                                                                                        <textarea class="acomodar" name="diagnostico" cols="140%" rows="10" onkeyup="mayus(this);"><%=resp[0].diagnostico%></textarea>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
+                                                                        </div><br><br>
                                                                         <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-                                                                        <p class="firmaPa center cafirmaP"></p>
-                                                                        <p class="firmaDoc center cafirmaDoc"></p>
+                                                                        <div class="acomodarFirmas">
+                                                                            <p class="firmaPa center cafirmaP"></p>
+                                                                            <p class="firmaDoc center cafirmaDoc"></p>
+                                                                        </div> 
                                                                         <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
                                                                         <div id="ocultoI" class="col-md-12 page-content ">
                                                                             <div class="col-md-8 ">
@@ -338,7 +358,7 @@
                                                                     <th>Nombre</th>
                                                                    
                                                                     <th>Historial</th>
-                                                                    <th>Nombre del doctor</th>
+                                                                    <th>Nombre del Médico</th>
                                                                     <th>Area de Internacion</th>
                                                                     <th>De:</th>
                                                                     <th>Ver</th>
@@ -366,10 +386,9 @@
                                         </div>
 
                                         </div>
-                                    </section>
-                                </div>
-                                    
-                            </div>
+                                            </section>
+                                        </div>
+                                    </div>
                        
                         <!--====== Scripts -->
 
@@ -427,7 +446,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
         </div>
     </div>
     <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -444,59 +463,102 @@
                 </div>
               <div class="modal-footer">
                 <div class="center">
-                  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                  <a  href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
                   <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
                 </div>
               </div>
             </div>
           </div>
         </div> 
-        </div>
+    </div>
 
     <!--====== Scripts -->
     <%- include("../partials/scripts") -%>
-    <style >
-    /*  <%if (resp != "") { %> */
-        @media print{
-            .tituloDiagnostico:before {
-                content: " Dignóstico";
-                font-weight: negrita;
-                color:black;
-                text-align: center;
-                padding: 0%;
-                margin: 0%;
-                font: Arial;
-                float: left;
-                padding-left: 5%;
-            }    
-            .oreden1:before {
-                content: "<%=resp[0].diagnostico%>";
-                float: left;
-                padding-left: 5%;
-            }
-            .areInternacion:before {
-                content: "Áre de Internación: <%=especialidad[0].nombre%>";
-                font-weight: negrita;
-                color:black;
-                width: 50%;   
-                float: left;
-                padding-left: 5%;
-            }
-            .fechao:before{
-                content: "Fecha de Ingreso <%=resp[0].fechaIngreso%>";
-                font-weight: negrita;
-                color:black;
-                width: 30%;
-                float: right;
-            }
-            .acomodar{
-                width: 30%;
-                float: left;
-            }
-                
+<style >
+/*  <%if (resp != "") { %> */
+    @media print{
+        @page {
+            size:  A4 portrait;
+            margin: 0;
         }
-    /*   <% } %>     */
-    </style>
+        .tituloDiagnostico:before {
+            content: " Dignóstico";
+            font-weight: negrita;
+            color:black;
+            text-align: center;
+            padding: 0%;
+            margin: 0%;
+            font: Arial;
+            float: left;
+            padding-left: 5%;
+        }    
+        .ordendetitulo{
+          	position:static;
+	      	margin-top: 10%;
+	      	margin-left: 3%;
+          	font: small-caps 170%/100% serif;
+        }
+        .bloque1{
+		  position: relative;
+		  float:left;
+	      	margin-top: 0%;
+	      	margin-left: 0%;
+          	font: small-caps 100%/100% serif;
+	    }
+	    .bloque2{
+	    	position: relative;
+	        float:left;
+	      	margin-left: 5%;
+          	font: small-caps 100%/100% serif;
+	    }
+	    .bloque3{
+          	position: relative;
+	    	float:left;
+	    	margin-left: 5%;
+          	font: small-caps 100%/100% serif;
+	    }
+	    .bloque4{
+          	position: static;
+	    	float:left;
+	    	margin-top: 0%;
+	    	margin-left: 0%;
+	    	  margin-bottom: 5%;
+          	font: small-caps 100%/100% serif;
+        }
+        .acomodarFirmas{
+            position: static;
+            float:left;
+            width: 100%;
+	    	margin-top: 3%;
+        }
+        .oreden1:before {
+            content: "<%=resp[0].diagnostico%>";
+            float: left;
+            padding-left: 5%;
+        }
+        .areInternacion:before {
+            content: "Áre de Internación: <%=especialidad[0].nombre%>";
+            font-weight: negrita;
+            color:black;
+            width: 50%;   
+            float: left;
+            padding-left: 5%;
+        }
+        .fechao:before{
+            content: "Fecha de Ingreso <%=resp[0].fechaIngreso%>";
+            font-weight: negrita;
+            color:black;
+            width: 30%;
+            float: right;
+        }
+        .acomodar{
+            width: 100%;
+            float: left;
+        }
+            
+    }
+/*   <% } %>     */
+</style>
     <script>
     /*  <%if(msg) { %> */
           /*  <%if(msg.data.success == false) { %> */
@@ -512,7 +574,7 @@
                msg_true()
                function msg_true(){
                  swal.fire(
-                   'Success!',
+                   'Confirmado!',
                    '<label style="color:green;">'+ `<%=msg.data.msg%>` +'</label>',
                    'success'
                  )

@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-	<title>HISTORIAL</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+	<title>Consulta</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
-
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -16,7 +13,6 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-
 	<style>
 		div.a {
 			text-align: center;
@@ -42,15 +38,10 @@
 	</style>
 	<%- include("../partials/head") -%>
 </head>
-
 <body class="light_theme  fixed_header left_nav_fixed">
-	<!-- Content page-->
 	<div class="wrapper">
-		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div class="header_bar">
-			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
-				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
 
 			</div>
@@ -63,7 +54,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-						<img src="/images/medico.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>Nomre</span> <b class="caret"></b> </a>
+						<img src="/images/medico.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							
@@ -72,39 +63,27 @@
 					</div>
 				</div>
 			</div>
-			<!--\\\\\\\ header top bar end \\\\\\-->
 		</div>
 		<div class="inner">
-			<!--\\\\\\\ inner start \\\\\\-->
 			<div class="left_nav">
-
-				<!--\\\\\\\left_nav start \\\\\\-->
-
 				<div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul >
-								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
-							</ul>
-						</li>
+						<li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
 						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b></a> </li>
+								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Consultas</b></a> </li>
 							</ul>
 						</li>
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul class="opened" style="display:block">
-								<li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color" >Historial Clinico </b>  </a> </li>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
-							</ul>
+							<ul class="opened" style="display:block" >
+								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pacientes </b>  </a> </li>
+								<li> <a href="/consulta_externa/ReporEnfermedades/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cons.</b>  </a> </li>
+							</ul> 
 						</li>						
 					</ul>
 				</div>
 			</div>
-			<!--\\\\\\\left_nav end \\\\\\-->
 			<div class="contentpanel">
-				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-12">
 					<br>
 					<br>

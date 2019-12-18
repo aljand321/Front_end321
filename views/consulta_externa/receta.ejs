@@ -29,26 +29,58 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-	<style scoped>
-		@media print{
-			/* para orden de internacion*/
-		.oreden1:before {
-			content: " v-model:"'data_receta.fecha' "
-			v-model="'data_receta.fecha'"
+<style scoped>
+	@media print{
+		@page {
+		size:  A4 portrait;
+		margin: 0;
+	}
+	 #sinMargenR{
+		top: 0%;
+		border: 0px;
+		padding-left: 0% ;
+		padding-top: 0%;
+		margin-left: 0%;
+		margin-right: 0%;
+	}
+	.ordendetitulo{
+		  position:static;
+		  margin-top: 6%;
+		  margin-left: 22%;
+		  font: small-caps 170%/100% serif;
+	}
+	.bloque1{
+		  position: relative;
+		  float:left;
+		  margin-top: 0%;
+		  margin-left: 0%;
+		  font: small-caps 100%/100% serif;
+	}
+	.bloque2{
+		  position: relative;
+		  float:left;
+		  margin-left: 5%;
+		  font: small-caps 100%/100% serif;
+	}
+	.bloque3{
+		  position: relative;
+		  float:left;
 
-		
-		}
-
-		.tprueba{
-			content: var(--medicamento);
-		}
-		.itabla:before{
-			content: "data_receta.fecha";
-
-		}
-		td:hover { background-color: var(--bg-hover-color); }  
-		}
-	</style>
+		margin-left: 10%;
+	
+		  font: small-caps 100%/100% serif;
+	}
+	.bloque4{
+		  position: absolute;
+		float:left;
+		margin-top: 0%;
+		margin-left: 22%;
+		  margin-bottom: 5%;
+		  font: small-caps 100%/100% serif;
+	}
+	 
+}
+</style>
 	<style>
 		div.a {
 			text-align: center;
@@ -89,7 +121,7 @@
 			<div class="header_top_bar">
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
 				<div class="top_right_bar">
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /> <span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
 						</ul>
@@ -101,13 +133,13 @@
 			<div id="ocultoI" class="left_nav">
 				<div class="left_nav_slidebar">
 					<ul>
-						<li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+						<li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
                                 <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b></a> </li>
                             </ul>
                         </li>
-						<li class=""> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
 								<li> <a href="/consulta_externa/pacietnes_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes atendidos</b>  </a> </li>
 								<li> <a href="/consulta_externa/pacietnes_no_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  >No atendidos</b>  </a> </li>
@@ -125,23 +157,27 @@
 							<div  class="col-lg-12 block-web">
 								<div id="" class="head  ">
 									<div id="" class="actions ">
-										<p  name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+									   <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+									   <P class="dondeES"></P>
+									   <p class="telefo"></p>
+									   <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+										<p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
 									</div>
 									<!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
 									<div class="dim2 posiondeImagen">
 										.
 										<img class="oculVistaReal "  src="/images/hospital1.png" />
+										<p class="hospitalI"></p>
 									</div>
 									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
 									<div id="ocultoI" class="header">
-										
 										<div id="ocultoI"class="info2 blue_symbols "> <i class="fa fa-file-text icon  "></i></div>
 										<h2  id="ocultoI"class="content-header"><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa /<span class="semi-bold"> Recetas</span></h2>
 									</div>
 								</div>
 							</div>
 							<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-							<h5 class="texTitulo1 text-center"></h5>
+							<h5 class="texTitulo1 ordendetitulo  text-center"></h5>
 							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 							<div class="main-content" id="recetas">
 								<section class="panel default  "id="">
@@ -178,7 +214,7 @@
 																	</div>
 																	<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse in">
 																		<div id=""class="col-md-12 row">
-																			<div id=""class="col-md-4 his">
+																			<div id=""class="col-md-4 bloque1">
 																				<div class="">
 																					<label class=" ">N° de Historia:</label><p><b><%=paciente_Data[0].numeroHistorial%></b></p>
 																					<input class="form-control" type="hidden" name="numeroHistorial"  v-model="data_receta.historiaClinica = '<%=paciente_Data[0].numeroHistorial%>'"  readonly=""  value="Read only text goes here">
@@ -188,7 +224,7 @@
 																					<input type="hidden" name="sexo" value="<%=paciente_Data[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
 																				</div>	
 																			</div>
-																			<div id="" class="col-md-4 his">
+																			<div id="" class="col-md-4 bloque2">
 																				<label class=" ">Paciente:</label><p><b><%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%></b></p>
 																				<input type="hidden" name="nombre apellidop apellidom" 
 																					value="<%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%>"
@@ -198,7 +234,7 @@
 																					<input  type="hidden" name="fechanacimiento"  value="<%=paciente_Data[0].fechanacimiento%>" class="form-control clear" readonly="" value="Read only text goes here">
 																				</div>
 																			</div>
-																			<div class="col-md-4 row his">
+																			<div class="col-md-4 bloque3">
 																				<div class=" ">
 																					<div class="">
 																						<label class="">Médico:</label><p><b><%=ConsultaOnly[0].Citas_Medica.medico%></b></p>
@@ -212,7 +248,7 @@
 																					</div>
 																				</div> 
 																			</div>
-																			<div class="col-md-6 his ">
+																			<div class="col-md-6 bloque4">
 																				<div class="">
 																					<label class=" ">Fecha Prescripción:</label>
 																					<input class="form-control" type="text" readonly required v-model="data_receta.fecha" require >
@@ -318,7 +354,7 @@
 																								<table class="table table-bordered">
 																								   <thead>
 																										 <tr>
-																										   <th>#</th>
+																										   <th>N°</th>
 																										   <th>Medicamento</th>
 																										   <th>Dosis</th>
 																										   <th>Frecuencia</th>
@@ -436,7 +472,7 @@
 																			  <table class="table table-hover">
 																				<thead>
 																					<tr>
-																						<th>#</th>
+																						<th>N°</th>
 																						<th>Medicamento</th>
 																						<th>Dosis</th>
 																						<th>Frecuencia</th>
@@ -469,6 +505,8 @@
 															<template v-if="One_receta.estado == false">
 																<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> &nbsp;&nbsp;  Actualizar</button>&nbsp;&nbsp;
 															</template>&nbsp;&nbsp;
+															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=paciente_Data[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info " ><i class="fa fa-times"></i> Volver a consulta </a>
+															
 															<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 													</div>
 													<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
@@ -613,7 +651,7 @@
 				</div>
 			  <div class="modal-footer">
 				<div class="center">
-				  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  <a  href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 				</div>
 			  </div>

@@ -35,6 +35,8 @@
 		h1.letras {
 		font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
 		}
+		.info2{ border-radius:100%; float: left; height:80px; width:80px; }
+        .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 20px 10px 18px;}
 		.vertical-alignment-helper {
   	  		display:table;
   	  		height: 100%;
@@ -72,21 +74,18 @@
 				<!--\\\\\\\left_nav start \\\\\\-->
 				<div class="left_nav_slidebar">
 					<ul>
-						<li><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+						<li ><a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consultas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> 
-									<a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Médicas</b>
-									</a> 
-								</li>
+								<li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Médicas</b> </a></li>
 							</ul>
 						</li>
 						<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes consultorio </b> </a></li>
+								<li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reportes por Cons. </b> </a></li>
 								<!-- <li> <a href="/paciente/ReporPaciente"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Pacientes </b> </a></li> -->
 								<li> <a href="/paciente/ReporCita/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Reporte de Citas </b> </a></li>                
-						   </ul>
+							</ul>
 						</li>
 					</ul>
 				</div>
@@ -98,172 +97,132 @@
 							<div id="main-content" class=" block-web">
 								<div class="header">
 									<div class="actions">
-										<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
+										<div  id="tab1default">
+											<textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea>
+										</div>
 									</div>
-									<div class="info blue_symbols"> <i class="fa fa-edit icon"></i></div>
-									<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h2>
-								</div>
-							
-							<div class="porlets-content">
-									
-								<div id="citas">
-									
+									<div id="ocultoI"class="info2 blue_symbols "> <i class="fa fa-file-text icon  "></i></div>
+									<h2  id="ocultoI"class="content-header"><span>&nbsp;&nbsp;&nbsp;</span> Citas Médicas /<span class="semi-bold"> Reserva de Cita Médica</span></h2>
+								</div>					
+								<div class="porlets-content">	
+									<div id="citas">
 									<%if(citaUpdate == null) { %>
-									<form action="/paciente/cita_medica/<%=id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=paciente[0].numeroHistorial%>" method="POST" class=" group-border-dashed">
-										<input type="hidden" name="id_user" value="<%=data_doc.data.personal.id%>">
-										<input type="hidden" name="fecha" :value="fecha">
-										<div class="row">
-											<div class="col-md-12 ">
-												<div class="block-web">
-													<% if(msg_false != null) { %>
-													<div class="bs-example">
-														<div class="alert alert-danger fade in">
-															<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-															<strong><%=msg_false%></strong></div>
-														</div>
-													<% } %>
-													<div class="porlets-content">
-														<div class="form-group">
-															<div class="row"> 
-																<br>
-																<div class="col-md-12">
-																	<div class="col-md-3">
-																		<div class="form-group">
-																			<label> Historial Clinico:</label>
-																			<input type="text" value="<%=paciente[0].numeroHistorial%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
-																		</div>	
-																	</div>
-																	<div class="col-md-6">
-																		<div class="form-group">
-																			<label> Paciente:</label>
-																			<input type="text" value="<%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%>"  class="form-control" readonly="" value="Read only text goes here">
-																		</div>	
-																	</div>
-																	<div class="col-md-3">
-																		<div class="form-group">Costo de Ficha:<br>
-																			<input parsley-type="number"  type="text" name="saldo_total" class="form-control" required placeholder="">
+										<form action="/paciente/cita_medica/<%=id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=paciente[0].numeroHistorial%>" method="POST" class=" group-border-dashed" parsley-validate novalidate>
+											<input type="hidden" name="id_user" value="<%=data_doc.data.personal.id%>">
+											<input type="hidden" name="fecha" :value="fecha">
+											<div class="row">
+												<div class="col-md-12 ">
+													<div class="block-web">
+														<% if(msg_false != null) { %>
+														<div class="bs-example">
+															<div class="alert alert-danger fade in">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<strong><%=msg_false%></strong></div>
+															</div>
+														<% } %>
+															<div class="porlets-content">
+																<div class="form-group">
+																	<div class="row"> 
+																		<div class="col-md-12">
+																			<div class="col-md-3">
+																				<div class="form-group">
+																					<label> Historial Clinico</label>
+																					<input type="text" value="<%=paciente[0].numeroHistorial%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
+																				</div>	
+																			</div>
+																			<div class="col-md-6">
+																				<div class="form-group">
+																					<label> Paciente</label>
+																					<input type="text" value="<%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%>"  class="form-control" readonly="" value="Read only text goes here">
+																				</div>	
+																			</div>
+																			<div class="col-md-3">
+																				<div class="form-group">Costo de Cita<br>
+																					<input parsley-type="number"  type="text" name="saldo_total" class="form-control" required placeholder="">
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-md-12">
+																			<div class="col-md-3">
+																				<div class="form-group"> Seleccione día
+																					<select class="form-control" name="dia" v-model="dia" @click="especilida">
+																						<option value="Lunes">LUNES</option>
+																						<option value="Martes">MARTES</option>
+																						<option value="Miercoles">MIERCOLES</option>
+																						<option value="Jueves">JUEVES</option>
+																						<option value="Viernes">VIERNES</option>
+																						<option value="Sabado">SABADO</option>
+																						<option value="Domingo">DOMINGO</option>
+																					</select><br>
+																				</div>
+																			</div>
+																			<div class="col-md-3">
+																				<div class="form-group">Turno<br>
+																					<select class="form-control" name="turno" v-model="turno" @click="especilida">
+																						<option value="Mañanas">MAÑANA</option>
+																						<option value="Tardes">TARDE</option>
+																						<option value="Noches">NOCHE</option>
+																					</select>
+																				</div>
+																			</div>
+																			<div class="col-md-3">
+																				<div class="form-group">Consultorio <br>
+																					<select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
+																						<option disabled="disabled" value>Seleccione</option>
+																						<template v-for="(especialidad, index) in especialidades">
+																							<option>{{especialidad.nombre}}
+																							</option>
+																						</template>
+																					</select>
+																				</div>
+																			</div>
+																			<div class="col-md-3">
+																				<div class="form-group"> Médico<br>
+																					<select class="form-control" name="medico" v-model="selectDoctor" @click="saca_horas(),saca_horas_reservadas(),saca_horas_atendidas()">
+																						<option disabled="disabled" value> Seleccione </option>
+																						<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
+																						{{doctor.nombre.split("/")[0]}}
+																						</option>
+																				</select>
+																			</div>
 																		</div>
 																	</div>
 																</div>
-																<div class="col-md-12">
-																	<div class="col-md-3">
-																		<div class="form-group"> Seleccione Dia:
-																		<select class="form-control" name="dia" v-model="dia" @click="especilida">
-																			<option>Lunes</option>
-																			<option>Martes</option>
-																			<option>Miercoles</option>
-																			<option>Jueves</option>
-																			<option>Viernes</option>
-																			<option>Sabado</option>
-																			<option>Domingo</option>
-																		</select><br>
-																		</div>
-																	</div>
-																	<div class="col-md-3">
-																		<div class="form-group">Turno:<br>
-																			<select class="form-control" name="turno" v-model="turno" @click="especilida">
-																				<option>Mañanas</option>
-																				<option>Tardes</option>
-																				<option>Noches</option>
-																			</select>
-																		</div>
-																	</div>
-																	<div class="col-md-3">
-																		<div class="form-group">Consultorio De:<br>
-																			<select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
-																				<option disabled="disabled" value>Seleccione</option>
-																				<template v-for="(especialidad, index) in especialidades">
-																					<option>{{especialidad.nombre}}
-																					</option>
-																				</template>
-																			</select>
-																		</div>
-																	</div>
-																	<div class="col-md-3">
-																		<div class="form-group"> Doctor:<br>
-																			<select class="form-control" name="medico" v-model="selectDoctor" @click="saca_horas(),saca_horas_reservadas(),saca_horas_atendidas()">
-																				<option disabled="disabled" value> Seleccione </option>
-																				<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
-																					{{doctor.nombre.split("/")[0]}}
-																				</option>
-																			</select>
-																		</div>
-																	</div>
-																	<div class="col-md-4">
-																		
-																		<!--
-																		<div class="form-group">Tipo de Paciente:<br>
-																			<select class="form-control" name="tipoPaciente">
-																				<option>Institucional</option>
-																				<option>SUS</option>
-																				<option>SPS</option>
-																				<option>SSPAM</option>
-																				<option>CAJA NACIONAL DE SALUD</option>
-																				<option>CAJA PETROLERA DE SALUD</option>
-																				<option>CAJA DE SALUD DE LA BANCA PRIVADA</option>
-																				<option>CAJA BANCARIA ESTATAL DE SALUD</option>
-																				<option>CAJA DE SALUD DE CAMINOS</option>
-																				<option>CAJA DE SALUD DE CORDES</option>
-																				<option>SEGUROS SOCIALES UNIVERSITARIOS</option>
-																				<option>CORPORACIÓN DEL SEGURO SOCIAL MILITAR</option>
-																				<option>SEGUROS REGIONALES</option>
-																			</select>
-																		</div>
-																		-->
-																	</div>
-																</div>
-																	
-																
-																<br>
 															</div>
 														</div>
-													</div>
+													</div>							
 												</div>
-												<!--/col-md-12-->
 											</div>
-											<!--/row-->
-										</div>
-										<div class="row">
 											<div class="col-md-12 ">
 												<div class="col-md-4 ">
 													<div class="block-web green-bg-color">
-														<h3 class="content-header ">Hora para Reservar</h3>
+														<h3 class="content-header ">Hora de Reservas</h3>
 														<div class="porlets-content">
 															<ul class="list-group task-list no-margin collapse in">
 																<template v-for="(horas, index, key) in horas_Turno">
 																	<li class="list-group-item blue-light-bg-color">
-																		<label class="label-checkbox inline  "
-																			for="">{{index+1}}</label>
-																		<input type="radio" name="hora"
-																			class="blue_text"
-																			:value="horas.h +'/'+horas.id">{{horas.h}}<br>
+																		<label class="label-checkbox inline" for="">{{index+1}}</label>
+																		<input type="radio" name="hora" class="blue_text" :value="horas.h +'/'+horas.id">{{horas.h}}<br>
 																	</li>
 																</template>
 															</ul>
-															<!-- /list-group -->
 														</div>
-														<!--/porlets-content-->
 													</div>
-													<!--/block-web-->
 												</div>
 												<div class="col-md-4 ">
 													<div class="block-web green-bg-color">
 														<h3 class="content-header ">Horas Reservadas</h3>
 														<div class="porlets-content">
 															<ul class="list-group task-list no-margin collapse in">
-																<template
-																	v-for="(horas, index, key) in horas_Turno_reservado">
+																<template v-for="(horas, index, key) in horas_Turno_reservado">
 																	<li class="list-group-item blue-light-bg-color">
 																		<label for="">{{index+1}}</label>
 																		<label for="">{{horas.h}}</label><br>
 																	</li>
 																</template>
 															</ul>
-															<!-- /list-group -->
 														</div>
-														<!--/porlets-content-->
 													</div>
-													<!--/block-web-->
 												</div>
 												<div class="col-md-4 ">
 													<div class="block-web green-bg-color">
@@ -279,271 +238,206 @@
 																	</template>
 																</li>
 															</ul>
-															<!-- /list-group -->
 														</div>
-														<!--/porlets-content-->
 													</div>
-													<!--/block-web-->
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="header"></div>
 												<p class="col-md-8">
-													<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
 													<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar/Imprimir</button>
-													<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
+													<a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger " ><i class="fa fa-times"></i> Cancelar </a>
 												</p>
 											</div>
-										</div>
-										
-								
-
-									</form>
+										</form>
+									</div>
 								</div>
 								<% } else { %>
-								<form action="/paciente/updateCita/<%=citaUpdate.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
-									<div class="row">
-										<div class="col-md-12 ">
-											<div class="block-web">
-												<div class="header">
-													<h3 class="content-header">   Nueva Cita<span class="semi-bold">/Actualizar</span>
-													</h3>
-												</div>
-												<div class="row">
-													<div class="grupo" id="cabeza">
-														
-														<div class="col-md-12">
-															<div class="col-md-4">
-																<div class="entrada">Historial Clínico:
-																	<input type="text" value="<%=citaUpdate.data[0].codigo_p%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
-																</div>
-																
-															</div>
-															<div class="col-md-4">
-																<div class="form-group">
-																	<label> Paciente:</label>
-																	<input type="text" value="<%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%>" name="" class="form-control" readonly="" value="Read only text goes here">
-																</div>	
-															</div>
-															<div class="col-md-4">
-																<div class="entrada">Costo de Ficha:
-																	<input type="text" name="saldo_total" class="form-control" value="<%=citaUpdate.data[0].saldo_total%>"><br>
-																</div>
-															</div>
-														</div>
-															<div class="col-md-4">
-																<div class="entrada">Cuaderno:
-																	<%=citaUpdate.data[0].especialidad%><br>
-																	<select  class="form-control"name="especialidad" @click="especilida"
-																		v-model="selectEsp">
-																		<option
-																			v-for="(especialidad, index) of especialidades">
-																			{{especialidad.nombre}}</option>
-																	</select>
-																</div>
-															</div>
-															<div class="col-md-4">
-																<div class="entrada">Turno: <%=citaUpdate.data[0].turno%><br>
-																	<select class="form-control" name="turno" v-model="turno"
-																		@click="especilida">
-																		<option>Mañanas</option>
-																		<option>Tardes</option>
-																		<option>Noches</option>
-																	</select>
-																</div>
-															</div>
-															<div class="col-md-4">
-																<div class="entrada">Doctor:
-																	<%=citaUpdate.data[0].medico%><br>
-																	<select class="form-control" name="medico" v-model="selectDoctor"
-																		@click="saca_horas">
-																		<option disabled="disabled" value>Seleccione
-																		</option>
-																		<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
-																			{{doctor.nombre.split("/")[0]}}
-																		</option>
-																	</select>
-																</div>
-																<!--<div class="form-group">Tipo de Paciente:<br>
-																	<select class="form-control" name="tipoPaciente">
-																		<option>Institucional</option>
-																		<option>SUS</option>
-																		<option>SPS</option>
-																		<option>SSPAM</option>
-																		<option>CAJA NACIONAL DE SALUD</option>
-																		<option>CAJA PETROLERA DE SALUD</option>
-																		<option>CAJA DE SALUD DE LA BANCA PRIVADA</option>
-																		<option>CAJA BANCARIA ESTATAL DE SALUD</option>
-																		<option>CAJA DE SALUD DE CAMINOS</option>
-																		<option>CAJA DE SALUD DE CORDES</option>
-																		<option>SEGUROS SOCIALES UNIVERSITARIOS</option>
-																		<option>CORPORACIÓN DEL SEGURO SOCIAL MILITAR</option>
-																		<option>SEGUROS REGIONALES</option>
-																	</select>
-																</div>-->
-															</div>
-														
-													</div>
-												</div>
-											</div>
-										</div>
+									<form action="/paciente/updateCita/<%=citaUpdate.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
 										<div class="row">
 											<div class="col-md-12 ">
-												<div class="col-md-4"></div>
-												<div v-if="horas_Turno == ''">
-													<div class="col-md-4 ">
-														<div class="block-web green-bg-color">
-															<h3 class="content-header ">Hora de Reserva</h3>
-															<input type="radio" name="hora" value="<%= citaUpdate.data[0].hora%>" checked><%= citaUpdate.data[0].hora.split("/")[0]  %><br>
+												<div class="block-web">
+														<div class="grupo" id="cabeza">
+															
+															<div class="col-md-12">
+																<div class="col-md-4">
+																	<div class="entrada">Historial Clínico:
+																		<input type="text" value="<%=citaUpdate.data[0].codigo_p%>" name="codigo_p" class="form-control" readonly="" value="Read only text goes here">
+																	</div>
+																	
+																</div>
+																<div class="col-md-4">
+																	<div class="form-group">
+																		<label> Paciente:</label>
+																		<input type="text" value="<%=paciente[0].nombre%> <%=paciente[0].apellidop%> <%=paciente[0].apellidom%>" name="" class="form-control" readonly="" value="Read only text goes here">
+																	</div>	
+																</div>
+																<div class="col-md-4">
+																	<div class="entrada">Costo de Ficha:
+																		<input type="text" name="saldo_total" class="form-control" value="<%=citaUpdate.data[0].saldo_total%>"><br>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																	<div class="entrada">Turno / <span class="semi-bold"> <%=citaUpdate.data[0].turno%></span> <br>
+																		<select class="form-control" name="turno" v-model="turno"
+																			@click="especilida">
+																			<option value="Mañanas">MAÑANA</option>
+																			<option value="Tardes">TARDE</option>
+																			<option value="Noches">NOCHE</option>
+																		</select>
+																	</div>
+																</div>
+																<div class="col-md-4">
+																	<div class="entrada">Consultorio / <span class="semi-bold">
+																		<%=citaUpdate.data[0].especialidad%></span><br>
+																		<select  class="form-control"name="especialidad" @click="especilida"
+																			v-model="selectEsp">
+																			<option
+																				v-for="(especialidad, index) of especialidades">
+																				{{especialidad.nombre}}</option>
+																		</select>
+																	</div>
+																</div>
+																
+																<div class="col-md-4">
+																	<div class="entrada">Médico / <span class="semi-bold"> <%=citaUpdate.data[0].medico%></span>
+																		<br>
+																		<select class="form-control" name="medico" v-model="selectDoctor"
+																			@click="saca_horas">
+																			<option disabled="disabled" value>Seleccione
+																			</option>
+																			<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
+																				{{doctor.nombre.split("/")[0]}}
+																			</option>
+																		</select>
+																	</div>
+																</div>
+															
 														</div>
-														<!--/block-web-->
-													</div>
-												</div>
-												<div v-else>
-													<div class="col-md-4 ">
-														<div class="block-web blue-bg-color">
-															<h3 class="content-header ">Cambiar hora </h3>
-															<label for="">></label>
-															<input type="radio" name="hora" value="<%= citaUpdate.data[0].hora%>" checked><%= citaUpdate.data[0].hora.split("/")[0]  %><br>
-															<template v-for="(horas, index, key) in horas_Turno">
-																<label for="">{{index+1}}</label>
-																<input type="radio" name="hora" :value="horas.h +'/'+horas.id">{{horas.h}}<br>
-															</template>
-														</div>
-														<!--/block-web-->
 													</div>
 												</div>
 											</div>
-										</div><!-- row de hora-->
-										<div class="">
-											<p class="col-md-6">
-												<a href="/paciente/imprimir_2/<%=citaUpdate.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=citaUpdate.data[0].codigo_p%>/<%=id%>" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i> &nbsp;&nbsp;Imprimir</a> 
-												<%if (citaUpdate.data[0].estado_update == true) { %>
-													<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i> &nbsp;&nbsp; Actualizar</button>
-												<% } %>
-												<a  href="/paciente/clean/<%=id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=citaUpdate.data[0].codigo_p%>" class="btn btn-primary" >
-													<i class="fa fa-mail-reply"></i> <span> Volver a Fichas</span> </a>
-											</p>
-										</div>		
-									</div>
-								</form>
-								<% } %>
+											<div class="row">
+												<div class="col-md-12 ">
+													<div class="col-md-4"></div>
+													<div v-if="horas_Turno == ''">
+														<div class="col-md-4 ">
+															<div class="block-web green-bg-color">
+																<h3 class="content-header ">Hora de Reserva</h3>
+																<input type="radio" name="hora" value="<%= citaUpdate.data[0].hora%>" checked><%= citaUpdate.data[0].hora.split("/")[0]  %><br>
+															</div>
+															<!--/block-web-->
+														</div>
+													</div>
+													<div v-else>
+														<div class="col-md-4 ">
+															<div class="block-web blue-bg-color">
+																<h3 class="content-header ">Cambiar hora </h3>
+																<label for="">></label>
+																<input type="radio" name="hora" value="<%= citaUpdate.data[0].hora%>" checked><%= citaUpdate.data[0].hora.split("/")[0]  %><br>
+																<template v-for="(horas, index, key) in horas_Turno">
+																	<label for="">{{index+1}}</label>
+																	<input type="radio" name="hora" :value="horas.h +'/'+horas.id">{{horas.h}}<br>
+																</template>
+															</div>
+															<!--/block-web-->
+														</div>
+													</div>
+												</div>
+											</div><!-- row de hora-->
+											<div class="">
+												<p class="col-md-6">
+													<a href="/paciente/imprimir_2/<%=citaUpdate.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=citaUpdate.data[0].codigo_p%>/<%=id%>" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i> &nbsp;&nbsp;Imprimir</a> 
+													<%if (citaUpdate.data[0].estado_update == true) { %>
+														<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i> &nbsp;&nbsp; Actualizar</button>
+													<% } %>
+													<a  href="/paciente/clean/<%=id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=citaUpdate.data[0].codigo_p%>" class="btn btn-info" >
+														<i class="fa fa-mail-reply"></i> <span> Volver a Fichas</span> </a>
+												</p>
+											</div>		
+										</div>
+									</form>
+							</div>
+							<% } %>
 							</div>
 							</div>
 							<div id="main-content">
-									<section class="panel default blue_title h2">
-								<div class="page-content">			
+								<section class="panel default blue_title h2">
+									<div class="page-content">			
 										<ul class="nav nav-tabs" id="myTab">
 											<li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Listado de Citas del Paciente</a></li>
 										</ul>
 										<div id="myTabContent" class="tab-content">
 											<div class="tab-pane fade active in " id="neww">
-													<table class="display table table-bordered table-striped" id="dynamic-table2">
-															<thead>
-																<tr>
-																	<th>#</th>
-																	<th>Historial Clinico</th>
-																	<th>Doctor</th>
-																	<th>Especialidad</th>
-																	<th>Fecha </th>
-																	<th>Saldo</th>
-																	<th>hora</th>
-																	<th>Opciones</th>
-																</tr>
-															</thead>
-															<tbody>
-																<%if(pacienteCita != null) { %>
-																<% for ( var i = 0; i < pacienteCita.length; i++ ) { %>
-																<tr class="gradeX">
-																	<td><%=i+1%></td>
-																	<td><%=pacienteCita[i].codigo_p%></td>
-																	<td><%=pacienteCita[i].medico%></td>
-																	<td><%=pacienteCita[i].especialidad%></td>
-																	<td><%=pacienteCita[i].createdAt.split("T")[0]%></td>
-																	<td><%=pacienteCita[i].saldo_total%></td>
-																	<td><%=pacienteCita[i].hora.split("/")[0]%></td>
-																	<td class="center">
-																		<a href="/paciente/onliCita/<%=pacienteCita[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-																		
-																	</td>
-																</tr>
-																<% } %>
-																<% } else { %>
-																<tr>
-																	<td colspan="7"> Este paciente no
-																		tiene
-																		citas medicas</td>
-																</tr>
-																<% } %>
-															</tbody>
-															<tfoot>
-																<tr>
-																	<th>#</th>
-																	<th>Historial Clinico</th>
-																	<th>Doctor</th>
-																	<th>Tipo de Consulta De</th>
-																	<th>Fecha </th>
-																	<th>Saldo</th>
-																	<th>Opciones</th>
-																</tr>
-															</tfoot>
-														</table>
-														
-												
+												<table class="display table table-bordered table-striped" id="dynamic-table2">
+													<thead>
+														<tr>
+															<th>#</th>
+															<th>Historial Clinico</th>
+															<th>Médico</th>
+															<th>Especialidad</th>
+															<th>Fecha </th>
+															<th>Saldo</th>
+															<th>Hora</th>
+															<th>Opciones</th>
+														</tr>
+													</thead>
+													<tbody>
+														<%if(pacienteCita != null) { %>
+														<% for ( var i = 0; i < pacienteCita.length; i++ ) { %>
+														<tr class="gradeX">
+															<td><%=i+1%></td>
+															<td><%=pacienteCita[i].codigo_p%></td>
+															<td><%=pacienteCita[i].medico%></td>
+															<td><%=pacienteCita[i].especialidad%></td>
+															<td><%=pacienteCita[i].createdAt.split("T")[0]%></td>
+															<td><%=pacienteCita[i].saldo_total%></td>
+															<td><%=pacienteCita[i].hora.split("/")[0]%></td>
+															<td class="center">
+																<a href="/paciente/onliCita/<%=pacienteCita[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver Cita"><i class="fa fa-eye "></i></a><span>&nbsp;</span>															
+															</td>
+														</tr>
+														<% } %>
+														<% } else { %>
+														<tr>
+															<td colspan="7"> Este paciente no tiene citas médicas</td>
+														</tr>
+														<% } %>
+													</tbody>
+												</table>
 											</div>
-											<div class="tab-pane fade " id="listt">
-												
-											</div>
+										<div class="tab-pane fade " id="listt"></div>
 										</div>
-										<!--/porlets-content-->
-								</div>
-							</section>
+									</div>
+								</section>
 							</div>
 						</div>
-						<!--/block-web-->
 					</div>
 				</div>
-
 			</div>
-
-			<!--\\\\\\\ container  end \\\\\\-->
 		</div>
-		<!--\\\\\\\ content panel end \\\\\\-->
 	</div>
-	<!--\\\\\\\ inner end\\\\\\-->
-
-	<!--\\\\\\\ wrapper end\\\\\\-->
 	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
 		<div class="vertical-alignment-helper">
-		  <div class="modal-dialog vertical-align-center modal-sm ">
-			<div class="modal-content">
-			  <br>
-				<div class="center">
-				  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+		  	<div class="modal-dialog vertical-align-center modal-sm ">	
+				<div class="modal-content">  <br>
+					<div class="center">
+				  		<i><img src="/images/salir.gif" width="100" height="100" /></i>
+					</div>
+					<div class="center">
+					 	<h5><b>¿Cerrar Sesión?</b></h5>
+					</div>
+			  		<div class="modal-footer">
+						<div class="center">
+				  			<a href="/delete_token/<%=data_doc.data.token_id%>"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  			<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+						</div>
+			  		</div>
 				</div>
-				<div class="center">
-				  <h5><b>¿Cerrar Sesión?</b></h5>
-				</div>
-			  <div class="modal-footer">
-				<div class="center">
-				  <a href="/delete_token/<%=data_doc.data.token_id%>"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
-				</div>
-			  </div>
-			</div>
-		  </div>
+		  	</div>
 		</div> 
 	</div>
-
-
-
-
-
-
-
-
-
 	<!--====== Scripts -->
 
 	<script src="/js/fecha.js"></script>
@@ -578,9 +472,6 @@
 
 	<script src="/js/jPushMenu.js"></script>
 	<script src="/js/side-chats.js"></script>
-	
-
-
 <!--validaciones-->
 <script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
 <script src="/plugins/checkbox/zepto.js"></script>
@@ -596,14 +487,8 @@
 <script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
 <script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
 <script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
-
-
-
 <script src="/plugins/validation/parsley.min.js"></script>
-
 <script>
-
-
 /*==Porlets Actions==*/
     $('.minimize').click(function(e){
       var h = $(this).parents(".header");
@@ -642,17 +527,13 @@
     });
 
 </script>
-
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
 <script src="/moment/moment.js"></script>
 <script src="/moment/locale/af.js"></script>
-
 <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="/js/vue/citasMedicas.js"></script>
-
 <script>
-	
 	/*  <%if(msg) { %> */
 	  /*  <%if(msg.data.success == false) { %> */
 		   msg_false()
@@ -675,8 +556,5 @@
 	  /*  <% } %> */
 	/*  <% } %> */
 </script>
-
-
 </body>
-
 </html>

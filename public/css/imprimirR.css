@@ -446,7 +446,7 @@ float:left;
 }
 
 .texTitulo1:before {
-    content: " RECETA MEDICA ";
+    content: " RECETA MÉDICA ";
     font-weight: negrita;
     color:black;
     text-align: center;
@@ -486,7 +486,7 @@ float:left;
     font: small-caps 100%/200% serif;
 }
 .firmaDoc:before {
-    content: " FIRMA DEL DOCTOR ";
+    content: " FIRMA DEL MÉDICO ";
     font-weight: negrita;
     color:black;
     font: small-caps 100%/200% serif;

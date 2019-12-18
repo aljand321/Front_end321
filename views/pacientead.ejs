@@ -90,10 +90,7 @@
         <div class="left_nav">
           <div class="left_nav_slidebar">
             <ul>
-              <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul >
-                  <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-                </ul>
+              <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
               </li>
               <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
                 <ul  >
@@ -174,7 +171,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-10">
                           <button type="submit" class="btn btn-primary"><i class="fa fa-search" ></i><span>&nbsp;</span>Por Rango<span>&nbsp;</span></button>
-                          <a href="/allmedi/<%=data_doc.data.token_id%>" type="submit" class="btn btn-default"><i class="fa fa-search" ></i><span>&nbsp;</span>Total<span>&nbsp;</span></a>
+                          <!--<a href="/allmedi/<%=data_doc.data.token_id%>" type="submit" class="btn btn-default"><i class="fa fa-search" ></i><span>&nbsp;</span>Total<span>&nbsp;</span></a>-->
                         </div>
                       </div><!--/form-group--> 
                   </form>
@@ -191,7 +188,7 @@
                 
                 <br>
                 <div class="table-responsive scrollV">
-                  <table id="tablei" class="table table-bordered ">
+                  <table class="table table-bordered table-striped ">
                     <thead>
                       <tr> 
                         <th id="thi" class="tamm" >Fecha de ingreso</th>                         
@@ -218,7 +215,7 @@
                         <% } %>
                       <% }else {%>  
                         <% for (var i=0; i< data.length; i++) { %>
-             t             <tr>
+                         <tr>
                             <td id="tdi"><%=data[i].createdAt.split("T")[0]%></td>
                             <td id="tdi"><%=data[i].codificacion%></td>
                             <td id="tdi"><%=data[i].nombre%></td>
@@ -267,15 +264,15 @@
         /* tamaño de página*/
         @page { 
         size: A4;
-        size: 10in 11in;
+        size: 11in 11in;
       } 
       .scrollV{
-        width: 102%;
+        width: 100%;
         overflow-y:hidden;
         overflow-x:hidden;
       }	
       .tituloRoles:before {  
-        content: " REPORTE GENERAL DE PACIENTE" ;
+        content: " REPORTE GENERAL MEDICAMENTOS" ;
         
         color:black;
         font: small-caps 100%/200% serif;

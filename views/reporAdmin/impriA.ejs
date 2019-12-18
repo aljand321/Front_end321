@@ -54,7 +54,7 @@
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <!--Boton i,prir-->
         <div class="btn-group"> <a class="btn btn-warning" href="" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
-        <div class="btn-group"> <a class="btn btn-success" href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
+        <div class="btn-group"> <a class="btn btn-success" href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
         
       </div>
       <!--\\\\\\\ header top bar end \\\\\\-->
@@ -66,10 +66,7 @@
         <div class="left_nav">
             <div class="left_nav_slidebar">
               <ul>
-                <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                  <ul >
-                    <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-                  </ul>
+                <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
                 </li>
                 <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
                   <ul  >
@@ -85,11 +82,11 @@
                 </li>
                 <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                   <ul class="opened" style="display:block">
-                    <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                    <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                    <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Person.</b> </a> </li>
-                    <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                    <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
+                    <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Pacientes</b> </a> </li>
+                    <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte Farmacia</b></a> </li>
+                    <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte Personal</b> </a> </li>
+                    <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  class="theme_color">Reporte Servicios</b> </a> </li>
+                    <!--<li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>-->
                   </ul>
                 </li>
                 <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>

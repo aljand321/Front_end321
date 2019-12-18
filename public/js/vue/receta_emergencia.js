@@ -211,7 +211,7 @@ const receta = new Vue({
                         console.log(data)
                         if(data.success == true){
                             swal.fire(
-                                'Success!',
+                                'Confirmar!',
                                 '<label style="color:green;">'+ data.msg +'</label>',
                                 'success'
                             )
@@ -367,7 +367,7 @@ const receta = new Vue({
                        /*  this.data_msg.msg_true = data.msg
                         this.data_msg.msg_false = "" */
                         swal.fire(
-                            'Success!',
+                            'Confirmar!',
                             '<label style="color:green;">'+ data.msg +'</label>',
                             'success'
                         )

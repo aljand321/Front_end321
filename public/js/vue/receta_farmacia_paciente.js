@@ -321,7 +321,7 @@ const receta_paciente = new Vue({
            .then(resp => resp.json())
            .then(resp =>{
              if (resp == ""){
-               this.alert = "No se puede insertar no existe";
+               this.alert = "No se puede insertar lo que no existe";
                this.pass = ""
              }else{
                var med_cant;
@@ -331,10 +331,10 @@ const receta_paciente = new Vue({
                  }
                } 
                if (med_cant < 0){
-                 this.alert = "No se puede insertar es cantidad no existe";
+                 this.alert = "No se puede insertar la cantidad no existe";
                  this.pass = "";
                }else{
-                 this.pass = "Se inserto productos"
+                 this.pass = "Se inserto el medicamento"
                  this.alert = ""
                  for(var i = 0; i< cantidad; i++){
                    this.add1(resp,id);
@@ -531,7 +531,7 @@ const receta_paciente = new Vue({
         reg_receta_paciente(e){
           e.preventDefault();
           if( this.generateArray() == ""){
-            this.msg_false_post = "No se seleciono un producto"
+            this.msg_false_post = "No se seleciono ningún medicamento"
           }else{
             var datos = {
               codigo_venta:this.codigo_venta,
