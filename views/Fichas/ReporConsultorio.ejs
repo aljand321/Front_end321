@@ -35,7 +35,8 @@
     	    @page {
 	    	    size: A4 landscape;
 		        margin: 0;
-    	    }
+            }
+            
 	        .margeni{
 	    	    width: 100%;
 		        border: 1px;
@@ -51,7 +52,7 @@
 	        .ordendetitulo{
         		position: absolute;
 		        float: center;
-        		top: 20%;
+        		top: 16%;
 		        bottom: 1%;
         		margin-top: 3%;
 		        margin-left: 12;
@@ -88,6 +89,10 @@
                 color:black;
                 font: small-caps 100%/200% serif;
                 margin-bottom: 0;
+            }
+            .tablaabajo{
+                top: 5%;
+
             }
      	}
     </style>
@@ -221,12 +226,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-left">
+                                <p class="text-left ocultarIm">
                                     <button @click="buscar()" type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-signal'></i>&nbsp;&nbsp; Generar Reporte</button>
                                     <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 								</p>
-                                <div id="main-content">
-                                    <section class="panel default blue_title h2">
+                                <div id="main-content" class="">
+                                    <section class="panel default blue_title h2 ">
                                         <div class="page-content">	
                                             <table class="table table-bordered">
                                                 <thead>
