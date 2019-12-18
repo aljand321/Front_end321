@@ -87,9 +87,12 @@
                             	</div>
 							</div>
 						</div>
-						<a @click="click_1()" >{{click}}</a>
+						
 						<div class="main-content">
 							<section class="panel default blue_title h2">
+								<p class="center">
+									<a class="btn btn-info" @click="click_1()" ><i class="fa fa-users"></i> &nbsp;&nbsp; {{click}}</a>
+								</p>
 								<div class="page-content">
 									<ul class="nav nav-tabs" id="myTab">
 										<li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab"><i class="fa fa-users "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes en Espera</a></li>
@@ -159,7 +162,7 @@
 															<td><%=list_false[i].hora.split("/")[0] %></td>
 															<td><%=list_false[i].fecha %></td>
 															<td class="text-center">
-																<a href="/consulta_externa/reg_consulta/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver"><i class="fa fa-stethoscope"></i></a>
+																<a href="/consulta_externa/reg_consulta/<%=list_false[i].id%>/<%=list_false[i].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Consulta"><i class="fa fa-eye"></i></a>
 															</td>																		
 															</tr>
 															<% } %>
@@ -172,9 +175,8 @@
 									<template v-else>
 										<div class="row">
 											<div class="col-lg-12">
-												<section class="panel default blue_title h2">
-													<div class="panel-heading">Pacientes de 
-														<span class="semi-bold">Hoy</span>
+												<section class="panel default black_title h3">
+													<div class="panel-heading">Consultas de Pacientes de hoy
 													</div>
 													<div class="panel-body">
 														<div class="table-responsive">
@@ -183,10 +185,10 @@
 																	  <tr>
 																		<th >#</th>
 																		<th >N° Historia </th>
-																		<th >Nombre Paciente</th>
+																		<th >Nombre(s)</th>
 																		<th >Apellido Paterno</th>
 																		<th >Apellido Materno</th>	
-																		<th >Hora Atencion</th>	
+																		<th >Hora Atención</th>	
 																		<th>Fecha</th>
 																		<th >Optiones</th>
 																	  </tr>
@@ -200,7 +202,7 @@
 																		<td>{{list.Paciente.apellidom}}</td>
 																		<td>{{list.hora.split("/")[0]}}</td>
 																		<td>{{list.fecha}}</td>
-																		<td class="text-center"><a  :href="'/consulta_externa/reg_consulta/'+list.id+'/'+list.codigo_p+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>																	
+																		<td class="text-center"><a  :href="'/consulta_externa/reg_consulta/'+list.id+'/'+list.codigo_p+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>'" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-stethoscope" style="color:rgb(35, 124, 226)"></i></a><span>&nbsp;</span>																	
 																	  </tr>
 																</tbody>
 															  </table>

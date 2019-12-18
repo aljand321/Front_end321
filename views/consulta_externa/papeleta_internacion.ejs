@@ -111,7 +111,7 @@
                                                 <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
                                             </div>
                                             <div id="ocultoI" class="header">
-                                                <h2 id="ocultoI" class="content-header"><div class="info2 blue_symbols"><i class="fa fa-file-text icon "></i></div> Consulta Externa /<span class="semi-bold"> Papeleta Internación</span></h2>  
+                                                <h2 id="ocultoI" class="content-header"><div class="info2 blue_symbols"><i class="fa fa-file-text icon "></i></div> Consulta Externa /<span class="semi-bold"> Papeleta de Hospitalización</span></h2>  
                                             </div> 
                                         </div>
                                         <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
@@ -130,8 +130,8 @@
                                                 <div class=" ">
                                                     <div class=" col-md-14">
                                                         <ul id="ocultoI" class="nav nav-tabs" style="margin-bottom: 15px;">
-                                                            <li class=" col-lg-6 active active  text-center"><a href="#PapeletaInternacion" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span> Papeleta de Internación</a></li>
-                                                            <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt  "></i><span>&nbsp;&nbsp;&nbsp;</span> Lista de Internación del Paciente</a></li>
+                                                            <li class=" col-lg-6 active active  text-center"><a href="#PapeletaInternacion" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span> Papeleta de Hospitalización</a></li>
+                                                            <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt  "></i><span>&nbsp;&nbsp;&nbsp;</span> Lista de Hospitalización del Paciente</a></li>
                                                         </ul>
                                                         <div id="myTabContent" class="tab-content">
                                                             <div class="tab-pane fade active in" id="PapeletaInternacion">
@@ -271,7 +271,7 @@
                                                                                                         <input type="hidden" name="tipoConsulta" value="<%=one_consulta[0].tipoConsulta%>"class="form-control" readonly="" value="Read only text goes here">                                                                
                                                                                                     </div>
                                                                                                     <div class=" entrada">
-                                                                                                        <label class="">Nombre del Médico:</label><p><b><%=one_consulta[0].Citas_Medica.medico%></b></p>
+                                                                                                        <label class="">Médico:</label><p><b><%=one_consulta[0].Citas_Medica.medico%></b></p>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -355,13 +355,12 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>#</th>
-                                                                    <th>Nombre</th>
-                                                                   
-                                                                    <th>Historial</th>
-                                                                    <th>Nombre del Médico</th>
-                                                                    <th>Area de Internacion</th>
-                                                                    <th>De:</th>
-                                                                    <th>Ver</th>
+                                                                    <th>Paciente</th>
+                                                                    <th>N° Historial</th>
+                                                                    <th>Médico</th>
+                                                                    <th>Area de Hospitalización</th>
+                                                                    <th>Consultorio</th>
+                                                                    <th>Opciones</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -374,7 +373,9 @@
                                                                         <td @click="one_papeleta(<%=list_p[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=list_p[i].nombreDoctor%></td>
                                                                         <td @click="one_papeleta(<%=list_p[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=list_p[i].especialidad%></td>
                                                                         <td @click="one_papeleta(<%=list_p[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=list_p[i].tipoConsulta%></td>
-                                                                        <td @click="one_papeleta(<%=list_p[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias">Ver</td>
+                                                                        <td class="center">
+                                                                            <a @click="one_papeleta(<%=list_p[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"  data-original-title="Ver Hospitalización"> <i class="fa fa-eye" style="color:rgb(26, 99, 235)"></i>  </a>
+                                                                        </td>
                                                                     </tr>
                                                                 <% } %>                                                               
                                                             </tbody>
@@ -402,7 +403,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title" id="myModalLabel">Detalles de la Papeleta de Internacion</h4>
+                              <h4 class="modal-title" id="myModalLabel"><i class="fa fa-file-text icon "></i>  Detalles de la Papeleta de Hospitalización</h4>
                         </div>
                         <div>
                             <div class="">
@@ -415,14 +416,13 @@
                                                     <div class="">
                                                         <div class=" ">
                                                             <p></p>
-                                                            <span style="color: rgb(48, 46, 160)"> De: </span>  {{one_p.tipoConsulta}} <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Consultorio: </span>  {{one_p.tipoConsulta}} <br>
                                                             <span style="color: rgb(48, 46, 160)"> N° de Historial: </span>  {{one_p.Historial}}  <br>
-                                                            <span style="color: rgb(48, 46, 160)"> Nombre Completo: </span> <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%> <br>
-                                                            <span style="color: rgb(48, 46, 160)"> Fecha de la Orden: </span>  {{one_p.fechaIngreso}} <br>                                                        
-
-                                                            <span style="color: rgb(48, 46, 160)"> Nombre del Médico: </span>  {{one_p.nombreDoctor}} <br>
-                                                            <span style="color: rgb(48, 46, 160)"> Area de Internación: </span> {{one_p.especialidad}}<br>
-                                                            <span style="color: rgb(48, 46, 160)"> Diagnostico: </span>  {{one_p.diagnostico}} <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Paciente: </span> <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%> <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Fecha de la Orden de Hospitalización: </span>  {{one_p.fechaIngreso}} <br>                                                        
+                                                            <span style="color: rgb(48, 46, 160)"> Médico: </span>  {{one_p.nombreDoctor}} <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Area de Hospitalización: </span> {{one_p.especialidad}}<br>
+                                                            <span style="color: rgb(48, 46, 160)"> Diagnóstico: </span>  {{one_p.diagnostico}} <br>
                                                         
                                                         </div>
                                                     </div>
@@ -437,10 +437,6 @@
                                   </div>
                                 
                               </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            
-                            </div>
                         
                         </div>
                     </div>

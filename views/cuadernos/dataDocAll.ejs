@@ -52,52 +52,7 @@
 			text-transform: uppercase;
 		}
 </style>
-    <style scoped>
-        @media print{
-      
-          /* tamaño de página*/
-          @page {
-        
-          size: A4;
-          size: 11in 11in;
-        } 
-        .scrollV{
-          width: 100%;
-          overflow-y:hidden;
-          overflow-x:hidden;
-        }	
-        .scrollV1{
-          width: 100%;
-          overflow-y:hidden;
-          overflow-x:hidden;
-        }	
-        .tituloo:before {  
-          content: " REPORTES MEDICOS" ;
-          
-          color:black;
-          font: small-caps 100%/200% serif;
-        }
-        .ordendetitulo{
-          position:static;
-          margin-top: 9%;
-        }
-        .tamm{
-          margin: 0%;
-          border: none;
-         
-          font: small-caps 100%/200% serif;
-          width: 25%;
-     text-align: left;
-     vertical-align: top;
-     border: 1px solid #000;
-     border-spacing: 0;
-        }
-        #tr{
-          width: 5%;
-        }
-        
-      }
-    </style>    
+
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
@@ -109,6 +64,7 @@
       <div class="header_top_bar">
       <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="btn-group"> <a class="btn btn-success" href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
         <div class="top_right_bar">
          <!--  <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
@@ -216,43 +172,53 @@
                     <br>
                     <div class="form-group">
                       <div class="col-sm-4 uppercase">
-                        <strong>COMPLETO DEL MEDICO </strong><span>&nbsp;</span><br>
+                        <strong>COMPLETO DEL MEDICO : </strong><span>&nbsp;</span><br>
                         <label  class="control-label"><%=resp[0].nombre.split("/")[0]%> </label>
                       </div>
                       
                       <div class="col-sm-4 uppercase">
-                        <strong>MEDICO </strong><span>&nbsp;</span><br>
+                        <strong>MEDICO : </strong><span>&nbsp;</span><br>
                         <label class="control-label"><%=resp[0].TDoctor%></label>
                       </div>
                       <div class="col-sm-4 uppercase">
-                        <strong>ENFERMERA </strong><span>&nbsp;</span><br>
+                        <strong>ENFERMERA : </strong><span>&nbsp;</span><br>
                         <label class="control-label"><%=resp[0].enfermera%></label>
                       </div>
                     </div>
                     <br>
                     <div class="form-group">
+                        
                       <div class="col-sm-4">
-                        <strong>FECHA DE ESTADIA DEL DOCTOR</strong><span>&nbsp;</span><br>
-                        <select  class="form-control" id="source" v-model="id" @click="mostrar(<%=resp[0].id%>)" required placeholder="">
+                        <strong>FECHA DE ESTADIA DEL MEDICO :<span>&nbsp;</span><br>
+                        <select id="ocultoI"  class="form-control" id="source" v-model="id" @click="mostrar(<%=resp[0].id%>)" required placeholder="">
                             <option disabled="disabled" value>---Seleccione----</option>
+
                             <%for(var i = 0; i< resp[0].Fechas.length; i++) {%>
+                              <p class="oreden"></p>
                               <option value="<%=resp[0].Fechas[i].id%>"> Del <%=resp[0].Fechas[i].fechaini.split("T")[0]%> al <%=resp[0].Fechas[i].fechafin.split("T")[0]%> </option>
                             <%}%>
+                            
                         </select>
+                        <p></p>
+                        <%for(var i = 0; i< resp[0].Fechas.length; i++) {%>
+                          <p class="oreden"></p>
+                         
+                        <%}%>
                       </div>
+                      
                       <div class="col-sm-4">
-                        <strong>ESPECIALIDAD  </strong><span>&nbsp;</span><br>
+                        <strong>ESPECIALIDAD :  </strong><span>&nbsp;</span><br>
                         <label class="control-label">{{nombre_consultorio}}</label>
                       </div>
                     </div><!--/form-group--> 
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search" ></i><span>&nbsp;</span>Por Rango<span>&nbsp;</span></button>
+                    <div class="form-group">
+                        <div class="col-sm-offset-9 col-sm-10">
+                          <a id="ocultoI" onclick="window.print();" type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></a>
+                        </div>
+                      </div><!--/form-group-->
                   </form>
                 </div><!--/block-web--> 
-                <div class="form-group">
-                    <div class="col-sm-offset-9 col-sm-10">
-                      <a id="ocultoI" onclick="window.print();" type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></a>
-                    </div>
-                  </div><!--/form-group-->
+                
                   <br><br>
                 <div class="porlets-content">
                   <div class="table-responsive">
@@ -284,7 +250,60 @@
       </div>
     </div>
   </div>
-
+  <style scoped>
+      @media print{
+    
+        /* tamaño de página*/
+        @page {
+      
+        size: A4;
+        size: 11in 11in;
+      } 
+      .scrollV{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .scrollV1{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .tituloo:before {  
+        content: " REPORTES MEDICOS" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .ordendetitulo{
+        position:static;
+        margin-top: 9%;
+      }
+      .tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 100%/200% serif;
+        width: 25%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-spacing: 0;
+      }
+      #tr{
+        width: 5%;
+      }
+      /*<%for(var i = 0; i< resp[0].Fechas.length; i++) {%>*/
+      .oreden:before {
+  
+        content: " <%=resp[0].Fechas[i].fechaini.split("T")[0]%> al <%=resp[0].Fechas[i].fechafin.split("T")[0]%> " /**/;
+      
+        color:black;
+  
+      }
+      /*<%}%>*/
+    }
+  </style>    
 <script src="/js/fecha.js"></script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
