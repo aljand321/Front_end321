@@ -232,7 +232,6 @@
 															<div class="col-md-8 ">
 																<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
 																<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
-																<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 															</div>
 														</div>
 													</form>						
@@ -874,7 +873,6 @@
 														<div class="col-md-8 ">
 															<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
 															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
-															<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 														</div>
 													</div>
 												</form>
@@ -1553,7 +1551,6 @@
 														<div class="col-md-8 ">
 															<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
 															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
-															<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 														</div>
 													</div>
 												</form>
@@ -1592,7 +1589,7 @@
 											<td>{{index+1}}</td>
 											<td>{{list.fecha}}  {{list.hora}}</td>
 											<td>{{list.nombre_doctor}}</td>
-											<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Ecografía Envia</p> </td>
+											<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Ecografía Enviada</p> </td>
 											<td class="text-center" v-else >
 												<a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> 
 											</td>
@@ -1642,178 +1639,158 @@
 											</td>
 										  </tr>											  
 										</tbody>
-									  </table>
-								  
-								</div>
-							</section>
-						</div>				
-									<!-- 
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																						lista  de laboratorios
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-									-->
-									<div class="col-lg-14" v-if="lis_lab"> 
-										<section class="panel default black_title h4">
-											<div class="panel-heading">
-												<span class="semi-bold">Lista de laboratorios del paciente</span> 
-											</div>
-											<div class="panel-body">
-												<div class="col-xs-12 ">
-													<table class="table table-bordered">
-													<thead>
-													  	<tr>
-															<th>#</th>
-															<th>Fecha y hora</th>
-															<th>Médico</th>
-															<th>Estado</th>
-															<th>Ver</th>
-													  	</tr>
-													</thead>
-													<tbody v-for="(list, index) in data_list_lab">
-													  	<tr>
-															<td>{{index+1}}</td>
-															<td>{{list.fecha}}  {{list.hora}}</td>
-															<td>{{list.nombre_doctor}}</td>
-															<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Laboratorio Enviado</p> </td>
-															<td class="text-center" v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>																
-															<td class="text-center">
-																<a data-toggle="modal" data-target="#modal_lab" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Laboratorio"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-														</tr>											  
-													</tbody>
-											  	</table>
-											  
-											</div>
-										</section>
-									</div>
-
+									</table>
 								</div>
 							</div>
-						</div>>
+						</section>
+					</div>				
+					<!-- 
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																	lista  de laboratorios
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					-->
+					<div class="col-lg-14" v-if="lis_lab"> 
+						<section class="panel default black_title h4">
+							<div class="panel-heading">
+								<span class="semi-bold">Lista de laboratorios del paciente</span> 
+							</div>
+							<div class="panel-body">
+								<div class="col-xs-12 ">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+											<th>#</th>
+											<th>Fecha y hora</th>
+											<th>Médico</th>
+											<th>Estado</th>
+											<th>Ver</th>
+										  	</tr>
+										</thead>
+										<tbody v-for="(list, index) in data_list_lab">
+											<tr>
+											<td>{{index+1}}</td>
+											<td>{{list.fecha}}  {{list.hora}}</td>
+											<td>{{list.nombre_doctor}}</td>
+											<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Laboratorio Enviado</p> </td>
+											<td class="text-center" v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>																
+											<td class="text-center">
+												<a data-toggle="modal" data-target="#modal_lab" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Laboratorio"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+											</td>
+											</tr>											  
+										</tbody>
+									</table>  
+								</div>
+							</div>
+						</section>
 					</div>
 				</div>
+			</div>
 			<!-- 
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-															modal de ecografia del paciente
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+														modal de ecografia del paciente
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			-->
 			<div class="modal modal-info fade scroll1" id="modal-info">
 				<div class="modal-dialog">
-				  <div class="modal-content" >
-					<div class="modal-header" id="">
-					  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span></button>
-					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
-					</div>
-					
-					<div class="modal-body">
-						<div class="">
-							<div class="card row" style="width: 55rem;">
-								<div class="col-md-14">	
-
-
-									<div class="col-lg-14">
-										<section class="panel default blue_title h2">
-										  
-											  <div class="panel-body">
-												<ul class="nav nav-tabs" id="myTab">
-												  <li class="active"><a data-toggle="tab" href="#Examen_eco">Examen pedido</a></li>
-												  <li v-if="resp_eco != null"><a data-toggle="tab" href="#respuesta_eco">Respuesta del examen</a></li>
-												  
-												</ul>
-												<div class="tab-content" id="myTabContent">
-													  <div id="Examen_eco" class="tab-pane fade in active">
-														  <div class="col-md-14">
-															<div class="col-md-9">										
-																<p>Fecha: {{lab_one.fecha}}</p>
-																<p> Medico:  {{lab_one.nombre_doctor}}</p>
-																<p> N° Historial: {{lab_one.historial}}</p>
-																<p>Otros Examenes:</p>
-																<p>{{lab_one.otros}}</p>
-
-															</div>
-															<div class="col-md-3"> 										
-																<p for="">Hora: {{lab_one.hora}}</p>
-															</div>
-															<div class="col-md-12">
-																<label for="">Examene diagnosticado</label>
-																<ul v-for="list in lab_one.examen">
-																	<li>{{list.estudio}}: {{list.descripcion}}</li>
-																</ul>
-															</div>
-														  </div>
-													  </div>
-													  <div id="respuesta_eco" class="tab-pane fade" >
-														<div v-if="resp_eco != null" class="col-md-14">
-															<div class="col-md-9">										
-																<p>Fecha: {{resp_eco.fecha}}</p>
-																<p> Responsable:  {{resp_eco.nombre_user}}</p>
-																<p> N° Historial: {{resp_eco.historial}}</p>
-																<p>Descripcion:</p>
-																<p>{{resp_eco.descripcion}}</p>
-															</div>
-															<div class="col-md-3"> 										
-																<p for="">Hora: {{resp_eco.hora}}</p>
-															</div>
-															<div class="col-md-14">
-																<embed :src=" url +'/'+ resp_eco.imagen_resp" type="application/pdf" width="100%" height="400px" />
-																<a :href=" url +'/'+ resp_eco.imagen_resp">Ver</a>
-															</div>
-														</div>
-													  </div>
-												 
-												</div>
-											  </div>
-										</section>
-									</div>								
-									
-											
-								</div>
-								
-							</div>
-						</div>
-						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-						<div class="arriba"> 
-							<p class="firmaPa center cafirmaP"></p>
-							<p class="firmaDoc center cafirmaDoc"></p>
-						</div>
-						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-						
-					</div>
-					<div id="ocultoIl" class="modal-footer">
-					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-					  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-													
-					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
-					</div>
-				  </div>
-				  <!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<!-- 
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-															modal de rayos x del paciente
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-			-->
-			<div class="modal modal-info fade scroll1" id="modal_x">
-					<div class="modal-dialog" id="">
-					  <div class="modal-content">
-						<div class="modal-header">
-						  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  	<div class="modal-content" >
+						<div class="modal-header" id="">
+					 		<button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span></button>
-						  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
+					  		<h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
 						</div>
-						
 						<div class="modal-body">
 							<div class="">
 								<div class="card row" style="width: 55rem;">
-
+									<div class="col-md-14">	
+										<div class="col-lg-14">
+											<section class="panel default blue_title h2">
+												<div class="panel-body">
+													<ul class="nav nav-tabs" id="myTab">
+														<li class="active"><a data-toggle="tab" href="#Examen_eco">Examen pedido</a></li>
+														<li v-if="resp_eco != null"><a data-toggle="tab" href="#respuesta_eco">Respuesta del examen</a></li>
+													</ul>
+													<div class="tab-content" id="myTabContent">
+														<div id="Examen_eco" class="tab-pane fade in active">
+															<div class="col-md-14">
+																<div class="col-md-9">										
+																	<p>Fecha: {{lab_one.fecha}}</p>
+																	<p> Médico:  {{lab_one.nombre_doctor}}</p>
+																	<p> N° Historial: {{lab_one.historial}}</p>
+																	<p>Otros Examenes:</p>
+																	<p>{{lab_one.otros}}</p>
+																</div>
+																<div class="col-md-3"> 										
+																	<p for="">Hora: {{lab_one.hora}}</p>
+																</div>
+																<div class="col-md-12">
+																	<label for="">Examen diagnósticado</label>
+																	<ul v-for="list in lab_one.examen">
+																		<li>{{list.estudio}}: {{list.descripcion}}</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+														<div id="respuesta_eco" class="tab-pane fade" >
+															<div v-if="resp_eco != null" class="col-md-14">
+																<div class="col-md-9">										
+																	<p>Fecha: {{resp_eco.fecha}}</p>
+																	<p> Responsable:  {{resp_eco.nombre_user}}</p>
+																	<p> N° Historial: {{resp_eco.historial}}</p>
+																	<p>Descripción:</p>
+																	<p>{{resp_eco.descripcion}}</p>
+																</div>
+																<div class="col-md-3"> 										
+																	<p for="">Hora: {{resp_eco.hora}}</p>
+																</div>
+																<div class="col-md-14">
+																	<embed :src=" url +'/'+ resp_eco.imagen_resp" type="application/pdf" width="100%" height="400px" />
+																	<a :href=" url +'/'+ resp_eco.imagen_resp">Ver</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</section>
+										</div>		
+									</div>
+									
+								</div>
+							</div>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							<div class="arriba"> 
+								<p class="firmaPa center cafirmaP"></p>
+								<p class="firmaDoc center cafirmaDoc"></p>
+							</div>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							<div id="ocultoIl" class="modal-footer">
+								<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+							</div>
+						</div>
+				  	</div>
+				</div>
+			</div>
+			<!-- 
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+														modal de rayos x del paciente
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			-->
+			<div class="modal modal-info fade scroll1" id="modal_x">
+				<div class="modal-dialog" id="">
+					<div class="modal-content">
+						<div class="modal-header">
+						  	<button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span></button>
+						  	<h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
+						</div>
+						<div class="modal-body">
+							<div class="">
+								<div class="card row" style="width: 55rem;">
 									<div class="col-lg-14">
 										<section class="panel default blue_title h2">
 											<div class="panel-body">
@@ -1826,7 +1803,7 @@
 														<div class="col-md-14">									
 															<div class="col-md-9">										
 																<p>Fecha: {{lab_one.fecha}}</p>
-																<p> Medico:  {{lab_one.nombre_doctor}}</p>
+																<p> Médico:  {{lab_one.nombre_doctor}}</p>
 																<p> N° Historial: {{lab_one.historial}}</p>
 																<p>Otros Examenes:</p>
 																<p>{{lab_one.otros}}</p>										
@@ -1835,60 +1812,50 @@
 																<p for="">Hora: {{lab_one.hora}}</p>
 															</div>
 															<div class="col-md-12">
-																<label for="">Examene diagnosticado</label><br>
+																<label for="">Examen diagnósticado</label><br>
 																<div class="col-md-3" v-if="examen_x.torax != ''">
 																	<p>Torax:</p>
 																	<ul v-for="list in examen_x.torax">
 																		<li>{{list.descripcion}}</li>
 																	</ul> 
-					
 																</div> 
 																<div class="col-md-3" v-if="examen_x.abdomen != ''">
 																	<p>Abdomen:</p>
 																	<ul v-for="list in examen_x.abdomen">
 																		<li>{{list.descripcion}}</li>
 																	</ul> 
-					
 																</div> 
 																<div class="col-md-3" v-if="examen_x.craneo_Macizo_Facial != ''">
 																	<p>Craneo Macizo Facial:</p>
 																	<ul v-for="list in examen_x.craneo_Macizo_Facial">
 																		<li>{{list.descripcion}}</li>
 																	</ul> 
-					
 																</div> 
-					
 																<div class="col-md-3" v-if="examen_x.Placas_Radiograficas != ''">
 																	<p>Placas Radiograficas:</p>
 																	<ul v-for="list in examen_x.Placas_Radiograficas">
 																		<li>{{list.descripcion}}</li>
 																	</ul> 
-					
 																</div> 
 																<div class="col-md-3" v-if="examen_x.Columna_vertebral != ''">
 																	<p>Columna vertebral:</p>
 																	<ul v-for="list in examen_x.Columna_vertebral">
 																		<li>{{list.descripcion}}</li>
 																	</ul> 
-					
 																</div> 
 																<div class="col-md-3" v-if="examen_x.Miembros_superiores != ''">
 																	<p>Miembros superiores:</p>
 																	<ul v-for="list in examen_x.Miembros_superiores">
 																		<li>{{list.descripcion}}</li>
 																	</ul> 
-					
 																</div> 
-																	<div class="col-md-3" v-if="examen_x.Miembros_inferiores != ''">
+																<div class="col-md-3" v-if="examen_x.Miembros_inferiores != ''">
 																	<p>Miembros inferiores:</p>
 																	<ul v-for="list in examen_x.Miembros_inferiores">
 																		<li>{{list.descripcion}}</li>
 																	</ul> 
-					
 																</div> 
-															
-															</div>
-																			
+															</div>				
 														</div>
 													</div>
 													<div id="respuesta_rayosX" class="tab-pane fade" >
@@ -1897,7 +1864,7 @@
 																<p>Fecha: {{resp_rayosX.fecha}}</p>
 																<p> Responsable:  {{resp_rayosX.nombre_user}}</p>
 																<p> N° Historial: {{resp_rayosX.historial}}</p>
-																<p>Descripcion:</p>
+																<p>Descripción:</p>
 																<p>{{resp_rayosX.descripcion}}</p>
 															</div>
 															<div class="col-md-3"> 										
@@ -1912,8 +1879,159 @@
 												</div>
 											</div>
 										</section>
-
 									</div>								
+								</div>
+							</div>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							<div class="arriba"> 
+								<p class="firmaPa center cafirmaP"></p>
+								<p class="firmaDoc center cafirmaDoc"></p>
+							</div>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
+							<div id="ocultoIl" class="modal-footer">
+								<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+														modal de rayos x del paciente
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			-->
+			<div class="modal modal-info fade scroll1 centerTodo" id="modal_lab">
+				<div class="modal-dialog " id="mdialTamanio">
+					<div class="modal-content" id="">
+						<div class="modal-header">
+						  	<button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span></button>
+						  	<h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
+						</div>
+						<div class="modal-body" id="">
+							<div class="">
+								<div class="card row" style="width: 55rem;">
+									<div class="col-lg-14">
+										<section class="panel default blue_title h2">
+											<div class="panel-body">
+												<ul class="nav nav-tabs" id="myTab">
+													<li class="active"><a data-toggle="tab" href="#Examen_lab">Examen pedido</a></li>
+													<li v-if="resp_lab != null"><a data-toggle="tab" href="#respuesta_lab">Respuesta del examen</a></li>															
+												</ul>
+												<div class="tab-content" id="myTabContent">
+													<div id="Examen_lab" class="tab-pane fade in active">
+														<div class="col-md-14">									
+															<div class="col-md-12">										
+																<p>Fecha: {{lab_one.fecha}}</p>
+																<p> Médico:  {{lab_one.nombre_doctor}}</p>
+																<p> N° Historial: {{lab_one.historial}}</p>
+																<p>Otros Examenes:</p>
+																<p>{{lab_one.otros}}</p>										
+															</div>
+															<div class="col-md-3"> 										
+																<p for="">Hora: {{lab_one.hora}}</p>
+															</div>
+															<div class="col-md-12">
+																<label for="">Examen diagnósticado</label><br>
+																<div class="col-md-3" v-if="examen_lab.Hemotología != ''">
+																	<p>Hemotología:</p>
+																	<ul v-for="list in examen_lab.Hemotología">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Química_Sanguínea != ''">
+																	<p>Química Sanguínea:</p>
+																	<ul v-for="list in examen_lab.Química_Sanguínea">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Orina != ''">
+																	<p>Orina:</p>
+																	<ul v-for="list in examen_lab.Orina">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Prueba_Embarazo != ''">
+																	<p>Prueba Embarazo:</p>
+																	<ul v-for="list in examen_lab.Prueba_Embarazo">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Heces != ''">
+																	<p>Heces:</p>
+																	<ul v-for="list in examen_lab.Heces">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Expectoración != ''">
+																	<p>Expectoración:</p>
+																	<ul v-for="list in examen_lab.Expectoración">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Exámenes_Especiales != ''">
+																	<p>Exámenes Especiales:</p>
+																	<ul v-for="list in examen_lab.Exámenes_Especiales">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Perfil_Preoperatorio != ''">
+																	<p>Perfil Preoperatorio:</p>
+																	<ul v-for="list in examen_lab.Perfil_Preoperatorio">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Perfil_Obstetrico != ''">
+																	<p>Perfil Obstétrico:</p>
+																	<ul v-for="list in examen_lab.Perfil_Obstetrico">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Perfil_Reumático != ''">
+																	<p>Perfil Reumático:</p>
+																	<ul v-for="list in examen_lab.Perfil_Reumático">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Perfil_hepatico != ''">
+																	<p>Perfil hepatico:</p>
+																	<ul v-for="list in examen_lab.Perfil_hepatico">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+																<div class="col-md-3" v-if="examen_lab.Perfil_lipidico != ''">
+																	<p>Perfil lipidico:</p>
+																	<ul v-for="list in examen_lab.Perfil_lipidico">
+																		<li>{{list.descripcion}}</li>
+																	</ul> 
+																</div> 
+															</div>			
+														</div>
+													</div>
+													<div id="respuesta_lab" class="tab-pane fade" >
+														<div v-if="resp_lab != null" class="col-md-14">
+															<div class="col-md-9">										
+																<p>Fecha: {{resp_lab.fecha}}</p>
+																<p> Responsable:  {{resp_lab.nombre_user}}</p>
+																<p> N° Historial: {{resp_lab.historial}}</p>
+																<p>Descripción:</p>
+																<p>{{resp_lab.descripcion}}</p>
+															</div>
+															<div class="col-md-3"> 										
+																<p for="">Hora: {{resp_lab.hora}}</p>
+															</div>
+															<div class="col-md-14">
+																<embed :src=" url +'/'+ resp_lab.imagen_resp" type="application/pdf" width="100%" height="400px" />
+																<a :href=" url +'/'+ resp_lab.imagen_resp">Ver</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+									</div>
 								</div>
 							</div>
 							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
@@ -1924,354 +2042,147 @@
 							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 						</div>
 						<div id="ocultoIl" class="modal-footer">
-						  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
 						  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-						 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 						</div>
-					  </div>
-					  <!-- /.modal-content -->
 					</div>
-					<!-- /.modal-dialog -->
-			</div>
-			<!-- 
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-															modal de rayos x del paciente
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-			-->
-			<div class="modal modal-info fade scroll1 centerTodo" id="modal_lab">
-				<div class="modal-dialog " id="mdialTamanio">
-				  <div class="modal-content" id="">
-					<div class="modal-header">
-					  <button id="ocultoIl" type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span></button>
-					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
-					</div>
-					
-					<div class="modal-body" id="">
-						<div class="">
-							<div class="card row" style="width: 55rem;">
-								<div class="col-lg-14">
-									<section class="panel default blue_title h2">
-										<div class="panel-body">
-											<ul class="nav nav-tabs" id="myTab">
-												<li class="active"><a data-toggle="tab" href="#Examen_lab">Examen pedido</a></li>
-												<li v-if="resp_lab != null"><a data-toggle="tab" href="#respuesta_lab">Respuesta del examen</a></li>															
-											</ul>
-											<div class="tab-content" id="myTabContent">
-												<div id="Examen_lab" class="tab-pane fade in active">
-													<div class="col-md-14">									
-														<div class="col-md-12">										
-															<p>Fecha: {{lab_one.fecha}}</p>
-															<p> Medico:  {{lab_one.nombre_doctor}}</p>
-															<p> N° Historial: {{lab_one.historial}}</p>
-															<p>Otros Examenes:</p>
-															<p>{{lab_one.otros}}</p>										
-														</div>
-														<div class="col-md-3"> 										
-															<p for="">Hora: {{lab_one.hora}}</p>
-														</div>
-														<div class="col-md-12">
-															<label for="">Examene diagnosticado</label><br>
-															<div class="col-md-3" v-if="examen_lab.Hemotología != ''">
-																<p>Hemotología:</p>
-																<ul v-for="list in examen_lab.Hemotología">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Química_Sanguínea != ''">
-																<p>Química Sanguínea:</p>
-																<ul v-for="list in examen_lab.Química_Sanguínea">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Orina != ''">
-																<p>Orina:</p>
-																<ul v-for="list in examen_lab.Orina">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-														
-															<div class="col-md-3" v-if="examen_lab.Prueba_Embarazo != ''">
-																<p>Prueba Embarazo:</p>
-																<ul v-for="list in examen_lab.Prueba_Embarazo">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Heces != ''">
-																<p>Heces:</p>
-																<ul v-for="list in examen_lab.Heces">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Expectoración != ''">
-																<p>Expectoración:</p>
-																<ul v-for="list in examen_lab.Expectoración">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Exámenes_Especiales != ''">
-																<p>Exámenes Especiales:</p>
-																<ul v-for="list in examen_lab.Exámenes_Especiales">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Perfil_Preoperatorio != ''">
-																<p>Perfil Preoperatorio:</p>
-																<ul v-for="list in examen_lab.Perfil_Preoperatorio">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Perfil_Obstetrico != ''">
-																<p>Perfil Obstetrico:</p>
-																<ul v-for="list in examen_lab.Perfil_Obstetrico">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Perfil_Reumático != ''">
-																<p>Perfil Reumático:</p>
-																<ul v-for="list in examen_lab.Perfil_Reumático">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Perfil_hepatico != ''">
-																<p>Perfil hepatico:</p>
-																<ul v-for="list in examen_lab.Perfil_hepatico">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-															<div class="col-md-3" v-if="examen_lab.Perfil_lipidico != ''">
-																<p>Perfil lipidico:</p>
-																<ul v-for="list in examen_lab.Perfil_lipidico">
-																	<li>{{list.descripcion}}</li>
-																</ul> 
-															
-															</div> 
-														
-														</div>
-																		
-													</div>
-												</div>
-												<div id="respuesta_lab" class="tab-pane fade" >
-													<div v-if="resp_lab != null" class="col-md-14">
-														<div class="col-md-9">										
-															<p>Fecha: {{resp_lab.fecha}}</p>
-															<p> Responsable:  {{resp_lab.nombre_user}}</p>
-															<p> N° Historial: {{resp_lab.historial}}</p>
-															<p>Descripcion:</p>
-															<p>{{resp_lab.descripcion}}</p>
-														</div>
-														<div class="col-md-3"> 										
-															<p for="">Hora: {{resp_lab.hora}}</p>
-														</div>
-														<div class="col-md-14">
-															<embed :src=" url +'/'+ resp_lab.imagen_resp" type="application/pdf" width="100%" height="400px" />
-															<a :href=" url +'/'+ resp_lab.imagen_resp">Ver</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</section>
-	
-								</div>
-								
-								
-							</div>
-						</div>
-						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-						<div class="arriba"> 
-							<p class="firmaPa center cafirmaP"></p>
-							<p class="firmaDoc center cafirmaDoc"></p>
-						</div>
-						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-						
-					</div>
-					<div id="ocultoIl" class="modal-footer">
-					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-					  <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
-					</div>
-				  </div>
-				  <!-- /.modal-content -->
 				</div>
-					<!-- /.modal-dialog -->
 			</div>
-			<!-- /.modal -->
-			<!--\\\\\\\ wrapper end\\\\\\-->
 		</div>
 	</div>
-
-	
-
-
-
-
-
-
-		<!--====== Scripts -->
-		<!-- 
-		<script>
-			window.setTimeout(function() {
-			  $(".alert").fadeTo(500, 0).slideUp(500, function(){
-				$(this).remove(); 
-			  });
-		   	}, 2000);
-		</script>  -->
-<style >
-	@page {
-		size: A4 portrait;
-		page-size: 190mm;
-		page-size: 190mm;
-	}			
-	@media print {
-	    .page {
-	        margin: 0;
-	        border: initial;
-	        border-radius: initial;
-	        width: initial;
-	        min-height: initial;
-	        box-shadow: initial;
-	        background: initial;
-	        page-break-after: always;
+	<style >
+		@page {
+			size: A4 portrait;
+			page-size: 190mm;
+			page-size: 190mm;
+		}			
+		@media print {
+			.page {
+				margin: 0;
+				border: initial;
+				border-radius: initial;
+				width: initial;
+				min-height: initial;
+				box-shadow: initial;
+				background: initial;
+				page-break-after: always;
+			}
+			#ocultoIl{
+				display: none;   
+			}
+			.scroll1 {
+				overflow-y:hidden;
+				border: hidden;
+			}
+			.firmaPa:before {
+			content: " FIRMA DEL PACIENTE ";
+			font-weight: negrita;
+			color:black;
+			text-align: center;
+			padding: 0%;
+			margin: 0%;
+			font: Arial;
+			border: 0px;
+			margin-top: 10%;
+			}
+			.firmaDoc:before {
+				content: " FIRMA DEL DOCTOR ";
+				font-weight: negrita;
+				color:black;
+				text-align: center;
+				padding: 0%;
+				margin: 0%;
+				font: Arial;
+				border: 0px;
+				padding-top: 1%;
+			
+				margin-top: auto;
+				border-top-style: dashed;
+				border-right-style: double;
+				border-bottom-style: dotted;
+				border-left-style: solid;
+			}
+			.cafirmaP{
+				width: 30%;
+				float:left;
+				border-top-style: dotted;
+			}
+			.cafirmaDoc{
+				width: 30%;   
+				float: right;
+				border-top-style: dotted;
+			}
+			.arriba{
+				margin-top: 5%;
+				margin-bottom: 5%;
+				padding-bottom: 5%;
+			}
+			.horaI{
+				width: 30%;
+				float:left;
+				position:absolute;
+				top:5%;
+				right:0;
+			}
+			.labI{
+				width: 1000%;
+			}
+			.centerTodo{
+			padding-top: 0%;
+			width: 115%;
+			padding-left: 0%;
+		justify-content: center;
+		align-items: center;
+		border: 0px;
+		border-top-style: dashed;
+		border-right-style: double;
+		border-bottom-style: dotted;
+		border-left-style: solid; 
 		}
-		#ocultoIl{
-	    	display: none;   
-		}
-		.scroll1 {
-	        overflow-y:hidden;
-			border: hidden;
-		}
-		.firmaPa:before {
-	    content: " FIRMA DEL PACIENTE ";
-	    font-weight: negrita;
-	    color:black;
-	    text-align: center;
-	    padding: 0%;
-	    margin: 0%;
-	    font: Arial;
-	    border: 0px;
-		margin-top: 10%;
-		}
-		.firmaDoc:before {
-		    content: " FIRMA DEL DOCTOR ";
-		    font-weight: negrita;
-		    color:black;
-		    text-align: center;
-		    padding: 0%;
-		    margin: 0%;
-		    font: Arial;
-		    border: 0px;
-		    padding-top: 1%;
-		
-		    margin-top: auto;
-		    border-top-style: dashed;
-		    border-right-style: double;
-		    border-bottom-style: dotted;
-		    border-left-style: solid;
-		}
-		.cafirmaP{
-		    width: 30%;
-		    float:left;
-		    border-top-style: dotted;
-		}
-		.cafirmaDoc{
-		    width: 30%;   
-		    float: right;
-		    border-top-style: dotted;
-		}
-		.arriba{
-			margin-top: 5%;
-			margin-bottom: 5%;
-			padding-bottom: 5%;
-		}
-		.horaI{
-			width: 30%;
-			float:left;
-			position:absolute;
- 			top:5%;
- 			right:0;
-		}
-		.labI{
-			width: 1000%;
-		}
-		.centerTodo{
-	    padding-top: 0%;
-	    width: 115%;
-		padding-left: 0%;
-	   justify-content: center;
-	   align-items: center;
-	   border: 0px;
-	   border-top-style: dashed;
-	   border-right-style: double;
-	   border-bottom-style: dotted;
-	   border-left-style: solid; 
-	}
 
-	}
-	.scrollV{
-		
-		width: 190%;
-		overflow-y:scroll;
-        overflow-x:hidden;
-	}	
-	.horaIR{
-			width: 30%;
-			float:left;
-			position:absolute;
- 			top:5%;
- 			right:0;
-		}						
-</style>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautifier.js"></script>
-
-		<script src="/js/jquery-2.1.0.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/common-script.js"></script>
-		<script src="/js/jquery.slimscroll.min.js"></script>
-
-		<script src="/js/toastr.js"></script>
-
-		<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-		<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-		<script src="/plugins/data-tables/dynamic_table_init.js"></script>
-		<script src="/plugins/edit-table/edit-table.js"></script>
-
-
-		<script>
-			jQuery(document).ready(function () {
-				EditableTable.init();
-			});
-		</script>
-
-		<script src="/js/jPushMenu.js"></script>
-		<script src="/js/side-chats.js"></script>
-		<script type="text/javascript" src="/plugins/toggle-switch/toggles.min.js"></script>
-
-		<script src="/plugins/checkbox/zepto.js"></script>
-		<script src="/plugins/checkbox/icheck.js"></script>
-		<script src="/js/icheck-init.js"></script>
-		<script src="/js/jquery.slimscroll.min.js"></script>
-		<script src="/js/icheck.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-		<script type="text/javascript" src="/js/form-components.js"></script>
-		<script type="text/javascript" src="/plugins/input-mask/jquery.inputmask.min.js"></script>
+		}
+		.scrollV{
+			
+			width: 190%;
+			overflow-y:scroll;
+			overflow-x:hidden;
+		}	
+		.horaIR{
+				width: 30%;
+				float:left;
+				position:absolute;
+				top:5%;
+				right:0;
+			}						
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautifier.js"></script>
+	<script src="/js/jquery-2.1.0.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/common-script.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
+	<script src="/js/toastr.js"></script>
+	<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/edit-table/edit-table.js"></script>
+	<script>
+		jQuery(document).ready(function () {
+			EditableTable.init();
+		});
+	</script>
+	<script src="/js/jPushMenu.js"></script>
+	<script src="/js/side-chats.js"></script>
+	<script type="text/javascript" src="/plugins/toggle-switch/toggles.min.js"></script>
+	<script src="/plugins/checkbox/zepto.js"></script>
+	<script src="/plugins/checkbox/icheck.js"></script>
+	<script src="/js/icheck-init.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
+	<script src="/js/icheck.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+	<script type="text/javascript" src="/js/form-components.js"></script>
+	<script type="text/javascript" src="/plugins/input-mask/jquery.inputmask.min.js"></script>
 		<script type="text/javascript" src="/plugins/input-mask/demo-mask.js"></script>
 		<script type="text/javascript" src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 		<script type="text/javascript" src="/plugins/dropzone/dropzone.min.js"></script>
