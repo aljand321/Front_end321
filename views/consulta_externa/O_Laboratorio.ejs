@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
 	<title>Consulta</title>
@@ -123,1596 +122,1529 @@
 										<input type="text" class="form-control" readonly v-model="hora"  />
 									</div>
 									<div class="btn-group">
-											<button type="button" class="btn btn-info btn-flat" @click="volver()"><i class="fa fa-edit icon "></i> Listas de Examenes Complementarios</button>
-											<button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
-												<span class="caret"></span>
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-											<ul class="dropdown-menu" role="menu">
-												<li><a @click="volver()">Registrar Examen</a></li>
-												<li><a @click="list_ecografias_data()">Ecografía</a></li>
-												<li><a @click="list_rayosX_data()">Rayos X</a></li>
-												<li><a  @click="list_lab_data()">Laboratorios</a></li>
-											</ul>
-										</div>
-								</div>
+										<button type="button" class="btn btn-info btn-flat" @click="volver()"><i class="fa fa-edit icon "></i> Listas de Examenes Complementarios</button>
+										<button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+											<span class="caret"></span>
+											<span class="sr-only">Toggle Dropdown</span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a @click="volver()">Registrar Examen</a></li>
+											<li><a @click="list_ecografias_data()">Ecografía</a></li>
+											<li><a @click="list_rayosX_data()">Rayos X</a></li>
+											<li><a  @click="list_lab_data()">Laboratorios</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
-						<!-- 
-						<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-						<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																		tab de laboratorios
-						<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-						<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-								 -->
-								 
-								<div class="col-lg-14" v-if="view_list" v-if="view_list">
-									<section class="panel default black_title h4">
-										<div class="panel-heading">EXAMENES COMPLEMENTARIOS <span class="semi-bold"> </span></div>														
-										<div class="panel-body" >
-											<ul class="nav nav-tabs panel default blue_title h3" id="myTab">
-												<li class="active"><a data-toggle="tab" href="#Tab1">Ecografía</a></li>
-												<li><a data-toggle="tab" href="#Tab2">Rayos X</a></li>
-												<li><a data-toggle="tab" href="#Tab3">Laboratorios</a></li>
-											</ul>
-											<div class="tab-content" id="myTabContent">
-												<div id="Tab1" class="tab-pane fade in active">
-													<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
-													<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
-													<input type="hidden" :value="nombre_doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
-													<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
-													<input type="hidden" :value="consultorio = '<%=ConsultaOnly[0].tipoConsulta%>'">
-													<!-- 
-													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																									ECOGRAFIA
-													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-													<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-													-->
-													<h5>ECOGRAFÍA</h5>
-													<span style="color: crimson;" >{{msg_eco_false}}</span>
-													<span style="color: darkblue;" >{{msg_eco}}</span>
-													<div class="row">
+					</div>
+					<!-- 
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																	tab de laboratorios
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					 -->
+					<div class="col-lg-14" v-if="view_list" v-if="view_list">
+						<section class="panel default black_title h4">
+							<div class="panel-heading">EXAMENES COMPLEMENTARIOS <span class="semi-bold"> </span></div>														
+								<div class="panel-body" >
+									<ul class="nav nav-tabs panel default blue_title h3" id="myTab">
+										<li class="active"><a data-toggle="tab" href="#Tab1">Ecografía</a></li>
+										<li><a data-toggle="tab" href="#Tab2">Rayos X</a></li>
+										<li><a data-toggle="tab" href="#Tab3">Laboratorios</a></li>
+									</ul>
+									<div class="tab-content" id="myTabContent">
+										<div id="Tab1" class="tab-pane fade in active">
+											<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
+											<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
+											<input type="hidden" :value="nombre_doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
+											<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
+											<input type="hidden" :value="consultorio = '<%=ConsultaOnly[0].tipoConsulta%>'">
+											<!-- 
+											<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+											<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																							ECOGRAFIA
+											<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+											<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+											-->
+											<h5>ECOGRAFÍA</h5>
+											<span style="color: crimson;" >{{msg_eco_false}}</span>
+											<span style="color: darkblue;" >{{msg_eco}}</span>
+											<div class="row">
+												<div class="col-md-12 ">
+													<form @submit="register_ecografia" method="POST">
+														<div class="col-md-12">
+															<div class="checkbox-inline col-md-12"> &nbsp; 
+																<label class=" ">
+																	<input @click="ecografia_select('1','ESTUDIO HEPATOBILIAR','HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES')" type="checkbox"  :checked= "eco_data[1].estado"/><!-- checked -->
+																	<FONT SIZE=1><b>1.- Estudio Hepatobiliar:</b> HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES</FONT>
+																</label>
+															</div>
+															<div class="checkbox-inline col-md-12">
+																<label class=" ">
+																	<input @click="ecografia_select('2','ESTUDIO NEFROLÓGICO','RIÑONES - CONDUCTOS - VEJIGA URINARIA')" type="checkbox"  :checked= "eco_data[2].estado"/>
+																	<FONT SIZE=1><b>2.- Estudio Nefrológico:</b> RIÑONES - CONDUCTOS - VEJIGA URINARIA</FONT>
+																</label>
+															</div>
+															<div class="checkbox-inline col-md-12">
+																<label class=" ">
+																	<input @click="ecografia_select('3','ESTUDIO GINECOLÓGICO','ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR')" type="checkbox" :checked= "eco_data[3].estado" />
+																	<FONT SIZE=1><b>3.- Estudio Ginecológico:</b> ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR </FONT>
+															 	</label>
+															</div>
+															<div class="checkbox-inline col-md-12">
+																<label class=" ">
+																	<input @click="ecografia_select('4','ESTUDIO OBSTÉTRICO','VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO')" type="checkbox" :checked= "eco_data[4].estado"/>
+																	<FONT SIZE=1><b>4.- Estudio Obstétrico:</b> VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO</FONT>
+																</label>
+															</div>
+															<div class="checkbox-inline col-md-12">
+																<label class=" ">
+																	<input @click="ecografia_select('5','ESTUDIO UROLÓGICO','PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN')" type="checkbox" :checked= "eco_data[5].estado"/>
+																	<FONT SIZE=1><b>5.- Estudio Urológico:</b> PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN</FONT>
+																</label>
+															</div>	
+														</div>
+														<!-- 
+														<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+														<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																						Lista de Ecografias
+														<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+														<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+														-->
+														<div class="col-lg-12">
+															<section class="panel default blue_title h2">
+																<div class="panel-body">														
+																	<template v-for="(list,index) in ecografia">
+																		<button type="button" class="btn btn-default" @click="delete_exografia(list.id,index)">{{list.estudio}}</button>
+																	</template>
+																</div>				
+															</section>
+														</div>
 														<div class="col-md-12 ">
-															<form @submit="register_ecografia" method="POST">
-																<div class="col-md-12">
-																	<div class="checkbox-inline col-md-12"> &nbsp; 
-																		<label class=" ">
-																			<input @click="ecografia_select('1','ESTUDIO HEPATOBILIAR','HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES')" type="checkbox"  :checked= "eco_data[1].estado"/><!-- checked -->
-																			<FONT SIZE=1><b>1.- Estudio Hepatobiliar:</b> HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES</FONT>
-																		</label>
+															<label class="">Otros:</label><br>
+															<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" v-model="otros_eco" class="form-control"></textarea>
+														</div>
+														<div class="col-md-12 page-content ">
+															<div class="col-md-8 ">
+																<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
+																<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+															</div>
+														</div>
+													</form>						
+												</div>
+											</div>
+										</div>
+										<div id="Tab2" class="tab-pane fade">
+										<!-- 
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		rayos x
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+									 	-->
+											<div class="col-md-14">
+												<span style="color: crimson;">{{msg_rayos_x_false}}</span>
+												<span style="color: blue;">{{msg_rayos_x}}</span>
+												<form @submit="register_rayosX" method="POST">						
+													<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Torax >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+													<div class="col-md-3">
+														<div class="porlets-content">
+															<div class="row">																	
+																<div class="col-md-12 panel panel-default">
+																	<div id="ocultoIl" class=" panel panel-default">
+																		<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Torax</li>            
 																	</div>
-																	<div class="checkbox-inline col-md-12">
-																		<label class=" ">
-																			<input @click="ecografia_select('2','ESTUDIO NEFROLÓGICO','RIÑONES - CONDUCTOS - VEJIGA URINARIA')" type="checkbox"  :checked= "eco_data[2].estado"/>
-																			<FONT SIZE=1><b>2.- Estudio Nefrológico:</b> RIÑONES - CONDUCTOS - VEJIGA URINARIA</FONT>
-																		</label>
+																	<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse ">
+																		<div class="">
+																			<div class="col-sm-14 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('1','1','Tórax Pa.')" type="checkbox" :checked= "x_data[1].estado" >
+																						<label>Tórax Pa. </label>
+																					</div>
+																				</div>
+																				<div class="minimal-red single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('1','2','Tórax Osco')" type="checkbox":checked= "x_data[2].estado" >
+																						<label>Tórax Osco</label>
+																					</div>
+																				</div>
+																				<div class="minimal-green single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('1','3','Tórax Lateral')" type="checkbox":checked= "x_data[3].estado" >
+																						<label>Tórax Lateral</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('1','4','Tórax en Trendelemburg')" type="checkbox" :checked= "x_data[4].estado">
+																						<label>Tórax en Trendelemburg</label>
+																					</div>
+																				</div>
+																				<div class="minimal-yellow single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('1','5','Hemitórax oblicua derecha (Arcos Costales)')" type="checkbox" :checked= "x_data[5].estado">
+																						<label>Hemitórax oblicua derecha (Arcos Costales)</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('1','6','Hemitórax oblicua izquierda (Arcos Costales)')" type="checkbox" :checked= "x_data[6].estado">
+																						<label>Hemitórax oblicua izquierda (Arcos Costales)</label>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
 																	</div>
-																	<div class="checkbox-inline col-md-12">
-																		<label class=" ">
-																			<input @click="ecografia_select('3','ESTUDIO GINECOLÓGICO','ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR')" type="checkbox" :checked= "eco_data[3].estado" />
-																			<FONT SIZE=1><b>3.- Estudio Ginecológico:</b> ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR </FONT>
-																		 </label>
-																	</div>
-																	<div class="checkbox-inline col-md-12">
-																		<label class=" ">
-																			<input @click="ecografia_select('4','ESTUDIO OBSTÉTRICO','VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO')" type="checkbox" :checked= "eco_data[4].estado"/>
-																			<FONT SIZE=1><b>4.- Estudio Obstétrico:</b> VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO</FONT>
-																		</label>
-																	</div>
-																	<div class="checkbox-inline col-md-12">
-																		<label class=" ">
-																			<input @click="ecografia_select('5','ESTUDIO UROLÓGICO','PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN')" type="checkbox" :checked= "eco_data[5].estado"/>
-																			<FONT SIZE=1><b>5.- Estudio Urológico:</b> PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN</FONT>
-																		 </label>
-																	</div>	
 																</div>
-																<!-- 
-																<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																								Lista de Ecografias
-																<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																-->
-																<div class="col-lg-12">
-																	<section class="panel default blue_title h2">
-																		<div class="panel-body">														
-																			<template v-for="(list,index) in ecografia">
-																				<button type="button" class="btn btn-default" @click="delete_exografia(list.id,index)">{{list.estudio}}</button>
-																			</template>
-																		</div>				
-																	</section>
-																</div>
-																<div class="col-md-12 ">
-																	<label class="">Otros:</label><br>
-																	<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" v-model="otros_eco" class="form-control"></textarea>
-																</div>
-																<div class="col-md-12 page-content ">
-																	<div class="col-md-8 ">
-																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-																		<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
-																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Abdomen >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="col-md-12 panel panel-default ">
+																	<div id="ocultoIl"class=" panel panel-default">
+																		<li href="#ac3-3" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Abdomen</li>            
+																	</div>
+																	<div style="height: 0px;" id="ac3-3" class="panel-collapse collapse ">
+																		<div class="col-sm-14 icheck ">
+																			<div class="minimal single-row">
+																				<div class="checkbox ">
+																					<input @click="rayosX_select('2','7','Apéndice xifoides - Sifilis del pubis')" type="checkbox" :checked= "x_data[7].estado">
+																					<label>Apéndice xifoides - Sifilis del pubis</label>
+																				</div>
+																			</div>
+																			<div class="minimal-red single-row">
+																				<div class="checkbox ">
+																					<input @click="rayosX_select('2','8','Abdomen Ap (de pie o en de cúbito)')" type="checkbox" :checked= "x_data[8].estado">
+																					<label>Abdomen Ap (de pie o en de cúbito)</label>
+																				</div>
+																			</div>
+																			<div class="minimal-green single-row">
+																				<div class="checkbox ">
+																					<input @click="rayosX_select('2','9','Abdomen en Trendelemburg')" type="checkbox" :checked= "x_data[9].estado">
+																					<label>Abdomen en Trendelemburg</label>
+																				</div>
+																			</div>
+																			<div class="minimal-blue single-row">
+																				<div class="checkbox ">
+																					<input @click="rayosX_select('2','10','Invertografía (Imperforación anal)')" type="checkbox" :checked= "x_data[10].estado">
+																					<label>Invertografía (Imperforación anal)</label>
+																				</div>
+																			</div>											
+																		</div>
 																	</div>
 																</div>
-															</form>						
+															</div>
 														</div>
 													</div>
-												</div>
-												<div id="Tab2" class="tab-pane fade">
-												<!-- 
-												<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-												<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																				rayos x
-												<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-												<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-											 	-->
-													<div class="col-md-14">
-													<span style="color: crimson;">{{msg_rayos_x_false}}</span>
-													<span style="color: blue;">{{msg_rayos_x}}</span>
-													<form @submit="register_rayosX" method="POST">						
-														<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Torax >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-														<div class="col-md-3">
-															<div class="porlets-content">
-																<div class="row">																	
+													<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+													<div class="col-md-3">
+														<div class="porlets-content">
+															<div class="row">																		
+															<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Cráneo y Macizo Facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
 																	<div class="col-md-12 panel panel-default">
 																		<div id="ocultoIl" class=" panel panel-default">
-																			<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Torax</li>            
+																			<li href="#ac3-craneo" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Cráneo y Macizo Facial</li>            
 																		</div>
-																		<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse ">
-																			<div class="">
-																				<div class="col-sm-14 icheck ">
-																				  	<div class="minimal single-row">
-																						<div class="checkbox ">
-																							<input @click="rayosX_select('1','1','Tórax Pa.')" type="checkbox" :checked= "x_data[1].estado" >
-																							<label>Tórax Pa. </label>
-																						</div>
+																		<div style="height: 0px;" id="ac3-craneo" class="panel-collapse collapse ">
+																			<div class="col-sm-14 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('3','11','Cáneo(Ap. lateral)')" type="checkbox" :checked= "x_data[11].estado">
+																						<label>Cáneo(Ap. lateral)</label>
 																					</div>
-																					<div class="minimal-red single-row">
-																						<div class="checkbox ">
-																							<input @click="rayosX_select('1','2','Tórax Osco')" type="checkbox":checked= "x_data[2].estado" >
-																							<label>Tórax Osco</label>
-																						</div>
+																				</div>
+																				<div class="minimal-red single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('3','12','Cráneo Tawne(Agj.Occipital)')" type="checkbox" :checked= "x_data[12].estado" >
+																						<label>Cráneo Tawne(Agj.Occipital)</label>
 																					</div>
-																					<div class="minimal-green single-row">
-																						<div class="checkbox ">
-																							<input @click="rayosX_select('1','3','Tórax Lateral')" type="checkbox":checked= "x_data[3].estado" >
-																							<label>Tórax Lateral</label>
-																						</div>
+																				</div>
+																				<div class="minimal-green single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('3','13','Cráneo macizo facial Ap.')" type="checkbox" :checked= "x_data[13].estado">
+																						<label>Cráneo macizo facial Ap.</label>
 																					</div>
-																					<div class="minimal-blue single-row">
-																						<div class="checkbox ">
-																							<input @click="rayosX_select('1','4','Tórax en Trendelemburg')" type="checkbox" :checked= "x_data[4].estado">
-																							<label>Tórax en Trendelemburg</label>
-																					  	</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('3','14','Cráneo Silla Turca Lateral')" type="checkbox" :checked= "x_data[14].estado">
+																						<label>Cráneo Silla Turca Lateral</label>
 																					</div>
-																					<div class="minimal-yellow single-row">
-																						<div class="checkbox ">
-																							<input @click="rayosX_select('1','5','Hemitórax oblicua derecha (Arcos Costales)')" type="checkbox" :checked= "x_data[5].estado">
-																						  	<label>Hemitórax oblicua derecha (Arcos Costales)</label>
-																						</div>
+																				</div>
+																				<div class="minimal-yellow single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('3','15','Cráneo StenversDer.(Peñasco)')" type="checkbox" :checked= "x_data[15].estado" >
+																						<label>Cráneo StenversDer.(Peñasco)</label>
 																					</div>
-																					<div class="minimal-purple single-row">
-																						<div class="checkbox ">
-																							<input @click="rayosX_select('1','6','Hemitórax oblicua izquierda (Arcos Costales)')" type="checkbox" :checked= "x_data[6].estado">
-																							<label>Hemitórax oblicua izquierda (Arcos Costales)</label>
-																						</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('3','16','Cráneo Stenvers Izq.(Peñasco)')" type="checkbox" :checked= "x_data[16].estado">
+																						<label>Cráneo Stenvers Izq.(Peñasco)</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('3','17','Cráneo macizo facial Lateral')" type="checkbox" :checked= "x_data[17].estado" >
+																						<label>Cráneo macizo facial Lateral</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('3','18','Cráneo Mayor izquierdo (Oido externo, matoides)')" type="checkbox" :checked= "x_data[18].estado">
+																						<label>Cráneo Mayor izquierdo<br>(Oido externo, matoides)</label>
 																					</div>
 																				</div>
 																			</div>
 																		</div>
-																	</div>
-																	<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Abdomen >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																		
-																			<div class="col-md-12 panel panel-default ">
-																				<div id="ocultoIl"class=" panel panel-default">
-																					<li href="#ac3-3" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Abdomen</li>            
-																				</div>
-																				<div style="height: 0px;" id="ac3-3" class="panel-collapse collapse ">
-																					<div class="col-sm-14 icheck ">
-																						<div class="minimal single-row">
-																						  	<div class="checkbox ">
-																								<input @click="rayosX_select('2','7','Apéndice xifoides - Sifilis del pubis')" type="checkbox" :checked= "x_data[7].estado">
-																								<label>Apéndice xifoides - Sifilis del pubis</label>
-																						  	</div>
-																						</div>
-																						<div class="minimal-red single-row">
-																						  	<div class="checkbox ">
-																								<input @click="rayosX_select('2','8','Abdomen Ap (de pie o en de cúbito)')" type="checkbox" :checked= "x_data[8].estado">
-																								<label>Abdomen Ap (de pie o en de cúbito)</label>
-																						  	</div>
-																						</div>
-																						<div class="minimal-green single-row">
-																						  	<div class="checkbox ">
-																								<input @click="rayosX_select('2','9','Abdomen en Trendelemburg')" type="checkbox" :checked= "x_data[9].estado">
-																								<label>Abdomen en Trendelemburg</label>
-																						  	</div>
-																						</div>
-																						<div class="minimal-blue single-row">
-																						  	<div class="checkbox ">
-																								<input @click="rayosX_select('2','10','Invertografía (Imperforación anal)')" type="checkbox" :checked= "x_data[10].estado">
-																								<label>Invertografía (Imperforación anal)</label>
-																						  	</div>
-																						</div>											
-																					</div>
-																				</div>
-																			</div>
-																																				
-																		</div>
-																	</div>
+																	</div>	
 																</div>
-																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																<div class="col-md-3">
-																	<div class="porlets-content">
-																		<div class="row">																		
-																			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Cráneo y Macizo Facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																			<div class="form-group">
-																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoIl" class=" panel panel-default">
-																						<li href="#ac3-craneo" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Cráneo y Macizo Facial</li>            
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Placas Radiograficas de craneo y macizo facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoIl" class=" panel panel-default">
+																			<li href="#ac3-placas" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Placas Radiográficas de craneo y macizo facial</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-placas" class="panel-collapse collapse ">
+																			<div class="col-sm-14 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','19','Huecos Propios de la nariz(Ap. y Lateral)')" type="checkbox" :checked= "x_data[19].estado" >
+																						<label>Huecos Propios de la nariz(<br>Ap. y Lateral)</label>
 																					</div>
-																					<div style="height: 0px;" id="ac3-craneo" class="panel-collapse collapse ">
-																						<div class="col-sm-14 icheck ">
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('3','11','Cáneo(Ap. lateral)')" type="checkbox" :checked= "x_data[11].estado">
-																									<label>Cáneo(Ap. lateral)</label>
-																								</div>
-																							</div>
-																							<div class="minimal-red single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('3','12','Cráneo Tawne(Agj.Occipital)')" type="checkbox" :checked= "x_data[12].estado" >
-																									<label>Cráneo Tawne(Agj.Occipital)</label>
-																								</div>
-																							</div>
-																						
-																							<div class="minimal-green single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('3','13','Cráneo macizo facial Ap.')" type="checkbox" :checked= "x_data[13].estado">
-																									<label>Cráneo macizo facial Ap.</label>
-																								</div>
-																							</div>
-																						
-																							<div class="minimal-blue single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('3','14','Cráneo Silla Turca Lateral')" type="checkbox" :checked= "x_data[14].estado">
-																									<label>Cráneo Silla Turca Lateral</label>
-																								</div>
-																							</div>
-																						
-																							<div class="minimal-yellow single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('3','15','Cráneo StenversDer.(Peñasco)')" type="checkbox" :checked= "x_data[15].estado" >
-																									<label>Cráneo StenversDer.(Peñasco)</label>
-																								</div>
-																							</div>
-																						
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('3','16','Cráneo Stenvers Izq.(Peñasco)')" type="checkbox" :checked= "x_data[16].estado">
-																									<label>Cráneo Stenvers Izq.(Peñasco)</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('3','17','Cráneo macizo facial Lateral')" type="checkbox" :checked= "x_data[17].estado" >
-																									<label>Cráneo macizo facial Lateral</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('3','18','Cráneo Mayor izquierdo (Oido externo, matoides)')" type="checkbox" :checked= "x_data[18].estado">
-																									<label>Cráneo Mayor izquierdo<br>(Oido externo, matoides)</label>
-																								</div>
-																							</div>
-																						</div>
+																				</div>			
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','20','Maxilar Superior Ap.')" type="checkbox" :checked= "x_data[20].estado">
+																						<label>Maxilar Superior Ap.</label>
 																					</div>
 																				</div>	
-																			</div>
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Placas Radiograficas de craneo y macizo facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																			<div class="form-group">
-																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoIl" class=" panel panel-default">
-																						<li href="#ac3-placas" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Placas Radiográficas de craneo y macizo facial</li>            
-																					</div>
-																					<div style="height: 0px;" id="ac3-placas" class="panel-collapse collapse ">
-																						<div class="col-sm-14 icheck ">
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','19','Huecos Propios de la nariz(Ap. y Lateral)')" type="checkbox" :checked= "x_data[19].estado" >
-																									<label>Huecos Propios de la nariz(<br>Ap. y Lateral)</label>
-																								</div>
-																							</div>			
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','20','Maxilar Superior Ap.')" type="checkbox" :checked= "x_data[20].estado">
-																									<label>Maxilar Superior Ap.</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','21','Senos paranasales (Laterales)')" type="checkbox" :checked= "x_data[21].estado" >
-																									<label>Senos paranasales (Laterales)</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','22','Art.Temporomaxilar Izquierdo (boca cerrada y boca abierta)')" type="checkbox" :checked= "x_data[22].estado">
-																									<label>Art.Temporomaxilar Izquierdo (boca cerrada y boca abierta)</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','23','Senos paranasales (Fron y Nasal)')" type="checkbox" :checked= "x_data[23].estado">
-																									<label>Senos paranasales <br>(Fron y Nasal)</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','24','Maxilar inferior Ap.')" type="checkbox" :checked= "x_data[24].estado">
-																									<label>Maxilar inferior Ap.</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','25','Maxilar inferior Latearal')" type="checkbox" :checked= "x_data[25].estado" >
-																									<label>Maxilar inferior Latearal</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','26','Cráneo Cavuno Faringeo')" type="checkbox" :checked= "x_data[26].estado">
-																									<label>Cráneo Cavuno Faringeo</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('4','27','Art.Temporomaxilar Derecha (boca cerrada y boca abierta)')" type="checkbox" :checked= "x_data[27].estado" >
-																									<label>Art.Temporomaxilar Derecha<br>(boca cerrada y boca abierta)</label>
-																								</div>
-																							</div>								
-																						</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','21','Senos paranasales (Laterales)')" type="checkbox" :checked= "x_data[21].estado" >
+																						<label>Senos paranasales (Laterales)</label>
 																					</div>
 																				</div>	
-																			</div>																	
-																		</div>
-																	</div>	
-																</div>
-																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																<div class="col-md-3">
-																	<div class="porlets-content">
-																		<div class="row">																	
-																			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Columna vertebral >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																			<div class="form-group">
-																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoI" class=" panel panel-default ">
-																						<li href="#ac3-columna" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Columna vertebral</li>            
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','22','Art.Temporomaxilar Izquierdo (boca cerrada y boca abierta)')" type="checkbox" :checked= "x_data[22].estado">
+																						<label>Art.Temporomaxilar Izquierdo (boca cerrada y boca abierta)</label>
 																					</div>
-																					<div style="height: 0px;" id="ac3-columna" class="panel-collapse collapse ">
-																						<div class="col-sm-14 icheck ">
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','28','Col. Cervical(Ap. y Lateral)')"type="checkbox" :checked= "x_data[28].estado">
-																									<label>Col. Cervical(Ap. y Lateral)</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','29','Col.Cervical (Oblicuas Der. e Izq)')" type="checkbox":checked= "x_data[29].estado" >
-																									<label>Col.Cervical <br>(Oblicuas Der. e Izq)</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','30','Col.Dorsal del Cúbito Dorsal o de pie(Ap. y Lateral)')" type="checkbox":checked= "x_data[30].estado" >
-																									<label>Col.Dorsal del Cúbito Dorsal <br>o de pie(Ap. y Lateral)</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','31','Col.Dorsal del Cúbito Dorsal o de pie(Oblicuas Der. e Izq)')" type="checkbox":checked= "x_data[31].estado" >
-																									<label>Col.Dorsal del Cúbito Dorsal<br> o de pie(Oblicuas Der. e Izq)</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','32','Col.Lumbar del Cúbito Dorsal o de pie( Ap. y Lateral)')" type="checkbox" :checked= "x_data[32].estado" >
-																									<label>Col.Lumbar del Cúbito Dorsal <br>o de pie( Ap. y Lateral)</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','33','Col. Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql')" type="checkbox" :checked= "x_data[33].estado">
-																									<label>Col. Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','34','Col.Sacrocoxigea de Cúbito')" type="checkbox" :checked= "x_data[34].estado">
-																									<label>Col.Sacrocoxigea de Cúbito</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','35','Dorsal o de pie(Ap. y Lateral)')" type="checkbox" :checked= "x_data[35].estado" >
-																									<label>Dorsal o de pie(Ap. y Lateral)</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','36','Col.Dorsal Lateral de pie(en Flexion y extencion)')" type="checkbox" :checked= "x_data[36].estado" >
-																									<label>Col.Dorsal Lateral de<br> pie(en Flexion y extencion)</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('5','37','Col.Lumbar Lateral de pie(en Flexion y extencion)')" type="checkbox" :checked= "x_data[37].estado">
-																									<label>Col.Lumbar Lateral de pie(en Flexion y extencion)</label>
-																								</div>
-																							</div>
-																						</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','23','Senos paranasales (Fron y Nasal)')" type="checkbox" :checked= "x_data[23].estado">
+																						<label>Senos paranasales <br>(Fron y Nasal)</label>
 																					</div>
-																				</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','24','Maxilar inferior Ap.')" type="checkbox" :checked= "x_data[24].estado">
+																						<label>Maxilar inferior Ap.</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','25','Maxilar inferior Latearal')" type="checkbox" :checked= "x_data[25].estado" >
+																						<label>Maxilar inferior Latearal</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','26','Cráneo Cavuno Faringeo')" type="checkbox" :checked= "x_data[26].estado">
+																						<label>Cráneo Cavuno Faringeo</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('4','27','Art.Temporomaxilar Derecha (boca cerrada y boca abierta)')" type="checkbox" :checked= "x_data[27].estado" >
+																						<label>Art.Temporomaxilar Derecha<br>(boca cerrada y boca abierta)</label>
+																					</div>
+																				</div>								
 																			</div>
-																			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Miembros superiores >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																			<div class="form-group">
-																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoI" class=" panel panel-default ">
-																						<li href="#ac3-Ms" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Miembros superiores</li>            
-																					</div>
-																					<div style="height: 0px;" id="ac3-Ms" class="panel-collapse collapse ">
-																						<label class="control-label">Miembros superiores</label><br>
-																						<div class="col-sm-12 icheck ">
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','38','Hombro (Ap.)')" type="checkbox" :checked= "x_data[38].estado">
-																									<label>Hombro (Ap.)</label>
-																								</div>
-																							</div>			
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','39','Hombro Axial')"type="checkbox" :checked= "x_data[39].estado">
-																									<label>Hombro Axial</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','40','Hombro Tangencial')" type="checkbox" :checked= "x_data[40].estado">
-																									<label>Hombro Tangencial</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','41','Omóplato(Ap.)')" type="checkbox" :checked= "x_data[41].estado" >
-																									<label>Omóplato(Ap.)</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','42','Omóplato Axial')" type="checkbox" :checked= "x_data[42].estado">
-																									<label>Omóplato Axial</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','43','Mano Ap. y Oblicua')" type="checkbox" :checked= "x_data[43].estado" >
-																									<label>Mano Ap. y Oblicua </label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','44','Mano Canal Carpiano')" type="checkbox" :checked= "x_data[44].estado">
-																									<label>Mano Canal Carpiano</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','45','Mano Pisiforme(Ap.)')" type="checkbox" :checked= "x_data[45].estado">
-																									<label>Mano Pisiforme(Ap.)</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','46','Desos Ap. y Lateral')" type="checkbox" :checked= "x_data[46].estado">
-																									<label>Desos Ap. y Lateral</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','47','Omóplato Tangencial')" type="checkbox" :checked= "x_data[47].estado">
-																									<label>Omóplato Tangencial</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','48','Clavícula(Ap.)')" type="checkbox" :checked= "x_data[48].estado" >
-																									<label>Clavícula(Ap.)</label>
-																								</div>
-																							</div>
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','49','Clavícula Axial')" type="checkbox" :checked= "x_data[49].estado" >
-																									<label>Clavícula Axial</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','50','Clavícula Tangencial')" type="checkbox" :checked= "x_data[50].estado">
-																									<label>Clavícula Tangencial</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','51','Art. Esternoclavicular(Ap.)')" type="checkbox" :checked= "x_data[51].estado">
-																									<label>Art. Esternoclavicular(Ap.)</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','52','Brazo Ap. y Lat.')" type="checkbox"  :checked= "x_data[52].estado">
-																									<label>Brazo Ap. y Lat.</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','53','Antebrazo Ap. y Lat')" type="checkbox" :checked= "x_data[53].estado" >
-																									<label>Antebrazo Ap. y Lat</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','54','Codo Ap. y Lat')" type="checkbox" :checked= "x_data[54].estado">
-																									<label>Codo Ap. y Lat</label>
-																								</div>
-																							</div>	
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','55','Art. Codo Tangencial')" type="checkbox" :checked= "x_data[55].estado">
-																									<label>Art. Codo Tangencial</label>
-																								</div>
-																							</div>		
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('6','56','Muñeca Ap. y Lat')" type="checkbox" :checked= "x_data[56].estado" >
-																									<label>Muñeca Ap. y Lat</label>
-																								</div>
-																							</div>							
-																						</div>
-																					</div>
-																				</div>
-																			</div>																	
 																		</div>
-																	</div>
-																</div>
-																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Miembros inferiores >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																<div class="col-md-3">
-																	<div class="">
-																		<div class="row">
-																			<div class="form-group">
-																				<div class="col-md-12 panel panel-default">
-																					<div id="ocultoI" class=" panel panel-default ">
-																						<li href="#ac3-miI" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Miembros inferiores</li>            
-																					</div>
-																					<div style="height: 0px;" id="ac3-miI" class="panel-collapse collapse ">
-																						
-																						<div class="col-sm-12 icheck ">
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									  <input @click="rayosX_select('7','57','Pelvis(Ap. adultos, niños)')" type="checkbox" :checked= "x_data[57].estado" >
-																									  <label>Pelvis(Ap. adultos, niños)</label>
-																								</div>
-																							</div>
-																							<div class="minimal-red single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','58','Pelvis Axial')" type="checkbox" :checked= "x_data[58].estado">
-																									<label>Pelvis Axial</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-green single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','59','Pelvis Tangencial')" type="checkbox" :checked= "x_data[59].estado">
-																									<label>Pelvis Tangencial</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-blue single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','60','Sinfisis del Pubis')" type="checkbox" :checked= "x_data[60].estado">
-																									<label>Sinfisis del Pubis</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-yellow single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','61','Art. Coxofemoral Ap.')" type="checkbox"  :checked= "x_data[61].estado">
-																									<label>Art. Coxofemoral Ap.</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','62','Art. Coxofemoral Lat.')" type="checkbox" :checked= "x_data[62].estado">
-																									<label>Art. Coxofemoral Lat.</label>
-																								</div>
-																							</div>
-																							<!--  -->
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','63','Art. Coxofemoral Tang.')" type="checkbox" :checked= "x_data[63].estado" >
-																									<label>Art. Coxofemoral Tang.</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','64','Musculo Ap. y Lat.')" type="checkbox" :checked= "x_data[64].estado">
-																									<label>Musculo Ap. y Lat.</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','65','Pierna Ap. y Lat.')" type="checkbox" :checked= "x_data[65].estado">
-																									<label>Pierna Ap. y Lat.</label>
-																								</div>
-																							</div>
-																							<!--  -->
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','66','Rodilla Ap. y Lat.')" type="checkbox" :checked= "x_data[66].estado">
-																									<label>Rodilla Ap. y Lat.</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','67','Tobillo Ap. y Lat.')" type="checkbox" :checked= "x_data[67].estado">
-																									<label>Tobillo Ap. y Lat.</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','68','Rodilla Oblicua')" type="checkbox" :checked= "x_data[68].estado" >
-																									<label>Rodilla Oblicua</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','69','Rodilla con Carga')" type="checkbox" :checked= "x_data[69].estado">
-																									<label>Rodilla con Carga</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','70','Rótula Tangencial')" type="checkbox" :checked= "x_data[70].estado">
-																									<label>Rótula Tangencial</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','71','Tobillo Oblicua')" type="checkbox" :checked= "x_data[71].estado">
-																									<label>Tobillo Oblicua</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','72','Tobillo Tangencial')" type="checkbox" :checked= "x_data[72].estado" >
-																									<label>Tobillo Tangencial</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','73','Calcaneo(Tang. y Lat.)')" type="checkbox" :checked= "x_data[73].estado" >
-																									<label>Calcaneo(Tang. y Lat.)</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','74','Pié Ap. y Lat(de cúbito Dorsal)')" type="checkbox" :checked= "x_data[74].estado" >
-																									<label>Pié Ap. y Lat(de cúbito Dorsal)</label>
-																								</div>
-																							</div>
-																							<div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="rayosX_select('7','75','Pié con carga(parado)')" type="checkbox" :checked= "x_data[75].estado">
-																									<label>Pié con carga(parado)</label>
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>	  
-																			</div>																																			
-																		</div>
-																	</div>
-																</div>
-																
-																<div class="col-lg-12 his">
-																		<h4 class="center"><span>&nbsp;&nbsp;&nbsp;</span>Solicitud de Examenes</h4>
-																	<section class="panel default blue_title h2 scrollV">
-																	
-																	<div class="panel-body">	
-																		<label v-if="group_rayosX.torax != ''">Torax:</label><br>													
-																		<!-- Standard gray button with gradient -->
-																		<template v-for="(list, index) in group_rayosX.torax">
-																			<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
-																		</template>	
-																	</div>
-																	<div class="panel-body">
-																		<label v-if="group_rayosX.abdomen != ''">Abdomen</label><br>														
-																		<!-- Standard gray button with gradient -->
-																		<template v-for="(list, index) in group_rayosX.abdomen">
-																			<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
-																		</template>	
 																	</div>	
-																	<div class="panel-body">
-																		<label v-if="group_rayosX.craneo_Macizo_Facial != ''">Craneo_Macizo_Facial</label>	<br>													
-																		<!-- Standard gray button with gradient -->
-																		<template v-for="(list, index) in group_rayosX.craneo_Macizo_Facial">
-																			<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
-																		</template>	
-																	</div>	
-																	<div class="panel-body">
-																		<label v-if="group_rayosX.Placas_Radiograficas != ''">Placas Radiograficas</label>	<br>													
-																		<!-- Standard gray button with gradient -->
-																		<template v-for="(list, index) in group_rayosX.Placas_Radiograficas">
-																			<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
-																		</template>	
-																	</div>	
-																	<div class="panel-body">
-																		<label v-if="group_rayosX.Columna_vertebral != ''">Columna vertebral</label><br>													
-																		<!-- Standard gray button with gradient -->
-																		<template v-for="(list, index) in group_rayosX.Columna_vertebral">
-																			<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
-																		</template>	
-																	</div>	
-																	<div class="panel-body">
-																		<label v-if="group_rayosX.Miembros_superiores != ''">Miembros superiores</label><br>														
-																		<!-- Standard gray button with gradient -->
-																		<template v-for="(list, index) in group_rayosX.Miembros_superiores">
-																			<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
-																		</template>	
-																	</div>	
-																	<div class="panel-body">
-																		<label v-if="group_rayosX.Miembros_inferiores != ''">Miembros inferiores</label><br>														
-																		<!-- Standard gray button with gradient -->
-																		<template v-for="(list, index) in group_rayosX.Miembros_inferiores">
-																			<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
-																		</template>	
-																	</div>	
-
-																	</section>
-																</div>
-																<div class="col-md-12  ">
-																	<label class=" ">Otros:</label><br>
-																	<textarea class="large-compact"   cols="117" rows="3" class="form-control" v-model="otros_rayosX"></textarea>
-																</div>
-																<div class="col-md-12 page-content ">
-																	<div class="col-md-8 ">
-																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-																		<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
-																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
-																	</div>
-																</div>
-
-															</form>
-														</div>														
-														
+																</div>																	
+															</div>
+														</div>	
 													</div>
-													<div id="Tab3" class="tab-pane fade">	
-														<span style="color: crimson;">{{msg_lab_false}}</span>		
-														<span style="color: blue;">{{msg_lab}}</span>										
+													<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+													<div class="col-md-3">
+														<div class="porlets-content">
+															<div class="row">																	
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Columna vertebral >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-columna" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Columna vertebral</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-columna" class="panel-collapse collapse ">
+																			<div class="col-sm-14 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','28','Col. Cervical(Ap. y Lateral)')"type="checkbox" :checked= "x_data[28].estado">
+																						<label>Col. Cervical(Ap. y Lateral)</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','29','Col.Cervical (Oblicuas Der. e Izq)')" type="checkbox":checked= "x_data[29].estado" >
+																						<label>Col.Cervical <br>(Oblicuas Der. e Izq)</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','30','Col.Dorsal del Cúbito Dorsal o de pie(Ap. y Lateral)')" type="checkbox":checked= "x_data[30].estado" >
+																						<label>Col.Dorsal del Cúbito Dorsal <br>o de pie(Ap. y Lateral)</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','31','Col.Dorsal del Cúbito Dorsal o de pie(Oblicuas Der. e Izq)')" type="checkbox":checked= "x_data[31].estado" >
+																						<label>Col.Dorsal del Cúbito Dorsal<br> o de pie(Oblicuas Der. e Izq)</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','32','Col.Lumbar del Cúbito Dorsal o de pie( Ap. y Lateral)')" type="checkbox" :checked= "x_data[32].estado" >
+																						<label>Col.Lumbar del Cúbito Dorsal <br>o de pie( Ap. y Lateral)</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','33','Col. Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql')" type="checkbox" :checked= "x_data[33].estado">
+																						<label>Col. Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','34','Col.Sacrocoxigea de Cúbito')" type="checkbox" :checked= "x_data[34].estado">
+																						<label>Col.Sacrocoxigea de Cúbito</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','35','Dorsal o de pie(Ap. y Lateral)')" type="checkbox" :checked= "x_data[35].estado" >
+																						<label>Dorsal o de pie(Ap. y Lateral)</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','36','Col.Dorsal Lateral de pie(en Flexion y extencion)')" type="checkbox" :checked= "x_data[36].estado" >
+																						<label>Col.Dorsal Lateral de<br> pie(en Flexion y extencion)</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('5','37','Col.Lumbar Lateral de pie(en Flexion y extencion)')" type="checkbox" :checked= "x_data[37].estado">
+																						<label>Col.Lumbar Lateral de pie(en Flexion y extencion)</label>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Miembros superiores >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-Ms" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Miembros superiores</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-Ms" class="panel-collapse collapse ">
+																			<label class="control-label">Miembros superiores</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','38','Hombro (Ap.)')" type="checkbox" :checked= "x_data[38].estado">
+																						<label>Hombro (Ap.)</label>
+																					</div>
+																				</div>			
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','39','Hombro Axial')"type="checkbox" :checked= "x_data[39].estado">
+																						<label>Hombro Axial</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','40','Hombro Tangencial')" type="checkbox" :checked= "x_data[40].estado">
+																						<label>Hombro Tangencial</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','41','Omóplato(Ap.)')" type="checkbox" :checked= "x_data[41].estado" >
+																						<label>Omóplato(Ap.)</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','42','Omóplato Axial')" type="checkbox" :checked= "x_data[42].estado">
+																						<label>Omóplato Axial</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','43','Mano Ap. y Oblicua')" type="checkbox" :checked= "x_data[43].estado" >
+																						<label>Mano Ap. y Oblicua </label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','44','Mano Canal Carpiano')" type="checkbox" :checked= "x_data[44].estado">
+																						<label>Mano Canal Carpiano</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','45','Mano Pisiforme(Ap.)')" type="checkbox" :checked= "x_data[45].estado">
+																						<label>Mano Pisiforme(Ap.)</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','46','Desos Ap. y Lateral')" type="checkbox" :checked= "x_data[46].estado">
+																						<label>Desos Ap. y Lateral</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','47','Omóplato Tangencial')" type="checkbox" :checked= "x_data[47].estado">
+																						<label>Omóplato Tangencial</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','48','Clavícula(Ap.)')" type="checkbox" :checked= "x_data[48].estado" >
+																						<label>Clavícula(Ap.)</label>
+																					</div>
+																				</div>
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','49','Clavícula Axial')" type="checkbox" :checked= "x_data[49].estado" >
+																						<label>Clavícula Axial</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','50','Clavícula Tangencial')" type="checkbox" :checked= "x_data[50].estado">
+																						<label>Clavícula Tangencial</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','51','Art. Esternoclavicular(Ap.)')" type="checkbox" :checked= "x_data[51].estado">
+																						<label>Art. Esternoclavicular(Ap.)</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','52','Brazo Ap. y Lat.')" type="checkbox"  :checked= "x_data[52].estado">
+																						<label>Brazo Ap. y Lat.</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','53','Antebrazo Ap. y Lat')" type="checkbox" :checked= "x_data[53].estado" >
+																						<label>Antebrazo Ap. y Lat</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','54','Codo Ap. y Lat')" type="checkbox" :checked= "x_data[54].estado">
+																						<label>Codo Ap. y Lat</label>
+																					</div>
+																				</div>	
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','55','Art. Codo Tangencial')" type="checkbox" :checked= "x_data[55].estado">
+																						<label>Art. Codo Tangencial</label>
+																					</div>
+																				</div>		
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('6','56','Muñeca Ap. y Lat')" type="checkbox" :checked= "x_data[56].estado" >
+																						<label>Muñeca Ap. y Lat</label>
+																					</div>
+																				</div>							
+																			</div>
+																		</div>
+																	</div>
+																</div>																	
+															</div>
+														</div>
+													</div>				
+													<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Miembros inferiores >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+													<div class="col-md-3">
 														<div class="">
-															<form @submit="register_lab" method="POST">
-																<!---<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Laboratorio (sangre Y orina)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-															
-																<div class="col-md-3">
-																		<div class="porlets-content">
-																			<div class="row">
-																					<div class="form-group">
-																						<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-lab" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Hemotología</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-lab" class="panel-collapse collapse ">
-																						<label class="control-label">Hemotología</label><br>
-																						  <div class="col-sm-12 icheck ">
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									  <input @click="laboratorios('1','1','Hematocrito')" type="checkbox" :checked= "lab_data[1].estado" >
-																									  <label>Hematocrito </label>
-																								</div>
-																							</div>
-																							<div class="minimal-red single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','2','Hemograma Completo')" type="checkbox":checked= "lab_data[2].estado" >
-																									<label>Hemograma Completo</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-green single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','3','Reticulocitos')" type="checkbox":checked= "lab_data[3].estado" >
-																									<label>Reticulocitos</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-blue single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','4','Grupos Sanguineos Rh')" type="checkbox" :checked= "lab_data[4].estado">
-																									<label>Grupos Sanguineos Rh</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-yellow single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','5','Recuento Leucocitos')" type="checkbox" :checked= "lab_data[5].estado">
-																									<label>Recuento Leucocitos</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','6','Leucograma')" type="checkbox" :checked= "lab_data[6].estado">
-																									<label>Leucograma</label>
-																								</div>
-																							</div>
-																							 <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','7','Coombs Directo')" type="checkbox" :checked= "lab_data[7].estado">
-																									<label>Coombs Directo</label>
-																								</div>
-																							</div>
-																							 <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','8','Coombs Indirecto')" type="checkbox" :checked= "lab_data[8].estado">
-																									<label>Coombs Indirecto</label>
-																								</div>
-																							</div>
-																							 <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','9','Gota Gruesa(Palud)')" type="checkbox" :checked= "lab_data[9].estado">
-																									<label>Gota Gruesa(Palud)</label>
-																								</div>
-																							</div>
-																							 <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','10','Tiempo de Sangria')" type="checkbox" :checked= "lab_data[10].estado">
-																									<label>Tiempo de Sangria</label>
-																								</div>
-																							</div>
-																							 <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','11','Tiempo de Coagulación')" type="checkbox" :checked= "lab_data[11].estado">
-																									<label>Tiempo de Coagulación</label>
-																								</div>
-																							</div>
-																							 <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','12','Tiempo de Protombina')" type="checkbox" :checked= "lab_data[12].estado">
-																									<label>Tiempo de Protombina</label>
-																								</div>
-																							</div>
-																							 <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','13','Rec. Plaquetas')" type="checkbox" :checked= "lab_data[13].estado">
-																									<label>Rec. Plaquetas</label>
-																								</div>
-																							</div>
-																							 <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('1','14','INR')" type="checkbox" :checked= "lab_data[14].estado">
-																									<label>INR</label>
-																								</div>
-																							</div>
-																						</div>																								
-																							</div>
-																						</div>
-
-																					</div> 
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Química Sanguínea >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																							<div class="col-md-12 panel panel-default">
-																								<div id="ocultoI" class=" panel panel-default ">
-																									<li href="#ac3-quim" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Química Sanguínea</li>            
-																								</div>
-																								<div style="height: 0px;" id="ac3-quim" class="panel-collapse collapse ">
-																									<label class="control-label">Química Sanguínea</label><br>
-																						
-																							<div class="col-sm-12 icheck ">
-																								<div class="minimal single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','15','Glucosa')" type="checkbox" :checked= "lab_data[15].estado">
-																										<label>Glucosa</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-red single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','16','P. Tolerancia Glucosa')" type="checkbox" :checked= "lab_data[16].estado">
-																										<label>P. Tolerancia Glucosa</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-green single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','17','Glicohemuglobina')" type="checkbox" :checked= "lab_data[17].estado">
-																										<label>Glicohemuglobina</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','18','Urea')" type="checkbox" :checked= "lab_data[18].estado">
-																										<label>Urea</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','19','Creatinina')" type="checkbox" :checked= "lab_data[19].estado">
-																										<label>Creatinina</label>
-																									  </div>
-																								</div>		
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','20','Ácido Úrico')" type="checkbox" :checked= "lab_data[20].estado">
-																										<label>Ácido Úrico</label>
-																									  </div>
-																								</div>		
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','21','Clearence de Creatinina')" type="checkbox" :checked= "lab_data[21].estado">
-																										<label>Clearence de Creatinina</label>
-																									  </div>
-																								</div>		
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','22','Colesterol Total')" type="checkbox" :checked= "lab_data[22].estado">
-																										<label>Colesterol Total</label>
-																									  </div>
-																								</div>		
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','23','HDL Colesterol')" type="checkbox" :checked= "lab_data[23].estado">
-																										<label>HDL Colesterol</label>
-																									  </div>
-																								</div>	
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','24','LDL Colesterol')" type="checkbox" :checked= "lab_data[24].estado">
-																										<label>LDL Colesterol</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','25','Triglicéridos')" type="checkbox" :checked= "lab_data[25].estado">
-																										<label>Triglicéridos</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','26','Bilirrubina D.I Y T.')" type="checkbox" :checked= "lab_data[26].estado">
-																										<label>Bilirrubina D.I Y T.</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','27','G.O.T.')" type="checkbox" :checked= "lab_data[27].estado">
-																										<label>G.O.T.</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','28','G.P.T.')" type="checkbox" :checked= "lab_data[28].estado">
-																										<label>G.P.T.</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','29','Fosfatasa Alcalina')" type="checkbox" :checked= "lab_data[29].estado">
-																										<label>Fosfatasa Alcalina</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','30','Albúminas')" type="checkbox" :checked= "lab_data[30].estado">
-																										<label>Albúminas</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','31','Globulinas')" type="checkbox" :checked= "lab_data[31].estado">
-																										<label>Globulinas</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','32','Proteinas Totales')" type="checkbox" :checked= "lab_data[32].estado">
-																										<label>Proteinas Totales</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','33','Urea')" type="checkbox" :checked= "lab_data[33].estado">
-																										<label>Amilasa</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','34','Calcio')" type="checkbox" :checked= "lab_data[34].estado">
-																										<label>Calcio</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','35','A.S.T.O')" type="checkbox" :checked= "lab_data[35].estado">
-																										<label>A.S.T.O</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','36','Artrites(F.R.)')" type="checkbox" :checked= "lab_data[36].estado">
-																										<label>Artrites(F.R.)</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','37','Proteina C. Reactiva')" type="checkbox" :checked= "lab_data[37].estado">
-																										<label>Proteina C. Reactiva</label>
-																									  </div>
-																								</div>
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','38','Reacción de Widal')" type="checkbox" :checked= "lab_data[38].estado">
-																										<label>Reacción de Widal</label>
-																									  </div>
-																								</div>	
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','39','R. de VDRL')" type="checkbox" :checked= "lab_data[39].estado">
-																										<label>R. de VDRL</label>
-																									  </div>
-																								</div>	
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','40','R. de RPR')" type="checkbox" :checked= "lab_data[40].estado">
-																										<label>R. de RPR</label>
-																									  </div>
-																								</div>	
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','41','H.A.I. Chagas')" type="checkbox" :checked= "lab_data[41].estado">
-																										<label>H.A.I. Chagas</label>
-																									  </div>
-																								</div>	
-																								<div class="minimal-blue single-row">
-																									  <div class="checkbox ">
-																										<input @click="laboratorios('2','42','H.A.I. Toxoplasmosis')" type="checkbox" :checked= "lab_data[42].estado">
-																										<label>H.A.I. Toxoplasmosis</label>
-																									  </div>
-																								</div>	
-																							</div>
-																								</div>
-																							</div>
-																							
-																						</div>
-																					<div class="form-group">
-																						<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-orina" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Orina</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-orina" class="panel-collapse collapse ">
-																								<label class="control-label">Orina</label><br>
-																						<div class="col-sm-12 icheck ">
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									  <input @click="laboratorios('3','43','Examen General')" type="checkbox" :checked= "lab_data[43].estado" >
-																									  <label>Examen General </label>
-																								</div>
-																							</div>
-																							<div class="minimal-red single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('3','44','Citobacteriológico')" type="checkbox":checked= "lab_data[44].estado" >
-																									<label>Citobacteriológico</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-green single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('3','45','BK en orina')" type="checkbox":checked= "lab_data[45].estado" >
-																									<label>BK en orina</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-blue single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('3','46','Proteinuria de 24 Hrs')" type="checkbox" :checked= "lab_data[46].estado">
-																									<label>Proteinuria de 24 Hrs</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-yellow single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('3','47','Glucosuria')" type="checkbox" :checked= "lab_data[47].estado">
-																									<label>Glucosuria</label>
-																								</div>
-																							  </div>
-																							  <div class="minimal-purple single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('3','48','Uricosuria')" type="checkbox" :checked= "lab_data[48].estado">
-																									<label>Uricosuria</label>
-																								</div>
-																							</div>						
-																						</div>
-																							</div>
-																						</div>  
-																						
+															<div class="row">
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-miI" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Miembros inferiores</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-miI" class="panel-collapse collapse ">
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','57','Pelvis(Ap. adultos, niños)')" type="checkbox" :checked= "x_data[57].estado" >
+																						<label>Pelvis(Ap. adultos, niños)</label>
 																					</div>
-																			</div>
-																		</div>	
-																</div>
-
-																<!-- <<<<<<<<<>>><<<<>><<>>><<<>><<<>><<<><<<<<<<>><<<><<<<><<<><<<>><<<>><<<><<<<>>><<<>><<<>>><<<>><<<>>><<<>><<<>><<<>><<>><<<>><<<<<<<< -->
-																<div class="col-md-3">
-																	
-																		<div class="porlets-content">
-																			<div class="row">
-																																							
-																				
-																				
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Prueba de Embarazo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-Prueba" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Prueba de Embarazo</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-Prueba" class="panel-collapse collapse ">
-																								<label class="control-label">Prueba de Embarazo</label><br>
-																								<div class="col-sm-12 icheck ">
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('4','49','H.G.C. en Sandre')" type="checkbox" :checked= "lab_data[49].estado">
-																											<label>H.G.C. en Sandre</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('4','50','H.G.C. en Orina')" type="checkbox" :checked= "lab_data[50].estado">
-																											<label>H.G.C. en Orina</label>
-																										</div>
-																									</div>																															
-																								</div>
-																							</div>
-																						</div>
-																						
+																				</div>
+																				<div class="minimal-red single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','58','Pelvis Axial')" type="checkbox" :checked= "x_data[58].estado">
+																						<label>Pelvis Axial</label>
 																					</div>
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Heces >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-Heces" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Heces</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-Heces" class="panel-collapse collapse ">
-																								<label class="control-label">Heces</label><br>
-																								<div class="col-sm-12 icheck ">
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('5','51','Parasitología Simple')" type="checkbox" :checked= "lab_data[51].estado">
-																											<label>Parasitología Simple</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('5','52','Parasitología Seriado')" type="checkbox" :checked= "lab_data[52].estado">
-																											<label>Parasitología Seriado</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('5','53','Técnica Graham')" type="checkbox" :checked= "lab_data[53].estado">
-																											<label>Técnica Graham</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('5','54','Moco Fecal')" type="checkbox" :checked= "lab_data[54].estado">
-																											<label>Moco Fecal</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('5','55','PH Fecal')" type="checkbox" :checked= "lab_data[55].estado">
-																											<label>PH Fecal</label>
-																										</div>
-																									</div>																																
-																								</div>
-																							</div>
-																						</div>
-																						
+																				</div>
+																				<div class="minimal-green single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','59','Pelvis Tangencial')" type="checkbox" :checked= "x_data[59].estado">
+																						<label>Pelvis Tangencial</label>
 																					</div>
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Expectoración >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-ex" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Expectoración</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-ex" class="panel-collapse collapse ">
-																								<label class="control-label">Expectoración</label><br>
-																					
-																								<div class="col-sm-12 icheck ">
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('6','56','Basiloscopia Simple')" type="checkbox" :checked= "lab_data[56].estado">
-																											<label>Basiloscopia Simple</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('6','57','Basiloscopia Seriadas')" type="checkbox" :checked= "lab_data[57].estado">
-																											<label>Basiloscopia Seriadas</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('6','58','Tención de Gram')" type="checkbox" :checked= "lab_data[58].estado">
-																											<label>Tención de Gram</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('6','59','Recuento de Eosinófilos')" type="checkbox" :checked= "lab_data[59].estado">
-																											<label>Recuento de Eosinófilos</label>
-																										</div>
-																									</div>
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('6','60','Cristales de Charcol Leyden')" type="checkbox" :checked= "lab_data[60].estado">
-																											<label>Cristales de Charcol Leyden</label>
-																										</div>
-																									</div>
-
-																								</div>
-																							</div>
-																						</div>
-																						
-																					</div>																	
-																			
-																			
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','60','Sinfisis del Pubis')" type="checkbox" :checked= "x_data[60].estado">
+																						<label>Sinfisis del Pubis</label>
+																					</div>
+																				</div>
+																				<div class="minimal-yellow single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','61','Art. Coxofemoral Ap.')" type="checkbox"  :checked= "x_data[61].estado">
+																						<label>Art. Coxofemoral Ap.</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','62','Art. Coxofemoral Lat.')" type="checkbox" :checked= "x_data[62].estado">
+																						<label>Art. Coxofemoral Lat.</label>
+																					</div>
+																				</div>
+																				<!--  -->
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','63','Art. Coxofemoral Tang.')" type="checkbox" :checked= "x_data[63].estado" >
+																						<label>Art. Coxofemoral Tang.</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','64','Musculo Ap. y Lat.')" type="checkbox" :checked= "x_data[64].estado">
+																						<label>Musculo Ap. y Lat.</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','65','Pierna Ap. y Lat.')" type="checkbox" :checked= "x_data[65].estado">
+																						<label>Pierna Ap. y Lat.</label>
+																					</div>
+																				</div>
+																				<!--  -->
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','66','Rodilla Ap. y Lat.')" type="checkbox" :checked= "x_data[66].estado">
+																						<label>Rodilla Ap. y Lat.</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','67','Tobillo Ap. y Lat.')" type="checkbox" :checked= "x_data[67].estado">
+																						<label>Tobillo Ap. y Lat.</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','68','Rodilla Oblicua')" type="checkbox" :checked= "x_data[68].estado" >
+																						<label>Rodilla Oblicua</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','69','Rodilla con Carga')" type="checkbox" :checked= "x_data[69].estado">
+																						<label>Rodilla con Carga</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','70','Rótula Tangencial')" type="checkbox" :checked= "x_data[70].estado">
+																						<label>Rótula Tangencial</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','71','Tobillo Oblicua')" type="checkbox" :checked= "x_data[71].estado">
+																						<label>Tobillo Oblicua</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','72','Tobillo Tangencial')" type="checkbox" :checked= "x_data[72].estado" >
+																						<label>Tobillo Tangencial</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','73','Calcaneo(Tang. y Lat.)')" type="checkbox" :checked= "x_data[73].estado" >
+																						<label>Calcaneo(Tang. y Lat.)</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','74','Pié Ap. y Lat(de cúbito Dorsal)')" type="checkbox" :checked= "x_data[74].estado" >
+																						<label>Pié Ap. y Lat(de cúbito Dorsal)</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="rayosX_select('7','75','Pié con carga(parado)')" type="checkbox" :checked= "x_data[75].estado">
+																						<label>Pié con carga(parado)</label>
+																					</div>
+																				</div>
 																			</div>
 																		</div>
-																	
-																</div>
-
-																<!-- <<<<<<<<<>>><<<<>><<>>><<<>><<<>><<<><<<<<<<>><<<><<<<><<<><<<>><<<>><<<><<<<>>><<<>><<<>>><<<>><<<>>><<<>><<<>><<<>><<>><<<>><<<<<<<< -->
-																<div class="col-md-3">
-																	
-																		<div class="porlets-content">
-																			<div class="row">
-																				
-																				
-																					<div class="form-group">
-																						<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil Preoperatorio >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-ee" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Exámenes Especiales</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-ee" class="panel-collapse collapse ">
-																								<label class="control-label">Exámenes Especiales</label><br>
-																					
-																						<div class="col-sm-12 icheck ">
-																						
-																							<div class="minimal single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('7','61','BACT. de Exudado Vaginal')" type="checkbox" :checked= "lab_data[61].estado" >
-																									<label>BACT. de Exudado Vaginal</label>
-																								</div>
-																							</div>
-																							<div class="minimal-red single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('7','62','BACT. de Secreción Uteral')" type="checkbox":checked= "lab_data[62].estado" >
-																									<label>BACT. de Secreción Uteral</label>
-																								</div>
-																							</div>
-																							
-																							<div class="minimal-green single-row">
-																								<div class="checkbox ">
-																									<input @click="laboratorios('7','63','Espermiograma')" type="checkbox":checked= "lab_data[63].estado" >
-																									<label>Espermiograma</label>
-																								</div>
-																							</div>
-																												
-																						</div>
-																							</div>
-																						</div>
-																						
-																					</div> 
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil Preoperatorio >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-pp" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil Preoperatorio</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-pp" class="panel-collapse collapse ">
-																								<label class="control-label">Perfil Preoperatorio</label><br>
-																					
-																								<div class="col-sm-12 icheck ">
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('8','64','Hemograma Tiempos de Sangria, Tiempo de Coagulación, Tiempo de protombina, Grupos Sanguineo RH. Glucosa y ÚREA Creatinina')" type="checkbox" :checked= "lab_data[64].estado">
-																											<label>Hemograma Tiempos de Sangria, Tiempo de Coagulación, Tiempo de protombina, Grupos Sanguineo RH. Glucosa y ÚREA Creatinina</label>
-																										</div>
-																									</div>																																																						
-																								</div>
-																							</div>
-																						</div>
-																						
-																					</div>	
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil Obstetrico >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																						
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-pobs" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil Obstetrico</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-pobs" class="panel-collapse collapse ">
-																								<label class="control-label">Perfil Obstetrico</label><br>
-																					
-																								<div class="col-sm-12 icheck ">
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('9','65','Hemograma Completo, Glucosa, V.D.R.L./R.P.R. Grupo Sanguineo + RH Examen Completo de Orina')" type="checkbox" :checked= "lab_data[65].estado">
-																											<label>Hemograma Completo, Glucosa, V.D.R.L./R.P.R. Grupo Sanguineo + RH Examen Completo de Orina</label>
-																										</div>
-																									</div>																																												
-																								</div>
-																							</div>
-																						</div>
-																						
-																					</div>
-																					
-																			
-																			
-																			</div>
-																		</div>
-																	
-																</div>
-
-																<!-- <<<<<<<<<>>><<<<>><<>>><<<>><<<>><<<><<<<<<<>><<<><<<<><<<><<<>><<<>><<<><<<<>>><<<>><<<>>><<<>><<<>>><<<>><<<>><<<>><<>><<<>><<<<<<<< -->
-																<div class="col-md-3">
-																	
-																		<div class="porlets-content">
-																			<div class="row">
-																				
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil Reumático >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-pre" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil Reumático</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-pre" class="panel-collapse collapse ">
-																								<label class="control-label">Perfil Reumático</label><br>
-																					
-																								<div class="col-sm-12 icheck ">
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('10','66','Hemograma ASTO, P.,C.R., F.R., Ácido Urico y Plaquetas')" type="checkbox" :checked= "lab_data[66].estado">
-																											<label>Hemograma ASTO, P.,C.R., F.R., Ácido Urico y Plaquetas</label>
-																										</div>
-																									</div>																																																		
-																								</div>
-																							</div>
-																						</div>
-																						
-																					</div>	
-																					
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< perfil hepatico >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-ph" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil hepatico</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-ph" class="panel-collapse collapse ">
-																								<label class="control-label">Perfil hepatico</label><br>
-																					
-																								<div class="col-sm-12 icheck ">
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('11','67','Bilirrubina(T, D é I)Gota. Ast G PT-ALT,F. Alcalina, Tiempo de protrombina')" type="checkbox" :checked= "lab_data[67].estado">
-																											<label>Bilirrubina(T, D é I)Gota. Ast G PT-ALT,F. Alcalina, Tiempo de protrombina</label>
-																										</div>
-																									</div>																																																		
-																								</div>
-																							</div>
-																						</div>
-																						
-																					</div>
-																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil lipidico >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-																					<div class="form-group">
-																						<div class="col-md-12 panel panel-default">
-																							<div id="ocultoI" class=" panel panel-default ">
-																								<li href="#ac3-perfil" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil lipidico</li>            
-																							</div>
-																							<div style="height: 0px;" id="ac3-perfil" class="panel-collapse collapse ">
-																								<label class="control-label">Perfil lipidico</label><br>
-																								<div class="col-sm-12 icheck ">
-																									<div class="minimal-purple single-row">
-																										<div class="checkbox ">
-																											<input @click="laboratorios('12','68','Bilirrubina(T, D é I)Gota. Ast G PT-ALT,F. Alcalina, Tiempo de protrombina')" type="checkbox" :checked= "lab_data[68].estado">
-																											<label>Hemograma Glucosa Colesterol HDL, LDL, VLDL, Triglicéridos,Riesgo Cardiaco</label>
-																										</div>
-																									</div>																																																		
-																								</div>
-																							</div>
-																						</div>
-																						
-																					</div>												
-																			
-																			
-																			</div>
-																		</div>
-																	
-																</div>
-															
-																<div class="col-md-14 his">
-																	
-																	<div class="col-md-3">
-																		<div class="row">
-		
-																			<p>Hemotología:</p>																
-																			<ul v-for="(list, index) in group_laboratorio.Hemotología">
-																				  <li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																			<p>Química Sanguínea:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Química_Sanguínea">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																			<p>Perfil lipidico:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Perfil_lipidico">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																		</div>
-																	</div>
-																	<div class="col-md-3">
-																		<div class="row">
-																			<p>Orina:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Orina">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																			<p>Prueba Embarazo:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Prueba_Embarazo">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																			<p>Perfil hepatico:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Perfil_hepatico">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																		</div>
-																	</div>
-																	<div class="col-md-3">
-																		<div class="row">
-																			<p>Heces:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Heces">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																			<p>Expectoración:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Expectoración">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																			<p>Perfil Reumático:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Perfil_Reumático">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																		</div>
-																	</div>
-																	<div class="col-md-3">
-																		<div class="row">
-																			<p>Exámenes Especiales:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Exámenes_Especiales">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																			<p>Perfil Preoperatorio:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Perfil_Preoperatorio">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																			<p>Perfil Obstetrico:</p>
-																			<ul v-for="(list, index) in group_laboratorio.Perfil_Obstetrico">
-																				<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
-																			</ul>
-																		</div>
-																	</div>
-																</div>
-																<div class="col-md-12 ">
-																	<label class=" ">Otros:</label><br>
-																	<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" class="form-control" v-model="otros_lab"></textarea>
-																</div>
-																<div class="col-md-12 page-content ">
-																	<div class="col-md-8 ">
-																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-																		<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
-																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
-																	</div>
-																</div>
-															</form>
+																	</div>	  
+																</div>																																			
+															</div>
 														</div>
 													</div>
-												</div>
-											</div>
-
-										
-
-										</section>
+													<div class="col-lg-12 his">
+														<h4 class="center"><span>&nbsp;&nbsp;&nbsp;</span>Solicitud de Examenes</h4>
+														<section class="panel default blue_title h2 scrollV">
+															<div class="panel-body">	
+																<label v-if="group_rayosX.torax != ''">Torax:</label><br>													
+																<!-- Standard gray button with gradient -->
+																<template v-for="(list, index) in group_rayosX.torax">
+																	<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																</template>	
+															</div>
+															<div class="panel-body">
+																<label v-if="group_rayosX.abdomen != ''">Abdomen</label><br>														
+																<!-- Standard gray button with gradient -->
+																<template v-for="(list, index) in group_rayosX.abdomen">
+																	<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																</template>	
+															</div>	
+															<div class="panel-body">
+																<label v-if="group_rayosX.craneo_Macizo_Facial != ''">Craneo_Macizo_Facial</label>	<br>													
+																<!-- Standard gray button with gradient -->
+																<template v-for="(list, index) in group_rayosX.craneo_Macizo_Facial">
+																	<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																</template>	
+															</div>	
+															<div class="panel-body">
+																<label v-if="group_rayosX.Placas_Radiograficas != ''">Placas Radiograficas</label>	<br>													
+																<!-- Standard gray button with gradient -->
+																<template v-for="(list, index) in group_rayosX.Placas_Radiograficas">
+																	<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																</template>	
+															</div>	
+															<div class="panel-body">
+																<label v-if="group_rayosX.Columna_vertebral != ''">Columna vertebral</label><br>													
+																<!-- Standard gray button with gradient -->
+																<template v-for="(list, index) in group_rayosX.Columna_vertebral">
+																	<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																</template>	
+															</div>	
+															<div class="panel-body">
+																<label v-if="group_rayosX.Miembros_superiores != ''">Miembros superiores</label><br>														
+																<!-- Standard gray button with gradient -->
+																<template v-for="(list, index) in group_rayosX.Miembros_superiores">
+																	<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																</template>	
+															</div>	
+															<div class="panel-body">
+																<label v-if="group_rayosX.Miembros_inferiores != ''">Miembros inferiores</label><br>														
+																<!-- Standard gray button with gradient -->
+																<template v-for="(list, index) in group_rayosX.Miembros_inferiores">
+																	<button @click="delete_rayosX(list.id, list.num,index)" type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																</template>	
+															</div>	
+														</section>
+													</div>			
+													<div class="col-md-12  ">
+														<label class=" ">Otros:</label><br>
+														<textarea class="large-compact"   cols="117" rows="3" class="form-control" v-model="otros_rayosX"></textarea>
+													</div>
+													<div class="col-md-12 page-content ">
+														<div class="col-md-8 ">
+															<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
+															<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+														</div>
+													</div>
+												</form>
+											</div>														
+										</div>
+										<div id="Tab3" class="tab-pane fade">	
+											<span style="color: crimson;">{{msg_lab_false}}</span>		
+											<span style="color: blue;">{{msg_lab}}</span>										
+											<div class="">
+												<form @submit="register_lab" method="POST">
+												<!---<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+												>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Laboratorio (sangre Y orina)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+												>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+													<div class="col-md-3">
+														<div class="porlets-content">
+															<div class="row">
+																<div class="form-group">
+																	<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-lab" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Hemotología</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-lab" class="panel-collapse collapse ">
+																			<label class="control-label">Hemotología</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','1','Hematocrito')" type="checkbox" :checked= "lab_data[1].estado" >
+																						<label>Hematocrito </label>
+																					</div>
+																				</div>
+																				<div class="minimal-red single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','2','Hemograma Completo')" type="checkbox":checked= "lab_data[2].estado" >
+																						<label>Hemograma Completo</label>
+																					</div>
+																				</div>
+																				<div class="minimal-green single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','3','Reticulocitos')" type="checkbox":checked= "lab_data[3].estado" >
+																						<label>Reticulocitos</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','4','Grupos Sanguineos Rh')" type="checkbox" :checked= "lab_data[4].estado">
+																						<label>Grupos Sanguineos Rh</label>
+																					</div>
+																				</div>
+																				<div class="minimal-yellow single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','5','Recuento Leucocitos')" type="checkbox" :checked= "lab_data[5].estado">
+																						<label>Recuento Leucocitos</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','6','Leucograma')" type="checkbox" :checked= "lab_data[6].estado">
+																						<label>Leucograma</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','7','Coombs Directo')" type="checkbox" :checked= "lab_data[7].estado">
+																						<label>Coombs Directo</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','8','Coombs Indirecto')" type="checkbox" :checked= "lab_data[8].estado">
+																						<label>Coombs Indirecto</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','9','Gota Gruesa(Palud)')" type="checkbox" :checked= "lab_data[9].estado">
+																						<label>Gota Gruesa(Palud)</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','10','Tiempo de Sangria')" type="checkbox" :checked= "lab_data[10].estado">
+																						<label>Tiempo de Sangria</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','11','Tiempo de Coagulación')" type="checkbox" :checked= "lab_data[11].estado">
+																						<label>Tiempo de Coagulación</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','12','Tiempo de Protombina')" type="checkbox" :checked= "lab_data[12].estado">
+																						<label>Tiempo de Protombina</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','13','Rec. Plaquetas')" type="checkbox" :checked= "lab_data[13].estado">
+																						<label>Rec. Plaquetas</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('1','14','INR')" type="checkbox" :checked= "lab_data[14].estado">
+																						<label>INR</label>
+																					</div>
+																				</div>
+																			</div>																								
+																		</div>
+																	</div>
+																</div> 
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Química Sanguínea >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-quim" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Química Sanguínea</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-quim" class="panel-collapse collapse ">
+																			<label class="control-label">Química Sanguínea</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','15','Glucosa')" type="checkbox" :checked= "lab_data[15].estado">
+																						<label>Glucosa</label>
+																					</div>
+																				</div>
+																				<div class="minimal-red single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','16','P. Tolerancia Glucosa')" type="checkbox" :checked= "lab_data[16].estado">
+																						<label>P. Tolerancia Glucosa</label>
+																					</div>
+																				</div>
+																				<div class="minimal-green single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','17','Glicohemuglobina')" type="checkbox" :checked= "lab_data[17].estado">
+																						<label>Glicohemuglobina</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','18','Urea')" type="checkbox" :checked= "lab_data[18].estado">
+																						<label>Urea</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','19','Creatinina')" type="checkbox" :checked= "lab_data[19].estado">
+																						<label>Creatinina</label>
+																					</div>
+																				</div>		
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','20','Ácido Úrico')" type="checkbox" :checked= "lab_data[20].estado">
+																						<label>Ácido Úrico</label>
+																					</div>
+																				</div>		
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','21','Clearence de Creatinina')" type="checkbox" :checked= "lab_data[21].estado">
+																						<label>Clearence de Creatinina</label>
+																					</div>
+																				</div>		
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','22','Colesterol Total')" type="checkbox" :checked= "lab_data[22].estado">
+																						<label>Colesterol Total</label>
+																					</div>
+																				</div>		
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','23','HDL Colesterol')" type="checkbox" :checked= "lab_data[23].estado">
+																						<label>HDL Colesterol</label>
+																					</div>
+																				</div>	
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','24','LDL Colesterol')" type="checkbox" :checked= "lab_data[24].estado">
+																						<label>LDL Colesterol</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','25','Triglicéridos')" type="checkbox" :checked= "lab_data[25].estado">
+																						<label>Triglicéridos</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','26','Bilirrubina D.I Y T.')" type="checkbox" :checked= "lab_data[26].estado">
+																						<label>Bilirrubina D.I Y T.</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','27','G.O.T.')" type="checkbox" :checked= "lab_data[27].estado">
+																						<label>G.O.T.</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','28','G.P.T.')" type="checkbox" :checked= "lab_data[28].estado">
+																						<label>G.P.T.</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','29','Fosfatasa Alcalina')" type="checkbox" :checked= "lab_data[29].estado">
+																						<label>Fosfatasa Alcalina</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','30','Albúminas')" type="checkbox" :checked= "lab_data[30].estado">
+																						<label>Albúminas</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','31','Globulinas')" type="checkbox" :checked= "lab_data[31].estado">
+																						<label>Globulinas</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','32','Proteinas Totales')" type="checkbox" :checked= "lab_data[32].estado">
+																						<label>Proteinas Totales</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','33','Urea')" type="checkbox" :checked= "lab_data[33].estado">
+																						<label>Amilasa</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','34','Calcio')" type="checkbox" :checked= "lab_data[34].estado">
+																						<label>Calcio</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','35','A.S.T.O')" type="checkbox" :checked= "lab_data[35].estado">
+																						<label>A.S.T.O</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','36','Artrites(F.R.)')" type="checkbox" :checked= "lab_data[36].estado">
+																						<label>Artrites(F.R.)</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','37','Proteina C. Reactiva')" type="checkbox" :checked= "lab_data[37].estado">
+																						<label>Proteina C. Reactiva</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','38','Reacción de Widal')" type="checkbox" :checked= "lab_data[38].estado">
+																						<label>Reacción de Widal</label>
+																					</div>
+																				</div>	
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','39','R. de VDRL')" type="checkbox" :checked= "lab_data[39].estado">
+																						<label>R. de VDRL</label>
+																					</div>
+																				</div>	
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','40','R. de RPR')" type="checkbox" :checked= "lab_data[40].estado">
+																						<label>R. de RPR</label>
+																					</div>
+																				</div>	
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','41','H.A.I. Chagas')" type="checkbox" :checked= "lab_data[41].estado">
+																						<label>H.A.I. Chagas</label>
+																					</div>
+																				</div>	
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('2','42','H.A.I. Toxoplasmosis')" type="checkbox" :checked= "lab_data[42].estado">
+																						<label>H.A.I. Toxoplasmosis</label>
+																					</div>
+																				</div>	
+																			</div>
+																		</div>
+																	</div>					
+																</div>
+																<div class="form-group">
+																	<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-orina" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Orina</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-orina" class="panel-collapse collapse ">
+																			<label class="control-label">Orina</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('3','43','Examen General')" type="checkbox" :checked= "lab_data[43].estado" >
+																						<label>Examen General </label>
+																					</div>
+																				</div>
+																				<div class="minimal-red single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('3','44','Citobacteriológico')" type="checkbox":checked= "lab_data[44].estado" >
+																						<label>Citobacteriológico</label>
+																					</div>
+																				</div>
+																				<div class="minimal-green single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('3','45','BK en orina')" type="checkbox":checked= "lab_data[45].estado" >
+																						<label>BK en orina</label>
+																					</div>
+																				</div>
+																				<div class="minimal-blue single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('3','46','Proteinuria de 24 Hrs')" type="checkbox" :checked= "lab_data[46].estado">
+																						<label>Proteinuria de 24 Hrs</label>
+																					</div>
+																				</div>
+																				<div class="minimal-yellow single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('3','47','Glucosuria')" type="checkbox" :checked= "lab_data[47].estado">
+																						<label>Glucosuria</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('3','48','Uricosuria')" type="checkbox" :checked= "lab_data[48].estado">
+																						<label>Uricosuria</label>
+																					</div>
+																				</div>						
+																			</div>
+																		</div>
+																	</div> 
+																</div>				
+															</div>
+														</div>	
+													</div>
+													<!-- <<<<<<<<<>>><<<<>><<>>><<<>><<<>><<<><<<<<<<>><<<><<<<><<<><<<>><<<>><<<><<<<>>><<<>><<<>>><<<>><<<>>><<<>><<<>><<<>><<>><<<>><<<<<<<< -->
+													<div class="col-md-3">
+														<div class="porlets-content">
+															<div class="row">
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Prueba de Embarazo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-Prueba" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Prueba de Embarazo</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-Prueba" class="panel-collapse collapse ">
+																			<label class="control-label">Prueba de Embarazo</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('4','49','H.G.C. en Sandre')" type="checkbox" :checked= "lab_data[49].estado">
+																						<label>H.G.C. en Sandre</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('4','50','H.G.C. en Orina')" type="checkbox" :checked= "lab_data[50].estado">
+																						<label>H.G.C. en Orina</label>
+																					</div>
+																				</div>																															
+																			</div>
+																		</div>
+																	</div>				
+																</div>
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Heces >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-Heces" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Heces</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-Heces" class="panel-collapse collapse ">
+																			<label class="control-label">Heces</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('5','51','Parasitología Simple')" type="checkbox" :checked= "lab_data[51].estado">
+																						<label>Parasitología Simple</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('5','52','Parasitología Seriado')" type="checkbox" :checked= "lab_data[52].estado">
+																						<label>Parasitología Seriado</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('5','53','Técnica Graham')" type="checkbox" :checked= "lab_data[53].estado">
+																						<label>Técnica Graham</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('5','54','Moco Fecal')" type="checkbox" :checked= "lab_data[54].estado">
+																						<label>Moco Fecal</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('5','55','PH Fecal')" type="checkbox" :checked= "lab_data[55].estado">
+																						<label>PH Fecal</label>
+																					</div>
+																				</div>																																
+																			</div>
+																		</div>
+																	</div>												
+																</div>			
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Expectoración >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-ex" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Expectoración</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-ex" class="panel-collapse collapse ">
+																			<label class="control-label">Expectoración</label><br>					
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('6','56','Basiloscopia Simple')" type="checkbox" :checked= "lab_data[56].estado">
+																						<label>Basiloscopia Simple</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('6','57','Basiloscopia Seriadas')" type="checkbox" :checked= "lab_data[57].estado">
+																						<label>Basiloscopia Seriadas</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('6','58','Tención de Gram')" type="checkbox" :checked= "lab_data[58].estado">
+																						<label>Tención de Gram</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('6','59','Recuento de Eosinófilos')" type="checkbox" :checked= "lab_data[59].estado">
+																						<label>Recuento de Eosinófilos</label>
+																					</div>
+																				</div>
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('6','60','Cristales de Charcol Leyden')" type="checkbox" :checked= "lab_data[60].estado">
+																						<label>Cristales de Charcol Leyden</label>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>		
+																</div>																	
+															</div>
+														</div>
+													</div>
+													<!-- <<<<<<<<<>>><<<<>><<>>><<<>><<<>><<<><<<<<<<>><<<><<<<><<<><<<>><<<>><<<><<<<>>><<<>><<<>>><<<>><<<>>><<<>><<<>><<<>><<>><<<>><<<<<<<< -->
+													<div class="col-md-3">
+														<div class="porlets-content">
+															<div class="row">
+																<div class="form-group">
+																	<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil Preoperatorio >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-ee" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Exámenes Especiales</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-ee" class="panel-collapse collapse ">
+																			<label class="control-label">Exámenes Especiales</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('7','61','BACT. de Exudado Vaginal')" type="checkbox" :checked= "lab_data[61].estado" >
+																						<label>BACT. de Exudado Vaginal</label>
+																					</div>
+																				</div>
+																				<div class="minimal-red single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('7','62','BACT. de Secreción Uteral')" type="checkbox":checked= "lab_data[62].estado" >
+																						<label>BACT. de Secreción Uteral</label>
+																					</div>
+																				</div>
+																				<div class="minimal-green single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('7','63','Espermiograma')" type="checkbox":checked= "lab_data[63].estado" >
+																						<label>Espermiograma</label>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>						
+																</div> 
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil Preoperatorio >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-pp" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil Preoperatorio</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-pp" class="panel-collapse collapse ">
+																			<label class="control-label">Perfil Preoperatorio</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('8','64','Hemograma Tiempos de Sangria, Tiempo de Coagulación, Tiempo de protombina, Grupos Sanguineo RH. Glucosa y ÚREA Creatinina')" type="checkbox" :checked= "lab_data[64].estado">
+																						<label>Hemograma Tiempos de Sangria, Tiempo de Coagulación, Tiempo de protombina, Grupos Sanguineo RH. Glucosa y ÚREA Creatinina</label>
+																					</div>
+																				</div>																																																						
+																			</div>
+																		</div>
+																	</div>
+																</div>	
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil Obstetrico >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-pobs" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil Obstetrico</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-pobs" class="panel-collapse collapse ">
+																			<label class="control-label">Perfil Obstetrico</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('9','65','Hemograma Completo, Glucosa, V.D.R.L./R.P.R. Grupo Sanguineo + RH Examen Completo de Orina')" type="checkbox" :checked= "lab_data[65].estado">
+																						<label>Hemograma Completo, Glucosa, V.D.R.L./R.P.R. Grupo Sanguineo + RH Examen Completo de Orina</label>
+																					</div>
+																				</div>																																												
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>		
+													</div>
+													<!-- <<<<<<<<<>>><<<<>><<>>><<<>><<<>><<<><<<<<<<>><<<><<<<><<<><<<>><<<>><<<><<<<>>><<<>><<<>>><<<>><<<>>><<<>><<<>><<<>><<>><<<>><<<<<<<< -->
+													<div class="col-md-3">
+														<div class="porlets-content">
+															<div class="row">
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil Reumático >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-pre" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil Reumático</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-pre" class="panel-collapse collapse ">
+																			<label class="control-label">Perfil Reumático</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('10','66','Hemograma ASTO, P.,C.R., F.R., Ácido Urico y Plaquetas')" type="checkbox" :checked= "lab_data[66].estado">
+																						<label>Hemograma ASTO, P.,C.R., F.R., Ácido Urico y Plaquetas</label>
+																					</div>
+																				</div>																																																		
+																			</div>
+																		</div>
+																	</div>
+																</div>	
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< perfil hepatico >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-ph" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil hepatico</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-ph" class="panel-collapse collapse ">
+																			<label class="control-label">Perfil hepatico</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('11','67','Bilirrubina(T, D é I)Gota. Ast G PT-ALT,F. Alcalina, Tiempo de protrombina')" type="checkbox" :checked= "lab_data[67].estado">
+																						<label>Bilirrubina(T, D é I)Gota. Ast G PT-ALT,F. Alcalina, Tiempo de protrombina</label>
+																					</div>
+																				</div>																																																		
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Perfil lipidico >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="form-group">
+																	<div class="col-md-12 panel panel-default">
+																		<div id="ocultoI" class=" panel panel-default ">
+																			<li href="#ac3-perfil" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Perfil lipidico</li>            
+																		</div>
+																		<div style="height: 0px;" id="ac3-perfil" class="panel-collapse collapse ">
+																			<label class="control-label">Perfil lipidico</label><br>
+																			<div class="col-sm-12 icheck ">
+																				<div class="minimal-purple single-row">
+																					<div class="checkbox ">
+																						<input @click="laboratorios('12','68','Bilirrubina(T, D é I)Gota. Ast G PT-ALT,F. Alcalina, Tiempo de protrombina')" type="checkbox" :checked= "lab_data[68].estado">
+																						<label>Hemograma Glucosa Colesterol HDL, LDL, VLDL, Triglicéridos,Riesgo Cardiaco</label>
+																					</div>
+																				</div>																																																		
+																			</div>
+																		</div>
+																	</div>	
+																</div>															
+															</div>
+														</div>		
+													</div>
+													<div class="col-md-14 his">		
+														<div class="col-md-3">
+															<div class="row">
+																<p>Hemotología:</p>																
+																<ul v-for="(list, index) in group_laboratorio.Hemotología">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+																<p>Química Sanguínea:</p>
+																<ul v-for="(list, index) in group_laboratorio.Química_Sanguínea">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+																<p>Perfil lipidico:</p>
+																<ul v-for="(list, index) in group_laboratorio.Perfil_lipidico">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+															</div>
+														</div>
+														<div class="col-md-3">
+															<div class="row">
+																<p>Orina:</p>
+																<ul v-for="(list, index) in group_laboratorio.Orina">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+																<p>Prueba Embarazo:</p>
+																<ul v-for="(list, index) in group_laboratorio.Prueba_Embarazo">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+																<p>Perfil hepatico:</p>
+																<ul v-for="(list, index) in group_laboratorio.Perfil_hepatico">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+															</div>
+														</div>
+														<div class="col-md-3">
+															<div class="row">
+																<p>Heces:</p>
+																<ul v-for="(list, index) in group_laboratorio.Heces">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+																<p>Expectoración:</p>
+																<ul v-for="(list, index) in group_laboratorio.Expectoración">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+																<p>Perfil Reumático:</p>
+																<ul v-for="(list, index) in group_laboratorio.Perfil_Reumático">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+															</div>
+														</div>
+														<div class="col-md-3">
+															<div class="row">
+																<p>Exámenes Especiales:</p>
+																<ul v-for="(list, index) in group_laboratorio.Exámenes_Especiales">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+																<p>Perfil Preoperatorio:</p>
+																<ul v-for="(list, index) in group_laboratorio.Perfil_Preoperatorio">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+																<p>Perfil Obstetrico:</p>
+																<ul v-for="(list, index) in group_laboratorio.Perfil_Obstetrico">
+																	<li @click="delete_lab(list.id, list.num,index)"> {{index+1}}. {{list.descripcion}}</li>																	  
+																</ul>
+															</div>
+														</div>		
+													</div>
+													<div class="col-md-12 ">
+														<label class=" ">Otros:</label><br>
+														<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" class="form-control" v-model="otros_lab"></textarea>
+													</div>
+													<div class="col-md-12 page-content ">
+														<div class="col-md-8 ">
+															<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span> Cancelar</span> </a>
+															<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+														</div>
+													</div>
+												</form>
+											</div>				
+										</div>
 									</div>
-									<!-- 
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																						lista  de ecografias
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-									 -->
-									<div class="col-lg-14" v-if="list_eco"> 
-										<section class="panel default black_title h4">
-											<div class="panel-heading">
-												<span class="semi-bold">Lista de ecografías del paciente</span> 
-											</div>
-											<div class="panel-body">
-												<div class="col-xs-12 ">
-													<table class="table table-bordered">
-													<thead>
-													  	<tr>
-															<th>#</th>
-															<th>Fecha y hora</th>
-															<th>Médico</th>
-															<th>Estado</th>
-															<th>Ver</th>
-													  	</tr>
-													</thead>
-													<tbody v-for="(list, index) in data_list_eco">
-													  	<tr>
-															<td>{{index+1}}</td>
-															<td>{{list.fecha}}  {{list.hora}}</td>
-															<td>{{list.nombre_doctor}}</td>
-															<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Ecografía Envia</p> </td>
-															<td class="text-center" v-else >
-																<a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> 
-															</td>
-															<td class="text-center">	
-																<a data-toggle="modal" data-target="#modal-info" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Ecografia"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-															</td>	
-													  	</tr>											  
-													</tbody>
-								  				</table>
-										  
-											</div>
-										</section>
-									</div>
-									<!-- 
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-																						lista  de Rayos X
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-									-->
-									<div class="col-lg-14" v-if="list_rayosX"> 
-										<section class="panel default black_title h4">
-											<div class="panel-heading">
-												<span class="semi-bold">Lista de Rayos X del paciente</span> 
-											</div>
-											<div class="panel-body">
-													<div class="col-xs-12 ">
-															<table class="table table-bordered">
-													<thead>
-													  	<tr>
-															<th>#</th>
-															<th>Fecha y hora</th>
-															<th>Médico</th>
-															<th>Estado</th>
-															<th>Ver</th>
-													  	</tr>
-													</thead>
-													<tbody v-for="(list, index) in data_list_rayosX">
-													  	<tr>
-															<td>{{index+1}}</td>
-															<td>{{list.fecha}}  {{list.hora}}</td>
-															<td>{{list.nombre_doctor}}</td>
-															<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Rayos X Enviada</p> </td>
-															<td class="text-center" v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>	
-															<td class="text-center"> 
-																<a data-toggle="modal" data-target="#modal_x" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Rayos X"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-															</td>
-													  	</tr>											  
-													</tbody>
-											  	</table>
-											  
-											</div>
-										</section>
-									</div>
+								</div>
+						</section>
+					</div>
+					<!-- 
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																	lista  de ecografias
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					-->
+					<div class="col-lg-14" v-if="list_eco"> 
+						<section class="panel default black_title h4">
+							<div class="panel-heading">
+								<span class="semi-bold">Lista de ecografías del paciente</span> 
+							</div>
+							<div class="panel-body">
+								<div class="col-xs-12 ">
+									<table class="table table-bordered">
+										<thead>
+										  	<tr>
+											<th>#</th>
+											<th>Fecha y hora</th>
+											<th>Médico</th>
+											<th>Estado</th>
+											<th>Ver</th>
+											</tr>
+										</thead>
+										<tbody v-for="(list, index) in data_list_eco">
+											<tr>
+											<td>{{index+1}}</td>
+											<td>{{list.fecha}}  {{list.hora}}</td>
+											<td>{{list.nombre_doctor}}</td>
+											<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Ecografía Envia</p> </td>
+											<td class="text-center" v-else >
+												<a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> 
+											</td>
+											<td class="text-center">	
+												<a data-toggle="modal" data-target="#modal-info" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Ecografia"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+											</td>	
+										  	</tr>											  
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</section>
+					</div>				
+					<!-- 
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																	lista  de Rayos X
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					-->
+					<div class="col-lg-14" v-if="list_rayosX"> 
+						<section class="panel default black_title h4">
+							<div class="panel-heading">
+								<span class="semi-bold">Lista de Rayos X del paciente</span> 
+							</div>
+							<div class="panel-body">
+								<div class="col-xs-12 ">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+											<th>#</th>
+											<th>Fecha y hora</th>
+											<th>Médico</th>
+											<th>Estado</th>
+											<th>Ver</th>
+											</tr>
+										</thead>
+										<tbody v-for="(list, index) in data_list_rayosX">
+											<tr>
+											<td>{{index+1}}</td>
+											<td>{{list.fecha}}  {{list.hora}}</td>
+											<td>{{list.nombre_doctor}}</td>
+											<td class="text-center" v-if = "list.resp_labs == ''"> <p style="color: brown;">Rayos X Enviada</p> </td>
+											<td class="text-center" v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>	
+											<td class="text-center"> 
+												<a data-toggle="modal" data-target="#modal_x" @click="one_lab(list.id)" class="btn  tooltips" data-original-title="Ver Rayos X"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+											</td>
+										  </tr>											  
+										</tbody>
+									  </table>
+								  
+								</div>
+							</section>
+						</div>				
 									<!-- 
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -2394,11 +2326,6 @@
 
 
 
-
-
-</body>
-
-</html>
 
 
 </body>
