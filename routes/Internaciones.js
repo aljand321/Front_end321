@@ -809,6 +809,31 @@ router.get('/list_internadios/:id_especialidad/:token_id', (req,res) => {
     
 })
 
+router.get('/Vue_Paciente_all', (req,res) => {
+    fetch('http://localhost:3000/api/pacientes')
+    .then(res => res.json())
+    .then(data => { 
+        res.status(200).json(data)
+    })
+})
+
+router.post('/Vue_filter_fechas_altas/:id_especialidad', (req,res) => {
+    const { id_especialidad } = req.params
+    var data_body = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data_body),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/list_internacion_especialidad_false21/'+id_especialidad, esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)
+    })
+})
 
 router.get('/list_internados_alta/:id_especialidad/:token_id', (req,res) => {
     const { id_especialidad,token_id } = req.params
@@ -819,7 +844,8 @@ router.get('/list_internados_alta/:id_especialidad/:token_id', (req,res) => {
            
             res.render('hospitalizaciones/list_pacientes_alta',{
                 list_internacion,
-                data_doc: data_user[token_id]
+                data_doc: data_user[token_id],
+                id_especialidad
             })        
         })
         .catch(error => {
@@ -1738,6 +1764,22 @@ router.post('/update_Form_internacion1/:id/:id_especialidad/:id_cama/:token_id',
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
+router.post('/vue_list_paciente_internacion', (req,res) => {
+    var data_body = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data_body),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/list_internacion_p_hst', esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)
+    })
+})
 
 router.get('/buscar_historial/:id_especialidad/:token_id', (req,res) => {
     const { id_especialidad, token_id } = req.params;
@@ -1753,7 +1795,8 @@ router.get('/buscar_historial/:id_especialidad/:token_id', (req,res) => {
                 res.render('hospitalizaciones/list_pacientes',{
                     list_paciente,
                     data_doc: data_user[token_id],
-                    list_internacion
+                    list_internacion,
+                    id_especialidad
                 })
             })
             
@@ -1784,14 +1827,72 @@ router.get('/historial_clinico/:id_internacion/:token_id', (req,res) => {
                         fetch('http://localhost:3050/api/lista_lab_inter/'+id_internacion+'/'+one_internacion[0].historial)
                         .then(resp => resp.json())
                         .then(lab => {
-                            res.render('hospitalizaciones/historial',{
-                                one_internacion, // esto contiene la internacion y epicriris
-                                data_doc: data_user[token_id],
-                                dataPaciente,
-                                ecografias,
-                                rayosX,
-                                lab                                
+
+                            fetch('http://localhost:3000/api/list_notaEvolucion/'+id_internacion)
+                            .then(resp => resp.json())
+                            .then(notas_evolucion => {
+                                fetch('http://localhost:3000/api/list_DiagnosticoTratameinto/'+id_internacion)
+                                .then(resp => resp.json())
+                                .then(list_diagnostico => {
+                                    fetch('http://localhost:3000/api/List_Orden_intenrvencion/'+id_internacion)
+                                    .then(resp => resp.json())
+                                    .then(lista_intervencion => {
+                                        fetch('http://localhost:3000/api/one_epicrisis/'+id_internacion)
+                                        .then(resp => resp.json())
+                                        .then(epicrisis => {
+                                            fetch('http://localhost:3000/api/traslados_id_internacion/'+id_internacion) 
+                                            .then(resp => resp.json())
+                                            .then(traslado => {
+                                                if(traslado == "" || traslado == null){
+                                                    var esp
+                                                    res.render('hospitalizaciones/historial',{
+                                                        one_internacion, // esto contiene la internacion y epicriris
+                                                        data_doc: data_user[token_id],
+                                                        dataPaciente,
+                                                        ecografias,
+                                                        rayosX,
+                                                        lab,
+                                                        notas_evolucion,
+                                                        list_diagnostico,
+                                                        lista_intervencion,
+                                                        traslado,
+                                                        esp,
+                                                        epicrisis                            
+                                                    })
+                                                }else{
+                                                    fetch('http://localhost:4600/api/EspOne/'+traslado[0].id_especialidad) 
+                                                    .then(resp => resp.json())
+                                                    .then(esp => {
+                                                        res.render('hospitalizaciones/historial',{
+                                                            one_internacion, // esto contiene la internacion y epicriris
+                                                            data_doc: data_user[token_id],
+                                                            dataPaciente,
+                                                            ecografias,
+                                                            rayosX,
+                                                            lab,
+                                                            notas_evolucion,
+                                                            list_diagnostico,
+                                                            lista_intervencion,
+                                                            traslado,
+                                                            esp,
+                                                            epicrisis                            
+                                                        })
+                                                    })
+                                                }
+                                               
+                                                
+                                            })
+                                        })
+
+                                        
+                                        
+                                    })
+                                    
+                                })
+                                
+
                             })
+                            
                         })
                     
                     })
@@ -1803,6 +1904,58 @@ router.get('/historial_clinico/:id_internacion/:token_id', (req,res) => {
         })
     }else{
         res.redirect('/');
+    }
+})
+
+
+// Reportes de hospitalizacion
+router.get('/Salas_hospital/:id_especialidad/:token_id', (req,res) => {
+    const { id_especialidad, token_id } = req.params
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:4600/api/EspOne/'+id_especialidad)
+        .then(resp => resp.json())
+        .then(especilidad_name => {
+            fetch('http://localhost:3000/api/ServSalasN/'+especilidad_name[0].nombre)
+            .then(resp => resp.json())
+            .then(list_salas => {
+                res.render('hospitalizaciones/salas_area',{
+                    data_doc: data_user[token_id],
+                    list_salas,
+                    especilidad_name
+                })
+            })
+            
+        })       
+    }else{
+        res.redirect('/')
+    }
+})
+
+
+// ruta para las camas de una sala
+router.get('/camas/:id_sala/:token_id/:sala', (req,res) => {
+    const { id_sala, token_id, sala } = req.params;
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:3000/api/lista_camas_salas/'+id_sala)
+        .then(resp => resp.json())
+        .then(list_camas => {
+
+            fetch('http://localhost:3000/api/pacientes')
+            .then(resp => resp.json())
+            .then(pacientes => {
+
+                res.render('hospitalizaciones/sala',{
+                    list_camas,
+                    data_doc: data_user[token_id],
+                    sala,
+                    pacientes
+                })
+
+            })
+            
+        })
+    }else{
+        res.redirect('/')
     }
 })
 

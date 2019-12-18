@@ -1478,42 +1478,34 @@ router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial', (req,res) =>{
     fetch('http://localhost:3000/api/historial/'+id_cita) // esta ruta contienen dos tablas la consulta de emergencia y  la receta
     .then(resp => resp.json())
     .then( data => {
-      console.log(data, " <<<<<<<<<<<<<<< 1111111111111111111111111111111111111")
+     
       fetch('http://localhost:3000/api/onlyPaciente/'+data.Nhistorial)
       .then(resp => resp.json())
       .then(dataPaciente =>{ 
-        console.log(dataPaciente, " <<<<<<<<<<<<<<< 222222222222222222222222222222222222")
+       
         fetch('http://localhost:3000/api/InternacionEMG/'+data.id)
         .then(resp => resp.json())
         .then(Pinternacion =>{
-          console.log(Pinternacion, " <<<<<<<<<<<<<<< 333333333333333333333333333333333333333333333333")
+         
           fetch('http://localhost:3050/api/list_lab_emg/'+data.id)
           .then(resp => resp.json())
           .then(lab_emg =>{
-            console.log(lab_emg, " <<<<<<<<<<<<<<< 44444444444444444444444444444444444444444444444444444444444444444")
+            
             fetch('http://localhost:3000/api/OneCita/'+id_cita)
             .then(resp => resp.json())
-            .then(data_cita => {
-
-              console.log(data_cita, " <<<<<<<<<<<<<<< 44444444444444444444444444444444444444444444444444444444444444444")
+            .then(data_cita => {           
 
               fetch('http://localhost:3050/api/lista_Ecografia_emg/'+data.id+'/'+data.Nhistorial)
               .then(resp => resp.json())
-              .then(ecografias => {
-                
-                console.log(ecografias, " <<<<<<<<<<<<<<< 5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555")
-               
+              .then(ecografias => {               
+                             
                 fetch('http://localhost:3050/api/lista_rayosX_emg/'+data.id+'/'+data.Nhistorial)
                 .then(resp => resp.json())
-                .then(rayosX => {
-
-                  console.log(rayosX, " <<<<<<<<<<<<<<< 666666666666666666666666666666666666666666666666666666666666666666666666666666")
+                .then(rayosX => {                 
 
                   fetch('http://localhost:3050/api/lista_lab_emg/'+data.id+'/'+data.Nhistorial)
                   .then(resp => resp.json())
-                  .then(lab => {
-                    
-                    console.log(lab, " <<<<<<<<<<<<<<< 77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777")
+                  .then(lab => {                                   
 
                     res.render('emergencia2.0/ultimaConsulta',{
                       data,
