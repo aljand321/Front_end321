@@ -1539,6 +1539,90 @@ router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial', (req,res) =>{
   }
 });
 
+router.get('/pacientes_no_atendidos/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3000/api/pacietnes_noAtendidos/'+data_user[token_id].data.medico.id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(citas => {
+      res.render('emergencia2.0/pacientes_no_atendidos',{
+        data_doc : data_user[token_id],
+        citas,
+        id_medico:data_user[token_id].data.medico.id
+      })
+    })
+   
+  }else{
+    res.redirect('/')
+  }
+})
+
+router.post('/Vue_pacientes_no_atendidos/:id_medico', (req,res) => {
+  const { id_medico } = req.params;
+  var data = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/pacientes_no_atendidos_emg/'+id_medico,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+  })
+})
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        Pacientes atendidos
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>
+*/
+router.get('/pacientes_atendidos/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3000/api/pacietnes_Atendidos/'+data_user[token_id].data.medico.id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(citas => {
+      res.render('emergencia2.0/paciente_atendidos',{
+        data_doc : data_user[token_id],
+        citas,
+        id_medico:data_user[token_id].data.medico.id
+      })
+    })
+   
+  }else{
+    res.redirect('/')
+  }
+})
+
+router.post('/Vue_pacientes_atendidos/:id_medico', (req,res) => {
+  const { id_medico } = req.params;
+  var data = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/pacientes_atendidos_emg/'+id_medico,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+  })
+})
+
+
 //laboratorio
 router.get('/examenComplement',(req,res) =>{
   res.render('emergencia2.0/examenComplement')
