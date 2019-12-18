@@ -219,7 +219,7 @@ const recetas = new Vue({
                         console.log(data.success)
                         if(data.success == true){
                             swal.fire(
-                                'Success!',
+                                'Confirmado!',
                                 '<label style="color:green;">'+ data.msg +'</label>',
                                 'success'
                             )
@@ -368,7 +368,7 @@ const recetas = new Vue({
                     console.log(data)
                     if(data.success == true){
                         swal.fire(
-                            'Success!',
+                            'Confirmado!',
                             '<label style="color:green;">'+ data.msg +'</label>',
                             'success'
                         )

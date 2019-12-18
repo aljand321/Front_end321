@@ -144,10 +144,7 @@
       <div id="ocultoI"class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-              </ul>
+            <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
@@ -219,13 +216,13 @@
                       
                         <form id="ocultoI" @submit="filter_data" method="POST" class="form-horizontal"  >
                           <div class="form-group">
-                            <label class="col-sm-4 control-label">Desde:</label>
+                            <label class="col-sm-4 control-label">Desde </label>
                             <div class="col-sm-4">
                               <input v-model="fecha_inicio" type="date" class="form-control" >
                             </div>
                           </div><!--/form-group--> 
                           <div class="form-group">
-                            <label  class="col-sm-4 control-label">Hasta:</label>
+                            <label  class="col-sm-4 control-label">Hasta </label>
                             <div class="col-sm-4">
                               <input v-model="fecha_final" type="date" class="form-control" >
                             </div>
@@ -310,7 +307,7 @@
                                   <td class="text-center">{{data.nombre.split("/")[0]}}</td>
                                   <td class="text-center">{{data.enfermera}}</td>
                                   <td id="ocultoI" class="text-center">
-                                    <a  :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno"data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                                    <a  :href="'/cuaderno/alldataDoctor/'+data.id+'/'+data.idCuaderno + '/<%=data_doc.data.token_id%>'"data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
                                   </td>
                                 </tr>
                               </tbody>
@@ -323,13 +320,13 @@
                       <div id="Section2" class="tab-pane fade">
                         <form id="ocultoI" @submit="filter_data1" method="POST" class="form-horizontal" name="formulario1"  >
                           <div class="form-group">
-                            <label class="col-sm-4 control-label">Desde:</label>
+                            <label class="col-sm-4 control-label">Desde </label>
                             <div class="col-sm-4">
                               <input v-model="fecha_inicio" type="date"  class="form-control" >
                             </div>
                           </div>
                           <div class="form-group">
-                            <label  class="col-sm-4 control-label">Hasta:</label>
+                            <label  class="col-sm-4 control-label">Hasta </label>
                             <div class="col-sm-4">
                               <input v-model="fecha_final" type="date"  class="form-control" >
                             </div>
