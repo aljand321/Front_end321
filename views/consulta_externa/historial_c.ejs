@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Historial</title>
+    <meta charset="UTF-8">
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+    <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+    <style>
+        div.a {
+            text-align: center;
+        }
+
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+        }
+        .vertical-alignment-helper {
+	      display:table;
+	      height: 100%;
+	      margin-left: 41%;
+	    }
+	    .vertical-align-center {
+	      /* To center vertically */
+	      display: table-cell;
+	      vertical-align: middle;
+	      text-align: center;
+	    }
+    </style>
+  
+</head>
+<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()" >
+	<!-- SideBar -->
+
+    <!-- Content page-->
+    <div class="wrapper">
+        <!--\\\\\\\ wrapper Start \\\\\\-->
+        <div id="ocultoIl" class="header_bar">
+            <!--\\\\\\\ header Start \\\\\\-->
+            <div class="brand">
+                <!--\\\\\\\ brand Start \\\\\\-->
+                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+            </div>
+            <!--\\\\\\\ brand end \\\\\\-->
+            <div class="header_top_bar">
+                <!--\\\\\\\ header top bar start \\\\\\-->
+                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+                <div class="btn-group">
+                    <a href="/consulta_externa/historial_clinico/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>ATRAS</a>	
+                </div>
+                               
+                <div class="top_right_bar">
+
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+                                src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
+                                class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <div class="top_pointer"></div>
+                           
+                            <li> <a href="/delete_token/<%=data_doc.data.token_id%>"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--\\\\\\\ header top bar end \\\\\\-->
+        </div>
+        <div class="inner">
+            <!--\\\\\\\ inner start \\\\\\-->
+            <div id="ocultoIl" class="left_nav">
+
+                <!--\\\\\\\left_nav start \\\\\\-->
+              
+                <div class="left_nav_slidebar">
+                    <ul>
+                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul >
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Listas de Consultas</b></a> </li>
+                            </ul>
+                        </li>
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                               <!--  <li> <a href="/paciente/ReporEnfermedades"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Pacientes</b> </a> </li> -->
+                               <li> <a href="/consulta_externa/pacietnes_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes atendidos</b>  </a> </li>
+
+							    <li> <a href="/consulta_externa/pacietnes_no_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >No atendidos</b>  </a> </li>
+							
+                                <li> <a href="/consulta_externa/historial_clinico/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Historial</b> </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                  
+            </div>
+            <!--\\\\\\\left_nav end \\\\\\-->
+            <div id="sinMargen" class="contentpanel">
+                <!--\\\\\\\ contentpanel start\\\\\\-->
+                <div class="container clear_both padding_fix col-lg-8">
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12 ">
+                            
+	                    <!-- Content page-->
+                            <div class="col-lg-12 block-web"> 
+                              <div class="head">
+                                    <div class="actions">
+                                        <p  name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                                    </div>
+                              </div>
+                              <!--<<<<<<<<<<<<<< imagen de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                            <div class="dim2 posiondeImagen">.
+                                <img class="oculVistaReal "  src="/images/hospital1.png" />
+                            </div>
+                            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                                <div id="ocultoIl" class="header ">
+                                    <div class="info blue_symbols "> <i class="fa fa-archive icon "></i></div>
+                                        <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Historia Clínico</h2>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                  <P class="oreden2 center"></P>
+                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                                </div>
+                                
+                                <div class="">
+                                    <div class="">
+                                        <div class="actions"> </div>
+                                        <h3 class="center">HISTORIA CLINICA </h3> <br>
+                                    </div><br><br>
+                                    <div class="col-md-12  header">
+                                        <div class="col-md-6">
+                                            <label><b>N° de Historia:</b> <%=data[0].numeroHistorial%></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Fecha de consulta:</b> <%=data[0].fechaConsulta%></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12  header"><br>
+                                        <div class="col-md-6">
+                                           
+                                            <label><b>Paciente:</b></label> <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%><br>
+                                            <label><b>Médico:</b></label> <%=doctor.nombre%> <%=doctor.apellidop%> <%=doctor.apellidom%><br>
+                                            
+                                            <label><b>Consultorio:</b></label> <%=data_cita[0].especialidad%><br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Institución</b> Hospital</label><br>
+                                            
+                                            <label><b>Sexo:</b></label> <%=dataPaciente[0].sexo%><br>
+                                            <label><b>Fecha de Nacimiento</b></label> <%=dataPaciente[0].fechanacimiento%><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12  row"><br>
+                                        <div class="col-md-3">
+                                            <label><b>Motivo de Consulta:</b></label> <br>
+                                            
+                                            <label><b>Diagnostico:</b></label> <br>
+                                            <label><b>Tratamiento :</b></label> <br>
+                                            <label><b>Observaciones u otra conducta:</b></label> <br>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <label><%=data[0].anamnesis%></label> <br>
+                                            
+                                            <label>
+                                                <%for (var i = 0; i < data[0].diagnostico.length; i++ ) { %>
+                                                    <%=data[0].diagnostico[i].descripcion%>
+                                                <% } %>
+                                            </label> <br>
+                                            <label><%=data[0].tratamiento%></label> <br>
+                                            <label><%=data[0].observaciones%></label> <br>
+
+                                        </div>
+                                    </div>
+                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<PARA LA RECETA>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
+                                    <div class="col-md-12  header"><br><br>
+                                        <div class="col-md-3">
+                                            <label><b>Receta:</b></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label><b>Descripción:</b></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label><b>Prescripción:</b></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12  row">
+                                        <% if (data[0].Recetas[0] != null) { %>
+                                            <% for( var i = 0; i < data[0].Recetas[0].medicamentos.length; i++ ) { %>
+                                                <div class="col-md-3">
+                                                    <label><b></b></label>
+                                                </div>
+                                            
+                                                <div class="col-md-4">
+                                                    <label><%=data[0].Recetas[0].medicamentos[i].medicamento%></label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label><%=data[0].Recetas[0].medicamentos[i].dosis%></label>
+                                                </div>
+                                            <% } %>
+                                        <% } else { %>
+                                            <div class="col-md-3">
+                                                <label><b></b></label>
+                                            </div>
+                                        
+                                            <div class="col-md-4">
+                                                <label>-------------------------------------------------------------</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>-------------------------------------------------------------</label>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<ORDENES DE HOSPITALIZACION>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
+                                   <div class="col-md-12  header"><br><br>
+                                        <div class="col-md-3">
+                                            <label><b>Orden de Internación:</b></label>
+                                        </div>
+                                        <%if (Pinternacion != "") { %>
+                                            <div class="col-md-4">
+                                                <label><b><%=Pinternacion[0].diagnostico%></b></label>
+                                            </div>
+                                        <% } else { %>
+                                            <div class="col-md-4">
+                                                <label><b>--------------------------------</b></label>
+                                            </div>
+                                        <% } %>
+                                        <div class="col-md-4">
+                                            <label><b></b></label>
+                                        </div>
+                                    </div>
+                                    
+                                     <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<examenes complementarios>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
+                                   <div class="col-md-12  header"><br><br>
+                                        <div class="col-md-3">
+                                            <label><b>Examenes Complementarios</b></label>
+                                        </div>
+                                        <!-- <div class="col-md-4">
+                                            <label><b>Tipo_laboratorio:</b></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label><b>Diagnostico:</b></label>
+                                        </div> -->
+                                    </div>
+                                    <div class="col-md-12  row">
+                                        <div class="col-md-4">
+                                            
+                                            <% if (ecografias != "") { %>
+                                                <label for="">Ecografia</label>
+                                                <% for (var i = 0; i < ecografias.length; i++ ) { %>
+                                                    <% for ( var j = 0; j < ecografias[i].examen.length; j++) { %>
+                                                        <ul v-for="list in lab_one.examen">
+                                                            <li><%=ecografias[i].examen[j].estudio%></li>
+                                                        </ul>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
+                                        </div>
+
+                                       
+                                        <% if (rayosX != "") { %>
+                                            <label for="">Rayos X</label><br>
+                                            <%for (var i = 0; i < rayosX.length; i++ ) {%>
+                                                <% if (rayosX[i].examen.torax != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Torax:</p>
+                                                        <% for ( var j = 0; j < rayosX[i].examen.torax.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=rayosX[i].examen.torax[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    
+                                                    </div> 
+                                                    
+                                                <% } %>
+
+                                                <% if (rayosX[i].examen.abdomen != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Abdomen:</p>
+                                                        <% for ( var j = 0; j < rayosX[i].examen.abdomen.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=rayosX[i].examen.abdomen[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>
+
+                                                <% if (rayosX[i].examen.craneo_Macizo_Facial != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Craneo Macizo Facial:</p>
+                                                        <% for ( var j = 0; j < rayosX[i].examen.craneo_Macizo_Facial.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=rayosX[i].examen.craneo_Macizo_Facial[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>
+
+                                                <% if (rayosX[i].examen.Placas_Radiograficas != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Placas Radiograficas:</p>
+                                                        <% for ( var j = 0; j < rayosX[i].examen.Placas_Radiograficas.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=rayosX[i].examen.Placas_Radiograficas[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                    
+                                                <% } %>
+                                                <% if (rayosX[i].examen.Columna_vertebral != "") { %>
+                                                   
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Columna vertebral:</p>
+                                                        <% for ( var j = 0; j < rayosX[i].examen.Columna_vertebral.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=rayosX[i].examen.Columna_vertebral[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>
+                                                
+                                                <% if (rayosX[i].examen.Miembros_superiores != "") { %>
+                                                   
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Miembros superiores:</p>
+                                                        <% for ( var j = 0; j < rayosX[i].examen.Miembros_superiores.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=rayosX[i].examen.Miembros_superiores[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                    
+                                                <% } %>
+                                               
+                                                <% if (rayosX[i].examen.Miembros_inferiores != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Miembros inferiores:</p>
+                                                        <% for ( var j = 0; j < rayosX[i].examen.Miembros_inferiores.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=rayosX[i].examen.Miembros_inferiores[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>                                               
+                                               
+                                            <% } %>
+                                        <% } %>
+                                        
+                                        <% if (lab != "") { %>
+                                            <label for="">Laboratorios</label><br>
+                                            <%for (var i = 0; i < lab.length; i++ ) {%>
+                                                <% if (lab[i].examen.Hemotología != "") { %>
+                                                    
+                                                    <div class="col-md-3">
+                                                        <p>Hemotología:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Hemotología.length; j++) { %>
+                                                            <ul >
+                                                                <li><%=lab[i].examen.Hemotología[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    
+                                                    </div> 
+                                                    
+                                                <% } %>
+
+                                                <% if (lab[i].examen.Química_Sanguínea != "") { %>
+                                                    
+                                                    <div class="col-md-3">
+                                                        <p>Química Sanguínea:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Química_Sanguínea.length; j++) { %>
+                                                            <ul >
+                                                                <li><%=lab[i].examen.Química_Sanguínea[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>
+
+                                                <% if (lab[i].examen.Orina != "") { %>
+                                                    
+                                                    <div class="col-md-3" >
+                                                        <p>Orina:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Orina.length; j++) { %>
+                                                            <ul >
+                                                                <li><%=lab[i].examen.Orina[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>
+
+                                                <% if (lab[i].examen.Prueba_Embarazo != "") { %>
+                                                    
+                                                    <div class="col-md-3" >
+                                                        <p>Prueba Embarazo:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Prueba_Embarazo.length; j++) { %>
+                                                            <ul >
+                                                                <li><%=lab[i].examen.Prueba_Embarazo[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                    
+                                                <% } %>
+                                                <% if (lab[i].examen.Heces != "") { %>
+                                                   
+                                                    <div class="col-md-3" >
+                                                        <p>Heces:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Heces.length; j++) { %>
+                                                            <ul>
+                                                                <li><%=lab[i].examen.Heces[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>
+                                                
+                                                <% if (lab[i].examen.Expectoración != "") { %>
+                                                   
+                                                    <div class="col-md-3">
+                                                        <p>Expectoración:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Expectoración.length; j++) { %>
+                                                            <ul>
+                                                                <li><%=lab[i].examen.Expectoración[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                    
+                                                <% } %>
+                                               
+                                                <% if (lab[i].examen.Exámenes_Especiales != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Exámenes Especiales:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Exámenes_Especiales.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=lab[i].examen.Exámenes_Especiales[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>     
+
+                                                <% if (lab[i].examen.Perfil_Preoperatorio != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Perfil Preoperatorio:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Perfil_Preoperatorio.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=lab[i].examen.Perfil_Preoperatorio[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>   
+
+                                                <% if (lab[i].examen.Perfil_Obstetrico != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Perfil Obstetrico:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Perfil_Obstetrico.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=lab[i].examen.Perfil_Obstetrico[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>    
+                                                
+                                                <% if (lab[i].examen.Perfil_Reumático != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Perfil Obstetrico:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Perfil_Reumático.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=lab[i].examen.Perfil_Reumático[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %>  
+
+                                                <% if (lab[i].examen.Perfil_hepatico != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Perfil_hepatico:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Perfil_hepatico.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=lab[i].examen.Perfil_hepatico[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %> 
+
+                                                <% if (lab[i].examen.Perfil_lipidico != "") { %>
+                                                    
+                                                    <div class="col-md-3" v-if="examen_x.torax != ''">
+                                                        <p>Perfil lipidico:</p>
+                                                        <% for ( var j = 0; j < lab[i].examen.Perfil_lipidico.length; j++) { %>
+                                                            <ul v-for="list in examen_x.torax">
+                                                                <li><%=lab[i].examen.Perfil_lipidico[j].descripcion%></li>
+                                                            </ul> 
+                                                        <% } %>
+                                                    </div> 
+                                                   
+                                                <% } %> 
+                                               
+                                            <% } %>
+                                        <% } %>
+                                        
+                                    </div>
+                                     <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<transferencia>>>>>>>>>>>>>>>>><<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<-->
+                                   <div class="col-md-12  header"><br><br>
+                                        <div class="col-md-3">
+                                            <label><b>Transferencia a:</b></label>
+                                        </div>
+                                        <%if (Pinternacion != "") { %>
+                                            <div class="col-md-4">
+                                                <label><b><%=Pinternacion[0].especialidad%></b></label>
+                                            </div>
+                                        <% } else { %>
+                                            <div class="col-md-4">
+                                                <label><b>--------------------------------</b></label>
+                                            </div>
+                                        <% } %>
+                                    
+                                    </div>
+                                    
+                                  
+                                    
+                                </div>
+                                <div id="ocultoIl" class="col-md-12"><br>
+                                    <div class="header"></div>
+                                    <p class="col-md-8">
+                                        <button type="reset" class="btn btn-primary" style="margin-right: 20px;"><i class="fa fa-minus-square"></i> &nbsp;&nbsp; Limpiar</button>
+                                        <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+					
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+                                    </p>
+                                </div>
+    
+                                    
+                            </div> 
+
+            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+        <div class="vertical-alignment-helper">
+          <div class="modal-dialog vertical-align-center modal-sm ">
+            <div class="modal-content">
+              <br>
+                <div class="center">
+                  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+                </div>
+                <div class="center">
+                  <h5><b>¿Cerrar Sesión?</b></h5>
+                </div>
+              <div class="modal-footer">
+                <div class="center">
+                  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+    </div>
+    
+	<!--====== Scripts -->
+    <style >
+            @page {
+                size: 8.5in 11in portraint;
+                page-size: 190mm;
+                page-size: 190mm;
+            }			
+            @media print {
+
+                #sinMargen{
+                top: 9%;
+                border: 0px;
+                padding-left: 0% ;
+                padding-top: 5%;
+                margin-left: 0%;
+                margin-right: 0%;
+
+                padding: 0px;
+
+                position: relative;
+
+                border-top-style: dashed;
+                border-right-style: double;
+
+                border-left-style: solid; 
+
+            }
+                .page {
+                    margin: 0;
+                    border: initial;
+                    border-radius: initial;
+                    width: initial;
+                    min-height: initial;
+                    box-shadow: initial;
+                    background: initial;
+                    page-break-after: always;
+                }
+                .oculto{
+                    display: none;   
+                }
+                #ocultoIl{
+                    display: none;   
+                }
+                .scroll1 {
+                    overflow-y:hidden;
+                    border: hidden;
+                }
+                .oreden2:before {
+    
+                content: " HISTORIAL CLÍNICO ";
+                font-weight: negrita;
+                color:black;
+                text-align: center;
+                padding: 0%;
+                margin: 0%;
+                font: Arial;
+                border: 0px;
+                padding-top: 1%;
+                top: 5%;
+
+                margin-top: auto;
+                border-top-style: dashed;
+                border-right-style: double;
+                border-bottom-style: dotted;
+                border-left-style: solid;
+            }
+                .firmaPa:before {
+                content: " FIRMA DEL PACIENTE ";
+                font-weight: negrita;
+                color:black;
+                text-align: center;
+                padding: 0%;
+                margin: 0%;
+                font: Arial;
+                border: 0px;
+                margin-top: 10%;
+                }
+                .firmaDoc:before {
+                    content: " FIRMA DEL DOCTOR ";
+                    font-weight: negrita;
+                    color:black;
+                    text-align: center;
+                    padding: 0%;
+                    margin: 0%;
+                    font: Arial;
+                    border: 0px;
+                    padding-top: 1%;
+                
+                    margin-top: auto;
+                    border-top-style: dashed;
+                    border-right-style: double;
+                    border-bottom-style: dotted;
+                    border-left-style: solid;
+                }
+                .cafirmaP{
+                    width: 30%;
+                    float:left;
+                    border-top-style: dotted;
+                }
+                .cafirmaDoc{
+                    width: 30%;   
+                    float: right;
+                    border-top-style: dotted;
+                }
+                .arriba{
+                    margin-top: 5%;
+                    margin-bottom: 5%;
+                    padding-bottom: 5%;
+                }
+                .horaI{
+                    width: 30%;
+                    float:left;
+                    position:absolute;
+                     top:5%;
+                     right:0;
+                }
+                .labI{
+                    width: 1000%;
+                }
+                .centerTodo{
+                padding-top: 0%;
+                width: 115%;
+                padding-left: 0%;
+               justify-content: center;
+               align-items: center;
+               border: 1px;
+               border-top-style: dashed;
+               border-right-style: double;
+               border-bottom-style: dotted;
+               border-left-style: solid; 
+            }
+        
+            }
+            .scrollV{
+                
+                width: 190%;
+                overflow-y:scroll;
+                overflow-x:hidden;
+            }	
+            .horaIR{
+                    width: 30%;
+                    float:left;
+                    position:absolute;
+                     top:5%;
+                     right:0;
+                }
+            .oculVistaReal{
+                display: none;   
+            }						
+        </style>
+    <script src="/js/get/consultaget.js"></script>
+
+
+    <script src="/js/jquery-2.1.0.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common-script.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+
+    <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+    <script src="/plugins/data-tables/jquery.dataTables.js"></script>
+    <script src="/plugins/data-tables/DT_bootstrap.js"></script>
+    <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+    <script src="/plugins/edit-table/edit-table.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>
+
+    <script src="/js/jPushMenu.js"></script>
+    <script src="/js/side-chats.js"></script>
+
+    <script src="/moment/moment.js"></script>
+    <script src="/moment/locale/af.js"></script>
+    <script src="/url/export.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="/axios/dist/axios.min.js"></script>
+    <script src="/js/fecha.js"></script>
+</body>
+</html>
