@@ -34,8 +34,7 @@
     
         /* tamaño de página*/
         @page {
-      
-        size: A4 landscape;
+        size: A4 ;
         size: 11in 11in;
       } 
       .scrollV{
@@ -43,6 +42,12 @@
         overflow-y:hidden;
         overflow-x:hidden;
       }	
+      .scrollV1{
+        margin: 0%;
+        width: 110%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }
       .tituloCuaderno:before {  
         content: " REPORTE DE CUADERNOS" ;
         
@@ -356,9 +361,9 @@
 							            <h5 class=" ordendetitulo tituloEspecialidad text-center"></h5>
 							            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
                 
-                          <div class="table-responsive">
-                            <table  class=" table table-bordered table-striped" >
-                              <thead>
+                          <div class="table-responsive scrollV1">
+                            <table  class=" table table-bordered table-striped " >
+                              <thead class="scrollV1">
                                 <tr>
                                   <th class="text-center">Fecha Creación</th>	
                                   <th class="text-center">Nombre</th>
@@ -389,9 +394,9 @@
                             </div>
                             <br>
                             
-                            <div class="table-responsive">
+                            <div class="table-responsive scrollV1">
                               <table  class=" table table-bordered table-striped" >
-                                <thead>
+                                <thead class="">
                                   <tr>
                                     <th class="text-center">Fecha Creación</th>	
                                     <th class="text-center">Nombre</th>
