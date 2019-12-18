@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Administrador</title>
 <%- include("../partials/head") -%>
-<link href="/css/pdf.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
+  <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 		
 	h2.uppercase
@@ -36,7 +38,7 @@
         overflow-x:hidden;
       }	
       .tituloo:before {  
-        content: " REPORTES ESPECÍFICO PERSONAL" ;
+        content: " REPORTES GENERAL DEL PACIENTES" ;
         
         color:black;
         font: small-caps 100%/200% serif;
@@ -103,7 +105,8 @@
     <!--\\\\\\\ header end \\\\\\-->
     <div class="inner">
       <!--\\\\\\\ inner start \\\\\\-->
-        <div class="left_nav">
+        <div id="ocultoI" class="left_nav">
+          <div class="left_nav">
             <div class="left_nav_slidebar">
               <ul>
                 <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
@@ -137,60 +140,70 @@
                 </li>
               </ul>
             </div>
+          </div>  
         </div>
       <!--Contenido-->
-      <div class="contentpanel"><br>
+      <div id="sinMargen" class="contentpanel"><br>
         <!--\\\\\\\ contentpanel start\\\\\\-->
-        <div class="container clear_both padding_fix">
+        <div class="container clear_both padding_fix  col-lg-8">
+          <div class="main-content panel default  block-web">
         <!--\\\\\\\ container  start \\\\\\-->
         <!--Hoja-->
-          <div class="invoice ">
-            <div class="invoice_body" data-print-content>
-              <div  class="pull-left">
-                <address>
-                  <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
-                  Av. Italia Final S/N<br>
-                  Telfs. 26246064-26244960<br>
-                  POTOSI-BOLIVIA
-                </address>
+            <div id="" class="head  ">
+              <div id="" class="actions ">
+                <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                <P class="dondeES"></P>
+                <p class="telefo"></p>
+                <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
               </div>
-              <div class="pull-right">
-                <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
+              <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+              <div class="dim2 posiondeImagen">
+                <img class="oculVistaReal "  src="/images/hospital1.png" />
+                <p class="hospitali"></p>
               </div>
-              <div class="clearfix"></div>
-              <br/>
-              <h2 class="text-center uppercase">Reporte General</h2>
-              <div class="row">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                          <th class="text-center">Fecha Creación</th>                          
-                          <th class="text-center">N° Historial</th>
-                          <th class="text-center">Nombre</th>
-                          <th class="text-center">Apellido Paterno</th>
-                          <th class="text-center">Apellido Materno</th>
-                          <th class="text-center">C.I.</th>
-                          <th class="text-center">Dirección</th>
-                          <th class="text-center">Sexo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <%for (var i = 0; i< data.length; i++) { %>
-                        <tr>
-                          <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                          <td class="text-center"><%=data[i].numeroHistorial%></td>
-                          <td class="text-center"><%=data[i].nombre%></td>
-                          <td class="text-center"><%=data[i].apellidop%></td>
-                          <td class="text-center"><%=data[i].apellidom%></td>
-                          <td class="text-center"><%=data[i].ci%></td>
-                          <td class="text-center"><%=data[i].direccion%></td>
-                          <td class="text-center"><%=data[i].sexo%></td>
-                        </tr>
-                      <% } %>
-                    </tbody>
-                </table>
+              <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
+              <div id="ocultoI" class="header">
+                <h2 class="text-center">REPORTES GENERAL DE  PACIENTES</h2>
               </div>
-            </div>
+          </div>
+          <div class=" ">
+            <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+						<h5 class="tituloo ordendetitulo text-center"></h5>
+						<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+             <div class="clearfix"></div>
+             <br/>
+             <br>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-center">Fecha Creación</th>                          
+                    <th class="text-center">N° Historial</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Apellido Paterno</th>
+                    <th class="text-center">Apellido Materno</th>
+                    <th class="text-center">C.I.</th>
+                    <th class="text-center">Dirección</th>
+                    <th class="text-center">Sexo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%for (var i = 0; i< data.length; i++) { %>
+                    <tr>
+                      <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                      <td class="text-center"><%=data[i].numeroHistorial%></td>
+                      <td class="text-center"><%=data[i].nombre%></td>
+                      <td class="text-center"><%=data[i].apellidop%></td>
+                      <td class="text-center"><%=data[i].apellidom%></td>
+                      <td class="text-center"><%=data[i].ci%></td>
+                      <td class="text-center"><%=data[i].direccion%></td>
+                      <td class="text-center"><%=data[i].sexo%></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            
+          </div>
           </div>
         </div>
     <!--\\\\\\\ content panel end \\\\\\-->
@@ -200,6 +213,7 @@
 
   <%- include("../partials/scripts") -%>
   
+  <script src="/js/fecha.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   <script src="https://www.jqueryscript.net/demo/Print-Specified-Area-Of-A-Page-PrintArea/demo/jquery.PrintArea.js"></script>
   <script src="/js/imprimir.js"></script>

@@ -6,6 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Administrador</title>
 <%- include("../partials/head") -%>
+<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 		
@@ -20,6 +22,47 @@
 	{
 		text-transform: uppercase;
 	}
+</style>
+ <style scoped>
+    @media print{
+  
+      /* tamaño de página*/
+      @page {
+    
+      size: A4;
+      size: 8.5in 11in;
+    } 
+    .scrollV{
+      width: 100%;
+      overflow-y:hidden;
+      overflow-x:hidden;
+    }	
+    .tituloo:before {  
+      content: " REPORTES ESPECÍFICO PERSONAL" ;
+      
+      color:black;
+      font: small-caps 100%/200% serif;
+    }
+    .ordendetitulo{
+      position:static;
+      margin-top: 15%;
+    }
+    .tamm{
+      margin: 0%;
+      border: none;
+     
+      font: small-caps 100%/200% serif;
+      width: 25%;
+ text-align: left;
+ vertical-align: top;
+ border: 1px solid #000;
+ border-spacing: 0;
+    }
+    #tr{
+      width: 5%;
+    }
+    
+  }
 </style>
 </head>
 <script type="text/javascript">
@@ -39,10 +82,10 @@
     //window.location.replace('/')
   },500000);
 </script>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
     <!--\\\\\\\ wrapper Start \\\\\\-->
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <!--\\\\\\\ header Start \\\\\\-->
       <div class="brand">
         <!--\\\\\\\ brand Start \\\\\\-->
