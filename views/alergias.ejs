@@ -182,9 +182,9 @@
 										</div>
 										<p class="">
 											<template v-if="oneAlergia.estado_update == true">
-												<button type="submit" class="btn btn-success"><i class="fa fa-undo"></i> &nbsp;&nbsp; Guardar</button>
+												<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
 											</template>&nbsp;&nbsp;															
-											<button  @click="oneAlergia = ''" class="btn btn-danger btn-raised"><i class="fa fa-times"></i> &nbsp;&nbsp;Cancelar</button>
+											<button  @click="oneAlergia = ''" class="btn btn-info btn-raised"><i class="fa fa-reply"></i> &nbsp;&nbsp;Volver</button>
 										</p>
 									</form>
 								</template>
@@ -210,8 +210,8 @@
 													<td>{{list.fecha_registro}}</td>
 													<td>{{list.tipoAlergia}}</td>
 													<td>{{list.descripcion}}</td>
-													<td >																			
-														<a @click="one_alergia(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
+													<td class="center" >																			
+														<a @click="one_alergia(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-eye"></i></a>
 													</td>
 													</tr>
 												</tbody>
