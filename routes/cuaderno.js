@@ -100,6 +100,14 @@ router.get('/limpiar/:token_id', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
  */
 
+router.get('/vue_list_medicos', (req,res) => {
+    fetch(url.name.pruebas+'/api/role_hospitalizacion')
+    .then(res => res.json())
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
 router.get('/especialidad/:token_id', (req,res) => {
     const { token_id } = req.params
     if( datas.name.token[token_id] ){
@@ -1182,6 +1190,7 @@ router.get('/delturno/:id/:id_fechas/:token_id/:id_anterior/:id_volver_fechas', 
         .then(resp => resp.json())
         .catch(error => console.error('Error:', error))
         .then(resp =>{
+
             res.redirect('/cuaderno/turnos/'+id_fechas+'/'+token_id+'/'+id_anterior+'/'+id_volver_fechas)
         });
     }else{
@@ -1502,17 +1511,22 @@ router.post('/vuehora_turno/:id_turno', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
 
-router.get('/alldataDoctor/:id/:id_cuaderno', (req,res) => {
-    const  { id,id_cuaderno } = req.params
-    fetch('http://localhost:4600/api/docAllData/'+id)
+router.get('/alldataDoctor/:id/:id_cuaderno/:token_id', (req,res) => {
+    const  { id,id_cuaderno, token_id } = req.params;
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:4600/api/docAllData/'+id)
         .then(resp => resp.json())
         .catch(error => console.error('Error:', error))
         .then(resp =>{
             res.render('cuadernos/dataDocAll',{
                 resp,
-                id_cuaderno
+                id_cuaderno,
+                data_doc:datas.name.data_user[token_id],
             })
-    });
+        });
+    }else{
+        res.redirect('/')
+    }
 })
 
 //ruta vue
@@ -1562,15 +1576,20 @@ router.get('/recuadernos/:token_id',(req, res) => {
         fetch('http://localhost:4600/api/liscuaderno')        
         .then(resp => resp.json())
         .then(data =>{  
+            fetch('http://localhost:4600/api/especialidad')        
+            .then(resp => resp.json())
+            .then(data1 =>{
             res.render('reprtescuader', {
               data,
               data_doc:datas.name.data_user[token_id],
               filter: filter_ventas[token_id],
               filter1: filter_ventas1[token_id],
-                msg:msg_Consulta_emergencia[token_id],
+            msg:msg_Consulta_emergencia[token_id],
+            data1
                 
             })
         })
+    })
     }else{
         res.redirect('/')
     }
@@ -1594,14 +1613,17 @@ router.get('/general/:token_id', (req,res) =>{
 router.get('/general1/:token_id', (req,res) =>{
     const { token_id } = req.params
     if( datas.name.token[token_id] ){
-        fetch('http://localhost:4600/api/liscuaderno')        
+        fetch('http://localhost:4600/api/lista_doctores_cuadernos')        
         .then(resp => resp.json())
         .then(data =>{  
+            
             res.render('reporAdmin/impriCu', {
                 data,
-                data_doc:datas.name.data_user[token_id]
+                data_doc:datas.name.data_user[token_id],
+                
             })
-        })
+    
+    })
     }else{
         res.redirect('/')
     }
