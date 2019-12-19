@@ -3,7 +3,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Pacientes para Internar</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Hospitalización</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="viewport"
@@ -90,39 +91,17 @@
             <div class="left_nav">
                 <div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="javascript:void(0);"><i
-							class="fa fa-home"></i> Home  <span
-							class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul > 
-								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b ><%=data_doc.data.area_esp.nombre%></b>
-								</a> </li>
-							</ul>
-						</li>
+                            <li ><a href="/internaciones/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <%=data_doc.data.area_esp.nombre%>  </a></li>
+                            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Hospitalización<span class="plus"><i class="fa fa-plus"></i></span><span class="left_nav_pointer"></span> </a>
+                                <ul class="opened" style="display:block" >
+                                    <li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Hosp.</b></a> </li>
+                                    <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color" >Pacientes Hosp. </b> </a></li>
+                                    <li><a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i><b >Pacientes de alta </b></a> </li>
+                                    <li> <a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Traslados</b></a> </li>
+                                </ul>
+                            </li>
 						
-							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Lista de Paciente <span class="left_nav_pointer"></span> <span
-										class="plus"><i class="fa fa-plus"></i></span></a>
-								<ul  class="opened" style="display:block">
-									<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-										<b >Listas de Internación</b>
-                                        </a> 
-                                    </li>
-                                    <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                        <b class="theme_color">Pacientes Internados</b>
-                                        </a> 
-                                    </li>
-                                    <li> 
-                                        <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                            <b >Pacientes de alta </b>
-                                        </a> 
-                                    </li>
-                                    <li> 
-                                        <a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                            <b >Traslados</b>
-                                        </a> 
-                                    </li>
-	
-								</ul>
-							</li>
+							
 					</ul>
 				</div>
             </div>
@@ -139,12 +118,12 @@
                 <!-- Content page -->
     <div class="header">
             <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
-            <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Internados</h3>
+            <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Hospitalizados</h2>
         </div>
-				<!-- PAcientes no Atendidos-->
+				<!-- PAcientes no Atendidos
 				<p class="text-center">
 						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-					</p>
+					</p>-->
 						<div class="table-responsive" >
 							<table class="fl-table display table table-bordered table-striped" id="dynamic-tablee">
 								<thead>
@@ -168,7 +147,9 @@
 											<td><%=list_internacion[i].Paciente.apellidop%></td>
 											<td><%=list_internacion[i].Paciente.apellidom%></td>
 											<td><%=list_internacion[i].fechaIngreso%></td>
-											<td class="text-center" ><a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
+											<td class="text-center" >
+                                            <a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar Hospitalización"><i class="fa fa-eye text-muted" style="color:rgb(19, 125, 224)"></i></a><span>&nbsp;</span>
+											</td>
 											
 										</tr>
 									<% } %>

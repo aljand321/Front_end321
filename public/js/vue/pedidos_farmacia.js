@@ -290,7 +290,7 @@ const pedido_medicametos = new Vue({
             this.listItems = {}; 
             this.respuestaPost_false = ""
             swal.fire(
-              'Success!',
+              'Confirmacion',
               '<label style="color:green;">'+ data.msg +'</label>',
               'success'
             )
@@ -298,7 +298,7 @@ const pedido_medicametos = new Vue({
           }else{
             this.respuestaPost_true = ""
             swal.fire(
-              'Error!',
+              'Error',
               '<label style="color:red;">'+ data.msg +'</label>',
               'error'
             )

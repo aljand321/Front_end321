@@ -390,7 +390,7 @@ const ver_pedido_farmacia =  new Vue({
           this.msg = data.msg;
           this.msg_false = "";
           swal.fire(
-            'Success!',
+            'Confirmado',
             '<label style="color:green;">'+data.msg+'</label>',
             'success'
           )
@@ -402,7 +402,7 @@ const ver_pedido_farmacia =  new Vue({
           this.msg_false = data.msg
           this.msg = ""
           swal.fire(
-            'Error!',
+            'Error',
             '<label style="color:red;">'+data.msg+'</label>',
             'error'
           )

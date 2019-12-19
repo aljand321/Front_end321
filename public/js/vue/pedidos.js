@@ -292,7 +292,7 @@ const carMedicamentos = new Vue({
                   )
                 }else{
                   swal.fire(
-                    'Success!',
+                    'Confirmado',
                     '<label style="color:green;">'+data.message+'</label>',
                     'success'
                   )

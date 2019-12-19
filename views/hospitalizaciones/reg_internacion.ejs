@@ -743,7 +743,38 @@
         </div> 
     </div>
 <div id="options">
+    <style>
+        @media print{
 
+
+.diagnostico1:before{
+content: "DIAGNÓSTICO: <%=formUpdate_internacion[0].diagnostico%>";
+}
+
+.moveDiagnotico{
+clear:both;
+position: absolute;
+
+margin-left: 0%;   
+padding-top: 1%;
+top: 55%;
+font: small-caps 100%/100% serif;
+}
+.observacion1:before{
+content: "OBSERVACIÓN: <%=formUpdate_internacion[0].observacion%>";
+}
+.moveDiagnotico2{
+position: static;
+float: left;
+
+margin-left: 0%;   
+padding-top: 1%;
+
+font: small-caps 100%/100% serif;
+}
+
+        }
+        </style>
 <style scoped>
 @media print{
     @page {
@@ -894,6 +925,22 @@
     content: "PROVIENE DE: <%=Pint[0].tipoConsulta%>";
 } 
 
+.diagnostico1:before{
+    content: "DIAGNÓSTICO: <%=formUpdate_internacion[0].diagnostico%>";
+}
+
+.moveDiagnotico{
+    clear:both;
+    position: absolute;
+    width: 100%;
+    margin-left: 0%;   
+    padding-top: 1%;
+    top: 55%;
+	font: small-caps 100%/100% serif;
+}
+.observacion1:before{
+    content: "OBSERVACIÓN: <%=formUpdate_internacion.observacion%>";
+}
 .moveDiagnotico2{
     position: static;
     float: left;

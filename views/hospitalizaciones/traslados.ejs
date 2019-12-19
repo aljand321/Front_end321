@@ -3,7 +3,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Traslados</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Hospitalización</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="viewport"
@@ -72,7 +73,7 @@
             <div class="header_top_bar">
                 <!--\\\\\\\ header top bar start \\\\\\-->
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-				<a href="/internaciones/paciente_internacion/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </a>
+				<a href="/internaciones/paciente_internacion/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> Volver</span> </a>
 
                 <div class="top_right_bar">
 
@@ -95,20 +96,15 @@
 
 				<div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="javascript:void(0);"><i
-							class="fa fa-home"></i> Home </span> <span
-							class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul >
-								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <%=data_doc.data.area_esp.nombre%> <b ></b>
-								</a> </li>
-							</ul>
-						</li>
 						
-						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Listas de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <li ><a href="/internaciones/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <%=data_doc.data.area_esp.nombre%>  </a></li>
+							
+						
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Hospitalización<span class="plus"><i class="fa fa-plus"></i></span></a>
 							
 							<ul >
-								<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Internación</b> </a> </li>
-								<li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Pacientes Internados</b> </a> </li>
+								<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Hosp.</b> </a> </li>
+								<li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Pacientes Hosp.</b> </a> </li>
 								<li> 
 									<a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 										<b >Pacientes de alta </b>
@@ -126,7 +122,7 @@
 						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
 								<li> 
-                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> 
+                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergías</b> </a> 
                                 </li>
 								<li> 
                                     <a href="/hospitalizacion/antecedentesvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> 
@@ -160,14 +156,22 @@
 					</div>
             </div>
             <!--\\\\\\\left_nav end \\\\\\-->
+<<<<<<< HEAD
+            <div class="contentpanel" id="traslados">
+                    <div class="container clear_both padding_fix col-lg-8"><br>
+                        <div class="col-lg-12 block-web"> 
+                            <div class="header">
+                                <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
+                                <h2 class="content-header ">  Traslados Internos</h2>
+                            </div>	
+=======
             <div class="contentpanel" >
                 <!--\\\\\\\ contentpanel start\\\\\\-->
                 <div class="row">
 					<br>
+>>>>>>> d2239837828a41f0130cf7fa2a2244226eaf42fa
 					
 
-					
-					<div class="col-lg-14">
                         <section class="panel default  h2">
                             <div class="panel-body">
                                 <div class="panel-group accordion accordion-semi" id="accordion3">
@@ -205,7 +209,7 @@
                                                             <label><font color="black"><%=data_paciente[0].numeroHistorial%></font></label>
                                                             
                                                         </div>
-                                                        <div class="col-sm-3">Area De: <br>
+                                                        <div class="col-sm-3">Aréa De: <br>
                                                             <label><font color="black"><%=one_internacion[0].especialidad%></font></label> 
                                                         </div>
                                                         <div class="col-sm-3">Ubicacion: <br>
@@ -218,10 +222,10 @@
                                                     <br> <br>
                                                     <div class="form-group">
                                                         <p>Datos Generales del Paciente</p>
-                                                        <div class="col-sm-3">Nombre Completo: <br>
+                                                        <div class="col-sm-3">Paciente: <br>
                                                             <label><font color="black"><%=data_paciente[0].nombre%>  <%=data_paciente[0].apellidop%>  <%=data_paciente[0].apellidom%></font></label>
                                                         </div>
-                                                        <div class="col-sm-3">Fecha Nacimiento: <br>
+                                                        <div class="col-sm-3">Fecha de Nacimiento: <br>
                                                             <label><font color="black"> <%=data_paciente[0].fechanacimiento%></font></label>
                                                         </div>
                                                         <div class="col-sm-3">Sexo: <br>
@@ -238,8 +242,7 @@
                                 </div>
                             </div>
                         </section>                  
-					</div>
-                </div>
+					
                 
               
                 <template v-if="one_traslado == '' || one_traslado == null">                
@@ -262,15 +265,15 @@
 				    								<input type="text"  parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-2">
-                                                        <label>hora</label>
+                                                        <label>Hora</label>
                                                         <input type="text"  parsley-trigger="change" required class="form-control" v-model="traslado.hora">
                                                     </div><!--/form-group-->
 				    							<div class="form-group col-md-2">
-				    								<label>Enviado de:</label>
+				    								<label>Enviado de</label>
 				    								<input type="text" parsley-trigger="change"  class="form-control" :value= " traslado.enviado_de = '<%=data_doc.data.area_esp.nombre%>'">
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-3">
-                                                    <label>Area de traslado:</label><br>
+                                                    <label>Aréa de traslado</label><br>
                                                     <select v-model="idHist.id_especialidad">
                                                         <% for (var i = 0; i < especialidad.length; i++) { %>
                                                             <%if (especialidad[i].nombre != 'EMERGENCIA' && especialidad[i].nombre != one_internacion[0].especialidad) { %>
@@ -280,7 +283,7 @@
                                                     </select>
                                                 </div><!--/form-group-->
                                                 <div class="form-group col-md-3">
-				    								<label>Doctor:</label>
+				    								<label>Médico</label>
 				    								<input type="text" parsley-trigger="change"  class="form-control" :value=" traslado.nombre_doctor = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
                                                 </div><!--/form-group-->
 				    						</div>
@@ -290,11 +293,11 @@
 				    								<textarea name="" id="" cols="30" rows="5"  class="form-control" v-model="traslado.operaciones"></textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
-				    								<label>Diagnostico Principal</label>												
+				    								<label>Diagnóstico Principal</label>												
 				    								<textarea name="" id="" cols="30" rows="5"  class="form-control" v-model=" traslado.diagnostico_principal"></textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
-				    								<label>Otros diagnosticos</label>												
+				    								<label>Otros diagnósticos</label>												
 				    								<textarea name="" id="" cols="30" rows="6"  class="form-control" v-model="traslado.otros_diagnosticos"></textarea>
 				    							</div><!--/form-group-->
 				    							<div class="form-group col-md-12">
@@ -303,9 +306,8 @@
                                                 </div><!--/form-group-->
 
 				    						</div>							
-                                        
-				    					  	<button class="btn btn-primary" type="submit">Submit</button>
-				    					  	<button class="btn btn-default">Cancel</button>
+                                            <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                                            <button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 				    					</form>
 				    			  	</div><!--/porlets-content-->
 				    			</div><!--/block-web--> 
