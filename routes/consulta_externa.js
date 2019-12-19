@@ -185,7 +185,8 @@ router.get('/lista_pacientes/:token_id/:token_partial', (req,res) => {
               res.render('consulta_externa/lista_pacientes',{
                 list_false,
                 data,
-                data_doc : data_user[token_id]
+                data_doc : data_user[token_id],
+                id_medico: data_user[token_id].data.medico.id
               })
             })
         } 
@@ -1073,4 +1074,230 @@ router.get('/ReporEnfermedades/:token_id/:token_partial', (req,res) => {
   }
 });
 
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                          historial clinico
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+var citas_of_consultorio
+router.get('/historial_clinico/:token_id/:token_p', (req,res) => {
+  const { token_id, token_p } = req.params;
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){  
+    fetch('http://localhost:3000/api/citas_wit_consulta')
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(list => { 
+     
+      res.render('consulta_externa/lista_citas_h',{
+        data_doc: data_user[token_id],
+        list 
+      })
+     
+    })    
+  }else{
+    res.redirect('/')
+  }
+})
+
+router.post('/vue_filter_cita_ficha', (req,res) => {
+  var data = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/filter_citas_consulta_externa',esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+  })
+})
+
+router.get('/historial_clinica/:id_cita/:token_id/:token_p', (req,res) => {
+  const { id_cita, token_id, token_p } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){  
+    fetch('http://localhost:3000/api/get_one_conulta_p/'+id_cita)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      console.log(data, "      111111111111111111111111111111111111111111111")
+      fetch('http://localhost:3000/api/onlyPaciente/'+data[0].numeroHistorial)
+      .then(resp => resp.json())
+      .then(dataPaciente =>{ 
+        console.log(dataPaciente, "      22222222222222222222222222222222222222222222222222")
+        fetch('http://localhost:3000/api/onlyPInternacion/'+data[0].id)
+        .then(resp => resp.json())
+        .then(Pinternacion =>{
+          console.log(Pinternacion, "      33333333333333333333333333333333333333333333333333333333333333333")
+          fetch('http://localhost:3000/api/OneCita/'+id_cita)
+          .then(resp => resp.json())
+          .then(data_cita => {
+            console.log(data_cita, "      4444444444444444444444444444444444444444444444444444444444444444444444444")
+            fetch('http://localhost:3050/api/lista_Ecografia_consulta/'+data[0].id+'/'+data[0].numeroHistorial)
+              .then(resp => resp.json())
+              .then(ecografias => {               
+                console.log(ecografias, "      5555555555555555555555555555555555555555555555555555555555555555555555555555")     
+                fetch('http://localhost:3050/api/lista_rayosX_consulta/'+data[0].id+'/'+data[0].numeroHistorial)
+                .then(resp => resp.json())
+                .then(rayosX => {                 
+                  console.log(rayosX, "      666666666666666666666666666666666666666666666666666666666666666666666666666666666666666")
+                  fetch('http://localhost:3050/api/lista_lab_consulta/'+data[0].id+'/'+data[0].numeroHistorial)
+                  .then(resp => resp.json())
+                  .then(lab => {
+                    console.log(lab, "      7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777")
+                    fetch('http://localhost:3600/api/personal/'+data[0].id_medico)
+                    .then(res => res.json())
+                    .catch(error => console.error('Error:', error))
+                    .then(doctor => {
+                      console.log(doctor, data[0].id_medico,  "   doctor <<<<<<<<<<<<<<<<<<<<<<<<<<< 888888888888888888888888888888888888")
+                      res.render('consulta_externa/historial_c',{
+                        data_doc: data_user[token_id],
+                        data,
+                        dataPaciente,
+                        Pinternacion,
+                        data_cita,
+                        ecografias,
+                        rayosX,
+                        lab,
+                        doctor
+                      })
+                    })
+
+                  })
+
+                })
+
+              })
+            
+           
+          })
+          
+
+        })
+       
+      })
+      
+
+    })
+    
+  }else{
+    res.redirect('/')
+  }
+})
+
+/*
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                    pacientes no atendidos
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/pacietnes_no_atendidos/:token_id/:token_p', (req,res) => {
+  const { token_id, token_p } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
+    fetch('http://localhost:3000/api/pacietnes_noAtendidos/'+data_user[token_id].data.medico.id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(citas => {
+      res.render('consulta_externa/pacientes_no_atendidos',{
+        data_doc: data_user[token_id],
+        citas,
+        id_medico:data_user[token_id].data.medico.id
+      })
+    })
+   
+  }else{
+    res.redirect('/')
+  }
+})
+
+router.post('/Vue_pacientes_no_atendidos/:id_medico', (req,res) => {
+  const { id_medico } = req.params;
+  var data = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/pacientes_no_atendidos/'+id_medico,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+  })
+})
+/*
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                    pacientes  atendidos
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/pacietnes_atendidos/:token_id/:token_p', (req,res) => {
+  const { token_id, token_p } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
+    fetch('http://localhost:3000/api/pacietnes_Atendidos/'+data_user[token_id].data.medico.id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(citas => {
+      res.render('consulta_externa/pacientes_atendidos',{
+        data_doc: data_user[token_id],
+        citas,
+        id_medico:data_user[token_id].data.medico.id
+      })
+    })
+   
+  }else{
+    res.redirect('/')
+  }
+})
+
+router.post('/Vue_pacientes_atendidos/:id_medico', (req,res) => {
+  const { id_medico } = req.params;
+  var data = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/pacientes_atendidos/'+id_medico,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+  })
+})
+
+//ruta para mostrar las rutas de hoy
+// ruta para poder mostrar las listas de hoy
+router.post('/vue_list_hoy/:id_medico', (req,res) => {
+  const { id_medico } = req.params; 
+
+  var datos = req.body;
+  var esto = {
+    method: 'POST',
+    body: JSON.stringify(datos),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:3000/api/cita_hoy_consulta_externa/'+id_medico,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
 module.exports = router;

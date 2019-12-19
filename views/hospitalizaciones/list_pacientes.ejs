@@ -213,8 +213,8 @@ margin-right: 3%;
                                         <b>Traslados</b>
                                         </a> 
                                     </li>
-                                    <li> <a href="/internaciones/buscar_historial/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                        <b  class="theme_color" >Historail</b>
+                                    <li> <a href="/internaciones/buscar_historial/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b  class="theme_color" >Historial</b>
                                         </a> 
                                     </li>						
                                 </ul>
@@ -262,7 +262,7 @@ margin-right: 3%;
                             	                <div class="porlets-content">
                             	                    <div class="col-md-12">      
                             	                        <div class="col-md-3 ">
-                            	                            <div class="form-group">paciente:{{msg}}<br>
+                            	                            <div class="form-group">paciente:<br>
                             	                                <select v-model="historial">
 																	<%for ( var i = 0; i < list_paciente.length; i++) { %>
 																		<option :value="<%=list_paciente[i].numeroHistorial%>" ><%=list_paciente[i].nombre%> <%=list_paciente[i].apellidop%> <%=list_paciente[i].apellidom%></option>
@@ -280,12 +280,12 @@ margin-right: 3%;
                                     <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
                             	    <p class="text-center">
                             	        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
-                            	        <button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
+                            	        <button @click="buscar()" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>
 										<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 									</p>
 								</div>
 							</div>
-                        	<div class="ordende2" id="main-content">
+                        	<div class="ordende2" id="main-content" v-if = "data_resp == ''">
 								<h4 id="ocultoI" class="center">Lista de Citas</h4>
                             	<section class="panel default blue_title h2">
                         		<div class="page-content">
@@ -318,7 +318,41 @@ margin-right: 3%;
                                     
                     		    </div>
 								</section>
-							</div><br><br><br><br><br><br><br><br><br><br>
+                            </div>
+                            <div class="ordende2" id="main-content" v-else>
+                                    <h4 id="ocultoI" class="center">Lista de Citas</h4>
+                                    <section class="panel default blue_title h2">
+                                    <div class="page-content">
+                                        <table class="table table-hover" >
+                                            <thead>
+                                                <tr>
+                                                    <th class="tamm">N°</th>
+                                                    <th class="tamm">Historial Clínico</th>
+                                                    <th class="tamm">Nombre paciente</th>
+                                                    <th class="tamm">Fecha ingreso</th>
+                                                    <th class="tamm">Especialidad</th>
+                                                    <th class="tamm">Doctor</th> 
+                                                    <th class="tamm">Ver</th> 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                    <tr v-for="(list, index) in data_resp">
+                                                        <td>{{index+1}}</td>
+                                                        <td>{{list.historial}}</td>
+                                                        <td>{{list.Paciente.nombre}} {{list.Paciente.apellidop}} {{list.Paciente.apellidom}}</td>
+                                                        <td>{{list.fechaIngreso}}</td>
+                                                        <td>{{list.especialidad}}</td>
+                                                        <td>{{list.doctor}}</td>
+                                                        <td><a :href="'/internaciones/historial_clinico/' + list.id + '/<%=data_doc.data.token_id%>'">ver</a></td>
+                                                    </tr>                                				
+                                               	
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div>
+                                    </section>
+                                </div><br><br><br><br><br><br><br><br><br><br>
 								<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 								<p class="firmaPa1 center cafirmaP1"></p>					
 								<p class="firmaDoc2 center cafirmaDoc2"></p>
@@ -432,10 +466,11 @@ margin-right: 3%;
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="/axios/dist/axios.min.js"></script>
 <script>
+    var id_especialidad = "<%=id_especialidad%>"
 	const reporte = new Vue({
         el:"#reporte",
 		data:{
-            msg:"aljand321",
+            id_esp:id_especialidad,
 			url:data_url.url_front_end,
 			historial:'',
 			data_resp:''
@@ -443,7 +478,8 @@ margin-right: 3%;
 		methods:{
 			buscar(){
 				var estado = {
-                    historial: this.historial
+                    historial: this.historial,
+                    id_especialidad: this.id_esp
                 }
                 var esto = {
                   method: 'POST',
@@ -452,7 +488,7 @@ margin-right: 3%;
                     'Content-type' : "application/json"
                   }
                 };
-                fetch(this.url+'/paciente/vue_citas_paciente_historial',esto)
+                fetch(this.url+'/internaciones/vue_list_paciente_internacion',esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(resp => {

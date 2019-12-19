@@ -138,6 +138,7 @@ const consulta = new Vue({
             fetch(this.url+'/consulta_externa/vue_update_paciente_data/'+this.id_paciente,esto)
             .then(res => res.json())
             .then(data => {
+                console.log(data, " 22222222222222222222222222222222222222222222222222")
                 if(data.success == true){
                     swal.fire(                  //esto
                         'Confirmado',

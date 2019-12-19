@@ -2,9 +2,10 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
 <title>Administrador</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -25,6 +26,8 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
+<link href="/css/pdf.css" rel="stylesheet" type="text/css" />
 <style>
   .centerbtn{ 
       position:absolute; 
@@ -49,18 +52,19 @@
 			text-transform: uppercase;
 		}
 </style>
-    
+
 
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
   <div class="wrapper">
-    <div class="header_bar">
+    <div id="ocultoI" class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
       <div class="header_top_bar">
       <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="btn-group"> <a class="btn btn-success" href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <i class="fa fa-reply"></i> Salir</a> </div>
         <div class="top_right_bar">
          <!--  <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
@@ -76,7 +80,7 @@
     <!--\\\\\\\ header top bar end \\\\\\-->
     </div>
     <div class="inner">
-      <div class="left_nav">
+      <div id="ocultoI" class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
             <li style="display:block"><a href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a>
@@ -111,7 +115,7 @@
           </ul>
         </div>
       </div>
-      <div class="contentpanel">
+      <div  id= "sinMargen" class="contentpanel">
       <!--\\\\\\\ contentpanel start\\\\\\-->
 
         <!--\\\\\\\ container  start \\\\\\-->
@@ -120,24 +124,43 @@
           <div class="row">
             <div class="col-md-12">
               <div class="block-web">
-                <div class="header">
-                  <div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
-                  <h3 class="content-header ">Detalles del Médico</h3>
-                </div>
+                  <div id="" class="head  ">
+                      <div id="" class="actions ">
+                        <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                        <P class="dondeES"></P>
+                        <p class="telefo"></p>
+                        <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                       
+                        <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
+                      </div>
+                      <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                      <div class="dim2 posiondeImagen">.
+                        
+                        <img class="oculVistaReal "  src="/images/hospital1.png" />
+                        <p class="hospitali"></p>
+                      </div>
+                      <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->			
+                      <div id="ocultoI" class="header">
+                        <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
+                        <h3 class="content-header " style="color: black;">Reportes Médicos</h3>
+                      </div>
+                    </div>
                 <div class="porlets-content">
-                  <br>
-                  <br>
+                  <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                  <h5 class=" ordendetitulo tituloo text-center"></h5>
+                  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<--> 
+                  
                   <!--<a class="btn btn-info"href="/cuaderno/volver_a_doctor"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>-->
                   <form class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                     <div class="form-group centera" >
                       <div class="col-sm-4 " style="width: 300px; margin: 0 auto;" >  
-                        <a @click="buscador(<%=id_cuaderno%>)" class="btn btn-primary btn-icon" v-if="!buscar.lists.length" >Buscar Doctor  <span>&nbsp;</span><i class="fa fa-search"></i></a>
+                        <a id="ocultoI" @click="buscador(<%=id_cuaderno%>)" class="btn btn-primary btn-icon" v-if="!buscar.lists.length" >Buscar Doctor  <span>&nbsp;</span><i class="fa fa-search"></i></a>
                         <ul class="list-group" v-else>
                           <li class="list-group-item">
                               <input type="text" placeholder="buscar" class="form-control" v-model="buscar.name">
                           </li>
                           <li v-for="item in search" class="list-group-item">
-                              <a :href="'/cuaderno/alldataDoctor/'+item.id+'/'+item.idCuaderno">{{item.nombre.split("/")[0]}}</a>                                
+                              <a :href="'/cuaderno/alldataDoctor/'+item.id+'/'+item.idCuaderno+'/<%=data_doc.data.token_id%>'">{{item.nombre.split("/")[0]}}</a>                                
                           </li>
                           <button @click="deleteList" type="button" class="close" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
@@ -149,42 +172,53 @@
                     <br>
                     <div class="form-group">
                       <div class="col-sm-4 uppercase">
-                        <strong>COMPLETO DEL MEDICO </strong><span>&nbsp;</span><br>
+                        <strong>COMPLETO DEL MEDICO : </strong><span>&nbsp;</span><br>
                         <label  class="control-label"><%=resp[0].nombre.split("/")[0]%> </label>
                       </div>
                       
                       <div class="col-sm-4 uppercase">
-                        <strong>MEDICO </strong><span>&nbsp;</span><br>
+                        <strong>MEDICO : </strong><span>&nbsp;</span><br>
                         <label class="control-label"><%=resp[0].TDoctor%></label>
                       </div>
                       <div class="col-sm-4 uppercase">
-                        <strong>ENFERMERA </strong><span>&nbsp;</span><br>
+                        <strong>ENFERMERA : </strong><span>&nbsp;</span><br>
                         <label class="control-label"><%=resp[0].enfermera%></label>
                       </div>
                     </div>
                     <br>
                     <div class="form-group">
+                        
                       <div class="col-sm-4">
-                        <strong>FECHA DE ESTADIA DEL DOCTOR</strong><span>&nbsp;</span><br>
-                        <select  class="form-control" id="source" v-model="id" @click="mostrar(<%=resp[0].id%>)"> <br>
+                        <strong>FECHA DE ESTADIA DEL MEDICO :<span>&nbsp;</span><br>
+                        <select id="ocultoI"  class="form-control" id="source" v-model="id" @click="mostrar(<%=resp[0].id%>)" required placeholder="">
                             <option disabled="disabled" value>---Seleccione----</option>
+
                             <%for(var i = 0; i< resp[0].Fechas.length; i++) {%>
+                              <p class="oreden"></p>
                               <option value="<%=resp[0].Fechas[i].id%>"> Del <%=resp[0].Fechas[i].fechaini.split("T")[0]%> al <%=resp[0].Fechas[i].fechafin.split("T")[0]%> </option>
                             <%}%>
+                            
                         </select>
+                        <p></p>
+                        <%for(var i = 0; i< resp[0].Fechas.length; i++) {%>
+                          <p class="oreden"></p>
+                         
+                        <%}%>
                       </div>
+                      
                       <div class="col-sm-4">
-                        <strong>ESPECIALIDAD  </strong><span>&nbsp;</span><br>
+                        <strong>ESPECIALIDAD :  </strong><span>&nbsp;</span><br>
                         <label class="control-label">{{nombre_consultorio}}</label>
                       </div>
                     </div><!--/form-group--> 
+                    <div class="form-group">
+                        <div class="col-sm-offset-9 col-sm-10">
+                          <a id="ocultoI" onclick="window.print();" type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></a>
+                        </div>
+                      </div><!--/form-group-->
                   </form>
                 </div><!--/block-web--> 
-                <div class="form-group">
-                    <div class="col-sm-offset-9 col-sm-10">
-                      <button type="submit" class="btn btn-warning btn-icon"><i class="fa fa-print"></i><span>&nbsp;</span>Imprimir<span>&nbsp;</span></button>
-                    </div>
-                  </div><!--/form-group-->
+                
                   <br><br>
                 <div class="porlets-content">
                   <div class="table-responsive">
@@ -216,6 +250,61 @@
       </div>
     </div>
   </div>
+  <style scoped>
+      @media print{
+    
+        /* tamaño de página*/
+        @page {
+      
+        size: A4;
+        size: 11in 11in;
+      } 
+      .scrollV{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .scrollV1{
+        width: 100%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+      }	
+      .tituloo:before {  
+        content: " REPORTES MEDICOS" ;
+        
+        color:black;
+        font: small-caps 100%/200% serif;
+      }
+      .ordendetitulo{
+        position:static;
+        margin-top: 9%;
+      }
+      .tamm{
+        margin: 0%;
+        border: none;
+       
+        font: small-caps 100%/200% serif;
+        width: 25%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-spacing: 0;
+      }
+      #tr{
+        width: 5%;
+      }
+      /*<%for(var i = 0; i< resp[0].Fechas.length; i++) {%>*/
+      .oreden:before {
+  
+        content: " <%=resp[0].Fechas[i].fechaini.split("T")[0]%> al <%=resp[0].Fechas[i].fechafin.split("T")[0]%> " /**/;
+      
+        color:black;
+  
+      }
+      /*<%}%>*/
+    }
+  </style>    
+<script src="/js/fecha.js"></script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

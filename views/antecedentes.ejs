@@ -104,58 +104,58 @@
 												<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
 												<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
 												<template v-if="antecedente_one == ''">
-													<form @submit="reg_antecedentes" method="POST">
+													<form @submit="reg_antecedentes" method="POST" parsley-validate novalidate>
 														<div class="col-md-12">
 															<div class="col-sm-4">
 																<div class="entrada ">
-																	<label class=" ">N° de Historia:</label>
+																	<label class=" ">N° de Historia</label>
 																	<input value="<%=dataPaciente[0].numeroHistorial%>" class="form-control" readonly="" value="Read only text goes here">
 																</div>
 															</div>
 															<div class="col-sm-4">
 																<div class="entrada">
-																	<label class=" "> Paciente:</label>
+																	<label class=" "> Paciente</label>
 																	<input value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>" class="form-control" readonly="" value="Read only text goes here">
 																</div>
 															</div>
 															<div class="col-sm-4">
 																<div class="entrada">																		<label>Fecha:</label><br>
-																	<input type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
+																	<input required type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
 																</div>
 															</div>
 														</div>
 														<div class="col-md-12">			
 															<div class="col-sm-6">
 																<div class="entrada">
-																	<label>Antecedes de Familiares:</label> 
-																	<input type="text" size="20" class="form-control" v-model="familiares"><br>
+																	<label>Antecedes familiares</label> 
+																	<input required type="text" size="20" class="form-control" v-model="familiares"><br>
 																</div>
 															</div>
 															<div class="col-sm-6">
 																<div class="entrada">
-																	<label>Antecedes Patologicos:</label> 
-																	<input type="text"  size="20" class="form-control" v-model="personales_patologicos"><br>
+																	<label>Antecedes patológicos</label> 
+																	<input required type="text"  size="20" class="form-control" v-model="personales_patologicos"><br>
 																</div>
 															</div>
 														</div>
 														<div class="col-md-12">
 															<div class="col-sm-6">
 																<div class="entrada">
-																	<label>Antecedes no Patologicos:</label> <br>
-																	<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="personales_no_patologicos"><br>
+																	<label>Antecedes no patológicos</label> <br>
+																	<input required type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="personales_no_patologicos"><br>
 																</div>
 															</div>
 															<div class="col-sm-6">
 																<div class="entrada">
-																	<label>Gineco Obstetrico:</label> <br>
-																	<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="gineco_obstetrico"><br>
+																	<label>Gineco obstétrico:</label> <br>
+																	<input required type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="gineco_obstetrico"><br>
 																</div>
 															</div>
 														</div>
 														<div class="col-md-12">
 															<div class=" col-md-9">
-																<div class="entrada">Descripción:<br>
-																	<textarea class="large-compact" name="descripcion" cols="130" rows="3" v-model="descripcion"></textarea>
+																<div class="entrada">Descripción<br>
+																	<textarea required class="large-compact" name="descripcion" cols="130" rows="3" v-model="descripcion"></textarea>
 																</div>
 															</div><br>
 														</div>
@@ -191,59 +191,59 @@
 														<div class="col-md-12">
 															<div class="col-sm-4">
 																<div class="entrada ">
-																	<h6 class=" ">N° de Historia:</h6>
+																	<h6 class=" ">N° de Historia</h6>
 																	<input value="<%=dataPaciente[0].numeroHistorial%>" class="form-control" readonly="" value="Read only text goes here">
 																</div>
 															</div>
 															<div class="col-sm-4">
 																<div class="entrada">
-																	<h6 class=" ">Paciente:</h6>
+																	<h6 class=" ">Paciente</h6>
 																	<input value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>" class="form-control" readonly="" value="Read only text goes here">
 																</div>
 															</div>
 															<div class="col-sm-4">
 																<div class="entrada">
-																	<h6 class=" ">Fecha:</h6>
+																	<h6 class=" ">Fecha</h6>
 																	<input type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
 																</div>
 															</div>
 														</div>
 														<div class="col-md-12">
 															<div class="col-sm-6">
-																<div class="entrada">Antecedes de Familiares:<br>
+																<div class="entrada">Antecedes familiares<br>
 																	<input type="text" size="20" class="form-control" v-model="antecedente_one.familiares"><br>
 																</div>
 															</div>
 															<div class="col-sm-6">
-																<div class="entrada">Antecedes Patologicos:<br>
+																<div class="entrada">Antecedes patológicos<br>
 																	<input type="text"  size="20" class="form-control" v-model="antecedente_one.personales_patologicos"><br>
 																</div>
 															</div>
 														</div>
 														<div class="col-md-12">
 															<div class="col-sm-6">
-																<div class="entrada">Antecedes no Patologicos:<br>
+																<div class="entrada">Antecedes no patológicos<br>
 																	<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="antecedente_one.personales_no_patologicos"><br>
 																</div>
 															</div>
 															<div class="col-sm-6">
-																<div class="entrada">Gineco Obstetrico:<br>
+																<div class="entrada">Gineco obstétrico<br>
 																	<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="antecedente_one.gineco_obstetrico"><br>
 																</div>
 															</div>
 														</div>
 														<div class="col-md-12">
 															<div class=" col-md-9">
-																<div class="entrada">Descripción:<br>
+																<div class="entrada">Descripción<br>
 																	<textarea class="large-compact" name="descripcion" cols="130" rows="5" v-model="antecedente_one.descripcion"></textarea>
 																</div>
 															</div>
 														</div>
 														<p class="">
 															<template v-if="antecedente_one.estado_update == true">
-																<button type="submit" class="btn btn-success btn-raised"><i class="fa fa-refresh"></i> &nbsp;&nbsp;Guardar</button>
+																<button type="submit" class="btn btn-success btn-raised"><i class="fa fa-save"></i> &nbsp;&nbsp;Guardar</button>
 															</template>
-															<button  @click="antecedente_one = ''" type="button" class="btn btn-danger btn-raised"><i class="fa fa-reply"></i> &nbsp;&nbsp;Cancelar</button>
+															<button  @click="antecedente_one = ''" type="button" class="btn btn-info btn-raised"><i class="fa fa-reply"></i> &nbsp;&nbsp;Volver</button>
 														</p>
 													</form>
 												</template>
@@ -263,8 +263,8 @@
 																<tr>
 																<th>#</th>
 																<th>Antecedentes familiares</th>
-																<th>Antecedentes Patologicos</th>
-																<th>Atecedentes no Patologicos</th>
+																<th>Antecedentes patológicos</th>
+																<th>Atecedentes no patológicos</th>
 																<th>Opciones</th>
 																</tr>
 															</thead>
@@ -275,7 +275,7 @@
 																<td>{{list.personales_patologicos}}</td>
 																<td>{{list.personales_no_patologicos}}</td>
 																<td class="center">
-																	<a @click="one_antecedente(list.id)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-eye "></i></a>
+																	<a @click="one_antecedente(list.id)" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver Antecedentes"><i class="fa fa-eye "></i></a>
 																</td>
 																</tr>
 															<tbody>

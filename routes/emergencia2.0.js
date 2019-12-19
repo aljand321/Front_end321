@@ -1478,42 +1478,34 @@ router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial', (req,res) =>{
     fetch('http://localhost:3000/api/historial/'+id_cita) // esta ruta contienen dos tablas la consulta de emergencia y  la receta
     .then(resp => resp.json())
     .then( data => {
-      console.log(data, " <<<<<<<<<<<<<<< 1111111111111111111111111111111111111")
+     
       fetch('http://localhost:3000/api/onlyPaciente/'+data.Nhistorial)
       .then(resp => resp.json())
       .then(dataPaciente =>{ 
-        console.log(dataPaciente, " <<<<<<<<<<<<<<< 222222222222222222222222222222222222")
+       
         fetch('http://localhost:3000/api/InternacionEMG/'+data.id)
         .then(resp => resp.json())
         .then(Pinternacion =>{
-          console.log(Pinternacion, " <<<<<<<<<<<<<<< 333333333333333333333333333333333333333333333333")
+         
           fetch('http://localhost:3050/api/list_lab_emg/'+data.id)
           .then(resp => resp.json())
           .then(lab_emg =>{
-            console.log(lab_emg, " <<<<<<<<<<<<<<< 44444444444444444444444444444444444444444444444444444444444444444")
+            
             fetch('http://localhost:3000/api/OneCita/'+id_cita)
             .then(resp => resp.json())
-            .then(data_cita => {
-
-              console.log(data_cita, " <<<<<<<<<<<<<<< 44444444444444444444444444444444444444444444444444444444444444444")
+            .then(data_cita => {           
 
               fetch('http://localhost:3050/api/lista_Ecografia_emg/'+data.id+'/'+data.Nhistorial)
               .then(resp => resp.json())
-              .then(ecografias => {
-                
-                console.log(ecografias, " <<<<<<<<<<<<<<< 5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555")
-               
+              .then(ecografias => {               
+                             
                 fetch('http://localhost:3050/api/lista_rayosX_emg/'+data.id+'/'+data.Nhistorial)
                 .then(resp => resp.json())
-                .then(rayosX => {
-
-                  console.log(rayosX, " <<<<<<<<<<<<<<< 666666666666666666666666666666666666666666666666666666666666666666666666666666")
+                .then(rayosX => {                 
 
                   fetch('http://localhost:3050/api/lista_lab_emg/'+data.id+'/'+data.Nhistorial)
                   .then(resp => resp.json())
-                  .then(lab => {
-                    
-                    console.log(lab, " <<<<<<<<<<<<<<< 77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777")
+                  .then(lab => {                                   
 
                     res.render('emergencia2.0/ultimaConsulta',{
                       data,
@@ -1546,6 +1538,90 @@ router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial', (req,res) =>{
     res.redirect('/');
   }
 });
+
+router.get('/pacientes_no_atendidos/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3000/api/pacietnes_noAtendidos/'+data_user[token_id].data.medico.id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(citas => {
+      res.render('emergencia2.0/pacientes_no_atendidos',{
+        data_doc : data_user[token_id],
+        citas,
+        id_medico:data_user[token_id].data.medico.id
+      })
+    })
+   
+  }else{
+    res.redirect('/')
+  }
+})
+
+router.post('/Vue_pacientes_no_atendidos/:id_medico', (req,res) => {
+  const { id_medico } = req.params;
+  var data = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/pacientes_no_atendidos_emg/'+id_medico,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+  })
+})
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        Pacientes atendidos
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>
+*/
+router.get('/pacientes_atendidos/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3000/api/pacietnes_Atendidos/'+data_user[token_id].data.medico.id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(citas => {
+      res.render('emergencia2.0/paciente_atendidos',{
+        data_doc : data_user[token_id],
+        citas,
+        id_medico:data_user[token_id].data.medico.id
+      })
+    })
+   
+  }else{
+    res.redirect('/')
+  }
+})
+
+router.post('/Vue_pacientes_atendidos/:id_medico', (req,res) => {
+  const { id_medico } = req.params;
+  var data = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/pacientes_atendidos_emg/'+id_medico,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+  })
+})
+
 
 //laboratorio
 router.get('/examenComplement',(req,res) =>{

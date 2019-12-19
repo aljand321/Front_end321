@@ -141,8 +141,10 @@
                         </li>
 						<li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/consulta_externa/HistorialGeneral/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes </b>  </a> </li>
-								<li> <a href="/consulta_externa/ReporEnfermedades/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cons.</b>  </a> </li>
+								<li> <a href="/consulta_externa/pacietnes_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes atendidos</b>  </a> </li>
+								<li> <a href="/consulta_externa/pacietnes_no_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  >No atendidos</b>  </a> </li>
+								<li> <a href="/consulta_externa/historial_clinico/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
+								
 							</ul> 
 						</li>
 					</ul>
@@ -503,7 +505,7 @@
 															<template v-if="One_receta.estado == false">
 																<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> &nbsp;&nbsp;  Actualizar</button>&nbsp;&nbsp;
 															</template>&nbsp;&nbsp;
-															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=paciente_Data[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info " ><i class="fa fa-times"></i> Volver a consulta </a>
+															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=paciente_Data[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info " ><i class="fa fa-reply"></i> Volver a consulta </a>
 															
 															<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 													</div>
@@ -649,7 +651,7 @@
 				</div>
 			  <div class="modal-footer">
 				<div class="center">
-				  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  <a  href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 				</div>
 			  </div>

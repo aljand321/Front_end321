@@ -1,0 +1,331 @@
+<!DOCTYPE >
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Consulta</title>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/kalendar/kalendar.css" rel="stylesheet">
+    <link rel="stylesheet" href="/plugins/scroll/nanoscroller.css">
+    <link href="/plugins/morris/morris.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+    <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+    <%- include("../partials/head") -%>
+    <style>
+		div.a {
+			text-align: center;
+		}
+		h1.letras {
+			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+		}
+		.vertical-alignment-helper {
+            display:table;
+            height: 100%;
+            margin-left: 41%;
+        }
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+    <div class="wrapper" id="filter">
+        <div class="header_bar">
+            <div class="brand">
+                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+            </div>
+            <div class="header_top_bar">
+                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+                <div class="top_right_bar">
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
+                        <img src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <div class="top_pointer"></div>
+                            <li> <a href="javascript:void(0);"data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="inner">
+            <div class="left_nav">       
+                <div class="left_nav_slidebar">
+                    <ul>
+                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul >
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="">Listas de Consultas</b></a> </li>
+                            </ul>
+                        </li>
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                                <li> <a href="/consulta_externa/pacietnes_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes atendidos</b>  </a> </li>
+                                <li> <a href="/consulta_externa/pacietnes_no_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >No atendidos</b>  </a> </li>
+                                <li> <a href="/consulta_externa/historial_clinico/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Historial clinico</b> </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="contentpanel">
+                <div class="container clear_both padding_fix col-lg-8"><br>
+                    <div class="main-content ">
+                        <div class="col-lg-12 block-web "> 
+                            <div class="header">
+                                <h3 class="content-header "><div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div><span>&nbsp;&nbsp;&nbsp;</span>Reporte de Historiales clinicos</h3>
+                            </div>  <br> <br>
+                            <div class="col-md-12" data-date-format="mm/dd/yyyy" data-date="13/07/2013" class="input-group input-large">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Fecha de inicio</label>
+                                        <input v-model="fecha_inicio" type="date" name="from" class="form-control dpd1">
+                                    </div><!--/form-group--> 
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Fecha final</label>
+                                        <input v-model="fecha_final" type="date" name="to" class="form-control dpd2">
+                                    </div><!--/form-group-->
+                                </div>              
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Paciente <i class="fa fa-users"></i> </label>
+                                        <div class="row">
+                                            <v-select :options="lista_paciente" label="name" v-model="historial" placeholder="Nombre Paciente"></v-select>                                                                   
+                                        </div>
+                                    </div><!--/form-group-->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button @click="buscar()" type="button" value="Imprimir" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+                                            <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
+                                        </div>
+                                    </div><!--/form-group--> 
+                                </div>
+                            </div> 
+                            <!-- 
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                            tabla de citas del paciente
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                            -->
+                            <template v-if="list_paciente_f != ''">
+                                <div class="row">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                <th class="text-center">#</th>
+                                                <th class="" WIDTH="15%">N° de historia </th>
+                                                <th class="" WIDTH="20%">Nombre(s)</th>
+                                                <th class="" WIDTH="20%">Apellido paterno</th>
+                                                <th class="" WIDTH="20%">Apellido materno</th>	
+                                                <th class="" WIDTH="20%">Fecha de ingreso</th>	
+                                                <th class="" WIDTH="20%">Especialidad</th>	
+                                                <th class="text-center" WIDTH="20%">Opciones</th> 
+                                                </tr>                  
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(list, index) in list_paciente_f">
+                                                <td>{{index+1}}</td>
+                                                <td>{{list.codigo_p}}</td>
+                                                <td>{{list.Paciente.nombre}}</td>
+                                                <td>{{list.Paciente.apellidop}}</td>
+                                                <td>{{list.Paciente.apellidom}}</td>
+                                                <td>{{list.fecha}}</td>
+                                                <td>{{list.especialidad}}</td>
+                                                <td class="text-center" ><a :href="'/consulta_externa/historial_clinica/' +list.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>'" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>                            
+                                                </tr>        
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                            <template v-else >
+                                <div class="col-lg-12">
+                                    <div class="porlets-content">
+                                        <div class="table-responsive">
+                                            <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>N° Historial</th>
+                                                    <th>Nombre(s)</th>
+                                                    <th>Apellido paterno</th>
+                                                    <th>Apellido materno</th>
+                                                    <th>Fecha de atencion</th>
+                                                    <th>Consulta</th>
+                                                    <th>Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% for (var i = 0; i < list.length; i++) { %>
+                                                        <% if (list[i].especialidad != "CONSUL. EMERGENCIA") { %>
+                                                            <tr class="gradeX">
+                                                                <td><%=i+1%></td>
+                                                                <td><%=list[i].codigo_p%></td>
+                                                                <td><%=list[i].Paciente.nombre %></td>
+                                                                <td><%=list[i].Paciente.apellidop %></td>
+                                                                <td><%=list[i].Paciente.apellidom %></td>
+                                                                <td><%=list[i].createdAt.split('T')[0] %></td>
+                                                                <td><%=list[i].especialidad%></td>
+                                                                <td class="text-center">
+                                                                    <a href="/consulta_externa/historial_clinica/<%=list[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver historial"><i class="fa fa-eye"></i></a>
+                                                            </tr> 
+                                                        <% } %>
+                                                    <% } %>                                      
+                                                </tbody>
+                                            </table>
+                                        </div><!--/table-responsive-->
+                                    </div><!--/porlets-content-->                               
+                                </div><!--/block-web--> 
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+	<div class="vertical-alignment-helper">
+	  <div class="modal-dialog vertical-align-center modal-sm ">
+		<div class="modal-content">
+		  <br>
+			<div class="center">
+			  <i><img src="/images/salir.gif" width="100" height="100" /></i>
+			</div>
+			<div class="center">
+			  <h5><b>¿Cerrar Sesión?</b></h5>
+			</div>
+		  <div class="modal-footer">
+			<div class="center">
+			  <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+			  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div> 
+</div>
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+
+<script src="https://unpkg.com/vue@latest"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
+
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
+<script src="/moment/moment.js"></script>
+<script src="/moment/locale/af.js"></script>
+<script src="/url/export.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="/axios/dist/axios.min.js"></script>
+
+<script>
+    Vue.component('v-select', VueSelect.VueSelect)
+     const filter = new Vue({        
+        el:"#filter",
+        data:() => ({
+            url:data_url.url_front_end,
+            data:"aljand321",
+            lista_paciente:[],
+            historial:'',
+            fecha_inicio:'',
+            fecha_final:'',
+            list_paciente_f:''
+        }),
+        mounted(){
+
+            fetch(this.url+'/internaciones/Vue_Paciente_all')
+            .then(res => res.json())
+            .then(data => { 
+                console.log(data, "   33333333333")
+                for (var i = 0; i < data.length; i++){
+                    this.lista_paciente.push({
+                        name: data[i].nombre+' '+data[i].apellidop+' '+data[i].apellidom,
+                        historial: data[i].numeroHistorial                        
+                    })
+                }                
+            })
+        },
+        methods:{
+            buscar(){
+                var data_body = {
+                    historial: this.historial.historial,
+                    fecha_inicio: this.fecha_inicio,
+                    fecha_final: this.fecha_final
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data_body),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch(this.url+'/consulta_externa/vue_filter_cita_ficha', esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => { 
+                    console.log(data, " esto es le mensaje que quiero ver")
+                    if (data.success == false){
+                        swal.fire(
+                          'Error!',
+                          '<label style="color:red;">'+data.msg+'</label>',
+                          'error'
+                        )
+                    }else{
+                        var arr = []
+                        for (var i = 0; i < data.length; i++){
+                            if ( data[i].especialidad != "CONSUL. EMERGENCIA" ) {
+                                arr.push(data[i]) 
+                            }
+                        }
+                        if (arr == ""){
+                            swal.fire(
+                              'Error!',
+                              '<label style="color:red;">No hay nada que mostrar</label>',
+                              'error'
+                            )
+                        }else{
+                            this.list_paciente_f = arr
+                        }
+                        
+                    }
+                
+                })
+            }
+        }
+     })
+     
+     
+</script>
+
+</body>
+</html>
