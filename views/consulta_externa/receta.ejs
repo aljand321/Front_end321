@@ -36,6 +36,7 @@
 		margin: 0;
 	}
 	 #sinMargenR{
+		 page-break-inside: avoid;
 		top: 0%;
 		border: 0px;
 		padding-left: 0% ;
@@ -46,7 +47,7 @@
 	.ordendetitulo{
 		  position:static;
 		  margin-top: 6%;
-		  margin-left: 22%;
+		  margin-left: 20%;
 		  font: small-caps 170%/100% serif;
 	}
 	.bloque1{
@@ -66,7 +67,7 @@
 		  position: relative;
 		  float:left;
 
-		margin-left: 10%;
+		margin-left: 3%;
 	
 		  font: small-caps 100%/100% serif;
 	}
@@ -74,10 +75,23 @@
 		  position: absolute;
 		float:left;
 		margin-top: 0%;
-		margin-left: 22%;
+		margin-left: 0%;
 		  margin-bottom: 5%;
 		  font: small-caps 100%/100% serif;
 	}
+	.lista:before{
+		content: "LISTA DE MEDICAMENTOS";
+	}
+	.ordendetituloL{
+		  position:static;
+		  font: small-caps 150%/100% serif;
+	}
+	.acomodarFirmas{
+            position: static;
+            float:left;
+            width: 100%;
+	    	margin-top: 3%;
+        }
 	 
 }
 </style>
@@ -271,7 +285,7 @@
 												<!--- <textarea name="" id="" cols="70" rows="10">{{$data}}</textarea>  --> 
 												<template v-if="One_receta == ''">
 													<form @submit="post_recetas" method="POST">
-														<div class="col-md-12 ">
+														<div class="col-md-12 panel-body">
 															<!--  
 															   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>»
 															   <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>» 
@@ -384,15 +398,17 @@
 																		   </div>
 																	   </div>
 																	</div>
+																	
 															</div>
 														</div>
-														<div class="col-md-12 page-content ">
-															<div class="col-md-8 ">
+														<div class="col-md-12 ">
+															<div class="center">
 															 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
 															 <a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=paciente_Data[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger " ><i class="fa fa-times"></i> Cancelar </a>
 															</div>
 													 	</div>
 													</form>
+													
 												</template>
 												<template v-else>
 													<!--	
@@ -404,24 +420,26 @@
 														<!-- 
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 														 -->
-														<div class="block-web">
-															<div id="ocultoI" class="header">
+														<div class="block-web" id="ocultoI">
+															<div  class="header">
 																<div class="actions"> 
-																		<template v-if="One_receta.estado == false">
-																	<a @click="insertar_update" class="list-group-item  blue_bg text-center "><i class="fa fa-folder-open"></i> Insertar</a>
-																</template>
+																	<template v-if="One_receta.estado == false">
+																		<a @click="insertar_update" class="list-group-item  blue_bg text-center "><i class="fa fa-folder-open"></i> Insertar</a>
+																	</template>
 																</div><br>
 																<h3 class="content-header">Lista de Medicamentos </h3>
 															</div>										
 														</div>
-
+														<p class="lista ordendetituloL center"></p>
 														<!-- 
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 														 -->
 														 <div class="col-md-12 row tablaI">
 															<div class="" alt="">
 																
-				
+																<template v-if="One_receta.estado == false">
+
+																
 																<div id="ocultoI" class="col-sm-3 col-sm-6">
 																	<ul class="list-group">
 																		<div class="entrada">
@@ -461,6 +479,7 @@
 																		<input type="number" class="form-control" v-model="lista.cantidad" onkeyup="mayus(this);">   																					                                                    
 																	</div>
 																</div>
+															</template>
 																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																					lista de medicamentos
 																>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
@@ -478,7 +497,10 @@
 																						<th>Frecuencia</th>
 																						<th>Duración</th>
 																						<th>Cantidad</th>
-																						<th id="ocultoI">Quitar</th>
+																						<template v-if="One_receta.estado == false">
+																							<th id="ocultoI">Quitar</th>
+																						</template>
+																						
 																					</tr>
 																				</thead>
 																				<tbody v-for="(list, index) in One_receta.medicamentos">
@@ -490,9 +512,12 @@
 																						<td>{{list.frecuencia}}</td>
 																						<td>{{list.duracion}}</td>
 																						<td>{{list.cantidad}}</td>
-																						<td id="ocultoI">
-																							<a @click="eliminar_update(index)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-trash-o "></i></a>
-																						</td>
+																						<template v-if="One_receta.estado == false">
+																							<td id="ocultoI">
+																								<a @click="eliminar_update(index)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-trash-o "></i></a>
+																							</td>
+																						</template>
+																						
 																					</tr> 
 																				</tbody>
 																			  </table>
@@ -501,8 +526,9 @@
 																</div>	
 															</div>	
 														</div>
-														<div id="ocultoI" class="col-md-12"><br>
+														<div id="ocultoI" class="col-md-12 center"><br>
 															<template v-if="One_receta.estado == false">
+
 																<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> &nbsp;&nbsp;  Actualizar</button>&nbsp;&nbsp;
 															</template>&nbsp;&nbsp;
 															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=paciente_Data[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info " ><i class="fa fa-reply"></i> Volver a consulta </a>
@@ -510,10 +536,10 @@
 															<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 													</div>
 													<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-													<p class="firmaPa center cafirmaP"></p>
-													
-													<p class="firmaDoc center cafirmaDoc"></p></p>
-													
+													<div class="acomodarFirmas">
+														<p class="firmaPa center cafirmaP"></p>
+														<p class="firmaDoc center cafirmaDoc"></p></p>
+													</div>
 													<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 													
 													</form>
@@ -529,7 +555,7 @@
 																<th>De:</th>
 																<th>N° Historia</th>
 																<th>Fecha</th>
-																<th>Doctor</th>
+																<th>Médico</th>
 																<th class="text-center" WIDTH="20%">Opciones </th>
 															</tr>
 														</thead>
@@ -559,7 +585,7 @@
 								
 
 
-								<!-- Modal alergias -->
+								<!-- Modal recetas -->
 								<div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
