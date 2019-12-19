@@ -689,13 +689,13 @@
                                                                             </section>
                                                                           </div>      
                                                                           <%if (formUpdate_internacion[0].estado_update == true) {%>     
-                                                                            <p class="text-center ocultarIm">
+                                                                            <p class=" ocultarIm">
                                                                                 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                                                                 <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                                                                             </p>
                                                                         <% } %>
 
-															<a onclick="window.print();" id="ocultoI" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+															                <a onclick="window.print();" id="ocultoI" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
                                                                 </form>
                                                             <% } %>
                                                 </div>
@@ -882,13 +882,48 @@
     color:black;
     font: small-caps 100%/200% serif;
 }   
-/* <% } %> */    
+/* <% } %> */   
 .provieneE:before{
     content: "PROVIENE DE: <%=Pint[0].tipoConsulta%>";
+} 
+/*  <%if(formUpdate_internacion == "") { %>
+        
+*/
+
+.diagnostico1:before{
+    content: "DIAGNÓSTICO: <%=data_post.data.diagnostico%>";
 }
+
+.moveDiagnotico{
+    clear:both;
+    position: absolute;
+    width: 100%;
+    margin-left: 0%;   
+    padding-top: 1%;
+    top: 55%;
+	font: small-caps 100%/100% serif;
+}
+.observacion1:before{
+    content: "OBSERVACIÓN: <%=data_post.data.observacion%>";
+}
+.moveDiagnotico2{
+    position: static;
+    float: left;
+    width: 100%;
+    margin-left: 0%;   
+    padding-top: 1%;
+
+	font: small-caps 100%/100% serif;
+}
+/*
+
+ <% } else { %>
+*/
+
 .diagnostico1:before{
     content: "DIAGNÓSTICO: <%=formUpdate_internacion[0].diagnostico%>";
 }
+
 .moveDiagnotico{
     clear:both;
     position: absolute;
@@ -910,6 +945,9 @@
 
 	font: small-caps 100%/100% serif;
 }
+/*
+<% } %>
+*/
 .acomodarFirmas{
             position: static;
             float:left;

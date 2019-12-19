@@ -215,7 +215,7 @@
 					</ul>
 				</div>
             </div>
-            <div id="sinMargen" class="contentpanel">
+            <div id="sinMargen" class="contentpanel ">
                 <div class="container clear_both padding_fix ">
                     <br>                
                     <div class="row">
@@ -268,12 +268,25 @@
                                                         <p class="areaD bloque6"></p>
                                                         <p class="ubicacion bloque3"></p>
                                                         <p class="numCama bloque8"></p>
-
-                                                       
-
-                                                        
                                                         <p ></p>
                                                 </div>
+                                                <%if(epicrisis != "") { %>        
+                                                    <p class=" unidad1 fechaINTERNACION"></p>
+                                                    <p class=" unidad2  Fecha_alta"></p>
+                                                    <p class=" unidad3 datos_clinicos"></p>
+                                                    <p class=" unidad4 diagnostico_admicion"></p>
+                                                    <p class=" unidad5 diagnostico_egreso"></p>
+                                                    <p class=" unidad6 condicion_egreso"></p>
+                                                    <p class=" unidad7 causa_egreso"></p>
+                                                    <p class=" unidad8 examenes_complementario"></p>
+                                                    <p class=" unidad9 tratamiento_quirurgico"></p>
+                                                    <p class=" unidad10 tratamiento_medico"></p>
+                                                    <p class=" unidad11 complicaciones"></p>
+                                                    <p class=" unidad12 pronostico_vital"></p>
+                                                    <p class=" unidad13 pronostico_funcional"></p>
+                                                    <p class=" unidad14 control_tratamiento"></p>
+                                                    <p class=" unidad15 recomendaciones"></p>
+                                                <% } %>
                                                        
                                                 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
                                                 <h3 class="panel-title ocultarIm" > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente</a> </h3>
@@ -1079,8 +1092,7 @@
                                                 <div class="ocultarIm">
                                                     <button class="btn btn-primary" type="submit">Aceptar</button>
                                                     <button class="btn btn-default">Cancel</button>
-                                                    <a onclick="window.print();" id="ocultoI" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-                                                              
+                                                             
                                                 </div>
                                                 
                                             </form>
@@ -1097,7 +1109,7 @@
                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             -->
                             <div class="row" v-else>
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="ocultoI">
                                     <div class="block-web">
                                         <div class="header">
                                             <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
@@ -1110,11 +1122,8 @@
                                             <form @submit="update_epicrisis" parsley-validate novalidate>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-<p>dcajdcbjsdcbksdckdjckasdcdcjwdekcwjbekwjcbkwibjckwbj</p>
-                                                        <%if(epicrisis != "") { %>
-                                                            
-                                                            <h3>aquiiii <%=epicrisis[0].id%></h3>
-                                                        <% } %>
+
+                                                        
                                                         <label>FECHA INTERNACION: <%=one_internacion[0].fechaIngreso%></label>
                                                         <input type="text" readonly class='form-control' :value="data_one_epicrisis.Fecha_internacion">
                                                     </div><!--/form-group-->
@@ -1249,6 +1258,8 @@
                                                 <div >
                                                     <button :disabled="data_one_epicrisis.estado_update" class="btn btn-primary" type="submit">Submit</button>
                                                     <button :disabled="data_one_epicrisis.estado_update" class="btn btn-default">Cancel</button>
+                                                    <a onclick="window.print();" id="ocultoI" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+                                                    
                                                 </div>
                                                 
                                             </form>
@@ -1294,198 +1305,217 @@
     </div>
    <%- include("../partials/scripts") -%>
    <div id="hospital">
-    <style scoped>
-        @media print{
-            @page {
-            size:  A4 portrait;
-            margin: 0;
-            top:1%;
-            margin-left: 5%;
-            margin-right: 5%;
-        }
-        .titulo1:before {
-            content: " EPICRISIS";
-            font-weight: negrita;
-            color:black;
-            font: small-caps 60%/200% serif;
-        } 
-        .ordendetitulo{
-              position: absolute;
-              margin-top: 10%;
-              margin-left: 40%;
-              font: small-caps 170%/100% serif;
-        }
+<style scoped>
+    @media print{
+    /* datos de epicrisi*/
+    /* <%if(epicrisis != "") { %> */
+    .fechaINTERNACION:before{
+    content: "FECHA DE INTENACIÓN: <%=epicrisis[0].Fecha_internacion%>";
+    }
+    .Fecha_alta:before{
+    content: "FECHA DE ALTA: <%=epicrisis[0].Fecha_alta%>";
+    }
+    .datos_clinicos:before{
+    content: "DATOS CLÍNICOS: <%=epicrisis[0].datos_clinicos%>";
+    }
+    .diagnostico_admicion:before{
+    content: "DIAGNÓSTICO DE ADMICIÓN: <%=epicrisis[0].diagnostico_admicion%>";
+    }
+    .diagnostico_egreso:before{
+    content: "DIAGNÓSTICO DE EGRESO: <%=epicrisis[0].diagnostico_egreso%> ";
+    }
+    .condicion_egreso:before{
+    content: "CONDICIÓN DE EGRESO: <%=epicrisis[0].condicion_egreso%>";
+    }
+
+    .causa_egreso:before{
+    content: "CAUSAS DE EGRESO: <%=epicrisis[0].causa_egreso%>";
+    }
+    .examenes_complementario:before{
+    content: "EXAMENES COMPLENETAIOS: <%=epicrisis[0].examenes_complementario%>";
+    }
+    .tratamiento_quirurgico:before{
+    content: "TRATAMIENTO QUIRURGICO: <%=epicrisis[0].tratamiento_quirurgico%>";
+    }
+    .tratamiento_medico:before{
+    content: "TRATAMIENTO MÉDICO: <%=epicrisis[0].tratamiento_medico%>";
+    }
+    .complicaciones:before{
+    content: "COMPLICACIONES: <%=epicrisis[0].complicaciones%>";
+    }
+    .pronostico_vital:before{
+    content: "PRONOSTICO VITAL: <%=epicrisis[0].pronostico_vital%>";
+    }
+
+    .pronostico_funcional:before{
+    content: "PRONOSTICO FUNCIONAL: <%=epicrisis[0].pronostico_funcional%>";
+    }
+    .control_tratamiento:before{
+    content: "CONTROL DE TRATAMIENTO: <%=epicrisis[0].control_tratamiento%>";
+    }
+    .recomendaciones:before{
+    content: "RECOMENDACIONES: <%=epicrisis[0].recomendaciones%>";
+    }
+    /*<% } %> */
+      /* --------------orden de epicriis-----------------*/
+    .unidad1{
+        position: static;
+        float:left;
+        padding-top: 2%;
+        margin-left: 0%;
+        margin-right: 2%;
+        font: small-caps 61%/100% serif;
+       
+    }
+    .unidad2{
+        position: static;
+        float:left;
+        padding-top: 2%;
+        margin-left: 12%;
+        margin-right: 2%;
+        font: small-caps 61%/100% serif;
+    }
+    .unidad3{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+        margin-right: 2%;
+        font: small-caps 61%/100% serif;
+        text-align : justify;
+    }
+    .unidad4{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+        margin-right: 2%;
+        font: small-caps 61%/100% serif;
+        text-align : justify;
+    }
+    .unidad5{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+        width: 100%;
+        font: small-caps 61%/100% serif;
+        text-align : justify;
+    }
+    .unidad6{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+        width: 100%;
+        font: small-caps 61%/100% serif;
+        text-align : justify;
+    }
+    .unidad7{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+        width: 100%;
+        font: small-caps 61%/100% serif;
+        text-align : justify;
+    }
+    .unidad8{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+        
+        font: small-caps 61%/100% serif;
+        text-align : justify;
+    }
+    .unidad9{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+
+        font: small-caps 61%/100% serif;
+        text-align : justify;
+    }
+    .unidad10{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+        
+        font: small-caps 61%/100% serif;
+        text-align : justify;
+    }
+    .unidad11{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
     
-        .bloque1{
-            position: static;
-            float:left;
-               padding-top: 20%;
-               margin-left: 0%;
-               margin-right: 2%;
-            font: small-caps 100%/100% serif;
-        }
-        .bloque2{
-            position: absolute;
-            float:left;
-            padding-top: 25%;
-            margin-left: 0%;
-            margin-right: 0%;
-            font: small-caps 100%/100% serif;
-        }
-        .bloque4{
-            position: absolute;
-            float:left;
-               padding-top: 19%;
-               margin-left: 30%;
-               margin-right: 2%;
-            font: small-caps 100%/100% serif;
-        }
-        .bloque5{
-            position: absolute;
-            float:left;
-            margin-top: 19%;
-            margin-left: 59%;
-              margin-bottom: 2%;
-              font: small-caps 100%/100% serif;;
-        }
-        .bloque3{
-            position: static;
-            float:left;
-            margin-left: 0%;
-            padding-left: 2%;
-            padding-top:6%;
-            font: small-caps 100%/100% serif;
-        }
-        .bloque6{
-            clear:both;
-            position: static;
-            float:left;
-               padding-top: 6%;
-               margin-left: 0%;
-               margin-right: 2%;
-            font: small-caps 100%/100% serif;
-       }
-        .bloque7{
-            position: absolute;
-            float:left;
-               padding-top: 26%;
-               margin-left: 59%;
-               margin-right: 0%;
-            font: small-caps 100%/100% serif;
-        }
-        .bloque8{
-            position: static;
-            float:left;
-            margin-left: 0%;
-            padding-left: 4%;
-            padding-top:6%;
-            font: small-caps 100%/100% serif;
-        }
-        .bloque6C{
-            float: left;
-            width: 33%;
-            margin-left: 0%;   
-            padding-top: 1%;
-            font: small-caps 100%/100% serif;
-        }
+        text-align : justify;
+        font: small-caps 61%/100% serif;
+    }
+    .unidad12{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+       
+        text-align : justify;
+        font: small-caps 61%/100% serif;
+    }
+    .unidad13{
+        position: static;
+        float:left;
+        padding-top: 1%;
+        margin-left: 0%;
+  
+        text-align : justify;
+        font: small-caps 61%/100% serif;
+    }
+    .unidad14{
+        position: static;
+        float:left;
         
-            /*datos del paciente */  
-        .historialP:before {
-            content: "N° DE HISTORIAL: <%=data_paciente[0].numeroHistorial%>";
-            font-weight: negrita;
-            color:black;
-            font: small-caps 65%/200% serif;
-        }
-        .nombrePE:before {
-            content: "PACIENTE: <%=data_paciente[0].nombre%>  <%=data_paciente[0].apellidop%>  <%=data_paciente[0].apellidom%>";
-            font-weight: negrita;
-            color:black;
-            font: small-caps 65%/200% serif;
-        } 
-        .fechaNE:before {
-            content: "F. DE NACIEMIENTO: <%=data_paciente[0].fechanacimiento%>";
-            
-           font-weight: negrita;
-            color:black;
-            font: small-caps 65%/200% serif;
-        }
-        .sexo:before{
-            content: "SEXO: <%=data_paciente[0].fechanacimiento%>";
-            
-           font-weight: negrita;
-            color:black;
-            font: small-caps 65%/200% serif;
-        }
-        .ci:before{
-            content: "C.I.: <%=data_paciente[0].ci%>";
-           font-weight: negrita;
-            color:black;
-            font: small-caps 65%/200% serif;
-        }
-        
-         /*datos del consulta externa */  
-        .areaD:before {
-            content: "ARE DE: <%=one_internacion[0].especialidad%>";
-            
-            font-weight: negrita;
-            color:black;
-            font: small-caps 65%/200% serif;
-        } 
-        .ubicacion:before {
-            content: "UBICACIÓN: <%=one_internacion[0].Cama.Sala.descripcionSala%>";
-            font-weight: negrita;
-            color:black;
-            font: small-caps 65%/200% serif;
-        }   
-        
-        .numCama:before{
-            content: "N° DE CAMA: <%=one_internacion[0].Cama.numeroCama%>"+'{{data_one_epicrisis.complicaciones}}' ;
-            font-weight: negrita;
-            color:black;
-            font: small-caps 65%/200% serif;
-        }
-        .prueba:before{
-        content: "{{data_one_epicrisis.complicaciones}}";
-        }
-        .moveArriba{
-            position: static;
-           
-            margin: 0%;   
-            padding: 1%;
-            margin-bottom: 90;
-            font: small-caps 100%/100% serif;
-        }
-        
-        .acomodarFirmas{
-                    position: static;
-                    float:left;
-                    width: 100%;
-                    margin-top: 10%;
-                }
-                .tamañoletra2{
-            clear:both;
-            font-size: 10pt;
-        }
-      
-        }
-        .tamañoletra1{
-            clear:both;
-           position: static;
-            font-size: 8pt;
-            float: right;   
-        }
-    
-    
-        </style>
+        padding-top: 1%;
+        margin-left: 0%;
+     
+        text-align : justify;
+        font: small-caps 61%/100% serif;
+    }
+    .unidad15{
+        position: static;
+        float:left;
+       
+        padding-top: 1%;
+        margin-left: 0%;
+        text-align : justify;
+        font: small-caps 61%/100% serif;
+    }
+
+
+}    
+</style>
    </div>
     <style scoped>
     @media print{
-        @page {
+        @page:first  {
         size:  A4 portrait;
         margin: 0;
         top:1%;
+        margin-bottom: 1cm;
         margin-left: 5%;
         margin-right: 5%;
+    }
+    @page {
+        size:  A4 portrait;
+        margin-right: 1cm;
+        margin-left: 1cm;
+
+    }
+    .supertodoA{
+        page-break-inside: avoid;
     }
     .titulo1:before {
         content: " EPICRISIS";
@@ -1503,7 +1533,7 @@
     .bloque1{
         position: static;
         float:left;
-           padding-top: 20%;
+           padding-top: 18%;
            margin-left: 0%;
            margin-right: 2%;
         font: small-caps 100%/100% serif;
@@ -1511,7 +1541,7 @@
     .bloque2{
         position: absolute;
         float:left;
-        padding-top: 25%;
+        padding-top: 23%;
         margin-left: 0%;
         margin-right: 0%;
         font: small-caps 100%/100% serif;
@@ -1519,7 +1549,7 @@
     .bloque4{
         position: absolute;
         float:left;
-           padding-top: 19%;
+           padding-top: 17%;
            margin-left: 30%;
            margin-right: 2%;
         font: small-caps 100%/100% serif;
@@ -1527,7 +1557,7 @@
     .bloque5{
         position: absolute;
         float:left;
-        margin-top: 19%;
+        margin-top: 17%;
         margin-left: 59%;
           margin-bottom: 2%;
           font: small-caps 100%/100% serif;;
@@ -1552,7 +1582,7 @@
     .bloque7{
         position: absolute;
         float:left;
-           padding-top: 26%;
+           padding-top: 23%;
            margin-left: 59%;
            margin-right: 0%;
         font: small-caps 100%/100% serif;
@@ -1565,13 +1595,7 @@
         padding-top:6%;
         font: small-caps 100%/100% serif;
     }
-    .bloque6C{
-        float: left;
-        width: 33%;
-        margin-left: 0%;   
-        padding-top: 1%;
-        font: small-caps 100%/100% serif;
-    }
+  
     
         /*datos del paciente */  
     .historialP:before {
