@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
 	<title>Hospitalización</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
     <link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />
     <link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
@@ -17,32 +15,27 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<!--validaciones-->
-
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
-<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
-
+    <!--validaciones-->
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 	<style>
 		div.a {
 			text-align: center;
 		}
-
 		h1.letras {
 			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-
 		}
         .vertical-alignment-helper {
 			display:table;
@@ -56,25 +49,24 @@
 			text-align: center;
 		}
 	</style>
-
 </head>
-<script type="text/javascript">
-	// este scrip es para verificar si esta el token en local starge
-	var data = localStorage.getItem('data')
-	console.log(data)
-	if (data == null){
-		window.location.replace('/')
-    }
-    function delete_local_storage(){
-		console.log ("ssss")
-		localStorage.removeItem('data');
-		localStorage.removeItem('url');
-  	}
-  	setTimeout(()=>{
-  	  delete_local_storage()
-  	  //window.location.replace('/')
-  	},500000);
-</script>
+    <script type="text/javascript">
+        // este scrip es para verificar si esta el token en local starge
+        var data = localStorage.getItem('data')
+        console.log(data)
+        if (data == null){
+            window.location.replace('/')
+        }
+        function delete_local_storage(){
+            console.log ("ssss")
+            localStorage.removeItem('data');
+            localStorage.removeItem('url');
+        }
+        setTimeout(()=>{
+        delete_local_storage()
+        //window.location.replace('/')
+        },500000);
+    </script>
 <body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
 	<div class="wrapper" id="options" >
 		<div id="ocultoI" class="header_bar">
@@ -83,12 +75,8 @@
             </div>
 			<div class="header_top_bar">
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
 				<div class="top_right_bar">
-
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span>  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
-								class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname"> <span>&nbsp;&nbsp;</span>  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							<li> <a href="javascript:void(0);" data-target="#myModalCerrar" data-toggle="modal" ><i class="fa fa-power-off"></i> Salir</a> </li>
@@ -99,8 +87,6 @@
 		</div>
 		<div class="inner">
 			<div id="ocultoI" class="left_nav">
-
-				<!--\\\\\\\left_nav start \\\\\\-->
 				<div class="left_nav_slidebar">
 					<ul>
                         <li ><a href="/internaciones/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <%=data_doc.data.area_esp.nombre%>  </a></li>
@@ -123,7 +109,6 @@
                             <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Ordenes de Hospitalización /<span class="semi-bold"> Registro de Orden de Hospitalización</span></h2>
                         </div>	
                     </div>
-            
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -132,7 +117,6 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title" id="myModalLabel">Registro de Orden de Hospitalización</h4>
                                 </div>
-                                
                                 <div class="col-md-12">
                                     <div class="row">
                                         <section class="panel default blue_border vertical_border h1">
@@ -239,13 +223,11 @@
                                                 <th >Sala</th>	
                                                 <th >N° Cama</th>	
                                                 <th >Médico</th>
-
                                                 <th class="text-center" WIDTH="20%">Ver</th>  
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% if(paciente_internacion != null) { %>
-                                            
+                                            <% if(paciente_internacion != null) { %>                                            
                                                 <% for(var i=0; i< paciente_internacion.length; i++) { %>
                                                 <tr>
                                                     <td><%= i + 1 %></td>
@@ -257,8 +239,7 @@
                                                 
                                                     <!--  <td class="text-center" ><a href="/internaciones/only_pInternacion/<%=paciente_internacion[i].idPinternacion%>/<%=paciente_internacion[i].id_especialidad%>/<%=paciente_internacion[i].provieneDE%>/<%=paciente_internacion[i].historial %>/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="zmdi zmdi-refresh">ver</i></a></td> -->
                                                 
-                                                    <td class="text-center" >
-                                                            <a data-toggle="modal" data-target="#myModal" @click="one_papeleta_onternacion(<%=paciente_internacion[i].id%>)"   data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Hospitalización"><i class="fa fa-eye text-muted" style="color:rgb(19, 125, 224)"></i></a><span>&nbsp;</span>
+                                                    <td class="text-center" > <a data-toggle="modal" data-target="#myModal" @click="one_papeleta_onternacion(<%=paciente_internacion[i].id%>)"   data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Hospitalización"><i class="fa fa-eye text-muted" style="color:rgb(19, 125, 224)"></i></a><span>&nbsp;</span>
 
                                                 </tr>
                                                 <% } %>
@@ -509,7 +490,7 @@
                                                             </div>
                                                         </div>  
                                                     </div>
-                                                    <div class="col-md-12 panel-body" id="options">
+                                                   <!-- <div class="col-md-12 panel-body" id="options">
                                                         <div class="col-md-12 ">
                                                             <div class="col-md-4 bloque52">
                                                                 <div class="form-group label-floating" >
@@ -544,8 +525,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
+                                                    </div>-->
+                                                    <!--<div class="col-lg-12">
                                                         <section class="panel default blue_title h2">
                                                             <div class="panel-body">
                                                                 <ul class="nav nav-tabs" id="myTab">
@@ -557,9 +538,9 @@
                                                                         <div class="col-xs-12 ">
                                                                             <textarea readonly name="diagnostico" rows="8" class="form-control"><%=formUpdate_internacion[0].diagnostico%></textarea>
                                                                         </div>
-                                                                    </div>
+                                                                    </div>-->
                                                                 
-                                                                    <div class="col-md-12 panel-body" id="options">
+                                                                   <div class="col-md-12 panel-body" id="options">
                                                                         <div class="col-md-12 ">
                                                                             <div class="col-md-4 bloque6E">
                                                                                 <div class="form-group label-floating" >
@@ -610,32 +591,32 @@
                                                             </div> 
                                                             <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
                                                             <div class="col-lg-12 ocultarIm">
-                                                                            <section class="panel default blue_title h2">
-                                                                              
-                                                                              <div class="panel-body">
-                                                                                <ul class="nav nav-tabs ocultarIm" id="myTab">
-                                                                                  <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnóstico de prescripción</a></li>
-                                                                                  <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
-                                                                                </ul>
-                                                                               
-                                                                                <div class="tab-content" id="myTabContent">
-                                                                                  <div id="Tab1" class="tab-pane fade in active">
-    
-                                                                                    <div class="col-xs-12 ">
-                                                                                        <textarea name="diagnostico" rows="8" class="form-control"><%=formUpdate_internacion[0].diagnostico%></textarea>
-                                                                                    </div>
-                                                                                    
-                                                                                  </div>
-                                                                                  <div id="Tab2" class="tab-pane fade">
-                                                                                    <div class="col-xs-12 ">
-                                                                                        <textarea name="observacion"  rows="8" class="form-control"><%=formUpdate_internacion[0].observacion%></textarea>
-                                                                                       <!--  <textarea name="" id="" cols="30" ></textarea> -->
-                                                                                    </div>
-                                                                                  </div>
-                                                                                 
-                                                                                </div>
-                                                                              </div>
-                                                                            </section>
+                                                            <section class="panel default blue_title h2">
+                                                                
+                                                                <div class="panel-body">
+                                                                <ul class="nav nav-tabs ocultarIm" id="myTab">
+                                                                    <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnóstico de prescripción</a></li>
+                                                                    <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                </ul>
+                                                                
+                                                                <div class="tab-content" id="myTabContent">
+                                                                    <div id="Tab1" class="tab-pane fade in active">
+
+                                                                    <div class="col-xs-12 ">
+                                                                        <textarea name="diagnostico" rows="8" class="form-control"><%=formUpdate_internacion[0].diagnostico%></textarea>
+                                                                    </div>
+                                                                    
+                                                                    </div>
+                                                                    <div id="Tab2" class="tab-pane fade">
+                                                                    <div class="col-xs-12 ">
+                                                                        <textarea name="observacion"  rows="8" class="form-control"><%=formUpdate_internacion[0].observacion%></textarea>
+                                                                       
+                                                                    </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                </div>
+                                                            </section>
                                                                           </div>      
                                                                           <%if (formUpdate_internacion[0].estado_update == true) {%>     
                                                                             <p class=" ocultarIm">
