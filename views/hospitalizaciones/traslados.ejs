@@ -59,7 +59,7 @@
 </head>
 <body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
 	 <!-- Content page-->
-	<div class="wrapper">
+	<div class="wrapper" id="traslados">
         <!--\\\\\\\ wrapper Start \\\\\\-->
         <div class="header_bar">
             <!--\\\\\\\ header Start \\\\\\-->
@@ -160,7 +160,7 @@
 					</div>
             </div>
             <!--\\\\\\\left_nav end \\\\\\-->
-            <div class="contentpanel" id="traslados">
+            <div class="contentpanel" >
                 <!--\\\\\\\ contentpanel start\\\\\\-->
                 <div class="row">
 					<br>
@@ -175,7 +175,10 @@
                                         <div class="panel-heading"  >  
                                             <div class="actions">
                                             <h3 class="content-header pull-right text-top actions" ><span>&nbsp;&nbsp;&nbsp;</span>Formulario de traslado del paciente</h3>
-											   	
+                                                <%if(traslado != "" ) { %>
+                                                    
+                                                   <h1><%=traslado[0].nombre_doctor%></h1>
+                                                <% } %>
                                             </div>                                     
                                             <h3 class="panel-title" > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente </a> </h3>
                                         </div>
@@ -188,7 +191,7 @@
                                                     <input type="hidden" :value="idHist.hist = '<%=data_paciente[0].numeroHistorial%>'">
                                                     <input type="hidden" :value="idHist.id_medico = '<%=data_doc.data.medico.id%>'">
                                                     <input type="hidden" :value="idHist.id_cama = '<%=one_internacion[0].idCama%>'">
-
+                                                    
                                                     <%if(one_traslado == null) { %>
                                                         <input type="hidden" :value="idHist.id_paleta_internacion = '<%=one_internacion[0].idPinternacion%>'">
                                                     <% } else { %>
@@ -246,7 +249,7 @@
 				    			<div class="block-web">
 				    			  	<div class="header">
 				    					<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-				    					<h4 class="content-header">Formulario de traslado</h4>
+				    					<h4 class="content-header">Formulario de traslado </h4>
 				    			  	</div>
 				    			  	<div class="porlets-content">
                                         <span style="color: red">{{traslado.msg_false}}</span>

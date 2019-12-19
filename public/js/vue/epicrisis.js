@@ -130,6 +130,7 @@ var hospital = new Vue({
         .then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(data => { 
+            console.log(this.idHist.id_int, " esto es el id que quiero ver <<<<<<<<<<<<<<<<<<")
             this.data_one_epicrisis = data[0]
             console.log(data)
         }) 
