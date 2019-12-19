@@ -2,8 +2,9 @@
 <html lang="es">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Formulario de Internación</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+	<title>Hospitalización</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
@@ -102,248 +103,176 @@
 				<!--\\\\\\\left_nav start \\\\\\-->
 				<div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span	class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul >
-								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <%=data_doc.data.area_esp.nombre%>  <b ></b>
-                                    </a> 
-                                </li>
-							</ul>
-						</li>
-					
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Liatas de Pacientes <span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul class="opened" style="display:block">
-								<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-										<b class="theme_color" >Listas de Internación</b>
-                                    </a> 
-                                </li>
-                                <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                    <b >Pacientes Internados</b>
-                                    </a> 
-                                </li>
-                                <li> 
-									<a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-										<b >Pacientes de alta </b>
-									</a> 
-								</li>
-								<li> 
-									<a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-										<b >Traslados</b>
-									</a> 
-								</li>					
-							</ul>
-						</li>
-				
-
+                        <li ><a href="/internaciones/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <%=data_doc.data.area_esp.nombre%>  </a></li>
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Hospitalización<span class="plus"><i class="fa fa-plus"></i></span><span class="left_nav_pointer"></span> </a>
+                            <ul class="opened" style="display:block" >
+                                <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Listas de Hosp.</b></a> </li>
+                                <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Pacientes Hosp. </b> </a></li>
+                                <li><a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i><b >Pacientes de alta </b></a> </li>
+                                <li> <a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Traslados</b></a> </li>
+                            </ul>
+                        </li>
 					</ul>
 				</div>
-			</div>
-            <div id="sinMargenIN" class="contentpanel" > <br> <br>
-                 <!-- Modal -->
-                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel">Compose New Task</h4>
-                            </div>
-                            
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <section class="panel default blue_border vertical_border h1">
-                                        <div class="task-header blue_task">Fecha de ingreso <span><i class="fa fa-clock-o"></i>{{data_one_internacion.fechaIngreso}}</span> </div>
-                                        <div class="row task_inner inner_padding">
-                                            <div class="col-sm-12">
-                                                <p>Nombre doctor: {{data_one_internacion.doctor}}</p>
-                                                <p>Especialidad: {{data_one_internacion.especialidad}}</p>
-                                                <p>Sala: {{sala}}</p>
-                                                <p>Cama: {{numero_cama}}</p>
-                                            </div>   
-                                            <div class="col-sm-12">
-                                                <p>Diagnostico de prescripcion:</p>
-                                                <p>{{data_one_internacion.diagnostico}}</p>
-                                                <p>Observaciones:</p>
-                                                <p>{{data_one_internacion.observacion}}</p>
-                                            </div>                                         
-                                        </div>
-                                        
-                                    </section>
+            </div>
+            <div id="sinMargenIN"  class="contentpanel">
+                <div class="container clear_both padding_fix col-lg-8"><br>
+                    <div class="col-lg-12 block-web ocultarIm" > 
+                        <div class="header">
+                            <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
+                            <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Ordenes de Hospitalización /<span class="semi-bold"> Registro de Orden de Hospitalización</span></h2>
+                        </div>	
+                    </div>
+            
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Registro de Orden de Hospitalización</h4>
                                 </div>
-                            </div>    
-                           
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <section class="panel default blue_border vertical_border h1">
+                                            <div class="task-header blue_task">Fecha de ingreso <span><i class="fa fa-clock-o"></i>{{data_one_internacion.fechaIngreso}}</span> </div>
+                                            <div class="row task_inner inner_padding">
+                                                <div class="col-sm-12">
+                                                    <p><span class="semi-bold">Médico:</span> {{data_one_internacion.doctor}}</p>
+                                                    <p><span class="semi-bold">Especialidad:</span> {{data_one_internacion.especialidad}}</p>
+                                                    <p><span class="semi-bold">Sala:</span> {{sala}}</p>
+                                                    <p><span class="semi-bold">Cama:</span> {{numero_cama}}</p>
+                                                </div>   
+                                                <div class="col-sm-12">
+                                                    <p><span class="semi-bold">Diagnóstico de prescripción:</span></p>
+                                                    <p>{{data_one_internacion.diagnostico}}</p>
+                                                    <p> <span class="semi-bold">Observaciones:</span></p>
+                                                    <p>{{data_one_internacion.observacion}}</p>
+                                                </div>                                         
+                                            </div>
+                                            
+                                        </section>
+                                    </div>
+                                </div>   
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--  -->
-                <div class="row">
-                   
-                    <div class="col-lg-12 ocultarIm">
-                        
-                        
-                        <p class="titulo1 ordendetitulo"></p> 
-                        <section class="panel default blue_title h2 ocultarIm">
-                          
-                          <div class="panel-body">
+                    <!--  -->  
+                    <p class="titulo1 ordendetitulo"></p> 
+                    <section class="panel default blue_title h2 ocultarIm">
+                        <div class="panel-body">
                             <ul class="nav nav-tabs ocultarIm" id="myTab">
-                              <li class="active"><a data-toggle="tab" href="#Dpaciente">Datos del paciente</a></li>
-                              <li><a data-toggle="tab" href="#lista_c">Lista de consultas</a></li>
-                              
+                                <li class="active"><a data-toggle="tab" href="#Dpaciente">Registro de Hospitalización del paciente</a></li>
+                                <li><a data-toggle="tab" href="#lista_c">Lista de Hospitalización del paciente</a></li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                              <div id="Dpaciente" class="tab-pane fade in active ">
-                                    <section class="panel default blue_title h2"id="ocultoI">
-                                         
-                                            <div class="panel-body">
-
-                                                <div id="accordion" class="panel-group  accordion accordion-color border">
-                                                    
-                                                    <div class="panel panel-default">
-                                                      <div class="panel-heading success ocultarIm ">
-                                                          
-                                                        <h4 class="panel-title ">
-                                                          <a href="#collapse4" data-parent="#accordion" data-toggle="collapse" class="">
-                                                           Datos generales del paciente
-                                                          </a>
-                                                        </h4>
-                                                      </div>
-                                                    
-                                                      <div class="panel-collapse collapse in border" id="collapse4" style="height: auto;">
-                                                        <div class="panel-body">
-                                                                <div class="col-md-12 ">
-                                                                        <div class="">
-                                                                            <div class="col-md-6 ">
-                                                                                <div class="form-group label-floating " id="bloque3">
-                                                                                    <label class="control-label">N° Historial</label>
-                                                                                    <input class="form-control" name="historial" value="<%=Pint[0].Historial%>">
-                                                                                </div>
-                            
-                                                                                <%if(Pint[0].tipoConsulta == "emeregencia") { %>
-                                                                                   
-                                                                                <div class="form-group label-floating ">
-                                                                                    <label class="control-label">Fecha Nacimiento</label>
-                                                                                    <input class="form-control" type="text" readonly value="<%=Pint[0].emergencium.Citas_Medica.Paciente.fechanacimiento%>">    
-                                                                                </div>
-                                                                               
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group label-floating">
-                                                                                    <label class="control-label">Nombres y Apellidos</label>
-                                                                                    <input class="form-control" type="text" readonly value="<%=Pint[0].emergencium.Citas_Medica.Paciente.nombre%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidop%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidom%>">
-                                                                                </div>
-                                                                                <% }  else {%> 
-                                                                                    <div class="form-group label-floating">
-                                                                                        <label class="control-label">Fecha Nacimiento</label>
-                                                                                        <input class="form-control" type="text" readonly value="<%=Pint[0].Consulta.Citas_Medica.Paciente.fechanacimiento%>">    
-                                                                                    </div>
-                                                                                   
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group label-floating">
-                                                                                        <label class="control-label">Nombres y Apellidos</label>
-                                                                                        <input class="form-control" type="text" readonly value="<%=Pint[0].Consulta.Citas_Medica.Paciente.nombre%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidop%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidom%>">
-                                                                                    </div>
-                                                                                <% } %>    
-                            
-                                                                    
-                                                                                <div class="form-group label-floating">
-                                                                                    <label class="control-label">Proviene de:</label>
-                                                                                    <input class="form-control" name="provieneDE" value="<%=Pint[0].tipoConsulta%>">
-                                                                             
-                                                                                </div>               
-                                                                            </div>
-                                                                         </div>
-                                                                </div>
-                                                        </div>
-                                                      </div>
+                                <div id="Dpaciente" class="tab-pane fade in active ">
+                                    <section class="panel default blue_title h2"id="ocultoI"> 
+                                        <div class="panel-body">
+                                            <div id="accordion" class="panel-group  accordion accordion-color border">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading success ocultarIm ">  
+                                                        <h4 class="panel-title "><a href="#collapse4" data-parent="#accordion" data-toggle="collapse" class=""> Datos generales del paciente </a></h4>
                                                     </div>
-                                        
-                        
+                                                    <div class="panel-collapse collapse in border" id="collapse4" style="height: auto;">
+                                                        <div class="panel-body">
+                                                            <div class="col-md-12 ">
+                                                                <div class="">
+                                                                    <div class="col-md-6 ">
+                                                                        <div class="form-group label-floating " id="bloque3">
+                                                                            <label class="control-label">N° Historial</label>
+                                                                            <input class="form-control" name="historial" value="<%=Pint[0].Historial%>">
+                                                                        </div>
+                                                                        <%if(Pint[0].tipoConsulta == "emeregencia") { %>
+                                                                        <div class="form-group label-floating ">
+                                                                            <label class="control-label">Fecha Nacimiento</label>
+                                                                            <input class="form-control" type="text" readonly value="<%=Pint[0].emergencium.Citas_Medica.Paciente.fechanacimiento%>">    
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group label-floating">
+                                                                            <label class="control-label">Paciente</label>
+                                                                            <input class="form-control" type="text" readonly value="<%=Pint[0].emergencium.Citas_Medica.Paciente.nombre%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidop%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidom%>">
+                                                                        </div>
+                                                                        <% }  else {%> 
+                                                                        <div class="form-group label-floating">
+                                                                            <label class="control-label">Fecha Nacimiento</label>
+                                                                            <input class="form-control" type="text" readonly value="<%=Pint[0].Consulta.Citas_Medica.Paciente.fechanacimiento%>">    
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group label-floating">
+                                                                            <label class="control-label">Paciente</label>
+                                                                            <input class="form-control" type="text" readonly value="<%=Pint[0].Consulta.Citas_Medica.Paciente.nombre%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidop%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidom%>">
+                                                                        </div>
+                                                                        <% } %>  
+                                                                        <div class="form-group label-floating">
+                                                                            <label class="control-label">Proviene </label>
+                                                                            <input class="form-control" name="provieneDE" value="<%=Pint[0].tipoConsulta%>">
+                                                                        </div>               
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                      
-                                                      
-                                            </div>
-                                        </section>
-                              </div>
-                              <div id="lista_c" class="tab-pane fade">
-                                 <!-- 
+                                            </div>         
+                                        </div>
+                                    </section>
+                                </div>
+                                <div id="lista_c" class="tab-pane fade">
+                                    <!-- 
                                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                                                             lISTA DE INTERNACIONES DEL PACIENTE
                                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                 -->
+                                    -->
+                                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th >N° de historia </th>
+                                                <th >Fecha de Internacion</th>	
+                                                <th >Sala</th>	
+                                                <th >N° Cama</th>	
+                                                <th >Médico</th>
 
-                                
-                             
-                             
-                                <div class="col-lg-12">
-                                        <section class="panel default red_border vertical_border h1">
-                                            <div class="block-web">
-                                                <div class="header">
-                                                    <div class="actions"> <a href="#" class="minimize"><i class="fa fa-chevron-down"></i></a> <a href="#" class="refresh"><i class="fa fa-repeat"></i></a> <a href="#" class="close-down"><i class="fa fa-times"></i></a> </div>
-                                                    <h3>Lista de Internacines del paciente</h3>
-                                                </div>
-                                                <div class="porlets-content">
+                                                <th class="text-center" WIDTH="20%">Ver</th>  
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% if(paciente_internacion != null) { %>
+                                            
+                                                <% for(var i=0; i< paciente_internacion.length; i++) { %>
+                                                <tr>
+                                                    <td><%= i + 1 %></td>
+                                                    <td><%=paciente_internacion[i].historial %></td>
+                                                    <td><%=paciente_internacion[i].fechaIngreso %></td>
+                                                    <td><%=paciente_internacion[i].Cama.Sala.descripcionSala %></td>
+                                                    <td><%=paciente_internacion[i].Cama.numeroCama %></td>
+                                                    <td><%=paciente_internacion[i].doctor %></td>
                                                 
-                                                    <div class="container-fluid">
-                                                        <div class="row">
-
-                                                            <div class="col-xs-12">
-                                                                <table class="display table table-bordered table-striped" id="dynamic-table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th class="text-center">#</th>
-                                                                            <th >N° de historia </th>
-                                                                            <th >Fecha de Internacion</th>	
-                                                                            <th >Sala</th>	
-                                                                            <th >N° Cama</th>	
-                                                                            <th >Doctor</th>
-
-                                                                            <th class="text-center" WIDTH="20%">Ver</th>  
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <% if(paciente_internacion != null) { %>
-                                                                        
-                                                                            <% for(var i=0; i< paciente_internacion.length; i++) { %>
-                                                                            <tr>
-                                                                                <td><%= i + 1 %></td>
-                                                                                <td><%=paciente_internacion[i].historial %></td>
-                                                                                <td><%=paciente_internacion[i].fechaIngreso %></td>
-                                                                                <td><%=paciente_internacion[i].Cama.Sala.descripcionSala %></td>
-                                                                                <td><%=paciente_internacion[i].Cama.numeroCama %></td>
-                                                                                <td><%=paciente_internacion[i].doctor %></td>
-                                                                            
-                                                                               <!--  <td class="text-center" ><a href="/internaciones/only_pInternacion/<%=paciente_internacion[i].idPinternacion%>/<%=paciente_internacion[i].id_especialidad%>/<%=paciente_internacion[i].provieneDE%>/<%=paciente_internacion[i].historial %>/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="zmdi zmdi-refresh">ver</i></a></td> -->
-                                                                            
-                                                                                <td class="text-center" ><a data-toggle="modal" data-target="#myModal" @click="one_papeleta_onternacion(<%=paciente_internacion[i].id%>)" class="btn btn-success"><i class="zmdi zmdi-refresh">ver</i></a></td>
-                                                                            </tr>
-                                                                            <% } %>
-                                                                        <% } else { %>
-                                                                            <tr>
-                                                                                <td> no hay datos </td>
-                                                                            </tr>
-                                                                        <% } %>							
-                                                                    </tbody>
-                                                                </table>     
-                                                            </div>
-                                                        </div>
-                                                    </div>                                                                 
+                                                    <!--  <td class="text-center" ><a href="/internaciones/only_pInternacion/<%=paciente_internacion[i].idPinternacion%>/<%=paciente_internacion[i].id_especialidad%>/<%=paciente_internacion[i].provieneDE%>/<%=paciente_internacion[i].historial %>/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="zmdi zmdi-refresh">ver</i></a></td> -->
                                                 
-                                                </div>
-                                            </div>
-                                        </section>
+                                                    <td class="text-center" >
+                                                            <a data-toggle="modal" data-target="#myModal" @click="one_papeleta_onternacion(<%=paciente_internacion[i].id%>)"   data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Hospitalización"><i class="fa fa-eye text-muted" style="color:rgb(19, 125, 224)"></i></a><span>&nbsp;</span>
+
+                                                </tr>
+                                                <% } %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td> no hay datos </td>
+                                                </tr>
+                                            <% } %>							
+                                        </tbody>
+                                    </table>     
                                 </div>
-                              </div>
-                              
                             </div>
-                          </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
                    
                     <!-- 
                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -353,16 +282,15 @@
                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                      -->
-                    <div class="col-lg-12">
-                        
+                    <div class="col-lg-12"> 
                       <section class="panel green_border horizontal_border_2">
                         <div class="block-web">
                             <div id="" class="head  ">
                                 <div id="" class="actions ">
-                                   <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-                                   <P class="dondeES"></P>
-                                   <p class="telefo"></p>
-                                   <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
+                                    <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
+                                    <P class="dondeES"></P>
+                                    <p class="telefo"></p>
+                                    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->	
                                     <p class="fechaI" name="fechaConsulta" id="Fecha_Reloj"  readonly=""  cols="23" rows="1,9px" ></p>
                                 </div>
                                 <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
@@ -377,333 +305,290 @@
                             </div>
                             <!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
 							<h5 class="titulo1 ordendetitulo  text-center"></h5>
-							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-							
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->							
                             <div class="porlets-content">
-                                    <div class="container-fluid">
-                                            <div class="row">
-                                                
-                                                <div class="col-xs-12">
-                                                        
-                                                        <%if(formUpdate_internacion == "") { %>
-                                                            <%if (data_post == null) {%>
-                                                                
-                                                            <form action="/internaciones/internacion/<%=Pint[0].id%>/<%=Pint[0].id_especialidad%>/<%=data_doc.data.token_id%>" method="POST">
-        
-                                                                <input type="hidden" name="id_especialidad" value="<%=data_doc.data.area_esp.id%>">
-                                                                <input type="hidden" name="id_user" value="<%=data_doc.data.medico.id%>">
-                                                                <input type="hidden" name="historial" value="<%=Pint[0].Historial%>">
-                                                                <input type="hidden" name="provieneDE" value="<%=Pint[0].tipoConsulta%>">
-        
-                                                                <h2 class="text-center all-tittles">FORMULARIO DE INTERNACIÓN</h2>
-
-                                                                <div class="col-md-12 panel-body">
-                                                                    <div class="col-md-12">
-                                                                        <div class="col-md-6">                               
-                                                                            <div class="form-group">
-                                                                                <label class="control-label">Fecha de Ingreso a Sala</label>
-                                                                                <input class="form-control" type="text" readonly name="fechaIngreso" :value="fecha_Registro">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-xs-6">
-                                                                            <div class="form-group ">
-                                                                                <label class="control-label">Nombre Doctor</label>
-                                                                                <input class="form-control" readonly type="text" name="doctor" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>  
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <%if(formUpdate_internacion == "") { %>
+                                                <%if (data_post == null) {%>
+                                                <form action="/internaciones/internacion/<%=Pint[0].id%>/<%=Pint[0].id_especialidad%>/<%=data_doc.data.token_id%>" method="POST">
+                                                    <input type="hidden" name="id_especialidad" value="<%=data_doc.data.area_esp.id%>">
+                                                    <input type="hidden" name="id_user" value="<%=data_doc.data.medico.id%>">
+                                                    <input type="hidden" name="historial" value="<%=Pint[0].Historial%>">
+                                                    <input type="hidden" name="provieneDE" value="<%=Pint[0].tipoConsulta%>">
+                                                    <h2 class="text-center all-tittles">FORMULARIO DE INTERNACIÓN</h2>
+                                                    <div class="col-md-12 panel-body">
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-6">                               
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Fecha de Ingreso a Sala</label>
+                                                                    <input class="form-control" readonly type="text" name="fechaIngreso" :value="fecha_Registro">
                                                                 </div>
-                                                            
-                                                                <div class="col-md-12 panel-body" >
-                                                                    <div class="col-md-12">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group label-floating" >
-                                                                                <label class="control-label"  >Especialidad</label>
-                                                                                <select class="form-control" name="especialidad"  v-model="mensaje" @click="agregar">
-                                                                                    <option value="" disabled>Selecione</option>
-                                                                                    <option><%=Pint[0].especialidad%></option>                                                                                                  
-                                                                                </select>                                      
-                                                                            </div>
-                                                                        </div>                                                
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group label-floating" >
-                                                                                <label class="control-label">Descricion</label>
-                                                                                <select class="form-control" name="sala" v-model="salaID" @click="traer">  
-                                                                                    <option value="" disabled>Selecione</option>                                                              
-                                                                                    <option v-for="item in mostrar" :value="item.id">{{item.descripcionSala}}</option>
-                                                                                </select>
-                                                                            </div>
+                                                            </div>
+                                                            <div class="col-xs-6">
+                                                                <div class="form-group ">
+                                                                    <label class="control-label">Médico</label>
+                                                                    <input class="form-control" readonly type="text" name="doctor" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>">
+                                                                </div>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="col-md-12 panel-body" >
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating" >
+                                                                    <label class="control-label"  >Especialidad</label>
+                                                                    <select class="form-control" name="especialidad"  v-model="mensaje" @click="agregar">
+                                                                        <option value="" disabled>Selecione</option>
+                                                                        <option><%=Pint[0].especialidad%></option>                                                                                                  
+                                                                    </select>                                      
+                                                                </div>
+                                                            </div>                                                
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating" >
+                                                                    <label class="control-label">Descricion</label>
+                                                                    <select class="form-control" name="sala" v-model="salaID" @click="traer">  
+                                                                        <option value="" disabled>Selecione</option>                                                              
+                                                                        <option v-for="item in mostrar" :value="item.id">{{item.descripcionSala}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">                                                    
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Cama</label>
+                                                                    <select class="form-control" name="cama">   
+                                                                        <option value="" disabled>Selecione</option>
+                                                                        <option v-for="item of camas" :value="item.id" >Cama N° {{item.numeroCama}}</option>                                                            
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <section class="panel default blue_title h2">
+                                                            <div class="panel-body">
+                                                                <ul class="nav nav-tabs" id="myTab">
+                                                                    <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnóstico de prescripción</a></li>
+                                                                    <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                </ul>
+                                                                <div class="tab-content" id="myTabContent">
+                                                                    <div id="Tab1" class="tab-pane fade in active">
+                                                                        <div class="col-xs-12 ">
+                                                                            <textarea name="diagnostico" rows="8"  class="form-control"></textarea>
+                                                                        </div>                                                       
+                                                                    </div>
+                                                                    <div id="Tab2" class="tab-pane fade">
+                                                                        <div class="col-xs-12 ">
+                                                                            <textarea name="observacion" rows="8"  class="form-control"></textarea>
                                                                         </div>
-                                                                        <div class="col-md-4">                                                    
-                                                                            <div class="form-group label-floating">
-                                                                                <label class="control-label">Cama</label>
-                                                                                <select class="form-control" name="cama">   
-                                                                                    <option value="" disabled>Selecione</option>
-                                                                                    <option v-for="item of camas" :value="item.id" >Cama N° {{item.numeroCama}}</option>                                                            
-                                                                                </select>
-                                                                            </div>
-                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-lg-12">
-                                                                        <section class="panel default blue_title h2">
-                                                                          
-                                                                          <div class="panel-body">
-                                                                            <ul class="nav nav-tabs" id="myTab">
-                                                                              <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
-                                                                              <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
-                                                                              
-                                                                            </ul>
-                                                                            <div class="tab-content" id="myTabContent">
-                                                                              <div id="Tab1" class="tab-pane fade in active">
-
-                                                                                <div class="col-xs-12 ">
-                                                                                    <textarea name="diagnostico" rows="8"  class="form-control"></textarea>
-                                                                                </div>
-                                                                                
-                                                                              </div>
-                                                                              <div id="Tab2" class="tab-pane fade">
-                                                                                <div class="col-xs-12 ">
-                                                                                    <textarea name="observacion" rows="8"  class="form-control"></textarea>
-                                                                                </div>
-                                                                              </div>
-                                                                             
-                                                                            </div>
-                                                                          </div>
-                                                                        </section>
-                                                                      </div>           
-                                                                <p class="text-center">
-                                                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                                </p>
-                                                            </form>
-
-                                                            <% } else { %>
-                                                                <form action="/internaciones/internacion/<%=Pint[0].id%>/<%=Pint[0].id_especialidad%>/<%=data_doc.data.token_id%>" method="POST">
-        
-                                                                    <input type="hidden" name="id_especialidad" value="<%=data_doc.data.area_esp.id%>">
-                                                                    <input type="hidden" name="id_user" value="<%=data_doc.data.token_id%>">
-                                                                    <input type="hidden" name="historial" value="<%=Pint[0].Historial%>">
-                                                                    <input type="hidden" name="provieneDE" value="<%=Pint[0].tipoConsulta%>">
-            
-                                                                    <h2 class="text-center all-tittles">FORMULARIO DE INTERNACIÓN</h2>
-                                                                
-                                                                       
-                                                                    <div class="col-md-12 panel-body">
-                                                                        <div class="col-md-12">
-                                                                            <div class="col-md-6">                               
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">Fecha de Ingreso a Sala</label>
-                                                                                    <input class="form-control" type="text" name="fechaIngreso" :value="fecha_Registro">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-xs-6">
-                                                                                <div class="form-group ">
-                                                                                    <label class="control-label">Nombre Doctor</label>
-                                                                                    <input class="form-control" readonly type="text" name="doctor" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>  
+                                                            </div>
+                                                        </section>
+                                                    </div>           
+                                                    <p class="text-center">
+                                                        <button  type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
+                                                        <button type="reset" class="btn btn-danger" style="margin-right: 20px;"><i class='fa fa-times'></i> &nbsp;&nbsp; Cancelar</button>
+                                                    </p>
+                                                </form>
+                                                <% } else { %>
+                                                <form action="/internaciones/internacion/<%=Pint[0].id%>/<%=Pint[0].id_especialidad%>/<%=data_doc.data.token_id%>" method="POST">
+                                                    <input type="hidden" name="id_especialidad" value="<%=data_doc.data.area_esp.id%>">
+                                                    <input type="hidden" name="id_user" value="<%=data_doc.data.token_id%>">
+                                                    <input type="hidden" name="historial" value="<%=Pint[0].Historial%>">
+                                                    <input type="hidden" name="provieneDE" value="<%=Pint[0].tipoConsulta%>">
+                                                    <h2 class="text-center all-tittles">FORMULARIO DE INTERNACIÓN</h2>
+                                                    <div class="col-md-12 panel-body">
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-6">                               
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Fecha de Ingreso a Sala</label>
+                                                                    <input class="form-control" readonly type="text" name="fechaIngreso" :value="fecha_Registro">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6">
+                                                                <div class="form-group ">
+                                                                    <label class="control-label">Médico</label>
+                                                                    <input class="form-control" readonly type="text" name="doctor" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>">
+                                                                </div>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="col-md-12 panel-body" id="options">
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating" >
+                                                                    <label class="control-label"  >Especialidad</label>
+                                                                    <select class="form-control" name="especialidad"  v-model="mensaje" @click="agregar">
+                                                                        <option value="" disabled>Selecione</option>
+                                                                        <option><%=Pint[0].especialidad%></option>                                                                                                  
+                                                                    </select>                                      
+                                                                </div>
+                                                            </div>                                                
+                                                            <div class="col-md-4">
+                                                                <div class="form-group label-floating" >
+                                                                    <label class="control-label">Descricion</label>
+                                                                    <select class="form-control" name="sala" v-model="salaID" @click="traer">  
+                                                                        <option value="" disabled>Selecione</option>                                                              
+                                                                        <option v-for="item in mostrar" :value="item.id">{{item.descripcionSala}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">                                                    
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Cama</label>
+                                                                    <select class="form-control" name="cama">   
+                                                                        <option value="" disabled>Selecione</option>
+                                                                        <option v-for="item of camas" :value="item.id" >Cama N° {{item.numeroCama}}</option>                                                            
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <section class="panel default blue_title h2"> 
+                                                            <div class="panel-body">
+                                                                <ul class="nav nav-tabs" id="myTab">
+                                                                    <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
+                                                                    <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                </ul>
+                                                                <div class="tab-content" id="myTabContent">
+                                                                    <div id="Tab1" class="tab-pane fade in active">
+                                                                        <div class="col-xs-12 ">
+                                                                            <textarea name="diagnostico" rows="8"  class="form-control"><%=data_post.data.diagnostico%></textarea>
+                                                                        </div>                                                               
                                                                     </div>
-                                                                
-                                                                    <div class="col-md-12 panel-body" id="options">
-                                                                        <div class="col-md-12">
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group label-floating" >
-                                                                                    <label class="control-label"  >Especialidad</label>
-                                                                                    <select class="form-control" name="especialidad"  v-model="mensaje" @click="agregar">
-                                                                                        <option value="" disabled>Selecione</option>
-                                                                                        <option><%=Pint[0].especialidad%></option>                                                                                                  
-                                                                                    </select>                                      
-                                                                                </div>
-                                                                            </div>                                                
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group label-floating" >
-                                                                                    <label class="control-label">Descricion</label>
-                                                                                    <select class="form-control" name="sala" v-model="salaID" @click="traer">  
-                                                                                        <option value="" disabled>Selecione</option>                                                              
-                                                                                        <option v-for="item in mostrar" :value="item.id">{{item.descripcionSala}}</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">                                                    
-                                                                                <div class="form-group label-floating">
-                                                                                    <label class="control-label">Cama</label>
-                                                                                    <select class="form-control" name="cama">   
-                                                                                        <option value="" disabled>Selecione</option>
-                                                                                        <option v-for="item of camas" :value="item.id" >Cama N° {{item.numeroCama}}</option>                                                            
-                                                                                    </select>
-                                                                                </div>
-                                                                             </div>
+                                                                    <div id="Tab2" class="tab-pane fade">
+                                                                        <div class="col-xs-12 ">
+                                                                            <textarea name="observacion" rows="8"  class="form-control"><%=data_post.data.observacion%></textarea>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-lg-12">
-                                                                            <section class="panel default blue_title h2">
-                                                                              
-                                                                              <div class="panel-body">
-                                                                                <ul class="nav nav-tabs" id="myTab">
-                                                                                  <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
-                                                                                  <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
-                                                                                  
-                                                                                </ul>
-                                                                                <div class="tab-content" id="myTabContent">
-                                                                                  <div id="Tab1" class="tab-pane fade in active">
-    
-                                                                                    <div class="col-xs-12 ">
-                                                                                        <textarea name="diagnostico" rows="8"  class="form-control"><%=data_post.data.diagnostico%></textarea>
-                                                                                    </div>
-                                                                                    
-                                                                                  </div>
-                                                                                  <div id="Tab2" class="tab-pane fade">
-                                                                                    <div class="col-xs-12 ">
-                                                                                        <textarea name="observacion" rows="8"  class="form-control"><%=data_post.data.observacion%></textarea>
-                                                                                    </div>
-                                                                                  </div>
-                                                                                 
-                                                                                </div>
-                                                                              </div>
-                                                                            </section>
-                                                                          </div>           
-                                                                    <p class="text-center">
-                                                                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                                        <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                                    </p>
-                                                                </form>
-                                                            <% } %>
-                                                            <% } else { %>
-                                                                <form action="/internaciones/update_Form_internacion/<%=formUpdate_internacion[0].id%>/<%=Pint[0].id_especialidad%>/<%=formUpdate_internacion[0].idCama%>/<%=data_doc.data.token_id%>" method="POST">
-        
-                                                                    <input type="hidden" name="id_especialidad" value="<%=data_doc.data.area_esp.id%>">
-                                                                    <input type="hidden" name="id_user" value="<%=data_doc.data.token_id%>">
-                                                                    <input type="hidden" name="historial" value="<%=Pint[0].Historial%>">
-                                                                    <input type="hidden" name="provieneDE" value="<%=Pint[0].tipoConsulta%>">
-
-                                                                    <input type="hidden" name="idPinternacion" value="<%=formUpdate_internacion[0].idPinternacion%>">
-                                                                                
-                                                                    <h2 id="ocultoI" class="text-center all-tittles">FORMULARIO DE ACTUALIZACIÓN</h2>
-                                                                    <!-------------------------------------------para impresiones-------------------------------->
-                                                                    <p class="historialP bloque1"></p>
-                                                                    <%if(Pint[0].tipoConsulta == "emeregencia") { %>
-                                                                        <p class="nombrePE " id="bloque2"></p>
-                                                                        <p class="fechaNE "></p>
-                                                                    <% }  else {%>
-                                                                        <p class="nombrePC bloque2"></p>
-                                                                        <p class="fechaNC bloque1"></p>
-                                                                        <p class="provieneE bloque4"></p>
-                                                                    <% } %> 
-                                                                   
-                                                                    <!-------------------------------------------------------------------------------------------->            
-                                                                    <div class="col-md-12 panel-body ">
-                                                                        <div class="col-md-12">
-                                                                            <div class="col-md-6 bloque3">                               
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">Fecha de Ingreso a Sala</label>
-                                                                                    <input class="form-control" type="text" name="fechaIngreso" value="<%=formUpdate_internacion[0].fechaIngreso%>" readonly>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-xs-6 bloque5">
-                                                                                <div class="form-group ">
-                                                                                    <label class="control-label">Nombre Doctor</label>
-                                                                                    <input class="form-control" readonly type="text" name="doctor" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>  
-                                                                    </div>
-                                                                
-                                                                    <div class="col-md-12 panel-body" id="options">
-                                                                        <div class="col-md-12 ">
-                                                                            <div class="col-md-4 bloque52">
-                                                                                <div class="form-group label-floating" >
-                                                                                    <label class="control-label"  >Especialidad</label>
-                                                                                    <select class="form-control" name="especialidad"  v-model="mensaje" @click="agregar">
-                                                                                        <option value="" disabled>Selecione</option>
-                                                                                        <option><%=Pint[0].especialidad%></option>                                                                                                  
-                                                                                    </select>                                      
-                                                                                </div>
-                                                                            </div>                                                
-                                                                            <div class="col-md-4 bloque52">
-                                                                                <div class="form-group label-floating" >
-                                                                                    <label class="control-label">Sala</label>
-                                                                                    <select class="form-control" name="sala" v-model="salaID" @click="traer">
-                                                                                        <option value="" disabled>Seleccione</option>
-                                                                                        <option value="<%=formUpdate_internacion[0].sala%>"><%=formUpdate_internacion[0].Cama.Sala.descripcionSala%></option>
-                                                                                        <option value="" disabled> ---------------------- </option>                                                                
-                                                                                        <option v-for="item in mostrar" :value="item.id">{{item.descripcionSala}}</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4 bloque53">                                                    
-                                                                                <div class="form-group label-floating">
-                                                                                    <label class="control-label">Cama</label>
-                                                                                    <select class="form-control" name="cama">   
-                                                                                        <option value="" disabled>Selecione</option>
-                                                                                        <option value="<%=formUpdate_internacion[0].cama%>">Cama N° <%=formUpdate_internacion[0].Cama.numeroCama%></option>
-                                                                                        <option value="" disabled> ---------------------- </option>                                                         
-                                                                                        <option v-for="item of camas" :value="item.id" >
-                                                                                           
-                                                                                                Cama N° {{item.numeroCama}}
-                                                                                                                                                                                
-                                                                                        </option>                                                            
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </div>           
+                                                    <p class="text-center">
+                                                        <button  type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
+                                                        <button type="reset" class="btn btn-danger" style="margin-right: 20px;"><i class='fa fa-times'></i> &nbsp;&nbsp; Cancelar</button>
+                                                    </p>
+                                                </form>
+                                                <% } %>
+                                                <% } else { %>
+                                                <form action="/internaciones/update_Form_internacion/<%=formUpdate_internacion[0].id%>/<%=Pint[0].id_especialidad%>/<%=formUpdate_internacion[0].idCama%>/<%=data_doc.data.token_id%>" method="POST">
+                                                    <input type="hidden" name="id_especialidad" value="<%=data_doc.data.area_esp.id%>">
+                                                    <input type="hidden" name="id_user" value="<%=data_doc.data.token_id%>">
+                                                    <input type="hidden" name="historial" value="<%=Pint[0].Historial%>">
+                                                    <input type="hidden" name="provieneDE" value="<%=Pint[0].tipoConsulta%>">
+                                                    <input type="hidden" name="idPinternacion" value="<%=formUpdate_internacion[0].idPinternacion%>">          
+                                                    <h2 id="ocultoI" class="text-center all-tittles">FORMULARIO DE ACTUALIZACIÓN</h2>
+                                                    <!-------------------------------------------para impresiones-------------------------------->
+                                                    <p class="historialP bloque1"></p>
+                                                    <%if(Pint[0].tipoConsulta == "emeregencia") { %>
+                                                        <p class="nombrePE " id="bloque2"></p>
+                                                        <p class="fechaNE "></p>
+                                                    <% }  else {%>
+                                                        <p class="nombrePC bloque2"></p>
+                                                        <p class="fechaNC bloque1"></p>
+                                                        <p class="provieneE bloque4"></p>
+                                                    <% } %> 
+                                                    <!-------------------------------------------------------------------------------------------->            
+                                                    <div class="col-md-12 panel-body ">
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-6 bloque3">                               
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Fecha de Ingreso a Sala</label>
+                                                                    <input class="form-control" readonly type="text" name="fechaIngreso" value="<%=formUpdate_internacion[0].fechaIngreso%>" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6 bloque5">
+                                                                <div class="form-group ">
+                                                                    <label class="control-label">Médico</label>
+                                                                    <input class="form-control" readonly type="text" name="doctor" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>">
+                                                                </div>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="col-md-12 panel-body" id="options">
+                                                        <div class="col-md-12 ">
+                                                            <div class="col-md-4 bloque52">
+                                                                <div class="form-group label-floating" >
+                                                                    <label class="control-label"  >Especialidad</label>
+                                                                    <select class="form-control" readonly name="especialidad"  v-model="mensaje" @click="agregar">
+                                                                        <option value="" disabled>Selecione</option>
+                                                                        <option><%=Pint[0].especialidad%></option>                                                                                                  
+                                                                    </select>                                      
+                                                                </div>
+                                                            </div>                                                
+                                                            <div class="col-md-4 bloque52">
+                                                                <div class="form-group label-floating" >
+                                                                    <label class="control-label">Sala</label>
+                                                                    <select class="form-control" readonly name="sala" v-model="salaID" @click="traer">
+                                                                        <option value="" disabled>Seleccione</option>
+                                                                        <option value="<%=formUpdate_internacion[0].sala%>"><%=formUpdate_internacion[0].Cama.Sala.descripcionSala%></option>
+                                                                        <option value="" disabled> ---------------------- </option>                                                                
+                                                                        <option v-for="item in mostrar" :value="item.id">{{item.descripcionSala}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 bloque53">                                                    
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Cama</label>
+                                                                    <select class="form-control"readonly  name="cama">   
+                                                                        <option value="" disabled>Selecione</option>
+                                                                        <option value="<%=formUpdate_internacion[0].cama%>">Cama N° <%=formUpdate_internacion[0].Cama.numeroCama%></option>
+                                                                        <option value="" disabled> ---------------------- </option>                                                         
+                                                                        <option v-for="item of camas" :value="item.id" >                                                                         
+                                                                        </option>                                                            
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <section class="panel default blue_title h2">
+                                                            <div class="panel-body">
+                                                                <ul class="nav nav-tabs" id="myTab">
+                                                                    <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
+                                                                    <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                </ul>
+                                                                <div class="tab-content" id="myTabContent">
+                                                                    <div id="Tab1" class="tab-pane fade in active">
+                                                                        <div class="col-xs-12 ">
+                                                                            <textarea readonly name="diagnostico" rows="8" class="form-control"><%=formUpdate_internacion[0].diagnostico%></textarea>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-lg-12">
-                                                                            <section class="panel default blue_title h2">
-                                                                              
-                                                                              <div class="panel-body">
-                                                                                <ul class="nav nav-tabs" id="myTab">
-                                                                                  <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
-                                                                                  <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
-                                                                                  
-                                                                                </ul>
-                                                                                <div class="tab-content" id="myTabContent">
-                                                                                  <div id="Tab1" class="tab-pane fade in active">
-    
-                                                                                    <div class="col-xs-12 ">
-                                                                                        <textarea name="diagnostico" rows="8" class="form-control"><%=formUpdate_internacion[0].diagnostico%></textarea>
-                                                                                    </div>
-                                                                                    
-                                                                                  </div>
-                                                                                  <div id="Tab2" class="tab-pane fade">
-                                                                                    <div class="col-xs-12 ">
-                                                                                        <textarea name="observacion"  rows="8" class="form-control"><%=formUpdate_internacion[0].observacion%></textarea>
-                                                                                       <!--  <textarea name="" id="" cols="30" ></textarea> -->
-                                                                                    </div>
-                                                                                  </div>
-                                                                                 
-                                                                                </div>
-                                                                              </div>
-                                                                            </section>
-                                                                          </div>      
-                                                                          <%if (formUpdate_internacion[0].estado_update == true) {%>     
-                                                                            <p class="text-center">
-                                                                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                                            </p>
-                                                                        <% } %>
-
-															<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-                                                                </form>
-                                                            <% } %>
-                                                </div>
-        
+                                                                    <div id="Tab2" class="tab-pane fade">
+                                                                        <div class="col-xs-12 ">
+                                                                            <textarea readonly name="observacion"  rows="8" class="form-control"><%=formUpdate_internacion[0].observacion%></textarea>
+                                                                            <!--  <textarea name="" id="" cols="30" ></textarea> -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </div>      
+                                                    <%if (formUpdate_internacion[0].estado_update == true) {%>     
+                                                    <p class="text-center">
+                                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+                                                        <button type="reset" class="btn btn-danger" style="margin-right: 20px;"><i class="fa fa-times"></i> &nbsp;&nbsp; Cancelar</button>
+                                                    
+                                                    </p>
+                                                    <% } %>
+                                                    <a onclick="window.print();" id="ocultoI" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+                                                </form>
+                                                <% } %>
                                             </div>
                                         </div>
-                               
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                      </section>
+                        </section>
                     </div>
-                   
-
-
                 </div>
             </div>
         </div>
     </div>
-	    
 	<div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
         <div class="vertical-alignment-helper">

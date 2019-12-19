@@ -2,8 +2,9 @@
 <html lang="es">
 
 <head>
-	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-	<title>Examenes Complementarios</title>
+	
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Hospitalización</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<meta charset="UTF-8">
@@ -86,11 +87,11 @@
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>		
-				<a href="/internaciones/paciente_internacion/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </a>
+				<a href="/internaciones/paciente_internacion/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" class="btn btn-info " ><i class="fa fa-reply"></i> <span> Volver </span> </a>
 				
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/medico.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							
@@ -109,22 +110,18 @@
 
 				<div class="left_nav_slidebar">
                         <ul>
-                                <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home<span class="plus"><i class="fa fa-plus"></i></span> </a>
-                                    <ul >
-                                        <li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b><%=data_doc.data.area_esp.nombre%></b>
-                                        </a> </li>
-                                    </ul>
-                                </li>
+								<li ><a href="/internaciones/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <%=data_doc.data.area_esp.nombre%>  </a></li>
+								
                                 
-                                <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Listas de Paciente <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
+                                <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Hospitalización <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
                                     <ul  class="opened" style="display:block">
                                         <li> 
-                                            <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Listas de Internación</b> </a> 
+                                            <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Listas de Hosp.</b> </a> 
                                         </li>
                                         
                                         <%if (one_internacion[0].estado_alta != true) { %>
                                             <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                                <b class="theme_color">Pacientes Internados</b>
+                                                <b class="theme_color">Pacientes Hosp.</b>
                                                 </a> 
                                             </li>
                                             <li> 
@@ -230,7 +227,7 @@
 											<div class="header">
 												<div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i>
 												</div>
-												<h2 class="content-header " > <span>&nbsp;&nbsp;&nbsp;</span>Orden de Examen </h2>
+												<h2 class="content-header " > <span>&nbsp;&nbsp;&nbsp;</span>Orden de Hospitalización / <span class="semi-bold"> Registro de Orden de Examen</span> </h2>
 											</div>
 										</div>
 										
@@ -242,7 +239,7 @@
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="col-md-3 ">
-															<label class="control-labe">Nombre del Paciente:</label><p><b><%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%></b></p>
+															<label class="control-labe">Paciente:</label><p><b><%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%></b></p>
 															<input type="hidden" type="text" class="form-control" readonly value="<%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%>"  />
 														</div>
 														<div class="col-md-3">
@@ -281,7 +278,7 @@
 									
 											<div class="panel-body" >
 												<ul class="nav nav-tabs" id="myTab">
-													<li class="active"><a data-toggle="tab" href="#Tab1">Ecografia</a></li>
+													<li class="active"><a data-toggle="tab" href="#Tab1">Ecografía</a></li>
 													<li><a data-toggle="tab" href="#Tab2">Rayos X</a></li>
 													<li><a data-toggle="tab" href="#Tab3">Laboratorios</a></li>
 												</ul>
@@ -307,7 +304,7 @@
 														</div>
 														 <button @click="vue_alert = true, alert_vue()">pruevas</button> -->
 														
-														 <h4>ECOGRAFIA</h4>
+														 <h4>ECOGRAFÍA</h4>
 														 
 													<!-- 	<div class="bs-example mover" v-if="msg_eco_false">
 															<div class="alert alert-danger fade in">
@@ -383,8 +380,9 @@
 																	
 																	<div class="col-md-12 page-content ">
 																		<div class="col-md-8 ">
+																				<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
 																			<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-																			<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																			
 																			<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 																		</div>
 																	</div>
@@ -982,7 +980,7 @@
 																</div>
 																
 																<div class="col-lg-12 his">
-																		<h5 class="center">Solicitud de Examens</h5>
+																		<h5 class="center">Solicitud de Examenes</h5>
 																	<section class="panel default blue_title h2 clear">
 																	 
 																	<div class="panel-body">	
@@ -1043,8 +1041,9 @@
 																</div>
 																<div class="col-md-12 page-content ">
 																	<div class="col-md-8 ">
-																		<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+																		
 																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
 																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 																	</div>
 																</div>
@@ -1775,8 +1774,9 @@
 																</div>
 																<div class="col-md-12 page-content ">
 																	<div class="col-md-8 ">
+																			<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
 																		<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		
 																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 																	</div>
 																</div>
@@ -1800,7 +1800,7 @@
 									<div class="col-lg-14" v-if="list_eco"> 
 										<section class="panel default blue_title h2">
 											<div class="panel-heading">
-												<span class="semi-bold">Lista de ecografias del paciente</span> 
+												<span class="semi-bold">Lista de ecografías del paciente</span> 
 											</div>
 											<div class="panel-body">
 											
@@ -1820,7 +1820,7 @@
 															<td>{{list.fecha}}  {{list.hora}}</td>
 															<td>{{list.nombre_doctor}}</td>
 															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info" @click="one_lab(list.id)">Ver</button></td>
-															<td v-if = "list.resp_labs == ''"> <p style="color: brown;">Examen mandado</p> </td>
+															<td v-if = "list.resp_labs == ''"> <p style="color: brown;">Examen Enviado</p> </td>
 															<td v-else > <a :href="url +'/'+list.resp_labs[0].imagen_resp" style="color: darkblue;"> Ver respuesta </a> </td>
 													  	</tr>											  
 													</tbody>
@@ -2003,10 +2003,6 @@
 						</div>
 						
 					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
-					</div>
 				  </div>
 				  <!-- /.modal-content -->
 				</div>
@@ -2141,10 +2137,6 @@
 								</div>
 							</div>
 							
-						</div>
-						<div class="modal-footer">
-						  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-						 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 						</div>
 					  </div>
 					  <!-- /.modal-content -->
@@ -2310,10 +2302,6 @@
 							</div>
 						</div>
 						
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
 					</div>
 				  </div>
 				  <!-- /.modal-content -->

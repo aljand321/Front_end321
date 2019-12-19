@@ -3,7 +3,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Pacientes para Internar</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Hospitalización</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="viewport"
@@ -110,22 +111,19 @@
 
 				<div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul >
-								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i><%=data_doc.data.area_esp.nombre%> <b ></b>
-								</a> </li>
-							</ul>
-						</li>
 						
-							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Lista de Paciente <span
+                            <li ><a href="/internaciones/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <%=data_doc.data.area_esp.nombre%>  </a></li>
+							
+						
+							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Hospitalización <span
 										class="plus"><i class="fa fa-plus"></i></span></a>
 								<ul class="opened" style="display:block" >
 									<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-											<b >Listas de Internación</b>
+											<b >Listas de Hosp.</b>
 										</a> 
 									</li>
 									<li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                        <b >Pacientes Internados </b>
+                                        <b >Pacientes Hosp. </b>
                                         </a> 
 									</li>
 									<li> <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>" > <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
@@ -151,28 +149,20 @@
             </div>
             <!--\\\\\\\left_nav end \\\\\\-->
             <div class="contentpanel">
-                <!--\\\\\\\ contentpanel start\\\\\\-->
-                <div class="container clear_both padding_fix col-lg-8">
-                    <br>
-                    <div class="main-content">
-						<div class="row">
-							<div class="col-lg-12"> 
-		                        <!-- Content page -->
+                    <div class="container clear_both padding_fix col-lg-8"><br>
+                        <div class="col-lg-12 block-web">
 		                        <div class="header">
 		                            <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
-		                        	<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Traslados</h3>
-		                        </div>	 		
-		                        <div class="container-fluid">
-		                        	<div class="row">
-                                    
-		                        		<div class="col-md-12 ">
-		                        			<ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
-		                        			  	<li class="active"><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Lista Pacientes </a></li>
-		                        				<li><a href="#listFalse" data-toggle="tab">Pacientes atendidos</a></li>
-		                        				<li><a href="#">Refresh</a></li>
-		                        			</ul>
-		                        		</div>
-		                        		<div class="">
+		                        	<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Traslados Internos</h3>
+                                </div>
+                        </div>	
+                                <div class="main-content">
+                                        <section class="panel default blue_title h2">
+                                            <div class="panel-body page-content">
+                                                <ul class="nav nav-tabs" id="myTab">
+                                                    <li ><a data-toggle="tab" href="#list"> <i class="fa fa-user "></i><span>&nbsp;&nbsp;&nbsp;</span>Lista de Pacientes en traslados </a></li>
+                                                    <li ><a  data-toggle="tab" href="#listFalse" > <i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Traslados</a></li>
+                                                </ul> 	
                                         
 		                        			<div id="myTabContent" class="tab-content">
                                             
@@ -184,7 +174,7 @@
 		                        							<th class="" WIDTH="15%">N° de historia </th>
 		                        							<th class="" WIDTH="20%">Fecha</th>	
 		                        							<th class="" WIDTH="20%">Diagnostico principal</th>	
-		                        							<th class="" WIDTH="20%">Viene de</th>	
+		                        							<th class="" WIDTH="20%">Proviene</th>	
 		                        							<th class="text-center" WIDTH="20%">Registrar</th>
                                                         
                                                             <!--
@@ -215,7 +205,7 @@
 		                        								<th >N° de historia </th>
 		                        								<th >Fecha</th>	
 		                        								<th >Motivo de Ingreso</th>	
-		                        								<th >Viene de</th>	
+		                        								<th >Proviene</th>	
 		                        								<th >Registrar</th>
                                                             
 		                        		  <!--

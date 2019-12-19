@@ -3,12 +3,11 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Pacientes Internados</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Hospitalización</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -16,7 +15,6 @@
     <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
     <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
     <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-
     <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
     <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
     <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
@@ -30,13 +28,8 @@
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
     <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
-
-
-
-
-    <style>
+     <style>
         
         div.a {
             text-align: center;
@@ -100,19 +93,18 @@
             <div class="header_top_bar">
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
                 <template v-if="alta_paciente == false">
-                    <a href="javascript:void(0);" class="add_user" @click="alta_paciente = true"> <i class="fa fa-plus-square"></i> <span>ALTA DEL PACIENTE</span> </a>
+                    <a href="javascript:void(0);"  @click="alta_paciente = true" class="btn btn-info" ><i class="fa fa-plus-square"></i>  Alta del Paciente</a>
                 </template>
                 <template v-else>
-                    <a href="javascript:void(0);" class="add_user" @click="alta_paciente = false"> <i class="fa fa-plus-square"></i> <span>VOLVER</span> </a>                    
+                    <a href="javascript:void(0);" @click="alta_paciente = false" class="btn btn-info" ><i class="fa fa-reply"></i>  Volver </a>                   
                 </template>
-                
-                <a href="/laboratorios/lab_hopitalizacion/<%=one_internacion[0].id%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>" class="add_user"> <i class="fa fa-plus-square"></i> <span>Laboratorios</span> </a>
+                <a href="/laboratorios/lab_hopitalizacion/<%=one_internacion[0].id%>/<%=data_paciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>"  class="btn btn-info" ><i class="fa fa-file"></i> Examenes</a>
+               
                 <%if(one_internacion[0].idPinternacion != null) { %>
-                    
-                    <a href="/internaciones/traslado_interno/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>"class="add_user" @click="alta_paciente = false"> <i class="fa fa-plus-square"></i> <span>Traslado interno</span> </a>
+                    <a href="/internaciones/traslado_interno/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" @click="alta_paciente = false" class="btn btn-info" ><i class="fa fa-hospital-o"></i> Traslado Internos</a>
                 <% } else { %>
-                    <a href="/internaciones/traslado_interno2/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" class="add_user" @click="alta_paciente = false"> <i class="fa fa-plus-square"></i> <span>Traslado interno</span> </a>
-
+                    <a href="/internaciones/traslado_interno2/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>" @click="alta_paciente = false" class="btn btn-info" ><i class="fa fa-hospital-o"></i> Traslado Internos</a>
+                   
                 <% } %>
                 <div class="top_right_bar">
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
@@ -131,22 +123,17 @@
             <div class="left_nav">
                 <div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home<span class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul >
-								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b><%=data_doc.data.area_esp.nombre%></b>
-								</a> </li>
-							</ul>
-						</li>
+                            <li ><a href="/internaciones/home/<%=data_doc.data.token_id%>"><i class="fa fa-home"></i> Inicio <%=data_doc.data.area_esp.nombre%>  </a></li>
 						
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Listas de Paciente <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Hospitalización <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul  class="opened" style="display:block">
 								<li> 
-                                    <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Listas de Internación</b> </a> 
+                                    <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Listas de Hosp.</b> </a> 
                                 </li>
                                 
                                 <%if (one_internacion[0].estado_alta != true) { %>
                                     <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                        <b class="theme_color">Pacientes Internados</b>
+                                        <b class="theme_color">Pacientes Hosp.</b>
                                         </a> 
                                     </li>
                                     <li> 
@@ -186,25 +173,10 @@
                                 </li>
 							</ul>
                         </li>
-                       <!--  <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Traslados<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul >
-                                <%if(one_internacion[0].idPinternacion != null) { %>
-                                <li> 
-                                    <a href="/internaciones/traslado_interno/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Traslado Interno</b> </a> 
-                                </li>
-                                <% } else { %>
-                                    <li> 
-                                        <a href="/internaciones/traslado_interno2/<%=one_internacion[0].id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Traslado Interno</b> </a> 
-                                    </li>
-                                <% } %>
-								
-								
-							</ul>
-                        </li> -->
                         <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
 								<li> 
-                                    <a href="/hospitalizacion/reporteP"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
+                                    <a href="/hospitalizacion/reporteP"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cirugias</b> </a> 
                                 </li>
 								
 							</ul>
@@ -214,9 +186,72 @@
 				</div>
             </div>
             <div class="contentpanel">
-                <div class="container clear_both padding_fix ">
-                    <br>                
-                    <div class="row">
+                    <div class="container clear_both padding_fix col-lg-8"><br>
+                        <div class="col-lg-12 block-web"> 
+                            <div class="header">
+                                <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
+                                <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>  Pacientes Hospitalizados /<span class="semi-bold"> Orden de Hospitalización</span></h2>
+                            </div>	
+                            <div class="col-lg-12">
+                                <section class="panel default  h2">
+                                    <div class="panel-body">
+                                        <div class="panel-group accordion accordion-semi" id="accordion3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading"  >  
+                                                    <div class="actions">
+                                                    <h3 class="content-header pull-right text-top actions" ><span>&nbsp;&nbsp;&nbsp;</span>Aréa de Hospitalización del Paciente </h3>
+    
+                                                    </div>                                     
+                                                    <h3 class="panel-title" > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente</a> </h3>
+                                                </div>
+                                                <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+                                                    <div class="panel-body"> 
+                                                        <form>
+                                                            <input type="hidden" :value="idHist.id_int = '<%=one_internacion[0].id%>'">
+                                                            <input type="hidden" :value="idHist.hist = '<%=data_paciente[0].numeroHistorial%>'">
+                                                            <input type="hidden" :value="idHist.id_medico = '<%=data_doc.data.medico.id%>'">
+                                                            <input type="hidden" :value="idHist.id_cama = '<%=one_internacion[0].idCama%>'">
+    
+                                                            <div class="form-group">
+                                                                <div class="col-sm-3"> N° Historial: <br>
+                                                                    <label><font color="black"><%=data_paciente[0].numeroHistorial%></font></label>
+                                                                    
+                                                                </div>
+                                                                <div class="col-sm-3">Aréa de: <br>
+                                                                    <label><font color="black"><%=one_internacion[0].especialidad%></font></label> 
+                                                                </div>
+                                                                <div class="col-sm-3">Ubicacion: <br>
+                                                                    <label><font color="black"><%=one_internacion[0].Cama.Sala.descripcionSala%></font></label>
+                                                                </div>
+                                                                <div class="col-sm-3">Cama N°: <br>
+                                                                    <label><font color="black"><%=one_internacion[0].Cama.numeroCama%></font></label>
+                                                                </div>
+                                                            </div>
+                                                            <br> <br>
+                                                            <div class="form-group">
+                                                                <p>Datos Generales del Paciente</p>
+                                                                <div class="col-sm-3">Paciente: <br>
+                                                                    <label><font color="black"><%=data_paciente[0].nombre%>  <%=data_paciente[0].apellidop%>  <%=data_paciente[0].apellidom%></font></label>
+                                                                </div>
+                                                                <div class="col-sm-3">Fecha de Nacimiento: <br>
+                                                                    <label><font color="black"> <%=data_paciente[0].fechanacimiento%></font></label>
+                                                                </div>
+                                                                <div class="col-sm-3">Sexo: <br>
+                                                                    <label><font color="black"> <%=data_paciente[0].sexo%></font></label>
+                                                                </div>
+                                                                <div class="col-sm-3">C.I.: <br>
+                                                                    <label><font color="black"> <%=data_paciente[0].ci%></font></label>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>                  
+                            </div>
+                        </div> 
                         <!-- 
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -226,65 +261,7 @@
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                            
                          -->
-                        <div class="col-lg-14">
-                            <section class="panel default  h2">
-                                <div class="panel-body">
-                                    <div class="panel-group accordion accordion-semi" id="accordion3">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading"  >  
-                                                <div class="actions">
-                                                <h3 class="content-header pull-right text-top actions" ><span>&nbsp;&nbsp;&nbsp;</span>Area de Internación del Paciente </h3>
-
-                                                </div>                                     
-                                                <h3 class="panel-title" > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente</a> </h3>
-                                            </div>
-                                            <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
-                                                <div class="panel-body"> 
-                                                    <form>
-                                                        <input type="hidden" :value="idHist.id_int = '<%=one_internacion[0].id%>'">
-                                                        <input type="hidden" :value="idHist.hist = '<%=data_paciente[0].numeroHistorial%>'">
-                                                        <input type="hidden" :value="idHist.id_medico = '<%=data_doc.data.medico.id%>'">
-                                                        <input type="hidden" :value="idHist.id_cama = '<%=one_internacion[0].idCama%>'">
-
-                                                        <div class="form-group">
-                                                            <div class="col-sm-3">Historial N°: <br>
-                                                                <label><font color="black"><%=data_paciente[0].numeroHistorial%></font></label>
-                                                                
-                                                            </div>
-                                                            <div class="col-sm-3">Area De: <br>
-                                                                <label><font color="black"><%=one_internacion[0].especialidad%></font></label> 
-                                                            </div>
-                                                            <div class="col-sm-3">Ubicacion: <br>
-                                                                <label><font color="black"><%=one_internacion[0].Cama.Sala.descripcionSala%></font></label>
-                                                            </div>
-                                                            <div class="col-sm-3">Cama N°: <br>
-                                                                <label><font color="black"><%=one_internacion[0].Cama.numeroCama%></font></label>
-                                                            </div>
-                                                        </div>
-                                                        <br> <br>
-                                                        <div class="form-group">
-                                                            <p>Datos Generales del Paciente</p>
-                                                            <div class="col-sm-3">Nombre Completo: <br>
-                                                                <label><font color="black"><%=data_paciente[0].nombre%>  <%=data_paciente[0].apellidop%>  <%=data_paciente[0].apellidom%></font></label>
-                                                            </div>
-                                                            <div class="col-sm-3">Fecha Nacimiento: <br>
-                                                                <label><font color="black"> <%=data_paciente[0].fechanacimiento%></font></label>
-                                                            </div>
-                                                            <div class="col-sm-3">Sexo: <br>
-                                                                <label><font color="black"> <%=data_paciente[0].sexo%></font></label>
-                                                            </div>
-                                                            <div class="col-sm-3">C.I.: <br>
-                                                                <label><font color="black"> <%=data_paciente[0].ci%></font></label>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>                  
-                        </div>
+                        
 
                         <!-- 
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -298,7 +275,7 @@
                                 <div class="modal-content">
                                   <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">NUEVA NOTA DE EVOLUCION</h4><br>
+                                        <h4 class="modal-title" id="myModalLabel"> <i class="fa fa-file"></i> NUEVA NOTA DE EVOLUCIÓN</h4><br>
                                         <span style="color: red">{{nota_evolucion.msg_false}}</span>
                                         <span style="color: blue">{{nota_evolucion.msg}}</span>
 
@@ -311,23 +288,22 @@
                                             <form @submit="reg_nota_evolucion">
                                                 <div class="form-group">
                                                     <div class="col-md-6">
-                                                        <label class="control-label" >Fecha:</label><br>
+                                                        <label class="control-label" >Fecha</label><br>
                                                         <input type="text" readonly class="form-control" v-model="nota_evolucion.fecha" >
                                                     </div> 
                                                     <div class="col-md-6">
-                                                            <label class="control-label" >Fecha:</label><br>
+                                                            <label class="control-label" >Hora</label><br>
                                                             <input type="text" readonly class="form-control" v-model="nota_evolucion.hora" >
                                                         </div> 
-                                                    <div class="col-sm-12"><br><br>
-                                                        <label class="control-label">Nota de Evolución:</label>
+                                                    <div class="col-sm-12"><br>
+                                                        <label class="control-label">Nota de Evolución</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="nota_evolucion.nota_evolucion"></textarea>
                                                     </div>                       
                                                 </div>
                                                 <br>
                                                 <br>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    <button type="submit" class="btn btn-success"> <i class="fa fa-save"></i> Insertar Nota</button>
                                                 </div>
         
                                             </form> 
@@ -352,7 +328,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                      <h4 class="modal-title" id="myModalLabel">LISTA DE DIAGNOSTICOS</h4><br>
+                                      <h4 class="modal-title" id="myModalLabel"> <i class="fa fa-stethoscope"></i> LISTA DE DIAGNÓSTICOS</h4><br>
 
 
                                     </div>
@@ -363,12 +339,12 @@
                                                     
                                                     <div class="panel-body">
                                                         
-                                                        <table class="table table-hover">
+                                                        <table class="table table table-bordered">
                                                             <thead>
                                                                     <tr>
                                                                       <th class="text-center">#</th>
                                                                       <th class="text-center">Fecha </th>
-                                                                      <th class="text-center">Evolucion</th>
+                                                                      <th class="text-center">EvoluciÓn</th>
                                                                                                                   
                                     
                                                                       <th class="text-center">Opciones</th> 
@@ -393,10 +369,6 @@
                                             </div>   
                                         </div>
                                     </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -408,12 +380,11 @@
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                          -->
                         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg" >
                                 <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                      <h4 class="modal-title" id="myModalLabel">LISTA INTERVENCIONES</h4><br>
-
+                                      <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user-md"></i> REGISTRO DE INTERVENCIONES</h4><br>
 
                                     </div>
                                     <!-- https://codepen.io/vsync/pen/frudD      text tarea auto expandible-->
@@ -427,13 +398,16 @@
 
                                                
                                                     <form @submit="postOrden_Intervencion   " parsley-validate novalidate>
-
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>FECHA DE LA OPERACION</label>
+                                                            <label>Fecha</label>
                                                             <input type="datetime-local"  parsley-trigger="change" required class="form-control" v-model="ord_int.fechaOrden">
                                                         </div><!--/form-group-->
+                                                            </div>
+                                                            <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>CIRUJANO</label>                                                        
+                                                            <label>Cirujano</label>                                                        
                                                             
                                                             <select v-model="ord_int.nombre_cirujano" class="form-control autoExpand">
                                                                 <%for (var i = 0; i < doc_internacion[0].user.length; i++) { %>
@@ -441,65 +415,68 @@
                                                                 <% } %>
                                                             </select>
                                                         </div><!--/form-group-->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label>AYUDANTES</label>
+                                                            <label>Ayudantes</label>
                                                              <textarea class='form-control autoExpand' rows='2' data-min-rows='2' required v-model="ord_int.ayudantes"></textarea>
                                                         </div><!--/form-group-->
                                                         <div class="form-group">
-                                                            <label>DIAGNOSTICO PRE-OPERATORIO</label>
+                                                            <label>Diagnóstico  Pre-Operatorio</label>
                                                             <textarea class='form-control autoExpand' rows='2' data-min-rows='2' required v-model="ord_int.diag_pre_operatorio"></textarea>
                                                         </div><!--/form-group-->
                                                         <div class="form-group">
-                                                            <label>INTERVENCION PRACTICADA</label>
+                                                            <label>Intervención Practicada</label>
                                                             <textarea class='form-control autoExpand' rows='2' data-min-rows='2' required v-model="ord_int.intr_parcticada"></textarea>
                                                         </div><!--/form-group-->
                                                         <div class="form-group">
-                                                            <label>DIAGNOSTICO POST-OPERATORIO</label>
+                                                            <label>Diagnóstico Post-Operatorio </label>
                                                             <textarea class='form-control autoExpand' rows='2' data-min-rows='2' required v-model="ord_int.diag_pos_operatorio"></textarea>
                                                         </div><!--/form-group-->
 
                                                     
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                                            <button class="btn btn-success" type="submit"><i class="fa fa-save"></i>Guardar</button>
                                                         </div>
-
+                                                    </div>
                                                     </form>
 
                                                 </template>
 
                                                 <template v-else>
                                                     <form parsley-validate novalidate>
-
+                                                            <div class="col-md-12">
+                                                                    <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>FECHA DE LA OPERACION</label>
+                                                            <label>Fecha</label>
                                                             <input type="text" readonly parsley-trigger="change" required class="form-control" v-model="ord_int.one_intervencion[0].fechaOrden">
                                                         </div><!--/form-group-->
+                                                                    </div>
+                                                                    <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>CIRUJANO</label>
+                                                            <label>Cirujano</label>
                                                             <input type="text"readonly v-model="ord_int.one_intervencion[0].nombre_cirujano" parsley-trigger="change" required placeholder="Nombre del Cirujano" class="form-control">
                                                         </div><!--/form-group-->
+                                                    </div>
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label>AYUDANTES</label>
+                                                            <label>Ayudantes</label>
                                                              <textarea class='form-control autoExpand' readonly rows='2' data-min-rows='2' required v-model="ord_int.one_intervencion[0].ayudantes"></textarea>
                                                         </div><!--/form-group-->
                                                         <div class="form-group">
-                                                            <label>DIAGNOSTICO PRE-OPERATORIO</label>
+                                                            <label>Diagnóstico Pre-Operatorio </label>
                                                             <textarea class='form-control autoExpand'readonly rows='2' data-min-rows='2' required v-model="ord_int.one_intervencion[0].diag_pre_operatorio"></textarea>
                                                         </div><!--/form-group-->
                                                         <div class="form-group">
-                                                            <label>INTERVENCION PRACTICADA</label>
+                                                            <label>Intervención Practicada</label>
                                                             <textarea class='form-control autoExpand'readonly rows='2' data-min-rows='2' required v-model="ord_int.one_intervencion[0].intr_parcticada"></textarea>
                                                         </div><!--/form-group-->
                                                         <div class="form-group">
-                                                            <label>DIAGNOSTICO POST-OPERATORIO</label>
+                                                            <label>Diagnóstico Post-Operatorio</label>
                                                             <textarea class='form-control autoExpand' readonly rows='2' data-min-rows='2' required v-model="ord_int.one_intervencion[0].diag_pos_operatorio"></textarea>
                                                         </div><!--/form-group-->
-
-
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                                                
-                                                        </div>
+                                                    </div>
     
                                                     </form>
                                                 </template>
@@ -527,8 +504,8 @@
                                 <section class="panel default blue_title h2">
                                     <div class="panel-body">
                                         <ul class="nav nav-tabs" id="myTab">
-                                            <li class="active"><a data-toggle="tab" href="#Tab1">NOTAS DE EVOLUCION</a></li>
-                                            <li><a data-toggle="tab" href="#Tab2">DIAGNOSTICO</a></li>
+                                            <li class="active"><a data-toggle="tab" href="#Tab1">NOTAS DE EVOLUCIÓN</a></li>
+                                            <li><a data-toggle="tab" href="#Tab2">DIAGNÓSTICO</a></li>
                                             <li><a data-toggle="tab" href="#Tab3">LISTA DE OPERACIONES DEL PACIENTE</a></li>
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
@@ -543,7 +520,7 @@
                                              -->
                                             <div id="Tab1" class="tab-pane fade in active">
                                                 <%if (one_internacion[0].estado_alta == false) { %>
-                                                    <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span>NUEVA NOTA</span> </a>
+                                                    <a href="javascript:void(0);"  data-toggle="modal" data-target="#myModal"class="btn btn-info" ><i class="fa fa-file"></i> Nueva Nota</a>
                                                 <% } %>    
                                                 <br>
                                                 <br>
@@ -575,10 +552,8 @@
                                              -->
                                          
                                             <div id="Tab2" class="tab-pane fade">
-                                                <a href="javascript:void(0);" class="add_user" @click="listaDiagnostico()" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-plus-square"></i> <span>LISTA DE DIAGNOSTICOS</span> </a>
-                                                <br>
-                                                <br>
-                                                <br>
+                                                <a href="javascript:void(0);" @click="listaDiagnostico()"  data-toggle="modal" data-target="#myModal1"class="btn btn-info" ><i class="fa fa-stethoscope"></i> Diagnósticos</a>
+                                                
                                                 <span style="color: red" >{{daigTratameinto.msg_false}}</span>
                                                 <span style="color: blue" >{{daigTratameinto.msg}}</span>
 
@@ -588,18 +563,18 @@
                                                     <form @submit="reg_diagnostico"  >
                                                         <div class="form-group">
                                                             <div class="col-sm-6"><br>
-                                                                <label class="control-label">fecha:</label>  
+                                                                <label class="control-label">Fecha</label>  
                                                                 <input type="text" readonly  v-model = "daigTratameinto.fecha">
                                                             </div>   
                                                             <div class="col-sm-6"><br>
-                                                                <label class="control-label">Hora:</label>  
+                                                                <label class="control-label">Hora</label>  
                                                                 <input type="text" readonly  v-model = "daigTratameinto.hora">
                                                             </div>                                              
                                                         </div>
 
                                                         <div class="form-group">
                                                             <div class="col-sm-12"><br>
-                                                                <label class="control-label">EVOLUCION:</label>  
+                                                                <label class="control-label">Evolución</label>  
                                                                 <textarea class="form-control" name="" cols="50" rows="5" v-model="daigTratameinto.evolucion" onkeyup="mayus(this);" ></textarea>
                                                             </div>
                                                         
@@ -609,20 +584,20 @@
 
                                                                 <div class="header col-sm-12">
                                                                     <br>
-                                                                     <h4 class="content-header">Medicamentos</h4>
+                                                                     <h4 class="content-header">Receta</h4>
                                                                 </div>&nbsp;&nbsp;
 
                                                                 <div class="col-sm-3"><br>
 
-                                                                    <label class="form-label">Medicamento:</label> 
+                                                                    <label class="form-label">Medicamento</label> 
                                                                     <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.medic" onkeyup="mayus(this);" >
                                                                 </div>
                                                                 <div class="col-sm-3"> <br>
-                                                                    <label class="form-label">Dosis:</label>
+                                                                    <label class="form-label">Dosis </label>
                                                                     <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.dosis" onkeyup="mayus(this);" >
                                                                 </div>
                                                                 <div class="col-sm-3    "><br>
-                                                                    <label class="form-label">Frecuencia: </label>
+                                                                    <label class="form-label">Frecuencia </label>
                                                                     <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.frecuencia" onkeyup="mayus(this);" >
                                                                 </div>
                                                                 <div class="col-sm-3"><br>
@@ -652,13 +627,13 @@
 
                                                                             <div class="panel-body">
 
-                                                                                <table class="table table-hover">
+                                                                                <table class="table table-bordered table">
                                                                                     <thead>
                                                                                         <tr>
                                                                                             <th class="text-center">#</th>
-                                                                                            <th class="text-center">medicamento</th>
-                                                                                            <th class="text-center">dosis</th>                                                
-                                                                                            <th class="text-center">frecuencia</th>
+                                                                                            <th class="text-center">Medicamento</th>
+                                                                                            <th class="text-center">Dosis</th>                                                
+                                                                                            <th class="text-center">Frecuencia</th>
                                                                                         
                                                                                             <th class="text-center">Opciones</th>	
                                                                                         </tr>
@@ -685,9 +660,9 @@
                                                         <%if (one_internacion[0].estado_alta == false) { %>
                                                             <div class="form-group">
                                                                 <div class="col-sm-offset-4 col-sm-10">
-                                                                    <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                                                                    <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                                                                    <button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+                                                                    <button type="submit" class="btn btn-success btn-icon"><i class="fa fa-check-save"></i> Guardar <span>&nbsp;</span></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                                                    <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar <span>&nbsp;</span></i></button>
+                                                                    <button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"><i class="fa fa-print"></i>  Imprimir <span>&nbsp;</span> </button>
                                                                 </div>
                                                             </div>
                                                         <% } else { %>
@@ -705,21 +680,21 @@
                                                     <form>
                                                         <div class="form-group">
                                                             <div class="col-sm-12"><br>
-                                                                <label class="control-label">fecha:</label>  
+                                                                <label class="control-label">Fecha</label>  
                                                                 <input type="text" readonly :value="daigTratameinto.one_diagTratamiento[0].fecha">
                                                             </div>                                                
                                                         </div>
 
                                                         <div class="form-group">
                                                             <div class="col-sm-12"><br>
-                                                                <label class="control-label">EVOLUCION:</label>  
+                                                                <label class="control-label">Evolución</label>  
                                                                 <textarea class="form-control" name="" cols="50" rows="5" v-model="daigTratameinto.one_diagTratamiento[0].evolucion" ></textarea>
                                                             </div>
                                                         
                                                         </div>
                                                         <div class="header col-sm-12">
                                                             <br>
-                                                            <h4 class="content-header">Medicamentos</h4>
+                                                            <h4 class="content-header">Receta</h4>
                                                         </div>&nbsp;&nbsp;
 
                                                         <!-- <div class="form-group">
@@ -774,9 +749,9 @@
                                                                                     <thead>
                                                                                         <tr>
                                                                                             <th class="text-center">#</th>
-                                                                                            <th class="text-center">medicamento</th>
-                                                                                            <th class="text-center">dosis</th>                                                
-                                                                                            <th class="text-center">frecuencia</th>
+                                                                                            <th class="text-center">Medicamento</th>
+                                                                                            <th class="text-center">Dosis</th>                                                
+                                                                                            <th class="text-center">Frecuencia</th>
                                                                                         
                                                                                             <!-- <th class="text-center">Opciones</th>	 -->
                                                                                         </tr>
@@ -821,14 +796,13 @@
 
                                             <div id="Tab3" class="tab-pane fade">
                                                 <%if (one_internacion[0].estado_alta == false) { %>
-                                                    <a href="javascript:void(0);" @click="ord_int.msg = '', ord_int.msg_false = '', ord_int.one_intervencion = ''" class="add_user" data-toggle="modal" data-target="#myModal2"> <i class="fa fa-plus-square"></i> <span>REGISTRAR</span> </a>
+                                                    <a href="javascript:void(0);"  @click="ord_int.msg = '', ord_int.msg_false = '', ord_int.one_intervencion = ''" data-toggle="modal" data-target="#myModal2"class="btn btn-info" ><i class="fa fa-user-md"></i> Registrar Intervención</a>
                                                 <% } %>
-                                                <br>
                                                 <br>                                       
 
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <section class="panel default blue_title h2">
+                                                        <section class="panel default black_title h2">
                                                             <div class="panel-heading">
                                                                 <span class="h5">Lista de Internaciónes</span> 
                                                             </div>
@@ -841,8 +815,7 @@
                                                                                 <th>Fecha y hora de intervención</th>
                                                                                 <th>Cirujano</th>
                                                                                 <th>Intervención Practicada</th>
-                                                                                <th>Ver</th>
-                                                                            
+                                                                                <th>Opciones</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -853,7 +826,7 @@
                                                                                     <td>{{list.fechaOrden.split("T")[0]}} -- {{list.fechaOrden.split("T")[1]}}</td>
                                                                                     <td>{{list.nombre_cirujano}}</td>
                                                                                     <td>{{list.intr_parcticada}}</td>
-                                                                                    <td class="text-center"><a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" @click="OneOrd_intervencion(list.id)" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-eye text-muted"></i></a></td>                                                
+                                                                                    <td class="text-center"><a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" @click="OneOrd_intervencion(list.id)" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-eye text-muted" style="color:rgb(26, 99, 235)"></i></a></td>                                                
                                                                                 </tr>
                                                                             </template>
                                                                         
@@ -893,7 +866,6 @@
                                 <div class="col-md-12">
                                     <div class="block-web">
                                         <div class="header">
-                                            <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
                                             <h3 class="content-header"> EPICRISIS</h3>
                                         </div>
                                         <div class="porlets-content">
@@ -902,29 +874,29 @@
                                             <form @submit="formSubmit" parsley-validate novalidate>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-                                                        <label>FECHA INTERNACION: <%=one_internacion[0].fechaIngreso%></label>
+                                                        <label>Fecha de Hospitalización </label>
                                                         <input type="text" readonly class='form-control' :value="epicrisis.Fecha_internacion = '<%=one_internacion[0].fechaIngreso%>'">
                                                     </div><!--/form-group-->
                                                     <div class="form-group col-md-6">
-                                                        <label>FECHA ALTA:</label>
+                                                        <label>Fecha de Alta</label>
                                                         <input type="date" class="form-control" v-model = "epicrisis.Fecha_alta">
                                                     </div><!--/form-group-->
                                                 </div>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-                                                        <label>DATOS CLINICOS:</label>
+                                                        <label>Datos Clínicos</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.datos_clinicos"></textarea>
                                                     </div><!--/form-group-->
 
                                                     <div class="form-group col-md-6">
-                                                        <label>DIAGNOSTICO DE ADMINSION:</label>
+                                                        <label>Diagnóstico de Admisión</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.diagnostico_admicion"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                 </div>                                               
                                     
                                                 <div class="col-md-12">
                                                     <div class="col-md-2 row">
-                                                        <label>DIAGNOSTICO DE EGRESO:</label>
+                                                        <label><span class="semi-bold"> Diagnóstico de Egreso</span></label>
                                                     </div>
                                                     
                                                     <div class="col-md-10">
@@ -946,7 +918,7 @@
                                                 </div>
                                                 <div class="col-md-12 ">
                                                     <div class="col-md-2 row">
-                                                        <label>CONDICIÓN DE EGRESO:</label>
+                                                        <label><span class="semi-bold"> Condición de Egreso</span></label>
                                                     </div>
                                                     <div class="col-md-10">
                                                         <label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="1"  type="radio" value="Curado" v-model="epicrisis.condicion_egreso">Curado</label>
@@ -968,7 +940,7 @@
                                                        
                                                 <div class="col-md-12">
                                                     <div class="col-md-2 row">
-                                                        <label>CAUSAS DE EGRESO :</label>
+                                                        <label><span class="semi-bold"> Causa de Egreso</span></label>
                                                     </div>
                                                     <div class="col-md-10">
                                                         <label class="radio-inline"><input  checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="1"  type="radio" value="Alta_medica" v-model="epicrisis.causa_egreso"> Alta medica</label>
@@ -985,58 +957,58 @@
                                                     <div class="col-md-10">
                                                       
                                                     </div> 
-                                                </div>     
+                                                </div>   <br><br>  
                                                 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>EXAMENES COMPLEMENTARIOS DE DIAGNOSTICOS REALIZADOS:</label>
+                                                        <label>Examenes Complementarios de diagnósticos realizados </label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.examenes_complementario"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                 </div>
                                                
                                                 <div class="col-md-12 text-center">
-                                                    <h6>TRATAMIENTO REALIZADO</h6>                                                        
+                                                    <h4><span class="semi-bold">Tratamientos</span></h4>                                                        
                                                 </div>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">                                                        
-                                                        <label>TRATAMIENTO QUIRURGICO:</label>
+                                                        <label>Tratamientos quirúrgicos</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.tratamiento_quirurgico"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                     <div class="form-group col-md-6">                                                       
-                                                        <label>TRATAMIENTO MEDICO:</label>
+                                                        <label>Tratamientos médico</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.tratamiento_medico"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                 </div>
                                                 
                                                 <div class="form-group col-md-12">
-                                                    <label>COMPLIACIONES:</label>
+                                                    <label>Complicaciones</label>
                                                     <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.complicaciones"></textarea>                                                   
                                                 </div><!--/form-group-->
 
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-                                                        <label>PRONOSTICO VITAL:</label>
+                                                        <label>Pronostico Vital</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.pronostico_vital"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                     <div class="form-group col-md-6">
-                                                        <label>PRONOSTICO FUNCIONAL:</label>
+                                                        <label>Pronostico Funcional</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.pronostico_funcional"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                 </div>
 
                                                 <div class="form-group col-md-12">
-                                                    <label>CONTROL Y TRATAMIENTO A SEGUIR:</label>
+                                                    <label>Control y tratamiento a seguir</label>
                                                     <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.control_tratamiento"></textarea>                                                   
                                                 </div><!--/form-group-->
 
                                                 <div class="form-group col-md-12">
-                                                    <label>RECOMENDACIONES:</label>
+                                                    <label>Recomendaciones</label>
                                                     <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.recomendaciones"></textarea>                                                   
                                                 </div><!--/form-group-->
                                                
                                                 <div>
-                                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                                    <button class="btn btn-default">Cancel</button>
+                                                    <button type="submit" class="btn btn-success" type="submit"><i class="fa fa-save"></i>Guardar</button>
+                                                    <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i>Cancelar</button>
                                                 </div>
                                                 
                                             </form>
@@ -1065,29 +1037,29 @@
                                             <form @submit="update_epicrisis" parsley-validate novalidate>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-                                                        <label>FECHA INTERNACION: <%=one_internacion[0].fechaIngreso%></label>
+                                                        <label>Fecha de Hospitalización</label>
                                                         <input type="text" readonly class='form-control' :value="data_one_epicrisis.Fecha_internacion">
                                                     </div><!--/form-group-->
                                                     <div class="form-group col-md-6">
-                                                        <label>FECHA ALTA:</label>
+                                                        <label>Fecha de Alta</label>
                                                         <input type="text" readonly class="form-control" v-model = "data_one_epicrisis.Fecha_alta">
                                                     </div><!--/form-group-->
                                                 </div>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-                                                        <label>DATOS CLINICOS:</label>
+                                                        <label>Datos Clínicos</label>
                                                         <textarea class='form-control autoExpand' rows='2'  data-min-rows='2' v-model="data_one_epicrisis.datos_clinicos"></textarea>
                                                     </div><!--/form-group-->
 
                                                     <div class="form-group col-md-6">
-                                                        <label>DIAGNOSTICO DE ADMINSION:</label>
+                                                        <label>Diagnóstico de Admisión</label>
                                                         <textarea class='form-control autoExpand' rows='2'  data-min-rows='2' v-model="data_one_epicrisis.diagnostico_admicion"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                 </div>                                               
                                     
                                                 <div class="col-md-12">
                                                     <div class="col-md-2 row">
-                                                        <label>DIAGNOSTICO DE EGRESO:</label>
+                                                            <label><span class="semi-bold"> Diagnóstico de Egreso</span></label>
                                                     </div>
                                                     
                                                     <div class="col-md-10">
@@ -1109,7 +1081,7 @@
                                                 </div>
                                                 <div class="col-md-12 ">
                                                     <div class="col-md-2 row">
-                                                        <label>CONDICIÓN DE EGRESO:</label>
+                                                            <label><span class="semi-bold"> Condición de Egreso</span></label>
                                                     </div>
                                                     <div class="col-md-10">
                                                         <label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="1"  type="radio" value="Curado" v-model="data_one_epicrisis.condicion_egreso">Curado</label>
@@ -1131,7 +1103,7 @@
                                                        
                                                 <div class="col-md-12">
                                                     <div class="col-md-2 row">
-                                                        <label>CAUSAS DE EGRESO :</label>
+                                                            <label><span class="semi-bold"> Causas de Egreso</span></label>
                                                     </div>
                                                     <div class="col-md-10">
                                                         <label class="radio-inline"><input  checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="1"  type="radio" value="Alta_medica" v-model="data_one_epicrisis.causa_egreso"> Alta medica</label>
@@ -1151,54 +1123,54 @@
                                                 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>EXAMENES COMPLEMENTARIOS DE DIAGNOSTICOS REALIZADOS:</label>
+                                                        <label>Examenes Complementarios de diagnósticos realizados</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.examenes_complementario"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                 </div>
                                                
                                                 <div class="col-md-12 text-center">
-                                                    <h6>TRATAMIENTO REALIZADO</h6>                                                        
+                                                    <h4><span class="semi-bold">Tratamientos</span></h4>                                                        
                                                 </div>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">                                                        
-                                                        <label>TRATAMIENTO QUIRURGICO:</label>
+                                                        <label>Tratamientos quirúrgicos</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.tratamiento_quirurgico"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                     <div class="form-group col-md-6">                                                       
-                                                        <label>TRATAMIENTO MEDICO:</label>
+                                                        <label>Tratamientos médico</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.tratamiento_medico"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                 </div>
                                                 
                                                 <div class="form-group col-md-12">
-                                                    <label>COMPLIACIONES:</label>
+                                                    <label>Complicaciones</label>
                                                     <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.complicaciones"></textarea>                                                   
                                                 </div><!--/form-group-->
 
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-                                                        <label>PRONOSTICO VITAL:</label>
+                                                        <label>Pronostico Vital</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.pronostico_vital"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                     <div class="form-group col-md-6">
-                                                        <label>PRONOSTICO FUNCIONAL:</label>
+                                                        <label>Pronostico Funcional</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.pronostico_funcional"></textarea>                                                   
                                                     </div><!--/form-group-->
                                                 </div>
 
                                                 <div class="form-group col-md-12">
-                                                    <label>CONTROL Y TRATAMIENTO A SEGUIR:</label>
+                                                    <label>Control y tratamiento a seguir</label>
                                                     <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.control_tratamiento"></textarea>                                                   
                                                 </div><!--/form-group-->
 
                                                 <div class="form-group col-md-12">
-                                                    <label>RECOMENDACIONES:</label>
+                                                    <label>Recomendaciones</label>
                                                     <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="data_one_epicrisis.recomendaciones"></textarea>                                                   
                                                 </div><!--/form-group-->
                                                
                                                 <div >
-                                                    <button :disabled="data_one_epicrisis.estado_update" class="btn btn-primary" type="submit">Submit</button>
-                                                    <button :disabled="data_one_epicrisis.estado_update" class="btn btn-default">Cancel</button>
+                                                        <button type="submit" class="btn btn-success" type="submit"><i class="fa fa-save"></i>Guardar</button>
+                                                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i>Cancelar</button>
                                                 </div>
                                                 
                                             </form>
