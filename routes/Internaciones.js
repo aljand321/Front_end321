@@ -852,13 +852,21 @@ router.get('/paciente_internacion/:id/:token_id', (req,res) => {
                     fetch('http://localhost:3600/api/role_hospitalizacion')
                     .then(res => res.json())
                     .then(doc_internacion => { 
-                        res.render('hospitalizaciones/paciente_internacion',{
-                            data_doc: data_user[token_id],
-                            one_internacion,
-                            data_paciente:data,
-                            doc_internacion
-    
-                        }) 
+
+                        fetch('http://localhost:3000/api/one_epicrisis/'+one_internacion[0].id)
+                        .then(res => res.json())
+                        .catch(error => console.error('Error:', error))
+                        .then(epicrisis => {
+                            console.log(epicrisis, one_internacion[0].id, "  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 22222222222222222222222223333333")
+                            res.render('hospitalizaciones/paciente_internacion',{
+                                data_doc: data_user[token_id],
+                                one_internacion,
+                                data_paciente:data,
+                                doc_internacion,
+                                epicrisis       
+                            })
+                        })
+                         
                     })
                        
                 }) 
@@ -1156,13 +1164,20 @@ router.get('/traslado_interno/:id_internacion/:token_id',(req,res) =>{
                 fetch('http://localhost:4600/api/especialidad')
                 .then(resp => resp.json())
                 .then(especialidad =>{
-                    res.render('hospitalizaciones/traslados',{
-                        data_doc: data_user[token_id],
-                        data_paciente,
-                        one_internacion,
-                        especialidad,
-                        one_traslado
+                    fetch('http://localhost:3000/api/traslados_id_internacion/'+one_internacion[0].id,)
+                    .then(res => res.json())
+                    .catch(error => console.error('Error:', error))
+                    .then(traslado => {
+                        res.render('hospitalizaciones/traslados',{
+                            data_doc: data_user[token_id],
+                            data_paciente,
+                            one_internacion,
+                            especialidad,
+                            one_traslado,
+                            traslado
+                        })
                     })
+                    
                 })
                 .catch(error => {
                     res.render('hospitalizaciones/404error',{
@@ -1215,13 +1230,21 @@ router.get('/traslado_interno2/:id_internacion/:token_id',(req,res) =>{
                     fetch('http://localhost:3000/api/one_traslado/'+one_internacion[0].id_traslado)
                     .then(resp => resp.json())
                     .then(one_traslado =>{
-                        res.render('hospitalizaciones/traslados',{
-                            data_doc: data_user[token_id],
-                            data_paciente,
-                            one_internacion,
-                            especialidad,
-                            one_traslado
+                        fetch('http://localhost:3000/api/traslados_id_internacion/'+one_internacion[0].id,)
+                        .then(res => res.json())
+                        .catch(error => console.error('Error:', error))
+                        .then(traslado => {
+
+                            res.render('hospitalizaciones/traslados',{
+                                data_doc: data_user[token_id],
+                                data_paciente,
+                                one_internacion,
+                                especialidad,
+                                one_traslado,
+                                traslado
+                            })
                         })
+                        
                     })
 
                    
