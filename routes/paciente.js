@@ -103,11 +103,15 @@ router.get('/home/:id/:token_part', (req,res) => {
                         if(data_user[data_token.token_id] == null){
                           user(data_token1, data_token.token_id)
                           res.render('Fichas/homec',{
+                            
                             resp:personal,
                             data_token: data_token1,
                             med:medi.length,
                             espe: epe.length,
-                            pacien:paci.length
+                            pacien:paci.length,
+                            medi,
+                            epe,
+                            paci,
                           })
                           status = null
                         }else{
@@ -119,7 +123,10 @@ router.get('/home/:id/:token_part', (req,res) => {
                             resp:personal,
                             med:medi.length,
                             espe: epe.length,
-                            pacien:paci.length
+                            pacien:paci.length,
+                            medi,
+                            epe,
+                            paci
                           })
                           status = null
                         }

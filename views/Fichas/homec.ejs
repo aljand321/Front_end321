@@ -117,7 +117,7 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li class="left_nav_active theme_border"><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+            <li class="left_nav_active theme_border"><a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"></span> </a></li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consultas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
                 <li> <a href="/paciente/citas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Médicas</b> </a> </li>
@@ -223,17 +223,18 @@
                   <th class="text-center">Apellido Paterno</th>
                   <th class="text-center">Apellido Materno</th>
                   <th class="text-center">C.I.</th>
-                  <th class="text-center">Cargo</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                  <td class="text-center uppercase"></td>										
-                </tr>        
+                <% for(var i=0; i< medi.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%=medi[i].nombre %></td>
+                    <td class="text-center"><%=medi[i].apellidop %></td>
+                    <td class="text-center"><%=medi[i].apellidom %></td>
+                    <td class="text-center"><%=medi[i].ci %></td>
+                    										
+                  </tr>
+                <% } %>
               </tbody>
             </table>
           </div>
@@ -246,7 +247,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Lista de Enfermeras</h4>
+          <h4 class="modal-title" id="myModalLabel">Lista de Especialidades</h4>
         </div>
         <div class="modal-body"> 
           <div class="table-responsive">
@@ -259,11 +260,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>						
-                </tr>    
+                <% for (var i=0; i< epe.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%= i+1%></td>
+                    <td class="text-center"><%=epe[i].nombre%></td>
+                    <td class="text-center"><%=epe[i].descripcion%></td>						
+                  </tr>
+                <% } %>
               </tbody>
             </table>
           </div>
@@ -276,28 +279,30 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Lista de Enfermeras</h4>
+          <h4 class="modal-title" id="myModalLabel">Lista de Pacientes</h4>
         </div>
         <div class="modal-body"> 
           <div class="table-responsive">
-            <table  class="table table-bordered" >
+            <table  class="display table table-bordered table-striped" id="dynamic-table5" >
               <thead>
                 <tr>                          
-                  <th>N° Historial</th>
-                  <th>Nombre</th>
-                  <th>Apellido Paterno</th>
-                  <th>Apellido Materno</th>
-                  <th>Edad</th>
+                  <th class="text-center">N° Historial</th>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Apellido Paterno</th>
+                  <th class="text-center">Apellido Materno</th>
+                  <th class="text-center">Edad</th>
               </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                </tr>
+                <% for (var i=0; i< paci.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%=paci[i].numeroHistorial%></td>
+                    <td class="text-center"><%=paci[i].nombre%></td>
+                    <td class="text-center"><%=paci[i].apellidop%></td>
+                    <td class="text-center"><%=paci[i].apellidom%></td>
+                    <td class="text-center"><%=paci[i].ci%></td>
+                  </tr>
+                <% } %>
               </tbody>
             </table>
           </div>
