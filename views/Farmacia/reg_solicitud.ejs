@@ -75,8 +75,19 @@
 			    </ul>
 		    </div>
       </div>
+      
       <!--Contenido-->
       <div class="contentpanel" id="pedido_medicametos"><br>
+        <div id="padre">
+            <div id="hijo">
+            <div class="modal fade" id="sss" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                
+              <div class="modal-dialog modal-lg " id="prueba">
+                  <textarea name="" id="" cols="1" rows="1">{{$data}}</textarea>
+              </div>
+            </div>
+            </div>
+          </div>
         <!--Formulario-->
 		    <div class="container clear_both padding_fix">
 			    <div class="row">
@@ -90,6 +101,7 @@
                 <span style="color: blue;">{{respuestaPost_true}}</span>
 						    <div class="porlets-content">
                   <!--Formulario-->
+                 
                   <form  @submit="reg_pedido" method="POST" parsley-validate novalidate>
                     <div class="col-md-12">
                       <div class="col-md-6">
@@ -121,6 +133,7 @@
                       </div>
                     </div>
                     <!-- Button trigger modal -->
+                   
                     <p class="text-center">
                       <button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-info" @click="searchInTheListMed('')">Lista de Productos</button><br>
                     </p>
@@ -129,7 +142,7 @@
                       <table  class="display table table-bordered table-striped">
                         <thead>
                           <tr>
-                          <th>#</th>
+                          <th># {{totalPrice}}</th>
                           <th>Cantidad del Producto</th>
                           <th>Codigo</th>
                           <th>Nombre</th>
@@ -147,7 +160,13 @@
                           <td>{{car.item.nombre}}</td>
                           <td>{{car.item.price}}</td>
                           <td>{{car.price}}</td>
-                          <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
+                          <td>
+                            <input type="number" v-model="car.cant"> 
+                            <a @click="reduceByOne(car.item.id, car.cant)">Reducir</a>
+                            <a @click="add_cant(car.item.id, car.cant)">Añadir</a>
+                            
+
+                          </td>
                           <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
                           </tr>                                                   
                         </tbody>
@@ -232,6 +251,8 @@
         </div>
 	    </div>
     </div>
+   
+    
     <div id="padre">
       <div id="hijo">
       <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -1329,6 +1329,27 @@ router.get('/ventas_cli/:id/:token_id/:token_partial', (req,res) => {
   }
 });
 
+//ruta para poder sacar una sola receta del paciente
+router.get('/vue_one_venta_cliente/:id_venta', (req,res) => {
+  const { id_venta } = req.params;
+  fetch('http://localhost:3200/api/one_receta_cliente/'+id_venta)   
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(data =>{
+    res.status(200).json(data)
+  })
+})
+
+router.get('/Vue_one_cliente/:id_cliente', (req,res) => {
+  const { id_cliente } = req.params;
+  fetch('http://localhost:3200/api/one_client/'+id_cliente)   
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(data =>{
+    res.status(200).json(data)
+  })
+})
+
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -1687,10 +1708,17 @@ router.get('/kardexValorizado/:token_id/:token_partial', (req,res) => {
   const { token_id, token_partial } = req.params;
   
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
-
-    res.render('Farmacia/kardexValorizado',{
-      data_doc : data_user[token_id],
-    });
+    fetch('http://localhost:3200/api/mostrar_medicamentos')     
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp =>{
+      console.log(resp, "   ssssssssssssssssssssssssssssssssssssssssssssssssssssss")
+      res.render('Farmacia/kardexValorizado',{
+        data_doc : data_user[token_id],
+        resp
+      });
+    })
+   
 
   }else{
 
@@ -1698,6 +1726,32 @@ router.get('/kardexValorizado/:token_id/:token_partial', (req,res) => {
 
   }
 });
+
+router.get('/Vue_grupo_asignacion_med', (req,res) => {
+  fetch('http://localhost:3200/api/verAsignacion_data')   
+  .then(resp => resp.json())
+  .then(data =>{ 
+      res.status(200).json(data)
+  })
+})
+
+// ruta para poder mostrar un medicamentos segun su grupo
+router.post('/vue_mostrar_med', (req,res) => {
+  var datos = req.body
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+    fetch('http://localhost:3200/api/mostrar_med',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
 
 //reporte medicamentos vencidos
 router.get('/med_ven/:token_id/:token_partial', (req,res) => {
@@ -1735,6 +1789,14 @@ router.post('/vue_filter_med', (req,res) => {
   .catch(error => console.error('Error:', error))
   .then(data => {
     res.status(200).json(data)
+  })
+})
+
+router.get('/Vue_med_fecha_c', (req,res) => {
+  fetch('http://localhost:3200/api/get_med_fecha_c')   
+  .then(resp => resp.json())
+  .then(data =>{ 
+      res.status(200).json(data)
   })
 })
 

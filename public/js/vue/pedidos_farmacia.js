@@ -37,7 +37,7 @@ const pedido_medicametos = new Vue({
       paginationMeds: {
           range: 5,
           currentPage: 1,
-          itemPerPage: 2,
+          itemPerPage: 5,
           ListMedicamentos: [],
           filteredMeds: [],
       },
@@ -157,6 +157,7 @@ const pedido_medicametos = new Vue({
             nombre: response.data[0].nombre,
             //cantidad: response.data[0].cantidad_unidad,
             price: response.data[0].precio_compra
+            
           }   
           this.pass = " Se insertaron  "+cantidad + " productos" + " de " + car.nombre
           this.alert = ""
@@ -174,7 +175,8 @@ const pedido_medicametos = new Vue({
             storedItem = this.listItems[id] = {
               item: item,
               qty: 0,
-              price: 0
+              price: 0,
+              cant:0
             };
           }
           storedItem.qty++;
@@ -183,15 +185,54 @@ const pedido_medicametos = new Vue({
           this.totalPrice += 1*storedItem.item.price;
             
         },
-        reduceByOne (id) {
-            this.listItems[id].qty--;
-            this.listItems[id].price -= this.listItems[id].item.price;
-            this.totalQty--;
-            this.totalPrice -= this.listItems[id].item.price;
-    
-            if (this.listItems[id].qty <= 0) {
-                delete this.listItems[id];
+        add_cant(id, cant){
+          if(cant <= 0){
+            swal.fire(
+              'Error!',
+              '<label style="color:red;">Inserte una cantidad</label>',
+              'error'
+            )
+          }else{
+            for (var i = 0; i < cant; i++){
+              this.listItems[id].qty++;
+              this.listItems[id].price += this.listItems[id].item.price*1;
+              this.totalQty++;
+              this.totalPrice += this.listItems[id].item.price*1;
             }
+          }
+          
+         
+        },
+        reduceByOne (id, cantidad) {
+          var data = this.listItems[id].qty - cantidad          
+          if (data < 0){
+            swal.fire(
+              'Error!',
+              '<label style="color:red;">No se puede reducir esa cantidad</label>',
+              'error'
+            )
+          }else{
+            if(cantidad <= 0){
+              swal.fire(
+                'Error!',
+                '<label style="color:red;">Inserte una cantidad</label>',
+                'error'
+              )
+            }else{
+              for (var i = 0; i < cantidad; i++){
+                this.listItems[id].qty--;
+                this.listItems[id].price -= this.listItems[id].item.price;
+                this.totalQty--;
+                this.totalPrice -= this.listItems[id].item.price;
+        
+                if (this.listItems[id].qty <= 0) {
+                    delete this.listItems[id];
+                }
+              }
+            }
+            
+          }
+           
         },
 
         removeItem(id) {

@@ -8,7 +8,7 @@
   <%- include("../partials/head") -%>	
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-  <div class="wrapper">
+  <div class="wrapper" id="pedido_medicametos">
     <div class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -94,7 +94,7 @@
                             <td><%=resp[i].codigo_venta%></td>
                             <td><%=resp[i].createdAt.split("T")[0]%></td>
                             <td><%=resp[i].medicamentos.total%></td>
-                            <td><a href="javascript:void(0);" data-toggle="modal" class="btn  tooltips" data-target="#myModal2" data-original-title="Ver Venta"><i class="fa fa-eye" style="color:rgb(22, 70, 202)"></i></a><span>&nbsp;</span>
+                            <td><a href="javascript:void(0);" @click="one_venta(<%=resp[i].id%>)" data-toggle="modal" class="btn  tooltips" data-target="#myModal2" data-original-title="Ver Venta"><i class="fa fa-eye" style="color:rgb(22, 70, 202)"></i></a><span>&nbsp;</span>
                           </tr>
                         <% } %>
                       <tbody>
@@ -107,88 +107,133 @@
         </div>
   	  </div>  
     </div>
-  </div>
-<!--Modal-->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users icon"></i>Receta</h4>
-        </div>
-        <div class="modal-body"> 
-          <form action="" method="POST" class="form-horizontal" role="form"  parsley-validate novalidate>
-              <div class="col-md-3">
-                <div class="entrada ">
-                  <label class=" ">Codigo:</label><p><b>5156151</b></p>
-                  <input type="hidden" name="numeroHistorial"  value="5156151"  class="form-control" readonly="" value="Read only text goes here">
+    <!--Modal-->
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users icon"></i>Receta</h4>
+          </div>
+          <div class="modal-body"> 
+            <form action="" method="POST" class="form-horizontal" role="form"  parsley-validate novalidate>
+                <div class="col-md-3">
+                  <div class="entrada ">
+                    <label class=" ">Codigo:</label><p><b>{{one_venta_data.codigo_venta}}</b></p>
+                    <input type="hidden" name="numeroHistorial"  value="5156151"  class="form-control" readonly="" value="Read only text goes here">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div class="entrada ">
-                  <label class=" ">Fecha:</label><p><b>01/20/2019</b></p>
-                  <input type="hidden" name="numeroHistorial"  value="01/20/2019"  class="form-control" readonly="" value="Read only text goes here">
+                <div class="col-md-3">
+                  <div class="entrada ">
+                    <label v-if="one_venta_data != ''" class=" ">Fecha:</label><p><b>{{fecha}}</b></p>
+                    <input type="hidden" name="numeroHistorial"  value="01/20/2019"  class="form-control" readonly="" value="Read only text goes here">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-5">
-                <div class="entrada ">
-                  <label class=" ">Encargada:</label><p><b>MARCO COLQUE VILLA</b></p>
-                  <input type="hidden" name="numeroHistorial"  value="MARCO COLQUE VILLA"  class="form-control" readonly="" value="Read only text goes here">
+                <div class="col-md-5">
+                  <div class="entrada ">
+                    <label class=" ">Encargada:</label><p><b>{{one_venta_data.empleado}}</b></p>
+                    <input type="hidden" name="numeroHistorial"  value="MARCO COLQUE VILLA"  class="form-control" readonly="" value="Read only text goes here">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-2">
-                <div class="entrada ">
-                  <label class=" ">C.I:</label><p><b>5156151</b></p>
-                  <input type="hidden" name="numeroHistorial"  value="5156151"  class="form-control" readonly="" value="Read only text goes here">
+                <div class="col-md-2">
+                  <div class="entrada ">
+                    <label class=" ">C.I:</label><p><b>{{one_venta_data.ci}}</b></p>
+                    <input type="hidden" name="numeroHistorial"  value="5156151"  class="form-control" readonly="" value="Read only text goes here">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="entrada ">
-                  <label class=" ">Cliente:</label><p><b>LAURA ZAPATA LIMA</b></p>
-                  <input type="hidden" name="numeroHistorial"  value="01/20/2019"  class="form-control" readonly="" value="Read only text goes here">
-                </div>
-              </div> 
-            <div class="table-responsive">
-                <table  class="display table table-bordered table-striped " >
-                  <thead>
-                    <tr>
-                    <th>#</th>
-                    <th>Cantidad del Producto</th>
-                    <th>Codigo</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Precio Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>                                                    
-                                                                    
-                  </tbody>
-                </table>
-              </div><!--/table-responsive-->
-                  <div class="col-md-4">
-                      <div class="form-group">
-                        <div class="col-sm-9">
-                          <div class="input-group"> <span class="input-group-addon">Total:</span>
-                            <input type="text" class="form-control"  readonly :value="totalPrice + totalPrice * 0.18">
+                <div class="col-md-4">
+                  <div class="entrada ">
+                    <label class=" ">Cliente:</label><p><b>{{cliente}}</b></p>
+                    <input type="hidden" name="numeroHistorial"  value="01/20/2019"  class="form-control" readonly="" value="Read only text goes here">
+                  </div>
+                </div> 
+              <div class="table-responsive">
+                  <table  class="display table table-bordered table-striped " >
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Cantidad del Producto</th>
+                        <th>Codigo</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>                                                    
+                        <tr v-for="(list, index) in medi">
+                          <td>{{index+1}}</td>
+                          <td>{{list.qty}}</td>
+                          <td>{{list.item.codificacion}}</td>
+                          <td>{{list.item.nombre}}</td>
+                          <td>{{list.price}}</td>
+                         
+                        </tr>                                        
+                    </tbody>
+                  </table>
+                </div><!--/table-responsive-->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                          <div class="col-sm-9">
+                            <div class="input-group"> <span class="input-group-addon">Total:</span>
+                              <input type="text" class="form-control"  readonly  :value="toral_price">
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-  
-              
-            <div class="form-group">
-                <div class="col-sm-offset-0 col-sm-10">
-                  <!--  <a type="button" class="btn btn-info" href="/Farmacia/reg_venta"> Aceptar</a> -->
-                  <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
-                  <button type="reset" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                </div>
-              </div><!--/form-group--> 
-            </form>
+    
+                
+              <div class="form-group">
+                  <div class="col-sm-offset-0 col-sm-10">
+                    <!--  <a type="button" class="btn btn-info" href="/Farmacia/reg_venta"> Aceptar</a> -->
+                    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                  </div>
+                </div><!--/form-group--> 
+              </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 <%- include("../partials/scripts") -%>
+<script>
+const pedido_medicametos = new Vue({
+    el: '#pedido_medicametos',    
+    data : () => ({
+      url:data_url.url_front_end,
+      data:"aljand321",
+      one_venta_data:'',
+      fecha:'',
+      cliente:'',
+      medi:'',
+      toral_price:''
+    }),
+    methods:{ 
+      one_venta(id){
+        fetch(this.url+'/Farmacia/vue_one_venta_cliente/'+id)   
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(data =>{
+          this.fecha = data[0].createdAt.split("T")[0]
+          this.one_venta_data = data[0]
+          this.medi = data[0].medicamentos.medicamentos
+          this.toral_price = data[0].medicamentos.total
+          this.one_cliente(data[0].id_cliente)
+          console.log(this.one_venta_data)
+        })
+      },
+      one_cliente(id){
+        fetch(this.url+'/Farmacia/Vue_one_cliente/'+id)   
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(data =>{
+          this.cliente = data[0].nombre+' '+data[0].apellidop+' '+data[0].apellidom
+        })
+      }
+    }
+  })
+</script>
 </body>
 </html>
 

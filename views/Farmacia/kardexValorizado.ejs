@@ -6,6 +6,7 @@
   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
   	<title>Farmacia</title>
 	<%- include("../partials/head") -%>	
+	<link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
 	<style>
 		.vertical-alignment-helper {
 			display:table;
@@ -21,7 +22,7 @@
 	  </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-  	<div class="wrapper">
+  	<div class="wrapper" id="kardex">
     	<div class="header_bar">
       		<div class="brand">
         		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -78,52 +79,96 @@
 						  			<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-folder-open icon"></i></div>   Kardex Valorizado</h2> 
 								</div>
 								<div class="porlets-content">
-									<div class="panel-body">
-					  					<!-- Button trigger modal -->
-										<div class="form-group">
-											<label for="inputPassword3" class="col-sm-3 control-label">GRUPO DE ASIGNACION  <i class="fa fa-archive"></i>:</label>
-											<div class="col-sm-7">
-								  				<select class="selectpicker" data-show-subtext="true" data-live-search="true">
-													<option>Paco</option>
-													<option>Luis</option>
-													<option>Luna</option>
-													<option>Daniela</option>
-										  		</select>
-											</div>
-							  			</div><!--/form-group-->
-									</div>  
-				  					<div class="table-responsive">
-										<table  class="display table table-bordered table-striped" id="dynamic-table">
-											<thead>
-												<tr>
-												<th>Grupo de Asignacion</th>
-												<th>Articulo</th>
-												<th>Unidad de Medida</th>
-												<th>Total de Ingresos</th>
-												<th>Valor de Ingresos</th>
-												<th>Totalo de Stock</th>
-												<th>Valor de Stock</th>
-												<th>Total de Salidas</th>
-												<th>Valor de Salidas</th>
-												<th>Utilidad Valorizada</th>
-												</tr>
-							  				</thead>
-							  				<tbody>
-												<tr>
-												<td>1</td>
-												<td>123</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												<td>a</td>
-												</tr>
-							 				<tbody>
-										</table>
-									</div><!--/table-responsive-->
+									<div class="panel-body"><br>
+										<!-- Button trigger modal -->
+										<div id="ocultoI" class="form-group">
+										  <label for="inputPassword3" class="col-sm-3 control-label">GRUPO DE ASIGNACION<i class="fa fa-archive"></i>:</label>
+										  <div class="col-sm-5">
+											<v-select :options="grupo" label="descripcion" v-model="select_grupo" placeholder="Buscar"></v-select>   
+											<br>
+										  
+											<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
+											<a @click="buscar()" class="btn btn-success btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Buscar</a>
+											<a @click="med_traidos = ''" class="btn btn-danger btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Eliminar</a>
+																</div>
+										</div><!--/form-group-->
+									</div>  <br> 
+									<template v-if="med_traidos == ''">
+				  						<div class="table-responsive">
+											<table  class="display table table-bordered table-striped" id="dynamic-table">
+												<thead>
+													<tr>
+														<th>N°</th>
+														<th>Grupo de Asignacion</th>
+														<th>Articulo</th>
+														<th>Unidad de Medida</th>
+														<th>Total de Ingresos</th>
+														<th>Valor de Ingresos</th>
+														<th>Totalo de Stock</th>
+														<th>Valor de Stock</th>
+														<th>Total de Salidas</th>
+														<th>Valor de Salidas</th>
+														<th>Utilidad Valorizada</th>
+													</tr>
+							  					</thead>
+							  					<tbody>
+													<% for ( var i = 0; i < resp.length; i++) { %>
+														<tr>
+																<td><%=i+1%></td>
+																<td><%=resp[i].grupo_asignacion.descripcion%></td>
+																<td><%=resp[i].nombre%></td>
+																<td><%=resp[i].unida_medida%></td>
+																<td><%=resp[i].entradas%></td>
+																<td><%=resp[i].entradas * resp[i].precio %></td>
+																<td><%=resp[i].cantidad_unidad%></td>
+																<td><%=resp[i].cantidad_unidad * resp[i].precio %></td>
+																<td><%=resp[i].ventas%></td>
+																<td><%=resp[i].ventas * resp[i].precio %></td>
+																<td><%= (resp[i].ventas - resp[i].entradas) * -(resp[i].precio) %></td>
+														</tr>
+													<% } %>
+							 					<tbody>
+											</table>
+										</div><!--/table-responsive-->
+									</template>
+									<template v-else>
+										<div class="table-responsive">
+											<table  class="display table table-bordered table-striped" id="dynamic-table">
+												<thead>
+													<tr>
+														<th>N°</th>
+														<th>Grupo de Asignacion</th>
+														<th>Articulo</th>
+														<th>Unidad de Medida</th>
+														<th>Total de Ingresos</th>
+														<th>Valor de Ingresos</th>
+														<th>Totalo de Stock</th>
+														<th>Valor de Stock</th>
+														<th>Total de Salidas</th>
+														<th>Valor de Salidas</th>
+														<th>Utilidad Valorizada</th>
+													</tr>
+												  </thead>
+												  <tbody>
+													
+													<tr v-for="(list, index) in med_traidos">
+														<td> {{index+1}} </td>
+														<td> {{list.grupo_asignacion.descripcion}} </td>
+														<td> {{list.nombre}} </td>
+														<td> {{list.unida_medida}} </td>
+														<td> {{list.entradas}} </td>
+														<td> {{ list.entradas * list.precio }} </td>
+														<td> {{list.cantidad_unidad}} </td>
+														<td> {{list.cantidad_unidad * list.precio}} </td>
+														<td> {{list.ventas}} </td>
+														<td> {{list.ventas * list.precio}} </td>
+														<td> {{ (list.ventas - list.entradas) * -(list.precio)}} </td>
+													</tr>
+													
+												 <tbody>
+											</table>
+										</div><!--/table-responsive-->
+									</template>
 								</div><!--/porlets-content-->
 					   		</div><!--/block-web--> 
 						</div><!--/col-md-12--> 
@@ -155,6 +200,69 @@
 		</div> 
 	</div>
 <%- include("../partials/scripts") -%>
+<script src="https://unpkg.com/vue@latest"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
+<script >
+	Vue.component('v-select', VueSelect.VueSelect)
+	const kardex = new Vue({
+		el:"#kardex",
+		data:() => ({
+		  url:data_url.url_front_end,
+		  data:'aljand321',
+		  grupo:[],
+		  select_grupo:'',
+	
+		  med_traidos:''
+		  
+		}),
+		mounted(){
+		  
+		  fetch(this.url+'/Farmacia/Vue_grupo_asignacion_med')   
+		  .then(resp => resp.json())
+		  .then(data =>{ 
+			  console.log(data)
+			  
+			  for (var i = 0; i < data.length; i++){
+				this.grupo.push({
+				  id:data[i].id,
+	
+				  descripcion:data[i].descripcion,
+				  codigo:data[i].codigo
+				})
+			  }
+		  })
+		},
+		methods:{
+		  buscar(){
+			var datos = {
+			  id_grupo : this.select_grupo.id
+			}
+			var esto = {
+			  method: 'post',
+			  body: JSON.stringify(datos),
+			  headers:{
+				'Content-type' : "application/json"
+			  }
+			};
+			fetch(this.url+'/Farmacia/vue_mostrar_med',esto)
+			.then(res => res.json())
+			.catch(error => console.error('Error:', error))
+			.then(resp => {
+			  if(resp.success == false){
+				swal.fire(
+				 'Error!',
+				 '<label style="color:red;">'+ resp.msg +'</label>',
+				 'error'
+				)
+			  }else{
+				this.med_traidos = resp
+			  }
+			  console.log(resp)
+			})
+		  }
+		}
+	})
+</script>
 </body>
 </html>
 

@@ -206,43 +206,85 @@ h1.letras {
 											</div>
 										</form>
 									</div>  
-									<div id="sacar" class="table-responsive">
-										<table id="table1" class="table table-bordered"   >
-									  		<thead>
-												<tr>
-													<th class="tamm">#</th>
-													<th class="tamm">Codigo</th>
-													<th class="tamm">Descripcion</th>
-												
-													<th class="tamm">Forma Farmaceutica</th>
-													<th class="tamm">Cantidad</th>
-													<th class="tamm">Fecha Vencimiento</th>
-													<th class="tamm">Vencio hace</th>
-													<th class="tamm">Precio de Compra</th>
-													<th class="tamm">Precio de Venta</th>
-												</tr>
-											</thead>
-									  		<tbody>
-												<template v-for="(list, index) in list_fechas_medicamentos">
+									<template v-if="list_fechas_medicamentos != ''">
+										<div id="sacar" class="table-responsive">
+											<table id="table1" class="table table-bordered"   >
+												  <thead>
 													<tr>
-														<td>{{index+1}}</td>
-														<td>{{list_fechas.codificacion}}</td>
-														<td>{{list_fechas.nombre}}</td>
-														<td>{{list_fechas.forma_f}}</td>
-														
-														
-														<td>{{list.cantidad_unidad}}</td>
-														<td>{{list.fehca_vencimineto}}</td>
-														<td>{{list.fehca_v}}</td>
-														<td>{{list_fechas.precio_compra}}</td>
-														<td>{{list_fechas.precio}}</td>
+														<th class="tamm">#</th>
+														<th class="tamm">Codigo</th>
+														<th class="tamm">Descripcion</th>
+													
+														<th class="tamm">Forma Farmaceutica</th>
+														<th class="tamm">Cantidad</th>
+														<th class="tamm">Fecha Vencimiento</th>
+														<th class="tamm">Vencio hace</th>
+														<th class="tamm">Precio de Compra</th>
+														<th class="tamm">Precio de Venta</th>
 													</tr>
-												</template>
-
-												
-											<tbody>
-										</table>
-								  	</div><!--/table-responsive-->
+												</thead>
+												  <tbody>
+													<template v-for="(list, index) in list_fechas_medicamentos">
+														<tr>
+															<td>{{index+1}}</td>
+															<td>{{list_fechas.codificacion}}</td>
+															<td>{{list_fechas.nombre}}</td>
+															<td>{{list_fechas.forma_f}}</td>
+															
+															
+															<td>{{list.cantidad_unidad}}</td>
+															<td>{{list.fehca_vencimineto}}</td>
+															<td>{{list.fehca_v}}</td>
+															<td>{{list_fechas.precio_compra}}</td>
+															<td>{{list_fechas.precio}}</td>
+														</tr>
+													</template>
+	
+													
+												<tbody>
+											</table>
+										</div><!--/table-responsive-->
+									</template>
+									<template v-else>
+											<div id="sacar" class="table-responsive">
+													<table id="table1" class="table table-bordered"   >
+														  <thead>
+															<tr>
+																<th class="tamm">#</th>
+																<th class="tamm">Codigo</th>
+																<th class="tamm">Descripcion</th>
+															
+																<th class="tamm">Forma Farmaceutica</th>
+																<th class="tamm">Cantidad</th>
+																<th class="tamm">Fecha Vencimiento</th>
+																<th class="tamm">Vencio hace</th>
+																<th class="tamm">Precio de Compra</th>
+																<th class="tamm">Precio de Venta</th>
+															</tr>
+														</thead>
+														  <tbody>
+															<template v-for="(list, index) in list2">
+																<tr>
+																	<td>{{index+1}}</td>
+																	<td>{{list.codigo_compra}}</td>
+																	<td>{{list_fechas.nombre}}</td>
+																	<td>{{list_fechas.forma_f}}</td>
+																	
+																	
+																	<td>{{list.cantidad_unidad}}</td>
+																	<td>{{list.fehca_vencimineto}}</td>
+																	<td>{{list.fehca_v}}</td>
+																	<td>{{list_fechas.precio_compra}}</td>
+																	<td>{{list_fechas.precio}}</td>
+																</tr>
+															</template>
+			
+															
+														<tbody>
+													</table>
+												</div><!--/table-responsive-->
+									</template>
+									
 								</div><!--/porlets-content-->
 							</div><!--/block-web--> 
 						</div><!--/col-md-12--> 
@@ -293,8 +335,34 @@ h1.letras {
 			medicamento:'',
 
 			list_fechas:'',
-			list_fechas_medicamentos:''
+			list_fechas_medicamentos:'',
+
+			list2:[],
+			list3:''
 		}),
+		mounted(){
+			fetch(this.url+'/Farmacia/Vue_med_fecha_c')   
+  			.then(resp => resp.json())
+  			.then(data =>{ 
+				this.list_fechas = data[0]
+  			  	for (var i = 0; i < data[0].cantidad_fechas.length; i++){					
+					if(-(moment().diff(data[0].cantidad_fechas[i].fehca_vencimineto, 'days')) < 0){ 
+
+						this.list2.push({
+							id: data[0].cantidad_fechas[i].id,
+							cantidad_unidad:data[0].cantidad_fechas[i].cantidad_unidad,
+							codigo_compra:data[0].cantidad_fechas[i].codigo_compra,
+							createdAt:data[0].cantidad_fechas[i].createdAt,
+							fehca_vencimineto:data[0].cantidad_fechas[i].fehca_vencimineto,
+							fehca_v: moment().diff(data[0].cantidad_fechas[i].fehca_vencimineto, 'days'),
+							precio:data[0].cantidad_fechas[i].precio								
+						})
+
+					}				
+				}
+				console.log(this.list2, " ddddddddddddddddddddddddddddddddddddddddddddddddddd")
+  			})
+		},
 		methods:{ 
 			list_fecha(e){
 				e.preventDefault();
