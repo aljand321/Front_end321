@@ -356,11 +356,12 @@ router.get('/kardexValorizado/:token_id/:token_part', (req,res) => {
                 fetch('http://localhost:3500/api/medicamento')   
                 .then(resp => resp.json())
                 .then(resp =>{ 
-                    console.log(resp)       
+                    
                     res.render('Almacen/kardexValorizado',{
                         resp,
-                        data_doc: data_user[token_id]
-                    });
+                        data_doc: data_user[token_id]                            
+                    });                   
+                    
                 })
                 status = null
             }else{
@@ -372,6 +373,33 @@ router.get('/kardexValorizado/:token_id/:token_part', (req,res) => {
         res.redirect('/');
     }
 });
+//vue para grupo asignacion
+router.get('/Vue_grupo_asignacion_med', (req,res) => {
+    fetch('http://localhost:3500/api/verAsignacion_data')   
+    .then(resp => resp.json())
+    .then(data =>{ 
+        res.status(200).json(data)
+    })
+})
+
+// ruta para poder mostrar un medicamentos segun su grupo
+router.post('/vue_mostrar_med', (req,res) => {
+    var datos = req.body
+    var esto = {
+        method: 'post',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch('http://localhost:3500/api/mostrar_med',esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+          res.status(200).json(data)
+      })
+})
+
 router.get('/med_ven/:token_id/:token_part', (req,res) => {
     const { token_id, token_part } = req.params;
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
