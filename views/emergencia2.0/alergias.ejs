@@ -43,7 +43,7 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li ><a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+            <li ><a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a></li>
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Consultas de Emerg.<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 								<li> <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Lista de Consultas</b> </a> </li>
@@ -99,41 +99,42 @@
                               <h3 class="text-center">Registro de Alergias</h3>
                               <div class="form-group">
                                 <div class="col-sm-6">
-                                  <label class="control-label">Tipo de Alergia::</label>
-                                  <select class="form-control" required id="source" name="tipoAlergia ">
+                                  <label class="control-label">Tipo de Alergia </label>
+                                  <select class="form-control" required id="source" name="tipoAlergia" required placeholder="">
+                                    <option value="" selected disabled hidden>--Seleccione--</option>
                                     <optgroup label="ALERGIAS MÁS COMUNES">
-                                      <option> Alergia a los ácaros </option>
-                                      <option> Alergia al polen </option>
-                                      <option >Alergia al pelo de animales</option>
-                                      <option >Alergia a las picaduras de insectos</option>
-                                      <option > Alergia al moho</option>
-                                      <option >Alergia a alimentos</option>
-                                      <option >Alergia al látex</option>
-                                      <option >Alergia a algunos alimentos</option>
-                                      <option >Alergia a fragancias</option>
-                                      <option >Alergia a las cucarachas</option>
+                                      <option> ALERGIA A LOS ÁCAROS </option>
+                                      <option> ALERGIA AL POLEN  </option>
+                                      <option >ALERGIA AL PELO DE ANIMALES</option>
+                                      <option >ALERGIA A LAS PICADURAS DE INSECTOS</option>
+                                      <option > ALERGIA AL MOHO</option>
+                                      <option >ALERGIA A ALIMENTOS</option>
+                                      <option >ALERGIA AL LÁTEX</option>
+                                      <option >ALERGIA A ALGUNOS ALIMENTOS</option>
+                                      <option >ALERGIA A FRAGANCIAS</option>
+                                      <option >ALERGIA A LAS CUCARACHAS</option>
                                     </optgroup>
                                     <optgroup label="ALERGIAS MÁS RARAS">
-                                      <option>Urticaria acuagénica o alergia al agua</option>
-                                      <option>Alergia al sol</option>
-                                      <option>Alergia a la presión</option>
-                                      <option>Alergia al ejercicio</option>
-                                      <option>Alergia al frío</option>
-                                      <option>Alergia al calor</option>
-                                      <option>Alergia a los teléfonos móviles</option>
-                                      <option>Alergia a las hormonas</option>
+                                      <option>URTICARIA ACUAGÉNICA O ALERGIA AL AGUA</option>
+                                      <option>ALERGIA AL SOL</option>
+                                      <option>ALERGIA A LA PRESIÓN</option>
+                                      <option>ALERGIA AL EJERCICIO</option>
+                                      <option>ALERGIA AL FRÍO</option>
+                                      <option>ALERGIA AL CALOR</option>
+                                      <option>ALERGIA A LOS TELÉFONOS MÓVILES</option>
+                                      <option>ALERGIA A LAS HORMONAS</option>
                                     </optgroup>
                                   </select>
                                 </div><!--/col-sm-9--> 
                                 <div class="col-sm-6">
-                                  <label class="control-label">Observaciones:</label>
+                                  <label class="control-label">Observaciones </label>
                                   <textarea class="form-control" name="descripcion" required onkeyup="mayus(this);"></textarea>
                                 </div>
                               </div>
                               <h3 class="text-center"> Registro de Antecedentes</h3>
                               <div class="form-group">
                                 <div class="col-sm-6">
-                                  <label class="control-label">Antecedes de Familiares:</label>
+                                  <label class="control-label">Antecedes de Familiares </label>
                                   <input type="text" class="form-control" name="familiares" required value="" size="20" onkeyup="mayus(this);">
                                 </div>
                                 <div class="col-sm-6">
@@ -155,24 +156,24 @@
                               <div class="form-group">
                                 <div class="col-sm-6">
                                   <label class="control-label">Tipo de Hábito</label>
-                                  <input type="text" class="form-control"name="tipoHabito" required onkeyup="mayus(this);">
+                                  <input type="text" class="form-control"name="tipoHabito"  onkeyup="mayus(this);">
                                 </div>
                                 <div class="col-sm-6">
-                                  <label class="control-label">Observaciones:</label>
-                                  <textarea class="form-control" name="descripcionHa" required onkeyup="mayus(this);"></textarea>
+                                  <label class="control-label">Observaciones</label>
+                                  <textarea class="form-control" name="descripcionHa"  onkeyup="mayus(this);"></textarea>
                                 </div>
                               </div>       
                               <h3 class="text-center">Detalles de interes</h3>
                               <div class="form-group">
                                 <div class="col-sm-10">
                                   <label class="control-label">Observaciones</label>
-                                  <textarea class="form-control" name="descripcionInte" required onkeyup="mayus(this);"></textarea>
+                                  <textarea class="form-control" name="descripcionInte"  onkeyup="mayus(this);"></textarea>
                                 </div>
                               </div><br> 
                               <div class="col-md-12 page-content ">
                                 <div class="col-md-8 ">
                                   <button type="submit" class="btn btn-success btn-icon"><i class="fa fa-save"></i>  Guardar <span>&nbsp;</span></button>
-                                  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar <span>&nbsp;</span></button>
+                                  <a href="/emergencia2.0/registrar_emergencia/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span>Cancelar</span> </a>
                                 </div>
                               </div>  
                             </form>
@@ -187,26 +188,26 @@
                                       <option><%=update_Alergia.data[0].tipoAlergia%></option>  
                                     </optgroup>
                                     <optgroup label="ALERGIAS MÁS COMUNES">
-                                      <option> Alergia a los ácaros </option>
-                                      <option> Alergia al polen </option>
-                                      <option >Alergia al pelo de animales</option>
-                                      <option >Alergia a las picaduras de insectos</option>
-                                      <option > Alergia al moho</option>
-                                      <option >Alergia a alimentos</option>
-                                      <option >Alergia al látex</option>
-                                      <option >Alergia a algunos alimentos</option>
-                                      <option >Alergia a fragancias</option>
-                                      <option >Alergia a las cucarachas</option>
+                                        <option> ALERGIA A LOS ÁCAROS </option>
+                                        <option> ALERGIA AL POLEN  </option>
+                                        <option> ALERGIA AL PELO DE ANIMALES</option>
+                                        <option> ALERGIA A LAS PICADURAS DE INSECTOS</option>
+                                        <option> ALERGIA AL MOHO</option>
+                                        <option> ALERGIA A ALIMENTOS</option>
+                                        <option> ALERGIA AL LÁTEX</option>
+                                        <option> ALERGIA A ALGUNOS ALIMENTOS</option>
+                                        <option> ALERGIA A FRAGANCIAS</option>
+                                        <option> ALERGIA A LAS CUCARACHAS</option>
                                     </optgroup>
                                     <optgroup label="ALERGIAS MÁS RARAS">
-                                      <option>Urticaria acuagénica o alergia al agua</option>
-                                      <option>Alergia al sol</option>
-                                      <option>Alergia a la presión</option>
-                                      <option>Alergia al ejercicio</option>
-                                      <option>Alergia al frío</option>
-                                      <option>Alergia al calor</option>
-                                      <option>Alergia a los teléfonos móviles</option>
-                                      <option>Alergia a las hormonas</option>
+                                        <option>  URTICARIA ACUAGÉNICA O ALERGIA AL AGUA</option>
+                                        <option>  ALERGIA AL SOL</option>
+                                        <option>  ALERGIA A LA PRESIÓN</option>
+                                        <option>  ALERGIA AL EJERCICIO</option>
+                                        <option>  ALERGIA AL FRÍO</option>
+                                        <option>  ALERGIA AL CALOR</option>
+                                        <option>  ALERGIA A LOS TELÉFONOS MÓVILES</option>
+                                        <option>  ALERGIA A LAS HORMONAS</option>
                                     </optgroup>
                                   </select>
                                 </div><!--/col-sm-9--> 
@@ -228,11 +229,11 @@
                               </div>
                               <div class="form-group">
                                 <div class="col-sm-6">
-                                  <label class="control-label">Antecedes no Patológicos:</label>
+                                  <label class="control-label">Antecedes no Patológicos</label>
                                   <input type="text" class="form-control"  name="personales_no_patologicos" required  value="<%=update_Alergia.data[0].personales_no_patologicos%>" size="10" required onkeyup="mayus(this);">
                                 </div>
                                 <div class="col-sm-6">
-                                  <label class="control-label">Gineco Obstétrico:</label>
+                                  <label class="control-label">Gineco Obstétrico</label>
                                   <input type="text" class="form-control" parsley-trigger="change" name="gineco_obstetrico" required value="<%=update_Alergia.data[0].gineco_obstetrico%>" size="20" required onkeyup="mayus(this);"/>
                                 </div>
                               </div>
@@ -257,7 +258,7 @@
                               <div class="col-md-12 page-content ">
                                 <div class="col-md-8 ">
                                   <button type="submit" class="btn btn-success btn-icon"><i class="fa fa-save"></i>  Actualizar <span>&nbsp;</span></button><span>&nbsp;&nbsp;&nbsp;</span>
-                                  <a class="btn btn-danger active btn-icon" aria-pressed="true" role="button"  href="/emergencia2.0/remove_update_alergia/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><span>&nbsp;</span><i class="fa fa-times"></i> Cancelar </a><span>&nbsp;&nbsp;&nbsp;</span>
+                                  <a href="/emergencia2.0/registrar_emergencia/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger" ><i class="fa fa-times"></i> <span>Cancelar</span> </a>
                                 </div>
                               </div> 
                             </form>
