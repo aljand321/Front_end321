@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
   <title>Almacen</title>
   <%- include("../partials/head") -%>	
   <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
@@ -311,7 +312,7 @@
          msg_false()
          function msg_false(){
            swal.fire(
-             'Error!',
+             'Error',
              '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
              'error'
            )
@@ -320,7 +321,7 @@
          msg_true()
          function msg_true(){
            swal.fire(
-             'Success!',
+             'Confirmado',
              '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
              'success'
            )

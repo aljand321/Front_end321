@@ -567,13 +567,13 @@ const receta_paciente = new Vue({
                 this.data_one_receta();
                 this.update_estad_atendido()
                 swal.fire(
-                  'Success!',
+                  'Confirmado',
                   '<label style="color:green;">'+ data.msg +'</label>',
                   'success'
                 )
               }else{                
                 swal.fire(
-                  'Error!',
+                  'Error',
                   '<label style="color:red;">'+ data.msg +'</label>',
                   'error'
                 )

@@ -263,7 +263,7 @@ const ver_pedido_farmacia =  new Vue({
                             this.list_acep();
                             this.list21();
                             swal.fire(
-                                'Success!',
+                                'Confirmado',
                                 '<label style="color:green;">'+data.msg+'</label>',
                                 'success'
                             )
@@ -278,7 +278,7 @@ const ver_pedido_farmacia =  new Vue({
                     .catch(error => {
                         console.log("no hay coneccion con el servidor 3200");
                         swal.fire(
-                            'Error!',
+                            'Error',
                             '<label style="color:red;">No hay coneccion con el servidor 3200</label>',
                             'error'
                         );

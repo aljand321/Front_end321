@@ -3,7 +3,8 @@
 <head>
   	<meta charset="UTF-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	  <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
   	<title>Farmacia</title>
 	<%- include("../partials/head") -%>	
 	<link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
@@ -87,9 +88,8 @@
 											<v-select :options="grupo" label="descripcion" v-model="select_grupo" placeholder="Buscar"></v-select>   
 											<br>
 										  
-											<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
-											<a @click="buscar()" class="btn btn-success btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Buscar</a>
-											<a @click="med_traidos = ''" class="btn btn-danger btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Eliminar</a>
+											<a @click="buscar()" class="btn btn-success btn-raised" style="margin-right: 20px;"> <i class='fa fa-search'></i>&nbsp;&nbsp; Buscar</a>
+											<a @click="med_traidos = ''" class="btn btn-danger btn-raised" style="margin-right: 20px;"> <i class='fa fa-times'></i>&nbsp;&nbsp; Eliminar</a>
 																</div>
 										</div><!--/form-group-->
 									</div>  <br> 

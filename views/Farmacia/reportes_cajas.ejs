@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Farmacia</title>
   <style type="text/css">
@@ -267,7 +268,7 @@ h1.letras {
 		 msg_false()
 		 function msg_false(){
 		 swal.fire(
-		   'Error!',
+		   'Error',
 		   '<label style="color:red;">'+`<%=msg.data.data%>`+'</label>',
 		   'error'
 		 )
@@ -276,7 +277,7 @@ h1.letras {
 		 msg_true()
 		 function msg_true(){
 		 swal.fire(
-		   'Success!',
+		   'Confirmado',
 		   '<label style="color:green;">'+ `<%=msg.data.data%>` +'</label>',
 		   'success'
 		 )
