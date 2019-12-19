@@ -126,7 +126,7 @@
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
 				<div class="top_right_bar">
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown">
-                        <img src="/images/cajera.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b 
+                        <img src="/images/cajera.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b 
                         class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -140,13 +140,13 @@
 			<div id="ocultoI" class="left_nav">
 				<div class="left_nav_slidebar">
 					<ul>
-                        <li ><a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                        <li ><a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio  <span class="plus"></span> </a></li>
                         <li class=""> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consultas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul>
                                 <li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Citas Médicas</b> </a></li>
                             </ul>
                         </li>
-                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span  class="plus"><i class="fa fa-plus"></i></span></a>
+                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="left_nav_pointer"></span><span  class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block" >
                                 <li> <a href="/paciente/ReporConsultorio/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Reportes por Cons. </b> </a></li>
                               
@@ -293,7 +293,7 @@
                 </div>
               <div class="modal-footer">
                 <div class="center">
-                  <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                  <a href="/delete_token/<%=data_doc.data.token_id%>"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
                   <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
                 </div>
               </div>
@@ -428,7 +428,7 @@
                 if (this.id_doctor == ""){
                     swal.fire(
                         'Error!',
-                        '<label style="color:red;">Selecione doctor</label>',
+                        '<label style="color:red;">Inserte datos</label>',
                         'error'
                     ) 
                 }else{

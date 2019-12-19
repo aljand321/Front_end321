@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+	<%- include("./partials/head") -%>
 	<style>
 		div.a {
 			text-align: center;
@@ -258,7 +259,7 @@
 														</div>
 													</div>
 													<div class="col-xs-12 ">
-														<table class="table table-bordered">
+														<table class="display table table-bordered table-striped" id="dynamic-table">
 															<thead>
 																<tr>
 																<th>#</th>

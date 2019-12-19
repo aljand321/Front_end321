@@ -72,8 +72,8 @@
 			<div class="left_nav">
 				<div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consultas Médicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+						<li ><a href="/paciente/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio </span> <span class="plus"></span> </a></li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consultas Médicas <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 								<li> <a href="/paciente/citas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Médicas</b> </a></li>
 							</ul>
@@ -156,7 +156,7 @@
 											Modal registrar paciente 
 	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>><<<<<<  -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog ">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content  ">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
@@ -164,7 +164,7 @@
 				</div>
 				<form class=" " action='/paciente/postPaciente/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>' method='post' parsley-validate novalidate>
 					<div class="container-fluid  ">
-						<div class="col-md-14 "> <br>
+						<div class="col-md-12 "> <br>
 							<div class="col-md-4 " >
 								<label>Nombre(s)</label>
 								<input  class="form-control"type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change"onkeyup="mayus(this);" >
@@ -178,7 +178,7 @@
 								<input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change" onkeyup="mayus(this);">
 							</div>
 						</div>
-						<div class="col-md-13">
+						<div class="col-md-12">
 							<div class="col-md-4"><br>
 								<label>C.I.</label>
 								<input type='text' name='ci'placeholder="N° de Carnet" required placeholder="" parsley-trigger="change" maxlength="10"  class="form-control"/><br>
@@ -188,17 +188,18 @@
 								<input class="form-control" type='text' name='direccion'placeholder="Dirección" required  parsley-trigger="change" onkeyup="mayus(this);"><br>
 							</div>
 							<div class="col-md-4 " ><br>
+								
+								<label>Fecha de Nacimiento</label><br>
+								<input type='date' name='fechanacimiento' class="form-control" required  parsley-trigger="change"><br>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-4">
 								<label>Sexo</label>
 								<select class="form-control " name='sexo'required  parsley-trigger="change">
 									<option>HOMBRE</option>
 									<option>MUJER</option>
 								</select><br>
-							</div>
-						</div>
-						<div class="col-md-13">
-							<div class="col-md-4">
-								<label>Fecha de Nacimiento</label><br>
-								<input type='date' name='fechanacimiento' class="form-control" required  parsley-trigger="change"><br>
 							</div>
 						</div>			
 						<div class="col-md-12 modal-footer ">		
