@@ -199,6 +199,9 @@
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                           <button type="submit" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+                          <%if (filter != null ) { %>
+                            <a href="/Farmacia/quitar_filter_data/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i ></i>&nbsp;&nbsp; Cancelar</a>
+                          <% } %>
                           <a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
                         </div>
                       </div><!--/form-group--> 
@@ -220,26 +223,47 @@
                     </tr>
                   </thead>
                   <tbody>
+                    
                     <%if (filter != null ) { %>
                     <% for (var i = 0; i < filter.data.data_cliente.length; i++) { %>
-                    <tr>
-                      <td id="ocultoI" ><%=i+1%></td>
-                      <td class="tamm"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
-                      <td class="center "><%=filter.data.data_cliente[i].num_solicitud%></td>
-                      <td class="tamm"><%=filter.data.data_cliente[i].trimestre%></td>
-                      <td class="tamm"><%=filter.data.data_cliente[i].responsable%></td>
-                      <td class="tamm"><%=filter.data.data_cliente[i].destino%></td>
-                      <% if (filter.data.data_cliente[i].medicamento_mandado_almacen == null ) { %>											
-                        <td class="tamm" style="color: crimson;">PEDIDO REALIZADO</td>
-                      <% } else { %>
-                        <% if(filter.data.data_cliente[i].medicamento_aceptado_farmacia == null) {%>
-                          <td class="tamm" style="color: rgb(217, 220, 20);">Pedido en espera</td>
+                      <tr>
+                        <td id="ocultoI" ><%=i+1%></td>
+                        <td class="tamm"><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
+                        <td class="center"><%=filter.data.data_cliente[i].num_solicitud%></td>
+                        <td class="tamm"><%=filter.data.data_cliente[i].trimestre%></td>
+                        <td class="tamm"><%=filter.data.data_cliente[i].responsable%></td>
+                        <td class="tamm"><%=filter.data.data_cliente[i].destino%></td>
+                        <% if (filter.data.data_cliente[i].medicamento_mandado_almacen == null ) { %>											
+                          <td class="tamm" style="color: crimson;">PEDIDO REALIZADO</td>
                         <% } else { %>
-                          <td class="tamm" style="color: rgb(2, 170, 44);">Aceptado</td>
+                          <% if(filter.data.data_cliente[i].medicamento_aceptado_farmacia == null) {%>
+                            <td class="tamm" style="color: rgb(217, 220, 20);">Pedido en espera</td>
+                          <% } else { %>
+                            <td class="tamm" style="color: rgb(2, 170, 44);">Aceptado</td>
+                          <% } %>
                         <% } %>
-                      <% } %>
-                    </tr>
+                      </tr>
                     <% } %>
+                    <% } else { %>
+                      <% for (var i = 0; i < pedidos_list.length; i++) { %>
+                        <tr>
+                            <td id="ocultoI" ><%=i+1%></td>
+                            <td class="tamm"><%=pedidos_list[i].createdAt.split("T")[0]%></td>
+                            <td class="center"><%=pedidos_list[i].num_solicitud%></td>
+                            <td class="tamm"><%=pedidos_list[i].trimestre%></td>
+                            <td class="tamm"><%=pedidos_list[i].responsable%></td>
+                            <td class="tamm"><%=pedidos_list[i].destino%></td>
+                            <% if (pedidos_list[i].medicamento_mandado_almacen == null ) { %>											
+                              <td class="tamm" style="color: crimson;">PEDIDO REALIZADO</td>
+                            <% } else { %>
+                              <% if(pedidos_list[i].medicamento_aceptado_farmacia == null) {%>
+                                <td class="tamm" style="color: rgb(217, 220, 20);">Pedido en espera</td>
+                              <% } else { %>
+                                <td class="tamm" style="color: rgb(2, 170, 44);">Aceptado</td>
+                              <% } %>
+                            <% } %>
+                          </tr>
+                      <% } %>
                     <% } %>
                   <tbody>
                 </table>
@@ -275,7 +299,7 @@
 			</div>
 			<div class="modal-footer">
 			<div class="center">
-			  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+			  <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 			  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 			</div>
 			</div>

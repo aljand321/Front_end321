@@ -231,6 +231,7 @@ router.get('/OnlyMedicamento/:id/:token_id/:token_part',(req, res) =>{
 router.post('/updateMedicamento/:id/:token_id/:token_part', (req,res) =>{
     const { id, token_id, token_part } = req.params;
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        console.log(req.body, " esto es lo que quiero ve <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<ffffffffffffffffffffffffffffff")
         var data = req.body;
         var msg_p;
         var esto = {

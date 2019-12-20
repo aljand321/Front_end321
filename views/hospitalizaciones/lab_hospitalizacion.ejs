@@ -116,12 +116,12 @@
                                 <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Hospitalización <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
                                     <ul  class="opened" style="display:block">
                                         <li> 
-                                            <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Listas de Hosp.</b> </a> 
+                                            <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes a Internar</b> </a> 
                                         </li>
                                         
                                         <%if (one_internacion[0].estado_alta != true) { %>
                                             <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                                <b class="theme_color">Pacientes Hosp.</b>
+                                                <b class="theme_color">Pacientes Internados</b>
                                                 </a> 
                                             </li>
                                             <li> 
@@ -140,11 +140,26 @@
                                             <a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
                                                 <b >Traslados</b>
                                             </a> 
-                                        </li>
+										</li>
+										<li> <a href="/internaciones/buscar_historial/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+											<b >Historial</b>
+										</a> 
                                         
                                     </ul>
-                                </li>
-                                <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+								</li>
+								<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles <span
+									class="plus"><i class="fa fa-plus"></i></span></a>
+									<ul >
+										<li> 
+											<a href="/internaciones/Salas_hospital/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+												<b >Salas</b>
+											</a> 
+										</li>								
+		
+									</ul>
+		
+								</li>
+                               <!--  <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
                                     <ul >
                                         <li> 
                                             <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> 
@@ -160,8 +175,8 @@
                                             <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a> 
                                         </li>
                                     </ul>
-                                </li>
-                                <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Traslados<span class="plus"><i class="fa fa-plus"></i></span></a>
+                                </li> -->
+                               <!--  <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Traslados<span class="plus"><i class="fa fa-plus"></i></span></a>
                                     <ul >
                                         <%if(one_internacion[0].idPinternacion != null) { %>
                                         <li> 
@@ -175,15 +190,15 @@
                                         
                                         
                                     </ul>
-                                </li>
-                                <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+                                </li> -->
+                               <!--  <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
                                     <ul >
                                         <li> 
                                             <a href="/hospitalizacion/reporteP"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
                                         </li>
                                         
                                     </ul>
-                                </li>
+                                </li> -->
                                 
                             </ul>
 				</div>

@@ -212,7 +212,8 @@
                               <div class="form-group">
                                   <div class="col-sm-12">
                                       <label class="control-label">Diagnóstico</label><br><br>
-                                      <textarea class="form-control" name="diagnostico" onkeyup="mayus(this);"></textarea>
+                                     
+                                      <textarea class="form-control" rows="12" name="diagnostico" onkeyup="mayus(this);"></textarea>
                                   </div>
                               </div>
                               <br><br>
@@ -301,16 +302,16 @@
                                                             <div class="form-group">
 																<div class="col-sm-12">
 																	<label class="control-label">Diagnóstico del Paciente</label><br><br>
-																	<textarea class="form-control" name="diagnostico" onkeyup="mayus(this);" ><%=updateInternacion[0].diagnostico%></textarea>
+																	<textarea class="form-control" rows="10" name="diagnostico" onkeyup="mayus(this);" ><%=updateInternacion[0].diagnostico%></textarea>
 																</div>
                                                             </div>
                                                                <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
-                                                                <br><br>
+                                                               
                                                                 <p class="firmaPa center cafirmaP"></p>
                                                                 <p class="firmaDoc center cafirmaDoc"></p></p>
                                                                 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
                               
-                                                            <br><br>
+                                           
                                                             <div id="ocultoI" class="col-md-12 page-content ">
                                                                 <div class="col-md-8 ">
                                                             <%if(updateInternacion[0].estado_update != false) { %>

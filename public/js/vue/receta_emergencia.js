@@ -40,7 +40,7 @@ const receta = new Vue({
     }),
     computed:{
         buscar_medicamentos(){
-            return this.dataReceta.filter((item) => item.nombre.includes(this.lista.medicamento))
+            return this.dataReceta.filter((item) => item.nombre.toLowerCase().includes(this.lista.medicamento.toLowerCase()))
         }
     },
     mounted(){

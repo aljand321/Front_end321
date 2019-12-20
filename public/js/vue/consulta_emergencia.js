@@ -40,7 +40,7 @@ const consulta_emergencia = new Vue({
     },
     computed:{
         buscar(){           
-            return this.lista.filter((item) => item.codigo.includes(this.data) || item.descripcion.includes(this.data))           
+            return this.lista.filter((item) => item.codigo.toLowerCase().includes(this.data) || item.descripcion.includes(this.data.toLowerCase()))           
         }
     },
     methods:{

@@ -198,7 +198,7 @@ margin-right: 3%;
                             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Liatas de Pacientes <span class="plus"><i class="fa fa-plus"></i></span></a>
                                 <ul class="opened" style="display:block">
                                     <li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                            <b  >Listas de Internación</b>
+                                            <b  >Pacientes a Internar</b>
                                         </a> 
                                     </li>
                                     <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
@@ -216,10 +216,22 @@ margin-right: 3%;
                                     <li> <a href="/internaciones/buscar_historial/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
                                         <b  class="theme_color" >Historial</b>
                                         </a> 
-                                    </li>						
+									</li>	
+														
                                 </ul>
                             </li>
-                        
+							<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles <span
+								class="plus"><i class="fa fa-plus"></i></span></a>
+								<ul >
+									<li> 
+										<a href="/internaciones/Salas_hospital/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+											<b >Salas</b>
+										</a> 
+									</li>								
+	
+								</ul>
+	
+							</li>
 
                     </ul>
 				</div>
@@ -277,7 +289,7 @@ margin-right: 3%;
                             	        </div>
                             	        <!--/row-->
                                     </div>
-                                    <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+                                    
                             	    <p class="text-center">
                             	        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
                             	        <button @click="buscar()" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Buscar</button>

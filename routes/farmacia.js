@@ -312,6 +312,7 @@ router.post('/registrar_medicamento/:token_id/:token_partial', (req,res) => {
 router.post('/update_medicamento/:id_medicamento/:token_id/:token_partial', (req,res) => {
   const { id_medicamento, token_id, token_partial } = req.params
   var data = req.body;
+  console.log(req.body, "  ssssssssssssssssssssssssss  asdasdasasd  asdasdas asdasd asdasd asdasd  asdasd asdasd asdasd asdasd ")
   var msg_p;
   var esto = {
       method: 'PUT',
@@ -1185,6 +1186,11 @@ router.get('/Stock_far/:token_id/:token_partial', (req,res) => {
 })
 
 
+router.get('/quitar_filter_data/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params;
+  remove_filter_data(token_id)
+  res.redirect('/Farmacia/reportes_solicitudes/'+token_id+'/'+token_partial)
+})
 
 router.get('/reportes_solicitudes/:token_id/:token_partial', (req,res) => {   
   const { token_id, token_partial }  = req.params
@@ -1194,13 +1200,18 @@ router.get('/reportes_solicitudes/:token_id/:token_partial', (req,res) => {
     .then(resp => resp.json())
     .then(personal_farmacia => {   
       //res.send(filter_data[token_id])
-      console.log ( data_user[token_id], "  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<sadasd23")    
-      res.render('Farmacia/reportes_solicitudes',{
-        personal_farmacia,
-        data_doc : data_user[token_id],
-        filter: filter_data[token_id],
-        msg:msg_Consulta_emergencia[token_id]
+      fetch('http://localhost:3200/api/list_pedidos')
+      .then(resp => resp.json())
+      .then(pedidos_list => { 
+        res.render('Farmacia/reportes_solicitudes',{
+          personal_farmacia,
+          data_doc : data_user[token_id],
+          filter: filter_data[token_id],
+          msg:msg_Consulta_emergencia[token_id],
+          pedidos_list
+        })
       })
+      
     })
    
 
@@ -1357,6 +1368,11 @@ router.get('/Vue_one_cliente/:id_cliente', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
+router.get('/volver32/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  remove_filter_data1(token_id)
+  res.redirect('/Farmacia/reportes_recetas/'+token_id+'/'+token_partial)
+})
 router.get('/reportes_recetas/:token_id/:token_partial', (req,res) => {
   const { token_id, token_partial } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
@@ -1370,13 +1386,20 @@ router.get('/reportes_recetas/:token_id/:token_partial', (req,res) => {
       .catch(error => console.error('Error',error))
       .then(data_paciente =>{
 
-        res.render('Farmacia/reportes_recetas',{
-          personal_farmacia,
-          data_doc : data_user[token_id],
-          filter: filter_receta_data[token_id],
-          msg:msg_Consulta_emergencia[token_id],
-          data_paciente
-        });
+        fetch('http://localhost:3200/api/recetas')     
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(recetas_list =>{
+          res.render('Farmacia/reportes_recetas',{
+            personal_farmacia,
+            data_doc : data_user[token_id],
+            filter: filter_receta_data[token_id],
+            msg:msg_Consulta_emergencia[token_id],
+            data_paciente,
+            recetas_list
+          });
+        })
+        
 
       })
       
@@ -1428,6 +1451,7 @@ router.post('/filter_fecha_receta/:token_id/:token_partial', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
+      console.log(data, "  esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<<<")
       if(data.success == false){
         if(msg_Consulta_emergencia[token_id] == null){
           msg_p = {
@@ -1479,6 +1503,11 @@ router.post('/filter_fecha_receta/:token_id/:token_partial', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
+router.get('/volver322/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  remove_filter_data2(token_id)
+  res.redirect('/Farmacia/reportes_ventas/'+token_id+'/'+token_partial)
+})
 router.get('/reportes_ventas/:token_id/:token_partial', (req,res) => {
   const { token_id, token_partial } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
@@ -1487,14 +1516,19 @@ router.get('/reportes_ventas/:token_id/:token_partial', (req,res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(list_clientes =>{
-      
-      res.render('Farmacia/reportes_ventas',{
-        data_doc : data_user[token_id],
-        list_clientes,
-        filter: filter_ventas[token_id],
-        msg:msg_Consulta_emergencia[token_id],
-        
-      });    
+      fetch('http://localhost:3200/api/list_recetas_clientes')     
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(receta_list =>{
+        res.render('Farmacia/reportes_ventas',{
+          data_doc : data_user[token_id],
+          list_clientes,
+          filter: filter_ventas[token_id],
+          msg:msg_Consulta_emergencia[token_id],
+          receta_list
+        });  
+      })
+       
       
     })
     
@@ -1595,6 +1629,11 @@ router.post('/filter_fecha_ventas/:token_id/:token_partial', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
+router.get('/volver321/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  remove_filter_data3(token_id)
+  res.redirect('/Farmacia/reportes_cajas/'+token_id+'/'+token_partial)
+})
 
 router.get('/reportes_cajas/:token_id/:token_partial', (req,res) => {
   const { token_id, token_partial } = req.params
@@ -1604,12 +1643,20 @@ router.get('/reportes_cajas/:token_id/:token_partial', (req,res) => {
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(data_paciente =>{
-        res.render('Farmacia/reportes_cajas',{
-          data_doc : data_user[token_id],
-          data_paciente,
-          filter: filter_receta_p[token_id],
-          msg:msg_Consulta_emergencia[token_id],
-        });
+        fetch('http://localhost:3200/api/recetas')     
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(recetas_list =>{
+          res.render('Farmacia/reportes_cajas',{
+            data_doc : data_user[token_id],
+            data_paciente,
+            filter: filter_receta_p[token_id],
+            msg:msg_Consulta_emergencia[token_id],
+            recetas_list
+          });
+
+        })
+        
       })
     
   }else{

@@ -160,11 +160,11 @@
 										<div class="col-md-4">
 											<div class="form-group">
 												<label>Grupo de Asignación:</label>
-												<select required class="form-control" name="grupoAsig" onkeyup="mayus(this);">
-													<option><%=OnlyMedicamento.data[0].GrupoDesignado.descripcion%></option>
+												<select required class="form-control" name="id_grupo_desig" onkeyup="mayus(this);">
+													<option value="<%=OnlyMedicamento.data[0].GrupoDesignado.id%>"><%=OnlyMedicamento.data[0].GrupoDesignado.descripcion%></option>
 													<option>--------------------------</option>
 													<% for(var i=0; i< dataGRUPOa.length; i++) {%>
-													<option><%=dataGRUPOa[i].descripcion%></option>
+													<option value="<%=dataGRUPOa[i].id%>"><%=dataGRUPOa[i].descripcion%></option>
 													<% } %>
 												</select>
 											</div>

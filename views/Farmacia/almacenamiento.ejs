@@ -259,12 +259,12 @@
 											<div class="col-md-4">
 												<div class="form-group">
 													<label >Grupo de Asignación:</label>
-													<select name="descripcion"required class="form-control" id="source" onkeyup="mayus(this);" >
+													<select name="id_grupoAsig"required class="form-control" id="source" onkeyup="mayus(this);" >
 														<optgroup label="Grupo de Asignacion">
-														<option><%=one_medicamento.data[0].grupo_asignacion.descripcion%></option>
+														<option value="<%=one_medicamento.data[0].grupo_asignacion.id%>"><%=one_medicamento.data[0].grupo_asignacion.descripcion%></option>
 														<option value="">------------------------------</option>
 														<%for(data of list_grupoAsig_Far) { %>
-															<option><%= data.descripcion%></option>
+															<option value="<%= data.id%>"><%= data.descripcion%></option>
 														<% } %>
 														</optgroup>                       
 													</select>
@@ -343,6 +343,7 @@
 																	<th>#</th>
 																	<th>Codigo</th>
 																	<th>Nombre</th>
+																	<th>Grupo de asignacion</th>
 																	<th>Unidad de Medida</th>
 																	<th>Forma Farmaceutica</th>
 																	<th>Cantidad en Unidad</th>												
@@ -356,6 +357,7 @@
 																	<td><%=i+1%></td>
 																	<td><%=list_medicamentos[i].codificacion%></td>
 																	<td><%=list_medicamentos[i].nombre%></td>
+																	<td><%=list_medicamentos[i].grupo_asignacion.descripcion%></td>
 																	<td><%=list_medicamentos[i].unida_medida%></td>
 																	<td><%=list_medicamentos[i].forma_f%></td>
 																	<td><%=list_medicamentos[i].cantidad_unidad%></td>
