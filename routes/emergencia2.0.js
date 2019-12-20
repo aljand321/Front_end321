@@ -1422,6 +1422,7 @@ function remove_fecha(id) {
 router.post('/buscar_fechas/:id_medico/:token_id/:token_partial', (req,res) => {
   const { id_medico, token_id, token_partial } = req.params
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    console.log(req.body, " esto es lo que quiero ver zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz ")
     var data = req.body;
     var msg_p, msg_p1
     var esto = {
@@ -1503,7 +1504,7 @@ router.get('/ultimaConsulta/:id_cita/:token_id/:token_partial', (req,res) =>{
                 .then(resp => resp.json())
                 .then(rayosX => {                 
 
-                  fetch('http://localhost:3050/api/lista_lab_emg/'+data.id+'/'+data.Nhistorial)
+                  fetch('http://localhost:3050/api/lista_lab_emg1/'+data.id+'/'+data.Nhistorial)
                   .then(resp => resp.json())
                   .then(lab => {                                   
 
