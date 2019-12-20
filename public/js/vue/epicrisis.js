@@ -162,7 +162,7 @@ var hospital = new Vue({
                 console.log(data)
                 if (data.success == true){
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ data.msg +'</label>',
                         'success'
                     )
@@ -247,7 +247,7 @@ var hospital = new Vue({
                 console.log(data, "<<<<<<<<<<<<<<<<asd ")
                 if (data.success == true){
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ data.msg +'</label>',
                         'success'
                     )
@@ -313,7 +313,7 @@ var hospital = new Vue({
                 console.log(data, " <<<<<<<<<< asdasd <<<<<<<<<<<<<< asd")
                 if(data.success == true){
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ data.msg +'</label>',
                         'success'
                     )   
@@ -395,7 +395,7 @@ var hospital = new Vue({
             .then(data => { 
                 if (data.success == true){                   
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ data.msg +'</label>',
                         'success'
                     )            
@@ -466,7 +466,7 @@ var hospital = new Vue({
                 if(data.success == true){
                     this.get_one_epicrisis()
                     swal.fire(
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ data.msg +'</label>',
                         'success'
                     )

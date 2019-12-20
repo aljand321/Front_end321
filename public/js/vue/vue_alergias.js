@@ -49,7 +49,7 @@ const alergias = new Vue({
             .then(data => {
                 if(data.success == true){
                     swal.fire(                  //esto
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ data.msg +'</label>',
                         'success'
                       )
@@ -109,7 +109,7 @@ const alergias = new Vue({
             .then(data => {
                 if(data.success == true){
                     swal.fire(                  //esto
-                        'Success!',
+                        'Confirmado!',
                         '<label style="color:green;">'+ data.msg +'</label>',
                         'success'
                       )
