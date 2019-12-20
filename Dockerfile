@@ -5,13 +5,13 @@ RUN chmod 777 /opt/app
 COPY . .
 RUN npm install --quiet
 RUN npm install nodemon -g --quiet
+RUN npm install express --save
 RUN npm install axios
 RUN npm install babel-core --save
 RUN npm install body-parser
 RUN npm install cie10
 RUN npm install cors
 RUN npm install ejs
-RUN npm install express
 RUN npm install express-form-data
 RUN npm install express-formidable
 RUN npm install fs-extra
@@ -30,4 +30,4 @@ RUN npm install --save-dev babel-preset-env
 RUN npm install --save-de babel-preset-env
 RUN npm install --save-de nodemon
 EXPOSE 7000
-CMD nodemon -L --watch . app.js
+CMD npm start
