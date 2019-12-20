@@ -203,6 +203,7 @@ h1.letras {
 													<div class="form-group">
 													  	<div class="col-sm-offset-2 col-sm-10">
 																<button type="submit" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+																<button type="submit" @click="list_fechas_medicamentos = ''" v-if="list_fechas_medicamentos != ''" class="btn btn-danger"><i class="fa fa-bar-chart-o"></i>  Cancelar</button>
 																<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
 															  </div>
 													</div><!--/form-group--> 
@@ -271,15 +272,15 @@ h1.letras {
 																<tr>
 																	<td>{{index+1}}</td>
 																	<td>{{list.codigo_compra}}</td>
-																	<td>{{list_fechas.nombre}}</td>
-																	<td>{{list_fechas.forma_f}}</td>
+																	<td>{{list.nombre}}</td>
+																	<td>{{list.forma_farmaceutica}}</td>
 																	
 																	
 																	<td>{{list.cantidad_unidad}}</td>
 																	<td>{{list.fehca_vencimineto}}</td>
-																	<td>{{list.fehca_v}}</td>
-																	<td>{{list_fechas.precio_compra}}</td>
-																	<td>{{list_fechas.precio}}</td>
+																	<td>{{list.fecha_v}}</td>
+																	<td>{{list.precio_venta}}</td>
+																	<td>{{list.precio}}</td>
 																</tr>
 															</template>
 			
@@ -318,7 +319,7 @@ h1.letras {
 				</div>
 				<div class="modal-footer">
 				<div class="center">
-				  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 				</div>
 				</div>
@@ -348,23 +349,23 @@ h1.letras {
 			fetch(this.url+'/Farmacia/Vue_med_fecha_c')   
   			.then(resp => resp.json())
   			.then(data =>{ 
-				this.list_fechas = data[0]
-  			  	for (var i = 0; i < data[0].cantidad_fechas.length; i++){					
-					if(-(moment().diff(data[0].cantidad_fechas[i].fehca_vencimineto, 'days')) < 0){ 
-
+				
+				for(var i = 0; i < data.length; i++){
+					if(-(moment().diff(data[i].fehca_vencimineto, 'days')) < 0){ 
 						this.list2.push({
-							id: data[0].cantidad_fechas[i].id,
-							cantidad_unidad:data[0].cantidad_fechas[i].cantidad_unidad,
-							codigo_compra:data[0].cantidad_fechas[i].codigo_compra,
-							createdAt:data[0].cantidad_fechas[i].createdAt,
-							fehca_vencimineto:data[0].cantidad_fechas[i].fehca_vencimineto,
-							fehca_v: moment().diff(data[0].cantidad_fechas[i].fehca_vencimineto, 'days'),
-							precio:data[0].cantidad_fechas[i].precio								
+							id:data[i].id,
+							codigo_compra:data[i].codigo_compra,
+							fehca_vencimineto: data[i].fehca_vencimineto,
+							fecha_v:moment().diff(data[i].fehca_vencimineto, 'days'),
+							cantidad_unidad: data[i].cantidad_unidad,
+							nombre: data[0].medicamento.nombre,
+							forma_farmaceutica:  data[0].medicamento.forma_f,
+							precio_venta: data[0].medicamento.precio_compra,
+							precio: data[0].medicamento.precio
 						})
-
-					}				
-				}
-				console.log(this.list2, " ddddddddddddddddddddddddddddddddddddddddddddddddddd")
+					}
+				}  			  
+				
   			})
 		},
 		methods:{ 
