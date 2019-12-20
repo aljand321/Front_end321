@@ -110,10 +110,10 @@
 							</ul>
 						</li>
 					
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Liatas de Pacientes <span class="plus"><i class="fa fa-plus"></i></span></a>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Hospitalización <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 								<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-										<b class="theme_color" >Listas de Internación</b>
+										<b class="theme_color" >Pacientes a Internar</b>
                                     </a> 
                                 </li>
                                 <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
@@ -129,9 +129,24 @@
 									<a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 										<b >Traslados</b>
 									</a> 
-								</li>					
+                                </li>
+                                <li> <a href="/internaciones/buscar_historial/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                    <b >Historial</b>
+                                </a> 					
 							</ul>
-						</li>
+                        </li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles <span
+                            class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul >
+                                <li> 
+                                    <a href="/internaciones/Salas_hospital/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b >Salas</b>
+                                    </a> 
+                                </li>								
+
+                            </ul>
+
+                        </li>
 				
 
 					</ul>

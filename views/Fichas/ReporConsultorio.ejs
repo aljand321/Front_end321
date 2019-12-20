@@ -201,9 +201,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">Turno
                                                 <select class="form-control" v-model="turno">
-                                                    <option>MAÑANA</option>
-                                                    <option>TARDE</option>
-                                                    <option>NOCHE</option>
+                                                    <option value="Mañanas">MAÑANA</option>
+                                                    <option value="Tardes">TARDE</option>
+                                                    <option value="Tardes">NOCHE</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -221,14 +221,17 @@
                                             <div class="form-group"> Médico<br>
                                                 <select class="form-control" name="medico" >
                                                     <option disabled="disabled" value> Seleccione </option>
-                                                    <option v-for="list of list_doc1" :value=" id_doctor = list.nombre.split('/')[1]"> {{list.nombre}} </option>
+                                                    <option v-for="list of list_doc1" :value=" id_doctor = list.nombre.split('/')[1]"> {{list.nombre.split("/")[0]}} </option>
                                                 </select>
                                             </div>                       
                                         </div>
                                     </div>
                                 </div>
+                                
+                               
                                 <p class="text-left ocultarIm">
                                     <button @click="buscar()" type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-signal'></i>&nbsp;&nbsp; Generar Reporte</button>
+                                    <button v-if="data_resp != ''" @click="data_resp = ''" type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class=''></i>&nbsp;&nbsp; Ver todo</button>
                                     <a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 								</p>
                                 <div id="main-content" class="">
@@ -265,7 +268,7 @@
                                                         <td>{{list.medico}}</td>
                                                         <td>{{list.especialidad}}</td>
                                                         <td>{{list.saldo_total}}</td>
-                                                        <td>{{list.turnoturno}}</td>
+                                                        <td>{{list.turno}}</td>
                                                         </tr>
                                                     </template>
                                                 </tbody>
@@ -429,7 +432,7 @@
                 if (this.id_doctor == ""){
                     swal.fire(
                         'Error!',
-                        '<label style="color:red;">Inserte datos</label>',
+                        '<label style="color:red;">Seleccioné doctor por favor</label>',
                         'error'
                     ) 
                 }else{

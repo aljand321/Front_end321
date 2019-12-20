@@ -223,6 +223,7 @@
 												</div>
 												<div class="col-md-6 ">
 														<button @click="buscar()" type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-signal'></i>&nbsp;&nbsp; Generar Reporte</button>
+														<button v-if="data_resp != ''" @click="data_resp = ''" type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class=''></i>&nbsp;&nbsp; Ver todo</button>
 														<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
 													
 												</div>

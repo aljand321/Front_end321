@@ -191,6 +191,9 @@ h1.letras {
 											<div class="form-group">
 											  	<div class="col-sm-offset-2 col-sm-10">
 														<button type="submit" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+														<%if (filter != null) { %>
+															<a  href="/Farmacia/volver322/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i></i>&nbsp;&nbsp; Cancelar</a>
+														<% } %>
 														<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
 											  	</div>
 											</div><!--/form-group--> 
@@ -228,6 +231,22 @@ h1.letras {
 													  <td><%=filter.data.data_cliente[i].medicamentos.total%> Bs.</td>
 												</tr>
 											<% } %>
+										<% } else { %>
+											<% for (var i = 0; i < receta_list.length; i++) { %>
+												<tr>
+													<td><%=i+1%></td>
+													<td><%=receta_list[i].codigo_venta%></td>
+												  	<td><%=receta_list[i].createdAt.split("T")[0]%></td>
+												  	<td><%=receta_list[i].ci%></td>
+												  	<% for (var j = 0; j < list_clientes.length; j++) { %>
+														  <%if (list_clientes[j].ci == receta_list[i].ci) { %>
+															  <td><%=list_clientes[j].nombre%> <%=list_clientes[j].apellidop%> <%=list_clientes[j].apellidom%></td>
+														  <% } %>
+												  	<% } %>
+													<td><%=receta_list[i].medicamentos.totalQty%></td>
+													<td><%=receta_list[i].medicamentos.total%> Bs.</td>
+											  </tr>
+										  <% } %>
 										<% } %>
 									<tbody>
 								</table>
@@ -260,7 +279,7 @@ h1.letras {
 			</div>
 			<div class="modal-footer">
 				<div class="center">
-				  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+				  <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 				  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 				</div>
 			</div>

@@ -550,7 +550,7 @@ const consulta = new Vue({
     },
     computed:{
         buscar(){           
-            return this.lista.filter((item) => item.codigo.includes(this.data) || item.descripcion.includes(this.data))           
+            return this.lista.filter((item) => item.codigo.toLowerCase().includes(this.data.toLowerCase()) || item.descripcion.toLowerCase().includes(this.data.toLowerCase()))           
         }
     },
 

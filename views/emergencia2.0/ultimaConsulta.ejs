@@ -284,8 +284,9 @@
                                     </div>
                                     <div class="col-md-12 subrayado bloqueExamen" id="subrayado1">
                                         <div class="col-md-4">
-                                            <label for=""><b>Ecografía</b></label>
+                                           
                                             <% if (ecografias != "") { %>
+                                                <label for=""><b>Ecografía</b></label>
                                                 <% for (var i = 0; i < ecografias.length; i++ ) { %>
                                                     <% for ( var j = 0; j < ecografias[i].examen.length; j++) { %>
                                                         <ul v-for="list in lab_one.examen">

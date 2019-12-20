@@ -179,6 +179,9 @@ h1.letras {
 													<div class="form-group">
 													  	<div class="col-sm-offset-2 col-sm-10">
 																<button type="submit" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
+																<%if (filter != null) { %>
+																	<a  href="/Farmacia/volver32/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i></i>&nbsp;&nbsp; Cancelar</a>
+																<% } %>
 																<a id="ocultoI" onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir Reporte</a>
 														</div>
 													</div><!--/form-group--> 
@@ -211,7 +214,7 @@ h1.letras {
 							  								<td><%=filter.data.data_cliente[i].createdAt.split("T")[0]%></td>
 															<td>----</td>
 															<% for (var j = 0; j < data_paciente.length; j++) { %>
-																<%if (data_paciente[j].numeroHistorial == filter.data.data_cliente[i].historial) {%>
+																<%if (data_paciente[j].numeroHistorial == filter.data.data_cliente[i].historial) { %>
 																	<td><%=data_paciente[j].nombre%> <%=data_paciente[j].apellidop%> <%=data_paciente[j].apellidom%></td>
 																<% } %>
 			  												<% } %>
@@ -221,6 +224,24 @@ h1.letras {
 															  <td><%=filter.data.data_cliente[i].medicamentos.total%></td>
 														</tr>	
 													<% } %>  
+												<% } else { %>
+													<%for (var i=0; i < recetas_list.length; i++) { %>
+														<tr>
+																<td><%=i+1%></td>
+																<td><%=recetas_list[i].codigo_venta%></td>
+																<td><%=recetas_list[i].createdAt.split("T")[0]%></td>
+															  <td>----</td>
+															  <% for (var j = 0; j < data_paciente.length; j++) { %>
+																  <%if (data_paciente[j].numeroHistorial == recetas_list[i].historial) { %>
+																	  <td><%=data_paciente[j].nombre%> <%=data_paciente[j].apellidop%> <%=data_paciente[j].apellidom%></td>
+																  <% } %>
+																<% } %>
+																<td><%=recetas_list[i].nombre_doctor%></td>
+																<td><%=recetas_list[i].tipo_consulta%></td>
+																<td><%=recetas_list[i].medicamentos.totalQty%></td>
+																<td><%=recetas_list[i].medicamentos.total%></td>
+														  </tr>	
+													<% } %>
 												<% } %>
 											<tbody>
 										</table>
@@ -254,7 +275,7 @@ h1.letras {
 				</div>
 				<div class="modal-footer">
 					<div class="center">
-					  <a href="" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+					  <a href="/delete_token/<%=data_doc.data.token_id%>" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 					  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
 					</div>
 				</div>

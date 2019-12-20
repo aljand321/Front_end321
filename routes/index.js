@@ -103,6 +103,11 @@ function remove_user(id) {
 
 router.get('/',(req, res) => {
   res.render('index', { msg1, msg2, msg3 })
+  setTimeout ( () => {
+    msg1 = null;
+    msg2 = null;
+    msg3 = null;
+  },1000)
 });
 
 router.get('/index2', (req,res) => {
@@ -498,7 +503,7 @@ router.post('/login', (req,res)  => {
         }
       })
     }
-    
+   
   })
     .catch(error => {
       console.error('Error:', error)
