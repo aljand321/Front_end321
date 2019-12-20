@@ -38,12 +38,9 @@
         div.a {
             text-align: center;
         }
-
         h1.letras {
             font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-
         }
-
         #line h3, h4 {display: inline;}
         .vertical-alignment-helper {
 			display:table;
@@ -65,8 +62,6 @@
         ed = parseInt((hoy -fecha)/365/24/60/60/1000)
         document.getElementById('#pepe').value = "tienes " + ed + " años"
         }
-
-
         
     </script>
     <script type="text/javascript">
@@ -189,79 +184,14 @@
 					</ul>
 				</div>
             </div>
-            <div id="sinMargen"  class="contentpanel">
-                    <div class="container clear_both padding_fix col-lg-8"><br>
-                        <div class="col-lg-12 block-web"> 
-                            <div class="header">
-                                <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
-                                <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>  Pacientes Hospitalizados /<span class="semi-bold"> Orden de Hospitalización</span></h2>
-                            </div>	
-                            <div class="col-lg-12">
-                                <section class="panel default  h2">
-                                    <div class="panel-body">
-                                        <div class="panel-group accordion accordion-semi" id="accordion3">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading"  >  
-                                                    <div class="actions">
-                                                    <h3 class="content-header pull-right text-top actions" ><span>&nbsp;&nbsp;&nbsp;</span>Aréa de Hospitalización del Paciente </h3>
-    
-                                                    </div>                                     
-                                                    <h3 class="panel-title" > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente</a> </h3>
-                                                </div>
-                                                <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
-                                                    <div class="panel-body"> 
-                                                        <form>
-                                                            <input type="hidden" :value="idHist.id_int = '<%=one_internacion[0].id%>'">
-                                                            <input type="hidden" :value="idHist.hist = '<%=data_paciente[0].numeroHistorial%>'">
-                                                            <input type="hidden" :value="idHist.id_medico = '<%=data_doc.data.medico.id%>'">
-                                                            <input type="hidden" :value="idHist.id_cama = '<%=one_internacion[0].idCama%>'">
-    
-                                                            <div class="form-group">
-                                                                <div class="col-sm-3"> N° Historial: <br>
-                                                                    <label><font color="black"><%=data_paciente[0].numeroHistorial%></font></label>
-                                                                    
-                                                                </div>
-                                                                <div class="col-sm-3">Aréa de: <br>
-                                                                    <label><font color="black"><%=one_internacion[0].especialidad%></font></label> 
-                                                                </div>
-                                                                <div class="col-sm-3">Ubicacion: <br>
-                                                                    <label><font color="black"><%=one_internacion[0].Cama.Sala.descripcionSala%></font></label>
-                                                                </div>
-                                                                <div class="col-sm-3">Cama N°: <br>
-                                                                    <label><font color="black"><%=one_internacion[0].Cama.numeroCama%></font></label>
-                                                                </div>
-                                                            </div>
-                                                            <br> <br>
-                                                            <div class="form-group">
-                                                                <p>Datos Generales del Paciente</p>
-                                                                <div class="col-sm-3">Paciente: <br>
-                                                                    <label><font color="black"><%=data_paciente[0].nombre%>  <%=data_paciente[0].apellidop%>  <%=data_paciente[0].apellidom%></font></label>
-                                                                </div>
-                                                                <div class="col-sm-3">Fecha de Nacimiento: <br>
-                                                                    <label><font color="black"> <%=data_paciente[0].fechanacimiento%></font></label>
-                                                                </div>
-                                                                <div class="col-sm-3">Sexo: <br>
-                                                                    <label><font color="black"> <%=data_paciente[0].sexo%></font></label>
-                                                                </div>
-                                                                <div class="col-sm-3">C.I.: <br>
-                                                                    <label><font color="black"> <%=data_paciente[0].ci%></font></label>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>                  
-                            </div>
-                        </div> 
+            <div id="sinMargen" class="contentpanel ">
+                <div class="container clear_both padding_fix ">
+                    <br>                
+                    <div class="row">
                         <!-- 
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
                                                                     DATOS GENERALES DEL PACIENTE
-
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                            
                          -->
@@ -493,8 +423,8 @@
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                          -->
-                        <div class="modal fade ocultarIm" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" >
                                 <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -605,9 +535,7 @@
                        <!-- 
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
                                                                     FORMULARIOS DE INTERNACION
-
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                            
                          -->
@@ -626,9 +554,7 @@
                                             <!-- 
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
                                                                                 FORMULARIO PARA PODERA REGISTRAR NOTAS EVOLUCION
-
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                            
                                              -->
@@ -658,9 +584,7 @@
                                             <!-- 
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
                                                                                         FORMULARIO PARA DIAGNOSTICO                       
-
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                            
                                              -->
@@ -813,14 +737,11 @@
 
                                                         <!-- <div class="form-group">
                                                             <div class="row">
-
                                                                 <div class="header col-sm-12">
                                                                     <br>
                                                                      <h4 class="content-header">Medicamentos</h4>
                                                                 </div>&nbsp;&nbsp;
-
                                                                 <div class="col-sm-3"><br>
-
                                                                     <label class="form-label">Medicamento:</label> 
                                                                     <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.medic">
                                                                 </div>
@@ -837,10 +758,7 @@
                                                                         <a  @click="inserMed" class="list-group-item  blue_bg text-center "><i class="fa fa-arrow-left"></i> Insertar</a>
                                                                     </div>
                                                                 </div> 
-
                                                             </div>
-
-
                                                         </div> -->
 
                                                         <!-- 
@@ -901,9 +819,7 @@
                                              <!-- 
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
                                                                                         FORMULARIO PARA INTERVENCIONES DEL PACIENTE                       
-
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                            
                                              -->
@@ -967,9 +883,7 @@
                         <!-- 
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
                                                                     ALTA DEL PACIENTE
-
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                            
                          -->
@@ -980,6 +894,7 @@
                                 <div class="col-md-12 moveArriba ">
                                     <div class="block-web">
                                         <div class="header" id="ocultoI">
+                                            <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
                                             <h3 class="content-header"> EPICRISIS</h3>
                                         </div>
                                         
@@ -989,7 +904,7 @@
                                             <form @submit="formSubmit" parsley-validate novalidate>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-                                                        <label>Fecha de Hospitalización </label>
+                                                        <label>FECHA INTERNACIÓN: <%=one_internacion[0].fechaIngreso%></label>
                                                         <input type="text" readonly class='form-control' :value="epicrisis.Fecha_internacion = '<%=one_internacion[0].fechaIngreso%>'">
                                                     </div><!--/form-group-->
                                                     <div class="form-group col-md-6">
@@ -1121,9 +1036,10 @@
                                                     <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="epicrisis.recomendaciones"></textarea>                                                   
                                                 </div><!--/form-group-->
                                                
-                                                <div>
-                                                    <button type="submit" class="btn btn-success" type="submit"><i class="fa fa-save"></i>Guardar</button>
-                                                    <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i>Cancelar</button>
+                                                <div class="ocultarIm">
+                                                    <button class="btn btn-primary" type="submit">Aceptar</button>
+                                                    <button class="btn btn-default">Cancel</button>
+                                                             
                                                 </div>
                                                 
                                             </form>
@@ -1358,7 +1274,6 @@
     .condicion_egreso:before{
     content: "CONDICIÓN DE EGRESO: <%=epicrisis[0].condicion_egreso%>";
     }
-
     .causa_egreso:before{
     content: "CAUSAS DE EGRESO: <%=epicrisis[0].causa_egreso%>";
     }
@@ -1377,7 +1292,6 @@
     .pronostico_vital:before{
     content: "PRONOSTICO VITAL: <%=epicrisis[0].pronostico_vital%>";
     }
-
     .pronostico_funcional:before{
     content: "PRONOSTICO FUNCIONAL: <%=epicrisis[0].pronostico_funcional%>";
     }
@@ -1465,7 +1379,6 @@
         float:left;
         padding-top: 1%;
         margin-left: 0%;
-
         font: small-caps 61%/100% serif;
         text-align : justify;
     }
@@ -1524,8 +1437,6 @@
         text-align : justify;
         font: small-caps 61%/100% serif;
     }
-
-
 }    
 </style>
    </div>
@@ -1543,7 +1454,6 @@
         size:  A4 portrait;
         margin-right: 1cm;
         margin-left: 1cm;
-
     }
     .supertodoA{
         page-break-inside: avoid;
@@ -1560,7 +1470,6 @@
           margin-left: 40%;
           font: small-caps 170%/100% serif;
     }
-
     .bloque1{
         position: static;
         float:left;
@@ -1710,8 +1619,6 @@
         font-size: 8pt;
         float: right;   
     }
-
-
     </style>
    <script src="/moment/moment.js"></script>
 	<script src="/moment/locale/af.js"></script>

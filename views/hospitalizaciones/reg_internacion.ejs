@@ -216,7 +216,7 @@
                                                                         <div class="">
                                                                             <div class="col-md-6 ">
                                                                                 <div class="form-group label-floating " id="bloque3">
-                                                                                    <label class="control-label">N° Historial </label>
+                                                                                    <label class="control-label">N° Historial</label>
                                                                                     <input class="form-control" name="historial" value="<%=Pint[0].Historial%>">
                                                                                 </div>
                             
@@ -543,7 +543,7 @@
                                                                               <div class="panel-body">
                                                                                 <ul class="nav nav-tabs" id="myTab">
                                                                                   <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
-                                                                                  <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                                  <li id="ocultoI" ><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
                                                                                   
                                                                                 </ul>
                                                                                 <div class="tab-content" id="myTabContent">
@@ -612,7 +612,7 @@
                                                                 
                                                                     <div class="col-md-12 panel-body ocultarIm" id="options">
                                                                         <div class="col-md-12 ">
-                                                                            <div class="col-md-4 bloque6E">
+                                                                            <div class="col-md-4 bloque52">
                                                                                 <div class="form-group label-floating" >
                                                                                     <label class="control-label"  >Especialidad</label>
                                                                                     <select class="form-control" name="especialidad"  v-model="mensaje" @click="agregar">
@@ -621,7 +621,7 @@
                                                                                     </select>                                      
                                                                                 </div>
                                                                             </div>                                                
-                                                                            <div class="col-md-4 bloque6S">
+                                                                            <div class="col-md-4 bloque52">
                                                                                 <div class="form-group label-floating" >
                                                                                     <label class="control-label">Sala</label>
                                                                                     <select class="form-control" name="sala" v-model="salaID" @click="traer">
@@ -632,7 +632,7 @@
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-4 bloque6C">                                                    
+                                                                            <div class="col-md-4 bloque53">                                                    
                                                                                 <div class="form-group label-floating">
                                                                                     <label class="control-label">Cama</label>
                                                                                     <select class="form-control" name="cama">   
@@ -648,26 +648,16 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        
                                                                     </div>
-                                                                   
-                                                                    <!------------------------------------para impresiones------------------------------------->
-                                                                  
-                                                                  <!--  <P class="diagnostico1 moveDiagnotico"></P>
-                                                                
-                                                                    <p name="observacion" class="observacion1 moveDiagnotico2"></p>
-                                                                   -->
-                                                                    <!----------------------------------------------------------------------------------------->
-                                                             
-                                                            <div class="col-lg-12 ">
+                                                                    <div class="col-lg-12">
                                                                             <section class="panel default blue_title h2">
                                                                               
                                                                               <div class="panel-body">
-                                                                                <ul class="nav nav-tabs ocultarIm" id="myTab">
-                                                                                  <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnóstico de prescripción</a></li>
-                                                                                  <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                                <ul class="nav nav-tabs" id="myTab">
+                                                                                  <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
+                                                                                  <li id="ocultoI" ><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                                  
                                                                                 </ul>
-                                                                               
                                                                                 <div class="tab-content" id="myTabContent">
                                                                                   <div id="Tab1" class="tab-pane fade in active">
     
@@ -687,21 +677,17 @@
                                                                               </div>
                                                                             </section>
                                                                           </div>      
+                                                                          <p class="text-center " id="ocultoI" >
                                                                           <%if (formUpdate_internacion[0].estado_update == true) {%>     
-                                                                            <p class=" ocultarIm">
+                                                                            
                                                                                 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                                                                 <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                                            </p>
+                                                                           
                                                                         <% } %>
 
-															                <a onclick="window.print();" id="ocultoI" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-                                                                </form>
-                                                                 <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
-                                                              <div class="acomodarFirmas">
-                                                                <p class="firmaPa center cafirmaP"></p>
-                                                                <p class="firmaDoc center cafirmaDoc"></p>
-                                                            </div> 
-                                                            <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+															                <a onclick="window.print();" class="btn btn-warning btn-raised ocultarIm" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+                                                                        </p>        
+                                                        </form>
                                                             <% } %>
                                                 </div>
         
@@ -742,14 +728,6 @@
           </div>
         </div> 
     </div>
-<div id="options">
-    <style>
-        @media print{
-
-
-
-        }
-        </style>
 <style scoped>
 @media print{
     @page {
@@ -784,7 +762,7 @@
 } 
 .ordendetitulo{
       position: static;
-      margin-top: 10%;
+      margin-top: 7%;
       margin-left: 22%;
       font: small-caps 170%/100% serif;
 }
@@ -836,21 +814,21 @@
 .bloque6E{
    
     float: left;
-    width: 33%;
+    width: 20%;
     margin-left: 0%;   
  margin-bottom: 15%;
 	font: small-caps 100%/100% serif;
 }
 .bloque6S{
-    float: left;
-    width: 33%;
+    float: right;
+    width: 20%;
     margin-left: 0%;   
     padding-top: 1%;
 	font: small-caps 100%/100% serif;
 }
-.bloque6C{
-    float: left;
-    width: 33%;
+.bloque53{
+    float: right;
+    width: 20%;
     margin-left: 0%;   
     padding-top: 1%;
 	font: small-caps 100%/100% serif;
@@ -895,21 +873,12 @@
     color:black;
     font: small-caps 100%/200% serif;
 }   
-/* <% } %> */   
+/* <% } %> */    
 .provieneE:before{
     content: "PROVIENE DE: <%=Pint[0].tipoConsulta%>";
-} 
-
-.acomodarFirmas{
-            position: static;
-            float:left;
-            width: 100%;
-	    	margin-top: 10%;
-        }
 }
-</style>    
-</div>
-
+}
+</style>
     <script src="/js/fecha.js"></script>
 	<script src="/js/get/consultaget.js"></script>	
 	
