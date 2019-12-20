@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
   <title>Almacen</title>
   <%- include("../partials/head") -%>	
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
@@ -72,11 +73,7 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/almacen/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" > <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
-              </ul>
-            </li>
+            <li ><a href="/almacen/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"><i class="fa fa-home"></i> Inicio </a></li>
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block">
                 <li> <a href="/almacen/grupoAsig/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
@@ -171,7 +168,7 @@
                     </div>
                   </div>
                   <p class="text-center"> <button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-info">Lista Productos</button></p>
-                  <div class="col-lg-12"> 
+                  <div class="col-lg-12 modal-lg"> 
                     <section class="panel default black_title h3">
                       <div class="panel-heading">
                         <span class="semi-bold">Lista Pedidos</span> 

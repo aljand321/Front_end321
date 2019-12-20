@@ -54,7 +54,7 @@
                 <li> <a href="/emergencia2.0/pacientes_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes atendidos</b> </a> </li>
                 <li> <a href="/emergencia2.0/pacientes_no_atendidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >No atendidos</b> </a> </li>
                 <li> <a href="/emergencia2.0/lista_consultas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Historial Clinico</b> </a> </li>
-
+              
 							</ul>
 						</li> 
           </ul>
@@ -314,7 +314,7 @@
                                   <div class="col-md-6">
                                     <div class="form-group">
                                       <label>Observaciones</label>
-                                      <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca las Observaciones" class="form-control" v-model = "observaciones" onkeyup="mayus(this);"></textarea>
+                                      <textarea name="" id="" cols="10" rows="4"  class="form-control" v-model = "observaciones" onkeyup="mayus(this);"></textarea>
                                     </div><!--/form-group-->
                                   </div> 
                                   <template v-for="(list,index) of diagnostico">
@@ -401,7 +401,7 @@
                                 <a :href="'/emergencia2.0/receta/'+ one_cita_emergencia.id +'/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>'" class="btn btn-info btn-default btn-block bs">Receta<span>&nbsp;</span><i class="fa fa-pencil-square-o "></i></a>
                               </div>
                               <div class="col-sm-4">
-                                <a :href="'/emergencia2.0/papeleta_internacion/'+ one_cita_emergencia.id +'/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>'" class="btn btn-info btn-default btn-block bs" >Orden de Internación<span>&nbsp;</span><i class="fa fa-wheelchair" ></i></a>
+                                <a :href="'/emergencia2.0/papeleta_internacion/'+ one_cita_emergencia.id +'/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>'" class="btn btn-info btn-default btn-block bs" >Orden de Hospitalización<span>&nbsp;</span><i class="fa fa-wheelchair" ></i></a>
                               </div>
                               <div class="col-sm-4">
                                 <a :href="'/laboratorios/lab_emergencia/'+one_cita_emergencia.id+'/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>'" class="btn btn-info btn-default btn-block bs" >Examenes Complementarios<span>&nbsp;</span><i class="fa fa-eye" ></i></a></td>

@@ -11,9 +11,9 @@ const consulta = new Vue({
         //para examen general
         peso :'50.08',
         talla: '',
-        temperatura:'50.08',
-        frecuencia_cardiaca:'1.08',
-        respiracion:'1.08',
+        temperatura:'37.1',
+        frecuencia_cardiaca:'',
+        respiracion:'',
         presion:'',
         saturacion_oxigeno:'',
         fecha_revision:'',

@@ -43,7 +43,7 @@
 			<div class="left_nav">
 				<div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+						<li ><a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a></li>
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Consultas de Emerg.<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 								<li> <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Lista de Consultas</b> </a> </li>
@@ -106,32 +106,32 @@
 																		<input type="number" value="30.08" data-decimals="2" min="10" max="500" step="0.1"class="form-control" name="peso" maxlength="5">
 																	</div>
 																	<div class="col-sm-4">
-																		<label class="control-label">Talla(m)</label>
-																		<input type="number" value="1.08" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="talla" maxlength="3">
+																		<label class="control-label">Tallac(cm)</label>
+																		<input type="number" value="145" data-decimals="2" min="1" max="300" step="0.01" class="form-control" name="talla" maxlength="3">
 																	</div>
 																</div>
 																<div class="form-group">
 																	<div class="col-sm-4">
 																		<label class="control-label">Temperatura (°C)</label>
-																		<input type="number" value="36.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
+																		<input type="number" value="37.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
 																	</div>
 																	<div class="col-sm-4">
 																		<label class="control-label">Frec. Cardiaca (lat/min)</label>
-																		<input type="text"  class="form-control"  name="frecuencia_cardiaca" size="20" name="frecuencia_cardiaca">
+																		<input type="number"  class="form-control"  name="frecuencia_cardiaca" size="20" name="frecuencia_cardiaca"	placeholder="Introducir">
 																	</div>
 																	<div class="col-sm-4">
 																		<label class="control-label">Respiracion(min)</label>
-																		<input type="number" value="1.08" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="respiracion" ></input>
+																		<input type="number" value="10" data-decimals="2" min="1" max="10" step="0.01" class="form-control" name="respiracion" placeholder="Introducir">
 																	</div>					
 																</div> 
 																<div class="form-group">
 																	<div class="col-sm-4">
 																		<label class="control-label">Saturacion Oxigeno (%)</label>
-																		<input type="number" value="10" data-decimals="2" min="1" max="99" class="form-control" name="saturacion_oxigeno" ></input>
+																		<input type="number" value="10" data-decimals="2" min="1" max="99" class="form-control" name="saturacion_oxigeno"placeholder="Introducir" >
 																	</div>
 																	<div class="col-sm-4">
 																		<label class="control-label">Presion(mmHg)</label>
-																		<input type="text" class="form-control" name="presion" ></input>
+																		<input type="nombre" class="form-control" name="presion" placeholder="Introducir">
 																	</div>
 																	<div class="col-sm-4">
 																		<label class="control-label">Observaciones</label>
@@ -294,7 +294,7 @@
 		msg_true()
 		function msg_true(){
 			swal.fire(
-			'Success!',
+			'Confirmado!',
 			'<label style="color:green;">'+ `<%=msg.data.data_examen%>` +'</label>',
 			'success'
 			)

@@ -2,7 +2,8 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Pacientes</title>
+<link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
+    <title>Hospitalización</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -64,67 +65,39 @@
   <div class="inner">
     <div class="left_nav">
       <div class="left_nav">
-          <div class="left_nav_slidebar">
-                <ul>
-						<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul >
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio  </b>
-								</a> </li>
-							</ul>
-						</li>
-						
+        <div class="left_nav_slidebar">
+          <ul>
+						<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Inicio </a></li>
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Listas de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul>
+								<li><a href=""> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Internación</b> </a> </li>
+							</ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li><a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a></li>
+								<li><a href="/hospitalizacion/antecedentesvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a></li>
+                <li><a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a></li>
+                <li><a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a>  </li>
+							</ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+                <li><a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Egreso o Alta Médica</b> </a></li>
+								<li><a href="/hospitalizacion/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Defunción General</b> </a></li>
+							</ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block" >
-								<li> 
-                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Listas de Internación</b> </a> 
-                                </li>
-								
+								<li><a href="/hospitalizacion/reporteP"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color" >Cirugias</b> </a> </li>
 							</ul>
-                        </li>
-                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul >
-								<li> 
-                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> 
-                                </li>
-								<li> 
-                                    <a href="/hospitalizacion/antecedentesvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> 
-                                </li>
-                                <li> 
-                                    <a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a> 
-                                </li>
-                                
-                                <li> 
-                                    <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a> 
-                                </li>
-							</ul>
-                        </li>
-                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul >
-                                <li> 
-                                    <a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Egreso o Alta Médica</b> </a> 
-                                </li>
-								<li> 
-                                    <a href="/hospitalizacion/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Defunción General</b> </a> 
-                                </li>
-								
-							</ul>
-                        </li>
-                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul >
-								<li> 
-                                    <a href="/hospitalizacion/reporteP"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
-                                </li>
-								
-							</ul>
-                        </li>
-                        
+            </li>                      
 					</ul>
-          </div>
+        </div>
       </div>
     </div>
     <div class="contentpanel">
-        <br>
-        <div class="container clear_both padding_fix">
+        <div class="container clear_both padding_fix"><br>
           <div class="row">
                 <div class="col-md-12">
                     
@@ -132,26 +105,26 @@
                      
                     <div class="header">
                       <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                      <h3 class="content-header ">Reporte de intervencion Quirurgica</h3>
+                      <h2 class="content-header ">Reporte de Intervención Quirúrgica</h2>
                     </div>
                     <br>
                     <br>
                     <div class="porlets-content">
                         <form class="form-horizontal"  parsley-validate novalidate>
                             <div class="form-group">
-                              <label class="col-sm-4 control-label">Desde:</label>
+                              <label class="col-sm-4 control-label">Fecha de Inicio</label>
                               <div class="col-sm-4">
                               <input type="date" class="form-control" >
                               </div>
                             </div><!--/form-group--> 
                             <div class="form-group">
-                              <label  class="col-sm-4 control-label">Hasta:</label>
+                              <label  class="col-sm-4 control-label">Fecha Final</label>
                               <div class="col-sm-4">
                               <input type="date" class="form-control" >
                               </div>
                             </div><!--/form-group-->  
                             <div class="form-group">
-                              <label  class="col-sm-4 control-label">Tipo:</label>
+                              <label  class="col-sm-4 control-label">Tipo</label>
                               <div class="col-sm-4">
                               <select class="selectpicker" data-show-subtext="true" data-live-search="true">
                                 <option>General</option>
@@ -162,6 +135,7 @@
                             </div><!--/form-group-->
                             <div class="form-group">
                               <div class="col-sm-offset-4 col-sm-10">
+                                  <button type="button" value="Imprimir" class="btn btn-success"><i class="fa fa-bar-chart-o"></i>  Generar Reporte</button>
                                   <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
                               </div>
                             </div><!--/form-group--> 

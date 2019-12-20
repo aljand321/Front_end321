@@ -51,7 +51,7 @@
             <div class="left_nav">
                 <div class="left_nav_slidebar">
                     <ul>
-                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio</span> <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio</span> <span class="plus"></span> </a></li>
                         <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
                                 <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b></a> </li>
@@ -390,11 +390,11 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
                                 <h4 ><i class='fa fa-user'></i>  Información del Paciente</h4>
-                                <p class="text-center">
+                              <!--  <p class="text-center">
                                     <span style="color: red">{{msg_false_paciente}}</span>
                                     <span style="color: blue">{{msg_paciente}}</span>
                                 </p>
-                                
+                                -->
                             </div>
                             <template v-if="paciente_data == '' || paciente_data == null || paciente_data.length == 0">
                                 <form class="" method='post'>
@@ -492,49 +492,49 @@
                                                     <div class="col-md-6">
                                                         <div class="col-md-6 ">
                                                             <label>Frec. Cardiaca(lat/min)</label>
-                                                            <input type="number" v-model="frecuencia_cardiaca" data-decimals="2" min="1" max="3" step="0.01" class="form-control" ></input>
+                                                            <input type="number" v-model="frecuencia_cardiaca"  min="1" max="50" step="1"  class="form-control" placeholder="Introdusca" ></input>
                                                         </div>
                                                         <div class="col-md-6 ">
                                                             <label>Frec.Respiratoria(rep/min)</label>
-                                                            <input type="number" v-model="respiracion" data-decimals="2" min="1" max="3" step="0.01" class="form-control"  ></input>
+                                                            <input type="number" v-model="respiracion"  min="1" max="50" step="1" class="form-control" placeholder="Introdusca" ></input>
                                                         </div>
                                                         <div class="col-md-6 ">
                                                             <label>Pulso:</label>
-                                                            <input class="form-control" v-model="pulso" type='text' name='apellidom' placeholder="">
+                                                            <input class="form-control" v-model="pulso" type='number' name='apellidom'  placeholder="Introdusca">
                                                         </div>
                                                         <div class="col-md-6 " >
                                                             <label>Estado Nutricional</label>
-                                                            <input  class="form-control" type='text' v-model="estado_nutricional">
+                                                            <input  class="form-control" type='text' v-model="estado_nutricional" placeholder="Introdusca">
                                                         </div>
                                                         <div class="">
-                                                            <label> Presión Arterial Brazo Isquierdo(mmHg)</label>
-                                                            <input type="text" class="form-control" v-model="presion_brazo_isquierdo" ></input>
+                                                            <label> Presión Arterial Brazo Iquierdo(mmHg)</label>
+                                                            <input type="text" class="form-control" v-model="presion_brazo_isquierdo" placeholder="Introdusca" >
                                                         </div>
                                                         <div class="">
                                                             <label>Presión Arterial Brazo Derecho(mmHg)</label>
-                                                            <input type="text" class="form-control" v-model="presion_brazo_derecho" ></input>
+                                                            <input type="text" class="form-control" v-model="presion_brazo_derecho" placeholder="Introdusca">
                                                         </div>                
                                                     </div>
                                                     <div class="col-md-6 ">
                                                         <div class="col-md-6 row ">
                                                             <label>Peso(kg)</label> 
-                                                            <input type="number" v-model="peso"  data-decimals="2" min="10" max="500" step="0.1"class="form-control" maxlength="5">
+                                                            <input type="number" v-model="peso"  data-decimals="2" min="10" max="500" step="0.1"class="form-control" maxlength="5"placeholder="Introdusca"required>
                                                         </div>
                                                         <div class="col-md-6  ">
-                                                            <label>Talla(m)</label> 
-                                                            <input class="form-control" v-model="talla" type='text' data-decimals="2" min="1" max="3" step="0.01" class="form-control" maxlength="3">
+                                                            <label>Talla(cm)</label> 
+                                                            <input class="form-control" v-model="talla" type='number' data-decimals="2" min="1" max="300" step="1" class="form-control" maxlength="3" placeholder="Introdusca">
                                                        </div>
                                                         <div class="col-md-6 row ">
                                                             <label >IMC</label> 
-                                                            <input class="form-control" v-model="imc" placeholder="">
+                                                            <input class="form-control" type="text" v-model="imc" placeholder="Introdusca">
                                                         </div>
                                                         <div class="col-md-6 ">
                                                             <label>Temp.(°C)</label> 
-                                                            <input type="number" v-model="temperatura" data-decimals="2" min="10" max="100" step="0.1" class="form-control" maxlength="5">
+                                                            <input type="number" v-model="temperatura"  min="10" max="100" step="0.1" class="form-control" maxlength="5" placeholder="Introdusca"required>
                                                         </div>
                                                         <div class="col-sm-12 row">
                                                             <label class="control-label">Observaciones</label>
-                                                            <textarea class="form-control" v-model="otros" ></textarea>
+                                                            <textarea class="form-control" v-model="otros" placeholder="Introdusca"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

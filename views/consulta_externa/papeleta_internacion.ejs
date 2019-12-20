@@ -77,7 +77,7 @@
             <div  id="ocultoI" class="left_nav">
                 <div  class="left_nav_slidebar">
                     <ul>
-                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"><i class="fa fa-plus"></i></span> </a></li>
+                        <li><a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-home"></i> Inicio <span class="plus"></span> </a></li>
                         <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
                                 <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Consultas</b> </a> 
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="sinmagen" id="papeleta">
-                <div class="contentpanel sinmagen" id="sinMargen">
+                <div class="contentpanel sinmagen noCortar" id="sinMargen">
                     <div  class="container clear_both padding_fix col-lg-8"><br>
                         <div class="main-content">
                             <div  class="  col-xs-12 ">
@@ -289,7 +289,7 @@
                                                                         <!--<<<<<<<<<<<<<< IMAGEN en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
                                                                     <!--
                                                                         <p class="tituloDiagnostico"></p><br>
-                                                                        <p class="oreden1"></p>
+                                                                        <p class="oreden1">ddd</p>
                                                                     -->
                                                                         <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
                                                                         <div id="ocultoI" class="block-web">
@@ -338,6 +338,8 @@
                                                                                 <%if(resp[0].estado_update == true) { %>    
                                                                                 <button type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> &nbsp;&nbsp;  Actualizar</button>                                                                   
                                                                                 <% } %>
+                                                                                <a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info" ><i class="fa fa-reply"></i> <span> Volver a consulta</span> </a>
+                                                                           
                                                                                 <a id="ocultoI"onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
                                                                             </div>
                                                                         </div>
@@ -476,6 +478,9 @@
         @page {
             size:  A4 portrait;
             margin: 0;
+        }
+        .noCortar{
+            page-break-inside: avoid;
         }
         .tituloDiagnostico:before {
             content: " Dignóstico";

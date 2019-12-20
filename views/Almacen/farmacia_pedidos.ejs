@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hospital.png">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Almacen</title>
   <%- include("../partials/head") -%>	
@@ -43,11 +44,7 @@
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
-            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
-              </ul>
-            </li>
+            <li ><a href="/almacen/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"><i class="fa fa-home"></i> Inicio </a></li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block">
                 <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>

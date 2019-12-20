@@ -543,7 +543,7 @@
                                                                               <div class="panel-body">
                                                                                 <ul class="nav nav-tabs" id="myTab">
                                                                                   <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
-                                                                                  <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                                  <li id="ocultoI" ><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
                                                                                   
                                                                                 </ul>
                                                                                 <div class="tab-content" id="myTabContent">
@@ -610,7 +610,7 @@
                                                                         </div>  
                                                                     </div>
                                                                 
-                                                                    <div class="col-md-12 panel-body" id="options">
+                                                                    <div class="col-md-12 panel-body ocultarIm" id="options">
                                                                         <div class="col-md-12 ">
                                                                             <div class="col-md-4 bloque52">
                                                                                 <div class="form-group label-floating" >
@@ -655,7 +655,7 @@
                                                                               <div class="panel-body">
                                                                                 <ul class="nav nav-tabs" id="myTab">
                                                                                   <li class="active"><a style="color: rgb(31, 178, 236)" data-toggle="tab" href="#Tab1">Diagnostico de prescripcion</a></li>
-                                                                                  <li><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
+                                                                                  <li id="ocultoI" ><a style="color: rgb(31, 178, 236)"  data-toggle="tab" href="#Tab2">Observaciones</a></li>
                                                                                   
                                                                                 </ul>
                                                                                 <div class="tab-content" id="myTabContent">
@@ -677,15 +677,17 @@
                                                                               </div>
                                                                             </section>
                                                                           </div>      
+                                                                          <p class="text-center " id="ocultoI" >
                                                                           <%if (formUpdate_internacion[0].estado_update == true) {%>     
-                                                                            <p class="text-center">
+                                                                            
                                                                                 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                                                                 <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                                            </p>
+                                                                           
                                                                         <% } %>
 
-															<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-                                                                </form>
+															                <a onclick="window.print();" class="btn btn-warning btn-raised ocultarIm" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
+                                                                        </p>        
+                                                        </form>
                                                             <% } %>
                                                 </div>
         
