@@ -430,7 +430,7 @@ const pedidos =  new Vue({
                 this.totalQty1 = 0,
 
                 swal.fire(
-                  'Success!',
+                  'Confirmado!',
                   '<label style="color:green;">'+ data.msg +'</label>',
                   'success'
                 )
