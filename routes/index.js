@@ -658,12 +658,104 @@ router.get('/backup/:token_id',(req, res) => {
   const { token_id } = req.params
   if(datas.name.token[token_id]){
     res.render('backup',{
-      data_doc:datas.name.data_user[token_id]
+      data_doc:datas.name.data_user[token_id],
+      msg_creado
     })
   }else{
     res.redirect('/');
   }
 });
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+                rutas para los backup
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+ */
+var msg_creado
+ router.get('/brackup1/:token_id', (req,res) => {
+   const { token_id } = req.params
+   fetch('http://localhost:3600/ruta_para_back_up')
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(data => {
+      msg_creado = data
+      res.redirect('/backup/'+token_id)
+    })
+    setTimeout(()=>{
+      msg_creado = null
+    },1000);
+ })
+ router.get('/brackup2/:token_id', (req,res) => {
+  const { token_id } = req.params
+  fetch('http://localhost:3600/ruta_para_back_up2')
+   .then(resp => resp.json())
+   .catch(error => console.error('Error',error))
+   .then(data => {
+     msg_creado = data
+     res.redirect('/backup/'+token_id)
+   })
+   setTimeout(()=>{
+    msg_creado = null
+  },1000);
+})
+router.get('/brackup3/:token_id', (req,res) => {
+  const { token_id } = req.params
+  fetch('http://localhost:3600/ruta_para_back_up3')
+   .then(resp => resp.json())
+   .catch(error => console.error('Error',error))
+   .then(data => {
+     msg_creado = data
+     res.redirect('/backup/'+token_id)
+   })
+   setTimeout(()=>{
+    msg_creado = null
+  },1000);
+})
+router.get('/brackup4/:token_id', (req,res) => {
+  const { token_id } = req.params
+  fetch('http://localhost:3600/ruta_para_back_up4')
+   .then(resp => resp.json())
+   .catch(error => console.error('Error',error))
+   .then(data => {
+     msg_creado = data
+     res.redirect('/backup/'+token_id)
+   })
+   setTimeout(()=>{
+    msg_creado = null
+  },1000);
+})
+router.get('/brackup5/:token_id', (req,res) => {
+  const { token_id } = req.params
+  fetch('http://localhost:3600/ruta_para_back_up5')
+   .then(resp => resp.json())
+   .catch(error => console.error('Error',error))
+   .then(data => {
+     msg_creado = data
+     res.redirect('/backup/'+token_id)
+   })
+   setTimeout(()=>{
+    msg_creado = null
+  },1000);
+})
+router.get('/brackup6/:token_id', (req,res) => {
+  const { token_id } = req.params
+  fetch('http://localhost:3600/ruta_para_back_up6')
+   .then(resp => resp.json())
+   .catch(error => console.error('Error',error))
+   .then(data => {
+     msg_creado = data
+     res.redirect('/backup/'+token_id)
+   })
+   setTimeout(()=>{
+    msg_creado = null
+  },1000);
+})
+
+ /* 
+ <<<<<<<<<<<<<<<<<<<<<<<
+ */
 var msg_Consulta_emergencia = {}
 function msg_data(data,id){
   let msg_data = msg_Consulta_emergencia[id];
